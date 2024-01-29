@@ -3,14 +3,6 @@ title: Syllabus
 format:
   html: 
     toc: true
-  pdf: 
-    papersize: letter
-    mainfont: "Liberation Sans"
-    fontsize: 11pt
-    author: Camille Seaberry
-    institute: UMBC
-    email: cseaberry@umbc.edu 
-    date: "Spring 2024"
 ---
 
 
