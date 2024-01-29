@@ -1,78 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Setup",
-    "section": "",
-    "text": "This is a collection of notes to fill in examples and walkthroughs for the Spring 2024 session of GES 778. It will be updated throughout the semester.\nFirst, install the course’s companion R package, justviz. This is in the class’s GitHub organization.\n\n# install.packages(\"devtools\")\ndevtools::install_github(\"umbc-viz/justviz\")\n\nNext, some packages that aren’t required by the justviz package but will get us started for class and are used in these notes:\n\ncran_pkgs &lt;- c(\"ggplot2\",     # data visualization powerhouse\n               \"dplyr\",       # nice for calculations and data manipulation\n               \"tidyr\",       # data reshaping\n               \"forcats\",     # handling factors\n               \"stringr\",     # string cleanup\n               \"showtext\",    # nice fonts\n               \"ggrepel\",     # force-repelled placement of labels\n               \"osmdata\",     # easy access to sf data from OpenStreetMap\n               \"tigris\",      # shapefiles from Census Bureau TIGER\n               \"patchwork\",   # assembling plots\n               \"ggmap\",       # basemaps in ggplot\n               \"ggtext\",      # use rich text / markdown in ggplot\n               \"here\",        # marks project roots\n               \"knitr\",       # preps conversions between markdown and other formats\n               \"gt\",          # like ggplot but for tables  \n               \"rcartocolor\") # color palettes\n\ninstall.packages(cran_pkgs)\n\n\n\n\n Back to top",
-    "crumbs": [
-      "Overview",
-      "Setup"
-    ]
-  },
-  {
-    "objectID": "weeks/01_walkthrough.html",
-    "href": "weeks/01_walkthrough.html",
-    "title": "1. Walkthrough",
-    "section": "",
-    "text": "Making a chart might seem like a pretty straightforward task: you have data, you make a chart. But there are a lot of things to consider, and they depend on all sorts of factors, like the type of data, your audience, your purpose in visualizing it, the context, and on and on.\nFirst question you should ask yourself:\n\n\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\nThat chart is fine, but it takes up a lot of space to only show 2 numbers. Oftentimes projects that require visualization have caps on length, such as grant applications or print reports where every additional page adds to the budget. In a lot of contexts, you’re probably better off with written text, either just a written sentence if it’s for a report or article, or bullet points or a pull-out quote. You’ll often see documents with something formatted like this:\n\n\nMaryland adults ages 25 and up had median earnings of about $55,000 in 2022, more than $11,000 higher than the US average.\n\n\nMaybe you have a lot of data and your audience wants to see every number exactly, or you just have 2 or 3 numbers but you’re short on space: a nicely formatted table might be better.\n\n\n\n\nTable 1: Median individual earnings, adults ages 25+ with positive earnings, 2022\n\n\n\n\n\n\n\n\n\nLocation\nMedian earnings\n\n\n\n\nUS\n$43,961\n\n\nMaryland\n$55,108\n\n\n\n\n\n\n\n\n\n\nBut if you have somewhere in between a couple data points and too many data points, then making a chart could work. So we’re gonna make a lot of charts.\nIn fact, this data gets at a super pet peeve of mine that can be illustrated well with data visualization.\n\n\n\nSo we already established that Maryland has higher earnings, on average, than the US. Usually when people say “the wage gap,” they’re talking about women’s pay versus men’s pay, e.g. women make x cents on the dollar.1\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\nAgain, super important point but doesn’t quite warrant a chart. You’d get a better sense of the comparison that’s more memorable by just writing:\n\n\nWorking women in Maryland make about 78 cents on the male dollar.\n\n\n(And then in the footnotes include the specifications of “among adults ages 25 and up with positive earnings in 2022.”)\nOne explanation often given for women’s pay being less is that women are more likely to work part-time, and part-time jobs pay much less on average.\n\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\nSo now we’ve established that there are differences in median earnings between women and men, and between full-time and part-time workers, and that Maryland has a higher median earning than the US as a whole. One of the frameworks we’ll use for understanding our data is data feminism (D’Ignazio 2015; D’Ignazio and Klein 2020), which looks at how data can be used to highlight intersections between the patterns we’ve established.\nA good place to start, then, is earnings by sex and full-time status. Let’s make a table:\n\n\n\n\nTable 2: Median individual earnings, adults ages 25+ with positive earnings by sex and full-time status, 2022\n\n\n\n\n\n\n\n\n\nStatus\nMen\nWomen\n\n\n\n\nFull-time\n$72,222\n$62,802\n\n\nPart-time\n$21,579\n$19,200\n\n\n\n\n\n\n\n\n\n\nJust kidding, that’s hard to get a pattern from, and we now have enough comparisons to warrant a chart:\n\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\nThe gaps are actually smaller within groups (full-time men vs full-time women or part-time men vs part-time women) than across (all men vs all women). So the tendency of women to work part time explains some of the wage gap, but not all of it. If the difference were only about work status, we would expect to see no within-group gaps here.2\nWe’ve also looked at education, so we might as well look at both education and sex.\n\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\nEven among only full-time workers, there are gaps at every education level so severe that men at any given education level are paid roughly as much as women at the next level above them. For example, after getting a graduate degree and working full time, women only earn about $1,100 more than men with only a bachelor’s. That’s a pattern that would be hard to glean from just reading a table of numbers or from only seeing the within-groups ratios.\nSo far we’ve worked through identifying several important patterns using just a very simple type of chart that people commonly know how to read—the charts are almost identical, just different slices of the data. But other chart types might help with highlighting different things, such as those gaps.\n\n\n\n\nRevise the code to break down values by race/ethnicity and sex instead of education and sex (i.e. filter for dimension == \"race\" and dimension == \"race_x_sex\" instead of education.)\nBrowse through the Data Visualisation Catalogue (Ribecca 2024) and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (Figure 5). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story?\nFollowing question 2, Wilke gives a brief example in section 6.3 of switching from bar charts to dot plots; how could this be adapted here?\n\n\n\n\n\n\n\n\nD’Ignazio, Catherine. 2015. “What Would Feminist Data Visualization Look Like?” https://civic.mit.edu/feminist-data-visualization.html.\n\n\nD’Ignazio, Catherine, and Lauren F. Klein. 2020. Data Feminism. \\(&lt;\\)Strong\\(&gt;\\) Ideas Series. Cambridge, Massachusetts London, England: The MIT Press. https://data-feminism.mitpress.mit.edu/.\n\n\nRibecca, Severino. 2024. “The Data Visualisation Catalogue.” https://datavizcatalogue.com/.",
-    "crumbs": [
-      "Weekly notes",
-      "1. Walkthrough"
-    ]
-  },
-  {
-    "objectID": "weeks/01_walkthrough.html#do-you-even-need-a-chart",
-    "href": "weeks/01_walkthrough.html#do-you-even-need-a-chart",
-    "title": "1. Walkthrough",
-    "section": "",
-    "text": "Figure 1\n\n\n\n\n\nThat chart is fine, but it takes up a lot of space to only show 2 numbers. Oftentimes projects that require visualization have caps on length, such as grant applications or print reports where every additional page adds to the budget. In a lot of contexts, you’re probably better off with written text, either just a written sentence if it’s for a report or article, or bullet points or a pull-out quote. You’ll often see documents with something formatted like this:\n\n\nMaryland adults ages 25 and up had median earnings of about $55,000 in 2022, more than $11,000 higher than the US average.\n\n\nMaybe you have a lot of data and your audience wants to see every number exactly, or you just have 2 or 3 numbers but you’re short on space: a nicely formatted table might be better.\n\n\n\n\nTable 1: Median individual earnings, adults ages 25+ with positive earnings, 2022\n\n\n\n\n\n\n\n\n\nLocation\nMedian earnings\n\n\n\n\nUS\n$43,961\n\n\nMaryland\n$55,108\n\n\n\n\n\n\n\n\n\n\nBut if you have somewhere in between a couple data points and too many data points, then making a chart could work. So we’re gonna make a lot of charts.\nIn fact, this data gets at a super pet peeve of mine that can be illustrated well with data visualization.",
-    "crumbs": [
-      "Weekly notes",
-      "1. Walkthrough"
-    ]
-  },
-  {
-    "objectID": "weeks/01_walkthrough.html#the-wage-gaps",
-    "href": "weeks/01_walkthrough.html#the-wage-gaps",
-    "title": "1. Walkthrough",
-    "section": "",
-    "text": "So we already established that Maryland has higher earnings, on average, than the US. Usually when people say “the wage gap,” they’re talking about women’s pay versus men’s pay, e.g. women make x cents on the dollar.1\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\nAgain, super important point but doesn’t quite warrant a chart. You’d get a better sense of the comparison that’s more memorable by just writing:\n\n\nWorking women in Maryland make about 78 cents on the male dollar.\n\n\n(And then in the footnotes include the specifications of “among adults ages 25 and up with positive earnings in 2022.”)\nOne explanation often given for women’s pay being less is that women are more likely to work part-time, and part-time jobs pay much less on average.\n\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\nSo now we’ve established that there are differences in median earnings between women and men, and between full-time and part-time workers, and that Maryland has a higher median earning than the US as a whole. One of the frameworks we’ll use for understanding our data is data feminism (D’Ignazio 2015; D’Ignazio and Klein 2020), which looks at how data can be used to highlight intersections between the patterns we’ve established.\nA good place to start, then, is earnings by sex and full-time status. Let’s make a table:\n\n\n\n\nTable 2: Median individual earnings, adults ages 25+ with positive earnings by sex and full-time status, 2022\n\n\n\n\n\n\n\n\n\nStatus\nMen\nWomen\n\n\n\n\nFull-time\n$72,222\n$62,802\n\n\nPart-time\n$21,579\n$19,200\n\n\n\n\n\n\n\n\n\n\nJust kidding, that’s hard to get a pattern from, and we now have enough comparisons to warrant a chart:\n\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\nThe gaps are actually smaller within groups (full-time men vs full-time women or part-time men vs part-time women) than across (all men vs all women). So the tendency of women to work part time explains some of the wage gap, but not all of it. If the difference were only about work status, we would expect to see no within-group gaps here.2\nWe’ve also looked at education, so we might as well look at both education and sex.\n\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\nEven among only full-time workers, there are gaps at every education level so severe that men at any given education level are paid roughly as much as women at the next level above them. For example, after getting a graduate degree and working full time, women only earn about $1,100 more than men with only a bachelor’s. That’s a pattern that would be hard to glean from just reading a table of numbers or from only seeing the within-groups ratios.\nSo far we’ve worked through identifying several important patterns using just a very simple type of chart that people commonly know how to read—the charts are almost identical, just different slices of the data. But other chart types might help with highlighting different things, such as those gaps.",
-    "crumbs": [
-      "Weekly notes",
-      "1. Walkthrough"
-    ]
-  },
-  {
-    "objectID": "weeks/01_walkthrough.html#exercises",
-    "href": "weeks/01_walkthrough.html#exercises",
-    "title": "1. Walkthrough",
-    "section": "",
-    "text": "Revise the code to break down values by race/ethnicity and sex instead of education and sex (i.e. filter for dimension == \"race\" and dimension == \"race_x_sex\" instead of education.)\nBrowse through the Data Visualisation Catalogue (Ribecca 2024) and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (Figure 5). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story?\nFollowing question 2, Wilke gives a brief example in section 6.3 of switching from bar charts to dot plots; how could this be adapted here?\n\n\n\n\n\n\n\n\nD’Ignazio, Catherine. 2015. “What Would Feminist Data Visualization Look Like?” https://civic.mit.edu/feminist-data-visualization.html.\n\n\nD’Ignazio, Catherine, and Lauren F. Klein. 2020. Data Feminism. \\(&lt;\\)Strong\\(&gt;\\) Ideas Series. Cambridge, Massachusetts London, England: The MIT Press. https://data-feminism.mitpress.mit.edu/.\n\n\nRibecca, Severino. 2024. “The Data Visualisation Catalogue.” https://datavizcatalogue.com/.",
-    "crumbs": [
-      "Weekly notes",
-      "1. Walkthrough"
-    ]
-  },
-  {
-    "objectID": "weeks/01_walkthrough.html#footnotes",
-    "href": "weeks/01_walkthrough.html#footnotes",
-    "title": "1. Walkthrough",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nAll of this analysis is based on Census data, which only records gender as male and female, so that’s what we’ve got to work with.↩︎\nWe’ll talk about annotations in a couple weeks, and we’ll return to these charts to practice. Think about what you might want to annotate on these multidimensional charts.↩︎",
-    "crumbs": [
-      "Weekly notes",
-      "1. Walkthrough"
-    ]
-  },
-  {
-    "objectID": "weeks/02_data_types.html",
-    "href": "weeks/02_data_types.html",
-    "title": "2. What’s in your data?",
-    "section": "",
-    "text": "Learning about your data\nHow you visualize data depends on what data you have. A lot of the worst data visualizations come from people not understanding what types of data they have and what they can do with it.\nFor example, with the bar chart of median earnings by sex and education, would it have been okay to display the data like this?\n\n\n# A tibble: 8 × 15\n  dimension name     sex   race_eth edu       occ_group univ  is_fulltime  count\n  &lt;fct&gt;     &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;    &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt; &lt;lgl&gt;        &lt;dbl&gt;\n1 sex_x_edu Maryland Men   Total    High sch… Total     Full… TRUE        361878\n2 sex_x_edu Maryland Men   Total    Some col… Total     Full… TRUE        290498\n3 sex_x_edu Maryland Men   Total    Bachelors Total     Full… TRUE        297648\n4 sex_x_edu Maryland Men   Total    Graduate… Total     Full… TRUE        255200\n5 sex_x_edu Maryland Women Total    High sch… Total     Full… TRUE        210277\n6 sex_x_edu Maryland Women Total    Some col… Total     Full… TRUE        263128\n7 sex_x_edu Maryland Women Total    Bachelors Total     Full… TRUE        264454\n8 sex_x_edu Maryland Women Total    Graduate… Total     Full… TRUE        263974\n# ℹ 6 more variables: earn_q20 &lt;dbl&gt;, earn_q25 &lt;dbl&gt;, earn_q50 &lt;dbl&gt;,\n#   earn_q75 &lt;dbl&gt;, earn_q80 &lt;dbl&gt;, sample_n &lt;dbl&gt;\n\n\n\n\n\n\n\n\n\n Back to top"
-  },
-  {
     "objectID": "syllabus.html",
     "href": "syllabus.html",
     "title": "Syllabus",
@@ -150,11 +77,80 @@
     ]
   },
   {
+    "objectID": "weeks/01_walkthrough.html",
+    "href": "weeks/01_walkthrough.html",
+    "title": "1. Walkthrough",
+    "section": "",
+    "text": "Making a chart might seem like a pretty straightforward task: you have data, you make a chart. But there are a lot of things to consider, and they depend on all sorts of factors, like the type of data, your audience, your purpose in visualizing it, the context, and on and on.\nFirst question you should ask yourself:\n\n\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\nThat chart is fine, but it takes up a lot of space to only show 2 numbers. Oftentimes projects that require visualization have caps on length, such as grant applications or print reports where every additional page adds to the budget. In a lot of contexts, you’re probably better off with written text, either just a written sentence if it’s for a report or article, or bullet points or a pull-out quote. You’ll often see documents with something formatted like this:\n\n\nMaryland adults ages 25 and up had median earnings of about $55,000 in 2022, more than $11,000 higher than the US average.\n\n\nMaybe you have a lot of data and your audience wants to see every number exactly, or you just have 2 or 3 numbers but you’re short on space: a nicely formatted table might be better.\n\n\n\n\nTable 1: Median individual earnings, adults ages 25+ with positive earnings, 2022\n\n\n\n\n\n\n\n\n\nLocation\nMedian earnings\n\n\n\n\nUS\n$43,961\n\n\nMaryland\n$55,108\n\n\n\n\n\n\n\n\n\n\nBut if you have somewhere in between a couple data points and too many data points, then making a chart could work. So we’re gonna make a lot of charts.\nIn fact, this data gets at a super pet peeve of mine that can be illustrated well with data visualization.\n\n\n\nSo we already established that Maryland has higher earnings, on average, than the US. Usually when people say “the wage gap,” they’re talking about women’s pay versus men’s pay, e.g. women make x cents on the dollar.1\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\nAgain, super important point but doesn’t quite warrant a chart. You’d get a better sense of the comparison that’s more memorable by just writing:\n\n\nWorking women in Maryland make about 78 cents on the male dollar.\n\n\n(And then in the footnotes include the specifications of “among adults ages 25 and up with positive earnings in 2022.”)\nOne explanation often given for women’s pay being less is that women are more likely to work part-time, and part-time jobs pay much less on average.\n\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\nSo now we’ve established that there are differences in median earnings between women and men, and between full-time and part-time workers, and that Maryland has a higher median earning than the US as a whole. One of the frameworks we’ll use for understanding our data is data feminism (D’Ignazio 2015; D’Ignazio and Klein 2020), which looks at how data can be used to highlight intersections between the patterns we’ve established.\nA good place to start, then, is earnings by sex and full-time status. Let’s make a table:\n\n\n\n\nTable 2: Median individual earnings, adults ages 25+ with positive earnings by sex and full-time status, 2022\n\n\n\n\n\n\n\n\n\nStatus\nMen\nWomen\n\n\n\n\nFull-time\n$72,222\n$62,802\n\n\nPart-time\n$21,579\n$19,200\n\n\n\n\n\n\n\n\n\n\nJust kidding, that’s hard to get a pattern from, and we now have enough comparisons to warrant a chart:\n\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\nThe gaps are actually smaller within groups (full-time men vs full-time women or part-time men vs part-time women) than across (all men vs all women). So the tendency of women to work part time explains some of the wage gap, but not all of it. If the difference were only about work status, we would expect to see no within-group gaps here.2\nWe’ve also looked at education, so we might as well look at both education and sex.\n\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\nEven among only full-time workers, there are gaps at every education level so severe that men at any given education level are paid roughly as much as women at the next level above them. For example, after getting a graduate degree and working full time, women only earn about $1,100 more than men with only a bachelor’s. That’s a pattern that would be hard to glean from just reading a table of numbers or from only seeing the within-groups ratios.\nSo far we’ve worked through identifying several important patterns using just a very simple type of chart that people commonly know how to read—the charts are almost identical, just different slices of the data. But other chart types might help with highlighting different things, such as those gaps.\n\n\n\n\nRevise the code to break down values by race/ethnicity and sex instead of education and sex (i.e. filter for dimension == \"race\" and dimension == \"race_x_sex\" instead of education.)\nBrowse through the Data Visualisation Catalogue (Ribecca 2024) and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (Figure 5). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story?\nFollowing question 2, Wilke gives a brief example in section 6.3 of switching from bar charts to dot plots; how could this be adapted here?\n\n\n\n\n\n\n\n\nD’Ignazio, Catherine. 2015. “What Would Feminist Data Visualization Look Like?” https://civic.mit.edu/feminist-data-visualization.html.\n\n\nD’Ignazio, Catherine, and Lauren F. Klein. 2020. Data Feminism. \\(&lt;\\)Strong\\(&gt;\\) Ideas Series. Cambridge, Massachusetts London, England: The MIT Press. https://data-feminism.mitpress.mit.edu/.\n\n\nRibecca, Severino. 2024. “The Data Visualisation Catalogue.” https://datavizcatalogue.com/.",
+    "crumbs": [
+      "Weekly notes",
+      "1. Walkthrough"
+    ]
+  },
+  {
+    "objectID": "weeks/01_walkthrough.html#do-you-even-need-a-chart",
+    "href": "weeks/01_walkthrough.html#do-you-even-need-a-chart",
+    "title": "1. Walkthrough",
+    "section": "",
+    "text": "Figure 1\n\n\n\n\n\nThat chart is fine, but it takes up a lot of space to only show 2 numbers. Oftentimes projects that require visualization have caps on length, such as grant applications or print reports where every additional page adds to the budget. In a lot of contexts, you’re probably better off with written text, either just a written sentence if it’s for a report or article, or bullet points or a pull-out quote. You’ll often see documents with something formatted like this:\n\n\nMaryland adults ages 25 and up had median earnings of about $55,000 in 2022, more than $11,000 higher than the US average.\n\n\nMaybe you have a lot of data and your audience wants to see every number exactly, or you just have 2 or 3 numbers but you’re short on space: a nicely formatted table might be better.\n\n\n\n\nTable 1: Median individual earnings, adults ages 25+ with positive earnings, 2022\n\n\n\n\n\n\n\n\n\nLocation\nMedian earnings\n\n\n\n\nUS\n$43,961\n\n\nMaryland\n$55,108\n\n\n\n\n\n\n\n\n\n\nBut if you have somewhere in between a couple data points and too many data points, then making a chart could work. So we’re gonna make a lot of charts.\nIn fact, this data gets at a super pet peeve of mine that can be illustrated well with data visualization.",
+    "crumbs": [
+      "Weekly notes",
+      "1. Walkthrough"
+    ]
+  },
+  {
+    "objectID": "weeks/01_walkthrough.html#the-wage-gaps",
+    "href": "weeks/01_walkthrough.html#the-wage-gaps",
+    "title": "1. Walkthrough",
+    "section": "",
+    "text": "So we already established that Maryland has higher earnings, on average, than the US. Usually when people say “the wage gap,” they’re talking about women’s pay versus men’s pay, e.g. women make x cents on the dollar.1\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\nAgain, super important point but doesn’t quite warrant a chart. You’d get a better sense of the comparison that’s more memorable by just writing:\n\n\nWorking women in Maryland make about 78 cents on the male dollar.\n\n\n(And then in the footnotes include the specifications of “among adults ages 25 and up with positive earnings in 2022.”)\nOne explanation often given for women’s pay being less is that women are more likely to work part-time, and part-time jobs pay much less on average.\n\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\nSo now we’ve established that there are differences in median earnings between women and men, and between full-time and part-time workers, and that Maryland has a higher median earning than the US as a whole. One of the frameworks we’ll use for understanding our data is data feminism (D’Ignazio 2015; D’Ignazio and Klein 2020), which looks at how data can be used to highlight intersections between the patterns we’ve established.\nA good place to start, then, is earnings by sex and full-time status. Let’s make a table:\n\n\n\n\nTable 2: Median individual earnings, adults ages 25+ with positive earnings by sex and full-time status, 2022\n\n\n\n\n\n\n\n\n\nStatus\nMen\nWomen\n\n\n\n\nFull-time\n$72,222\n$62,802\n\n\nPart-time\n$21,579\n$19,200\n\n\n\n\n\n\n\n\n\n\nJust kidding, that’s hard to get a pattern from, and we now have enough comparisons to warrant a chart:\n\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\nThe gaps are actually smaller within groups (full-time men vs full-time women or part-time men vs part-time women) than across (all men vs all women). So the tendency of women to work part time explains some of the wage gap, but not all of it. If the difference were only about work status, we would expect to see no within-group gaps here.2\nWe’ve also looked at education, so we might as well look at both education and sex.\n\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\nEven among only full-time workers, there are gaps at every education level so severe that men at any given education level are paid roughly as much as women at the next level above them. For example, after getting a graduate degree and working full time, women only earn about $1,100 more than men with only a bachelor’s. That’s a pattern that would be hard to glean from just reading a table of numbers or from only seeing the within-groups ratios.\nSo far we’ve worked through identifying several important patterns using just a very simple type of chart that people commonly know how to read—the charts are almost identical, just different slices of the data. But other chart types might help with highlighting different things, such as those gaps.",
+    "crumbs": [
+      "Weekly notes",
+      "1. Walkthrough"
+    ]
+  },
+  {
+    "objectID": "weeks/01_walkthrough.html#exercises",
+    "href": "weeks/01_walkthrough.html#exercises",
+    "title": "1. Walkthrough",
+    "section": "",
+    "text": "Revise the code to break down values by race/ethnicity and sex instead of education and sex (i.e. filter for dimension == \"race\" and dimension == \"race_x_sex\" instead of education.)\nBrowse through the Data Visualisation Catalogue (Ribecca 2024) and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (Figure 5). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story?\nFollowing question 2, Wilke gives a brief example in section 6.3 of switching from bar charts to dot plots; how could this be adapted here?\n\n\n\n\n\n\n\n\nD’Ignazio, Catherine. 2015. “What Would Feminist Data Visualization Look Like?” https://civic.mit.edu/feminist-data-visualization.html.\n\n\nD’Ignazio, Catherine, and Lauren F. Klein. 2020. Data Feminism. \\(&lt;\\)Strong\\(&gt;\\) Ideas Series. Cambridge, Massachusetts London, England: The MIT Press. https://data-feminism.mitpress.mit.edu/.\n\n\nRibecca, Severino. 2024. “The Data Visualisation Catalogue.” https://datavizcatalogue.com/.",
+    "crumbs": [
+      "Weekly notes",
+      "1. Walkthrough"
+    ]
+  },
+  {
+    "objectID": "weeks/01_walkthrough.html#footnotes",
+    "href": "weeks/01_walkthrough.html#footnotes",
+    "title": "1. Walkthrough",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nAll of this analysis is based on Census data, which only records gender as male and female, so that’s what we’ve got to work with.↩︎\nWe’ll talk about annotations in a couple weeks, and we’ll return to these charts to practice. Think about what you might want to annotate on these multidimensional charts.↩︎",
+    "crumbs": [
+      "Weekly notes",
+      "1. Walkthrough"
+    ]
+  },
+  {
+    "objectID": "weeks/02_data_types.html",
+    "href": "weeks/02_data_types.html",
+    "title": "2. What’s in your data?",
+    "section": "",
+    "text": "Learning about your data\nHow you visualize data depends on what data you have. A lot of the worst data visualizations come from people not understanding what types of data they have and what they can do with it.\nFor example, with the bar chart of median earnings by sex and education, would it have been okay to display the data like this?\n\n\n# A tibble: 8 × 15\n  dimension name     sex   race_eth edu       occ_group univ  is_fulltime  count\n  &lt;fct&gt;     &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;    &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt; &lt;lgl&gt;        &lt;dbl&gt;\n1 sex_x_edu Maryland Men   Total    High sch… Total     Full… TRUE        361878\n2 sex_x_edu Maryland Men   Total    Some col… Total     Full… TRUE        290498\n3 sex_x_edu Maryland Men   Total    Bachelors Total     Full… TRUE        297648\n4 sex_x_edu Maryland Men   Total    Graduate… Total     Full… TRUE        255200\n5 sex_x_edu Maryland Women Total    High sch… Total     Full… TRUE        210277\n6 sex_x_edu Maryland Women Total    Some col… Total     Full… TRUE        263128\n7 sex_x_edu Maryland Women Total    Bachelors Total     Full… TRUE        264454\n8 sex_x_edu Maryland Women Total    Graduate… Total     Full… TRUE        263974\n# ℹ 6 more variables: earn_q20 &lt;dbl&gt;, earn_q25 &lt;dbl&gt;, earn_q50 &lt;dbl&gt;,\n#   earn_q75 &lt;dbl&gt;, earn_q80 &lt;dbl&gt;, sample_n &lt;dbl&gt;\n\n\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
     "objectID": "references.html",
     "href": "references.html",
     "title": "References",
     "section": "",
     "text": "References\n\n\n\n\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "readings.html",
+    "href": "readings.html",
+    "title": "Readings",
+    "section": "",
+    "text": "Here are the readings for each week. Please have the readings done before the corresponding class. I’ll try not to assign too much reading, so please come ready to discuss!\n\n\n\nWeek\nDate\nTopic\nRead before class\n\n\n\n\n2\n02/07\nEncoding data to visuals\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Back to top"
   },
   {
     "objectID": "weeks/00_definitions.html",
@@ -201,10 +197,14 @@
     ]
   },
   {
-    "objectID": "readings.html",
-    "href": "readings.html",
-    "title": "Readings",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Setup",
     "section": "",
-    "text": "Here are the readings for each week. Please have the readings done before the corresponding class. I’ll try not to assign too much reading, so please come ready to discuss!\n\n\n\nWeek\nDate\nTopic\nRead before class\n\n\n\n\n2\n02/07\nEncoding data to visuals\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Back to top"
+    "text": "This is a collection of notes to fill in examples and walkthroughs for the Spring 2024 session of GES 778. It will be updated throughout the semester.\nFirst, install the course’s companion R package, justviz. This is in the class’s GitHub organization.\n\n# install.packages(\"devtools\")\ndevtools::install_github(\"umbc-viz/justviz\")\n\nNext, some packages that aren’t required by the justviz package but will get us started for class and are used in these notes:\n\ncran_pkgs &lt;- c(\"ggplot2\",     # data visualization powerhouse\n               \"dplyr\",       # nice for calculations and data manipulation\n               \"tidyr\",       # data reshaping\n               \"forcats\",     # handling factors\n               \"stringr\",     # string cleanup\n               \"showtext\",    # nice fonts\n               \"ggrepel\",     # force-repelled placement of labels\n               \"osmdata\",     # easy access to sf data from OpenStreetMap\n               \"tigris\",      # shapefiles from Census Bureau TIGER\n               \"patchwork\",   # assembling plots\n               \"ggmap\",       # basemaps in ggplot\n               \"ggtext\",      # use rich text / markdown in ggplot\n               \"here\",        # marks project roots\n               \"knitr\",       # preps conversions between markdown and other formats\n               \"gt\",          # like ggplot but for tables  \n               \"rcartocolor\") # color palettes\n\ninstall.packages(cran_pkgs)\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Overview",
+      "Setup"
+    ]
   }
 ]
