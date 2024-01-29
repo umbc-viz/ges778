@@ -1,1 +1,0 @@
-Sitemap: https://umbc-viz.github.io/ges778/sitemap.xml
