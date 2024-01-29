@@ -1,0 +1,13 @@
+---
+title: Readings
+---
+
+Here are the readings for each week. Please have the readings done _before_ the corresponding class. I'll try not to assign too much reading, so please come ready to discuss!
+
+| Week | Date  | Topic                    | Read before class |
+| ---: | ----: | ------------------------ | ----------------- |
+| 2    | 02/07 | Encoding data to visuals |                   |
+|      |       |                          |                   |
+|      |       |                          |                   |
+|      |       |                          |                   |
+|      |       |                          |                   |

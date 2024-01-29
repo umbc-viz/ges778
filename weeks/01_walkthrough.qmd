@@ -1,0 +1,208 @@
+---
+title: 1. Walkthrough
+execute: 
+  echo: false
+  warning: false
+  message: false
+fig-width: 7
+fig-height: 4
+tbl-cap-location: top
+dpi: 200
+---
+
+# Walkthrough: what goes into a chart?
+
+```{r}
+#| message: false
+library(dplyr)
+library(ggplot2)
+library(justviz)
+library(gt)
+library(ggtext)
+
+source(here::here("utils/plotting_utils.R"))
+update_geom_defaults("col", list(fill = qual_pal[3]))
+gender_pal <- setNames(qual_pal[c(3, 6)], c("Men", "Women"))
+```
+
+Making a chart might seem like a pretty straightforward task: you have data, you make a chart. But there are a lot of things to consider, and they depend on all sorts of factors, like the type of data, your audience, your purpose in visualizing it, the context, and on and on.
+
+First question you should ask yourself:
+
+## Do you even need a chart?
+
+```{r}
+#| label: fig-wages-bar
+#| fig-width: 4
+wages |>
+  filter(dimension == "total") |>
+  ggplot(aes(x = name, y = earn_q50)) +
+  geom_col(width = 0.8, alpha = 0.9) +
+  scale_y_barcontinuous(labels = dollar_k) +
+  labs(x = NULL, y = NULL,
+       title = "Median individual earnings",
+       subtitle = "Adults ages 25+ with positive earnings, 2022")
+```
+
+That chart is fine, but it takes up a lot of space to only show 2 numbers. Oftentimes projects that require visualization have caps on length, such as grant applications or print reports where every additional page adds to the budget. In a lot of contexts, you're probably better off with written text, either just a written sentence if it's for a report or article, or bullet points or a pull-out quote. You'll often see documents with something formatted like this:
+
+::: {.hilite}
+> Maryland adults ages 25 and up had median earnings of about **\$55,000** in 2022, more than **\$11,000 higher** than the US average.
+:::
+
+Maybe you have a lot of data and your audience wants to see every number exactly, or you just have 2 or 3 numbers but you're short on space: a nicely formatted table might be better.
+
+```{r}
+#| label: tbl-wages-table
+#| tbl-cap: Median individual earnings, adults ages 25+ with positive earnings, 2022 
+#| tbl-cap-location: top
+wages |>
+  filter(dimension == "total") |>
+  select(name, earn_q50) |>
+  gt() |>
+  fmt_currency(columns = earn_q50, decimals = 0) |>
+  cols_align(align = "left", columns = name) |>
+  cols_align(align = "right", columns = earn_q50) |>
+  cols_label(name = "Location", earn_q50 = "Median earnings") |>
+  tab_options(table.width = "300px")
+```
+
+But if you have somewhere in between a couple data points and too many data points, then making a chart could work. So we're gonna make a lot of charts.
+
+In fact, this data gets at a super pet peeve of mine that can be illustrated well with data visualization.
+
+## The wage gaps
+
+So we already established that Maryland has higher earnings, on average, than the US. Usually when people say "_the_ wage gap," they're talking about women's pay versus men's pay, e.g. _women make x cents on the dollar._^[All of this analysis is based on Census data, which only records gender as male and female, so that's what we've got to work with.]
+
+```{r}
+#| label: fig-wages-sex
+#| fig-width: 4
+wages |>
+  filter(dimension == "sex", 
+         univ == "All workers",
+         name == "Maryland") |>
+  ggplot(aes(x = sex, y = earn_q50)) +
+  geom_col(width = 0.8, alpha = 0.9) +
+  scale_y_barcontinuous(labels = dollar_k) +
+  labs(x = NULL, y = NULL, fill = NULL,
+       title = "Median individual earnings",
+       subtitle = "Adults ages 25+ with positive earnings by sex, Maryland, 2022") +
+  theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")))
+```
+
+Again, super important point but doesn't quite warrant a chart. You'd get a better sense of the comparison _that's more memorable_ by just writing:
+
+```{r}
+#| label: wage-ratio-txt
+wage_ratio <- wages |>
+  filter(dimension == "sex",
+         univ == "All workers",
+         name == "Maryland") |>
+  tidyr::pivot_wider(id_cols = name, names_from = sex, values_from = earn_q50) |>
+  mutate(ratio = round(Women / Men * 100)) |>
+  pull(ratio)
+```
+
+::: {.hilite}
+> Working women in Maryland make about **`r wage_ratio`** cents on the male dollar.
+:::
+
+(And then in the footnotes include the specifications of "among adults ages 25 and up with positive earnings in 2022.")
+
+One explanation often given for women's pay being less is that women are more likely to work part-time, and part-time jobs pay much less on average.
+
+```{r}
+#| label: fig-wages-time
+#| fig-width: 4
+wages |>
+  filter(dimension == "time",
+         name == "Maryland") |>
+  mutate(time = ifelse(is_fulltime, "Full-time", "Part-time") |>
+            forcats::as_factor() |>
+            forcats::fct_relevel("Full-time")) |>
+  ggplot(aes(x = time, y = earn_q50)) +
+  geom_col(width = 0.8, alpha = 0.9) +
+  scale_y_barcontinuous(labels = dollar_k) +
+  labs(x = NULL, y = NULL, fill = NULL,
+       title = "Median individual earnings",
+       subtitle = "Adults ages 25+ with positive earnings by full-time status, Maryland, 2022") +
+  theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")))
+```
+
+
+So now we've established that there are differences in median earnings between women and men, and between full-time and part-time workers, and that Maryland has a higher median earning than the US as a whole. One of the frameworks we'll use for understanding our data is _data feminism_ [@DIgnazio2015; @D.K2020], which looks at how data can be used to highlight intersections between the patterns we've established. 
+
+A good place to start, then, is earnings by sex _and_ full-time status. Let's make a table:
+
+```{r}
+#| label: tbl-wages-time-sex
+#| tbl-cap: Median individual earnings, adults ages 25+ with positive earnings by sex and full-time status, 2022 
+#| tbl-cap-location: top 
+wages |>
+  filter(dimension == "sex_x_time",
+         name == "Maryland") |>
+  mutate(time = ifelse(is_fulltime, "Full-time", "Part-time") |>
+            forcats::as_factor() |>
+            forcats::fct_relevel("Full-time")) |>
+  tidyr::pivot_wider(id_cols = time, names_from = sex, values_from = earn_q50) |>
+  arrange(time) |>
+  gt() |>
+  fmt_currency(columns = c(Men, Women), decimals = 0) |>
+  cols_align(align = "left", columns = time) |>
+  cols_align(align = "right", columns = c(Men, Women)) |>
+  cols_label(time = "Status") |>
+  tab_options(table.width = "400px")
+```
+
+Just kidding, that's hard to get a pattern from, and we now have enough comparisons to warrant a chart:
+
+```{r}
+#| label: fig-wages-time-sex
+wages |>
+  filter(dimension == "sex_x_time",
+         name == "Maryland") |>
+  mutate(time = ifelse(is_fulltime, "Full-time", "Part-time") |>
+            forcats::as_factor() |>
+            forcats::fct_relevel("Full-time")) |>
+  ggplot(aes(x = sex, y = earn_q50, fill = sex)) +
+  geom_col(width = 0.8, alpha = 0.9, position = position_dodge2()) +
+  scale_y_barcontinuous(labels = dollar_k) +
+  scale_fill_manual(values = gender_pal) +
+  facet_wrap(vars(time)) +
+  labs(x = NULL, y = NULL, fill = NULL,
+       title = "Median individual earnings",
+       subtitle = "Adults ages 25+ with positive earnings by sex and full-time status, Maryland, 2022") +
+  theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")),
+        legend.position = "none")
+```
+
+The gaps are actually smaller _within_ groups (full-time men vs full-time women or part-time men vs part-time women) than _across_ (all men vs all women). So the tendency of women to work part time explains some of the wage gap, but not all of it. If the difference were only about work status, we would expect to see no within-group gaps here.^[We'll talk about annotations in a couple weeks, and we'll return to these charts to practice. Think about what you might want to annotate on these multidimensional charts.]
+
+We've also looked at education, so we might as well look at both education and sex.
+
+```{r}
+#| label: fig-wages-edu-sex
+wages |>
+  filter(dimension == "sex_x_edu",
+         name == "Maryland") |>
+  ggplot(aes(x = edu, y = earn_q50, fill = sex)) +
+  geom_col(width = 0.8, alpha = 0.9, position = position_dodge2()) +
+  scale_y_barcontinuous(labels = dollar_k) +
+  scale_fill_manual(values = gender_pal) +
+  labs(x = NULL, y = NULL, fill = NULL,
+       title = "Median individual earnings",
+       subtitle = "Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2022") +
+  theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")),
+        legend.position = "bottom")
+```
+
+Even among only full-time workers, there are gaps at every education level so severe that men at any given education level are paid roughly as much as women at the next level above them. For example, after getting a graduate degree and working full time, women only earn about \$1,100 more than men with only a bachelor's. That's a pattern that would be hard to glean from just reading a table of numbers or from only seeing the within-groups ratios.
+
+So far we've worked through identifying several important patterns using just a very simple type of chart that people commonly know how to read---the charts are almost identical, just different slices of the data. But other chart types might help with highlighting different things, such as those gaps.
+
+## Exercises
+
+1. Revise the code to break down values by race/ethnicity and sex instead of education and sex (i.e. filter for `dimension == "race"` and `dimension == "race_x_sex"` instead of education.)
+2. Browse through the Data Visualisation Catalogue [@Ribecca2024] and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (@fig-wages-edu-sex). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story? 
+3. Following question 2, Wilke gives a brief example in [section 6.3](https://clauswilke.com/dataviz/visualizing-amounts.html#dot-plots-and-heatmaps) of switching from bar charts to dot plots; how could this be adapted here?

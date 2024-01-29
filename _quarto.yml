@@ -1,0 +1,63 @@
+project:
+  type: website
+
+website: 
+  back-to-top-navigation: true
+  page-navigation: true
+  title: "GES 778, Spring 2024"
+  description: "Advanced Visualization and Presentation"
+  site-url: https://umbc-viz.github.io/ges778/
+  repo-url: https://github.com/umbc-viz/ges778.git
+  repo-actions: [edit, issue, source]
+  reader-mode: false
+
+  sidebar:
+    style: "docked"
+    search: true
+    tools: 
+      - icon: github
+        href: https://github.com/umbc-viz/ges778.git
+        text: "GitHub"
+      - icon: code-slash
+        href: https://github.com/umbc-viz/justviz.git
+        text: "justviz package"
+    contents:
+      - section: "Overview"
+        contents:
+          - index.qmd
+          - syllabus.qmd
+      - section: "Weekly notes"
+        # contents: "weeks/*.qmd"
+        contents: 
+          - weeks/00_definitions.qmd
+          - weeks/01_walkthrough.qmd
+      # - references.qmd
+
+filters:
+  - section-bibliographies
+
+author: Camille Seaberry
+bibliography: references.bib
+# csl: chicago-fullnote-bibliography.csl
+# reference-section-title: References
+citeproc: true
+
+highlight-style: a11y
+
+format:
+  html:
+    theme: 
+      light: [flatly, theme.scss, theme-light.scss]
+      dark: [darkly, theme.scss, theme-dark.scss]
+    mainfont: "Source Sans 3"
+    monofont: "Source Code Pro"
+    code-copy: true
+    email-obfuscation: javascript
+    tbl-cap-location: top
+
+number-sections: false
+execute: 
+  warning: false
+  message: false
+  
+

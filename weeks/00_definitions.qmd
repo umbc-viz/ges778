@@ -1,0 +1,27 @@
+---
+title: 0. Definitions
+---
+
+## What is data visualization?
+
+A few definitions of data visualization:
+
+> The rendering of information in a visual format to help communicate data while also generating new patterns and knowledge through the act of visualization itself [@D.B.R2018 p. 8]
+
+> The representation and presentation of data to facilitate understanding [@Kirk2016 p. 19]
+
+It's pretty common to find a book with hundreds of pages of details on data visualization, but no definition. 
+
+What else could we add here?
+
+## What should visualization do?
+
+> Data visualization is part art and part science. The challenge is to get the art right without getting the science wrong and vice versa. A data visualization first and foremost has to accurately convey the data. It must not mislead or distort.... At the same time, a data visualization should be aesthetically pleasing [@Wilke2019 ch 1]
+
+## Why visualize data?
+
+- Explore
+- Explain
+- Both
+
+[What's the difference, and what happens in the overlaps?](https://www.juiceanalytics.com/writing/exploratory-vs-explanatory-understanding-the-difference-between-data-analysis-and-data-presentation)

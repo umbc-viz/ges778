@@ -1,0 +1,36 @@
+---
+title: 2. What's in your data?
+execute: 
+  echo: false
+  warning: false
+  message: false
+fig-width: 7
+fig-height: 4
+tbl-cap-location: top
+dpi: 200
+suppress-bibliography: true
+---
+
+# Learning about your data
+
+```{r}
+#| message: false
+library(dplyr)
+library(ggplot2)
+library(justviz)
+library(ggtext)
+
+source(here::here("utils/plotting_utils.R"))
+update_geom_defaults("col", list(fill = qual_pal[3]))
+gender_pal <- setNames(qual_pal[c(3, 6)], c("Men", "Women"))
+```
+
+How you visualize data depends on what data you have. A lot of the worst data visualizations come from people not understanding what types of data they have and what they can do with it. 
+
+For example, with the bar chart of median earnings by sex and education, would it have been okay to display the data like this?
+
+```{r}
+wages |>
+  filter(dimension == "sex_x_edu",
+         name == "Maryland")
+```
