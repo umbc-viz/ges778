@@ -34,7 +34,8 @@ website:
           - weeks/01_walkthrough.qmd
       - references.qmd
 
-# filters:
+filters:
+  - citetools
 #   - section-bibliographies
 
 author: Camille Seaberry
