@@ -1,4 +1,6 @@
-# References {.unnumbered}
+---
+title: References
+nocite: '@*'
+---
 
-::: {#refs}
-:::
+This is everything in my Zotero bibliography for this class, not all of which actually made it onto the reading list.

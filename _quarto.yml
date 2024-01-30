@@ -26,15 +26,16 @@ website:
         contents:
           - index.qmd
           - syllabus.qmd
+          - readings.qmd
       - section: "Weekly notes"
         # contents: "weeks/*.qmd"
         contents: 
           - weeks/00_definitions.qmd
           - weeks/01_walkthrough.qmd
-      # - references.qmd
+      - references.qmd
 
-filters:
-  - section-bibliographies
+# filters:
+#   - section-bibliographies
 
 author: Camille Seaberry
 bibliography: references.bib

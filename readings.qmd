@@ -4,10 +4,27 @@ title: Readings
 
 Here are the readings for each week. Please have the readings done _before_ the corresponding class. I'll try not to assign too much reading, so please come ready to discuss!
 
-| Week | Date  | Topic                    | Read before class |
-| ---: | ----: | ------------------------ | ----------------- |
-| 2    | 02/07 | Encoding data to visuals |                   |
-|      |       |                          |                   |
-|      |       |                          |                   |
-|      |       |                          |                   |
-|      |       |                          |                   |
+
+## Week 2, Feb 7: encoding data to visuals; making meaning of data
+
+* @Cairo2019 intro (on Blackboard)
+* Read @DIgnazio2015 or listen to PolicyViz episode 142 (@Schwabisha) (or both)
+* @Wilke2019 chapters 2 & 3
+* @Kosara2019 (5 min video)
+
+## Week 3, Feb 14: writing good code; color
+
+* @Wilke2019 chapters 4, 6, 17
+* @W.C.G2023 chapters 1 & 9 (okay to skim as a code reference)
+
+## Week 4, Feb 21: text, annotation, uncertainty, distribution
+
+* @Wilke2019 chapters 7, 9, 10
+* Listen to Data Stories episode 134 (@B.S)
+* **Optional:** browse either the Urban Institute's styleguide (@UrbanInstituteData), or the WHO's (@WHODataDesign; you have to click through to each section)
+
+## Week 5, Feb 28: making good decisions
+
+* @Cairo2019 chapter 1 (on Blackboard)
+* @Wilke2019 chapters 13, 14 & 20
+* @Smith2023
