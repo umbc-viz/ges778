@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>GES 778, Spring 2024</title>
+<title>GES 778, Spring 2024 - References</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,7 +21,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,6 +51,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./weeks/01_walkthrough.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -70,6 +91,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -82,9 +132,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      GES 778, Spring 2024
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./references.html">References</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -135,6 +183,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./readings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Readings</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -160,6 +214,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -171,6 +231,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
+<h1 class="title">References</h1>
 </div>
 
 
@@ -193,16 +254,157 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="references" class="level1 unnumbered">
-<h1 class="unnumbered">References</h1>
+<p>This is everything in my Zotero bibliography for this class, not all of which actually made it onto the reading list.</p>
 
 
-<div id="3ade8a4a-fb1d-4a6c-8409-ac45482d5fc9" class="hidden">
 
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-B.S" class="csl-entry" role="listitem">
+Bertini, Enrico, and Moritz Stefaner. n.d. <span>“Visualizing <span>Uncertainty</span> with <span>Jessica Hullman</span> and <span>Matthew Kay</span>.”</span> Accessed January 30, 2024. <a href="https://datastori.es/134-visualizing-uncertainty-with-jessica-hullman-and-matthew-kay/">https://datastori.es/134-visualizing-uncertainty-with-jessica-hullman-and-matthew-kay/</a>.
 </div>
-</section>
-
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<div id="ref-Brewer2006" class="csl-entry" role="listitem">
+Brewer, Cynthia A. 2006. <span>“Basic <span>Mapping Principles</span> for <span>Visualizing Cancer Data Using Geographic Information Systems</span> (<span>GIS</span>).”</span> <em>American Journal of Preventive Medicine</em> 30 (2): S25–36. <a href="https://doi.org/10.1016/j.amepre.2005.09.007">https://doi.org/10.1016/j.amepre.2005.09.007</a>.
+</div>
+<div id="ref-Cairo2019" class="csl-entry" role="listitem">
+Cairo, Alberto. 2019. <em>How Charts Lie: Getting Smarter about Visual Information</em>. First edition. <span>New York</span>: <span>W. W. Norton &amp; Company</span>.
+</div>
+<div id="ref-Chang2018" class="csl-entry" role="listitem">
+Chang, Winston. 2018. <em>R Graphics Cookbook: Practical Recipes for Visualizing Data</em>. Second edition. <span>Beijing ; Boston</span>: <span>O’Reilly</span>. <a href="https://r-graphics.org/">https://r-graphics.org/</a>.
+</div>
+<div id="ref-C.S2022" class="csl-entry" role="listitem">
+Cogley, Bridget, and Vidya Setlur. 2022. <em>Functional <span>Aesthetics</span> for <span>Data Visualization</span></em>. <span>Indianapolis</span>: <span>John Wiley and Sons</span>.
+</div>
+<div id="ref-DIgnazio2015" class="csl-entry" role="listitem">
+D’Ignazio, Catherine. 2015. <span>“What Would Feminist Data Visualization Look Like?”</span> <a href="https://civic.mit.edu/feminist-data-visualization.html">https://civic.mit.edu/feminist-data-visualization.html</a>.
+</div>
+<div id="ref-D.K2020" class="csl-entry" role="listitem">
+D’Ignazio, Catherine, and Lauren F. Klein. 2020. <em>Data Feminism</em>. <span><span class="math inline">\(&lt;\)</span></span><span>Strong</span><span><span class="math inline">\(&gt;\)</span></span> Ideas Series. <span>Cambridge, Massachusetts London, England</span>: <span>The MIT Press</span>. <a href="https://data-feminism.mitpress.mit.edu/">https://data-feminism.mitpress.mit.edu/</a>.
+</div>
+<div id="ref-D.I2024" class="csl-entry" role="listitem">
+Dougherty, Jack, and Ilya Ilyankou. 2024. <span>“Chapter 14: <span>Detect Lies</span> and <span>Reduce Bias</span>.”</span> In <em>Hands-<span>On Data Visualization</span></em>. <a href="https://handsondataviz.org/detect.html">https://handsondataviz.org/detect.html</a>.
+</div>
+<div id="ref-D.B.R2018" class="csl-entry" role="listitem">
+Du Bois, W. E. B., Whitney Battle-Baptiste, and Britt Rusert. 2018. <em>W.<span>E</span>.<span>B Du Bois</span>’s Data Portraits: Visualizing <span>Black America</span></em>. First edition. <span>[Amherst, Mass.] : Hudson, NY</span>: <span>The W.E.B. Du Bois Center At the University of Massachusetts Amherst ; Princeton Architectural Press</span>.
+</div>
+<div id="ref-Ferdio" class="csl-entry" role="listitem">
+Ferdio. n.d. <span>“Data <span>Viz Project</span>.”</span> <em>Data Viz Project</em>. Accessed January 28, 2024. <a href="https://datavizproject.com/">https://datavizproject.com/</a>.
+</div>
+<div id="ref-F.R.S+2022" class="csl-entry" role="listitem">
+Fishback, Price, Jonathan Rose, Kenneth A. Snowden, and Thomas Storrs. 2022. <span>“New <span>Evidence</span> on <span>Redlining</span> by <span>Federal Housing Programs</span> in the 1930s.”</span> <em>Journal of Urban Economics</em>, May, 103462. <a href="https://doi.org/10.1016/j.jue.2022.103462">https://doi.org/10.1016/j.jue.2022.103462</a>.
+</div>
+<div id="ref-Gilmore2023" class="csl-entry" role="listitem">
+Gilmore, Ruth Wilson. 2023. <em>Abolition <span>Geography</span></em>.
+</div>
+<div id="ref-H.B2010" class="csl-entry" role="listitem">
+Heer, Jeffrey, and Michael Bostock. 2010. <span>“Crowdsourcing Graphical Perception: Using Mechanical Turk to Assess Visualization Design.”</span> <em>Proceedings of the SIGCHI Conference on Human Factors in Computing Systems</em>, April, 203–12. <a href="https://doi.org/10.1145/1753326.1753357">https://doi.org/10.1145/1753326.1753357</a>.
+</div>
+<div id="ref-H.D2011" class="csl-entry" role="listitem">
+Hullman, J., and N. Diakopoulos. 2011. <span>“Visualization <span>Rhetoric</span>: <span>Framing Effects</span> in <span>Narrative Visualization</span>.”</span> <em>IEEE Transactions on Visualization and Computer Graphics</em> 17 (12): 2231–40. <a href="https://doi.org/10.1109/TVCG.2011.255">https://doi.org/10.1109/TVCG.2011.255</a>.
+</div>
+<div id="ref-Initiative" class="csl-entry" role="listitem">
+Initiative, Prison Policy. n.d. <span>“Where People in Prison Come from: <span>The</span> Geography of Mass Incarceration in <span>Maryland</span>.”</span> Accessed January 17, 2024. <a href="https://www.prisonpolicy.org/origin/md/2020/report.html">https://www.prisonpolicy.org/origin/md/2020/report.html</a>.
+</div>
+<div id="ref-JonathanSchwabish2021" class="csl-entry" role="listitem">
+Jonathan Schwabish. 2021. <em>Better <span>Data Visualizations</span> : <span>A Guide</span> for <span>Scholars</span>, <span>Researchers</span>, and <span>Wonks</span></em>. <span>New York</span>: <span>Columbia University Press</span>. <a href="https://proxy-bc.researchport.umd.edu/login?url=https://search.ebscohost.com/login.aspx?direct=true&amp;AuthType=ip,url,uid&amp;db=nlebk&amp;AN=2453484&amp;site=eds-live&amp;scope=site">https://proxy-bc.researchport.umd.edu/login?url=https://search.ebscohost.com/login.aspx?direct=true&amp;AuthType=ip,url,uid&amp;db=nlebk&amp;AN=2453484&amp;site=eds-live&amp;scope=site</a>.
+</div>
+<div id="ref-K.A.S+2023" class="csl-entry" role="listitem">
+Kebonye, Ndiye M., Prince C. Agyeman, Zibanani Seletlo, and Peter N. Eze. 2023. <span>“On Exploring Bivariate and Trivariate Maps as Visualization Tools for Spatial Associations in Digital Soil Mapping: <span>A</span> Focus on Soil Properties.”</span> <em>Precision Agriculture</em> 24 (2): 511–32. <a href="https://doi.org/10.1007/s11119-022-09955-7">https://doi.org/10.1007/s11119-022-09955-7</a>.
+</div>
+<div id="ref-Kirk2016" class="csl-entry" role="listitem">
+Kirk, Andy. 2016a. <em>Data Visualisation: A Handbook for Data Driven Design</em>. <span>Los Angeles London New Delhi Singapore Washington DC Melbourne</span>: <span>SAGE</span>.
+</div>
+<div id="ref-Kirk2016a" class="csl-entry" role="listitem">
+———. 2016b. <span>“Gauging Election Reaction.”</span> <em>Visualising Data</em>. <a href="https://visualisingdata.com/2016/11/gauging-election-reaction/">https://visualisingdata.com/2016/11/gauging-election-reaction/</a>.
+</div>
+<div id="ref-Kosara2019" class="csl-entry" role="listitem">
+Kosara, Robert. 2019. <span>“The <span>DataSaurus</span>, <span>Anscombe</span>’s <span>Quartet</span>, and Why Summary Statistics Need to Be Taken with a Grain of Salt.”</span> <a href="https://www.youtube.com/watch?v=RbHCeANCbW0">https://www.youtube.com/watch?v=RbHCeANCbW0</a>.
+</div>
+<div id="ref-K.M.M2021" class="csl-entry" role="listitem">
+Krackov, Andy, Sarah Marikos, and Andy Krackov &amp; Sarah Marikos. 2021. <span>“Asterisk <span>Nation</span>: <span>One Tribe</span>’s <span>Challenge</span> to <span>Find Data About</span> Its <span>Population</span>, <span>Nightingale</span>.”</span> <em>Nightingale</em>. <a href="https://nightingaledvs.com/asterisk-nation-one-tribes-challenge-to-find-data-about-its-population/">https://nightingaledvs.com/asterisk-nation-one-tribes-challenge-to-find-data-about-its-population/</a>.
+</div>
+<div id="ref-L.Y.I+2021" class="csl-entry" role="listitem">
+Lee, Crystal, Tanya Yang, Gabrielle D Inchoco, Graham M. Jones, and Arvind Satyanarayan. 2021. <span>“Viral <span>Visualizations</span>: <span>How Coronavirus Skeptics Use Orthodox Data Practices</span> to <span>Promote Unorthodox Science Online</span>.”</span> In <em>Proceedings of the 2021 <span>CHI Conference</span> on <span>Human Factors</span> in <span>Computing Systems</span></em>, 1–18. <span>Yokohama Japan</span>: <span>ACM</span>. <a href="https://doi.org/10.1145/3411764.3445211">https://doi.org/10.1145/3411764.3445211</a>.
+</div>
+<div id="ref-Levy-Rubinett2020" class="csl-entry" role="listitem">
+Levy-Rubinett, Isaac. 2020. <span>“With <span>Great Visualization Comes Great Responsibility</span>, <span>Nightingale</span>.”</span> <em>Nightingale</em>. <a href="https://nightingaledvs.com/with-great-visualization-comes-great-responsibility/">https://nightingaledvs.com/with-great-visualization-comes-great-responsibility/</a>.
+</div>
+<div id="ref-Makulec2020" class="csl-entry" role="listitem">
+Makulec, Amanda. 2020. <span>“Ten <span>Considerations Before</span> You <span>Create</span> Another <span>Chart</span> about <span>COVID-19</span>.”</span> <em>Nightingale</em>. <a href="https://medium.com/nightingale/ten-considerations-before-you-create-another-chart-about-covid-19-27d3bd691be8">https://medium.com/nightingale/ten-considerations-before-you-create-another-chart-about-covid-19-27d3bd691be8</a>.
+</div>
+<div id="ref-MAUPDefinitionGIS" class="csl-entry" role="listitem">
+<span>“<span>MAUP Definition</span> <span></span> <span>GIS Dictionary</span>.”</span> n.d. Accessed January 20, 2024. <a href="https://support.esri.com/en-us/gis-dictionary/maup">https://support.esri.com/en-us/gis-dictionary/maup</a>.
+</div>
+<div id="ref-mimimimimi2024" class="csl-entry" role="listitem">
+mimimimimi. 2024. <span>“<span>MimiOnuoha</span>/Missing-Datasets.”</span> <a href="https://github.com/MimiOnuoha/missing-datasets">https://github.com/MimiOnuoha/missing-datasets</a>.
+</div>
+<div id="ref-Munzner2014" class="csl-entry" role="listitem">
+Munzner, Tamara. 2014. <em>Visualization <span>Analysis</span> and <span>Design</span></em>. <span>New York</span>: <span>A K Peters/CRC Press</span>. <a href="https://doi.org/10.1201/b17511">https://doi.org/10.1201/b17511</a>.
+</div>
+<div id="ref-Muth2022" class="csl-entry" role="listitem">
+Muth, Lisa Charlotte. 2022. <span>“What to Consider When Using Text in Data Visualizations.”</span> <em>Datawrapper</em>. <a href="https://blog.datawrapper.de/text-in-data-visualizations/">https://blog.datawrapper.de/text-in-data-visualizations/</a>.
+</div>
+<div id="ref-Ribecca2024" class="csl-entry" role="listitem">
+Ribecca, Severino. 2024. <span>“The <span>Data Visualisation Catalogue</span>.”</span> <a href="https://datavizcatalogue.com/">https://datavizcatalogue.com/</a>.
+</div>
+<div id="ref-ipums" class="csl-entry" role="listitem">
+Ruggles, Stephen, Sarah Flood, Matthew Sobek, Danika Brockman, Grace Cooper, Stephanie Richards, and Megan Schouweiler. 2023. <span>“<span>IPUMS USA</span>: <span>Version</span> 13.0 [Dataset].”</span> <span>Minneapolis, MN</span>: <span>IPUMS</span>. <a href="https://doi.org/10.18128/D010.V13.0">https://doi.org/10.18128/D010.V13.0</a>.
+</div>
+<div id="ref-Sadler2016" class="csl-entry" role="listitem">
+Sadler, Richard Casey. 2016. <span>“How <span>ZIP</span> Codes Nearly Masked the Lead Problem in <span>Flint</span>.”</span> <em>The Conversation</em>. <a href="http://theconversation.com/how-zip-codes-nearly-masked-the-lead-problem-in-flint-65626">http://theconversation.com/how-zip-codes-nearly-masked-the-lead-problem-in-flint-65626</a>.
+</div>
+<div id="ref-Schwabisha" class="csl-entry" role="listitem">
+Schwabish, Jonathan. n.d.a. <span>“Catherine <span>D</span>’<span>Ignazio</span> and <span>Lauren Klein</span>.”</span> Accessed January 30, 2024. <a href="https://policyviz.com/podcast/episode-142-catherine-dignazio-and-lauren-klein/">https://policyviz.com/podcast/episode-142-catherine-dignazio-and-lauren-klein/</a>.
+</div>
+<div id="ref-Schwabish" class="csl-entry" role="listitem">
+———. n.d.b. <span>“Sarah <span>Williams</span>.”</span> Accessed January 18, 2024. <a href="https://policyviz.com/podcast/episode-191-sarah-williams/">https://policyviz.com/podcast/episode-191-sarah-williams/</a>.
+</div>
+<div id="ref-Seaberry2018a" class="csl-entry" role="listitem">
+Seaberry, Camille. 2018. <span>“<span>CT Data Story</span>: <span>Housing Segregation</span> in <span>Greater New Haven</span>.”</span> <span>DataHaven</span>. <a href="https://ctdatahaven.org/reports/ct-data-story-housing-segregation-greater-new-haven">https://ctdatahaven.org/reports/ct-data-story-housing-segregation-greater-new-haven</a>.
+</div>
+<div id="ref-Silver2015" class="csl-entry" role="listitem">
+Silver, Nate. 2015. <span>“The <span>Most Diverse Cities Are Often The Most Segregated</span>.”</span> <em>FiveThirtyEight</em>. <a href="https://fivethirtyeight.com/features/the-most-diverse-cities-are-often-the-most-segregated/">https://fivethirtyeight.com/features/the-most-diverse-cities-are-often-the-most-segregated/</a>.
+</div>
+<div id="ref-S.S.R+2022" class="csl-entry" role="listitem">
+Skinner-Dorkenoo, Allison L., Apoorva Sarmal, Kasheena G. Rogbeer, Chloe J. André, Bhumi Patel, and Leah Cha. 2022. <span>“Highlighting <span>COVID-19</span> Racial Disparities Can Reduce Support for Safety Precautions Among <span>White U</span>.<span>S</span>. Residents.”</span> <em>Social Science &amp; Medicine</em> 301 (May): 114951. <a href="https://doi.org/10.1016/j.socscimed.2022.114951">https://doi.org/10.1016/j.socscimed.2022.114951</a>.
+</div>
+<div id="ref-Smith2023" class="csl-entry" role="listitem">
+Smith, Noah. 2023. <span>“How Not to Be Fooled by Viral Charts.”</span> <a href="https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts">https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts</a>.
+</div>
+<div id="ref-T.D.G+2020" class="csl-entry" role="listitem">
+Thomas, Tim, Malcolm Drewery, Meredith Greif, Ian Kennedy, Alex Ramiller, Ott Toomet, and Jose Hernandez. 2020. <span>“Baltimore <span>Eviction Map</span>.”</span> <span>Eviction Research Network, UC Berkeley</span>. <a href="https://evictionresearch.net/maryland/report/baltimore.html">https://evictionresearch.net/maryland/report/baltimore.html</a>.
+</div>
+<div id="ref-2024a" class="csl-entry" role="listitem">
+<span>“Tidyverse/Ggplot2.”</span> 2024. tidyverse. <a href="https://github.com/tidyverse/ggplot2">https://github.com/tidyverse/ggplot2</a>.
+</div>
+<div id="ref-richmond" class="csl-entry" role="listitem">
+University of Richmond Digital Scholarship Lab. n.d. <span>“Mapping <span>Inequality</span>: <span>Redlining</span> in <span>New Deal America</span>.”</span> <em>American Panorama: An Atlas of United States History</em>. Accessed November 10, 2022. <a href="https://dsl.richmond.edu/panorama/redlining/">https://dsl.richmond.edu/panorama/redlining/</a>.
+</div>
+<div id="ref-UrbanInstituteData" class="csl-entry" role="listitem">
+<span>“Urban <span>Institute Data Visualization</span> Style Guide.”</span> n.d. Accessed January 30, 2024. <a href="http://apps.urban.org/TPC-styleguide/index.html">http://apps.urban.org/TPC-styleguide/index.html</a>.
+</div>
+<div id="ref-cbappendix" class="csl-entry" role="listitem">
+US Census Bureau. 2021. <span>“Appendix <span>B</span>: <span>Measures</span> of <span>Residential Segregation</span>.”</span> <em>Guidance for Housing Patterns Data Users</em>. <a href="https://www.census.gov/topics/housing/housing-patterns/guidance/appendix-b.html">https://www.census.gov/topics/housing/housing-patterns/guidance/appendix-b.html</a>.
+</div>
+<div id="ref-WHODataDesign" class="csl-entry" role="listitem">
+<span>“<span>WHO Data Design Language</span>.”</span> n.d. Accessed January 30, 2024. <a href="https://apps.who.int/gho/data/design-language/">https://apps.who.int/gho/data/design-language/</a>.
+</div>
+<div id="ref-Wickham2010" class="csl-entry" role="listitem">
+Wickham, Hadley. 2010. <span>“A <span>Layered Grammar</span> of <span>Graphics</span>.”</span> <em>Journal of Computational and Graphical Statistics</em> 19 (1): 3–28. <a href="https://doi.org/10.1198/jcgs.2009.07098">https://doi.org/10.1198/jcgs.2009.07098</a>.
+</div>
+<div id="ref-W.C.G2023" class="csl-entry" role="listitem">
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd edition. <span>O’Reilly</span>. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
+</div>
+<div id="ref-Wilke2019" class="csl-entry" role="listitem">
+Wilke, Claus. 2019. <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures</em>. First edition. <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>.
+</div>
+<div id="ref-Wong" class="csl-entry" role="listitem">
+Wong, David. n.d. <span>“The <span>Modifiable Areal Unit Problem</span> (<span>MAUP</span>).”</span> <em>Spatial Analysis</em>, no. 5187: 18.
+</div>
+<div id="ref-Yau2013" class="csl-entry" role="listitem">
+Yau, Nathan. 2013. <em>Data Points: Visualization That Means Something</em>. <span>Indianapolis, IN</span>: <span>John Wiley &amp; Sons, Inc</span>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -734,6 +936,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./weeks/01_walkthrough.html" class="pagination-link  aria-label=" 1.="" walkthrough"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1. Walkthrough</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

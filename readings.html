@@ -21,7 +21,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,6 +51,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./weeks/00_definitions.html" rel="next">
+<link href="./syllabus.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,9 +104,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      GES 778, Spring 2024
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./readings.html">Readings</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -135,6 +155,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./readings.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Readings</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -160,6 +186,12 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -169,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./readings.html">Readings</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Readings</h1>
 </div>
@@ -195,52 +227,74 @@ ul.task-list li input[type="checkbox"] {
 
 
 <p>Here are the readings for each week. Please have the readings done <em>before</em> the corresponding class. I’ll try not to assign too much reading, so please come ready to discuss!</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th style="text-align: right;">Week</th>
-<th style="text-align: right;">Date</th>
-<th>Topic</th>
-<th>Read before class</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">02/07</td>
-<td>Encoding data to visuals</td>
-<td></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;"></td>
-<td style="text-align: right;"></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+<section id="week-2-feb-7-encoding-data-to-visuals-making-meaning-of-data" class="level2">
+<h2 class="anchored" data-anchor-id="week-2-feb-7-encoding-data-to-visuals-making-meaning-of-data">Week 2, Feb 7: encoding data to visuals; making meaning of data</h2>
+<ul>
+<li><span class="citation" data-cites="Cairo2019">Cairo (<a href="#ref-Cairo2019" role="doc-biblioref">2019</a>)</span> intro (on Blackboard)</li>
+<li>Read <span class="citation" data-cites="DIgnazio2015">D’Ignazio (<a href="#ref-DIgnazio2015" role="doc-biblioref">2015</a>)</span> or listen to PolicyViz episode 142 (<span class="citation" data-cites="Schwabisha">Schwabish (<a href="#ref-Schwabisha" role="doc-biblioref">n.d.</a>)</span>) (or both)</li>
+<li><span class="citation" data-cites="Wilke2019">Wilke (<a href="#ref-Wilke2019" role="doc-biblioref">2019</a>)</span> chapters 2 &amp; 3</li>
+<li><span class="citation" data-cites="Kosara2019">Kosara (<a href="#ref-Kosara2019" role="doc-biblioref">2019</a>)</span> (5 min video)</li>
+</ul>
+</section>
+<section id="week-3-feb-14-writing-good-code-color" class="level2">
+<h2 class="anchored" data-anchor-id="week-3-feb-14-writing-good-code-color">Week 3, Feb 14: writing good code; color</h2>
+<ul>
+<li><span class="citation" data-cites="Wilke2019">Wilke (<a href="#ref-Wilke2019" role="doc-biblioref">2019</a>)</span> chapters 4, 6, 17</li>
+<li><span class="citation" data-cites="W.C.G2023">Wickham, Çetinkaya-Rundel, and Grolemund (<a href="#ref-W.C.G2023" role="doc-biblioref">2023</a>)</span> chapters 1 &amp; 9 (okay to skim as a code reference)</li>
+</ul>
+</section>
+<section id="week-4-feb-21-text-annotation-uncertainty-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="week-4-feb-21-text-annotation-uncertainty-distribution">Week 4, Feb 21: text, annotation, uncertainty, distribution</h2>
+<ul>
+<li><span class="citation" data-cites="Wilke2019">Wilke (<a href="#ref-Wilke2019" role="doc-biblioref">2019</a>)</span> chapters 7, 9, 10</li>
+<li>Listen to Data Stories episode 134 (<span class="citation" data-cites="B.S">Bertini and Stefaner (<a href="#ref-B.S" role="doc-biblioref">n.d.</a>)</span>)</li>
+<li><strong>Optional:</strong> browse either the Urban Institute’s styleguide (<span class="citation" data-cites="UrbanInstituteData"><span>“Urban <span>Institute Data Visualization</span> Style Guide”</span> (<a href="#ref-UrbanInstituteData" role="doc-biblioref">n.d.</a>)</span>), or the WHO’s (<span class="citation" data-cites="WHODataDesign"><span>“<span>WHO Data Design Language</span>”</span> (<a href="#ref-WHODataDesign" role="doc-biblioref">n.d.</a>)</span>; you have to click through to each section)</li>
+</ul>
+</section>
+<section id="week-5-feb-28-making-good-decisions" class="level2">
+<h2 class="anchored" data-anchor-id="week-5-feb-28-making-good-decisions">Week 5, Feb 28: making good decisions</h2>
+<ul>
+<li><span class="citation" data-cites="Cairo2019">Cairo (<a href="#ref-Cairo2019" role="doc-biblioref">2019</a>)</span> chapter 1 (on Blackboard)</li>
+<li><span class="citation" data-cites="Wilke2019">Wilke (<a href="#ref-Wilke2019" role="doc-biblioref">2019</a>)</span> chapters 13, 14 &amp; 20</li>
+<li><span class="citation" data-cites="Smith2023">Smith (<a href="#ref-Smith2023" role="doc-biblioref">2023</a>)</span></li>
+</ul>
 
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-B.S" class="csl-entry" role="listitem">
+Bertini, Enrico, and Moritz Stefaner. n.d. <span>“Visualizing <span>Uncertainty</span> with <span>Jessica Hullman</span> and <span>Matthew Kay</span>.”</span> Accessed January 30, 2024. <a href="https://datastori.es/134-visualizing-uncertainty-with-jessica-hullman-and-matthew-kay/">https://datastori.es/134-visualizing-uncertainty-with-jessica-hullman-and-matthew-kay/</a>.
+</div>
+<div id="ref-Cairo2019" class="csl-entry" role="listitem">
+Cairo, Alberto. 2019. <em>How Charts Lie: Getting Smarter about Visual Information</em>. First edition. <span>New York</span>: <span>W. W. Norton &amp; Company</span>.
+</div>
+<div id="ref-DIgnazio2015" class="csl-entry" role="listitem">
+D’Ignazio, Catherine. 2015. <span>“What Would Feminist Data Visualization Look Like?”</span> <a href="https://civic.mit.edu/feminist-data-visualization.html">https://civic.mit.edu/feminist-data-visualization.html</a>.
+</div>
+<div id="ref-Kosara2019" class="csl-entry" role="listitem">
+Kosara, Robert. 2019. <span>“The <span>DataSaurus</span>, <span>Anscombe</span>’s <span>Quartet</span>, and Why Summary Statistics Need to Be Taken with a Grain of Salt.”</span> <a href="https://www.youtube.com/watch?v=RbHCeANCbW0">https://www.youtube.com/watch?v=RbHCeANCbW0</a>.
+</div>
+<div id="ref-Schwabisha" class="csl-entry" role="listitem">
+Schwabish, Jonathan. n.d. <span>“Catherine <span>D</span>’<span>Ignazio</span> and <span>Lauren Klein</span>.”</span> Accessed January 30, 2024. <a href="https://policyviz.com/podcast/episode-142-catherine-dignazio-and-lauren-klein/">https://policyviz.com/podcast/episode-142-catherine-dignazio-and-lauren-klein/</a>.
+</div>
+<div id="ref-Smith2023" class="csl-entry" role="listitem">
+Smith, Noah. 2023. <span>“How Not to Be Fooled by Viral Charts.”</span> <a href="https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts">https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts</a>.
+</div>
+<div id="ref-UrbanInstituteData" class="csl-entry" role="listitem">
+<span>“Urban <span>Institute Data Visualization</span> Style Guide.”</span> n.d. Accessed January 30, 2024. <a href="http://apps.urban.org/TPC-styleguide/index.html">http://apps.urban.org/TPC-styleguide/index.html</a>.
+</div>
+<div id="ref-WHODataDesign" class="csl-entry" role="listitem">
+<span>“<span>WHO Data Design Language</span>.”</span> n.d. Accessed January 30, 2024. <a href="https://apps.who.int/gho/data/design-language/">https://apps.who.int/gho/data/design-language/</a>.
+</div>
+<div id="ref-W.C.G2023" class="csl-entry" role="listitem">
+Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd edition. <span>O’Reilly</span>. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
+</div>
+<div id="ref-Wilke2019" class="csl-entry" role="listitem">
+Wilke, Claus. 2019. <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures</em>. First edition. <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>.
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -772,6 +826,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./syllabus.html" class="pagination-link  aria-label=" syllabus"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Syllabus</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./weeks/00_definitions.html" class="pagination-link" aria-label="0. Definitions">
+        <span class="nav-page-text">0. Definitions</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
