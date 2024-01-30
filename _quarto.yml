@@ -34,8 +34,6 @@ website:
           - weeks/01_walkthrough.qmd
       - references.qmd
 
-filters:
-  - citetools
 #   - section-bibliographies
 
 author: Camille Seaberry
@@ -43,6 +41,9 @@ bibliography: references.bib
 # csl: chicago-fullnote-bibliography.csl
 # reference-section-title: References
 citeproc: true
+
+date-format: long
+date-modified: last-modified
 
 highlight-style: a11y
 

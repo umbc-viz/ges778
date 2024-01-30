@@ -3,6 +3,8 @@ title: Readings
 link-fields: true
 link-bibliography: true
 suppress-bibliography: false
+filters:
+  - citetools
 ---
 
 Here are the readings for each week. Please have the readings done _before_ the corresponding class. I'll try not to assign too much reading, so please come ready to discuss! 
