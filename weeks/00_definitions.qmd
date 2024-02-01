@@ -16,7 +16,7 @@ What else could we add here?
 
 ## What should visualization do?
 
-> Data visualization is part art and part science. The challenge is to get the art right without getting the science wrong and vice versa. A data visualization first and foremost has to accurately convey the data. It must not mislead or distort.... At the same time, a data visualization should be aesthetically pleasing [@Wilke2019 ch 1]
+> Data visualization is part art and part science. The challenge is to get the art right without getting the science wrong and vice versa. A data visualization first and foremost has to accurately convey the data. It must not mislead or distort.... At the same time, a data visualization should be aesthetically pleasing [@Wilke2019, ch 1]
 
 ## Why visualize data?
 
@@ -25,3 +25,29 @@ What else could we add here?
 - Both
 
 [What's the difference, and what happens in the overlaps?](https://www.juiceanalytics.com/writing/exploratory-vs-explanatory-understanding-the-difference-between-data-analysis-and-data-presentation)
+
+## How is data visualization used?
+
+::: {.callout-tip}
+
+### Brainstorming
+
+#### Positive / constructive
+
+- facilitates & documents change
+- highlights social justice concerns
+- justifying decisions
+- telling a story
+- connecting dots
+- inform 
+- efficiency & safety
+- elicit emotion 
+- convey lots of information
+- make data more understandable
+
+#### Negative / destructive
+
+- facilitates & documents change in ways that are harmful
+- telling a story (misinformation)
+- elicit emotion (sensationalize)
+:::

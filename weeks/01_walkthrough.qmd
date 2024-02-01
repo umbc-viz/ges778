@@ -157,6 +157,8 @@ wages |>
 
 Just kidding, that's hard to get a pattern from, and we now have enough comparisons to warrant a chart:
 
+
+
 ```{r}
 #| label: fig-wages-time-sex
 wages |>
@@ -179,7 +181,24 @@ wages |>
 
 The gaps are actually smaller _within_ groups (full-time men vs full-time women or part-time men vs part-time women) than _across_ (all men vs all women). So the tendency of women to work part time explains some of the wage gap, but not all of it. If the difference were only about work status, we would expect to see no within-group gaps here.^[We'll talk about annotations in a couple weeks, and we'll return to these charts to practice. Think about what you might want to annotate on these multidimensional charts.]
 
-We've also looked at education, so we might as well look at both education and sex.
+Wages by educational attainment aren't surprising---higher educational attainment corresponds to higher incomes. This is just for adults working full-time.
+
+
+```{r}
+#| label: fig-wages-edu
+wages |>
+  filter(dimension == "edu", 
+         name == "Maryland") |>
+  ggplot(aes(x = edu, y = earn_q50)) +
+  geom_col(width = 0.8, alpha = 0.9) +
+  scale_y_barcontinuous(labels = dollar_k) +
+  labs(x = NULL, y = NULL, fill = NULL,
+       title = "Median individual earnings",
+       subtitle = "Adults ages 25+ with positive earnings by educational attainment, Maryland full-time workers, 2022") +
+  theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")))
+```
+
+We might as well look at both education and sex. Let's naively assume the pattern will be the same for men and women.
 
 ```{r}
 #| label: fig-wages-edu-sex
@@ -198,6 +217,28 @@ wages |>
 ```
 
 Even among only full-time workers, there are gaps at every education level so severe that men at any given education level are paid roughly as much as women at the next level above them. For example, after getting a graduate degree and working full time, women only earn about \$1,100 more than men with only a bachelor's. That's a pattern that would be hard to glean from just reading a table of numbers or from only seeing the within-groups ratios.
+
+Here's a chart of those within-groups ratios that is technically fine but practically not very useful:
+
+```{r}
+#| label: fig-ratio-sex-edu
+wages |>
+  filter(dimension == "sex_x_edu",
+         name == "Maryland") |>
+  tidyr::pivot_wider(id_cols = edu, names_from = sex, values_from = earn_q50) |>
+  mutate(ratio = Women / Men) |>
+  ggplot(aes(x = edu, y = ratio)) +
+  geom_col(width = 0.8, alpha = 0.9, position = position_dodge2()) +
+  scale_y_barcontinuous(labels = scales::label_dollar()) +
+  scale_fill_manual(values = gender_pal) +
+  labs(x = NULL, y = NULL, fill = NULL,
+       title = "Women's individual earnings per dollar of men's individual earnings",
+       subtitle = "Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2022") +
+  theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")),
+        legend.position = "bottom")
+```
+
+Which is more important to know, the gap _within_ education levels, or the gap _across_ education levels? Or both? What's missing that makes this chart alone not very useful?
 
 So far we've worked through identifying several important patterns using just a very simple type of chart that people commonly know how to read---the charts are almost identical, just different slices of the data. But other chart types might help with highlighting different things, such as those gaps.
 
