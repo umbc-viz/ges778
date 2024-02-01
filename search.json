@@ -1,5 +1,209 @@
 [
   {
+    "objectID": "readings.html",
+    "href": "readings.html",
+    "title": "Readings",
+    "section": "",
+    "text": "Here are the readings for each week. Please have the readings done before the corresponding class. I’ll try not to assign too much reading, so please come ready to discuss!\n(Please also don’t make me regret saying this but in case you absolutely can’t get all the reading done, they’re in order of importance so start at the top each week.)",
+    "crumbs": [
+      "Overview",
+      "Readings"
+    ]
+  },
+  {
+    "objectID": "readings.html#week-2-feb-7-encoding-data-to-visuals-making-meaning-of-data",
+    "href": "readings.html#week-2-feb-7-encoding-data-to-visuals-making-meaning-of-data",
+    "title": "Readings",
+    "section": "Week 2, Feb 7: encoding data to visuals; making meaning of data",
+    "text": "Week 2, Feb 7: encoding data to visuals; making meaning of data\n\nWilke, Fundamentals of data visualization chapters 2 & 3\nCairo, How charts lie: Getting smarter about visual information intro (on Blackboard)\nPick one (or both. They’re both great, but if you only choose one I’d go with the podcast.):\n\nRead D’Ignazio, What would feminist data visualization look like?\nListen to PolicyViz (Schwabish), Catherine D’Ignazio and Lauren Klein\n\nWatch Kosara, The DataSaurus, Anscombe’s Quartet, and why summary statistics need to be taken with a grain of salt (5 min video)",
+    "crumbs": [
+      "Overview",
+      "Readings"
+    ]
+  },
+  {
+    "objectID": "readings.html#week-3-feb-14-writing-good-code-color",
+    "href": "readings.html#week-3-feb-14-writing-good-code-color",
+    "title": "Readings",
+    "section": "Week 3, Feb 14: writing good code; color",
+    "text": "Week 3, Feb 14: writing good code; color\n\nWilke, Fundamentals of data visualization chapters 4, 6, 17\nWickham, R for data science chapters 1 & 9 (okay to skim as a code reference)",
+    "crumbs": [
+      "Overview",
+      "Readings"
+    ]
+  },
+  {
+    "objectID": "readings.html#week-4-feb-21-text-annotation-uncertainty-distribution",
+    "href": "readings.html#week-4-feb-21-text-annotation-uncertainty-distribution",
+    "title": "Readings",
+    "section": "Week 4, Feb 21: text, annotation, uncertainty, distribution",
+    "text": "Week 4, Feb 21: text, annotation, uncertainty, distribution\n\nWilke, Fundamentals of data visualization chapters 7, 9, 10\nListen to Data Stories (Bertini), Visualizing Uncertainty with Jessica Hullman and Matthew Kay\nPick one (or both) of these styleguides to browse through:\n\nUrban Institute\nWorld Health Organization (it’s not super clear but you have to click through to each section)",
+    "crumbs": [
+      "Overview",
+      "Readings"
+    ]
+  },
+  {
+    "objectID": "readings.html#week-5-feb-28-making-good-decisions",
+    "href": "readings.html#week-5-feb-28-making-good-decisions",
+    "title": "Readings",
+    "section": "Week 5, Feb 28: making good decisions",
+    "text": "Week 5, Feb 28: making good decisions\n\nCairo, How charts lie: Getting smarter about visual information chapter 1 (on Blackboard)\nWilke, Fundamentals of data visualization chapters 13, 14 & 20\nSmith, How not to be fooled by viral charts",
+    "crumbs": [
+      "Overview",
+      "Readings"
+    ]
+  },
+  {
+    "objectID": "readings.html#full-citations",
+    "href": "readings.html#full-citations",
+    "title": "Readings",
+    "section": "Full citations",
+    "text": "Full citations\n\n\n\n\nBertini, Enrico, and Moritz Stefaner. n.d. “Visualizing Uncertainty with Jessica Hullman and Matthew Kay.” Accessed January 30, 2024. https://datastori.es/134-visualizing-uncertainty-with-jessica-hullman-and-matthew-kay/.\n\n\nCairo, Alberto. 2019. How Charts Lie: Getting Smarter about Visual Information. First edition. New York: W. W. Norton & Company.\n\n\nD’Ignazio, Catherine. 2015. “What Would Feminist Data Visualization Look Like?” https://civic.mit.edu/feminist-data-visualization.html.\n\n\nKosara, Robert. 2019. “The DataSaurus, Anscombe’s Quartet, and Why Summary Statistics Need to Be Taken with a Grain of Salt.” https://www.youtube.com/watch?v=RbHCeANCbW0.\n\n\nSchwabish, Jonathan. n.d. “Catherine D’Ignazio and Lauren Klein.” Accessed January 30, 2024. https://policyviz.com/podcast/episode-142-catherine-dignazio-and-lauren-klein/.\n\n\nSmith, Noah. 2023. “How Not to Be Fooled by Viral Charts.” https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts.\n\n\nUrban Institute. 2023. “Urban Institute Data Visualization Style Guide.” http://urbaninstitute.github.io/graphics-styleguide/.\n\n\nWickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. 2nd edition. O’Reilly. https://r4ds.hadley.nz/.\n\n\nWilke, Claus. 2019. Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures. First edition. O’Reilly. https://clauswilke.com/dataviz/.\n\n\nWorld Health Organization. 2023. “WHO Data Design Language v.0.9.2.” https://apps.who.int/gho/data/design-language/.",
+    "crumbs": [
+      "Overview",
+      "Readings"
+    ]
+  },
+  {
+    "objectID": "weeks/01_walkthrough.html",
+    "href": "weeks/01_walkthrough.html",
+    "title": "1. Walkthrough",
+    "section": "",
+    "text": "Making a chart might seem like a pretty straightforward task: you have data, you make a chart. But there are a lot of things to consider, and they depend on all sorts of factors, like the type of data, your audience, your purpose in visualizing it, the context, and on and on.\nFirst question you should ask yourself:\n\n\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\nThat chart is fine, but it takes up a lot of space to only show 2 numbers. Oftentimes projects that require visualization have caps on length, such as grant applications or print reports where every additional page adds to the budget. In a lot of contexts, you’re probably better off with written text, either just a written sentence if it’s for a report or article, or bullet points or a pull-out quote. You’ll often see documents with something formatted like this:\n\n\nMaryland adults ages 25 and up had median earnings of about $55,000 in 2022, more than $11,000 higher than the US average.\n\n\nMaybe you have a lot of data and your audience wants to see every number exactly, or you just have 2 or 3 numbers but you’re short on space: a nicely formatted table might be better.\n\n\n\n\nTable 1: Median individual earnings, adults ages 25+ with positive earnings, 2022\n\n\n\n\n\n\n\n\n\nLocation\nMedian earnings\n\n\n\n\nUS\n$43,961\n\n\nMaryland\n$55,108\n\n\n\n\n\n\n\n\n\n\nBut if you have somewhere in between a couple data points and too many data points, then making a chart could work. So we’re gonna make a lot of charts.\nIn fact, this data gets at a super pet peeve of mine that can be illustrated well with data visualization.\n\n\n\nSo we already established that Maryland has higher earnings, on average, than the US. Usually when people say “the wage gap,” they’re talking about women’s pay versus men’s pay, e.g. women make x cents on the dollar.1\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\nAgain, super important point but doesn’t quite warrant a chart. You’d get a better sense of the comparison that’s more memorable by just writing:\n\n\nWorking women in Maryland make about 78 cents on the male dollar.\n\n\n(And then in the footnotes include the specifications of “among adults ages 25 and up with positive earnings in 2022.”)\nOne explanation often given for women’s pay being less is that women are more likely to work part-time, and part-time jobs pay much less on average.\n\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\nSo now we’ve established that there are differences in median earnings between women and men, and between full-time and part-time workers, and that Maryland has a higher median earning than the US as a whole. One of the frameworks we’ll use for understanding our data is data feminism (D’Ignazio 2015; D’Ignazio and Klein 2020), which looks at how data can be used to highlight intersections between the patterns we’ve established.\nA good place to start, then, is earnings by sex and full-time status. Let’s make a table:\n\n\n\n\nTable 2: Median individual earnings, adults ages 25+ with positive earnings by sex and full-time status, 2022\n\n\n\n\n\n\n\n\n\nStatus\nMen\nWomen\n\n\n\n\nFull-time\n$72,222\n$62,802\n\n\nPart-time\n$21,579\n$19,200\n\n\n\n\n\n\n\n\n\n\nJust kidding, that’s hard to get a pattern from, and we now have enough comparisons to warrant a chart:\n\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\nThe gaps are actually smaller within groups (full-time men vs full-time women or part-time men vs part-time women) than across (all men vs all women). So the tendency of women to work part time explains some of the wage gap, but not all of it. If the difference were only about work status, we would expect to see no within-group gaps here.2\nWages by educational attainment aren’t surprising—higher educational attainment corresponds to higher incomes. This is just for adults working full-time.\n\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\nWe might as well look at both education and sex. Let’s naively assume the pattern will be the same for men and women.\n\n\n\n\n\n\n\n\nFigure 6\n\n\n\n\n\nEven among only full-time workers, there are gaps at every education level so severe that men at any given education level are paid roughly as much as women at the next level above them. For example, after getting a graduate degree and working full time, women only earn about $1,100 more than men with only a bachelor’s. That’s a pattern that would be hard to glean from just reading a table of numbers or from only seeing the within-groups ratios.\nHere’s a chart of those within-groups ratios that is technically fine but practically not very useful:\n\n\n\n\n\n\n\n\nFigure 7\n\n\n\n\n\nWhich is more important to know, the gap within education levels, or the gap across education levels? Or both? What’s missing that makes this chart alone not very useful?\nSo far we’ve worked through identifying several important patterns using just a very simple type of chart that people commonly know how to read—the charts are almost identical, just different slices of the data. But other chart types might help with highlighting different things, such as those gaps.\n\n\n\n\nRevise the code to break down values by race/ethnicity and sex instead of education and sex (i.e. filter for dimension == \"race\" and dimension == \"race_x_sex\" instead of education.)\nBrowse through the Data Visualisation Catalogue (Ribecca 2024) and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (Figure 6). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story?\nFollowing question 2, Wilke gives a brief example in section 6.3 of switching from bar charts to dot plots; how could this be adapted here?",
+    "crumbs": [
+      "Weekly notes",
+      "1. Walkthrough"
+    ]
+  },
+  {
+    "objectID": "weeks/01_walkthrough.html#do-you-even-need-a-chart",
+    "href": "weeks/01_walkthrough.html#do-you-even-need-a-chart",
+    "title": "1. Walkthrough",
+    "section": "",
+    "text": "Figure 1\n\n\n\n\n\nThat chart is fine, but it takes up a lot of space to only show 2 numbers. Oftentimes projects that require visualization have caps on length, such as grant applications or print reports where every additional page adds to the budget. In a lot of contexts, you’re probably better off with written text, either just a written sentence if it’s for a report or article, or bullet points or a pull-out quote. You’ll often see documents with something formatted like this:\n\n\nMaryland adults ages 25 and up had median earnings of about $55,000 in 2022, more than $11,000 higher than the US average.\n\n\nMaybe you have a lot of data and your audience wants to see every number exactly, or you just have 2 or 3 numbers but you’re short on space: a nicely formatted table might be better.\n\n\n\n\nTable 1: Median individual earnings, adults ages 25+ with positive earnings, 2022\n\n\n\n\n\n\n\n\n\nLocation\nMedian earnings\n\n\n\n\nUS\n$43,961\n\n\nMaryland\n$55,108\n\n\n\n\n\n\n\n\n\n\nBut if you have somewhere in between a couple data points and too many data points, then making a chart could work. So we’re gonna make a lot of charts.\nIn fact, this data gets at a super pet peeve of mine that can be illustrated well with data visualization.",
+    "crumbs": [
+      "Weekly notes",
+      "1. Walkthrough"
+    ]
+  },
+  {
+    "objectID": "weeks/01_walkthrough.html#the-wage-gaps",
+    "href": "weeks/01_walkthrough.html#the-wage-gaps",
+    "title": "1. Walkthrough",
+    "section": "",
+    "text": "So we already established that Maryland has higher earnings, on average, than the US. Usually when people say “the wage gap,” they’re talking about women’s pay versus men’s pay, e.g. women make x cents on the dollar.1\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\nAgain, super important point but doesn’t quite warrant a chart. You’d get a better sense of the comparison that’s more memorable by just writing:\n\n\nWorking women in Maryland make about 78 cents on the male dollar.\n\n\n(And then in the footnotes include the specifications of “among adults ages 25 and up with positive earnings in 2022.”)\nOne explanation often given for women’s pay being less is that women are more likely to work part-time, and part-time jobs pay much less on average.\n\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\nSo now we’ve established that there are differences in median earnings between women and men, and between full-time and part-time workers, and that Maryland has a higher median earning than the US as a whole. One of the frameworks we’ll use for understanding our data is data feminism (D’Ignazio 2015; D’Ignazio and Klein 2020), which looks at how data can be used to highlight intersections between the patterns we’ve established.\nA good place to start, then, is earnings by sex and full-time status. Let’s make a table:\n\n\n\n\nTable 2: Median individual earnings, adults ages 25+ with positive earnings by sex and full-time status, 2022\n\n\n\n\n\n\n\n\n\nStatus\nMen\nWomen\n\n\n\n\nFull-time\n$72,222\n$62,802\n\n\nPart-time\n$21,579\n$19,200\n\n\n\n\n\n\n\n\n\n\nJust kidding, that’s hard to get a pattern from, and we now have enough comparisons to warrant a chart:\n\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\nThe gaps are actually smaller within groups (full-time men vs full-time women or part-time men vs part-time women) than across (all men vs all women). So the tendency of women to work part time explains some of the wage gap, but not all of it. If the difference were only about work status, we would expect to see no within-group gaps here.2\nWages by educational attainment aren’t surprising—higher educational attainment corresponds to higher incomes. This is just for adults working full-time.\n\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\nWe might as well look at both education and sex. Let’s naively assume the pattern will be the same for men and women.\n\n\n\n\n\n\n\n\nFigure 6\n\n\n\n\n\nEven among only full-time workers, there are gaps at every education level so severe that men at any given education level are paid roughly as much as women at the next level above them. For example, after getting a graduate degree and working full time, women only earn about $1,100 more than men with only a bachelor’s. That’s a pattern that would be hard to glean from just reading a table of numbers or from only seeing the within-groups ratios.\nHere’s a chart of those within-groups ratios that is technically fine but practically not very useful:\n\n\n\n\n\n\n\n\nFigure 7\n\n\n\n\n\nWhich is more important to know, the gap within education levels, or the gap across education levels? Or both? What’s missing that makes this chart alone not very useful?\nSo far we’ve worked through identifying several important patterns using just a very simple type of chart that people commonly know how to read—the charts are almost identical, just different slices of the data. But other chart types might help with highlighting different things, such as those gaps.",
+    "crumbs": [
+      "Weekly notes",
+      "1. Walkthrough"
+    ]
+  },
+  {
+    "objectID": "weeks/01_walkthrough.html#exercises",
+    "href": "weeks/01_walkthrough.html#exercises",
+    "title": "1. Walkthrough",
+    "section": "",
+    "text": "Revise the code to break down values by race/ethnicity and sex instead of education and sex (i.e. filter for dimension == \"race\" and dimension == \"race_x_sex\" instead of education.)\nBrowse through the Data Visualisation Catalogue (Ribecca 2024) and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (Figure 6). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story?\nFollowing question 2, Wilke gives a brief example in section 6.3 of switching from bar charts to dot plots; how could this be adapted here?",
+    "crumbs": [
+      "Weekly notes",
+      "1. Walkthrough"
+    ]
+  },
+  {
+    "objectID": "weeks/01_walkthrough.html#footnotes",
+    "href": "weeks/01_walkthrough.html#footnotes",
+    "title": "1. Walkthrough",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nAll of this analysis is based on Census data, which only records gender as male and female, so that’s what we’ve got to work with.↩︎\nWe’ll talk about annotations in a couple weeks, and we’ll return to these charts to practice. Think about what you might want to annotate on these multidimensional charts.↩︎",
+    "crumbs": [
+      "Weekly notes",
+      "1. Walkthrough"
+    ]
+  },
+  {
+    "objectID": "weeks/00_definitions.html",
+    "href": "weeks/00_definitions.html",
+    "title": "0. Definitions",
+    "section": "",
+    "text": "A few definitions of data visualization:\n\nThe rendering of information in a visual format to help communicate data while also generating new patterns and knowledge through the act of visualization itself (Du Bois, Battle-Baptiste, and Rusert 2018, 8)\n\n\nThe representation and presentation of data to facilitate understanding (Kirk 2016, 19)\n\nIt’s pretty common to find a book with hundreds of pages of details on data visualization, but no definition.\nWhat else could we add here?",
+    "crumbs": [
+      "Weekly notes",
+      "0. Definitions"
+    ]
+  },
+  {
+    "objectID": "weeks/00_definitions.html#what-is-data-visualization",
+    "href": "weeks/00_definitions.html#what-is-data-visualization",
+    "title": "0. Definitions",
+    "section": "",
+    "text": "A few definitions of data visualization:\n\nThe rendering of information in a visual format to help communicate data while also generating new patterns and knowledge through the act of visualization itself (Du Bois, Battle-Baptiste, and Rusert 2018, 8)\n\n\nThe representation and presentation of data to facilitate understanding (Kirk 2016, 19)\n\nIt’s pretty common to find a book with hundreds of pages of details on data visualization, but no definition.\nWhat else could we add here?",
+    "crumbs": [
+      "Weekly notes",
+      "0. Definitions"
+    ]
+  },
+  {
+    "objectID": "weeks/00_definitions.html#what-should-visualization-do",
+    "href": "weeks/00_definitions.html#what-should-visualization-do",
+    "title": "0. Definitions",
+    "section": "What should visualization do?",
+    "text": "What should visualization do?\n\nData visualization is part art and part science. The challenge is to get the art right without getting the science wrong and vice versa. A data visualization first and foremost has to accurately convey the data. It must not mislead or distort…. At the same time, a data visualization should be aesthetically pleasing (Wilke 2019, ch 1)",
+    "crumbs": [
+      "Weekly notes",
+      "0. Definitions"
+    ]
+  },
+  {
+    "objectID": "weeks/00_definitions.html#why-visualize-data",
+    "href": "weeks/00_definitions.html#why-visualize-data",
+    "title": "0. Definitions",
+    "section": "Why visualize data?",
+    "text": "Why visualize data?\n\nExplore\nExplain\nBoth\n\nWhat’s the difference, and what happens in the overlaps?",
+    "crumbs": [
+      "Weekly notes",
+      "0. Definitions"
+    ]
+  },
+  {
+    "objectID": "weeks/00_definitions.html#how-is-data-visualization-used",
+    "href": "weeks/00_definitions.html#how-is-data-visualization-used",
+    "title": "0. Definitions",
+    "section": "How is data visualization used?",
+    "text": "How is data visualization used?\n\n\n\n\n\n\nBrainstorming\n\n\n\n\nPositive / constructive\n\nfacilitates & documents change\nhighlights social justice concerns\njustifying decisions\ntelling a story\nconnecting dots\ninform\nefficiency & safety\nelicit emotion\nconvey lots of information\nmake data more understandable\n\n\n\nNegative / destructive\n\nfacilitates & documents change in ways that are harmful\ntelling a story (misinformation)\nelicit emotion (sensationalize)",
+    "crumbs": [
+      "Weekly notes",
+      "0. Definitions"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Setup",
+    "section": "",
+    "text": "This is a collection of notes to fill in examples and walkthroughs for the Spring 2024 session of GES 778. It will be updated throughout the semester.\nFirst, install the course’s companion R package, justviz. This is in the class’s GitHub organization.\n\n# install.packages(\"devtools\")\ndevtools::install_github(\"umbc-viz/justviz\")\n\nNext, some packages that aren’t required by the justviz package but will get us started for class and are used in these notes:\n\ncran_pkgs &lt;- c(\"ggplot2\",     # data visualization powerhouse\n               \"dplyr\",       # nice for calculations and data manipulation\n               \"tidyr\",       # data reshaping\n               \"forcats\",     # handling factors\n               \"stringr\",     # string cleanup\n               \"showtext\",    # nice fonts\n               \"ggrepel\",     # force-repelled placement of labels\n               \"osmdata\",     # easy access to sf data from OpenStreetMap\n               \"tigris\",      # shapefiles from Census Bureau TIGER\n               \"patchwork\",   # assembling plots\n               \"ggmap\",       # basemaps in ggplot\n               \"ggtext\",      # use rich text / markdown in ggplot\n               \"here\",        # marks project roots\n               \"knitr\",       # preps conversions between markdown and other formats\n               \"gt\",          # like ggplot but for tables  \n               \"rcartocolor\") # color palettes\n\ninstall.packages(cran_pkgs)\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Overview",
+      "Setup"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "This is everything in my Zotero bibliography for this class, not all of which actually made it onto the reading list.\n\n\n\n\n Back to topReferences\n\nBBC. 2010. “Hans Rosling’s 200 Countries, 200 Years, 4 Minutes - The Joy of Stats - BBC Four.” https://www.youtube.com/watch?v=jbkSRLYSojo.\n\n\nBertini, Enrico, and Moritz Stefaner. n.d. “Visualizing Uncertainty with Jessica Hullman and Matthew Kay.” Accessed January 30, 2024. https://datastori.es/134-visualizing-uncertainty-with-jessica-hullman-and-matthew-kay/.\n\n\nBrewer, Cynthia A. 2006. “Basic Mapping Principles for Visualizing Cancer Data Using Geographic Information Systems (GIS).” American Journal of Preventive Medicine 30 (2): S25–36. https://doi.org/10.1016/j.amepre.2005.09.007.\n\n\nCairo, Alberto. 2019. How Charts Lie: Getting Smarter about Visual Information. First edition. New York: W. W. Norton & Company.\n\n\nChang, Winston. 2018. R Graphics Cookbook: Practical Recipes for Visualizing Data. Second edition. Beijing ; Boston: O’Reilly. https://r-graphics.org/.\n\n\nCogley, Bridget, and Vidya Setlur. 2022. Functional Aesthetics for Data Visualization. Indianapolis: John Wiley and Sons.\n\n\nCox, Cynthia, Krutika Amin, Jennifer Kates, and Josh Michaud Published. 2022. “Why Do Vaccinated People Represent Most COVID-19 Deaths Right Now?” KFF. https://www.kff.org/policy-watch/why-do-vaccinated-people-represent-most-covid-19-deaths-right-now/.\n\n\nD’Ignazio, Catherine. 2015. “What Would Feminist Data Visualization Look Like?” https://civic.mit.edu/feminist-data-visualization.html.\n\n\nD’Ignazio, Catherine, and Lauren F. Klein. 2020. Data Feminism. \\(&lt;\\)Strong\\(&gt;\\) Ideas Series. Cambridge, Massachusetts London, England: The MIT Press. https://data-feminism.mitpress.mit.edu/.\n\n\nDougherty, Jack, and Ilya Ilyankou. 2024. “Chapter 14: Detect Lies and Reduce Bias.” In Hands-On Data Visualization. https://handsondataviz.org/detect.html.\n\n\nDu Bois, W. E. B., Whitney Battle-Baptiste, and Britt Rusert. 2018. W.E.B Du Bois’s Data Portraits: Visualizing Black America. First edition. [Amherst, Mass.] : Hudson, NY: The W.E.B. Du Bois Center At the University of Massachusetts Amherst ; Princeton Architectural Press.\n\n\nElghany, Soha. 2023. “How Ethical Data Visualization Tells the Human Story.” Nightingale. https://nightingaledvs.com/ethical-data-visualization-tells-the-human-story/.\n\n\nEtter, Elena. 2023. “Data Visualization: A Subjective Lens on Reality.” Nightingale. https://nightingaledvs.com/data-visualization-a-subjective-lens-on-reality/.\n\n\nFerdio. n.d. “Data Viz Project.” Data Viz Project. Accessed January 28, 2024. https://datavizproject.com/.\n\n\nFishback, Price, Jonathan Rose, Kenneth A. Snowden, and Thomas Storrs. 2022. “New Evidence on Redlining by Federal Housing Programs in the 1930s.” Journal of Urban Economics, May, 103462. https://doi.org/10.1016/j.jue.2022.103462.\n\n\nGilmore, Ruth Wilson. 2023. Abolition Geography.\n\n\nHamel, Liz, Ashley Kirzinger, Cailey Muñana, and Mollyann Brodie Published. 2020. “KFF COVID-19 Vaccine Monitor: December 2020.” KFF. https://www.kff.org/coronavirus-covid-19/report/kff-covid-19-vaccine-monitor-december-2020/.\n\n\nHamel, Liz, Lunna Lopes, and Mollyann Brodie Published. 2021. “KFF COVID-19 Vaccine Monitor: What Do We Know About Those Who Want to ‘Wait and See’ Before Getting a COVID-19 Vaccine?” KFF. https://www.kff.org/coronavirus-covid-19/poll-finding/kff-covid-19-vaccine-monitor-wait-and-see/.\n\n\nHeer, Jeffrey, and Michael Bostock. 2010. “Crowdsourcing Graphical Perception: Using Mechanical Turk to Assess Visualization Design.” Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, April, 203–12. https://doi.org/10.1145/1753326.1753357.\n\n\nHullman, J., and N. Diakopoulos. 2011. “Visualization Rhetoric: Framing Effects in Narrative Visualization.” IEEE Transactions on Visualization and Computer Graphics 17 (12): 2231–40. https://doi.org/10.1109/TVCG.2011.255.\n\n\nJonathan Schwabish. 2021. Better Data Visualizations : A Guide for Scholars, Researchers, and Wonks. New York: Columbia University Press. https://proxy-bc.researchport.umd.edu/login?url=https://search.ebscohost.com/login.aspx?direct=true&AuthType=ip,url,uid&db=nlebk&AN=2453484&site=eds-live&scope=site.\n\n\nJustice Policy Institute, and Prison Policy Initiative. 2022. “Where People in Prison Come from: The Geography of Mass Incarceration in Maryland.” https://www.prisonpolicy.org/origin/md/2020/report.html.\n\n\nKay, Matthew, Tara Kola, Jessica R. Hullman, and Sean A. Munson. 2016. “When (Ish) Is My Bus?: User-centered Visualizations of Uncertainty in Everyday, Mobile Predictive Systems.” In Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems, 5092–5103. San Jose California USA: ACM. https://doi.org/10.1145/2858036.2858558.\n\n\nKebonye, Ndiye M., Prince C. Agyeman, Zibanani Seletlo, and Peter N. Eze. 2023. “On Exploring Bivariate and Trivariate Maps as Visualization Tools for Spatial Associations in Digital Soil Mapping: A Focus on Soil Properties.” Precision Agriculture 24 (2): 511–32. https://doi.org/10.1007/s11119-022-09955-7.\n\n\n“KFF COVID-19 Vaccine Monitor Dashboard.” n.d. KFF. Accessed January 30, 2024. https://www.kff.org/other/dashboard/kff-covid-19-vaccine-monitor-dashboard/.\n\n\nKirk, Andy. 2016a. Data Visualisation: A Handbook for Data Driven Design. Los Angeles London New Delhi Singapore Washington DC Melbourne: SAGE.\n\n\n———. 2016b. “Gauging Election Reaction.” Visualising Data. https://visualisingdata.com/2016/11/gauging-election-reaction/.\n\n\nKosara, Robert. 2019. “The DataSaurus, Anscombe’s Quartet, and Why Summary Statistics Need to Be Taken with a Grain of Salt.” https://www.youtube.com/watch?v=RbHCeANCbW0.\n\n\nKrackov, Andy, Sarah Marikos, and Andy Krackov & Sarah Marikos. 2021. “Asterisk Nation: One Tribe’s Challenge to Find Data About Its Population, Nightingale.” Nightingale. https://nightingaledvs.com/asterisk-nation-one-tribes-challenge-to-find-data-about-its-population/.\n\n\nLee, Crystal, Tanya Yang, Gabrielle D Inchoco, Graham M. Jones, and Arvind Satyanarayan. 2021. “Viral Visualizations: How Coronavirus Skeptics Use Orthodox Data Practices to Promote Unorthodox Science Online.” In Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems, 1–18. Yokohama Japan: ACM. https://doi.org/10.1145/3411764.3445211.\n\n\nLevy-Rubinett, Isaac. 2020. “With Great Visualization Comes Great Responsibility, Nightingale.” Nightingale. https://nightingaledvs.com/with-great-visualization-comes-great-responsibility/.\n\n\nMakulec, Amanda. 2020. “Ten Considerations Before You Create Another Chart about COVID-19.” Nightingale. https://medium.com/nightingale/ten-considerations-before-you-create-another-chart-about-covid-19-27d3bd691be8.\n\n\n“MAUP Definition  GIS Dictionary.” n.d. Accessed January 20, 2024. https://support.esri.com/en-us/gis-dictionary/maup.\n\n\nmimimimimi. 2024. “MimiOnuoha/Missing-Datasets.” https://github.com/MimiOnuoha/missing-datasets.\n\n\nMunzner, Tamara. 2014. Visualization Analysis and Design. New York: A K Peters/CRC Press. https://doi.org/10.1201/b17511.\n\n\nMuth, Lisa Charlotte. 2022. “What to Consider When Using Text in Data Visualizations.” Datawrapper. https://blog.datawrapper.de/text-in-data-visualizations/.\n\n\nNey, Jeremy. 2023. “Mapping Inequality Can Drive Social Impact.” Nightingale. https://nightingaledvs.com/mapping-inequality-can-drive-social-impact/.\n\n\nOchieng, Nancy, Priya Chidambaram, and MaryBeth Musumeci Published. 2022. “Nursing Facility Staffing Shortages During the COVID-19 Pandemic.” KFF. https://www.kff.org/coronavirus-covid-19/issue-brief/nursing-facility-staffing-shortages-during-the-covid-19-pandemic/.\n\n\nPillai, Drishti, Samantha Artiga, Liz Hamel, Shannon Schumacher, Ashley Kirzinger, Alisha Rao, and Audrey Kearney Published. 2024. “Understanding the Diversity in the Asian Immigrant Experience in the U.S.: The 2023 KFF/LA Times Survey of Immigrants.” KFF. https://www.kff.org/racial-equity-and-health-policy/poll-finding/understanding-the-diversity-in-the-asian-immigrant-experience/.\n\n\n“Rates of COVID-19 Cases or Deaths by Age Group and Vaccination Status and Booster Dose  Data  Centers for Disease Control and Prevention.” n.d. Accessed January 30, 2024. https://data.cdc.gov/Public-Health-Surveillance/Rates-of-COVID-19-Cases-or-Deaths-by-Age-Group-and/d6p8-wqjm/about_data.\n\n\nRibecca, Severino. 2024. “The Data Visualisation Catalogue.” https://datavizcatalogue.com/.\n\n\nRuggles, Stephen, Sarah Flood, Matthew Sobek, Danika Brockman, Grace Cooper, Stephanie Richards, and Megan Schouweiler. 2023. “IPUMS USA: Version 13.0 [Dataset].” Minneapolis, MN: IPUMS. https://doi.org/10.18128/D010.V13.0.\n\n\nSadler, Richard Casey. 2016. “How ZIP Codes Nearly Masked the Lead Problem in Flint.” The Conversation. http://theconversation.com/how-zip-codes-nearly-masked-the-lead-problem-in-flint-65626.\n\n\nSchwabish, Jonathan. n.d.a. “Catherine D’Ignazio and Lauren Klein.” Accessed January 30, 2024. https://policyviz.com/podcast/episode-142-catherine-dignazio-and-lauren-klein/.\n\n\n———. n.d.b. “Sarah Williams.” Accessed January 18, 2024. https://policyviz.com/podcast/episode-191-sarah-williams/.\n\n\nSeaberry, Camille. 2018. “CT Data Story: Housing Segregation in Greater New Haven.” DataHaven. https://ctdatahaven.org/reports/ct-data-story-housing-segregation-greater-new-haven.\n\n\nSilver, Nate. 2015. “The Most Diverse Cities Are Often The Most Segregated.” FiveThirtyEight. https://fivethirtyeight.com/features/the-most-diverse-cities-are-often-the-most-segregated/.\n\n\nSkinner-Dorkenoo, Allison L., Apoorva Sarmal, Kasheena G. Rogbeer, Chloe J. André, Bhumi Patel, and Leah Cha. 2022. “Highlighting COVID-19 Racial Disparities Can Reduce Support for Safety Precautions Among White U.S. Residents.” Social Science & Medicine 301 (May): 114951. https://doi.org/10.1016/j.socscimed.2022.114951.\n\n\nSmith, Noah. 2023. “How Not to Be Fooled by Viral Charts.” https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts.\n\n\nSparks, Grace, Liz Hamel, Ashley Kirzinger, Alex Montero, and Mollyann Brodie Published. 2022. “KFF COVID-19 Vaccine Monitor: Views On The Pandemic At Two Years.” KFF. https://www.kff.org/mental-health/poll-finding/kff-covid-19-vaccine-monitor-pandemic-two-years/.\n\n\nThomas, Tim, Malcolm Drewery, Meredith Greif, Ian Kennedy, Alex Ramiller, Ott Toomet, and Jose Hernandez. 2020. “Baltimore Eviction Map.” Eviction Research Network, UC Berkeley. https://evictionresearch.net/maryland/report/baltimore.html.\n\n\n“Tidyverse/Ggplot2.” 2024. tidyverse. https://github.com/tidyverse/ggplot2.\n\n\nUniversity of Richmond Digital Scholarship Lab. n.d. “Mapping Inequality: Redlining in New Deal America.” American Panorama: An Atlas of United States History. Accessed November 10, 2022. https://dsl.richmond.edu/panorama/redlining/.\n\n\nUrban Institute. 2023. “Urban Institute Data Visualization Style Guide.” http://urbaninstitute.github.io/graphics-styleguide/.\n\n\nUS Census Bureau. 2021. “Appendix B: Measures of Residential Segregation.” Guidance for Housing Patterns Data Users. https://www.census.gov/topics/housing/housing-patterns/guidance/appendix-b.html.\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.” Journal of Computational and Graphical Statistics 19 (1): 3–28. https://doi.org/10.1198/jcgs.2009.07098.\n\n\nWickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. 2nd edition. O’Reilly. https://r4ds.hadley.nz/.\n\n\nWilke, Claus. 2019. Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures. First edition. O’Reilly. https://clauswilke.com/dataviz/.\n\n\nWong, David. n.d. “The Modifiable Areal Unit Problem (MAUP).” Spatial Analysis, no. 5187: 18.\n\n\nWorld Health Organization. 2023. “WHO Data Design Language v.0.9.2.” https://apps.who.int/gho/data/design-language/.\n\n\nYau, Nathan. 2013. Data Points: Visualization That Means Something. Indianapolis, IN: John Wiley & Sons, Inc.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "weeks/02_data_types.html",
+    "href": "weeks/02_data_types.html",
+    "title": "2. What’s in your data?",
+    "section": "",
+    "text": "Learning about your data\nHow you visualize data depends on what data you have. A lot of the worst data visualizations come from people not understanding what types of data they have and what they can do with it.\nFor example, with the bar chart of median earnings by sex and education, would it have been okay to display the data like this?\n\n\n# A tibble: 8 × 15\n  dimension name     sex   race_eth edu       occ_group univ  is_fulltime  count\n  &lt;fct&gt;     &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;    &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt; &lt;lgl&gt;        &lt;dbl&gt;\n1 sex_x_edu Maryland Men   Total    High sch… Total     Full… TRUE        361878\n2 sex_x_edu Maryland Men   Total    Some col… Total     Full… TRUE        290498\n3 sex_x_edu Maryland Men   Total    Bachelors Total     Full… TRUE        297648\n4 sex_x_edu Maryland Men   Total    Graduate… Total     Full… TRUE        255200\n5 sex_x_edu Maryland Women Total    High sch… Total     Full… TRUE        210277\n6 sex_x_edu Maryland Women Total    Some col… Total     Full… TRUE        263128\n7 sex_x_edu Maryland Women Total    Bachelors Total     Full… TRUE        264454\n8 sex_x_edu Maryland Women Total    Graduate… Total     Full… TRUE        263974\n# ℹ 6 more variables: earn_q20 &lt;dbl&gt;, earn_q25 &lt;dbl&gt;, earn_q50 &lt;dbl&gt;,\n#   earn_q75 &lt;dbl&gt;, earn_q80 &lt;dbl&gt;, sample_n &lt;dbl&gt;\n\n\n\n\n\n\n Back to top"
+  },
+  {
     "objectID": "syllabus.html",
     "href": "syllabus.html",
     "title": "Syllabus",
@@ -74,199 +278,6 @@
     "crumbs": [
       "Overview",
       "Syllabus"
-    ]
-  },
-  {
-    "objectID": "weeks/01_walkthrough.html",
-    "href": "weeks/01_walkthrough.html",
-    "title": "1. Walkthrough",
-    "section": "",
-    "text": "Making a chart might seem like a pretty straightforward task: you have data, you make a chart. But there are a lot of things to consider, and they depend on all sorts of factors, like the type of data, your audience, your purpose in visualizing it, the context, and on and on.\nFirst question you should ask yourself:\n\n\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\nThat chart is fine, but it takes up a lot of space to only show 2 numbers. Oftentimes projects that require visualization have caps on length, such as grant applications or print reports where every additional page adds to the budget. In a lot of contexts, you’re probably better off with written text, either just a written sentence if it’s for a report or article, or bullet points or a pull-out quote. You’ll often see documents with something formatted like this:\n\n\nMaryland adults ages 25 and up had median earnings of about $55,000 in 2022, more than $11,000 higher than the US average.\n\n\nMaybe you have a lot of data and your audience wants to see every number exactly, or you just have 2 or 3 numbers but you’re short on space: a nicely formatted table might be better.\n\n\n\n\nTable 1: Median individual earnings, adults ages 25+ with positive earnings, 2022\n\n\n\n\n\n\n\n\n\nLocation\nMedian earnings\n\n\n\n\nUS\n$43,961\n\n\nMaryland\n$55,108\n\n\n\n\n\n\n\n\n\n\nBut if you have somewhere in between a couple data points and too many data points, then making a chart could work. So we’re gonna make a lot of charts.\nIn fact, this data gets at a super pet peeve of mine that can be illustrated well with data visualization.\n\n\n\nSo we already established that Maryland has higher earnings, on average, than the US. Usually when people say “the wage gap,” they’re talking about women’s pay versus men’s pay, e.g. women make x cents on the dollar.1\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\nAgain, super important point but doesn’t quite warrant a chart. You’d get a better sense of the comparison that’s more memorable by just writing:\n\n\nWorking women in Maryland make about 78 cents on the male dollar.\n\n\n(And then in the footnotes include the specifications of “among adults ages 25 and up with positive earnings in 2022.”)\nOne explanation often given for women’s pay being less is that women are more likely to work part-time, and part-time jobs pay much less on average.\n\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\nSo now we’ve established that there are differences in median earnings between women and men, and between full-time and part-time workers, and that Maryland has a higher median earning than the US as a whole. One of the frameworks we’ll use for understanding our data is data feminism (D’Ignazio 2015; D’Ignazio and Klein 2020), which looks at how data can be used to highlight intersections between the patterns we’ve established.\nA good place to start, then, is earnings by sex and full-time status. Let’s make a table:\n\n\n\n\nTable 2: Median individual earnings, adults ages 25+ with positive earnings by sex and full-time status, 2022\n\n\n\n\n\n\n\n\n\nStatus\nMen\nWomen\n\n\n\n\nFull-time\n$72,222\n$62,802\n\n\nPart-time\n$21,579\n$19,200\n\n\n\n\n\n\n\n\n\n\nJust kidding, that’s hard to get a pattern from, and we now have enough comparisons to warrant a chart:\n\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\nThe gaps are actually smaller within groups (full-time men vs full-time women or part-time men vs part-time women) than across (all men vs all women). So the tendency of women to work part time explains some of the wage gap, but not all of it. If the difference were only about work status, we would expect to see no within-group gaps here.2\nWe’ve also looked at education, so we might as well look at both education and sex.\n\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\nEven among only full-time workers, there are gaps at every education level so severe that men at any given education level are paid roughly as much as women at the next level above them. For example, after getting a graduate degree and working full time, women only earn about $1,100 more than men with only a bachelor’s. That’s a pattern that would be hard to glean from just reading a table of numbers or from only seeing the within-groups ratios.\nSo far we’ve worked through identifying several important patterns using just a very simple type of chart that people commonly know how to read—the charts are almost identical, just different slices of the data. But other chart types might help with highlighting different things, such as those gaps.\n\n\n\n\nRevise the code to break down values by race/ethnicity and sex instead of education and sex (i.e. filter for dimension == \"race\" and dimension == \"race_x_sex\" instead of education.)\nBrowse through the Data Visualisation Catalogue (Ribecca 2024) and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (Figure 5). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story?\nFollowing question 2, Wilke gives a brief example in section 6.3 of switching from bar charts to dot plots; how could this be adapted here?",
-    "crumbs": [
-      "Weekly notes",
-      "1. Walkthrough"
-    ]
-  },
-  {
-    "objectID": "weeks/01_walkthrough.html#do-you-even-need-a-chart",
-    "href": "weeks/01_walkthrough.html#do-you-even-need-a-chart",
-    "title": "1. Walkthrough",
-    "section": "",
-    "text": "Figure 1\n\n\n\n\n\nThat chart is fine, but it takes up a lot of space to only show 2 numbers. Oftentimes projects that require visualization have caps on length, such as grant applications or print reports where every additional page adds to the budget. In a lot of contexts, you’re probably better off with written text, either just a written sentence if it’s for a report or article, or bullet points or a pull-out quote. You’ll often see documents with something formatted like this:\n\n\nMaryland adults ages 25 and up had median earnings of about $55,000 in 2022, more than $11,000 higher than the US average.\n\n\nMaybe you have a lot of data and your audience wants to see every number exactly, or you just have 2 or 3 numbers but you’re short on space: a nicely formatted table might be better.\n\n\n\n\nTable 1: Median individual earnings, adults ages 25+ with positive earnings, 2022\n\n\n\n\n\n\n\n\n\nLocation\nMedian earnings\n\n\n\n\nUS\n$43,961\n\n\nMaryland\n$55,108\n\n\n\n\n\n\n\n\n\n\nBut if you have somewhere in between a couple data points and too many data points, then making a chart could work. So we’re gonna make a lot of charts.\nIn fact, this data gets at a super pet peeve of mine that can be illustrated well with data visualization.",
-    "crumbs": [
-      "Weekly notes",
-      "1. Walkthrough"
-    ]
-  },
-  {
-    "objectID": "weeks/01_walkthrough.html#the-wage-gaps",
-    "href": "weeks/01_walkthrough.html#the-wage-gaps",
-    "title": "1. Walkthrough",
-    "section": "",
-    "text": "So we already established that Maryland has higher earnings, on average, than the US. Usually when people say “the wage gap,” they’re talking about women’s pay versus men’s pay, e.g. women make x cents on the dollar.1\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\nAgain, super important point but doesn’t quite warrant a chart. You’d get a better sense of the comparison that’s more memorable by just writing:\n\n\nWorking women in Maryland make about 78 cents on the male dollar.\n\n\n(And then in the footnotes include the specifications of “among adults ages 25 and up with positive earnings in 2022.”)\nOne explanation often given for women’s pay being less is that women are more likely to work part-time, and part-time jobs pay much less on average.\n\n\n\n\n\n\n\n\nFigure 3\n\n\n\n\n\nSo now we’ve established that there are differences in median earnings between women and men, and between full-time and part-time workers, and that Maryland has a higher median earning than the US as a whole. One of the frameworks we’ll use for understanding our data is data feminism (D’Ignazio 2015; D’Ignazio and Klein 2020), which looks at how data can be used to highlight intersections between the patterns we’ve established.\nA good place to start, then, is earnings by sex and full-time status. Let’s make a table:\n\n\n\n\nTable 2: Median individual earnings, adults ages 25+ with positive earnings by sex and full-time status, 2022\n\n\n\n\n\n\n\n\n\nStatus\nMen\nWomen\n\n\n\n\nFull-time\n$72,222\n$62,802\n\n\nPart-time\n$21,579\n$19,200\n\n\n\n\n\n\n\n\n\n\nJust kidding, that’s hard to get a pattern from, and we now have enough comparisons to warrant a chart:\n\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\nThe gaps are actually smaller within groups (full-time men vs full-time women or part-time men vs part-time women) than across (all men vs all women). So the tendency of women to work part time explains some of the wage gap, but not all of it. If the difference were only about work status, we would expect to see no within-group gaps here.2\nWe’ve also looked at education, so we might as well look at both education and sex.\n\n\n\n\n\n\n\n\nFigure 5\n\n\n\n\n\nEven among only full-time workers, there are gaps at every education level so severe that men at any given education level are paid roughly as much as women at the next level above them. For example, after getting a graduate degree and working full time, women only earn about $1,100 more than men with only a bachelor’s. That’s a pattern that would be hard to glean from just reading a table of numbers or from only seeing the within-groups ratios.\nSo far we’ve worked through identifying several important patterns using just a very simple type of chart that people commonly know how to read—the charts are almost identical, just different slices of the data. But other chart types might help with highlighting different things, such as those gaps.",
-    "crumbs": [
-      "Weekly notes",
-      "1. Walkthrough"
-    ]
-  },
-  {
-    "objectID": "weeks/01_walkthrough.html#exercises",
-    "href": "weeks/01_walkthrough.html#exercises",
-    "title": "1. Walkthrough",
-    "section": "",
-    "text": "Revise the code to break down values by race/ethnicity and sex instead of education and sex (i.e. filter for dimension == \"race\" and dimension == \"race_x_sex\" instead of education.)\nBrowse through the Data Visualisation Catalogue (Ribecca 2024) and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (Figure 5). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story?\nFollowing question 2, Wilke gives a brief example in section 6.3 of switching from bar charts to dot plots; how could this be adapted here?",
-    "crumbs": [
-      "Weekly notes",
-      "1. Walkthrough"
-    ]
-  },
-  {
-    "objectID": "weeks/01_walkthrough.html#footnotes",
-    "href": "weeks/01_walkthrough.html#footnotes",
-    "title": "1. Walkthrough",
-    "section": "Footnotes",
-    "text": "Footnotes\n\n\nAll of this analysis is based on Census data, which only records gender as male and female, so that’s what we’ve got to work with.↩︎\nWe’ll talk about annotations in a couple weeks, and we’ll return to these charts to practice. Think about what you might want to annotate on these multidimensional charts.↩︎",
-    "crumbs": [
-      "Weekly notes",
-      "1. Walkthrough"
-    ]
-  },
-  {
-    "objectID": "weeks/02_data_types.html",
-    "href": "weeks/02_data_types.html",
-    "title": "2. What’s in your data?",
-    "section": "",
-    "text": "Learning about your data\nHow you visualize data depends on what data you have. A lot of the worst data visualizations come from people not understanding what types of data they have and what they can do with it.\nFor example, with the bar chart of median earnings by sex and education, would it have been okay to display the data like this?\n\n\n# A tibble: 8 × 15\n  dimension name     sex   race_eth edu       occ_group univ  is_fulltime  count\n  &lt;fct&gt;     &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;    &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt; &lt;lgl&gt;        &lt;dbl&gt;\n1 sex_x_edu Maryland Men   Total    High sch… Total     Full… TRUE        361878\n2 sex_x_edu Maryland Men   Total    Some col… Total     Full… TRUE        290498\n3 sex_x_edu Maryland Men   Total    Bachelors Total     Full… TRUE        297648\n4 sex_x_edu Maryland Men   Total    Graduate… Total     Full… TRUE        255200\n5 sex_x_edu Maryland Women Total    High sch… Total     Full… TRUE        210277\n6 sex_x_edu Maryland Women Total    Some col… Total     Full… TRUE        263128\n7 sex_x_edu Maryland Women Total    Bachelors Total     Full… TRUE        264454\n8 sex_x_edu Maryland Women Total    Graduate… Total     Full… TRUE        263974\n# ℹ 6 more variables: earn_q20 &lt;dbl&gt;, earn_q25 &lt;dbl&gt;, earn_q50 &lt;dbl&gt;,\n#   earn_q75 &lt;dbl&gt;, earn_q80 &lt;dbl&gt;, sample_n &lt;dbl&gt;\n\n\n\n\n\n\n Back to top"
-  },
-  {
-    "objectID": "references.html",
-    "href": "references.html",
-    "title": "References",
-    "section": "",
-    "text": "This is everything in my Zotero bibliography for this class, not all of which actually made it onto the reading list.\n\n\n\n\n Back to topReferences\n\nBertini, Enrico, and Moritz Stefaner. n.d. “Visualizing Uncertainty with Jessica Hullman and Matthew Kay.” Accessed January 30, 2024. https://datastori.es/134-visualizing-uncertainty-with-jessica-hullman-and-matthew-kay/.\n\n\nBrewer, Cynthia A. 2006. “Basic Mapping Principles for Visualizing Cancer Data Using Geographic Information Systems (GIS).” American Journal of Preventive Medicine 30 (2): S25–36. https://doi.org/10.1016/j.amepre.2005.09.007.\n\n\nCairo, Alberto. 2019. How Charts Lie: Getting Smarter about Visual Information. First edition. New York: W. W. Norton & Company.\n\n\nChang, Winston. 2018. R Graphics Cookbook: Practical Recipes for Visualizing Data. Second edition. Beijing ; Boston: O’Reilly. https://r-graphics.org/.\n\n\nCogley, Bridget, and Vidya Setlur. 2022. Functional Aesthetics for Data Visualization. Indianapolis: John Wiley and Sons.\n\n\nCox, Cynthia, Krutika Amin, Jennifer Kates, and Josh Michaud Published. 2022. “Why Do Vaccinated People Represent Most COVID-19 Deaths Right Now?” KFF. https://www.kff.org/policy-watch/why-do-vaccinated-people-represent-most-covid-19-deaths-right-now/.\n\n\nD’Ignazio, Catherine. 2015. “What Would Feminist Data Visualization Look Like?” https://civic.mit.edu/feminist-data-visualization.html.\n\n\nD’Ignazio, Catherine, and Lauren F. Klein. 2020. Data Feminism. \\(&lt;\\)Strong\\(&gt;\\) Ideas Series. Cambridge, Massachusetts London, England: The MIT Press. https://data-feminism.mitpress.mit.edu/.\n\n\nDougherty, Jack, and Ilya Ilyankou. 2024. “Chapter 14: Detect Lies and Reduce Bias.” In Hands-On Data Visualization. https://handsondataviz.org/detect.html.\n\n\nDu Bois, W. E. B., Whitney Battle-Baptiste, and Britt Rusert. 2018. W.E.B Du Bois’s Data Portraits: Visualizing Black America. First edition. [Amherst, Mass.] : Hudson, NY: The W.E.B. Du Bois Center At the University of Massachusetts Amherst ; Princeton Architectural Press.\n\n\nElghany, Soha. 2023. “How Ethical Data Visualization Tells the Human Story.” Nightingale. https://nightingaledvs.com/ethical-data-visualization-tells-the-human-story/.\n\n\nEtter, Elena. 2023. “Data Visualization: A Subjective Lens on Reality.” Nightingale. https://nightingaledvs.com/data-visualization-a-subjective-lens-on-reality/.\n\n\nFerdio. n.d. “Data Viz Project.” Data Viz Project. Accessed January 28, 2024. https://datavizproject.com/.\n\n\nFishback, Price, Jonathan Rose, Kenneth A. Snowden, and Thomas Storrs. 2022. “New Evidence on Redlining by Federal Housing Programs in the 1930s.” Journal of Urban Economics, May, 103462. https://doi.org/10.1016/j.jue.2022.103462.\n\n\nGilmore, Ruth Wilson. 2023. Abolition Geography.\n\n\nHamel, Liz, Ashley Kirzinger, Cailey Muñana, and Mollyann Brodie Published. 2020. “KFF COVID-19 Vaccine Monitor: December 2020.” KFF. https://www.kff.org/coronavirus-covid-19/report/kff-covid-19-vaccine-monitor-december-2020/.\n\n\nHamel, Liz, Lunna Lopes, and Mollyann Brodie Published. 2021. “KFF COVID-19 Vaccine Monitor: What Do We Know About Those Who Want to ‘Wait and See’ Before Getting a COVID-19 Vaccine?” KFF. https://www.kff.org/coronavirus-covid-19/poll-finding/kff-covid-19-vaccine-monitor-wait-and-see/.\n\n\nHeer, Jeffrey, and Michael Bostock. 2010. “Crowdsourcing Graphical Perception: Using Mechanical Turk to Assess Visualization Design.” Proceedings of the SIGCHI Conference on Human Factors in Computing Systems, April, 203–12. https://doi.org/10.1145/1753326.1753357.\n\n\nHullman, J., and N. Diakopoulos. 2011. “Visualization Rhetoric: Framing Effects in Narrative Visualization.” IEEE Transactions on Visualization and Computer Graphics 17 (12): 2231–40. https://doi.org/10.1109/TVCG.2011.255.\n\n\nJonathan Schwabish. 2021. Better Data Visualizations : A Guide for Scholars, Researchers, and Wonks. New York: Columbia University Press. https://proxy-bc.researchport.umd.edu/login?url=https://search.ebscohost.com/login.aspx?direct=true&AuthType=ip,url,uid&db=nlebk&AN=2453484&site=eds-live&scope=site.\n\n\nJustice Policy Institute, and Prison Policy Initiative. 2022. “Where People in Prison Come from: The Geography of Mass Incarceration in Maryland.” https://www.prisonpolicy.org/origin/md/2020/report.html.\n\n\nKay, Matthew, Tara Kola, Jessica R. Hullman, and Sean A. Munson. 2016. “When (Ish) Is My Bus?: User-centered Visualizations of Uncertainty in Everyday, Mobile Predictive Systems.” In Proceedings of the 2016 CHI Conference on Human Factors in Computing Systems, 5092–5103. San Jose California USA: ACM. https://doi.org/10.1145/2858036.2858558.\n\n\nKebonye, Ndiye M., Prince C. Agyeman, Zibanani Seletlo, and Peter N. Eze. 2023. “On Exploring Bivariate and Trivariate Maps as Visualization Tools for Spatial Associations in Digital Soil Mapping: A Focus on Soil Properties.” Precision Agriculture 24 (2): 511–32. https://doi.org/10.1007/s11119-022-09955-7.\n\n\n“KFF COVID-19 Vaccine Monitor Dashboard.” n.d. KFF. Accessed January 30, 2024. https://www.kff.org/other/dashboard/kff-covid-19-vaccine-monitor-dashboard/.\n\n\nKirk, Andy. 2016a. Data Visualisation: A Handbook for Data Driven Design. Los Angeles London New Delhi Singapore Washington DC Melbourne: SAGE.\n\n\n———. 2016b. “Gauging Election Reaction.” Visualising Data. https://visualisingdata.com/2016/11/gauging-election-reaction/.\n\n\nKosara, Robert. 2019. “The DataSaurus, Anscombe’s Quartet, and Why Summary Statistics Need to Be Taken with a Grain of Salt.” https://www.youtube.com/watch?v=RbHCeANCbW0.\n\n\nKrackov, Andy, Sarah Marikos, and Andy Krackov & Sarah Marikos. 2021. “Asterisk Nation: One Tribe’s Challenge to Find Data About Its Population, Nightingale.” Nightingale. https://nightingaledvs.com/asterisk-nation-one-tribes-challenge-to-find-data-about-its-population/.\n\n\nLee, Crystal, Tanya Yang, Gabrielle D Inchoco, Graham M. Jones, and Arvind Satyanarayan. 2021. “Viral Visualizations: How Coronavirus Skeptics Use Orthodox Data Practices to Promote Unorthodox Science Online.” In Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems, 1–18. Yokohama Japan: ACM. https://doi.org/10.1145/3411764.3445211.\n\n\nLevy-Rubinett, Isaac. 2020. “With Great Visualization Comes Great Responsibility, Nightingale.” Nightingale. https://nightingaledvs.com/with-great-visualization-comes-great-responsibility/.\n\n\nMakulec, Amanda. 2020. “Ten Considerations Before You Create Another Chart about COVID-19.” Nightingale. https://medium.com/nightingale/ten-considerations-before-you-create-another-chart-about-covid-19-27d3bd691be8.\n\n\n“MAUP Definition  GIS Dictionary.” n.d. Accessed January 20, 2024. https://support.esri.com/en-us/gis-dictionary/maup.\n\n\nmimimimimi. 2024. “MimiOnuoha/Missing-Datasets.” https://github.com/MimiOnuoha/missing-datasets.\n\n\nMunzner, Tamara. 2014. Visualization Analysis and Design. New York: A K Peters/CRC Press. https://doi.org/10.1201/b17511.\n\n\nMuth, Lisa Charlotte. 2022. “What to Consider When Using Text in Data Visualizations.” Datawrapper. https://blog.datawrapper.de/text-in-data-visualizations/.\n\n\nNey, Jeremy. 2023. “Mapping Inequality Can Drive Social Impact.” Nightingale. https://nightingaledvs.com/mapping-inequality-can-drive-social-impact/.\n\n\nOchieng, Nancy, Priya Chidambaram, and MaryBeth Musumeci Published. 2022. “Nursing Facility Staffing Shortages During the COVID-19 Pandemic.” KFF. https://www.kff.org/coronavirus-covid-19/issue-brief/nursing-facility-staffing-shortages-during-the-covid-19-pandemic/.\n\n\nPillai, Drishti, Samantha Artiga, Liz Hamel, Shannon Schumacher, Ashley Kirzinger, Alisha Rao, and Audrey Kearney Published. 2024. “Understanding the Diversity in the Asian Immigrant Experience in the U.S.: The 2023 KFF/LA Times Survey of Immigrants.” KFF. https://www.kff.org/racial-equity-and-health-policy/poll-finding/understanding-the-diversity-in-the-asian-immigrant-experience/.\n\n\n“Rates of COVID-19 Cases or Deaths by Age Group and Vaccination Status and Booster Dose  Data  Centers for Disease Control and Prevention.” n.d. Accessed January 30, 2024. https://data.cdc.gov/Public-Health-Surveillance/Rates-of-COVID-19-Cases-or-Deaths-by-Age-Group-and/d6p8-wqjm/about_data.\n\n\nRibecca, Severino. 2024. “The Data Visualisation Catalogue.” https://datavizcatalogue.com/.\n\n\nRuggles, Stephen, Sarah Flood, Matthew Sobek, Danika Brockman, Grace Cooper, Stephanie Richards, and Megan Schouweiler. 2023. “IPUMS USA: Version 13.0 [Dataset].” Minneapolis, MN: IPUMS. https://doi.org/10.18128/D010.V13.0.\n\n\nSadler, Richard Casey. 2016. “How ZIP Codes Nearly Masked the Lead Problem in Flint.” The Conversation. http://theconversation.com/how-zip-codes-nearly-masked-the-lead-problem-in-flint-65626.\n\n\nSchwabish, Jonathan. n.d.a. “Catherine D’Ignazio and Lauren Klein.” Accessed January 30, 2024. https://policyviz.com/podcast/episode-142-catherine-dignazio-and-lauren-klein/.\n\n\n———. n.d.b. “Sarah Williams.” Accessed January 18, 2024. https://policyviz.com/podcast/episode-191-sarah-williams/.\n\n\nSeaberry, Camille. 2018. “CT Data Story: Housing Segregation in Greater New Haven.” DataHaven. https://ctdatahaven.org/reports/ct-data-story-housing-segregation-greater-new-haven.\n\n\nSilver, Nate. 2015. “The Most Diverse Cities Are Often The Most Segregated.” FiveThirtyEight. https://fivethirtyeight.com/features/the-most-diverse-cities-are-often-the-most-segregated/.\n\n\nSkinner-Dorkenoo, Allison L., Apoorva Sarmal, Kasheena G. Rogbeer, Chloe J. André, Bhumi Patel, and Leah Cha. 2022. “Highlighting COVID-19 Racial Disparities Can Reduce Support for Safety Precautions Among White U.S. Residents.” Social Science & Medicine 301 (May): 114951. https://doi.org/10.1016/j.socscimed.2022.114951.\n\n\nSmith, Noah. 2023. “How Not to Be Fooled by Viral Charts.” https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts.\n\n\nSparks, Grace, Liz Hamel, Ashley Kirzinger, Alex Montero, and Mollyann Brodie Published. 2022. “KFF COVID-19 Vaccine Monitor: Views On The Pandemic At Two Years.” KFF. https://www.kff.org/mental-health/poll-finding/kff-covid-19-vaccine-monitor-pandemic-two-years/.\n\n\nThomas, Tim, Malcolm Drewery, Meredith Greif, Ian Kennedy, Alex Ramiller, Ott Toomet, and Jose Hernandez. 2020. “Baltimore Eviction Map.” Eviction Research Network, UC Berkeley. https://evictionresearch.net/maryland/report/baltimore.html.\n\n\n“Tidyverse/Ggplot2.” 2024. tidyverse. https://github.com/tidyverse/ggplot2.\n\n\nUniversity of Richmond Digital Scholarship Lab. n.d. “Mapping Inequality: Redlining in New Deal America.” American Panorama: An Atlas of United States History. Accessed November 10, 2022. https://dsl.richmond.edu/panorama/redlining/.\n\n\nUrban Institute. 2023. “Urban Institute Data Visualization Style Guide.” http://urbaninstitute.github.io/graphics-styleguide/.\n\n\nUS Census Bureau. 2021. “Appendix B: Measures of Residential Segregation.” Guidance for Housing Patterns Data Users. https://www.census.gov/topics/housing/housing-patterns/guidance/appendix-b.html.\n\n\nWickham, Hadley. 2010. “A Layered Grammar of Graphics.” Journal of Computational and Graphical Statistics 19 (1): 3–28. https://doi.org/10.1198/jcgs.2009.07098.\n\n\nWickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. 2nd edition. O’Reilly. https://r4ds.hadley.nz/.\n\n\nWilke, Claus. 2019. Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures. First edition. O’Reilly. https://clauswilke.com/dataviz/.\n\n\nWong, David. n.d. “The Modifiable Areal Unit Problem (MAUP).” Spatial Analysis, no. 5187: 18.\n\n\nWorld Health Organization. 2023. “WHO Data Design Language v.0.9.2.” https://apps.who.int/gho/data/design-language/.\n\n\nYau, Nathan. 2013. Data Points: Visualization That Means Something. Indianapolis, IN: John Wiley & Sons, Inc.",
-    "crumbs": [
-      "References"
-    ]
-  },
-  {
-    "objectID": "readings.html",
-    "href": "readings.html",
-    "title": "Readings",
-    "section": "",
-    "text": "Here are the readings for each week. Please have the readings done before the corresponding class. I’ll try not to assign too much reading, so please come ready to discuss!\n(Please also don’t make me regret saying this but in case you absolutely can’t get all the reading done, they’re in order of importance so start at the top each week.)",
-    "crumbs": [
-      "Overview",
-      "Readings"
-    ]
-  },
-  {
-    "objectID": "readings.html#week-2-feb-7-encoding-data-to-visuals-making-meaning-of-data",
-    "href": "readings.html#week-2-feb-7-encoding-data-to-visuals-making-meaning-of-data",
-    "title": "Readings",
-    "section": "Week 2, Feb 7: encoding data to visuals; making meaning of data",
-    "text": "Week 2, Feb 7: encoding data to visuals; making meaning of data\n\nWilke, Fundamentals of data visualization chapters 2 & 3\nCairo, How charts lie: Getting smarter about visual information intro (on Blackboard)\nPick one (or both. They’re both great, but if you only choose one I’d go with the podcast.):\n\nRead D’Ignazio, What would feminist data visualization look like?\nListen to PolicyViz (Schwabish), Catherine D’Ignazio and Lauren Klein\n\nWatch Kosara, The DataSaurus, Anscombe’s Quartet, and why summary statistics need to be taken with a grain of salt (5 min video)",
-    "crumbs": [
-      "Overview",
-      "Readings"
-    ]
-  },
-  {
-    "objectID": "readings.html#week-3-feb-14-writing-good-code-color",
-    "href": "readings.html#week-3-feb-14-writing-good-code-color",
-    "title": "Readings",
-    "section": "Week 3, Feb 14: writing good code; color",
-    "text": "Week 3, Feb 14: writing good code; color\n\nWilke, Fundamentals of data visualization chapters 4, 6, 17\nWickham, R for data science chapters 1 & 9 (okay to skim as a code reference)",
-    "crumbs": [
-      "Overview",
-      "Readings"
-    ]
-  },
-  {
-    "objectID": "readings.html#week-4-feb-21-text-annotation-uncertainty-distribution",
-    "href": "readings.html#week-4-feb-21-text-annotation-uncertainty-distribution",
-    "title": "Readings",
-    "section": "Week 4, Feb 21: text, annotation, uncertainty, distribution",
-    "text": "Week 4, Feb 21: text, annotation, uncertainty, distribution\n\nWilke, Fundamentals of data visualization chapters 7, 9, 10\nListen to Data Stories (Bertini), Visualizing Uncertainty with Jessica Hullman and Matthew Kay\nPick one (or both) of these styleguides to browse through:\n\nUrban Institute\nWorld Health Organization (it’s not super clear but you have to click through to each section)",
-    "crumbs": [
-      "Overview",
-      "Readings"
-    ]
-  },
-  {
-    "objectID": "readings.html#week-5-feb-28-making-good-decisions",
-    "href": "readings.html#week-5-feb-28-making-good-decisions",
-    "title": "Readings",
-    "section": "Week 5, Feb 28: making good decisions",
-    "text": "Week 5, Feb 28: making good decisions\n\nCairo, How charts lie: Getting smarter about visual information chapter 1 (on Blackboard)\nWilke, Fundamentals of data visualization chapters 13, 14 & 20\nSmith, How not to be fooled by viral charts",
-    "crumbs": [
-      "Overview",
-      "Readings"
-    ]
-  },
-  {
-    "objectID": "readings.html#full-citations",
-    "href": "readings.html#full-citations",
-    "title": "Readings",
-    "section": "Full citations",
-    "text": "Full citations\n\n\n\n\nBertini, Enrico, and Moritz Stefaner. n.d. “Visualizing Uncertainty with Jessica Hullman and Matthew Kay.” Accessed January 30, 2024. https://datastori.es/134-visualizing-uncertainty-with-jessica-hullman-and-matthew-kay/.\n\n\nCairo, Alberto. 2019. How Charts Lie: Getting Smarter about Visual Information. First edition. New York: W. W. Norton & Company.\n\n\nD’Ignazio, Catherine. 2015. “What Would Feminist Data Visualization Look Like?” https://civic.mit.edu/feminist-data-visualization.html.\n\n\nKosara, Robert. 2019. “The DataSaurus, Anscombe’s Quartet, and Why Summary Statistics Need to Be Taken with a Grain of Salt.” https://www.youtube.com/watch?v=RbHCeANCbW0.\n\n\nSchwabish, Jonathan. n.d. “Catherine D’Ignazio and Lauren Klein.” Accessed January 30, 2024. https://policyviz.com/podcast/episode-142-catherine-dignazio-and-lauren-klein/.\n\n\nSmith, Noah. 2023. “How Not to Be Fooled by Viral Charts.” https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts.\n\n\nUrban Institute. 2023. “Urban Institute Data Visualization Style Guide.” http://urbaninstitute.github.io/graphics-styleguide/.\n\n\nWickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. 2nd edition. O’Reilly. https://r4ds.hadley.nz/.\n\n\nWilke, Claus. 2019. Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures. First edition. O’Reilly. https://clauswilke.com/dataviz/.\n\n\nWorld Health Organization. 2023. “WHO Data Design Language v.0.9.2.” https://apps.who.int/gho/data/design-language/.",
-    "crumbs": [
-      "Overview",
-      "Readings"
-    ]
-  },
-  {
-    "objectID": "weeks/00_definitions.html",
-    "href": "weeks/00_definitions.html",
-    "title": "0. Definitions",
-    "section": "",
-    "text": "A few definitions of data visualization:\n\nThe rendering of information in a visual format to help communicate data while also generating new patterns and knowledge through the act of visualization itself (Du Bois, Battle-Baptiste, and Rusert 2018, 8)\n\n\nThe representation and presentation of data to facilitate understanding (Kirk 2016, 19)\n\nIt’s pretty common to find a book with hundreds of pages of details on data visualization, but no definition.\nWhat else could we add here?",
-    "crumbs": [
-      "Weekly notes",
-      "0. Definitions"
-    ]
-  },
-  {
-    "objectID": "weeks/00_definitions.html#what-is-data-visualization",
-    "href": "weeks/00_definitions.html#what-is-data-visualization",
-    "title": "0. Definitions",
-    "section": "",
-    "text": "A few definitions of data visualization:\n\nThe rendering of information in a visual format to help communicate data while also generating new patterns and knowledge through the act of visualization itself (Du Bois, Battle-Baptiste, and Rusert 2018, 8)\n\n\nThe representation and presentation of data to facilitate understanding (Kirk 2016, 19)\n\nIt’s pretty common to find a book with hundreds of pages of details on data visualization, but no definition.\nWhat else could we add here?",
-    "crumbs": [
-      "Weekly notes",
-      "0. Definitions"
-    ]
-  },
-  {
-    "objectID": "weeks/00_definitions.html#what-should-visualization-do",
-    "href": "weeks/00_definitions.html#what-should-visualization-do",
-    "title": "0. Definitions",
-    "section": "What should visualization do?",
-    "text": "What should visualization do?\n\nData visualization is part art and part science. The challenge is to get the art right without getting the science wrong and vice versa. A data visualization first and foremost has to accurately convey the data. It must not mislead or distort…. At the same time, a data visualization should be aesthetically pleasing (Wilke 2019 ch 1)",
-    "crumbs": [
-      "Weekly notes",
-      "0. Definitions"
-    ]
-  },
-  {
-    "objectID": "weeks/00_definitions.html#why-visualize-data",
-    "href": "weeks/00_definitions.html#why-visualize-data",
-    "title": "0. Definitions",
-    "section": "Why visualize data?",
-    "text": "Why visualize data?\n\nExplore\nExplain\nBoth\n\nWhat’s the difference, and what happens in the overlaps?",
-    "crumbs": [
-      "Weekly notes",
-      "0. Definitions"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Setup",
-    "section": "",
-    "text": "This is a collection of notes to fill in examples and walkthroughs for the Spring 2024 session of GES 778. It will be updated throughout the semester.\nFirst, install the course’s companion R package, justviz. This is in the class’s GitHub organization.\n\n# install.packages(\"devtools\")\ndevtools::install_github(\"umbc-viz/justviz\")\n\nNext, some packages that aren’t required by the justviz package but will get us started for class and are used in these notes:\n\ncran_pkgs &lt;- c(\"ggplot2\",     # data visualization powerhouse\n               \"dplyr\",       # nice for calculations and data manipulation\n               \"tidyr\",       # data reshaping\n               \"forcats\",     # handling factors\n               \"stringr\",     # string cleanup\n               \"showtext\",    # nice fonts\n               \"ggrepel\",     # force-repelled placement of labels\n               \"osmdata\",     # easy access to sf data from OpenStreetMap\n               \"tigris\",      # shapefiles from Census Bureau TIGER\n               \"patchwork\",   # assembling plots\n               \"ggmap\",       # basemaps in ggplot\n               \"ggtext\",      # use rich text / markdown in ggplot\n               \"here\",        # marks project roots\n               \"knitr\",       # preps conversions between markdown and other formats\n               \"gt\",          # like ggplot but for tables  \n               \"rcartocolor\") # color palettes\n\ninstall.packages(cran_pkgs)\n\n\n\n\n Back to top",
-    "crumbs": [
-      "Overview",
-      "Setup"
     ]
   }
 ]
