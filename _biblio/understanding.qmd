@@ -1,0 +1,7 @@
+
+:::{.hidden}
+```{r}
+#| results: asis
+pander::pandoc.list(paste0("@", refs$understanding))
+```
+:::

@@ -1,6 +1,82 @@
 ---
-title: References
-nocite: '@*'
+title: References by topic
+execute: 
+  echo: false
+citeproc: false
+filters:
+  - /home/camille/code/ges778/_extensions/pandoc-ext/section-bibliographies/section-bibliographies.lua
+  # - citetools
+# csl: chicago-fullnote-bibliography.csl
+# suppress-bibliography: true
+# section-bibs-level: 3
+section-bibs-bibliography: references.bib
+toc: true
+reference-location: document
+citation-location: document
 ---
 
-This is everything in my Zotero bibliography for this class, not all of which actually made it onto the reading list.
+This is most of what's in my Zotero bibliography for this class arranged by topic.
+
+```{r}
+keys <- c("annotations", "color", "data ethics", "data for action", "decisions",
+          "fallacies", "general", "missing data", "perception", "spatial analysis",
+          "storytelling", "styleguides", "survey data", "uncertainty", "main texts")
+
+refs <- bib2df::bib2df(here::here("references.bib")) |>
+  janitor::clean_names() |>
+  dplyr::filter(!is.na(keywords)) |>
+  dplyr::select(bibtexkey, keywords) |>
+  tidyr::separate_rows(keywords, sep = ",") |>
+  dplyr::filter(keywords %in% keys) |>
+  dplyr::mutate(keywords = forcats::as_factor(keywords) |>
+                   forcats::fct_collapse( 
+                      aesthetics = c("annotations", "color", "styleguides", "perception"),
+                      justice = c("data ethics", "data for action"),
+                      understanding = c("decisions", "fallacies", "missing data", "uncertainty", "survey data")) |>
+                    forcats::fct_recode(spatial = "spatial analysis", main = "main texts") |>
+                    forcats::fct_relevel("main", "general", "aesthetics", "understanding", "storytelling", "justice")) |>
+  split(~keywords) |>
+  purrr::map(dplyr::pull, bibtexkey)
+```
+
+# Main texts
+
+Foundational books and chapters
+
+{{< include _biblio/main.qmd >}}
+
+# General references
+
+References, frameworks, and grammar of graphics
+
+{{< include _biblio/general.qmd >}}
+
+# Aesthetics & styling
+
+Color, visual perception, annotations, text, and styleguides
+
+{{< include _biblio/styling.qmd >}}
+
+# Understanding data
+
+Decision-making, uncertainty, missing data, and logical fallacies
+
+{{< include _biblio/understanding.qmd >}}
+
+# Storytelling
+
+Telling a story and making a point
+
+{{< include _biblio/storytelling.qmd >}}
+
+# Social justice & ethics
+
+Data viz for action in the real world
+
+{{< include _biblio/justice.qmd >}}
+
+# Spatial data
+
+Spatial is special
+
+{{< include _biblio/spatial.qmd >}}

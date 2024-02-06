@@ -27,20 +27,22 @@ website:
           - index.qmd
           - syllabus.qmd
           - readings.qmd
+      - "---"
       - section: "Weekly notes"
-        # contents: "weeks/*.qmd"
-        contents: 
-          - weeks/00_definitions.qmd
-          - weeks/01_walkthrough.qmd
+        contents: "weeks/*.qmd"
+        # contents: 
+        #   - weeks/00_definitions.qmd
+        #   - weeks/01_walkthrough.qmd
+      - "---"
       - references.qmd
 
 #   - section-bibliographies
 
 author: Camille Seaberry
 bibliography: references.bib
-# csl: chicago-fullnote-bibliography.csl
-# reference-section-title: References
+csl: apa.csl
 citeproc: true
+toc: true
 
 date-format: long
 date-modified: last-modified
@@ -63,4 +65,6 @@ execute:
   warning: false
   message: false
   
-
+df-print: kable
+reference-location: margin
+citation-location: margin

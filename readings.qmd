@@ -1,10 +1,10 @@
 ---
 title: Readings
-link-fields: true
 link-bibliography: true
-suppress-bibliography: false
-filters:
-  - citetools
+suppress-bibliography: true
+link-citations: false
+citations-hover: false
+csl: apa-cv.csl
 ---
 
 Here are the readings for each week. Please have the readings done _before_ the corresponding class. I'll try not to assign too much reading, so please come ready to discuss! 
@@ -14,31 +14,29 @@ Here are the readings for each week. Please have the readings done _before_ the 
 
 ## Week 2, Feb 7: encoding data to visuals; making meaning of data
 
-* **[@Wilke2019]{.author.}**, [@Wilke2019]{.title-short.} chapters 2 & 3
-* **[@Cairo2019]{.author.}**, [@Cairo2019]{.title.} intro (on Blackboard)
+* @Wilke2019 chapters 2 & 3
+* @Cairo2019 intro (on Blackboard)
 * Pick one (or both. They're both great, but if you only choose one I'd go with the podcast.):
-  * Read **[@DIgnazio2015]{.author.}**, [@DIgnazio2015]{.title.}
-  * Listen to **PolicyViz** ([@Schwabish2018]{.author.}), [@Schwabish2018]{.title.}
-* Watch **[@Kosara2019]{.author.}**, [@Kosara2019]{.title.} (5 min video)
+  * Read @DIgnazio2015
+  * Listen to PolicyViz, @Schwabish2018
+* Watch @Kosara2019 (5 min video)
 
 ## Week 3, Feb 14: writing good code; color
 
-* **[@Wilke2019]{.author.}**, [@Wilke2019]{.title-short.} chapters 4, 6, 17
-* **[@W.C.G2023]{.author.}**, [@W.C.G2023]{.title-short.} chapters 1 & 9 (okay to skim as a code reference)
+* @Wilke2019 chapters 4, 6, 17
+* @W.C.G2023 chapters 1 & 9 (okay to skim as a code reference)
 
 ## Week 4, Feb 21: text, annotation, uncertainty, distribution
 
-* **[@Wilke2019]{.author.}**, [@Wilke2019]{.title-short.} chapters 7, 9, 10
-* Listen to **Data Stories** ([@B.S2019]{.author.}), [@B.S2019]{.title.}
+* @Wilke2019 chapters 7, 9, 10
+* Listen to Data Stories, @B.S2019
 * Pick one (or both) of these styleguides to browse through:
-  * **[@Urban2023]{.author.}**
-  * **[@WHO2023]{.author.}** (it's not super clear but you have to click through to each section)
+  * @Urban2023
+  * @WHO2023 (it's not super clear but you have to click through to each section)
 
 ## Week 5, Feb 28: making good decisions
 
-* **[@Cairo2019]{.author.}**, [@Cairo2019]{.title.} chapter 1 (on Blackboard)
-* **[@Wilke2019]{.author.}**, [@Wilke2019]{.title-short.} chapters 13, 14 & 20
-* **[@Smith2023]{.author.}**, [@Smith2023]{.title.}
+* @Cairo2019 chapter 1 (on Blackboard)
+* @Wilke2019 chapters 13, 14 & 20
+* @Smith2023
 
-
-## Full citations
