@@ -1,0 +1,196 @@
+---
+title: 4. Learning about your data
+fig-width: 7
+fig-height: 4
+tbl-cap-location: top
+dpi: 200
+execute:
+  warning: true
+  message: true
+
+---
+
+From @W.C.G2023, [Exploratory Data Analysis](https://r4ds.hadley.nz/eda) chapter:
+
+> There is no rule about which questions you should ask to guide your research. However, two types of questions will always be useful for making discoveries within your data. You can loosely word these questions as:
+> - What type of variation occurs within my variables?
+> - What type of covariation occurs between my variables?
+
+We'll follow the steps of the EDA chapter using the `acs` dataset in the {justviz} package. For simplicity, we'll focus on Maryland census tracts and just a few variables dealing with housing and income.
+
+```{r}
+#| label: setup
+#| message: false
+library(dplyr)
+library(ggplot2)
+library(justviz)
+```
+
+```{r}
+acs_tr <- acs |>
+  filter(level == "tract") |>
+  select(county, name, total_pop, total_hh,
+         homeownership, total_cost_burden, renter_cost_burden,
+         owner_cost_burden, no_vehicle_hh, median_hh_income, pop_density)
+knitr::kable(head(acs_tr))
+summary(acs_tr)
+```
+
+What types of values do each of these variables represent? Why are their scales so different?
+
+## Variation
+
+First a histogram of median household income values:
+
+```{r}
+#| label: fig-income-hist-1
+ggplot(acs_tr, aes(x = median_hh_income)) +
+  geom_histogram(color = "white")
+```
+
+There's a message and a warning: the message suggests being intentional about the number of bins, and the warning calls our attention to missing values in this column.
+
+Use the next few chunks of code to experiment with bin specifications. Does your understanding of the data's distribution change?
+
+```{r}
+ggplot(acs_tr, aes(x = median_hh_income)) +
+  geom_histogram(bins = 50) # bins can be determined by setting the number of bins
+```
+
+
+```{r}
+ggplot(acs_tr, aes(x = median_hh_income)) +
+  geom_histogram(binwidth = 10000) # or by the width of bins, with a scale corresponding to the x-axis
+```
+
+What are some values of bins or binwidth that seem reasonable? At what point do either of them start to obscure data?
+
+As for the missing values:
+
+```{r}
+acs_tr |>
+  filter(is.na(median_hh_income))
+```
+
+Even though we're probably not going to use the total population and total household variables for any analysis here, I kept them because those sorts of variables that define what your observational unit is are important for checking what's going on in your data. By which I mean a census tract is made up of a bunch of people (usually about 4,000) in a contiguous area who mostly live in households. But if you work with census data enough, you'll know that some places have population but few households, or only very small populations altogether---a tract might actually be a jail or a set of college dorms, or maybe the majority of a tract is those sorts of group quarters, and the remainder is too small to reliably calculate some of the data. What we want to do with those tracts can depend on context, but I'll drop them here.
+
+```{r}
+acs_tr2 <- filter(acs_tr, !is.na(median_hh_income))
+```
+
+### Typical values
+
+Does anything seem weird about the median household income values? Look back at @fig-income-hist-1 where it may be more apparent. (We'll talk about this anomaly in the data.)
+
+Switching to cost burden rates:
+
+```{r}
+ggplot(acs_tr2, aes(x = total_cost_burden)) +
+  geom_histogram(binwidth = 0.03)
+```
+
+This approaches a normal curve, but is skewed. From the histogram, the mean looks to be around 0.3 (looking back at the summary, this is correct), but with quite a few tracts with higher rates. Because this is a proportion, we don't expect there to be any values below 0 or above 1.
+
+A boxplot can make it a little easier to figure out what's typical in your distribution.
+
+```{r}
+# use a dummy value for x because ggplot expects boxplots to be done by a discrete variable
+ggplot(acs_tr2, aes(x = 1, y = total_cost_burden)) +
+  geom_boxplot() +
+  coord_flip()
+```
+
+### Unusual values
+
+```{r}
+ggplot(acs_tr2, aes(x = pop_density)) +
+  geom_histogram(binwidth = 1000)
+```
+
+There are a few tracts that are extremely dense. If we wanted to get a sense of more typical tracts, we could filter those, either from the data or within the limits of the chart:
+
+```{r}
+acs_tr2 |>
+  filter(pop_density < 30000) |>
+  ggplot(aes(x = pop_density)) +
+  geom_histogram(binwidth = 1000)
+
+acs_tr2 |>
+  ggplot(aes(x = pop_density)) +
+  geom_histogram(binwidth = 1000) +
+  scale_x_continuous(limits = c(NA, 30000))
+```
+
+We could decide to investigate those high-density tracts. For example, if we're interested in housing costs, we might drop tracts that seem to mostly be dorms. However, at least these tracts in Montgomery County are actually high-rise condos bordering DC, so we should keep them in.
+
+## Covariation
+
+Especially when we talk about housing and socio-economic data, we expect things to be correlated---probably even more so than with naturally occurring phenomena, since so much of where we live and what resources we have are determined by history and policy decisions. So it shouldn't surprise you to find correlations in data like this. In fact, the CDC PLACES dataset uses demographic data to model health measures where they don't have direct measurements available, so in cases like that you actually want to lean _away_ from digging into correlations too much, or you might end up just confirming the makeup of the model, not finding anything new.
+
+### A categorical and a numerical variable
+
+I'll reshape the data to get housing tenure into one categorical variable. (If this code doesn't make sense it's okay.)
+
+```{r}
+cost_burden <- acs_tr2 |>
+  tidyr::pivot_longer(cols = matches("cost_burden"), 
+                      names_to = c("tenure", ".value"), # split column names into tenure and the name of the measure (cost_burden)
+                      names_pattern = "(^[a-z]+)_(\\w+$)", # use regex to match a set of lowercase letters at the start of the string, followed by an underscore, then match word characters until the end
+                      names_ptypes = list(tenure = factor())) |>
+  filter(!is.na(cost_burden))
+```
+
+```{r}
+ggplot(cost_burden, aes(x = cost_burden, color = tenure)) +
+  geom_freqpoly(binwidth = 0.02)
+```
+
+The bit about calling `after_stat` in the book chapter doesn't apply here, since we have the same number of observations for each tenure.
+
+```{r}
+ggplot(cost_burden, aes(x = tenure, y = cost_burden)) +
+  geom_boxplot()
+```
+
+```{r}
+ggplot(cost_burden, aes(x = forcats::fct_reorder(tenure, cost_burden), 
+                        y = cost_burden)) +
+  geom_boxplot()
+```
+
+### Two categorical variables
+
+This is a pretty contrived example to match section 10.5.2, but I'll bin homeownership and housing cost burden into categorical variables, and look at these by county.
+
+```{r}
+acs_tr2 |>
+  mutate(ownership_brk = cut(homeownership, 
+                             breaks = c(0, 0.25, 0.5, 0.75, 1), 
+                             include.lowest = TRUE, right = FALSE)) |>
+  mutate(income_brk = cut(median_hh_income, 
+                          breaks = c(0, 5e4, 1e5, 1.5e5, Inf),
+                          include.lowest = TRUE, right = FALSE)) |>
+  count(income_brk, ownership_brk) |>
+  ggplot(aes(x = income_brk, y = ownership_brk)) +
+  geom_point(aes(size = n)) +
+  scale_size_area()
+```
+
+See if you can adjust the code to use tiles and a color (fill) scale.
+
+### Two numerical variables
+
+Same variables, without the binning
+
+```{r}
+ggplot(acs_tr2, aes(x = median_hh_income, y = homeownership)) +
+  geom_point()
+```
+
+Use the methods in the book (changing alpha or using a 2D density) to deal with overplotting here.
+
+```{r}
+ggplot(acs_tr2, aes(x = median_hh_income, y = homeownership)) +
+  geom_boxplot(aes(group = cut_width(median_hh_income, 2.5e4)), varwidth = TRUE)
+```
+

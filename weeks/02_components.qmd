@@ -1,0 +1,124 @@
+---
+title: 2. Components of a chart
+fig-width: 7
+fig-height: 4
+tbl-cap-location: top
+dpi: 200
+reference-location: margin
+citation-location: margin
+---
+
+Revisiting the wage gaps to break down a chart into its pieces and what they mean. This will be a subset of the `wages` data with just full-time workers by sex and education in Maryland.
+
+```{r}
+#| message: false
+library(dplyr)
+library(ggplot2)
+library(justviz)
+library(ggtext)
+
+source(here::here("utils/plotting_utils.R"))
+gender_pal <- setNames(qual_pal[c(3, 6)], c("Men", "Women"))
+```
+
+```{r}
+sex_x_edu <- wages |>
+  filter(dimension == "sex_x_edu",
+         name == "Maryland") |>
+  select(sex, edu, earn_q25, earn_q50, earn_q75) |>
+  mutate(across(where(is.factor), forcats::fct_drop))
+
+knitr::kable(sex_x_edu)
+
+summary(sex_x_edu)
+```
+
+## Starting point
+
+This is the decent but not great chart from last week. We're going to take a step back to break it into its components.
+
+
+```{r}
+#| label: fig-old
+wages |>
+  filter(dimension == "sex_x_edu",
+         name == "Maryland") |>
+  ggplot(aes(x = edu, y = earn_q50, fill = sex)) +
+  geom_col(width = 0.8, alpha = 0.9, position = position_dodge2()) +
+  scale_y_barcontinuous(labels = dollar_k) +
+  scale_fill_manual(values = gender_pal) +
+  labs(x = NULL, y = NULL, fill = NULL,
+       title = "Median individual earnings",
+       subtitle = "Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2022") +
+  theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")),
+        legend.position = "bottom")
+```
+
+## Basics
+
+Focusing first on median wages (`earn_q50`), values here range from 38,000 to 121,873, so we should expect our dependent axis (usually _y_, but we might change it) to range from somewhere below that to somewhere above that. If we make a chart and it goes down to e.g. 10,000 that's a sign that something weird might be happening. On the dependent axis, we have 2 categories of sex :-/ and 4 of education; if we end up with only 3 bars, or with 15 bars, something's wrong.
+
+```{r}
+#| label: fig-axes
+ggplot(sex_x_edu, aes(x = edu, y = earn_q50))
+```
+
+These scales make sense so far---I haven't signaled that sex will be included here, or that we're making a bar chart which is why the dependent axis doesn't have to go down to 0.
+
+```{r}
+#| label: fig-bars-1
+ggplot(sex_x_edu, aes(x = edu, y = earn_q50)) +
+  geom_col()
+```
+
+The dependent scale has changed: it goes down to 0, which makes sense because now we have bars, but it goes up to 200,000, which is weird.
+
+```{r}
+#| label: fig-bars-2
+ggplot(sex_x_edu, aes(x = edu, y = earn_q50)) +
+  geom_col(color = "white")
+```
+
+This still includes both men and women, but sex isn't assigned to any aesthetic, so bars just get stacked. Setting the fill makes that clear.
+
+
+```{r}
+#| label: fig-bars-3
+ggplot(sex_x_edu, aes(x = edu, y = earn_q50, fill = sex)) +
+  geom_col()
+```
+
+_These bars shouldn't be stacked, though_. Why not?
+
+[They represent median wages of distinct groups, not something that is cumulative. If men have a median income of \$60,000 and women have a median income of \$50,000, does that mean that men and women overall have a median income of \$110,000? No! But that's what these stacked bars imply.]{.aside}
+
+
+```{r}
+#| label: fig-bars-4
+ggplot(sex_x_edu, aes(x = edu, y = earn_q50, fill = sex)) +
+  geom_col(position = position_dodge2())
+```
+
+So now we have a chart that represents the data appropriately. We can make it look nicer, but for now we have all the basic components set.
+
+What are all the components here?
+
+::: {.callout-tip}
+### Brainstorming components
+
+- 
+
+:::
+
+## A nicer chart
+
+That chart is fine but not great. Next we could clean up the axes, their labels, ticks, and gridlines. For each of these components, you should ask yourself if they're necessary, or what they add to the chart that isn't already provided through some other means. This helps you minimize your [data-to-ink ratio, @Wilke2019](https://clauswilke.com/dataviz/proportional-ink.html)
+
+### Live code: clean up this chart
+
+```{r}
+gg <- ggplot(sex_x_edu, aes(x = edu, y = earn_q50, fill = sex)) +
+  geom_col(position = position_dodge2())
+
+gg
+```

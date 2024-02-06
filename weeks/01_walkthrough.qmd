@@ -8,9 +8,10 @@ fig-width: 7
 fig-height: 4
 tbl-cap-location: top
 dpi: 200
+reference-location: margin
+citation-location: margin
 ---
 
-# Walkthrough: what goes into a chart?
 
 ```{r}
 #| message: false
@@ -245,5 +246,5 @@ So far we've worked through identifying several important patterns using just a 
 ## Exercises
 
 1. Revise the code to break down values by race/ethnicity and sex instead of education and sex (i.e. filter for `dimension == "race"` and `dimension == "race_x_sex"` instead of education.)
-2. Browse through the Data Visualisation Catalogue [@Ribecca2024] and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (@fig-wages-edu-sex). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story? 
-3. Following question 2, Wilke gives a brief example in [section 6.3](https://clauswilke.com/dataviz/visualizing-amounts.html#dot-plots-and-heatmaps) of switching from bar charts to dot plots; how could this be adapted here?
+2. Browse through the Data Visualisation Catalogue [@Ribecca2024] and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (@fig-wages-edu-sex). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story? What about (@fig-ratio-sex-edu)?
+3. Following question 2, Wilke gives a brief example in [section 6.3](https://clauswilke.com/dataviz/visualizing-amounts.html#dot-plots-and-heatmaps) of switching from bar charts to dot plots or heatmaps; how could this be adapted here?

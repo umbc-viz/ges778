@@ -1,0 +1,94 @@
+
+## Revisiting the wage gaps
+
+```{r}
+#| label: setup
+#| message: false
+library(dplyr)
+library(ggplot2)
+library(justviz)
+library(ggtext)
+
+source(here::here("utils/plotting_utils.R"))
+update_geom_defaults("col", list(fill = qual_pal[3]))
+gender_pal <- setNames(qual_pal[c(3, 6)], c("Men", "Women"))
+```
+
+How you visualize data depends on what data you have. A lot of the worst data visualizations come from people not understanding what types of data they have and what they can or should do with it. 
+
+For example, with the bar chart of median earnings by sex and education, would it have been okay to display the data like this?
+
+```{r}
+#| label: fig-wages-bad-bars
+wages |>
+  filter(dimension == "sex_x_edu",
+         name == "Maryland") |>
+  ggplot(aes(x = edu, y = earn_q50, fill = sex)) +
+  geom_col(width = 0.8, position = position_stack()) +
+  scale_y_barcontinuous(labels = dollar_k) +
+  scale_fill_manual(values = gender_pal) +
+  labs(x = NULL, y = NULL, fill = NULL,
+       title = "Median individual earnings",
+       subtitle = "Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2022") +
+  theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")),
+        legend.position = "bottom")
+```
+
+What does that chart imply that's inaccurate?
+
+::: {.callout-tip}
+
+### Brainstorm here!
+
+-
+
+:::
+
+## Dot plots
+
+The side-by-side bar charts last week were pretty good, but a dot plot might be a better way to look at those gaps between groups. Dot plots are nice because they're not much more difficult to read or uncommon than bar charts, and they let you zoom in to focus on the _range of values_ more than the values themselves.
+
+```{r}
+#| label: fig-wages-dots
+wages |>
+  filter(dimension == "sex_x_edu",
+         name == "Maryland") |>
+  ggplot(aes(x = edu, y = earn_q50, color = sex, group = edu)) +
+  geom_path(color = "gray70", linewidth = 3, alpha = 0.9) +
+  geom_point(size = 5) +
+  coord_flip() +
+  scale_color_manual(values = gender_pal) +
+  scale_y_continuous(labels = dollar_k) +
+  guides(color = guide_legend(reverse = TRUE)) +
+  labs(x = NULL, y = NULL, color = NULL,
+       title = "Median individual earnings",
+       subtitle = "Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2022") +
+  theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")),
+        legend.position = "bottom",
+        legend.key = element_blank(),
+        plot.title.position = "plot")
+```
+
+After we talk about annotations, you might decide to add annotations to highlight the gaps across groups, or something similar.
+
+## Heat map
+
+Wilke suggests using [heatmaps](https://clauswilke.com/dataviz/visualizing-amounts.html#dot-plots-and-heatmaps) as well as dot plots. They can be cool, but because they rely entirely on color (usually hue and lightness), they can be better suited for reading large patterns rather than a small set of numbers like we have here. 
+
+```{r}
+wages |>
+  filter(dimension == "sex_x_edu",
+         name == "Maryland") |>
+  ggplot(aes(x = sex, y = edu, fill = earn_q50)) +
+  geom_tile(color = "white") +
+  scale_fill_fermenter(palette = "YlGnBu", direction = 1, labels = dollar_k) +
+  labs(x = NULL, y = NULL, fill = "Earnings",
+       title = "Median individual earnings",
+       subtitle = "Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2022") +
+  theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")),
+        plot.title.position = "plot")
+```
+
+We can definitely see a pattern here, but we've added a lot more abstraction and haven't gained much. Wilke's example on internet use over time works really well because of how much data there is. In that example, you're probably not concerned with specific values (X percent of people in country A were using the internet in year Y) so much as just the overall trajectories. So again, this is an example that's not wrong, but not great.
+
+

@@ -1,5 +1,7 @@
 ---
 title: 0. Definitions
+reference-location: margin
+citation-location: margin
 ---
 
 ## What is data visualization?
