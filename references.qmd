@@ -4,7 +4,7 @@ execute:
   echo: false
 citeproc: false
 filters:
-  - /home/camille/code/ges778/_extensions/pandoc-ext/section-bibliographies/section-bibliographies.lua
+  - section-bibliographies
   # - citetools
 # csl: chicago-fullnote-bibliography.csl
 # suppress-bibliography: true
