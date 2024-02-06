@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>GES 778, Spring 2024 - 2. What’s in your data?</title>
+<title>GES 778, Spring 2024 - 2. Components of a chart</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,7 +21,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -31,6 +85,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../weeks/03_encoding.html" rel="next">
+<link href="../weeks/01_walkthrough.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -73,7 +129,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked fullcontent">
+<body class="nav-sidebar docked slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -82,9 +138,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      GES 778, Spring 2024
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/00_definitions.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/02_components.html">2. Components of a chart</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -143,6 +197,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -164,12 +219,31 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">1. Walkthrough</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/02_components.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">2. Components of a chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/03_encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Visual encoding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/04_understanding_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Learning about your data</span></a>
+  </div>
+</li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">References by topic</span></a>
   </div>
 </li>
     </ul>
@@ -177,13 +251,26 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#starting-point" id="toc-starting-point" class="nav-link active" data-scroll-target="#starting-point">Starting point</a></li>
+  <li><a href="#basics" id="toc-basics" class="nav-link" data-scroll-target="#basics">Basics</a></li>
+  <li><a href="#a-nicer-chart" id="toc-a-nicer-chart" class="nav-link" data-scroll-target="#a-nicer-chart">A nicer chart</a>
+  <ul class="collapse">
+  <li><a href="#live-code-clean-up-this-chart" id="toc-live-code-clean-up-this-chart" class="nav-link" data-scroll-target="#live-code-clean-up-this-chart">Live code: clean up this chart</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/02_components.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/02_components.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/00_definitions.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/02_components.html">2. Components of a chart</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">2. What’s in your data?</h1>
+<h1 class="title">2. Components of a chart</h1>
 </div>
 
 
@@ -201,7 +288,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 1, 2024</p>
+      <p class="date-modified">February 6, 2024</p>
     </div>
   </div>
     
@@ -212,29 +299,270 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="learning-about-your-data" class="level1">
-<h1>Learning about your data</h1>
-<p>How you visualize data depends on what data you have. A lot of the worst data visualizations come from people not understanding what types of data they have and what they can do with it.</p>
-<p>For example, with the bar chart of median earnings by sex and education, would it have been okay to display the data like this?</p>
+<p>Revisiting the wage gaps to break down a chart into its pieces and what they mean. This will be a subset of the <code>wages</code> data with just full-time workers by sex and education in Maryland.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(justviz)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggtext)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"utils/plotting_utils.R"</span>))</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>gender_pal <span class="ot">&lt;-</span> <span class="fu">setNames</span>(qual_pal[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>)], <span class="fu">c</span>(<span class="st">"Men"</span>, <span class="st">"Women"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>sex_x_edu <span class="ot">&lt;-</span> wages <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dimension <span class="sc">==</span> <span class="st">"sex_x_edu"</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>         name <span class="sc">==</span> <span class="st">"Maryland"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sex, edu, earn_q25, earn_q50, earn_q75) <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.factor), forcats<span class="sc">::</span>fct_drop))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(sex_x_edu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">sex</th>
+<th style="text-align: left;">edu</th>
+<th style="text-align: right;">earn_q25</th>
+<th style="text-align: right;">earn_q50</th>
+<th style="text-align: right;">earn_q75</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Men</td>
+<td style="text-align: left;">High school or less</td>
+<td style="text-align: right;">33158</td>
+<td style="text-align: right;">49737</td>
+<td style="text-align: right;">70000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Men</td>
+<td style="text-align: left;">Some college or AA</td>
+<td style="text-align: right;">43105</td>
+<td style="text-align: right;">63586</td>
+<td style="text-align: right;">93000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Men</td>
+<td style="text-align: left;">Bachelors</td>
+<td style="text-align: right;">60000</td>
+<td style="text-align: right;">91712</td>
+<td style="text-align: right;">135000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Men</td>
+<td style="text-align: left;">Graduate degree</td>
+<td style="text-align: right;">82661</td>
+<td style="text-align: right;">121873</td>
+<td style="text-align: right;">171555</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Women</td>
+<td style="text-align: left;">High school or less</td>
+<td style="text-align: right;">26974</td>
+<td style="text-align: right;">38000</td>
+<td style="text-align: right;">55475</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Women</td>
+<td style="text-align: left;">Some college or AA</td>
+<td style="text-align: right;">35000</td>
+<td style="text-align: right;">50241</td>
+<td style="text-align: right;">75000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Women</td>
+<td style="text-align: left;">Bachelors</td>
+<td style="text-align: right;">49737</td>
+<td style="text-align: right;">71842</td>
+<td style="text-align: right;">101684</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Women</td>
+<td style="text-align: left;">Graduate degree</td>
+<td style="text-align: right;">65817</td>
+<td style="text-align: right;">92842</td>
+<td style="text-align: right;">129475</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(sex_x_edu)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 15
-  dimension name     sex   race_eth edu       occ_group univ  is_fulltime  count
-  &lt;fct&gt;     &lt;fct&gt;    &lt;fct&gt; &lt;fct&gt;    &lt;fct&gt;     &lt;fct&gt;     &lt;fct&gt; &lt;lgl&gt;        &lt;dbl&gt;
-1 sex_x_edu Maryland Men   Total    High sch… Total     Full… TRUE        361878
-2 sex_x_edu Maryland Men   Total    Some col… Total     Full… TRUE        290498
-3 sex_x_edu Maryland Men   Total    Bachelors Total     Full… TRUE        297648
-4 sex_x_edu Maryland Men   Total    Graduate… Total     Full… TRUE        255200
-5 sex_x_edu Maryland Women Total    High sch… Total     Full… TRUE        210277
-6 sex_x_edu Maryland Women Total    Some col… Total     Full… TRUE        263128
-7 sex_x_edu Maryland Women Total    Bachelors Total     Full… TRUE        264454
-8 sex_x_edu Maryland Women Total    Graduate… Total     Full… TRUE        263974
-# ℹ 6 more variables: earn_q20 &lt;dbl&gt;, earn_q25 &lt;dbl&gt;, earn_q50 &lt;dbl&gt;,
-#   earn_q75 &lt;dbl&gt;, earn_q80 &lt;dbl&gt;, sample_n &lt;dbl&gt;</code></pre>
+<pre><code>    sex                     edu       earn_q25        earn_q50     
+ Men  :4   High school or less:2   Min.   :26974   Min.   : 38000  
+ Women:4   Some college or AA :2   1st Qu.:34540   1st Qu.: 50115  
+           Bachelors          :2   Median :46421   Median : 67714  
+           Graduate degree    :2   Mean   :49556   Mean   : 72479  
+                                   3rd Qu.:61454   3rd Qu.: 91994  
+                                   Max.   :82661   Max.   :121873  
+    earn_q75     
+ Min.   : 55475  
+ 1st Qu.: 73750  
+ Median : 97342  
+ Mean   :103899  
+ 3rd Qu.:130856  
+ Max.   :171555  </code></pre>
+</div>
+</div>
+<section id="starting-point" class="level2">
+<h2 class="anchored" data-anchor-id="starting-point">Starting point</h2>
+<p>This is the decent but not great chart from last week. We’re going to take a step back to break it into its components.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>wages <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dimension <span class="sc">==</span> <span class="st">"sex_x_edu"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>         name <span class="sc">==</span> <span class="st">"Maryland"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> edu, <span class="at">y =</span> earn_q50, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>, <span class="at">position =</span> <span class="fu">position_dodge2</span>()) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_barcontinuous</span>(<span class="at">labels =</span> dollar_k) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> gender_pal) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">fill =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"Median individual earnings"</span>,</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2022"</span>) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_textbox_simple</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="fl">0.2</span>, <span class="dv">0</span>, <span class="fl">0.2</span>, <span class="dv">0</span>, <span class="st">"lines"</span>)),</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-old" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-old-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_components_files/figure-html/fig-old-1.png" id="fig-old" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-old-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="basics" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="basics">Basics</h2>
+<p>Focusing first on median wages (<code>earn_q50</code>), values here range from 38,000 to 121,873, so we should expect our dependent axis (usually <em>y</em>, but we might change it) to range from somewhere below that to somewhere above that. If we make a chart and it goes down to e.g.&nbsp;10,000 that’s a sign that something weird might be happening. On the dependent axis, we have 2 categories of sex :-/ and 4 of education; if we end up with only 3 bars, or with 15 bars, something’s wrong.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sex_x_edu, <span class="fu">aes</span>(<span class="at">x =</span> edu, <span class="at">y =</span> earn_q50))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-axes" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-axes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_components_files/figure-html/fig-axes-1.png" id="fig-axes" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-axes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>These scales make sense so far—I haven’t signaled that sex will be included here, or that we’re making a bar chart which is why the dependent axis doesn’t have to go down to 0.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sex_x_edu, <span class="fu">aes</span>(<span class="at">x =</span> edu, <span class="at">y =</span> earn_q50)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-bars-1" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bars-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_components_files/figure-html/fig-bars-1-1.png" id="fig-bars-1" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-bars-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The dependent scale has changed: it goes down to 0, which makes sense because now we have bars, but it goes up to 200,000, which is weird.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sex_x_edu, <span class="fu">aes</span>(<span class="at">x =</span> edu, <span class="at">y =</span> earn_q50)) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-bars-2" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bars-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_components_files/figure-html/fig-bars-2-1.png" id="fig-bars-2" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-bars-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This still includes both men and women, but sex isn’t assigned to any aesthetic, so bars just get stacked. Setting the fill makes that clear.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sex_x_edu, <span class="fu">aes</span>(<span class="at">x =</span> edu, <span class="at">y =</span> earn_q50, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-bars-3" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bars-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_components_files/figure-html/fig-bars-3-1.png" id="fig-bars-3" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-bars-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><em>These bars shouldn’t be stacked, though</em>. Why not?</p>
+<div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside">They represent median wages of distinct groups, not something that is cumulative. If men have a median income of $60,000 and women have a median income of $50,000, does that mean that men and women overall have a median income of $110,000? No! But that’s what these stacked bars imply.</span></div></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sex_x_edu, <span class="fu">aes</span>(<span class="at">x =</span> edu, <span class="at">y =</span> earn_q50, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="fig-bars-4" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-bars-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="02_components_files/figure-html/fig-bars-4-1.png" id="fig-bars-4" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-bars-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>So now we have a chart that represents the data appropriately. We can make it look nicer, but for now we have all the basic components set.</p>
+<p>What are all the components here?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Brainstorming components
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li></li>
+</ul>
+</div>
+</div>
+</section>
+<section id="a-nicer-chart" class="level2">
+<h2 class="anchored" data-anchor-id="a-nicer-chart">A nicer chart</h2>
+<p>That chart is fine but not great. Next we could clean up the axes, their labels, ticks, and gridlines. For each of these components, you should ask yourself if they’re necessary, or what they add to the chart that isn’t already provided through some other means. This helps you minimize your <a href="https://clauswilke.com/dataviz/proportional-ink.html">data-to-ink ratio, <span class="citation" data-cites="Wilke2019">Wilke (<span>2019</span>)</span></a></p>
+<section id="live-code-clean-up-this-chart" class="level3">
+<h3 class="anchored" data-anchor-id="live-code-clean-up-this-chart">Live code: clean up this chart</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sex_x_edu, <span class="fu">aes</span>(<span class="at">x =</span> edu, <span class="at">y =</span> earn_q50, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>())</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>gg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_components_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 
 
+
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -769,9 +1097,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../weeks/01_walkthrough.html" class="pagination-link  aria-label=" 1.="" walkthrough"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">1. Walkthrough</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../weeks/03_encoding.html" class="pagination-link" aria-label="3. Visual encoding">
+        <span class="nav-page-text">3. Visual encoding</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/02_data_types.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/02_data_types.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/02_components.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/02_components.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

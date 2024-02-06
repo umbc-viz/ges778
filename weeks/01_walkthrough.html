@@ -51,7 +51,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../references.html" rel="next">
+<link href="../weeks/02_components.html" rel="next">
 <link href="../weeks/00_definitions.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -92,39 +92,10 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-sidebar docked fullcontent">
+<body class="nav-sidebar docked slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -192,6 +163,7 @@ window.Quarto = {
 </li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -213,12 +185,31 @@ window.Quarto = {
  <span class="menu-text">1. Walkthrough</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/02_components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Components of a chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/03_encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Visual encoding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/04_understanding_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Learning about your data</span></a>
+  </div>
+</li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">References by topic</span></a>
   </div>
 </li>
     </ul>
@@ -226,9 +217,19 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#do-you-even-need-a-chart" id="toc-do-you-even-need-a-chart" class="nav-link active" data-scroll-target="#do-you-even-need-a-chart">Do you even need a chart?</a></li>
+  <li><a href="#the-wage-gaps" id="toc-the-wage-gaps" class="nav-link" data-scroll-target="#the-wage-gaps">The wage gaps</a></li>
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/01_walkthrough.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/01_walkthrough.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/00_definitions.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/01_walkthrough.html">1. Walkthrough</a></li></ol></nav>
 <div class="quarto-title">
@@ -250,7 +251,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 1, 2024</p>
+      <p class="date-modified">February 6, 2024</p>
     </div>
   </div>
     
@@ -261,8 +262,6 @@ window.Quarto = {
 </header>
 
 
-<section id="walkthrough-what-goes-into-a-chart" class="level1">
-<h1>Walkthrough: what goes into a chart?</h1>
 <p>Making a chart might seem like a pretty straightforward task: you have data, you make a chart. But there are a lot of things to consider, and they depend on all sorts of factors, like the type of data, your audience, your purpose in visualizing it, the context, and on and on.</p>
 <p>First question you should ask yourself:</p>
 <section id="do-you-even-need-a-chart" class="level2">
@@ -296,23 +295,23 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
 </figcaption>
 <div aria-describedby="tbl-wages-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="hcbxuokwuu" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#hcbxuokwuu table {
+<div id="jmbwbjeifg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#jmbwbjeifg table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hcbxuokwuu thead, #hcbxuokwuu tbody, #hcbxuokwuu tfoot, #hcbxuokwuu tr, #hcbxuokwuu td, #hcbxuokwuu th {
+#jmbwbjeifg thead, #jmbwbjeifg tbody, #jmbwbjeifg tfoot, #jmbwbjeifg tr, #jmbwbjeifg td, #jmbwbjeifg th {
   border-style: none;
 }
 
-#hcbxuokwuu p {
+#jmbwbjeifg p {
   margin: 0;
   padding: 0;
 }
 
-#hcbxuokwuu .gt_table {
+#jmbwbjeifg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -338,12 +337,12 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   border-left-color: #D3D3D3;
 }
 
-#hcbxuokwuu .gt_caption {
+#jmbwbjeifg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#hcbxuokwuu .gt_title {
+#jmbwbjeifg .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -355,7 +354,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   border-bottom-width: 0;
 }
 
-#hcbxuokwuu .gt_subtitle {
+#jmbwbjeifg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -367,7 +366,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   border-top-width: 0;
 }
 
-#hcbxuokwuu .gt_heading {
+#jmbwbjeifg .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -379,13 +378,13 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   border-right-color: #D3D3D3;
 }
 
-#hcbxuokwuu .gt_bottom_border {
+#jmbwbjeifg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#hcbxuokwuu .gt_col_headings {
+#jmbwbjeifg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -400,7 +399,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   border-right-color: #D3D3D3;
 }
 
-#hcbxuokwuu .gt_col_heading {
+#jmbwbjeifg .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -420,7 +419,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   overflow-x: hidden;
 }
 
-#hcbxuokwuu .gt_column_spanner_outer {
+#jmbwbjeifg .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -432,15 +431,15 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   padding-right: 4px;
 }
 
-#hcbxuokwuu .gt_column_spanner_outer:first-child {
+#jmbwbjeifg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#hcbxuokwuu .gt_column_spanner_outer:last-child {
+#jmbwbjeifg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#hcbxuokwuu .gt_column_spanner {
+#jmbwbjeifg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -452,11 +451,11 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   width: 100%;
 }
 
-#hcbxuokwuu .gt_spanner_row {
+#jmbwbjeifg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#hcbxuokwuu .gt_group_heading {
+#jmbwbjeifg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -482,7 +481,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   text-align: left;
 }
 
-#hcbxuokwuu .gt_empty_group_heading {
+#jmbwbjeifg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -497,15 +496,15 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   vertical-align: middle;
 }
 
-#hcbxuokwuu .gt_from_md > :first-child {
+#jmbwbjeifg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#hcbxuokwuu .gt_from_md > :last-child {
+#jmbwbjeifg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#hcbxuokwuu .gt_row {
+#jmbwbjeifg .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -524,7 +523,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   overflow-x: hidden;
 }
 
-#hcbxuokwuu .gt_stub {
+#jmbwbjeifg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -537,7 +536,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   padding-right: 5px;
 }
 
-#hcbxuokwuu .gt_stub_row_group {
+#jmbwbjeifg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -551,15 +550,15 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   vertical-align: top;
 }
 
-#hcbxuokwuu .gt_row_group_first td {
+#jmbwbjeifg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#hcbxuokwuu .gt_row_group_first th {
+#jmbwbjeifg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#hcbxuokwuu .gt_summary_row {
+#jmbwbjeifg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -569,16 +568,16 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   padding-right: 5px;
 }
 
-#hcbxuokwuu .gt_first_summary_row {
+#jmbwbjeifg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#hcbxuokwuu .gt_first_summary_row.thick {
+#jmbwbjeifg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#hcbxuokwuu .gt_last_summary_row {
+#jmbwbjeifg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -588,7 +587,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   border-bottom-color: #D3D3D3;
 }
 
-#hcbxuokwuu .gt_grand_summary_row {
+#jmbwbjeifg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -598,7 +597,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   padding-right: 5px;
 }
 
-#hcbxuokwuu .gt_first_grand_summary_row {
+#jmbwbjeifg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -608,7 +607,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   border-top-color: #D3D3D3;
 }
 
-#hcbxuokwuu .gt_last_grand_summary_row_top {
+#jmbwbjeifg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -618,11 +617,11 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   border-bottom-color: #D3D3D3;
 }
 
-#hcbxuokwuu .gt_striped {
+#jmbwbjeifg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#hcbxuokwuu .gt_table_body {
+#jmbwbjeifg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -631,7 +630,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   border-bottom-color: #D3D3D3;
 }
 
-#hcbxuokwuu .gt_footnotes {
+#jmbwbjeifg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -645,7 +644,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   border-right-color: #D3D3D3;
 }
 
-#hcbxuokwuu .gt_footnote {
+#jmbwbjeifg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -654,7 +653,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   padding-right: 5px;
 }
 
-#hcbxuokwuu .gt_sourcenotes {
+#jmbwbjeifg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -668,7 +667,7 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   border-right-color: #D3D3D3;
 }
 
-#hcbxuokwuu .gt_sourcenote {
+#jmbwbjeifg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -676,63 +675,63 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
   padding-right: 5px;
 }
 
-#hcbxuokwuu .gt_left {
+#jmbwbjeifg .gt_left {
   text-align: left;
 }
 
-#hcbxuokwuu .gt_center {
+#jmbwbjeifg .gt_center {
   text-align: center;
 }
 
-#hcbxuokwuu .gt_right {
+#jmbwbjeifg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#hcbxuokwuu .gt_font_normal {
+#jmbwbjeifg .gt_font_normal {
   font-weight: normal;
 }
 
-#hcbxuokwuu .gt_font_bold {
+#jmbwbjeifg .gt_font_bold {
   font-weight: bold;
 }
 
-#hcbxuokwuu .gt_font_italic {
+#jmbwbjeifg .gt_font_italic {
   font-style: italic;
 }
 
-#hcbxuokwuu .gt_super {
+#jmbwbjeifg .gt_super {
   font-size: 65%;
 }
 
-#hcbxuokwuu .gt_footnote_marks {
+#jmbwbjeifg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#hcbxuokwuu .gt_asterisk {
+#jmbwbjeifg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#hcbxuokwuu .gt_indent_1 {
+#jmbwbjeifg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#hcbxuokwuu .gt_indent_2 {
+#jmbwbjeifg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#hcbxuokwuu .gt_indent_3 {
+#jmbwbjeifg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#hcbxuokwuu .gt_indent_4 {
+#jmbwbjeifg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#hcbxuokwuu .gt_indent_5 {
+#jmbwbjeifg .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -765,10 +764,10 @@ Table&nbsp;1: Median individual earnings, adults ages 25+ with positive earnings
 <p>But if you have somewhere in between a couple data points and too many data points, then making a chart could work. So we’re gonna make a lot of charts.</p>
 <p>In fact, this data gets at a super pet peeve of mine that can be illustrated well with data visualization.</p>
 </section>
-<section id="the-wage-gaps" class="level2">
+<section id="the-wage-gaps" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="the-wage-gaps">The wage gaps</h2>
 <p>So we already established that Maryland has higher earnings, on average, than the US. Usually when people say “<em>the</em> wage gap,” they’re talking about women’s pay versus men’s pay, e.g.&nbsp;<em>women make x cents on the dollar.</em><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="cell">
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;All of this analysis is based on Census data, which only records gender as male and female, so that’s what we’ve got to work with.</p></div><div class="cell">
 <div class="cell-output-display">
 <div id="fig-wages-sex" class="quarto-figure quarto-figure-center quarto-float anchored" width="384">
 <figure class="quarto-float quarto-float-fig figure">
@@ -804,8 +803,12 @@ Figure&nbsp;3
 </div>
 </div>
 </div>
-<p>So now we’ve established that there are differences in median earnings between women and men, and between full-time and part-time workers, and that Maryland has a higher median earning than the US as a whole. One of the frameworks we’ll use for understanding our data is <em>data feminism</em> <span class="citation" data-cites="DIgnazio2015 D.K2020">(<a href="#ref-DIgnazio2015" role="doc-biblioref">D’Ignazio 2015</a>; <a href="#ref-D.K2020" role="doc-biblioref">D’Ignazio and Klein 2020</a>)</span>, which looks at how data can be used to highlight intersections between the patterns we’ve established.</p>
-<p>A good place to start, then, is earnings by sex <em>and</em> full-time status. Let’s make a table:</p>
+<p>So now we’ve established that there are differences in median earnings between women and men, and between full-time and part-time workers, and that Maryland has a higher median earning than the US as a whole. One of the frameworks we’ll use for understanding our data is <em>data feminism</em> <span class="citation" data-cites="DIgnazio2015 D.K2020">(<a href="#ref-DIgnazio2015" role="doc-biblioref">D’Ignazio, 2015</a>; <a href="#ref-D.K2020" role="doc-biblioref">D’Ignazio &amp; Klein, 2020</a>)</span>, which looks at how data can be used to highlight intersections between the patterns we’ve established.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-DIgnazio2015" class="csl-entry" role="listitem">
+D’Ignazio, C. (2015). <em>What would feminist data visualization look like?</em> <a href="https://civic.mit.edu/feminist-data-visualization.html">https://civic.mit.edu/feminist-data-visualization.html</a>
+</div><div id="ref-D.K2020" class="csl-entry" role="listitem">
+D’Ignazio, C., &amp; Klein, L. F. (2020). <em>Data feminism</em>. <span>The MIT Press</span>. <a href="https://data-feminism.mitpress.mit.edu/">https://data-feminism.mitpress.mit.edu/</a>
+</div></div><p>A good place to start, then, is earnings by sex <em>and</em> full-time status. Let’s make a table:</p>
 <div class="cell" data-tbl-cap-location="top">
 <div id="tbl-wages-time-sex" class="cell quarto-float anchored" data-tbl-cap-location="top">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -814,23 +817,23 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
 </figcaption>
 <div aria-describedby="tbl-wages-time-sex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="eknfjahnln" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#eknfjahnln table {
+<div id="bfjfuptlts" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bfjfuptlts table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#eknfjahnln thead, #eknfjahnln tbody, #eknfjahnln tfoot, #eknfjahnln tr, #eknfjahnln td, #eknfjahnln th {
+#bfjfuptlts thead, #bfjfuptlts tbody, #bfjfuptlts tfoot, #bfjfuptlts tr, #bfjfuptlts td, #bfjfuptlts th {
   border-style: none;
 }
 
-#eknfjahnln p {
+#bfjfuptlts p {
   margin: 0;
   padding: 0;
 }
 
-#eknfjahnln .gt_table {
+#bfjfuptlts .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -856,12 +859,12 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   border-left-color: #D3D3D3;
 }
 
-#eknfjahnln .gt_caption {
+#bfjfuptlts .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#eknfjahnln .gt_title {
+#bfjfuptlts .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -873,7 +876,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   border-bottom-width: 0;
 }
 
-#eknfjahnln .gt_subtitle {
+#bfjfuptlts .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -885,7 +888,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   border-top-width: 0;
 }
 
-#eknfjahnln .gt_heading {
+#bfjfuptlts .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -897,13 +900,13 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   border-right-color: #D3D3D3;
 }
 
-#eknfjahnln .gt_bottom_border {
+#bfjfuptlts .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#eknfjahnln .gt_col_headings {
+#bfjfuptlts .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -918,7 +921,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   border-right-color: #D3D3D3;
 }
 
-#eknfjahnln .gt_col_heading {
+#bfjfuptlts .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -938,7 +941,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   overflow-x: hidden;
 }
 
-#eknfjahnln .gt_column_spanner_outer {
+#bfjfuptlts .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -950,15 +953,15 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   padding-right: 4px;
 }
 
-#eknfjahnln .gt_column_spanner_outer:first-child {
+#bfjfuptlts .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#eknfjahnln .gt_column_spanner_outer:last-child {
+#bfjfuptlts .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#eknfjahnln .gt_column_spanner {
+#bfjfuptlts .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -970,11 +973,11 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   width: 100%;
 }
 
-#eknfjahnln .gt_spanner_row {
+#bfjfuptlts .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#eknfjahnln .gt_group_heading {
+#bfjfuptlts .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1000,7 +1003,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   text-align: left;
 }
 
-#eknfjahnln .gt_empty_group_heading {
+#bfjfuptlts .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1015,15 +1018,15 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   vertical-align: middle;
 }
 
-#eknfjahnln .gt_from_md > :first-child {
+#bfjfuptlts .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#eknfjahnln .gt_from_md > :last-child {
+#bfjfuptlts .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#eknfjahnln .gt_row {
+#bfjfuptlts .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1042,7 +1045,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   overflow-x: hidden;
 }
 
-#eknfjahnln .gt_stub {
+#bfjfuptlts .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1055,7 +1058,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   padding-right: 5px;
 }
 
-#eknfjahnln .gt_stub_row_group {
+#bfjfuptlts .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1069,15 +1072,15 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   vertical-align: top;
 }
 
-#eknfjahnln .gt_row_group_first td {
+#bfjfuptlts .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#eknfjahnln .gt_row_group_first th {
+#bfjfuptlts .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#eknfjahnln .gt_summary_row {
+#bfjfuptlts .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1087,16 +1090,16 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   padding-right: 5px;
 }
 
-#eknfjahnln .gt_first_summary_row {
+#bfjfuptlts .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#eknfjahnln .gt_first_summary_row.thick {
+#bfjfuptlts .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#eknfjahnln .gt_last_summary_row {
+#bfjfuptlts .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1106,7 +1109,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   border-bottom-color: #D3D3D3;
 }
 
-#eknfjahnln .gt_grand_summary_row {
+#bfjfuptlts .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1116,7 +1119,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   padding-right: 5px;
 }
 
-#eknfjahnln .gt_first_grand_summary_row {
+#bfjfuptlts .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1126,7 +1129,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   border-top-color: #D3D3D3;
 }
 
-#eknfjahnln .gt_last_grand_summary_row_top {
+#bfjfuptlts .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1136,11 +1139,11 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   border-bottom-color: #D3D3D3;
 }
 
-#eknfjahnln .gt_striped {
+#bfjfuptlts .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#eknfjahnln .gt_table_body {
+#bfjfuptlts .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1149,7 +1152,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   border-bottom-color: #D3D3D3;
 }
 
-#eknfjahnln .gt_footnotes {
+#bfjfuptlts .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1163,7 +1166,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   border-right-color: #D3D3D3;
 }
 
-#eknfjahnln .gt_footnote {
+#bfjfuptlts .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1172,7 +1175,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   padding-right: 5px;
 }
 
-#eknfjahnln .gt_sourcenotes {
+#bfjfuptlts .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1186,7 +1189,7 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   border-right-color: #D3D3D3;
 }
 
-#eknfjahnln .gt_sourcenote {
+#bfjfuptlts .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1194,63 +1197,63 @@ Table&nbsp;2: Median individual earnings, adults ages 25+ with positive earnings
   padding-right: 5px;
 }
 
-#eknfjahnln .gt_left {
+#bfjfuptlts .gt_left {
   text-align: left;
 }
 
-#eknfjahnln .gt_center {
+#bfjfuptlts .gt_center {
   text-align: center;
 }
 
-#eknfjahnln .gt_right {
+#bfjfuptlts .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#eknfjahnln .gt_font_normal {
+#bfjfuptlts .gt_font_normal {
   font-weight: normal;
 }
 
-#eknfjahnln .gt_font_bold {
+#bfjfuptlts .gt_font_bold {
   font-weight: bold;
 }
 
-#eknfjahnln .gt_font_italic {
+#bfjfuptlts .gt_font_italic {
   font-style: italic;
 }
 
-#eknfjahnln .gt_super {
+#bfjfuptlts .gt_super {
   font-size: 65%;
 }
 
-#eknfjahnln .gt_footnote_marks {
+#bfjfuptlts .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#eknfjahnln .gt_asterisk {
+#bfjfuptlts .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#eknfjahnln .gt_indent_1 {
+#bfjfuptlts .gt_indent_1 {
   text-indent: 5px;
 }
 
-#eknfjahnln .gt_indent_2 {
+#bfjfuptlts .gt_indent_2 {
   text-indent: 10px;
 }
 
-#eknfjahnln .gt_indent_3 {
+#bfjfuptlts .gt_indent_3 {
   text-indent: 15px;
 }
 
-#eknfjahnln .gt_indent_4 {
+#bfjfuptlts .gt_indent_4 {
   text-indent: 20px;
 }
 
-#eknfjahnln .gt_indent_5 {
+#bfjfuptlts .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1299,7 +1302,7 @@ Figure&nbsp;4
 </div>
 </div>
 <p>The gaps are actually smaller <em>within</em> groups (full-time men vs full-time women or part-time men vs part-time women) than <em>across</em> (all men vs all women). So the tendency of women to work part time explains some of the wage gap, but not all of it. If the difference were only about work status, we would expect to see no within-group gaps here.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<p>Wages by educational attainment aren’t surprising—higher educational attainment corresponds to higher incomes. This is just for adults working full-time.</p>
+<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;We’ll talk about annotations in a couple weeks, and we’ll return to these charts to practice. Think about what you might want to annotate on these multidimensional charts.</p></div><p>Wages by educational attainment aren’t surprising—higher educational attainment corresponds to higher incomes. This is just for adults working full-time.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-wages-edu" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
@@ -1348,37 +1351,22 @@ Figure&nbsp;7
 <p>Which is more important to know, the gap <em>within</em> education levels, or the gap <em>across</em> education levels? Or both? What’s missing that makes this chart alone not very useful?</p>
 <p>So far we’ve worked through identifying several important patterns using just a very simple type of chart that people commonly know how to read—the charts are almost identical, just different slices of the data. But other chart types might help with highlighting different things, such as those gaps.</p>
 </section>
-<section id="exercises" class="level2">
+<section id="exercises" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
 <ol type="1">
 <li>Revise the code to break down values by race/ethnicity and sex instead of education and sex (i.e.&nbsp;filter for <code>dimension == "race"</code> and <code>dimension == "race_x_sex"</code> instead of education.)</li>
-<li>Browse through the Data Visualisation Catalogue <span class="citation" data-cites="Ribecca2024">(<a href="#ref-Ribecca2024" role="doc-biblioref">Ribecca 2024</a>)</span> and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (<a href="#fig-wages-edu-sex" class="quarto-xref">Figure&nbsp;6</a>). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story?</li>
-<li>Following question 2, Wilke gives a brief example in <a href="https://clauswilke.com/dataviz/visualizing-amounts.html#dot-plots-and-heatmaps">section 6.3</a> of switching from bar charts to dot plots; how could this be adapted here?</li>
+<li>Browse through the Data Visualisation Catalogue <span class="citation" data-cites="Ribecca2024">(<a href="#ref-Ribecca2024" role="doc-biblioref">Ribecca, 2024</a>)</span> and see if you find any other chart types that would be appropriate for visualizing the sex and education chart (<a href="#fig-wages-edu-sex" class="quarto-xref">Figure&nbsp;6</a>). Which chart types would be better, especially for highlighting the gaps or exploring other aspects of the story? What about (<a href="#fig-ratio-sex-edu" class="quarto-xref">Figure&nbsp;7</a>)?</li>
+<li>Following question 2, Wilke gives a brief example in <a href="https://clauswilke.com/dataviz/visualizing-amounts.html#dot-plots-and-heatmaps">section 6.3</a> of switching from bar charts to dot plots or heatmaps; how could this be adapted here?</li>
 </ol>
 
 
-
+<div class="no-row-height column-margin column-container"><div id="ref-Ribecca2024" class="csl-entry" role="listitem">
+Ribecca, S. (2024). <em>The <span>Data Visualisation Catalogue</span></em>. <a href="https://datavizcatalogue.com/">https://datavizcatalogue.com/</a>
+</div></div>
 </section>
-</section>
 
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-DIgnazio2015" class="csl-entry" role="listitem">
-D’Ignazio, Catherine. 2015. <span>“What Would Feminist Data Visualization Look Like?”</span> <a href="https://civic.mit.edu/feminist-data-visualization.html">https://civic.mit.edu/feminist-data-visualization.html</a>.
-</div>
-<div id="ref-D.K2020" class="csl-entry" role="listitem">
-D’Ignazio, Catherine, and Lauren F. Klein. 2020. <em>Data Feminism</em>. <span><span class="math inline">\(&lt;\)</span></span><span>Strong</span><span><span class="math inline">\(&gt;\)</span></span> Ideas Series. <span>Cambridge, Massachusetts London, England</span>: <span>The MIT Press</span>. <a href="https://data-feminism.mitpress.mit.edu/">https://data-feminism.mitpress.mit.edu/</a>.
-</div>
-<div id="ref-Ribecca2024" class="csl-entry" role="listitem">
-Ribecca, Severino. 2024. <span>“The <span>Data Visualisation Catalogue</span>.”</span> <a href="https://datavizcatalogue.com/">https://datavizcatalogue.com/</a>.
-</div>
-</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
-
-<ol>
-<li id="fn1"><p>All of this analysis is based on Census data, which only records gender as male and female, so that’s what we’ve got to work with.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>We’ll talk about annotations in a couple weeks, and we’ll return to these charts to practice. Think about what you might want to annotate on these multidimensional charts.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
-</section></div></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1917,8 +1905,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../references.html" class="pagination-link" aria-label="References">
-        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../weeks/02_components.html" class="pagination-link" aria-label="2. Components of a chart">
+        <span class="nav-page-text">2. Components of a chart</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1927,4 +1915,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/01_walkthrough.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/01_walkthrough.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/01_walkthrough.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/01_walkthrough.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://umbc-viz.github.io/ges778/readings.html</loc>
-    <lastmod>2024-02-01T19:33:55.018Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/01_walkthrough.html</loc>
-    <lastmod>2024-02-01T19:33:55.018Z</lastmod>
+    <loc>https://umbc-viz.github.io/ges778/references.html</loc>
+    <lastmod>2024-02-06T19:41:14.953Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/weeks/00_definitions.html</loc>
-    <lastmod>2024-02-01T19:33:55.018Z</lastmod>
+    <lastmod>2024-02-06T19:41:14.953Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/03_encoding.html</loc>
+    <lastmod>2024-02-06T19:41:14.953Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/02_components.html</loc>
+    <lastmod>2024-02-06T19:41:14.953Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/readings.html</loc>
+    <lastmod>2024-02-06T19:41:14.949Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/index.html</loc>
-    <lastmod>2024-02-01T19:33:55.018Z</lastmod>
+    <lastmod>2024-02-06T19:41:14.949Z</lastmod>
   </url>
   <url>
-    <loc>https://umbc-viz.github.io/ges778/references.html</loc>
-    <lastmod>2024-02-01T19:33:55.018Z</lastmod>
+    <loc>https://umbc-viz.github.io/ges778/weeks/04_understanding_data.html</loc>
+    <lastmod>2024-02-06T19:41:14.953Z</lastmod>
   </url>
   <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/02_data_types.html</loc>
-    <lastmod>2024-02-01T19:33:55.018Z</lastmod>
+    <loc>https://umbc-viz.github.io/ges778/weeks/01_walkthrough.html</loc>
+    <lastmod>2024-02-06T19:41:14.953Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/syllabus.html</loc>
-    <lastmod>2024-02-01T19:33:55.018Z</lastmod>
+    <lastmod>2024-02-06T19:41:14.953Z</lastmod>
   </url>
 </urlset>

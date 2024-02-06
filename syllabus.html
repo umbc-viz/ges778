@@ -95,7 +95,7 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-sidebar docked">
+<body class="nav-sidebar docked slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -163,6 +163,7 @@ div.csl-indent {
 </li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -184,12 +185,31 @@ div.csl-indent {
  <span class="menu-text">1. Walkthrough</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/02_components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Components of a chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/03_encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Visual encoding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/04_understanding_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Learning about your data</span></a>
+  </div>
+</li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">References by topic</span></a>
   </div>
 </li>
     </ul>
@@ -235,7 +255,7 @@ div.csl-indent {
 <div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/syllabus.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/syllabus.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./syllabus.html">Syllabus</a></li></ol></nav>
 <div class="quarto-title">
@@ -257,7 +277,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 1, 2024</p>
+      <p class="date-modified">February 6, 2024</p>
     </div>
   </div>
     
@@ -292,13 +312,21 @@ div.csl-indent {
 <li>contributions to an <strong>open source codebase</strong></li>
 </ul>
 </section>
-<section id="materials" class="level2">
+<section id="materials" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="materials">Materials</h2>
-<section id="readings" class="level3">
+<section id="readings" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="readings">Readings</h3>
 <p>All readings will be available to students for free. Many will be open source texts and have code available. Readings will be a mix of theory and practice.</p>
-<p>The schedule of the course will roughly follow the structure of the book <em>Fundamentals of Data Visualization</em> <span class="citation" data-cites="Wilke2019">(<a href="#ref-Wilke2019" role="doc-biblioref">Wilke 2019</a>)</span>. Both the book and the source code used to write it are available for free online.</p>
-<p>We’ll also read portions of <em>R for Data Science</em> <span class="citation" data-cites="W.C.G2023">(<a href="#ref-W.C.G2023" role="doc-biblioref">Wickham, Çetinkaya-Rundel, and Grolemund 2023</a>)</span> (also open source), <em>How Charts Lie</em> <span class="citation" data-cites="Cairo2019">(<a href="#ref-Cairo2019" role="doc-biblioref">Cairo 2019</a>)</span>, and <em>Data Points</em> <span class="citation" data-cites="Yau2013">(<a href="#ref-Yau2013" role="doc-biblioref">Yau 2013</a>)</span>, as well as a variety of other sources of different media. I’ll keep a running list of resources in the online class notes with other tutorials and references.</p>
+<p>The schedule of the course will roughly follow the structure of the book <em>Fundamentals of Data Visualization</em> <span class="citation" data-cites="Wilke2019">(<a href="#ref-Wilke2019" role="doc-biblioref">Wilke, 2019</a>)</span>. Both the book and the source code used to write it are available for free online.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Wilke2019" class="csl-entry" role="listitem">
+Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making informative and compelling figures</em> (First edition). <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
+</div><div id="ref-W.C.G2023" class="csl-entry" role="listitem">
+Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for data science: Import, tidy, transform, visualize, and model data</em> (2nd edition). <span>O’Reilly</span>. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>
+</div><div id="ref-Cairo2019" class="csl-entry" role="listitem">
+Cairo, A. (2019). <em>How charts lie: Getting smarter about visual information</em> (First edition). <span>W. W. Norton &amp; Company</span>.
+</div><div id="ref-Yau2013" class="csl-entry" role="listitem">
+Yau, N. (2013). <em>Data points: Visualization that means something</em>. <span>John Wiley &amp; Sons, Inc</span>.
+</div></div><p>We’ll also read portions of <em>R for Data Science</em> <span class="citation" data-cites="W.C.G2023">(<a href="#ref-W.C.G2023" role="doc-biblioref">Wickham et al., 2023</a>)</span> (also open source), <em>How Charts Lie</em> <span class="citation" data-cites="Cairo2019">(<a href="#ref-Cairo2019" role="doc-biblioref">Cairo, 2019</a>)</span>, and <em>Data Points</em> <span class="citation" data-cites="Yau2013">(<a href="#ref-Yau2013" role="doc-biblioref">Yau, 2013</a>)</span>, as well as a variety of other sources of different media. I’ll keep a running list of resources in the online class notes with other tutorials and references.</p>
 </section>
 <section id="software" class="level3">
 <h3 class="anchored" data-anchor-id="software">Software</h3>
@@ -673,20 +701,7 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
 </section>
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-Cairo2019" class="csl-entry" role="listitem">
-Cairo, Alberto. 2019. <em>How Charts Lie: Getting Smarter about Visual Information</em>. First edition. <span>New York</span>: <span>W. W. Norton &amp; Company</span>.
-</div>
-<div id="ref-W.C.G2023" class="csl-entry" role="listitem">
-Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd edition. <span>O’Reilly</span>. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
-</div>
-<div id="ref-Wilke2019" class="csl-entry" role="listitem">
-Wilke, Claus. 2019. <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures</em>. First edition. <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>.
-</div>
-<div id="ref-Yau2013" class="csl-entry" role="listitem">
-Yau, Nathan. 2013. <em>Data Points: Visualization That Means Something</em>. <span>Indianapolis, IN</span>: <span>John Wiley &amp; Sons, Inc</span>.
-</div>
-</div></section></div></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

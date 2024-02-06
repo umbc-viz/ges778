@@ -21,27 +21,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -51,7 +31,6 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./weeks/00_definitions.html" rel="next">
 <link href="./syllabus.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -95,7 +74,7 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-sidebar docked fullcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -163,6 +142,7 @@ div.csl-indent {
 </li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -184,12 +164,31 @@ div.csl-indent {
  <span class="menu-text">1. Walkthrough</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/02_components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Components of a chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/03_encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Visual encoding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./weeks/04_understanding_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Learning about your data</span></a>
+  </div>
+</li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">References by topic</span></a>
   </div>
 </li>
     </ul>
@@ -197,7 +196,18 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#week-2-feb-7-encoding-data-to-visuals-making-meaning-of-data" id="toc-week-2-feb-7-encoding-data-to-visuals-making-meaning-of-data" class="nav-link active" data-scroll-target="#week-2-feb-7-encoding-data-to-visuals-making-meaning-of-data">Week 2, Feb 7: encoding data to visuals; making meaning of data</a></li>
+  <li><a href="#week-3-feb-14-writing-good-code-color" id="toc-week-3-feb-14-writing-good-code-color" class="nav-link" data-scroll-target="#week-3-feb-14-writing-good-code-color">Week 3, Feb 14: writing good code; color</a></li>
+  <li><a href="#week-4-feb-21-text-annotation-uncertainty-distribution" id="toc-week-4-feb-21-text-annotation-uncertainty-distribution" class="nav-link" data-scroll-target="#week-4-feb-21-text-annotation-uncertainty-distribution">Week 4, Feb 21: text, annotation, uncertainty, distribution</a></li>
+  <li><a href="#week-5-feb-28-making-good-decisions" id="toc-week-5-feb-28-making-good-decisions" class="nav-link" data-scroll-target="#week-5-feb-28-making-good-decisions">Week 5, Feb 28: making good decisions</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/readings.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/readings.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -221,7 +231,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 1, 2024</p>
+      <p class="date-modified">February 6, 2024</p>
     </div>
   </div>
     
@@ -237,79 +247,44 @@ div.csl-indent {
 <section id="week-2-feb-7-encoding-data-to-visuals-making-meaning-of-data" class="level2">
 <h2 class="anchored" data-anchor-id="week-2-feb-7-encoding-data-to-visuals-making-meaning-of-data">Week 2, Feb 7: encoding data to visuals; making meaning of data</h2>
 <ul>
-<li><strong>Wilke</strong>, <em>Fundamentals of data visualization</em> chapters 2 &amp; 3</li>
-<li><strong>Cairo</strong>, <em>How charts lie: Getting smarter about visual information</em> intro (on Blackboard)</li>
+<li><span class="citation" data-cites="Wilke2019">Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making informative and compelling figures</em> (First edition). <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/" role="doc-biblioref">https://clauswilke.com/dataviz/</a></span> chapters 2 &amp; 3</li>
+<li><span class="citation" data-cites="Cairo2019">Cairo, A. (2019). <em>How charts lie: Getting smarter about visual information</em> (First edition). <span>W. W. Norton &amp; Company</span>.</span> intro (on Blackboard)</li>
 <li>Pick one (or both. They’re both great, but if you only choose one I’d go with the podcast.):
 <ul>
-<li>Read <strong>D’Ignazio</strong>, <em>What would feminist data visualization look like?</em></li>
-<li>Listen to <strong>PolicyViz</strong> (Schwabish), <em>Catherine D’Ignazio and Lauren Klein</em></li>
+<li>Read <span class="citation" data-cites="DIgnazio2015">D’Ignazio, C. (2015). <em>What would feminist data visualization look like?</em> <a href="https://civic.mit.edu/feminist-data-visualization.html" role="doc-biblioref">https://civic.mit.edu/feminist-data-visualization.html</a></span></li>
+<li>Listen to PolicyViz, <span class="citation" data-cites="Schwabish2018">Schwabish, J. (n.d.). <em>Catherine <span>D</span>’<span>Ignazio</span> and <span>Lauren Klein</span></em> (142). Retrieved January 30, 2024, from <a href="https://policyviz.com/podcast/episode-142-catherine-dignazio-and-lauren-klein/" role="doc-biblioref">https://policyviz.com/podcast/episode-142-catherine-dignazio-and-lauren-klein/</a></span></li>
 </ul></li>
-<li>Watch <strong>Kosara</strong>, <em>The DataSaurus, Anscombe’s Quartet, and why summary statistics need to be taken with a grain of salt</em> (5 min video)</li>
+<li>Watch <span class="citation" data-cites="Kosara2019">Kosara, R. (2019). <em>The <span>DataSaurus</span>, <span>Anscombe</span>’s <span>Quartet</span>, and why summary statistics need to be taken with a grain of salt</em>. <a href="https://www.youtube.com/watch?v=RbHCeANCbW0" role="doc-biblioref">https://www.youtube.com/watch?v=RbHCeANCbW0</a></span> (5 min video)</li>
 </ul>
 </section>
 <section id="week-3-feb-14-writing-good-code-color" class="level2">
 <h2 class="anchored" data-anchor-id="week-3-feb-14-writing-good-code-color">Week 3, Feb 14: writing good code; color</h2>
 <ul>
-<li><strong>Wilke</strong>, <em>Fundamentals of data visualization</em> chapters 4, 6, 17</li>
-<li><strong>Wickham</strong>, <em>R for data science</em> chapters 1 &amp; 9 (okay to skim as a code reference)</li>
+<li><span class="citation" data-cites="Wilke2019">Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making informative and compelling figures</em> (First edition). <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/" role="doc-biblioref">https://clauswilke.com/dataviz/</a></span> chapters 4, 6, 17</li>
+<li><span class="citation" data-cites="W.C.G2023">Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for data science: Import, tidy, transform, visualize, and model data</em> (2nd edition). <span>O’Reilly</span>. <a href="https://r4ds.hadley.nz/" role="doc-biblioref">https://r4ds.hadley.nz/</a></span> chapters 1 &amp; 9 (okay to skim as a code reference)</li>
 </ul>
 </section>
 <section id="week-4-feb-21-text-annotation-uncertainty-distribution" class="level2">
 <h2 class="anchored" data-anchor-id="week-4-feb-21-text-annotation-uncertainty-distribution">Week 4, Feb 21: text, annotation, uncertainty, distribution</h2>
 <ul>
-<li><strong>Wilke</strong>, <em>Fundamentals of data visualization</em> chapters 7, 9, 10</li>
-<li>Listen to <strong>Data Stories</strong> (Bertini), <em>Visualizing Uncertainty with Jessica Hullman and Matthew Kay</em></li>
+<li><span class="citation" data-cites="Wilke2019">Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making informative and compelling figures</em> (First edition). <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/" role="doc-biblioref">https://clauswilke.com/dataviz/</a></span> chapters 7, 9, 10</li>
+<li>Listen to Data Stories, <span class="citation" data-cites="B.S2019">Bertini, E., &amp; Stefaner, M. (n.d.). <em>Visualizing <span>Uncertainty</span> with <span>Jessica Hullman</span> and <span>Matthew Kay</span></em> (134). Retrieved January 30, 2024, from <a href="https://datastori.es/134-visualizing-uncertainty-with-jessica-hullman-and-matthew-kay/" role="doc-biblioref">https://datastori.es/134-visualizing-uncertainty-with-jessica-hullman-and-matthew-kay/</a></span></li>
 <li>Pick one (or both) of these styleguides to browse through:
 <ul>
-<li><strong>Urban Institute</strong></li>
-<li><strong>World Health Organization</strong> (it’s not super clear but you have to click through to each section)</li>
+<li><span class="citation" data-cites="Urban2023">Urban Institute (2023). <em>Urban <span>Institute Data Visualization</span> style guide</em>. <a href="http://urbaninstitute.github.io/graphics-styleguide/" role="doc-biblioref">http://urbaninstitute.github.io/graphics-styleguide/</a></span></li>
+<li><span class="citation" data-cites="WHO2023">World Health Organization (2023). <em><span>WHO Data Design Language</span> v.0.9.2</em>. <a href="https://apps.who.int/gho/data/design-language/" role="doc-biblioref">https://apps.who.int/gho/data/design-language/</a></span> (it’s not super clear but you have to click through to each section)</li>
 </ul></li>
 </ul>
 </section>
 <section id="week-5-feb-28-making-good-decisions" class="level2">
 <h2 class="anchored" data-anchor-id="week-5-feb-28-making-good-decisions">Week 5, Feb 28: making good decisions</h2>
 <ul>
-<li><strong>Cairo</strong>, <em>How charts lie: Getting smarter about visual information</em> chapter 1 (on Blackboard)</li>
-<li><strong>Wilke</strong>, <em>Fundamentals of data visualization</em> chapters 13, 14 &amp; 20</li>
-<li><strong>Smith</strong>, <em>How not to be fooled by viral charts</em></li>
+<li><span class="citation" data-cites="Cairo2019">Cairo, A. (2019). <em>How charts lie: Getting smarter about visual information</em> (First edition). <span>W. W. Norton &amp; Company</span>.</span> chapter 1 (on Blackboard)</li>
+<li><span class="citation" data-cites="Wilke2019">Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making informative and compelling figures</em> (First edition). <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/" role="doc-biblioref">https://clauswilke.com/dataviz/</a></span> chapters 13, 14 &amp; 20</li>
+<li><span class="citation" data-cites="Smith2023">Smith, N. (2023). <em>How not to be fooled by viral charts</em>. <a href="https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts" role="doc-biblioref">https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts</a></span></li>
 </ul>
-</section>
-<section id="full-citations" class="level2">
-<h2 class="anchored" data-anchor-id="full-citations">Full citations</h2>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-B.S2019" class="csl-entry" role="listitem">
-Bertini, Enrico, and Moritz Stefaner. n.d. <span>“Visualizing <span>Uncertainty</span> with <span>Jessica Hullman</span> and <span>Matthew Kay</span>.”</span> Accessed January 30, 2024. <a href="https://datastori.es/134-visualizing-uncertainty-with-jessica-hullman-and-matthew-kay/">https://datastori.es/134-visualizing-uncertainty-with-jessica-hullman-and-matthew-kay/</a>.
-</div>
-<div id="ref-Cairo2019" class="csl-entry" role="listitem">
-Cairo, Alberto. 2019. <em>How Charts Lie: Getting Smarter about Visual Information</em>. First edition. <span>New York</span>: <span>W. W. Norton &amp; Company</span>.
-</div>
-<div id="ref-DIgnazio2015" class="csl-entry" role="listitem">
-D’Ignazio, Catherine. 2015. <span>“What Would Feminist Data Visualization Look Like?”</span> <a href="https://civic.mit.edu/feminist-data-visualization.html">https://civic.mit.edu/feminist-data-visualization.html</a>.
-</div>
-<div id="ref-Kosara2019" class="csl-entry" role="listitem">
-Kosara, Robert. 2019. <span>“The <span>DataSaurus</span>, <span>Anscombe</span>’s <span>Quartet</span>, and Why Summary Statistics Need to Be Taken with a Grain of Salt.”</span> <a href="https://www.youtube.com/watch?v=RbHCeANCbW0">https://www.youtube.com/watch?v=RbHCeANCbW0</a>.
-</div>
-<div id="ref-Schwabish2018" class="csl-entry" role="listitem">
-Schwabish, Jonathan. n.d. <span>“Catherine <span>D</span>’<span>Ignazio</span> and <span>Lauren Klein</span>.”</span> Accessed January 30, 2024. <a href="https://policyviz.com/podcast/episode-142-catherine-dignazio-and-lauren-klein/">https://policyviz.com/podcast/episode-142-catherine-dignazio-and-lauren-klein/</a>.
-</div>
-<div id="ref-Smith2023" class="csl-entry" role="listitem">
-Smith, Noah. 2023. <span>“How Not to Be Fooled by Viral Charts.”</span> <a href="https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts">https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts</a>.
-</div>
-<div id="ref-Urban2023" class="csl-entry" role="listitem">
-Urban Institute. 2023. <span>“Urban <span>Institute Data Visualization</span> Style Guide.”</span> <a href="http://urbaninstitute.github.io/graphics-styleguide/">http://urbaninstitute.github.io/graphics-styleguide/</a>.
-</div>
-<div id="ref-W.C.G2023" class="csl-entry" role="listitem">
-Wickham, Hadley, Mine Çetinkaya-Rundel, and Garrett Grolemund. 2023. <em>R for Data Science: Import, Tidy, Transform, Visualize, and Model Data</em>. 2nd edition. <span>O’Reilly</span>. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>.
-</div>
-<div id="ref-Wilke2019" class="csl-entry" role="listitem">
-Wilke, Claus. 2019. <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures</em>. First edition. <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>.
-</div>
-<div id="ref-WHO2023" class="csl-entry" role="listitem">
-World Health Organization. 2023. <span>“<span>WHO Data Design Language</span> v.0.9.2.”</span> <a href="https://apps.who.int/gho/data/design-language/">https://apps.who.int/gho/data/design-language/</a>.
-</div>
-</div>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -805,43 +780,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           }
         });
       }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
-      });
-    }
-  }
 });
 </script>
 <nav class="page-navigation">
@@ -851,9 +789,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./weeks/00_definitions.html" class="pagination-link" aria-label="0. Definitions">
-        <span class="nav-page-text">0. Definitions</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -861,4 +796,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/readings.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/readings.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/readings.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/readings.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

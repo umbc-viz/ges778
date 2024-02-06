@@ -52,7 +52,6 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../weeks/01_walkthrough.html" rel="next">
-<link href="../readings.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -95,7 +94,7 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-sidebar docked fullcontent">
+<body class="nav-sidebar docked slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -163,6 +162,7 @@ div.csl-indent {
 </li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
@@ -184,12 +184,31 @@ div.csl-indent {
  <span class="menu-text">1. Walkthrough</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/02_components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Components of a chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/03_encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Visual encoding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/04_understanding_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Learning about your data</span></a>
+  </div>
+</li>
       </ul>
   </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References</span></a>
+ <span class="menu-text">References by topic</span></a>
   </div>
 </li>
     </ul>
@@ -197,9 +216,20 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-data-visualization" id="toc-what-is-data-visualization" class="nav-link active" data-scroll-target="#what-is-data-visualization">What is data visualization?</a></li>
+  <li><a href="#what-should-visualization-do" id="toc-what-should-visualization-do" class="nav-link" data-scroll-target="#what-should-visualization-do">What should visualization do?</a></li>
+  <li><a href="#why-visualize-data" id="toc-why-visualize-data" class="nav-link" data-scroll-target="#why-visualize-data">Why visualize data?</a></li>
+  <li><a href="#how-is-data-visualization-used" id="toc-how-is-data-visualization-used" class="nav-link" data-scroll-target="#how-is-data-visualization-used">How is data visualization used?</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/00_definitions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/00_definitions.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/00_definitions.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/00_definitions.html">0. Definitions</a></li></ol></nav>
 <div class="quarto-title">
@@ -221,7 +251,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 1, 2024</p>
+      <p class="date-modified">February 6, 2024</p>
     </div>
   </div>
     
@@ -232,23 +262,29 @@ div.csl-indent {
 </header>
 
 
-<section id="what-is-data-visualization" class="level2">
+<section id="what-is-data-visualization" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="what-is-data-visualization">What is data visualization?</h2>
 <p>A few definitions of data visualization:</p>
-<blockquote class="blockquote">
-<p>The rendering of information in a visual format to help communicate data while also generating new patterns and knowledge through the act of visualization itself <span class="citation" data-cites="D.B.R2018">(<a href="#ref-D.B.R2018" role="doc-biblioref">Du Bois, Battle-Baptiste, and Rusert 2018, 8</a>)</span></p>
-</blockquote>
-<blockquote class="blockquote">
-<p>The representation and presentation of data to facilitate understanding <span class="citation" data-cites="Kirk2016">(<a href="#ref-Kirk2016" role="doc-biblioref">Kirk 2016, 19</a>)</span></p>
-</blockquote>
+<div class="page-columns page-full"><blockquote class="blockquote">
+<p>The rendering of information in a visual format to help communicate data while also generating new patterns and knowledge through the act of visualization itself <span class="citation" data-cites="D.B.R2018">(<a href="#ref-D.B.R2018" role="doc-biblioref">Du Bois et al., 2018, p. 8</a>)</span></p>
+</blockquote><div class="no-row-height column-margin column-container"><div id="ref-D.B.R2018" class="csl-entry" role="listitem">
+Du Bois, W. E. B., Battle-Baptiste, W., &amp; Rusert, B. (2018). <em>W.<span>E</span>.<span>B Du Bois</span>’s data portraits: Visualizing <span>Black America</span></em> (First edition). <span>The W.E.B. Du Bois Center At the University of Massachusetts Amherst ; Princeton Architectural Press</span>.
+</div></div></div>
+<div class="page-columns page-full"><blockquote class="blockquote">
+<p>The representation and presentation of data to facilitate understanding <span class="citation" data-cites="Kirk2016">(<a href="#ref-Kirk2016" role="doc-biblioref">Kirk, 2016, p. 19</a>)</span></p>
+</blockquote><div class="no-row-height column-margin column-container"><div id="ref-Kirk2016" class="csl-entry" role="listitem">
+Kirk, A. (2016). <em>Data visualisation: A handbook for data driven design</em>. <span>SAGE</span>.
+</div></div></div>
 <p>It’s pretty common to find a book with hundreds of pages of details on data visualization, but no definition.</p>
 <p>What else could we add here?</p>
 </section>
-<section id="what-should-visualization-do" class="level2">
+<section id="what-should-visualization-do" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="what-should-visualization-do">What should visualization do?</h2>
-<blockquote class="blockquote">
-<p>Data visualization is part art and part science. The challenge is to get the art right without getting the science wrong and vice versa. A data visualization first and foremost has to accurately convey the data. It must not mislead or distort…. At the same time, a data visualization should be aesthetically pleasing <span class="citation" data-cites="Wilke2019">(<a href="#ref-Wilke2019" role="doc-biblioref">Wilke 2019</a>, ch 1)</span></p>
-</blockquote>
+<div class="page-columns page-full"><blockquote class="blockquote">
+<p>Data visualization is part art and part science. The challenge is to get the art right without getting the science wrong and vice versa. A data visualization first and foremost has to accurately convey the data. It must not mislead or distort…. At the same time, a data visualization should be aesthetically pleasing <span class="citation" data-cites="Wilke2019">(<a href="#ref-Wilke2019" role="doc-biblioref">Wilke, 2019</a>, ch 1)</span></p>
+</blockquote><div class="no-row-height column-margin column-container"><div id="ref-Wilke2019" class="csl-entry" role="listitem">
+Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making informative and compelling figures</em> (First edition). <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
+</div></div></div>
 </section>
 <section id="why-visualize-data" class="level2">
 <h2 class="anchored" data-anchor-id="why-visualize-data">Why visualize data?</h2>
@@ -301,17 +337,7 @@ Brainstorming
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-D.B.R2018" class="csl-entry" role="listitem">
-Du Bois, W. E. B., Whitney Battle-Baptiste, and Britt Rusert. 2018. <em>W.<span>E</span>.<span>B Du Bois</span>’s Data Portraits: Visualizing <span>Black America</span></em>. First edition. <span>[Amherst, Mass.] : Hudson, NY</span>: <span>The W.E.B. Du Bois Center At the University of Massachusetts Amherst ; Princeton Architectural Press</span>.
-</div>
-<div id="ref-Kirk2016" class="csl-entry" role="listitem">
-Kirk, Andy. 2016. <em>Data Visualisation: A Handbook for Data Driven Design</em>. <span>Los Angeles London New Delhi Singapore Washington DC Melbourne</span>: <span>SAGE</span>.
-</div>
-<div id="ref-Wilke2019" class="csl-entry" role="listitem">
-Wilke, Claus. 2019. <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures</em>. First edition. <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>.
-</div>
-</div></section></div></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -845,9 +871,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../readings.html" class="pagination-link  aria-label=" readings"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Readings</span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../weeks/01_walkthrough.html" class="pagination-link" aria-label="1. Walkthrough">
@@ -860,4 +883,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/00_definitions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/00_definitions.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/00_definitions.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/00_definitions.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
