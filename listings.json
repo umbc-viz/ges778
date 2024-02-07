@@ -1,0 +1,12 @@
+[
+  {
+    "listing": "/weeks/index.html",
+    "items": [
+      "/weeks/00_definitions.html",
+      "/weeks/01_walkthrough.html",
+      "/weeks/02_components.html",
+      "/weeks/03_encoding.html",
+      "/weeks/04_understanding_data.html"
+    ]
+  }
+]
