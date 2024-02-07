@@ -6,9 +6,6 @@ citeproc: false
 filters:
   - section-bibliographies
   # - citetools
-# csl: chicago-fullnote-bibliography.csl
-# suppress-bibliography: true
-# section-bibs-level: 3
 section-bibs-bibliography: references.bib
 toc: true
 reference-location: document

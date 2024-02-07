@@ -1,0 +1,9 @@
+---
+title: "Weekly notes"
+listing: 
+  contents:
+    - './[0-9]*.qmd'
+  type: table
+  fields: [title, file-modified]
+---
+
