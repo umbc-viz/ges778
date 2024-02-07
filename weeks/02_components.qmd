@@ -3,9 +3,11 @@ title: 2. Components of a chart
 fig-width: 7
 fig-height: 4
 tbl-cap-location: top
-dpi: 200
 reference-location: margin
 citation-location: margin
+knitr:
+  opts_knit: 
+    fig.showtext: true
 ---
 
 Revisiting the wage gaps to break down a chart into its pieces and what they mean. This will be a subset of the `wages` data with just full-time workers by sex and education in Maryland.
@@ -122,3 +124,50 @@ gg <- ggplot(sex_x_edu, aes(x = edu, y = earn_q50, fill = sex)) +
 
 gg
 ```
+
+### Goal: one option
+
+```{r}
+#| include: false
+#| fig-dpi: 300
+#| fig-width: 7
+#| fig-height: 4.5
+# can't get fonts to not be totally weird
+library(showtext)
+showtext_auto()
+showtext_opts(dpi = 300)
+sysfonts::font_add_google("Barlow Semi Condensed")
+
+# use both true/false and gender palettes
+comb_pal <- c(purrr::map_chr(gender_pal, colorspace::darken, amount = 0.2, space = "HCL"), tf_pal)
+
+sex_x_edu |>
+  mutate(edu = forcats::fct_recode(edu, "Some college / Associate's" = "Some college or AA", "Bachelor's" = "Bachelors")) |>
+  stylehaven::offset_lbls(value = earn_q50, fun = dollar_k, frac = 0.03) |>
+  ggplot(aes(x = edu, y = earn_q50, fill = sex, group = sex)) +
+  geom_col(width = 0.8, position = position_dodge2()) +
+  geom_text(aes(y = y, label = lbl, vjust = just, color = is_small),
+            family = "Barlow Semi Condensed", fontface = "bold", size = 9.5,
+            position = position_dodge2(width = 0.8)) +
+  geom_text(aes(label = sex, color = sex, x = as.numeric(edu) - 0.18, y = earn_q50 - off/2),
+            data = ~filter(., edu == first(edu)), vjust = 0, hjust = 0,
+            family = "Barlow Semi Condensed", fontface = "bold", size = 8,
+            position = position_dodge2(width = 0.8)) +
+  scale_fill_manual(values = gender_pal) +
+  scale_color_manual(values = comb_pal) +
+  scale_x_discrete(labels = scales::label_wrap(15)) +
+  scale_y_barcontinuous(breaks = NULL) +
+  theme_minimal(base_family = "Barlow Semi Condensed", base_size = 28) +
+  theme(text = element_text(lineheight = 0.5)) +
+  theme(panel.grid = element_blank()) +
+  theme(legend.position = "none") +
+  theme(axis.text = element_text(color = "black", size = rel(0.9))) +
+  theme(plot.title = element_text(family = "Barlow Semi Condensed", face = "bold")) +
+  theme(plot.subtitle = ggtext::element_textbox_simple(family = "Barlow Semi Condensed", lineheight = 0.7)) +
+  theme(plot.caption = element_text(color = "gray30")) +
+  labs(x = NULL, y = NULL,
+       title = "The male-female wage gap persists across education levels",
+       subtitle = "Median individual earnings, Maryland adults ages 25+ working full time by sex and educational attainment, 2022",
+       caption = "Source: Analysis of US Census Bureau American Community Survey, 2022 5-year estimates")
+```
+
