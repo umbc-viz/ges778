@@ -3,7 +3,7 @@ title: 4. Learning about your data
 fig-width: 7
 fig-height: 4
 tbl-cap-location: top
-dpi: 200
+fig-dpi: 200
 execute:
   warning: true
   message: true
@@ -115,9 +115,10 @@ acs_tr2 |>
   ggplot(aes(x = pop_density)) +
   geom_histogram(binwidth = 1000)
 
+# if you want bars to be between tick marks instead of centered over them, set boundary = TRUE
 acs_tr2 |>
   ggplot(aes(x = pop_density)) +
-  geom_histogram(binwidth = 1000) +
+  geom_histogram(binwidth = 1000, boundary = TRUE, color = "white") +
   scale_x_continuous(limits = c(NA, 30000))
 ```
 
@@ -189,8 +190,20 @@ ggplot(acs_tr2, aes(x = median_hh_income, y = homeownership)) +
 
 Use the methods in the book (changing alpha or using a 2D density) to deal with overplotting here.
 
+
 ```{r}
 ggplot(acs_tr2, aes(x = median_hh_income, y = homeownership)) +
-  geom_boxplot(aes(group = cut_width(median_hh_income, 2.5e4)), varwidth = TRUE)
+  geom_point(alpha = 0.4)
 ```
 
+
+```{r}
+ggplot(acs_tr2, aes(x = median_hh_income, y = homeownership)) +
+  geom_point(shape = "circle open")
+```
+
+
+```{r}
+ggplot(acs_tr2, aes(x = median_hh_income, y = homeownership)) +
+  geom_bin2d()
+```

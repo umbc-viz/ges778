@@ -255,6 +255,23 @@
       "Repository": "RSPM",
       "Hash": "d691c61bff84bd63c383874d2d0c3307"
     },
+    "cowplot": {
+      "Package": "cowplot",
+      "Version": "1.1.3",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "ggplot2",
+        "grDevices",
+        "grid",
+        "gtable",
+        "methods",
+        "rlang",
+        "scales"
+      ],
+      "Hash": "8ef2084dd7d28847b374e55440e4f8cb"
+    },
     "cpp11": {
       "Package": "cpp11",
       "Version": "0.4.7",
@@ -833,6 +850,18 @@
       ],
       "Hash": "680ad542fbcf801442c83a6ac5a2126c"
     },
+    "magick": {
+      "Package": "magick",
+      "Version": "2.8.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "Rcpp",
+        "curl",
+        "magrittr"
+      ],
+      "Hash": "87da0066dd0d7b1a95c461abfbf10411"
+    },
     "magrittr": {
       "Package": "magrittr",
       "Version": "2.0.3",
@@ -1147,6 +1176,29 @@
       ],
       "Hash": "c19df082ba346b0ffa6f833e92de34d1"
     },
+    "showtext": {
+      "Package": "showtext",
+      "Version": "0.9-6",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "grDevices",
+        "showtextdb",
+        "sysfonts"
+      ],
+      "Hash": "c0fd332d248b195bbcb94a0dfda37b0d"
+    },
+    "showtextdb": {
+      "Package": "showtextdb",
+      "Version": "3.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "sysfonts",
+        "utils"
+      ],
+      "Hash": "c12e756cf947e58b0f2c2a520521a5a8"
+    },
     "snakecase": {
       "Package": "snakecase",
       "Version": "0.11.1",
@@ -1189,12 +1241,54 @@
       ],
       "Hash": "960e2ae9e09656611e0b8214ad543207"
     },
+    "stylehaven": {
+      "Package": "stylehaven",
+      "Version": "0.2.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "CT-Data-Haven",
+      "RemoteRepo": "stylehaven",
+      "RemoteRef": "main",
+      "RemoteSha": "1c5c76c5418b472b77d72fef14b20b47820b2ec5",
+      "Remotes": "ct-data-haven/cwi, camille-s/camiller",
+      "Requirements": [
+        "R",
+        "RColorBrewer",
+        "cli",
+        "colorspace",
+        "cowplot",
+        "dplyr",
+        "ggplot2",
+        "magick",
+        "methods",
+        "purrr",
+        "rcartocolor",
+        "rlang",
+        "scales",
+        "stringr",
+        "sysfonts",
+        "tibble",
+        "tidyr",
+        "tidyselect",
+        "viridisLite",
+        "xfun"
+      ],
+      "Hash": "8381cd911797c970452dcc0dfbadd432"
+    },
     "sys": {
       "Package": "sys",
       "Version": "3.4.2",
       "Source": "Repository",
       "Repository": "RSPM",
       "Hash": "3a1be13d68d47a8cd0bfd74739ca1555"
+    },
+    "sysfonts": {
+      "Package": "sysfonts",
+      "Version": "0.8.8",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "7f4dac41a3e348ae12832167e6beb875"
     },
     "systemfonts": {
       "Package": "systemfonts",

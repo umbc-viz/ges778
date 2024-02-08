@@ -98,7 +98,8 @@ _These bars shouldn't be stacked, though_. Why not?
 ```{r}
 #| label: fig-bars-4
 ggplot(sex_x_edu, aes(x = edu, y = earn_q50, fill = sex)) +
-  geom_col(position = position_dodge2())
+  geom_col(position = position_dodge2()) +
+  labs(title = "Median earnings by sex & education, Maryland, 2022")
 ```
 
 So now we have a chart that represents the data appropriately. We can make it look nicer, but for now we have all the basic components set.
@@ -108,7 +109,17 @@ What are all the components here?
 ::: {.callout-tip}
 ### Brainstorming components
 
-- 
+- axes (x & y)
+- tick values (dollar amounts, education levels)--horizontal
+- legend (placement, title, labels, keys)
+- axis titles
+- background
+- gridlines (x & y gridlines, x-axis major, y-axis major & minor)
+- title
+- bars with color
+- tick marks
+- units (not included)
+- text choices (font, size, boldness)
 
 :::
 
@@ -122,13 +133,23 @@ That chart is fine but not great. Next we could clean up the axes, their labels,
 gg <- ggplot(sex_x_edu, aes(x = edu, y = earn_q50, fill = sex)) +
   geom_col(position = position_dodge2())
 
-gg
+gg +
+  scale_y_continuous(labels = dollar_k) +
+  theme(panel.grid.major.x = element_blank()) +
+  theme(panel.grid.minor.y = element_blank()) +
+  theme(axis.ticks = element_blank()) +
+  labs(title = "Median individual earnings",
+       subtitle = "Adults ages 25+ working full time by sex and educational attainment, Maryland, 2022",
+       y = "Median earnings", x = NULL, fill = NULL) +
+  scale_fill_manual(values = gender_pal)
 ```
 
 ### Goal: one option
 
+This is one more complicated option of how I might do this. It uses a function from the package [stylehaven](https://ct-data-haven.github.io/stylehaven/) which I wrote for work, and which you all are free to use. It also uses [showtext](https://cran.r-project.org/web/packages/showtext/index.html) to set the fonts, which can be very finicky.
+
 ```{r}
-#| include: false
+#| include: true
 #| fig-dpi: 300
 #| fig-width: 7
 #| fig-height: 4.5
