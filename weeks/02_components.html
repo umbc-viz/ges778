@@ -261,6 +261,7 @@ div.csl-indent {
   <li><a href="#a-nicer-chart" id="toc-a-nicer-chart" class="nav-link" data-scroll-target="#a-nicer-chart">A nicer chart</a>
   <ul class="collapse">
   <li><a href="#live-code-clean-up-this-chart" id="toc-live-code-clean-up-this-chart" class="nav-link" data-scroll-target="#live-code-clean-up-this-chart">Live code: clean up this chart</a></li>
+  <li><a href="#goal-one-option" id="toc-goal-one-option" class="nav-link" data-scroll-target="#goal-one-option">Goal: one option</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/02_components.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/02_components.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -288,7 +289,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 7, 2024</p>
+      <p class="date-modified">February 8, 2024</p>
     </div>
   </div>
     
@@ -509,7 +510,8 @@ Figure&nbsp;5
 <div class="page-columns page-full"><p></p><div class="no-row-height column-margin column-container"><span class="margin-aside">They represent median wages of distinct groups, not something that is cumulative. If men have a median income of $60,000 and women have a median income of $50,000, does that mean that men and women overall have a median income of $110,000? No! But that’s what these stacked bars imply.</span></div></div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sex_x_edu, <span class="fu">aes</span>(<span class="at">x =</span> edu, <span class="at">y =</span> earn_q50, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>()) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Median earnings by sex &amp; education, Maryland, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div id="fig-bars-4" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
 <figure class="quarto-float quarto-float-fig figure">
@@ -536,7 +538,17 @@ Brainstorming components
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li></li>
+<li>axes (x &amp; y)</li>
+<li>tick values (dollar amounts, education levels)–horizontal</li>
+<li>legend (placement, title, labels, keys)</li>
+<li>axis titles</li>
+<li>background</li>
+<li>gridlines (x &amp; y gridlines, x-axis major, y-axis major &amp; minor)</li>
+<li>title</li>
+<li>bars with color</li>
+<li>tick marks</li>
+<li>units (not included)</li>
+<li>text choices (font, size, boldness)</li>
 </ul>
 </div>
 </div>
@@ -550,11 +562,69 @@ Brainstorming components
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sex_x_edu, <span class="fu">aes</span>(<span class="at">x =</span> edu, <span class="at">y =</span> earn_q50, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>())</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>gg</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>gg <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> dollar_k) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.minor.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.ticks =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Median individual earnings"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Adults ages 25+ working full time by sex and educational attainment, Maryland, 2022"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Median earnings"</span>, <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">fill =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> gender_pal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="02_components_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="goal-one-option" class="level3">
+<h3 class="anchored" data-anchor-id="goal-one-option">Goal: one option</h3>
+<p>This is one more complicated option of how I might do this. It uses a function from the package <a href="https://ct-data-haven.github.io/stylehaven/">stylehaven</a> which I wrote for work, and which you all are free to use. It also uses <a href="https://cran.r-project.org/web/packages/showtext/index.html">showtext</a> to set the fonts, which can be very finicky.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># can't get fonts to not be totally weird</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">showtext_opts</span>(<span class="at">dpi =</span> <span class="dv">300</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Barlow Semi Condensed"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># use both true/false and gender palettes</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>comb_pal <span class="ot">&lt;-</span> <span class="fu">c</span>(purrr<span class="sc">::</span><span class="fu">map_chr</span>(gender_pal, colorspace<span class="sc">::</span>darken, <span class="at">amount =</span> <span class="fl">0.2</span>, <span class="at">space =</span> <span class="st">"HCL"</span>), tf_pal)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>sex_x_edu <span class="sc">|&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">edu =</span> forcats<span class="sc">::</span><span class="fu">fct_recode</span>(edu, <span class="st">"Some college / Associate's"</span> <span class="ot">=</span> <span class="st">"Some college or AA"</span>, <span class="st">"Bachelor's"</span> <span class="ot">=</span> <span class="st">"Bachelors"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  stylehaven<span class="sc">::</span><span class="fu">offset_lbls</span>(<span class="at">value =</span> earn_q50, <span class="at">fun =</span> dollar_k, <span class="at">frac =</span> <span class="fl">0.03</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> edu, <span class="at">y =</span> earn_q50, <span class="at">fill =</span> sex, <span class="at">group =</span> sex)) <span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>, <span class="at">position =</span> <span class="fu">position_dodge2</span>()) <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> y, <span class="at">label =</span> lbl, <span class="at">vjust =</span> just, <span class="at">color =</span> is_small),</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="st">"Barlow Semi Condensed"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="fl">9.5</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">width =</span> <span class="fl">0.8</span>)) <span class="sc">+</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> sex, <span class="at">color =</span> sex, <span class="at">x =</span> <span class="fu">as.numeric</span>(edu) <span class="sc">-</span> <span class="fl">0.18</span>, <span class="at">y =</span> earn_q50 <span class="sc">-</span> off<span class="sc">/</span><span class="dv">2</span>),</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> <span class="sc">~</span><span class="fu">filter</span>(., edu <span class="sc">==</span> <span class="fu">first</span>(edu)), <span class="at">vjust =</span> <span class="dv">0</span>, <span class="at">hjust =</span> <span class="dv">0</span>,</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">family =</span> <span class="st">"Barlow Semi Condensed"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>, <span class="at">size =</span> <span class="dv">8</span>,</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">width =</span> <span class="fl">0.8</span>)) <span class="sc">+</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> gender_pal) <span class="sc">+</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> comb_pal) <span class="sc">+</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_wrap</span>(<span class="dv">15</span>)) <span class="sc">+</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_barcontinuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_family =</span> <span class="st">"Barlow Semi Condensed"</span>, <span class="at">base_size =</span> <span class="dv">28</span>) <span class="sc">+</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">text =</span> <span class="fu">element_text</span>(<span class="at">lineheight =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.grid =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">0.9</span>))) <span class="sc">+</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">family =</span> <span class="st">"Barlow Semi Condensed"</span>, <span class="at">face =</span> <span class="st">"bold"</span>)) <span class="sc">+</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> ggtext<span class="sc">::</span><span class="fu">element_textbox_simple</span>(<span class="at">family =</span> <span class="st">"Barlow Semi Condensed"</span>, <span class="at">lineheight =</span> <span class="fl">0.7</span>)) <span class="sc">+</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">color =</span> <span class="st">"gray30"</span>)) <span class="sc">+</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">"The male-female wage gap persists across education levels"</span>,</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Median individual earnings, Maryland adults ages 25+ working full time by sex and educational attainment, 2022"</span>,</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">"Source: Analysis of US Census Bureau American Community Survey, 2022 5-year estimates"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="02_components_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="2100"></p>
 </figure>
 </div>
 </div>

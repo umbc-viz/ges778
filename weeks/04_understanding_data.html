@@ -292,7 +292,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 7, 2024</p>
+      <p class="date-modified">February 8, 2024</p>
     </div>
   </div>
     
@@ -476,10 +476,10 @@ Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for data s
 <pre><code>Warning: Removed 6 rows containing non-finite values (`stat_bin()`).</code></pre>
 </div>
 <div class="cell-output-display">
-<div id="fig-income-hist-1" class="quarto-figure quarto-figure-center quarto-float anchored" width="672">
+<div id="fig-income-hist-1" class="quarto-figure quarto-figure-center quarto-float anchored" width="1400">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-income-hist-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="04_understanding_data_files/figure-html/fig-income-hist-1-1.png" id="fig-income-hist-1" class="img-fluid figure-img" width="672">
+<img src="04_understanding_data_files/figure-html/fig-income-hist-1-1.png" id="fig-income-hist-1" class="img-fluid figure-img" width="1400">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-income-hist-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1
@@ -499,7 +499,7 @@ Figure&nbsp;1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
@@ -513,7 +513,7 @@ Figure&nbsp;1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
@@ -652,7 +652,7 @@ Figure&nbsp;1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
@@ -667,7 +667,7 @@ Figure&nbsp;1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
@@ -681,7 +681,7 @@ Figure&nbsp;1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
@@ -695,14 +695,15 @@ Figure&nbsp;1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>acs_tr2 <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_density)) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1000</span>) <span class="sc">+</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">30000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if you want bars to be between tick marks instead of centered over them, set boundary = TRUE</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>acs_tr2 <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_density)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1000</span>, <span class="at">boundary =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">30000</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 8 rows containing non-finite values (`stat_bin()`).</code></pre>
 </div>
@@ -712,7 +713,7 @@ Figure&nbsp;1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-11-2.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
@@ -740,7 +741,7 @@ Figure&nbsp;1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
@@ -752,7 +753,7 @@ Figure&nbsp;1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
@@ -764,7 +765,7 @@ Figure&nbsp;1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
@@ -788,7 +789,7 @@ Figure&nbsp;1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
@@ -804,7 +805,7 @@ Figure&nbsp;1
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
@@ -812,11 +813,33 @@ Figure&nbsp;1
 <p>Use the methods in the book (changing alpha or using a 2D density) to deal with overplotting here.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(acs_tr2, <span class="fu">aes</span>(<span class="at">x =</span> median_hh_income, <span class="at">y =</span> homeownership)) <span class="sc">+</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">group =</span> <span class="fu">cut_width</span>(median_hh_income, <span class="fl">2.5e4</span>)), <span class="at">varwidth =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="1400"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(acs_tr2, <span class="fu">aes</span>(<span class="at">x =</span> median_hh_income, <span class="at">y =</span> homeownership)) <span class="sc">+</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="st">"circle open"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="1400"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(acs_tr2, <span class="fu">aes</span>(<span class="at">x =</span> median_hh_income, <span class="at">y =</span> homeownership)) <span class="sc">+</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="04_understanding_data_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid figure-img" width="1400"></p>
 </figure>
 </div>
 </div>
