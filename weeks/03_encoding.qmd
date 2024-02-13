@@ -3,7 +3,6 @@ title: 3. Visual encoding
 fig-width: 7
 fig-height: 4
 tbl-cap-location: top
-dpi: 200
 reference-location: margin
 citation-location: margin
 ---
@@ -19,6 +18,8 @@ library(justviz)
 ```
 
 ```{r}
+# create a variable that flags tracts being in the city or surrounding counties. 
+# other values get lumped into "other counties" group
 local_counties <- c("Baltimore city", "Baltimore County", "Anne Arundel County", "Howard County")
 acs_tr <- acs |>
   filter(level == "tract") |>
@@ -58,6 +59,22 @@ ggplot(acs_tr, aes(x = homeownership, y = total_cost_burden)) +
 
 Can you think of any exceptions to this?
 
+```{r}
+#| code-fold: true
+#| include: false
+# similar to county2, make a variable flagging that a tract is in the city
+acs_tr |>
+  mutate(is_baltimore = ifelse(county == "Baltimore city", "Baltimore tracts", "Other MD tracts")) |>
+  mutate(is_baltimore = forcats::as_factor(is_baltimore) |> forcats::fct_relevel("Baltimore tracts")) |>
+  ggplot(aes(x = homeownership, y = total_cost_burden, size = is_baltimore, color = is_baltimore)) +
+  geom_point(alpha = 0.9) +
+  scale_size_manual(values = c("Baltimore tracts" = 3, "Other MD tracts" = 0.6)) +
+  scale_color_manual(values = c("Baltimore tracts" = "slateblue", "Other MD tracts" = "gray30"))
+```
+
+
+---
+
 What's going on with the next two charts?
 
 ```{r}
@@ -66,6 +83,15 @@ ggplot(acs_tr, aes(x = homeownership, y = total_cost_burden)) +
 
 ggplot(acs_tr, aes(x = homeownership, y = total_cost_burden)) +
   geom_point(aes(color = "slateblue"))
+```
+
+Why does this one throw an error?
+
+```{r}
+#| eval: false
+#| include: true
+ggplot(acs_tr, aes(x = homeownership, y = total_cost_burden)) +
+  geom_point(color = county2)
 ```
 
 ## Geometric objects

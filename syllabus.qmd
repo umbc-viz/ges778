@@ -76,8 +76,8 @@ The schedule has some flexibility built into it, but tentatively goes as follows
 | 5    |                      | Making good decisions pt. 1                              |
 | 6    |                      | Accessibility, literacy, and audience                    |
 | 7    |                      | Storytelling pt. 1 (empathy & equity); experimentation   |
-|      |                      | _Project 1 due_                                          |
 | 8    | Spatial data viz     | What is a map, and do you need one?                      |
+|      |                      | _Project 1 due_                                          |
 | 9    |                      | Encoding data to space; harmful practices                |
 | 10    |                      | Color, text, and annotations pt. 2                       |
 | 11   |                      | Making good decisions pt. 2                              |

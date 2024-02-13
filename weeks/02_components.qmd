@@ -51,7 +51,7 @@ wages |>
   scale_fill_manual(values = gender_pal) +
   labs(x = NULL, y = NULL, fill = NULL,
        title = "Median individual earnings",
-       subtitle = "Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2022") +
+       subtitle = "Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2021") +
   theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")),
         legend.position = "bottom")
 ```
@@ -99,7 +99,7 @@ _These bars shouldn't be stacked, though_. Why not?
 #| label: fig-bars-4
 ggplot(sex_x_edu, aes(x = edu, y = earn_q50, fill = sex)) +
   geom_col(position = position_dodge2()) +
-  labs(title = "Median earnings by sex & education, Maryland, 2022")
+  labs(title = "Median earnings by sex & education, Maryland, 2021")
 ```
 
 So now we have a chart that represents the data appropriately. We can make it look nicer, but for now we have all the basic components set.
@@ -125,7 +125,7 @@ What are all the components here?
 
 ## A nicer chart
 
-That chart is fine but not great. Next we could clean up the axes, their labels, ticks, and gridlines. For each of these components, you should ask yourself if they're necessary, or what they add to the chart that isn't already provided through some other means. This helps you minimize your [data-to-ink ratio, @Wilke2019](https://clauswilke.com/dataviz/proportional-ink.html)
+That chart is fine but not great. Next we could clean up the axes, their labels, ticks, and gridlines. For each of these components, you should ask yourself if they're necessary, or what they add to the chart that isn't already provided through some other means. This helps you maximize your [data-to-ink ratio, @Wilke2019](https://clauswilke.com/dataviz/proportional-ink.html)
 
 ### Live code: clean up this chart
 
@@ -139,7 +139,7 @@ gg +
   theme(panel.grid.minor.y = element_blank()) +
   theme(axis.ticks = element_blank()) +
   labs(title = "Median individual earnings",
-       subtitle = "Adults ages 25+ working full time by sex and educational attainment, Maryland, 2022",
+       subtitle = "Adults ages 25+ working full time by sex and educational attainment, Maryland, 2021",
        y = "Median earnings", x = NULL, fill = NULL) +
   scale_fill_manual(values = gender_pal)
 ```
@@ -188,7 +188,7 @@ sex_x_edu |>
   theme(plot.caption = element_text(color = "gray30")) +
   labs(x = NULL, y = NULL,
        title = "The male-female wage gap persists across education levels",
-       subtitle = "Median individual earnings, Maryland adults ages 25+ working full time by sex and educational attainment, 2022",
-       caption = "Source: Analysis of US Census Bureau American Community Survey, 2022 5-year estimates")
+       subtitle = "Median individual earnings, Maryland adults ages 25+ working full time by sex and educational attainment, 2021",
+       caption = "Source: Analysis of US Census Bureau American Community Survey, 2021 5-year estimates")
 ```
 

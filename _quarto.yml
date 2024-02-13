@@ -59,6 +59,7 @@ format:
     code-copy: true
     email-obfuscation: javascript
     tbl-cap-location: top
+    code-line-numbers: true
 
 number-sections: false
 execute: 

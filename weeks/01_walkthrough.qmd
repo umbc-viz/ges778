@@ -42,20 +42,20 @@ wages |>
   scale_y_barcontinuous(labels = dollar_k) +
   labs(x = NULL, y = NULL,
        title = "Median individual earnings",
-       subtitle = "Adults ages 25+ with positive earnings, 2022")
+       subtitle = "Adults ages 25+ with positive earnings, 2021")
 ```
 
 That chart is fine, but it takes up a lot of space to only show 2 numbers. Oftentimes projects that require visualization have caps on length, such as grant applications or print reports where every additional page adds to the budget. In a lot of contexts, you're probably better off with written text, either just a written sentence if it's for a report or article, or bullet points or a pull-out quote. You'll often see documents with something formatted like this:
 
 ::: {.hilite}
-> Maryland adults ages 25 and up had median earnings of about **\$55,000** in 2022, more than **\$11,000 higher** than the US average.
+> Maryland adults ages 25 and up had median earnings of about **\$55,000** in 2021, more than **\$11,000 higher** than the US average.
 :::
 
 Maybe you have a lot of data and your audience wants to see every number exactly, or you just have 2 or 3 numbers but you're short on space: a nicely formatted table might be better.
 
 ```{r}
 #| label: tbl-wages-table
-#| tbl-cap: Median individual earnings, adults ages 25+ with positive earnings, 2022 
+#| tbl-cap: Median individual earnings, adults ages 25+ with positive earnings, 2021 
 #| tbl-cap-location: top
 wages |>
   filter(dimension == "total") |>
@@ -88,7 +88,7 @@ wages |>
   scale_y_barcontinuous(labels = dollar_k) +
   labs(x = NULL, y = NULL, fill = NULL,
        title = "Median individual earnings",
-       subtitle = "Adults ages 25+ with positive earnings by sex, Maryland, 2022") +
+       subtitle = "Adults ages 25+ with positive earnings by sex, Maryland, 2021") +
   theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")))
 ```
 
@@ -109,7 +109,7 @@ wage_ratio <- wages |>
 > Working women in Maryland make about **`r wage_ratio`** cents on the male dollar.
 :::
 
-(And then in the footnotes include the specifications of "among adults ages 25 and up with positive earnings in 2022.")
+(And then in the footnotes include the specifications of "among adults ages 25 and up with positive earnings in 2021.")
 
 One explanation often given for women's pay being less is that women are more likely to work part-time, and part-time jobs pay much less on average.
 
@@ -127,7 +127,7 @@ wages |>
   scale_y_barcontinuous(labels = dollar_k) +
   labs(x = NULL, y = NULL, fill = NULL,
        title = "Median individual earnings",
-       subtitle = "Adults ages 25+ with positive earnings by full-time status, Maryland, 2022") +
+       subtitle = "Adults ages 25+ with positive earnings by full-time status, Maryland, 2021") +
   theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")))
 ```
 
@@ -138,7 +138,7 @@ A good place to start, then, is earnings by sex _and_ full-time status. Let's ma
 
 ```{r}
 #| label: tbl-wages-time-sex
-#| tbl-cap: Median individual earnings, adults ages 25+ with positive earnings by sex and full-time status, 2022 
+#| tbl-cap: Median individual earnings, adults ages 25+ with positive earnings by sex and full-time status, 2021 
 #| tbl-cap-location: top 
 wages |>
   filter(dimension == "sex_x_time",
@@ -175,7 +175,7 @@ wages |>
   facet_wrap(vars(time)) +
   labs(x = NULL, y = NULL, fill = NULL,
        title = "Median individual earnings",
-       subtitle = "Adults ages 25+ with positive earnings by sex and full-time status, Maryland, 2022") +
+       subtitle = "Adults ages 25+ with positive earnings by sex and full-time status, Maryland, 2021") +
   theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")),
         legend.position = "none")
 ```
@@ -195,7 +195,7 @@ wages |>
   scale_y_barcontinuous(labels = dollar_k) +
   labs(x = NULL, y = NULL, fill = NULL,
        title = "Median individual earnings",
-       subtitle = "Adults ages 25+ with positive earnings by educational attainment, Maryland full-time workers, 2022") +
+       subtitle = "Adults ages 25+ with positive earnings by educational attainment, Maryland full-time workers, 2021") +
   theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")))
 ```
 
@@ -212,7 +212,7 @@ wages |>
   scale_fill_manual(values = gender_pal) +
   labs(x = NULL, y = NULL, fill = NULL,
        title = "Median individual earnings",
-       subtitle = "Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2022") +
+       subtitle = "Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2021") +
   theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")),
         legend.position = "bottom")
 ```
@@ -234,7 +234,7 @@ wages |>
   scale_fill_manual(values = gender_pal) +
   labs(x = NULL, y = NULL, fill = NULL,
        title = "Women's individual earnings per dollar of men's individual earnings",
-       subtitle = "Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2022") +
+       subtitle = "Adults ages 25+ with positive earnings by sex and educational attainment, Maryland full-time workers, 2021") +
   theme(plot.subtitle = element_textbox_simple(margin = margin(0.2, 0, 0.2, 0, "lines")),
         legend.position = "bottom")
 ```
