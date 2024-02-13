@@ -23,12 +23,12 @@ Here are the readings for each week. Please have the readings done _before_ the 
 
 ## Week 3, Feb 14: writing good code; color
 
-* @Wilke2019 chapters 4, 6, 17
-* @W.C.G2023 chapters 1 & 9 (okay to skim as a code reference)
+* @Wilke2019 chapters 4, 6, 17 (color, amounts, proportional ink)
+* @W.C.G2023 chapters 1 & 9 (okay to skim as a code reference) (data visualization, layers)
 
 ## Week 4, Feb 21: text, annotation, uncertainty, distribution
 
-* @Wilke2019 chapters 7, 9, 10
+* @Wilke2019 chapters 7, 9, 10 (histograms, multiple distributions, proportions)
 * Listen to Data Stories, @B.S2019
 * Pick one (or both) of these styleguides to browse through:
   * @Urban2023
@@ -37,6 +37,6 @@ Here are the readings for each week. Please have the readings done _before_ the 
 ## Week 5, Feb 28: making good decisions
 
 * @Cairo2019 chapter 1 (on Blackboard)
-* @Wilke2019 chapters 13, 14 & 20
+* @Wilke2019 chapters 13, 14 & 20 (time series, trends, redundancy)
 * @Smith2023
 

@@ -1,0 +1,13 @@
+---
+title: "3b. Encoding cheatsheets"
+---
+
+A few references on visual encodings that we'll continue to go back to:
+
+* The chapter of _Data Points_ on Blackboard
+* Chapter 2 of [@Wilke2019] about aesthetics
+
+![From @Yau2013 p. 104](../inputs/perception.png)
+
+![From @Munzner2014 p. 94](../inputs/munzner_encoding.png)
+

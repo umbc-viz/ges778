@@ -1,0 +1,18 @@
+---
+title: "6. Color"
+---
+
+We'll walk through Wilke chapters 4 and 19--I don't have a ton to add until we get to mapping.
+
+- [Wilke chapter 4](https://clauswilke.com/dataviz/color-basics.html)
+- [Wilke chapter 19](https://clauswilke.com/dataviz/color-pitfalls.html)
+- @Datawrapper2021 
+
+## Resources
+
+- [ColorBrewer](https://colorbrewer2.org) (access to these palettes comes with ggplot)
+- [Carto Colors](https://carto.com/carto-colors/) (access comes with the rcartocolor package)
+- [Susie Lu's Viz Palette](https://projects.susielu.com/viz-palette) generator & preview
+- [Gregor Aisch's chroma palettes](https://gka.github.io/palettes) generator
+- @colorgorical
+

@@ -6,3 +6,5 @@
 /.quarto/
 _site/
 renv/library
+
+notrack/

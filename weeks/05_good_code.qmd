@@ -1,0 +1,70 @@
+---
+title: "5. Writing good code"
+---
+
+## Warm-up
+
+Think about what you need in order to leave the house for work or school. What things do you need to get out the door---some variation on "phone, wallet, keys"? Think about what influences your list, e.g. maybe you switch modes of transportation, which will decide whether you need car keys, a bike helmet and lights, or a bus card. 
+
+Write down:
+
+* the things you _always_ need
+* the things you _sometimes_ need
+
+## Documenting code
+
+One of the most important things you can do as a programmer is to document your code. This can be hard to do well, but it's essential to making sure your code is clear and accountable and that your work can be reproduced or repurposed. (If you've followed the ["replicability crisis"](https://www.nature.com/articles/533452a) in the sciences over the past decade or so, you've seen what can go very wrong when your work isn't documented accurately for yourself and others!)
+
+A common suggestion is to write your code assuming you'll come back to it in 6 months and need to be able to pick up where you left off. I usually also assume a coworker or colleague will need to rerun or reuse my code, so even if I'm doing something that I'll remember 6 months from now, they might not know what things mean. It also gets me out of spending unnecessary amounts of time walking interns through an analysis if I can say, "I tried to document everything really well, so read through it, run all the code, and let me know if you need help after that." Documenting code also helps ease the transition into package development, which requires _a lot_ of documentation.
+
+I don't document _everything_---plenty of my work is routine and straightforward enough---but some of the things I try to always take note of:
+
+* Any sort of analysis or process that's **out of the ordinary or complex**. Don't assume you'll remember later why you used a new approach.
+* Anything I know **someone else will need** to be able to reference. Sometimes I do EDA on something that a coworker will then finish up or need to write about. I need to make sure they can do that accurately.
+* **Outside sources** that don't come from that specific project. If your project is contained within a set of folders, and you've copied data in from some other project, make a note of where it comes from so if you need to update it you know where to get it from.
+* **Decision-making** that you might need to keep track of or argue for later. e.g. a comparison of categories between datasets with a note that says "these categories changed significantly since the previous data collection" will be helpful when someone asks why you didn't include trends in an analysis.
+* **References**. If I came up with some code based on a Stack Overflow post or a blog post somewhere, or I'm building off of someone else's methodology, I'll usually include a link in my comments.
+
+This also applies to simple things like organizing your projects. If you have a bunch of folders called things like "data analysis 1" and they all contain a jumble of different notebooks and scripts for different purposes, and the scripts are all called "analysis_of_stuff.R", you're going to lose things easily and not know how different pieces build on each other. Similarly, don't spend time doing an analysis only to write your data out to a file called "data.csv" and a plot called "map.png". This might seem obvious, *but I've seen people do all of these things*.
+
+### Exercises
+
+Going back to your list for leaving the house, add notes for how you decide whether you'll need something. For example, if your laptop is on your "sometimes" list, write down what decides that.
+
+## Reusable code
+
+One rule of thumb I've heard is that it's fine to repeat your code to do the same thing twice, but if you need to do it a third time, [you should write a function](https://r4ds.hadley.nz/functions). It might mean taking a step back from what you're working on at the moment, but it's pretty much always worth the time. Alongside documenting your code in general, it's important to document your functions---what they do, what the arguments mean, what types of values arguments can take. Try to your functions and their arguments in ways that make it clear what they mean as well.
+
+## Exercises
+
+Build out your morning routine into a [pseudocode](https://en.wikipedia.org/wiki/Pseudocode) function, complete with arguments. Aim to make it flexible enough that you could use it any day of the week.
+
+## Organization
+
+Come up with a structure of directories you like for a project, and stick with it. The notes template repo I setup for this class has a pared down version of what I usually use, but a full version of what I might have, even for a small project, looks like this:
+
+```
+cool_project          
+ ¦--analysis         # EDA, notebooks, and scripts that create output
+ |--design           # scripts *only* for creating publishable charts
+ ¦--fetch_data       # raw data, often downloaded in a script
+ ¦   ¦--fr_comments  # folders for each raw data source
+ ¦   °--pums       
+ ¦--input_data       # cleaned data that is sourced for the project, maybe cleaned in prep scripts
+ ¦--output_data      # data that's a product of analysis in this project
+ ¦--plots            # plots that can be distributed or published
+ ¦--prep_scripts     # scripts that download, clean, reshape data
+ °--utils            # misc scripts & bits of data to use throughout the project
+```
+
+## Build tools
+
+Build tools are outside the scope of this class, but for larger projects especially or projects that will need to be updated over time, they'll save you a lot of headaches. I have some projects that I rebuild once a year when new ACS data comes out, and I've got things down to where I can make one or two calls on the command line flagging the year as a variable, and all the data wrangling and analyses are ready to go. In fact, this site rebuilds from a frozen list of packages every time I push to GitHub, and if that build is successful, it publishes automatically.
+
+Some tools I use:
+
+- [GNU Make](https://www.gnu.org/software/make/), the OG build tool
+- [Snakemake](https://snakemake.readthedocs.io/), like GNU Make but written in Python and designed for data analysis
+- [GitHub actions](https://github.com/features/actions), including ones specifically for [R](https://github.com/r-lib/actions/)
+- [Docker](https://www.docker.com/), build a small isolated environment for your projects, some designed for [R](https://github.com/rocker-org/rocker-versioned2)
+- Package & environment managers: [mamba](https://mamba.readthedocs.io) or [conda](https://docs.conda.io/en/latest/) for Python, [renv](https://rstudio.github.io/renv/) for R
