@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>GES 778, Spring 2024 - Setup</title>
+<title>GES 778, Spring 2024 - 5. Writing good code</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,62 +21,29 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./syllabus.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../weeks/06_color.html" rel="next">
+<link href="../weeks/04_understanding_data.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -117,7 +84,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./index.html">Setup</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/05_good_code.html">5. Writing good code</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -132,7 +99,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">GES 778, Spring 2024</a> 
+      <a href="../">GES 778, Spring 2024</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/umbc-viz/ges778.git" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
     <a href="https://github.com/umbc-viz/justviz.git" title="justviz package" class="quarto-navigation-tool px-1" aria-label="justviz package"><i class="bi bi-code-slash"></i></a>
@@ -158,19 +125,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./readings.html" class="sidebar-item-text sidebar-link">
+  <a href="../readings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Readings</span></a>
   </div>
 </li>
@@ -179,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./weeks/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../weeks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Weekly notes</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -188,49 +155,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/00_definitions.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/00_definitions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">0. Definitions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/01_walkthrough.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/01_walkthrough.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1. Walkthrough</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/02_components.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/02_components.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2. Components of a chart</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/03_encoding.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/03_encoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3. Visual encoding</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/03b_encoding_refs.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/03b_encoding_refs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3b. Encoding cheatsheets</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/04_understanding_data.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/04_understanding_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4. Learning about your data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/05_good_code.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/05_good_code.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">5. Writing good code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/06_color.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/06_color.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6. Color</span></a>
   </div>
 </li>
@@ -239,7 +206,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References by topic</span></a>
   </div>
 </li>
@@ -249,14 +216,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm-up</a></li>
+  <li><a href="#documenting-code" id="toc-documenting-code" class="nav-link" data-scroll-target="#documenting-code">Documenting code</a>
+  <ul class="collapse">
+  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  </ul></li>
+  <li><a href="#reusable-code" id="toc-reusable-code" class="nav-link" data-scroll-target="#reusable-code">Reusable code</a></li>
+  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1">Exercises</a></li>
+  <li><a href="#organization" id="toc-organization" class="nav-link" data-scroll-target="#organization">Organization</a></li>
+  <li><a href="#build-tools" id="toc-build-tools" class="nav-link" data-scroll-target="#build-tools">Build tools</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/05_good_code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/05_good_code.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./index.html">Setup</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/05_good_code.html">5. Writing good code</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Setup</h1>
+<h1 class="title">5. Writing good code</h1>
 </div>
 
 
@@ -285,35 +266,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This is a collection of notes to fill in examples and walkthroughs for the Spring 2024 session of GES 778. It will be updated throughout the semester.</p>
-<p>First, install the course’s companion R package, <a href="https://github.com/umbc-viz/justviz.git"><code>justviz</code></a>. This is in the class’s GitHub organization.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("devtools")</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"umbc-viz/justviz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Next, some packages that aren’t required by the <code>justviz</code> package but will get us started for class and are used in these notes:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>cran_pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>,     <span class="co"># data visualization powerhouse</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>               <span class="st">"dplyr"</span>,       <span class="co"># nice for calculations and data manipulation</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>               <span class="st">"tidyr"</span>,       <span class="co"># data reshaping</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>               <span class="st">"forcats"</span>,     <span class="co"># handling factors</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>               <span class="st">"stringr"</span>,     <span class="co"># string cleanup</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>               <span class="st">"showtext"</span>,    <span class="co"># nice fonts</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>               <span class="st">"ggrepel"</span>,     <span class="co"># force-repelled placement of labels</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>               <span class="st">"osmdata"</span>,     <span class="co"># easy access to sf data from OpenStreetMap</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>               <span class="st">"tigris"</span>,      <span class="co"># shapefiles from Census Bureau TIGER</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>               <span class="st">"patchwork"</span>,   <span class="co"># assembling plots</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>               <span class="st">"ggmap"</span>,       <span class="co"># basemaps in ggplot</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>               <span class="st">"ggtext"</span>,      <span class="co"># use rich text / markdown in ggplot</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>               <span class="st">"here"</span>,        <span class="co"># marks project roots</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>               <span class="st">"knitr"</span>,       <span class="co"># preps conversions between markdown and other formats</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>               <span class="st">"gt"</span>,          <span class="co"># like ggplot but for tables  </span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>               <span class="st">"rcartocolor"</span>) <span class="co"># color palettes</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="fu">install.packages</span>(cran_pkgs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="warm-up" class="level2">
+<h2 class="anchored" data-anchor-id="warm-up">Warm-up</h2>
+<p>Think about what you need in order to leave the house for work or school. What things do you need to get out the door—some variation on “phone, wallet, keys”? Think about what influences your list, e.g.&nbsp;maybe you switch modes of transportation, which will decide whether you need car keys, a bike helmet and lights, or a bus card.</p>
+<p>Write down:</p>
+<ul>
+<li>the things you <em>always</em> need</li>
+<li>the things you <em>sometimes</em> need</li>
+</ul>
+</section>
+<section id="documenting-code" class="level2">
+<h2 class="anchored" data-anchor-id="documenting-code">Documenting code</h2>
+<p>One of the most important things you can do as a programmer is to document your code. This can be hard to do well, but it’s essential to making sure your code is clear and accountable and that your work can be reproduced or repurposed. (If you’ve followed the <a href="https://www.nature.com/articles/533452a">“replicability crisis”</a> in the sciences over the past decade or so, you’ve seen what can go very wrong when your work isn’t documented accurately for yourself and others!)</p>
+<p>A common suggestion is to write your code assuming you’ll come back to it in 6 months and need to be able to pick up where you left off. I usually also assume a coworker or colleague will need to rerun or reuse my code, so even if I’m doing something that I’ll remember 6 months from now, they might not know what things mean. It also gets me out of spending unnecessary amounts of time walking interns through an analysis if I can say, “I tried to document everything really well, so read through it, run all the code, and let me know if you need help after that.” Documenting code also helps ease the transition into package development, which requires <em>a lot</em> of documentation.</p>
+<p>I don’t document <em>everything</em>—plenty of my work is routine and straightforward enough—but some of the things I try to always take note of:</p>
+<ul>
+<li>Any sort of analysis or process that’s <strong>out of the ordinary or complex</strong>. Don’t assume you’ll remember later why you used a new approach.</li>
+<li>Anything I know <strong>someone else will need</strong> to be able to reference. Sometimes I do EDA on something that a coworker will then finish up or need to write about. I need to make sure they can do that accurately.</li>
+<li><strong>Outside sources</strong> that don’t come from that specific project. If your project is contained within a set of folders, and you’ve copied data in from some other project, make a note of where it comes from so if you need to update it you know where to get it from.</li>
+<li><strong>Decision-making</strong> that you might need to keep track of or argue for later. e.g.&nbsp;a comparison of categories between datasets with a note that says “these categories changed significantly since the previous data collection” will be helpful when someone asks why you didn’t include trends in an analysis.</li>
+<li><strong>References</strong>. If I came up with some code based on a Stack Overflow post or a blog post somewhere, or I’m building off of someone else’s methodology, I’ll usually include a link in my comments.</li>
+</ul>
+<p>This also applies to simple things like organizing your projects. If you have a bunch of folders called things like “data analysis 1” and they all contain a jumble of different notebooks and scripts for different purposes, and the scripts are all called “analysis_of_stuff.R”, you’re going to lose things easily and not know how different pieces build on each other. Similarly, don’t spend time doing an analysis only to write your data out to a file called “data.csv” and a plot called “map.png”. This might seem obvious, <em>but I’ve seen people do all of these things</em>.</p>
+<section id="exercises" class="level3">
+<h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
+<p>Going back to your list for leaving the house, add notes for how you decide whether you’ll need something. For example, if your laptop is on your “sometimes” list, write down what decides that.</p>
+</section>
+</section>
+<section id="reusable-code" class="level2">
+<h2 class="anchored" data-anchor-id="reusable-code">Reusable code</h2>
+<p>One rule of thumb I’ve heard is that it’s fine to repeat your code to do the same thing twice, but if you need to do it a third time, <a href="https://r4ds.hadley.nz/functions">you should write a function</a>. It might mean taking a step back from what you’re working on at the moment, but it’s pretty much always worth the time. Alongside documenting your code in general, it’s important to document your functions—what they do, what the arguments mean, what types of values arguments can take. Try to your functions and their arguments in ways that make it clear what they mean as well.</p>
+</section>
+<section id="exercises-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercises-1">Exercises</h2>
+<p>Build out your morning routine into a <a href="https://en.wikipedia.org/wiki/Pseudocode">pseudocode</a> function, complete with arguments. Aim to make it flexible enough that you could use it any day of the week.</p>
+</section>
+<section id="organization" class="level2">
+<h2 class="anchored" data-anchor-id="organization">Organization</h2>
+<p>Come up with a structure of directories you like for a project, and stick with it. The notes template repo I setup for this class has a pared down version of what I usually use, but a full version of what I might have, even for a small project, looks like this:</p>
+<pre><code>cool_project          
+ ¦--analysis         # EDA, notebooks, and scripts that create output
+ |--design           # scripts *only* for creating publishable charts
+ ¦--fetch_data       # raw data, often downloaded in a script
+ ¦   ¦--fr_comments  # folders for each raw data source
+ ¦   °--pums       
+ ¦--input_data       # cleaned data that is sourced for the project, maybe cleaned in prep scripts
+ ¦--output_data      # data that's a product of analysis in this project
+ ¦--plots            # plots that can be distributed or published
+ ¦--prep_scripts     # scripts that download, clean, reshape data
+ °--utils            # misc scripts &amp; bits of data to use throughout the project</code></pre>
+</section>
+<section id="build-tools" class="level2">
+<h2 class="anchored" data-anchor-id="build-tools">Build tools</h2>
+<p>Build tools are outside the scope of this class, but for larger projects especially or projects that will need to be updated over time, they’ll save you a lot of headaches. I have some projects that I rebuild once a year when new ACS data comes out, and I’ve got things down to where I can make one or two calls on the command line flagging the year as a variable, and all the data wrangling and analyses are ready to go. In fact, this site rebuilds from a frozen list of packages every time I push to GitHub, and if that build is successful, it publishes automatically.</p>
+<p>Some tools I use:</p>
+<ul>
+<li><a href="https://www.gnu.org/software/make/">GNU Make</a>, the OG build tool</li>
+<li><a href="https://snakemake.readthedocs.io/">Snakemake</a>, like GNU Make but written in Python and designed for data analysis</li>
+<li><a href="https://github.com/features/actions">GitHub actions</a>, including ones specifically for <a href="https://github.com/r-lib/actions/">R</a></li>
+<li><a href="https://www.docker.com/">Docker</a>, build a small isolated environment for your projects, some designed for <a href="https://github.com/rocker-org/rocker-versioned2">R</a></li>
+<li>Package &amp; environment managers: <a href="https://mamba.readthedocs.io">mamba</a> or <a href="https://docs.conda.io/en/latest/">conda</a> for Python, <a href="https://rstudio.github.io/renv/">renv</a> for R</li>
+</ul>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -849,10 +865,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../weeks/04_understanding_data.html" class="pagination-link  aria-label=" 4.="" learning="" about="" your="" data"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">4. Learning about your data</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./syllabus.html" class="pagination-link" aria-label="Syllabus">
-        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../weeks/06_color.html" class="pagination-link" aria-label="6. Color">
+        <span class="nav-page-text">6. Color</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -861,4 +880,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/05_good_code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/05_good_code.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

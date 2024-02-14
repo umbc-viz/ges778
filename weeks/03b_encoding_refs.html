@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>GES 778, Spring 2024 - Setup</title>
+<title>GES 778, Spring 2024 - 3b. Encoding cheatsheets</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,62 +21,49 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
 }
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
 }
-</style>
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./syllabus.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../weeks/04_understanding_data.html" rel="next">
+<link href="../weeks/03_encoding.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -108,7 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar docked">
+<body class="nav-sidebar docked slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -117,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./index.html">Setup</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/03b_encoding_refs.html">3b. Encoding cheatsheets</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -132,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">GES 778, Spring 2024</a> 
+      <a href="../">GES 778, Spring 2024</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/umbc-viz/ges778.git" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
     <a href="https://github.com/umbc-viz/justviz.git" title="justviz package" class="quarto-navigation-tool px-1" aria-label="justviz package"><i class="bi bi-code-slash"></i></a>
@@ -158,19 +145,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./readings.html" class="sidebar-item-text sidebar-link">
+  <a href="../readings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Readings</span></a>
   </div>
 </li>
@@ -179,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./weeks/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../weeks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Weekly notes</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -188,49 +175,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/00_definitions.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/00_definitions.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">0. Definitions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/01_walkthrough.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/01_walkthrough.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">1. Walkthrough</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/02_components.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/02_components.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">2. Components of a chart</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/03_encoding.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/03_encoding.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3. Visual encoding</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/03b_encoding_refs.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/03b_encoding_refs.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">3b. Encoding cheatsheets</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/04_understanding_data.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/04_understanding_data.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">4. Learning about your data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/05_good_code.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/05_good_code.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">5. Writing good code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/06_color.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/06_color.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6. Color</span></a>
   </div>
 </li>
@@ -239,7 +226,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">References by topic</span></a>
   </div>
 </li>
@@ -252,11 +239,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./index.html">Setup</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/03b_encoding_refs.html">3b. Encoding cheatsheets</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Setup</h1>
+<h1 class="title">3b. Encoding cheatsheets</h1>
 </div>
 
 
@@ -285,33 +272,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This is a collection of notes to fill in examples and walkthroughs for the Spring 2024 session of GES 778. It will be updated throughout the semester.</p>
-<p>First, install the course’s companion R package, <a href="https://github.com/umbc-viz/justviz.git"><code>justviz</code></a>. This is in the class’s GitHub organization.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># install.packages("devtools")</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"umbc-viz/justviz"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A few references on visual encodings that we’ll continue to go back to:</p>
+<ul>
+<li>The chapter of <em>Data Points</em> on Blackboard</li>
+<li>Chapter 2 of <span class="citation" data-cites="Wilke2019">(<a href="#ref-Wilke2019" role="doc-biblioref">Wilke, 2019</a>)</span> about aesthetics</li>
+</ul>
+<div class="no-row-height column-margin column-container"><div id="ref-Wilke2019" class="csl-entry" role="listitem">
+Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making informative and compelling figures</em> (First edition). <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
+</div></div><div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="../inputs/perception.png" class="img-fluid figure-img"></p>
+<figcaption>From <span class="citation" data-cites="Yau2013">Yau (<a href="#ref-Yau2013" role="doc-biblioref">2013</a>)</span> p.&nbsp;104</figcaption>
+<div class="no-row-height column-margin column-container"><div id="ref-Yau2013" class="csl-entry" role="listitem">
+Yau, N. (2013). <em>Data points: Visualization that means something</em>. <span>John Wiley &amp; Sons, Inc</span>.
+</div></div></figure>
 </div>
-<p>Next, some packages that aren’t required by the <code>justviz</code> package but will get us started for class and are used in these notes:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>cran_pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>,     <span class="co"># data visualization powerhouse</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>               <span class="st">"dplyr"</span>,       <span class="co"># nice for calculations and data manipulation</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>               <span class="st">"tidyr"</span>,       <span class="co"># data reshaping</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>               <span class="st">"forcats"</span>,     <span class="co"># handling factors</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>               <span class="st">"stringr"</span>,     <span class="co"># string cleanup</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>               <span class="st">"showtext"</span>,    <span class="co"># nice fonts</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>               <span class="st">"ggrepel"</span>,     <span class="co"># force-repelled placement of labels</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>               <span class="st">"osmdata"</span>,     <span class="co"># easy access to sf data from OpenStreetMap</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>               <span class="st">"tigris"</span>,      <span class="co"># shapefiles from Census Bureau TIGER</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>               <span class="st">"patchwork"</span>,   <span class="co"># assembling plots</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>               <span class="st">"ggmap"</span>,       <span class="co"># basemaps in ggplot</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>               <span class="st">"ggtext"</span>,      <span class="co"># use rich text / markdown in ggplot</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a>               <span class="st">"here"</span>,        <span class="co"># marks project roots</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>               <span class="st">"knitr"</span>,       <span class="co"># preps conversions between markdown and other formats</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>               <span class="st">"gt"</span>,          <span class="co"># like ggplot but for tables  </span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>               <span class="st">"rcartocolor"</span>) <span class="co"># color palettes</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="fu">install.packages</span>(cran_pkgs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="../inputs/munzner_encoding.png" class="img-fluid figure-img"></p>
+<figcaption>From <span class="citation" data-cites="Munzner2014">Munzner (<a href="#ref-Munzner2014" role="doc-biblioref">2014</a>)</span> p.&nbsp;94</figcaption>
+<div class="no-row-height column-margin column-container"><div id="ref-Munzner2014" class="csl-entry" role="listitem">
+Munzner, T. (2014). <em>Visualization <span>Analysis</span> and <span>Design</span></em>. <span>A K Peters/CRC Press</span>. <a href="https://doi.org/10.1201/b17511">https://doi.org/10.1201/b17511</a>
+</div></div></figure>
 </div>
+
 
 
 
@@ -849,10 +833,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../weeks/03_encoding.html" class="pagination-link  aria-label=" 3.="" visual="" encoding"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3. Visual encoding</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./syllabus.html" class="pagination-link" aria-label="Syllabus">
-        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../weeks/04_understanding_data.html" class="pagination-link" aria-label="4. Learning about your data">
+        <span class="nav-page-text">4. Learning about your data</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -861,4 +848,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/03b_encoding_refs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/03b_encoding_refs.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
