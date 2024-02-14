@@ -2,17 +2,216 @@
 title: "6. Color"
 ---
 
+```{r}
+#| message: false
+library(dplyr)
+library(ggplot2)
+library(justviz)
+
+source(here::here("utils/plotting_utils.R"))
+
+local_counties <- c("Baltimore city", "Baltimore County", "Harford County", "Howard County", "Anne Arundel County")
+acs_county <- acs |>
+  filter(level %in% c("us", "state", "county")) |>
+  mutate(local1 = forcats::as_factor(name) |>
+           forcats::fct_other(keep = c(local_counties, "United States", "Maryland"), other_level = "Other counties"),
+         local2 = forcats::fct_collapse(local1, "Outside Baltimore" = c("Baltimore County", "Harford County", "Howard County", "Anne Arundel County")) |>
+           forcats::fct_relevel("Outside Baltimore", "Other counties", after = Inf))
+
+theme_set(theme_minimal())
+```
+
+```{r}
+knitr::kable(head(acs_county))
+```
+
+
+## Warm-up
+
+Which row uses a darker color?
+
+```{r}
+#| echo: false
+#| fig-height: 2
+#| fig-width: 7
+set.seed(1)
+dummy <- tibble(x = rep(1:5, times = 2), 
+                y = rep(letters[1:2], each = 5),
+                z = sample(letters[1:2], size = 10, replace = TRUE, prob = c(0.2, 0.8)))
+
+ggplot(dummy, aes(x = x, y = y, shape = y)) +
+  geom_point(size = 5, color = "gray40", show.legend = FALSE, stroke = 1) +
+  scale_shape_manual(values = c("circle", "circle open")) +
+  theme_void()
+```
+
+Which line uses a darker color?
+
+```{r}
+#| echo: false
+#| fig-height: 2
+#| fig-width: 7
+ggplot(dummy, aes(x = x, y = y, linewidth = y, color = y)) +
+  geom_line(show.legend = FALSE) +
+  scale_linewidth_manual(values = c(0.7, 1.8)) +
+  scale_color_manual(values = c("gray40", "gray60")) +
+  theme_void()
+```
+
+Which line uses a darker color?
+
+```{r}
+#| echo: false
+#| fig-height: 3
+#| fig-width: 7
+ggplot(dummy, aes(x = x, y = y)) +
+  geom_tile(aes(fill = y), show.legend = FALSE) +
+  geom_line(size = 2, color = "gray70") +
+  scale_fill_manual(values = c("gray0", "gray100")) +
+  theme_void()
+```
+
+How many purple dots are in each row?
+
+```{r}
+#| echo: false
+#| fig-height: 2
+#| fig-width: 7
+ggplot(dummy, aes(x = x, y = y, color = z, size = y)) +
+  geom_point(show.legend = FALSE) +
+  scale_size_manual(values = c(2, 9)) +
+  scale_color_manual(values = qual_pal[c(1, 3)]) +
+  theme_void()
+```
+
+## Chapters
+
 We'll walk through Wilke chapters 4 and 19--I don't have a ton to add until we get to mapping.
 
 - [Wilke chapter 4](https://clauswilke.com/dataviz/color-basics.html)
 - [Wilke chapter 19](https://clauswilke.com/dataviz/color-pitfalls.html)
 - @Datawrapper2021 
 
-## Resources
+## Tools
 
 - [ColorBrewer](https://colorbrewer2.org) (access to these palettes comes with ggplot)
 - [Carto Colors](https://carto.com/carto-colors/) (access comes with the rcartocolor package)
 - [Susie Lu's Viz Palette](https://projects.susielu.com/viz-palette) generator & preview
 - [Gregor Aisch's chroma palettes](https://gka.github.io/palettes) generator
 - @colorgorical
+
+## Exercises
+
+Find some ways to improve these charts. If you want to change other things that's fine, just do a round focusing on color first.
+
+Here are some charts that are bad because they use color inappropriately. In your code, note what's wrong with them and what you want to change _before_ writing any code.
+
+
+```{r}
+acs_county |>
+  mutate(name = forcats::as_factor(name) |> forcats::fct_reorder(homeownership)) |>
+  ggplot(aes(x = name, y = homeownership, fill = name)) +
+  geom_col(width = 0.8) +
+  coord_flip() +
+  labs(x = NULL, y = NULL, 
+       title = "Homeownership rate by location", 
+       subtitle = "US, Maryland, and Maryland counties, 2022")
+```
+
+```{r}
+acs_county |>
+  mutate(name = forcats::as_factor(name) |> forcats::fct_reorder(homeownership)) |>
+  ggplot(aes(x = name, y = homeownership, fill = local2)) +
+  geom_col(width = 0.7, color = "gray20", linewidth = 0.2) +
+  coord_flip() +
+  labs(x = NULL, y = NULL, 
+       title = "Homeownership rate by location", 
+       subtitle = "US, Maryland, and Maryland counties, 2022") +
+  scale_fill_brewer(palette = "GnBu")
+```
+
+
+Here's a chart that's okay but not great; it uses color in a way that's not wrong but not effective either. Again, note what's wrong with it and what you want to change _before_ writing any code.
+
+```{r}
+acs_county |>
+  mutate(name = forcats::as_factor(name) |> forcats::fct_reorder(homeownership)) |>
+  ggplot(aes(x = name, y = homeownership, fill = local2)) +
+  geom_col(width = 0.8) +
+  coord_flip() +
+  labs(x = NULL, y = NULL, 
+       title = "Homeownership rate by location", 
+       subtitle = "US, Maryland, and Maryland counties, 2022")
+```
+
+Here's one that uses color when it should actually use something else to convey its pattern.
+
+```{r}
+acs_county |>
+  mutate(name = forcats::as_factor(name) |> forcats::fct_reorder(homeownership)) |>
+  ggplot(aes(x = name, y = homeownership, fill = median_hh_income)) +
+  geom_col(width = 0.8) +
+  coord_flip() +
+  labs(x = NULL, y = NULL, 
+       title = "Homeownership rate vs median household income by location", 
+       subtitle = "US, Maryland, and Maryland counties, 2022")
+```
+
+
+```{r}
+#| include: false
+acs_county |>
+  ggplot(aes(x = median_hh_income, y = homeownership)) +
+  geom_point(size = 3) +
+  labs(x = "Median household income", y = "Homeownership rate", 
+       title = "Homeownership rate vs median household income", 
+       subtitle = "US, Maryland, and Maryland counties, 2022")
+```
+
+
+```{r}
+#| include: false
+acs_county |>
+  ggplot(aes(x = median_hh_income, y = homeownership, color = level, shape = level, size = level)) +
+  geom_point() +
+  labs(x = "Median household income", y = "Homeownership rate", 
+       title = "Homeownership rate vs median household income", 
+       subtitle = "US, Maryland, and Maryland counties, 2022") +
+  scale_color_manual(values = c(us = qual_pal[2], state = qual_pal[5], county = "gray50")) +
+  scale_shape_manual(values = c(us = "square", state = "triangle", county = "circle")) +
+  scale_size_manual(values = c(us = 4, state = 4, county = 2.5))
+```
+
+
+```{r}
+#| include: false
+acs_county |>
+  mutate(local3 = forcats::fct_other(local2, keep = c("Baltimore city", "Outside Baltimore"))) |>
+  ggplot(aes(x = median_hh_income, y = homeownership, color = local3, shape = local3, size = local3)) +
+  geom_point() +
+  labs(x = "Median household income", y = "Homeownership rate", 
+       title = "Homeownership rate vs median household income", 
+       subtitle = "US, Maryland, and Maryland counties, 2022") +
+  scale_color_manual(values = c("Baltimore city" = qual_pal[5], "Outside Baltimore" = qual_pal[2], "Other" = "gray50")) +
+  scale_shape_manual(values = c("Baltimore city" = "square", "Outside Baltimore" = "triangle", Other = "circle")) +
+  scale_size_manual(values = c("Baltimore city" = 4, "Outside Baltimore" = 4, Other = 2.5))
+```
+
+Here's an optical illusion: should you be reading the white bars or the gray ones?
+
+```{r}
+#| echo: false
+acs_county |>
+  mutate(name = forcats::as_factor(name) |> forcats::fct_reorder(homeownership)) |>
+  ggplot(aes(x = name, y = homeownership)) +
+  geom_col(width = 0.4, fill = "white") +
+  scale_y_barcontinuous() +
+  coord_flip() +
+  theme(panel.background = element_rect(color = NULL, fill = "gray50"),
+        panel.grid = element_blank()) +
+  # theme_dark() +
+  labs(x = NULL, y = NULL, 
+       title = "Homeownership rate by location", 
+       subtitle = "US, Maryland, and Maryland counties, 2022")
+```
 
