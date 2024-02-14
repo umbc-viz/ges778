@@ -15,23 +15,28 @@ citation-location: document
 This is most of what's in my Zotero bibliography for this class arranged by topic.
 
 ```{r}
-keys <- c("annotations", "color", "data ethics", "data for action", "decisions",
-          "fallacies", "general", "missing data", "perception", "spatial analysis",
-          "storytelling", "styleguides", "survey data", "uncertainty", "main texts")
+# keys <- c("annotations", "color", "data ethics", "data for action", "decisions",
+#           "fallacies", "general", "missing data", "perception", "spatial analysis",
+#           "storytelling", "styleguides", "survey data", "uncertainty", "main texts")
+keys <- list(
+  main = "main texts",
+  general = c("general"),
+  aesthetics = c("annotations", "color", "styleguides", "perception"),
+  understanding = c("decisions", "fallacies", "missing data", "uncertainty", "survey data", "framing", "exploration", "exploration"),
+  storytelling = c("storytelling"),
+  justice = c("data ethics", "data for action", "equity"),
+  spatial = c("spatial analysis")
+)
 
 refs <- bib2df::bib2df(here::here("references.bib")) |>
   janitor::clean_names() |>
   dplyr::filter(!is.na(keywords)) |>
   dplyr::select(bibtexkey, keywords) |>
   tidyr::separate_rows(keywords, sep = ",") |>
-  dplyr::filter(keywords %in% keys) |>
+  # dplyr::filter(keywords %in% keys) |>
   dplyr::mutate(keywords = forcats::as_factor(keywords) |>
-                   forcats::fct_collapse( 
-                      aesthetics = c("annotations", "color", "styleguides", "perception"),
-                      justice = c("data ethics", "data for action"),
-                      understanding = c("decisions", "fallacies", "missing data", "uncertainty", "survey data")) |>
-                    forcats::fct_recode(spatial = "spatial analysis", main = "main texts") |>
-                    forcats::fct_relevel("main", "general", "aesthetics", "understanding", "storytelling", "justice")) |>
+                  forcats::fct_collapse(!!!keys) |>
+                  forcats::fct_relevel(names(keys))) |>
   split(~keywords) |>
   purrr::map(dplyr::pull, bibtexkey)
 ```

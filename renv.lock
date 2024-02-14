@@ -831,13 +831,13 @@
       "RemoteRepo": "justviz",
       "RemoteUsername": "umbc-viz",
       "RemoteRef": "HEAD",
-      "RemoteSha": "10f97a101147379061d742600e56d97f7f680d20",
+      "RemoteSha": "42ba4f14053bc300d820e22adce2025f99a4f449",
       "Requirements": [
         "R",
         "classInt",
         "cli"
       ],
-      "Hash": "62f3e33440a810d9bb18808a31d3e70c"
+      "Hash": "d67587efe852bb460205654db42f9ff6"
     },
     "knitr": {
       "Package": "knitr",
