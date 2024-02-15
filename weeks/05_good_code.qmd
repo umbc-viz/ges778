@@ -31,6 +31,17 @@ This also applies to simple things like organizing your projects. If you have a 
 
 Going back to your list for leaving the house, add notes for how you decide whether you'll need something. For example, if your laptop is on your "sometimes" list, write down what decides that.
 
+::: {.callout-tip}
+### Brainstorm
+
+* Cash -- if you're going somewhere that doesn't take cards / mobile
+* Sweater -- weather / environment
+* Tea -- sleepiness
+* Earbuds -- length of time out of house / time of day
+* Work badge -- going to office
+* Laptop charger -- if not already charged
+:::
+
 ## Reusable code
 
 One rule of thumb I've heard is that it's fine to repeat your code to do the same thing twice, but if you need to do it a third time, [you should write a function](https://r4ds.hadley.nz/functions). It might mean taking a step back from what you're working on at the moment, but it's pretty much always worth the time. Alongside documenting your code in general, it's important to document your functions---what they do, what the arguments mean, what types of values arguments can take. Try to your functions and their arguments in ways that make it clear what they mean as well.
@@ -38,6 +49,57 @@ One rule of thumb I've heard is that it's fine to repeat your code to do the sam
 ## Exercises
 
 Build out your morning routine into a [pseudocode](https://en.wikipedia.org/wiki/Pseudocode) function, complete with arguments. Aim to make it flexible enough that you could use it any day of the week.
+
+### Example
+
+Pseudocode
+
+```
+always need: keys, wallet, phone, meds, mask
+if I'm biking:
+        bring a helmet
+otherwise:
+        bring a bus card
+if I'm working:
+        bring my laptop
+if it's Wednesday:
+        take a covid test
+```
+
+Working R example
+
+```{r}
+# PARAMETERS:
+# date: Date object, today's date
+# biking: Logical, whether or not I'll be biking
+# working: Logical, whether or not I'm going to work
+# RETURNS:
+# prints a string
+leave_the_house <- function(date = lubridate::today(), biking = TRUE, working = TRUE) {
+  day_of_week <- lubridate::wday(date, label = TRUE, abbr = FALSE)
+  always_need <- c("keys", "phone", "wallet", "meds")
+  sometimes_need <- c()
+  if (biking) {
+    sometimes_need <- c(sometimes_need, "helmet")
+  } else {
+    sometimes_need <- c(sometimes_need, "bus card")
+  }
+  if (working) {
+    sometimes_need <- c(sometimes_need, "laptop")
+  }
+  
+  need <- c(always_need, sometimes_need)
+  cat(
+    sprintf("Happy %s! Today you need:", day_of_week), "\n",
+    paste(need, collapse = ", ")
+  )
+  if (day_of_week == "Wednesday") {
+          cat("\n\nBut take a COVID test first!")
+  }
+}
+
+leave_the_house(biking = FALSE)
+```
 
 ## Organization
 
