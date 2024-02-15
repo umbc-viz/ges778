@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -226,7 +260,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
   </ul></li>
   <li><a href="#reusable-code" id="toc-reusable-code" class="nav-link" data-scroll-target="#reusable-code">Reusable code</a></li>
-  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1">Exercises</a></li>
+  <li><a href="#exercises-1" id="toc-exercises-1" class="nav-link" data-scroll-target="#exercises-1">Exercises</a>
+  <ul class="collapse">
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  </ul></li>
   <li><a href="#organization" id="toc-organization" class="nav-link" data-scroll-target="#organization">Organization</a></li>
   <li><a href="#build-tools" id="toc-build-tools" class="nav-link" data-scroll-target="#build-tools">Build tools</a></li>
   </ul>
@@ -255,7 +292,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 14, 2024</p>
+      <p class="date-modified">February 15, 2024</p>
     </div>
   </div>
     
@@ -291,6 +328,26 @@ ul.task-list li input[type="checkbox"] {
 <section id="exercises" class="level3">
 <h3 class="anchored" data-anchor-id="exercises">Exercises</h3>
 <p>Going back to your list for leaving the house, add notes for how you decide whether you’ll need something. For example, if your laptop is on your “sometimes” list, write down what decides that.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Brainstorm
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Cash – if you’re going somewhere that doesn’t take cards / mobile</li>
+<li>Sweater – weather / environment</li>
+<li>Tea – sleepiness</li>
+<li>Earbuds – length of time out of house / time of day</li>
+<li>Work badge – going to office</li>
+<li>Laptop charger – if not already charged</li>
+</ul>
+</div>
+</div>
 </section>
 </section>
 <section id="reusable-code" class="level2">
@@ -300,6 +357,56 @@ ul.task-list li input[type="checkbox"] {
 <section id="exercises-1" class="level2">
 <h2 class="anchored" data-anchor-id="exercises-1">Exercises</h2>
 <p>Build out your morning routine into a <a href="https://en.wikipedia.org/wiki/Pseudocode">pseudocode</a> function, complete with arguments. Aim to make it flexible enough that you could use it any day of the week.</p>
+<section id="example" class="level3">
+<h3 class="anchored" data-anchor-id="example">Example</h3>
+<p>Pseudocode</p>
+<pre><code>always need: keys, wallet, phone, meds, mask
+if I'm biking:
+        bring a helmet
+otherwise:
+        bring a bus card
+if I'm working:
+        bring my laptop
+if it's Wednesday:
+        take a covid test</code></pre>
+<p>Working R example</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># PARAMETERS:</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="co"># date: Date object, today's date</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="co"># biking: Logical, whether or not I'll be biking</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># working: Logical, whether or not I'm going to work</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="co"># RETURNS:</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># prints a string</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>leave_the_house <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">date =</span> lubridate<span class="sc">::</span><span class="fu">today</span>(), <span class="at">biking =</span> <span class="cn">TRUE</span>, <span class="at">working =</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb2-8"><a href="#cb2-8"></a>  day_of_week <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">wday</span>(date, <span class="at">label =</span> <span class="cn">TRUE</span>, <span class="at">abbr =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-9"><a href="#cb2-9"></a>  always_need <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"keys"</span>, <span class="st">"phone"</span>, <span class="st">"wallet"</span>, <span class="st">"meds"</span>)</span>
+<span id="cb2-10"><a href="#cb2-10"></a>  sometimes_need <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="cf">if</span> (biking) {</span>
+<span id="cb2-12"><a href="#cb2-12"></a>    sometimes_need <span class="ot">&lt;-</span> <span class="fu">c</span>(sometimes_need, <span class="st">"helmet"</span>)</span>
+<span id="cb2-13"><a href="#cb2-13"></a>  } <span class="cf">else</span> {</span>
+<span id="cb2-14"><a href="#cb2-14"></a>    sometimes_need <span class="ot">&lt;-</span> <span class="fu">c</span>(sometimes_need, <span class="st">"bus card"</span>)</span>
+<span id="cb2-15"><a href="#cb2-15"></a>  }</span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="cf">if</span> (working) {</span>
+<span id="cb2-17"><a href="#cb2-17"></a>    sometimes_need <span class="ot">&lt;-</span> <span class="fu">c</span>(sometimes_need, <span class="st">"laptop"</span>)</span>
+<span id="cb2-18"><a href="#cb2-18"></a>  }</span>
+<span id="cb2-19"><a href="#cb2-19"></a>  </span>
+<span id="cb2-20"><a href="#cb2-20"></a>  need <span class="ot">&lt;-</span> <span class="fu">c</span>(always_need, sometimes_need)</span>
+<span id="cb2-21"><a href="#cb2-21"></a>  <span class="fu">cat</span>(</span>
+<span id="cb2-22"><a href="#cb2-22"></a>    <span class="fu">sprintf</span>(<span class="st">"Happy %s! Today you need:"</span>, day_of_week), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23"></a>    <span class="fu">paste</span>(need, <span class="at">collapse =</span> <span class="st">", "</span>)</span>
+<span id="cb2-24"><a href="#cb2-24"></a>  )</span>
+<span id="cb2-25"><a href="#cb2-25"></a>  <span class="cf">if</span> (day_of_week <span class="sc">==</span> <span class="st">"Wednesday"</span>) {</span>
+<span id="cb2-26"><a href="#cb2-26"></a>          <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n\n</span><span class="st">But take a COVID test first!"</span>)</span>
+<span id="cb2-27"><a href="#cb2-27"></a>  }</span>
+<span id="cb2-28"><a href="#cb2-28"></a>}</span>
+<span id="cb2-29"><a href="#cb2-29"></a></span>
+<span id="cb2-30"><a href="#cb2-30"></a><span class="fu">leave_the_house</span>(<span class="at">biking =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Happy Thursday! Today you need: 
+ keys, phone, wallet, meds, bus card, laptop</code></pre>
+</div>
+</div>
+</section>
 </section>
 <section id="organization" class="level2">
 <h2 class="anchored" data-anchor-id="organization">Organization</h2>
@@ -865,7 +972,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/04_understanding_data.html" class="pagination-link  aria-label=" 4.="" learning="" about="" your="" data"="">
+      <a href="../weeks/04_understanding_data.html" class="pagination-link" aria-label="4. Learning about your data">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">4. Learning about your data</span>
       </a>          
   </div>
