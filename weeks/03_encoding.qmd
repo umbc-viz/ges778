@@ -51,7 +51,7 @@ As noted in the book, these are bad ideas:
  
 ```{r}
 ggplot(acs_tr, aes(x = homeownership, y = total_cost_burden)) +
-  geom_point(aes(size = county2))
+  geom_point(aes(size = county2), alpha = 0.5)
 
 ggplot(acs_tr, aes(x = homeownership, y = total_cost_burden)) +
   geom_point(aes(alpha = county2), size = 1)
