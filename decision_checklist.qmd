@@ -1,0 +1,27 @@
+---
+title: "Decisionmaking checklist"
+---
+
+When you're planning out your own work, it's important to make conscious decisions about what you're doing and why. I keep saying this, but one of the things I dislike the most about no-code visualization products like Excel or Tableau is that they encourage you to *not* make these decisions, but to just rely on defaults or automated suggestions.
+
+In contrast to just going with defaults, you as a thoughtful visualization practitioner should go through the decisions you *could* make in order to determine what decisions you *should* make. This is something you do in your EDA process, as well as in sketching charts on paper.
+
+It's also useful for understanding a chart someone else made, whether just to read it, or to revise or critique it.
+
+## Checklist
+
+What decisions could be / should be / were made about...
+
+* what data to include
+* what data to exclude
+* what visual encodings to use
+* what types of scales to use (sequential, qualitative, diverging)
+* what to put on the x- and y-axes
+* how to scale the x- and y-axes
+* how to use color
+* how to use text
+* how to use annotations
+* where to draw attention
+* what conclusion to suggest
+
+What have I forgotten from this list?

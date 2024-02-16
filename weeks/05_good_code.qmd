@@ -119,7 +119,8 @@ cool_project
  °--utils            # misc scripts & bits of data to use throughout the project
 ```
 
-## Build tools
+:::{.callout-note}
+## An aside: build tools
 
 Build tools are outside the scope of this class, but for larger projects especially or projects that will need to be updated over time, they'll save you a lot of headaches. I have some projects that I rebuild once a year when new ACS data comes out, and I've got things down to where I can make one or two calls on the command line flagging the year as a variable, and all the data wrangling and analyses are ready to go. In fact, this site rebuilds from a frozen list of packages every time I push to GitHub, and if that build is successful, it publishes automatically.
 
@@ -130,3 +131,4 @@ Some tools I use:
 - [GitHub actions](https://github.com/features/actions), including ones specifically for [R](https://github.com/r-lib/actions/)
 - [Docker](https://www.docker.com/), build a small isolated environment for your projects, some designed for [R](https://github.com/rocker-org/rocker-versioned2)
 - Package & environment managers: [mamba](https://mamba.readthedocs.io) or [conda](https://docs.conda.io/en/latest/) for Python, [renv](https://rstudio.github.io/renv/) for R
+:::
