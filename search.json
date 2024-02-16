@@ -103,7 +103,7 @@
     "href": "weeks/05_good_code.html#exercises-1",
     "title": "5. Writing good code",
     "section": "Exercises",
-    "text": "Exercises\nBuild out your morning routine into a pseudocode function, complete with arguments. Aim to make it flexible enough that you could use it any day of the week.\n\nExample\nPseudocode\nalways need: keys, wallet, phone, meds, mask\nif I'm biking:\n        bring a helmet\notherwise:\n        bring a bus card\nif I'm working:\n        bring my laptop\nif it's Wednesday:\n        take a covid test\nWorking R example\n\n# PARAMETERS:\n# date: Date object, today's date\n# biking: Logical, whether or not I'll be biking\n# working: Logical, whether or not I'm going to work\n# RETURNS:\n# prints a string\nleave_the_house &lt;- function(date = lubridate::today(), biking = TRUE, working = TRUE) {\n  day_of_week &lt;- lubridate::wday(date, label = TRUE, abbr = FALSE)\n  always_need &lt;- c(\"keys\", \"phone\", \"wallet\", \"meds\")\n  sometimes_need &lt;- c()\n  if (biking) {\n    sometimes_need &lt;- c(sometimes_need, \"helmet\")\n  } else {\n    sometimes_need &lt;- c(sometimes_need, \"bus card\")\n  }\n  if (working) {\n    sometimes_need &lt;- c(sometimes_need, \"laptop\")\n  }\n  \n  need &lt;- c(always_need, sometimes_need)\n  cat(\n    sprintf(\"Happy %s! Today you need:\", day_of_week), \"\\n\",\n    paste(need, collapse = \", \")\n  )\n  if (day_of_week == \"Wednesday\") {\n          cat(\"\\n\\nBut take a COVID test first!\")\n  }\n}\n\nleave_the_house(biking = FALSE)\n\nHappy Thursday! Today you need: \n keys, phone, wallet, meds, bus card, laptop",
+    "text": "Exercises\nBuild out your morning routine into a pseudocode function, complete with arguments. Aim to make it flexible enough that you could use it any day of the week.\n\nExample\nPseudocode\nalways need: keys, wallet, phone, meds, mask\nif I'm biking:\n        bring a helmet\notherwise:\n        bring a bus card\nif I'm working:\n        bring my laptop\nif it's Wednesday:\n        take a covid test\nWorking R example\n\n# PARAMETERS:\n# date: Date object, today's date\n# biking: Logical, whether or not I'll be biking\n# working: Logical, whether or not I'm going to work\n# RETURNS:\n# prints a string\nleave_the_house &lt;- function(date = lubridate::today(), biking = TRUE, working = TRUE) {\n  day_of_week &lt;- lubridate::wday(date, label = TRUE, abbr = FALSE)\n  always_need &lt;- c(\"keys\", \"phone\", \"wallet\", \"meds\")\n  sometimes_need &lt;- c()\n  if (biking) {\n    sometimes_need &lt;- c(sometimes_need, \"helmet\")\n  } else {\n    sometimes_need &lt;- c(sometimes_need, \"bus card\")\n  }\n  if (working) {\n    sometimes_need &lt;- c(sometimes_need, \"laptop\")\n  }\n  \n  need &lt;- c(always_need, sometimes_need)\n  cat(\n    sprintf(\"Happy %s! Today you need:\", day_of_week), \"\\n\",\n    paste(need, collapse = \", \")\n  )\n  if (day_of_week == \"Wednesday\") {\n          cat(\"\\n\\nBut take a COVID test first!\")\n  }\n}\n\nleave_the_house(biking = FALSE)\n\nHappy Friday! Today you need: \n keys, phone, wallet, meds, bus card, laptop",
     "crumbs": [
       "Weekly notes",
       "5. Writing good code"
@@ -114,18 +114,7 @@
     "href": "weeks/05_good_code.html#organization",
     "title": "5. Writing good code",
     "section": "Organization",
-    "text": "Organization\nCome up with a structure of directories you like for a project, and stick with it. The notes template repo I setup for this class has a pared down version of what I usually use, but a full version of what I might have, even for a small project, looks like this:\ncool_project          \n ¦--analysis         # EDA, notebooks, and scripts that create output\n |--design           # scripts *only* for creating publishable charts\n ¦--fetch_data       # raw data, often downloaded in a script\n ¦   ¦--fr_comments  # folders for each raw data source\n ¦   °--pums       \n ¦--input_data       # cleaned data that is sourced for the project, maybe cleaned in prep scripts\n ¦--output_data      # data that's a product of analysis in this project\n ¦--plots            # plots that can be distributed or published\n ¦--prep_scripts     # scripts that download, clean, reshape data\n °--utils            # misc scripts & bits of data to use throughout the project",
-    "crumbs": [
-      "Weekly notes",
-      "5. Writing good code"
-    ]
-  },
-  {
-    "objectID": "weeks/05_good_code.html#build-tools",
-    "href": "weeks/05_good_code.html#build-tools",
-    "title": "5. Writing good code",
-    "section": "Build tools",
-    "text": "Build tools\nBuild tools are outside the scope of this class, but for larger projects especially or projects that will need to be updated over time, they’ll save you a lot of headaches. I have some projects that I rebuild once a year when new ACS data comes out, and I’ve got things down to where I can make one or two calls on the command line flagging the year as a variable, and all the data wrangling and analyses are ready to go. In fact, this site rebuilds from a frozen list of packages every time I push to GitHub, and if that build is successful, it publishes automatically.\nSome tools I use:\n\nGNU Make, the OG build tool\nSnakemake, like GNU Make but written in Python and designed for data analysis\nGitHub actions, including ones specifically for R\nDocker, build a small isolated environment for your projects, some designed for R\nPackage & environment managers: mamba or conda for Python, renv for R",
+    "text": "Organization\nCome up with a structure of directories you like for a project, and stick with it. The notes template repo I setup for this class has a pared down version of what I usually use, but a full version of what I might have, even for a small project, looks like this:\ncool_project          \n ¦--analysis         # EDA, notebooks, and scripts that create output\n |--design           # scripts *only* for creating publishable charts\n ¦--fetch_data       # raw data, often downloaded in a script\n ¦   ¦--fr_comments  # folders for each raw data source\n ¦   °--pums       \n ¦--input_data       # cleaned data that is sourced for the project, maybe cleaned in prep scripts\n ¦--output_data      # data that's a product of analysis in this project\n ¦--plots            # plots that can be distributed or published\n ¦--prep_scripts     # scripts that download, clean, reshape data\n °--utils            # misc scripts & bits of data to use throughout the project\n\n\n\n\n\n\nAn aside: build tools\n\n\n\nBuild tools are outside the scope of this class, but for larger projects especially or projects that will need to be updated over time, they’ll save you a lot of headaches. I have some projects that I rebuild once a year when new ACS data comes out, and I’ve got things down to where I can make one or two calls on the command line flagging the year as a variable, and all the data wrangling and analyses are ready to go. In fact, this site rebuilds from a frozen list of packages every time I push to GitHub, and if that build is successful, it publishes automatically.\nSome tools I use:\n\nGNU Make, the OG build tool\nSnakemake, like GNU Make but written in Python and designed for data analysis\nGitHub actions, including ones specifically for R\nDocker, build a small isolated environment for your projects, some designed for R\nPackage & environment managers: mamba or conda for Python, renv for R",
     "crumbs": [
       "Weekly notes",
       "5. Writing good code"
@@ -230,17 +219,6 @@
     ]
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Setup",
-    "section": "",
-    "text": "This is a collection of notes to fill in examples and walkthroughs for the Spring 2024 session of GES 778. It will be updated throughout the semester.\nFirst, install the course’s companion R package, justviz. This is in the class’s GitHub organization.\n\n# install.packages(\"devtools\")\ndevtools::install_github(\"umbc-viz/justviz\")\n\nNext, some packages that aren’t required by the justviz package but will get us started for class and are used in these notes:\n\ncran_pkgs &lt;- c(\"ggplot2\",     # data visualization powerhouse\n               \"dplyr\",       # nice for calculations and data manipulation\n               \"tidyr\",       # data reshaping\n               \"forcats\",     # handling factors\n               \"stringr\",     # string cleanup\n               \"showtext\",    # nice fonts\n               \"ggrepel\",     # force-repelled placement of labels\n               \"osmdata\",     # easy access to sf data from OpenStreetMap\n               \"tigris\",      # shapefiles from Census Bureau TIGER\n               \"patchwork\",   # assembling plots\n               \"ggmap\",       # basemaps in ggplot\n               \"ggtext\",      # use rich text / markdown in ggplot\n               \"here\",        # marks project roots\n               \"knitr\",       # preps conversions between markdown and other formats\n               \"gt\",          # like ggplot but for tables  \n               \"rcartocolor\") # color palettes\n\ninstall.packages(cran_pkgs)\n\n\n\n\n Back to top",
-    "crumbs": [
-      "Overview",
-      "Setup"
-    ]
-  },
-  {
     "objectID": "syllabus.html",
     "href": "syllabus.html",
     "title": "Syllabus",
@@ -318,6 +296,31 @@
     ]
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Setup",
+    "section": "",
+    "text": "This is a collection of notes to fill in examples and walkthroughs for the Spring 2024 session of GES 778. It will be updated throughout the semester.\nFirst, install the course’s companion R package, justviz. This is in the class’s GitHub organization.\n\n# install.packages(\"devtools\")\ndevtools::install_github(\"umbc-viz/justviz\")\n\nNext, some packages that aren’t required by the justviz package but will get us started for class and are used in these notes:\n\ncran_pkgs &lt;- c(\"ggplot2\",     # data visualization powerhouse\n               \"dplyr\",       # nice for calculations and data manipulation\n               \"tidyr\",       # data reshaping\n               \"forcats\",     # handling factors\n               \"stringr\",     # string cleanup\n               \"showtext\",    # nice fonts\n               \"ggrepel\",     # force-repelled placement of labels\n               \"osmdata\",     # easy access to sf data from OpenStreetMap\n               \"tigris\",      # shapefiles from Census Bureau TIGER\n               \"patchwork\",   # assembling plots\n               \"ggmap\",       # basemaps in ggplot\n               \"ggtext\",      # use rich text / markdown in ggplot\n               \"here\",        # marks project roots\n               \"knitr\",       # preps conversions between markdown and other formats\n               \"gt\",          # like ggplot but for tables  \n               \"rcartocolor\") # color palettes\n\ninstall.packages(cran_pkgs)\n\n\n\n\n Back to top",
+    "crumbs": [
+      "Overview",
+      "Setup"
+    ]
+  },
+  {
+    "objectID": "decision_checklist.html",
+    "href": "decision_checklist.html",
+    "title": "Decisionmaking checklist",
+    "section": "",
+    "text": "When you’re planning out your own work, it’s important to make conscious decisions about what you’re doing and why. I keep saying this, but one of the things I dislike the most about no-code visualization products like Excel or Tableau is that they encourage you to not make these decisions, but to just rely on defaults or automated suggestions.\nIn contrast to just going with defaults, you as a thoughtful visualization practitioner should go through the decisions you could make in order to determine what decisions you should make. This is something you do in your EDA process, as well as in sketching charts on paper.\nIt’s also useful for understanding a chart someone else made, whether just to read it, or to revise or critique it."
+  },
+  {
+    "objectID": "decision_checklist.html#checklist",
+    "href": "decision_checklist.html#checklist",
+    "title": "Decisionmaking checklist",
+    "section": "Checklist",
+    "text": "Checklist\nWhat decisions could be / should be / were made about…\n\nwhat data to include\nwhat data to exclude\nwhat visual encodings to use\nwhat types of scales to use (sequential, qualitative, diverging)\nwhat to put on the x- and y-axes\nhow to scale the x- and y-axes\nhow to use color\nhow to use text\nhow to use annotations\nwhere to draw attention\nwhat conclusion to suggest\n\nWhat have I forgotten from this list?"
+  },
+  {
     "objectID": "weeks/06_color.html",
     "href": "weeks/06_color.html",
     "title": "6. Color",
@@ -377,7 +380,7 @@
     "href": "weeks/index.html",
     "title": "Weekly notes",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nModified\n\n\n\n\n\n\n0. Definitions\n\n\nFebruary 15, 2024\n\n\n\n\n1. Walkthrough\n\n\nFebruary 15, 2024\n\n\n\n\n2. Components of a chart\n\n\nFebruary 15, 2024\n\n\n\n\n3. Visual encoding\n\n\nFebruary 15, 2024\n\n\n\n\n3b. Encoding cheatsheets\n\n\nFebruary 15, 2024\n\n\n\n\n4. Learning about your data\n\n\nFebruary 15, 2024\n\n\n\n\n5. Writing good code\n\n\nFebruary 15, 2024\n\n\n\n\n6. Color\n\n\nFebruary 15, 2024\n\n\n\n\n\nNo matching items\n\n Back to top",
+    "text": "Order By\n       Default\n         \n          Title\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nTitle\n\n\nModified\n\n\n\n\n\n\n0. Definitions\n\n\nFebruary 16, 2024\n\n\n\n\n1. Walkthrough\n\n\nFebruary 16, 2024\n\n\n\n\n2. Components of a chart\n\n\nFebruary 16, 2024\n\n\n\n\n3. Visual encoding\n\n\nFebruary 16, 2024\n\n\n\n\n3b. Encoding cheatsheets\n\n\nFebruary 16, 2024\n\n\n\n\n4. Learning about your data\n\n\nFebruary 16, 2024\n\n\n\n\n5. Writing good code\n\n\nFebruary 16, 2024\n\n\n\n\n6. Color\n\n\nFebruary 16, 2024\n\n\n\n\n\nNo matching items\n\n Back to top",
     "crumbs": [
       "Weekly notes"
     ]

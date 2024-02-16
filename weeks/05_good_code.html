@@ -265,7 +265,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
   </ul></li>
   <li><a href="#organization" id="toc-organization" class="nav-link" data-scroll-target="#organization">Organization</a></li>
-  <li><a href="#build-tools" id="toc-build-tools" class="nav-link" data-scroll-target="#build-tools">Build tools</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/05_good_code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/05_good_code.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -292,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 15, 2024</p>
+      <p class="date-modified">February 16, 2024</p>
     </div>
   </div>
     
@@ -402,7 +401,7 @@ if it's Wednesday:
 <span id="cb2-29"><a href="#cb2-29"></a></span>
 <span id="cb2-30"><a href="#cb2-30"></a><span class="fu">leave_the_house</span>(<span class="at">biking =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Happy Thursday! Today you need: 
+<pre><code>Happy Friday! Today you need: 
  keys, phone, wallet, meds, bus card, laptop</code></pre>
 </div>
 </div>
@@ -422,9 +421,16 @@ if it's Wednesday:
  ¦--plots            # plots that can be distributed or published
  ¦--prep_scripts     # scripts that download, clean, reshape data
  °--utils            # misc scripts &amp; bits of data to use throughout the project</code></pre>
-</section>
-<section id="build-tools" class="level2">
-<h2 class="anchored" data-anchor-id="build-tools">Build tools</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+An aside: build tools
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Build tools are outside the scope of this class, but for larger projects especially or projects that will need to be updated over time, they’ll save you a lot of headaches. I have some projects that I rebuild once a year when new ACS data comes out, and I’ve got things down to where I can make one or two calls on the command line flagging the year as a variable, and all the data wrangling and analyses are ready to go. In fact, this site rebuilds from a frozen list of packages every time I push to GitHub, and if that build is successful, it publishes automatically.</p>
 <p>Some tools I use:</p>
 <ul>
@@ -434,6 +440,8 @@ if it's Wednesday:
 <li><a href="https://www.docker.com/">Docker</a>, build a small isolated environment for your projects, some designed for <a href="https://github.com/rocker-org/rocker-versioned2">R</a></li>
 <li>Package &amp; environment managers: <a href="https://mamba.readthedocs.io">mamba</a> or <a href="https://docs.conda.io/en/latest/">conda</a> for Python, <a href="https://rstudio.github.io/renv/">renv</a> for R</li>
 </ul>
+</div>
+</div>
 
 
 </section>
