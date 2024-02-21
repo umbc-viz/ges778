@@ -27,6 +27,7 @@ website:
           - index.qmd
           - syllabus.qmd
           - readings.qmd
+          - decision_checklist.qmd
       - "---"
       - section: "Weekly notes"
         contents: "weeks/*.qmd"

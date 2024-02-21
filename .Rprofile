@@ -9,3 +9,5 @@ if (interactive() && Sys.getenv("TERM_PROGRAM") == "vscode") {
     })
   }
 }
+
+options(tigris_use_cache = TRUE)
