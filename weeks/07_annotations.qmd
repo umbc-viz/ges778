@@ -1,0 +1,246 @@
+---
+title: "7. Text and annotations"
+---
+
+
+## Big picture: providing context and making meaning
+
+> "Until the systems of power recognise different categories, the data I'm reporting on is also flawed," she added.
+> 
+> In a bid to account for these biases, and any biases of her own, Chalabi is transparent about her sources and often includes disclaimers about her own decision-making process and about any gaps or uncertainties in the data.
+> 
+> "I try to produce journalism where I'm explaining my methods to you," she said. "If I can do this, you can do this, too. And it's a very democratising experience, it's very egalitarian."
+> 
+> In an ideal scenario, she is able to integrate this background information into the illustrations themselves, as evidenced by her graphics on anti-Asian hate crimes and the ethnic cleansing of Uygurs in China.
+> 
+> But at other times, context is relegated to the caption to ensure the graphic is as grabby as possible.
+> 
+> "What I have found is literally every single word that you add to an image reduces engagement, reduces people's willingness or ability to absorb the information," Chalabi said.
+> 
+> "So there is a tension there. How can you be accurate and get it right without alienating people by putting up too much information? That's a really, really hard balance."
+>
+> Mona Chalabi in @Hahn2023
+
+## Text
+
+> A data visualization is not a piece of art meant to be looked at only for its aesthetically pleasing features. Instead, its purpose is to convey information and make a point. To reliably achieve this goal when preparing visualizations, we have to place the data into context and provide accompanying titles, captions, and other annotations. -- @Wilke2019 ch. 22
+
+The type of text you use, phrasing, and placement all depend on where your visualizations will go, who will read them, and how they might be distributed. For example, I might put less detail in the titles and labels of a chart that will be part of a larger publication than a chart that might get distributed on its own (I'll also tend towards more straightforward chart types and simpler analyses for something standalone).
+
+### Uses of text
+
+[Here's a good rundown on how to use text](https://blog.datawrapper.de/text-in-data-visualizations)
+
+```{r}
+#| message: false
+library(dplyr)
+library(ggplot2)
+library(justviz)
+source(here::here("utils/plotting_utils.R"))
+source(here::here("utils/misc.R"))
+
+# set a default theme from the one I defined in plotting_utils.R
+theme_set(theme_nice())
+```
+
+Identify all the text in this chart, what purpose it serves, and whether that could be done better through other means.
+
+```{r}
+acs |>
+  filter(level %in% c("us", "state") | name %in% balt_metro) |>
+  mutate(name = forcats::fct_reorder(name, total_cost_burden)) |>
+  mutate(level2 = forcats::fct_other(name, keep = c("United States", "Maryland", "Baltimore city"))) |>
+  stylehaven::offset_lbls(value = total_cost_burden, frac = 0.025, fun = scales::label_percent()) |>
+  ggplot(aes(x = name, y = total_cost_burden, fill = level2)) +
+  geom_col(width = 0.8) +
+  geom_text(aes(label = lbl, hjust = just, y = y), color = "white", fontface = "bold") +
+  scale_y_barcontinuous() +
+  coord_flip() +
+  labs(title = "title",
+       subtitle = "subtitle",
+       caption = "caption",
+       fill = "fill") +
+  theme(panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line()) 
+```
+
+
+:::{.callout-tip}
+
+### Brainstorm
+
+| Text | Purpose | Could be better? |
+| ---- | ------- | ----------------- |
+|      |         |                   |
+|      |         |                   |
+|      |         |                   |
+|      |         |                   |
+
+:::
+
+
+## Other annotations
+
+There are other annotations that are useful too. You might mark off a region to show a cluster of points, or a period in time. There are 2 approaches to this with ggplot: using geoms (`geom_text`, `geom_hline`, etc) or [annotation layers](https://ggplot2.tidyverse.org/reference/index.html#annotations) (`annotate`, `annotation_custom`). The main difference is that annotations aren't mapped to data the way geoms are. Because of that, I almost only use geoms for annotations, and usually make a small data frame just for the data that goes into the annotations to avoid hard-coding too much.
+
+An example from DataHaven's most recent books: we wanted to explicitly put evictions into a policy context, so we marked off the end of the federal eviction moratorium and the prepandemic average count as a threshhold. Without those labeled lines, you could tell that there was an abrupt drop in evictions, then a steep rise in them about a year and a half later, then counts that are higher than at the beginning of 2020. But unless you had followed eviction trends and COVID relief policies, you might not know why any of those things occurred.
+
+![From @A.S.D+2023b](../inputs/evictions.png)
+
+## Exercises
+
+This chart doesn't have labels for its axes, but you know it's unemployment rates in Baltimore and Maryland. How accurately can we guess what the labels would be?
+
+```{r}
+#| echo: false
+# md goes to 12/2023 but baltimore only goes to 11/2023, not sure why
+last_date <- unemployment |>
+  filter(name %in% c("Maryland", "Baltimore City")) |>
+  slice_max(date, by = name) |>
+  slice_min(date) |>
+  pull(date)
+
+unemploy_balt <- unemployment |>
+  filter(name %in% c("Maryland", "Baltimore City")) |>
+  filter(date <= last_date) |>
+  mutate(across(reported_rate:adjusted_rate, \(x) x / 100))
+
+ggplot(unemploy_balt, aes(x = date, y = adjusted_rate, color = name, group = name)) +
+  geom_line(linewidth = 0.8) +
+    scale_x_date(date_breaks = "5 years", labels = NULL) +
+  # scale_x_date(date_breaks = "5 years", date_labels = "%Y") +
+  scale_y_continuous(breaks = seq(0, 0.12, by = 0.03), labels = NULL) +
+  scale_color_manual(values = c(Maryland = "gray50", "Baltimore City" = qual_pal[5])) +
+  theme(panel.grid.major.x = element_line(),
+        legend.justification = c(0, 1),
+        legend.position = c(0.02, 0.98),
+        axis.title.y = element_text(hjust = 0.98)) +
+  labs(x = NULL, y = "Unemployment rate", color = NULL,
+       title = "Monthly unemployment rate, seasonally adjusted",
+       subtitle = "subtitle",
+       caption = "caption")
+```
+
+Next, what annotations would be helpful for contextualizing this trend?
+
+:::{.callout-tip}
+### Brainstorm: contextualizing information
+
+-
+
+:::
+
+```{r}
+#| include: false
+recessions <- tibble::tribble(
+  ~label, ~start_date, ~end_date,
+  "Dot-com & 9/11", "2001-03-01", "2001-11-30",
+  "Great Recession", "2007-12-01", "2009-06-30",
+  "COVID-19", "2020-02-01", "2020-04-30"
+) |>
+  mutate(across(start_date:end_date, as.Date)) |>
+  mutate(adjusted_rate = max(unemploy_balt$adjusted_rate))
+
+timeline <- tibble::tribble(
+  ~label, ~date,
+  "9/11", "2001-09-11",
+  "Major bank failures", "2008-09-01",
+  "COVID-19 national emergency declared", "2020-03-13"
+) |>
+  mutate(date = as.Date(date)) |>
+  mutate(adjusted_rate = max(unemploy_balt$adjusted_rate))
+
+# there are ways to do this analytically but I'm just doing it manually,
+# splitting trend into 2 eras
+# actually don't really like how this is coming out so feel free to mess with it
+peaks <- unemploy_balt |>
+  mutate(year = lubridate::year(date)) |>
+  filter(year >= 2007, name == "Baltimore City") |>
+  mutate(era = ifelse(year < 2020, "recession", "covid")) |>
+  slice_max(adjusted_rate, by = era) |>
+  select(era, date) |>
+  inner_join(unemploy_balt, by = "date") |>
+  group_by(date) |>
+  mutate(date_lbl = ifelse(adjusted_rate == max(adjusted_rate), format(date, "%b '%y"), NA_character_), # only label highest for each date
+         rate_lbl = scales::label_percent(accuracy = 0.1)(adjusted_rate),
+         label = ifelse(is.na(date_lbl), rate_lbl, paste(date_lbl, rate_lbl, sep = ": ")))
+
+# line chart with regions
+ggplot(unemploy_balt, aes(x = date, y = adjusted_rate)) +
+  # shaded regions
+  geom_rect(aes(xmin = start_date, xmax = end_date, ymin = -Inf, ymax = Inf),
+            data = recessions, color = NA, fill = "gray50", alpha = 0.15, inherit.aes = FALSE) +
+  # lines
+  geom_line(aes(color = name), linewidth = 0.8) +
+  # region labels
+  geom_text(aes(label = label, x = end_date, y = adjusted_rate), # instead of calculating max, can use y = Inf but you lose some control
+            data = recessions, vjust = 0, hjust = 0, nudge_x = 60, nudge_y = 3e-3) +
+  # direct labels to replace legend
+  geom_text(aes(color = name, label = name), 
+            data = unemploy_balt |> slice_max(date), 
+            hjust = 0, fontface = "bold", nudge_x = 90) +
+  scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = expansion(add = c(300, 365 * 4))) +
+  scale_y_continuous(breaks = seq(0, 0.12, by = 0.03), labels = NULL) +
+  scale_color_manual(values = c(Maryland = "gray50", "Baltimore City" = qual_pal[5])) +
+  theme(panel.grid.major.x = element_line(),
+        legend.position = "none",
+        axis.title.y = element_text(hjust = 0.98)) +
+  labs(x = NULL, y = "Unemployment rate", color = NULL,
+       title = "Monthly unemployment rate, seasonally adjusted",
+       subtitle = "subtitle",
+       caption = "caption")
+
+# line chart with vertical line markers
+ggplot(unemploy_balt, aes(x = date, y = adjusted_rate)) +
+  # lines
+  geom_line(aes(color = name), linewidth = 0.8) +
+  # vertical line markers for timeline
+  geom_vline(aes(xintercept = date),
+             data = timeline, linetype = "dashed", linewidth = 0.5, color = "gray20") +
+  # timeline labels
+  geom_text(aes(label = label, x = date, y = adjusted_rate), 
+            data = timeline, vjust = 0, hjust = 0, nudge_x = 60, nudge_y = 3e-3) +
+  # direct labels to replace legend
+  geom_text(aes(color = name, label = name), 
+            data = unemploy_balt |> slice_max(date), 
+            hjust = 0, fontface = "bold", nudge_x = 90) +
+  scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = expansion(add = c(300, 365 * 4))) +
+  scale_y_continuous(breaks = seq(0, 0.12, by = 0.03), labels = scales::label_percent()) +
+  scale_color_manual(values = c(Maryland = "gray50", "Baltimore City" = qual_pal[5])) +
+  theme(panel.grid.major.x = element_line(),
+        legend.position = "none",
+        axis.title.y = element_text(hjust = 0.98)) +
+  labs(x = NULL, y = "Unemployment rate", color = NULL,
+       title = "Monthly unemployment rate, seasonally adjusted",
+       subtitle = "subtitle",
+       caption = "caption")
+
+# line chart with peaks
+# I don't actually like this one but I'm keeping it here as an example
+ggplot(unemploy_balt, aes(x = date, y = adjusted_rate)) +
+  # shaded regions---unlabeled to cut clutter and assume audience is familiar (FRED does this)
+  geom_rect(aes(xmin = start_date, xmax = end_date, ymin = -Inf, ymax = Inf),
+            data = recessions, color = NA, fill = "gray50", alpha = 0.15, inherit.aes = FALSE) +
+  # lines
+  geom_line(aes(color = name), linewidth = 0.8) +
+  # peak marker
+  geom_point(aes(color = name), data = peaks |> filter(name == "Baltimore City"), size = 3) +
+  # peak label. using label with no outer line to have a blank background to the text
+  geom_label(aes(color = name, label = label), 
+             data = peaks |> filter(name == "Baltimore City"), 
+             hjust = 0, vjust = 0, nudge_x = 80, fontface = "bold", label.size = 0) +
+  # direct labels to replace legend
+  geom_text(aes(color = name, label = name), 
+            data = unemploy_balt |> slice_max(date), 
+            hjust = 0, fontface = "bold", nudge_x = 90) +
+  scale_x_date(date_breaks = "5 years", date_labels = "%Y", expand = expansion(add = c(365, 365 * 4))) +
+  scale_y_continuous(breaks = seq(0, 0.12, by = 0.03), labels = scales::label_percent()) +
+  scale_color_manual(values = c(Maryland = "gray50", "Baltimore City" = qual_pal[5])) +
+  theme(panel.grid.major.x = element_line(),
+        legend.position = "none",
+        axis.title.y = element_text(hjust = 0.98)) +
+  labs(x = NULL, y = "Unemployment rate", color = NULL,
+       title = "Monthly unemployment rate, seasonally adjusted",
+       subtitle = "subtitle",
+       caption = "caption")
+```

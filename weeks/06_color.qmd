@@ -4,29 +4,17 @@ title: "6. Color"
 
 ```{r}
 #| message: false
+#| code-fold: true 
 library(dplyr)
 library(ggplot2)
 library(justviz)
 
 source(here::here("utils/plotting_utils.R"))
-
-local_counties <- c("Baltimore city", "Baltimore County", "Harford County", "Howard County", "Anne Arundel County")
-acs_county <- acs |>
-  filter(level %in% c("us", "state", "county")) |>
-  mutate(local1 = forcats::as_factor(name) |>
-           forcats::fct_other(keep = c(local_counties, "United States", "Maryland"), other_level = "Other counties"),
-         local2 = forcats::fct_collapse(local1, "Outside Baltimore" = c("Baltimore County", "Harford County", "Howard County", "Anne Arundel County")) |>
-           forcats::fct_relevel("Outside Baltimore", "Other counties", after = Inf))
-
-theme_set(theme_minimal())
 ```
-
-```{r}
-knitr::kable(head(acs_county))
-```
-
 
 ## Warm-up
+
+### Color perception
 
 Which row uses a darker color?
 
@@ -35,13 +23,15 @@ Which row uses a darker color?
 #| fig-height: 2
 #| fig-width: 7
 set.seed(1)
-dummy <- tibble(x = rep(1:5, times = 2), 
-                y = rep(letters[1:2], each = 5),
-                z = sample(letters[1:2], size = 10, replace = TRUE, prob = c(0.2, 0.8)))
+dummy <- tibble(x = rep(1:5, times = 3), 
+                y = rep(letters[1:3], each = 5),
+                z = sample(letters[1:2], size = 15, replace = TRUE, prob = c(0.3, 0.7)))
 
-ggplot(dummy, aes(x = x, y = y, shape = y)) +
+dummy |>
+  filter(y != "c") |>
+  ggplot(aes(x = x, y = y, shape = y)) +
   geom_point(size = 5, color = "gray40", show.legend = FALSE, stroke = 1) +
-  scale_shape_manual(values = c("circle", "circle open")) +
+  scale_shape_manual(values = c("circle", "circle open", "cross")) +
   theme_void()
 ```
 
@@ -51,7 +41,9 @@ Which line uses a darker color?
 #| echo: false
 #| fig-height: 2
 #| fig-width: 7
-ggplot(dummy, aes(x = x, y = y, linewidth = y, color = y)) +
+dummy |>
+  filter(y != "c") |>
+  ggplot(aes(x = x, y = y, linewidth = y, color = y)) +
   geom_line(show.legend = FALSE) +
   scale_linewidth_manual(values = c(0.7, 1.8)) +
   scale_color_manual(values = c("gray40", "gray60")) +
@@ -64,9 +56,11 @@ Which line uses a darker color?
 #| echo: false
 #| fig-height: 3
 #| fig-width: 7
-ggplot(dummy, aes(x = x, y = y)) +
+dummy |>
+  filter(y != "c") |>
+  ggplot(aes(x = x, y = y)) +
   geom_tile(aes(fill = y), show.legend = FALSE) +
-  geom_line(size = 2, color = "gray70") +
+  geom_line(linewidth = 2, color = "gray70") +
   scale_fill_manual(values = c("gray0", "gray100")) +
   theme_void()
 ```
@@ -79,10 +73,14 @@ How many purple dots are in each row?
 #| fig-width: 7
 ggplot(dummy, aes(x = x, y = y, color = z, size = y)) +
   geom_point(show.legend = FALSE) +
-  scale_size_manual(values = c(2, 9)) +
+  scale_size_manual(values = c(1, 3, 9)) +
   scale_color_manual(values = qual_pal[c(1, 3)]) +
   theme_void()
 ```
+
+### Colors in R
+
+If you don't already have a color selection tool on your computer ^[Maybe the thing I miss most since switching from Mac to Linux is the color picker app Sip, definitely recommend it] you can [install the colourpicker package](https://github.com/daattali/colourpicker?tab=readme-ov-file#install) that has a color picker addin for RStudio.
 
 ## Chapters
 
@@ -96,15 +94,76 @@ We'll walk through Wilke chapters 4 and 19--I don't have a ton to add until we g
 
 - [ColorBrewer](https://colorbrewer2.org) (access to these palettes comes with ggplot)
 - [Carto Colors](https://carto.com/carto-colors/) (access comes with the rcartocolor package)
-- [Susie Lu's Viz Palette](https://projects.susielu.com/viz-palette) generator & preview
+- [Viz Palette](https://projects.susielu.com/viz-palette) generator & preview
 - [Gregor Aisch's chroma palettes](https://gka.github.io/palettes) generator
-- @colorgorical
+- [Colorgorical categorical color generator](http://vrl.cs.brown.edu/color) ^[I just read a post making fun of Colorgorical for leaning toward puke green colors; haven't used it in a while but heads up I guess?]
+
+## Types of color palettes
+
+The main types of color palettes are:
+
+- sequential / quantitative: values are numeric and continuous; values and colors (saturation, lightness, hue) increase in some way in tandem
+- diverging: values are likely numeric, but colors trend in opposite directions
+- qualitative / categorical: values are _not_ numeric / continuous, and colors should _not_ imply continuity
+
+ColorBrewer and Carto Colors are great because they have options for all three of these.
+
+These are rough examples using ColorBrewer palettes; in practice you might want to make some adjustments to these.
+
+```{r}
+#| echo: false
+#| fig-height: 2 
+pals <- tibble(sequential1 = seq(0, 1, by = 0.25),
+               sequential2 = forcats::as_factor(c("0-1", "1-2", "2-4", "4-8", "8-16")),
+               diverging1 = seq(-10, 10, length.out = 5),
+               diverging2 = forcats::as_factor(c("much lower", "lower", "no change", "higher", "much higher")),
+               qualitative1 = forcats::as_factor(c("US", "Maryland", "Baltimore metro", "Baltimore city", "Downtown Baltimore")))
+
+make_legend <- function(x, col, pal, pal_type = "brewer", name = NULL) {
+  gg <- ggplot2::ggplot(x, ggplot2::aes(x = 1, y = 1, fill = {{ col }}))
+  gg <- gg + ggplot2::geom_col()
+  if (pal_type == "brewer") {
+    gg <- gg + ggplot2::scale_fill_brewer(palette = pal, direction = 1)
+  } else {
+    gg <- gg + ggplot2::scale_fill_fermenter(palette = pal, direction = 1)
+  }
+  gg <- gg + labs(fill = name)
+  legend <- cowplot::get_legend(gg)
+  cowplot::ggdraw(legend)
+}
+
+legends <- list(
+  make_legend(pals, sequential1, pal = "RdPu", pal_type = "fermenter", name = "Sequential,\nevenly spaced"),
+  make_legend(pals, sequential2, pal = "RdPu", name = "Sequential,\nnot evenly spaced"),
+  make_legend(pals, diverging1, pal = "BrBG", pal_type = "fermenter", name = "Diverging,\nnumeric"),
+  make_legend(pals, diverging2, pal = "BrBG", name = "Diverging,\nrelative"),
+  make_legend(pals, qualitative1, pal = "Set2", name = "Qualitative")
+)
+cowplot::plot_grid(plotlist = legends, nrow = 1)
+```
 
 ## Exercises
 
-Find some ways to improve these charts. If you want to change other things that's fine, just do a round focusing on color first.
+```{r}
+local_counties <- c("Baltimore city", "Baltimore County", "Harford County", "Howard County", "Anne Arundel County")
+acs_county <- acs |>
+  filter(level %in% c("us", "state", "county")) |>
+  mutate(local1 = forcats::as_factor(name) |>
+           forcats::fct_other(keep = c(local_counties, "United States", "Maryland"), other_level = "Other counties"),
+         local2 = forcats::fct_collapse(local1, "Outside Baltimore" = c("Baltimore County", "Harford County", "Howard County", "Anne Arundel County")) |>
+           forcats::fct_relevel("Outside Baltimore", "Other counties", after = Inf))
 
-Here are some charts that are bad because they use color inappropriately. In your code, note what's wrong with them and what you want to change _before_ writing any code.
+theme_set(theme_nice())
+knitr::kable(head(acs_county))
+```
+
+Find some ways to improve the use of color in these charts, including whether color even _should_ be used. Before writing any code, write down:
+
+- How color is used / what color signifies
+- What's wrong with that use of color
+- How you want to change it
+
+Here are some charts that are bad because they use color inappropriately.
 
 
 ```{r}
@@ -131,7 +190,7 @@ acs_county |>
 ```
 
 
-Here's a chart that's okay but not great; it uses color in a way that's not wrong but not effective either. Again, note what's wrong with it and what you want to change _before_ writing any code.
+Here's a chart that's okay but not great; it uses color in a way that's not wrong but not effective either.
 
 ```{r}
 acs_county |>
@@ -144,7 +203,7 @@ acs_county |>
        subtitle = "US, Maryland, and Maryland counties, 2022")
 ```
 
-Here's one that uses color when it should actually use something else to convey its pattern.
+Here's one that uses color when it should actually use something else to convey its pattern. What type of chart would be more appropriate?
 
 ```{r}
 acs_county |>
@@ -172,46 +231,13 @@ acs_county |>
 ```{r}
 #| include: false
 acs_county |>
-  ggplot(aes(x = median_hh_income, y = homeownership, color = level, shape = level, size = level)) +
-  geom_point() +
-  labs(x = "Median household income", y = "Homeownership rate", 
-       title = "Homeownership rate vs median household income", 
-       subtitle = "US, Maryland, and Maryland counties, 2022") +
-  scale_color_manual(values = c(us = qual_pal[2], state = qual_pal[5], county = "gray50")) +
-  scale_shape_manual(values = c(us = "square", state = "triangle", county = "circle")) +
-  scale_size_manual(values = c(us = 4, state = 4, county = 2.5))
-```
-
-
-```{r}
-#| include: false
-acs_county |>
-  mutate(local3 = forcats::fct_other(local2, keep = c("Baltimore city", "Outside Baltimore"))) |>
+  mutate(local3 = forcats::fct_other(local1, keep = c("United States", "Maryland", "Baltimore city"), other_level = "Other counties")) |>
   ggplot(aes(x = median_hh_income, y = homeownership, color = local3, shape = local3, size = local3)) +
   geom_point() +
   labs(x = "Median household income", y = "Homeownership rate", 
        title = "Homeownership rate vs median household income", 
        subtitle = "US, Maryland, and Maryland counties, 2022") +
-  scale_color_manual(values = c("Baltimore city" = qual_pal[5], "Outside Baltimore" = qual_pal[2], "Other" = "gray50")) +
-  scale_shape_manual(values = c("Baltimore city" = "square", "Outside Baltimore" = "triangle", Other = "circle")) +
-  scale_size_manual(values = c("Baltimore city" = 4, "Outside Baltimore" = 4, Other = 2.5))
+  scale_color_manual(values = c(qual_pal[c(2, 10, 5)], "gray50")) +
+  scale_shape_manual(values = c("square", "triangle", "circle", "circle")) +
+  scale_size_manual(values = c(4, 4, 3, 2))
 ```
-
-Here's an optical illusion: should you be reading the white bars or the gray ones?
-
-```{r}
-#| echo: false
-acs_county |>
-  mutate(name = forcats::as_factor(name) |> forcats::fct_reorder(homeownership)) |>
-  ggplot(aes(x = name, y = homeownership)) +
-  geom_col(width = 0.4, fill = "white") +
-  scale_y_barcontinuous() +
-  coord_flip() +
-  theme(panel.background = element_rect(color = NULL, fill = "gray50"),
-        panel.grid = element_blank()) +
-  # theme_dark() +
-  labs(x = NULL, y = NULL, 
-       title = "Homeownership rate by location", 
-       subtitle = "US, Maryland, and Maryland counties, 2022")
-```
-
