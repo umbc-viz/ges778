@@ -318,7 +318,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 21, 2024</p>
+      <p class="date-modified">February 23, 2024</p>
     </div>
   </div>
     
@@ -377,9 +377,9 @@ Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making inf
 <span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> lbl, <span class="at">hjust =</span> just, <span class="at">y =</span> y), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
 <span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">scale_y_barcontinuous</span>() <span class="sc">+</span></span>
 <span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"title"</span>,</span>
-<span id="cb2-12"><a href="#cb2-12"></a>       <span class="at">subtitle =</span> <span class="st">"subtitle"</span>,</span>
-<span id="cb2-13"><a href="#cb2-13"></a>       <span class="at">caption =</span> <span class="st">"caption"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Baltimore city has a higher rate of cost burden than the state or nation"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12"></a>       <span class="at">subtitle =</span> <span class="st">"Share of households that are cost burdened, Maryland, 2022"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13"></a>       <span class="at">caption =</span> <span class="st">"Source: US Census Bureau American Community Survey, 2022 5-year estimates"</span>,</span>
 <span id="cb2-14"><a href="#cb2-14"></a>       <span class="at">fill =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
 <span id="cb2-15"><a href="#cb2-15"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
 <span id="cb2-16"><a href="#cb2-16"></a>        <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>()) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -402,6 +402,11 @@ Brainstorm
 </div>
 <div class="callout-body-container callout-body">
 <table class="table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 29%">
+<col style="width: 52%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>Text</th>
@@ -411,23 +416,53 @@ Brainstorm
 </thead>
 <tbody>
 <tr class="odd">
-<td></td>
-<td></td>
+<td>Title</td>
+<td>Takeaway, what you’re looking at in context</td>
 <td></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td></td>
+<td>Subtitle</td>
+<td>Specifics of what’s being measured</td>
+<td>Depending on context, maybe put cost burden definition here</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
+<td>Independent axis</td>
+<td>Locations</td>
 <td></td>
 </tr>
 <tr class="even">
+<td>Independent axis title</td>
+<td>What’s on the axis</td>
+<td>Not necessary; we know what these names are</td>
+</tr>
+<tr class="odd">
+<td>Legend title</td>
+<td>What colors mean</td>
 <td></td>
-<td></td>
+</tr>
+<tr class="even">
+<td>Legend labels</td>
+<td>Location types</td>
+<td>Drop the legend, put any additional info in subtitle</td>
+</tr>
+<tr class="odd">
+<td>Dependent axis title</td>
+<td>Meaning of variable being measured</td>
+<td>Can remove since it’s in the subtitle, but some styleguides may say keep it</td>
+</tr>
+<tr class="even">
+<td>Caption</td>
+<td>Source</td>
+<td>Could put definition of cost burden here</td>
+</tr>
+<tr class="odd">
+<td>Dependent axis labels</td>
+<td>Specify meaning of breaks along axis</td>
+<td>Can drop because redundant</td>
+</tr>
+<tr class="even">
+<td>Direct data labels on bars</td>
+<td>Values of each data point</td>
 <td></td>
 </tr>
 </tbody>
@@ -473,7 +508,10 @@ Brainstorm: contextualizing information
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li></li>
+<li>Timespan–years on axis</li>
+<li>Source</li>
+<li>Units of measurement</li>
+<li>Historical events</li>
 </ul>
 </div>
 </div>
