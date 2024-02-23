@@ -56,9 +56,9 @@ acs |>
   geom_text(aes(label = lbl, hjust = just, y = y), color = "white", fontface = "bold") +
   scale_y_barcontinuous() +
   coord_flip() +
-  labs(title = "title",
-       subtitle = "subtitle",
-       caption = "caption",
+  labs(title = "Baltimore city has a higher rate of cost burden than the state or nation",
+       subtitle = "Share of households that are cost burdened, Maryland, 2022",
+       caption = "Source: US Census Bureau American Community Survey, 2022 5-year estimates",
        fill = "fill") +
   theme(panel.grid.major.y = element_blank(),
         panel.grid.major.x = element_line()) 
@@ -69,12 +69,18 @@ acs |>
 
 ### Brainstorm
 
-| Text | Purpose | Could be better? |
-| ---- | ------- | ----------------- |
-|      |         |                   |
-|      |         |                   |
-|      |         |                   |
-|      |         |                   |
+| Text                       | Purpose                                     | Could be better?                                                            |
+| -------------------------- | ------------------------------------------- | --------------------------------------------------------------------------- |
+| Title                      | Takeaway, what you're looking at in context |                                                                             |
+| Subtitle                   | Specifics of what's being measured          | Depending on context, maybe put cost burden definition here                 |
+| Independent axis           | Locations                                   |                                                                             |
+| Independent axis title     | What's on the axis                          | Not necessary; we know what these names are                                 |
+| Legend title               | What colors mean                            |                                                                             |
+| Legend labels              | Location types                              | Drop the legend, put any additional info in subtitle                        |
+| Dependent axis title       | Meaning of variable being measured          | Can remove since it's in the subtitle, but some styleguides may say keep it |
+| Caption                    | Source                                      | Could put definition of cost burden here                                    |
+| Dependent axis labels      | Specify meaning of breaks along axis        | Can drop because redundant                                                                            |
+| Direct data labels on bars | Values of each data point                   |                                                                             |
 
 :::
 
@@ -107,18 +113,18 @@ unemploy_balt <- unemployment |>
 
 ggplot(unemploy_balt, aes(x = date, y = adjusted_rate, color = name, group = name)) +
   geom_line(linewidth = 0.8) +
-    scale_x_date(date_breaks = "5 years", labels = NULL) +
-  # scale_x_date(date_breaks = "5 years", date_labels = "%Y") +
-  scale_y_continuous(breaks = seq(0, 0.12, by = 0.03), labels = NULL) +
+    # scale_x_date(date_breaks = "5 years", labels = NULL) +
+  scale_x_date(date_breaks = "5 years", date_labels = "%Y") +
+  scale_y_continuous(breaks = seq(0, 0.12, by = 0.03), labels = scales::label_percent()) +
   scale_color_manual(values = c(Maryland = "gray50", "Baltimore City" = qual_pal[5])) +
   theme(panel.grid.major.x = element_line(),
         legend.justification = c(0, 1),
         legend.position = c(0.02, 0.98),
         axis.title.y = element_text(hjust = 0.98)) +
   labs(x = NULL, y = "Unemployment rate", color = NULL,
-       title = "Monthly unemployment rate, seasonally adjusted",
-       subtitle = "subtitle",
-       caption = "caption")
+       title = "Monthly unemployment rate, seasonally adjusted, 2000-2023",
+       subtitle = "",
+       caption = "Source: Bureau of Labor Statistics Local Area Unemployment")
 ```
 
 Next, what annotations would be helpful for contextualizing this trend?
@@ -126,7 +132,10 @@ Next, what annotations would be helpful for contextualizing this trend?
 :::{.callout-tip}
 ### Brainstorm: contextualizing information
 
--
+- Timespan--years on axis
+- Source
+- Units of measurement
+- Historical events
 
 :::
 

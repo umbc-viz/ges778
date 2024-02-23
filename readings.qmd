@@ -26,18 +26,18 @@ Here are the readings for each week. Please have the readings done _before_ the 
 * @Wilke2019 chapters 4, 6, 17 (color, amounts, proportional ink)
 * @W.C.G2023 chapters 1 & 9 (okay to skim as a code reference) (data visualization, layers)
 
-## Week 4, Feb 21: text, annotation, uncertainty, distribution
+## Week 4, Feb 21: text & annotation
 
-* @Wilke2019 chapters 7, 9, 10 (histograms, multiple distributions, proportions)
-* Listen to Data Stories, @B.S2019
 * Pick one (or both) of these styleguides to browse through. Take note of how they use color, text, annotations, and iconography, and what suggestions they have on other elements (labeling axes, direct labeling of points, style of titles, placement and rotation of labels, etc). How do these rules carry over between chart types or for different audiences? How strongly do they create a recognizable visual style or brand?
   * @Urban2023
   * @WHO2023 (it's not super clear but you have to click through to each section)
 
-## Week 5, Feb 28: making good decisions
+## Week 5, Feb 28: uncertainty, distributions, making good decisions
 
-* @Cairo2019 chapter 1 (on Blackboard)
-* @Wilke2019 chapters 13, 14 & 20 (time series, trends, redundancy)
-* @Smith2023
-* Bonus: listen to @B.S2018a, post on Discord or tell us in class what you learned, and you'll get 1 participation point
+* Listen to Data Stories, @B.S2019
+* @Wilke2019 chapters 7, 9, 10, 13, 14, 20 (okay to skim)
+* Pick one. If you post on Discord or tell us in class what you learned, you'll get 1 participation point:
+  * @Cairo2019 chapter 1 (on Blackboard)
+  * @Smith2023
+  * Listen to @B.S2018a
 
