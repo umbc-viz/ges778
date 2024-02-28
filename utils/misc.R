@@ -20,3 +20,5 @@ balt_metro <- msa_sf |>
 
 # delete the county centroids since we don't need them
 rm(county_cents)
+
+saveRDS(balt_metro, "utils/balt_metro.rds")

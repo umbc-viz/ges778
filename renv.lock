@@ -20,6 +20,13 @@
       "Repository": "RSPM",
       "Hash": "85bf3bd8fa58da21a22d84fd4f4ef0a8"
     },
+    "BH": {
+      "Package": "BH",
+      "Version": "1.84.0-0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Hash": "a8235afbcd6316e6e91433ea47661013"
+    },
     "DBI": {
       "Package": "DBI",
       "Version": "1.2.1",
@@ -117,6 +124,18 @@
         "utils"
       ],
       "Hash": "435359b59b8a9b8f9235135da471ea3c"
+    },
+    "anytime": {
+      "Package": "anytime",
+      "Version": "0.3.9",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "BH",
+        "R",
+        "Rcpp"
+      ],
+      "Hash": "74a64813f17b492da9c6afda6b128e3d"
     },
     "askpass": {
       "Package": "askpass",
@@ -360,6 +379,22 @@
       ],
       "Hash": "7ede2ee9ea8d3edbf1ca84c1e333ad1a"
     },
+    "distributional": {
+      "Package": "distributional",
+      "Version": "0.4.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "generics",
+        "lifecycle",
+        "numDeriv",
+        "rlang",
+        "stats",
+        "utils",
+        "vctrs"
+      ],
+      "Hash": "3bad76869f2257ea4fd00a3c08c2bcce"
+    },
     "dplyr": {
       "Package": "dplyr",
       "Version": "1.1.4",
@@ -496,6 +531,31 @@
         "methods"
       ],
       "Hash": "15e9634c0fcd294799e9b2e929ed1b86"
+    },
+    "ggdist": {
+      "Package": "ggdist",
+      "Version": "3.3.1",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "cli",
+        "distributional",
+        "dplyr",
+        "ggplot2",
+        "glue",
+        "grid",
+        "numDeriv",
+        "quadprog",
+        "rlang",
+        "scales",
+        "tibble",
+        "tidyselect",
+        "vctrs",
+        "withr"
+      ],
+      "Hash": "1ff5363a7be601af61cf89ef60e428d3"
     },
     "ggplot2": {
       "Package": "ggplot2",
@@ -1005,6 +1065,16 @@
       ],
       "Hash": "a623a2239e642806158bc4dc3f51565d"
     },
+    "numDeriv": {
+      "Package": "numDeriv",
+      "Version": "2016.8-1.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "df58958f293b166e4ab885ebcad90e02"
+    },
     "openssl": {
       "Package": "openssl",
       "Version": "2.1.1",
@@ -1120,6 +1190,16 @@
         "vctrs"
       ],
       "Hash": "1cba04a4e9414bdefc9dcaa99649a8dc"
+    },
+    "quadprog": {
+      "Package": "quadprog",
+      "Version": "1.5-8",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "5f919ae5e7f83a6f91dcf2288943370d"
     },
     "rappdirs": {
       "Package": "rappdirs",
@@ -1597,6 +1677,27 @@
         "xfun"
       ],
       "Hash": "5ac22900ae0f386e54f1c307eca7d843"
+    },
+    "tsibble": {
+      "Package": "tsibble",
+      "Version": "1.1.4",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "anytime",
+        "dplyr",
+        "ellipsis",
+        "generics",
+        "lifecycle",
+        "lubridate",
+        "methods",
+        "rlang",
+        "tibble",
+        "tidyselect",
+        "vctrs"
+      ],
+      "Hash": "d5da786ac5a28f62ca2eb8255ad7b9f3"
     },
     "tzdb": {
       "Package": "tzdb",
