@@ -37,7 +37,8 @@ library(dplyr)
 library(ggplot2)
 library(justviz)
 source(here::here("utils/plotting_utils.R"))
-source(here::here("utils/misc.R"))
+# source(here::here("utils/misc.R"))
+balt_metro <- readRDS(here::here("utils/balt_metro.rds"))
 
 # set a default theme from the one I defined in plotting_utils.R
 theme_set(theme_nice())

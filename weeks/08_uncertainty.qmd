@@ -1,0 +1,436 @@
+---
+title: "8. Uncertainty and distributions"
+execute: 
+  echo: false
+---
+
+## Warm up
+
+Fill in this quick survey about probability: {{< qrcode https://forms.gle/2X6qaSeeYaRqxYuU9 >}}
+
+```{r}
+#| message: false
+library(dplyr)
+library(ggplot2)
+library(justviz)
+# install.packages("ggdist") # if you haven't installed it already
+library(ggdist)
+
+source(here::here("utils/plotting_utils.R"))
+
+balt_metro <- readRDS(here::here("utils/balt_metro.rds"))
+
+# set a default theme from the one I defined in plotting_utils.R
+theme_set(theme_nice())
+
+# qual_pal is in plotting_utils.R
+gender_pal <- c(Total = "gray30", Men = qual_pal[8], Women = qual_pal[6])
+```
+
+```{r}
+#| include: false
+readr::read_csv("https://docs.google.com/spreadsheets/u/2/d/1xq-rLyZgGp1dGP6ojiisyZUCCsBWwqcy9D-4JG2czJc/export?format=csv&id=1xq-rLyZgGp1dGP6ojiisyZUCCsBWwqcy9D-4JG2czJc&gid=376662766",
+                show_col_types = FALSE) |>
+  tidyr::pivot_longer(-Timestamp, names_to = "phrase", values_to = "probability") |>
+  mutate(phrase = forcats::as_factor(phrase) |>
+           forcats::fct_reorder(probability)) |>
+  ggplot(aes(x = phrase, y = probability)) +
+  # geom_boxplot(width = 0.6) +
+  geom_dots() +
+  coord_flip()
+```
+
+
+
+## Distributions
+
+When we visualize data, one of the most important decisions we make is what values exactly we'll display. That's because you usually can't include every data point, so you'll have to do some amount of summarizing. However, that means you're losing a lot of information in the process. That's a fine line you need to figure out how to walk, and like most things we've done so far, how you do that will depend on context, audience, and purpose. In my own work, I know I fall on the side of oversimplifying more often than I should. 
+
+The problem is that unless people have a background in statistics or other quantitative research-heavy fields, they probably aren't used to hearing about ranges of data---let alone ways to describe distributions, like skew and kurtosis. So the chart types that are best for showing distributions or uncertainty are generally pretty technical.
+
+For example, look at the range of median household incomes by county:
+
+```{r}
+#| fig-width: 8
+#| fig-height: 2
+# filter for just counties in the metro, or tracts in those counties
+acs_balt <- acs |> 
+  filter(level %in% c("county", "tract")) |>
+  filter(name %in% balt_metro | county %in% balt_metro) |>
+  filter(!is.na(median_hh_income)) |>
+  mutate(county = coalesce(county, name))
+
+acs_balt |>
+  filter(level == "county") |>
+  ggplot(aes(x = level, y = median_hh_income)) +
+  geom_point(shape = "circle open", size = 4) +
+  scale_y_continuous(breaks = seq(0, 2.5e5, by = 2e4), labels = dollar_k) +
+  coord_flip() +
+  theme(panel.grid.major.x = element_line()) +
+  labs(title = "Median household income by county, Baltimore metro")
+```
+
+There's already a wide range, but compare that to all their tracts:
+
+```{r}
+#| fig-width: 8
+acs_balt |>
+  filter(level == "tract") |>
+  mutate(county = forcats::fct_reorder(county, median_hh_income)) |>
+  ggplot(aes(x = county, y = median_hh_income)) +
+  geom_boxplot() +
+  scale_y_continuous(breaks = seq(0, 2.5e5, by = 2e4), labels = dollar_k) +
+  coord_flip() +
+  theme(panel.grid.major.x = element_line()) +
+  labs(title = "Median household income by tract, Baltimore metro")
+```
+
+Of the counties in the Baltimore metro area, Howard County has a much higher overall median income than Baltimore city, yet there's also a lot of overlapping values. Baltimore city has several tracts with pretty high incomes, but that fact gets washed out when we only look at summary values. Even just look at how different the income scales are!
+
+Think back to the wage gap data. When we just look at wages for men vs women, ^[Speaking of distributions within data, there are gray areas in gender that aren't captured by the Census.] we lose differences within and between those groups. Before we saw how median earnings increase with educational attainment, but women's pay lags about one education level behind men's pay. We'll see other gaps when we look at earnings by sex and race/ethnicity.
+
+```{r}
+wages_sex_race <- wages |>
+  filter(dimension %in% c("time", "race", "sex", "race_x_sex"),
+         is_fulltime,
+         name == "Maryland") |>
+  mutate(race_eth = forcats::fct_recode(race_eth, "Other race" = "Other", "Asian / Pac. Isl." = "API"))
+
+wages_sex_race |>
+  filter(dimension %in% c("sex", "race")) |>
+  mutate(group = paste(as.character(race_eth), as.character(sex), sep = ", ") |> forcats::as_factor()) |>
+  ggplot(aes(x = group, y = earn_q50)) +
+  geom_col(width = 0.8, alpha = 0.9, fill = "gray30") +
+  scale_x_discrete(labels = scales::label_wrap(12)) +
+  scale_y_barcontinuous(labels = dollar_k) +
+  facet_grid(cols = vars(dimension), scales = "free_x", space = "free",
+             labeller = labeller(.cols = \(x) paste("By", x))) +
+  labs(x = NULL, y = NULL, 
+       title = "Median individual earnings by race/ethnicity and sex",
+       subtitle = "Among full-time workers ages 25+, Maryland, 2021")
+```
+
+Side-by-side bars of race versus sex show much more of the range. When we talk about the wage gap as just men vs women, we miss the fact that white women have higher median earnings than Black or Latino men! ^[We also miss gaps within _those_ groups, such as disparities by ethnicity, origin, and immigration status. An intern I worked with a few years ago made [this video](https://youtu.be/ahJZcp4JebU) looking at the wage gaps within Asian American groups.]
+
+```{r}
+#| echo: false
+wages_sex_race |>
+  ggplot(aes(x = race_eth, y = earn_q50, fill = sex)) +
+  geom_col(position = position_dodge2(), alpha = 0.9, width = 0.8) +
+  scale_fill_manual(values = gender_pal) +
+  scale_y_barcontinuous(labels = dollar_k) +
+  theme(legend.position = "bottom") +
+  labs(x = NULL, y = NULL, fill = NULL,
+       title = "Median individual earnings by race/ethnicity and sex",
+       subtitle = "Among full-time workers ages 25+, Maryland, 2021") 
+```
+
+Unlike bars, dots don't have to start at a 0 baseline, so we can zoom in on the actual range of the values. This view makes it easier to see that the gaps within white and Asian/Pacific Islander communities span about \$20,000 each, but is nearly nonexistent for Black adults. (For charts like this, you'll more often see the axes flipped and the groups ordered largest to smallest, or largest gap to smallest gap, but I'll let you figure that out---take a look at `forcats::fct_reorder`.)
+
+```{r}
+#| echo: false
+wages_sex_race |>
+  ggplot(aes(x = race_eth, y = earn_q50, color = sex, group = race_eth)) +
+  geom_path(alpha = 0.8, color = "gray80", linewidth = 3) +
+  geom_point(alpha = 0.9, size = 5) +
+  scale_color_manual(values = gender_pal) +
+  scale_y_continuous(labels = dollar_k) +
+  theme(legend.position = "bottom") +
+  labs(x = NULL, y = NULL, color = NULL,
+       title = "Median individual earnings by race/ethnicity and sex",
+       subtitle = "Among full-time workers ages 25+, Maryland, 2021") 
+```
+
+
+### Exercise
+
+Just like we can disaggregate the data into race vs sex, we can also tease apart the distributions within those groups. The wage gap data has not just medians, but also 20th, 25th, 75th, and 80th percentile values for every group. 
+
+Here's a bad chart of this data that just dumps all the data into a bunch of points. Looking at the examples from @Yau2013 (on Blackboard), brainstorm some better ways to show this data, including what you would want to filter out.
+
+```{r}
+#| echo: true
+# reshape to long in order to make dot plot
+wages_quants <- wages_sex_race |>
+  select(dimension, sex, race_eth, matches("earn_q\\d+")) |>
+  tidyr::pivot_longer(cols = earn_q20:earn_q80, names_to = c(".value", "quantile"), 
+                      names_pattern = "(^[a-z]+)_(.+$)",
+                      names_ptypes = list(quantile = factor()))
+
+# diverging-ish palette is appropriate here, so I'll pull it to modify
+# diverging pals usually have a light color in the middle, which won't work well for points
+# div_pal <- RColorBrewer::brewer.pal(n = 5, name = "Spectral")
+div_pal <- viridisLite::turbo(n = 5, direction = -1, begin = 0.1, end = 0.9)
+div_pal[3] <- "gray20"
+
+wages_quants |>
+  ggplot(aes(x = sex, y = earn, color = quantile, shape = sex, group = sex)) +
+  geom_path(color = "gray80", linewidth = 2, alpha = 0.8) +
+  geom_point(size = 3, alpha = 0.9) +
+  scale_color_manual(values = div_pal) +
+  facet_wrap(vars(race_eth), scales = "free_x")
+```
+
+Here's one option, although I'm not super satisfied with it:
+
+```{r}
+#| fig-width: 7
+#| fig-height: 6
+wages_quant_to_dots <- wages_quants |>
+  filter(quantile %in% c("q25", "q50", "q75"),
+         sex != "Total") |>
+  mutate(race_eth = forcats::fct_reorder(race_eth, earn, .fun = mean, .desc = TRUE)) |>
+  mutate(sex = forcats::fct_rev(sex)) |>
+  mutate(quantile = forcats::fct_recode(quantile, "25th" = "q25", "Median" = "q50", "75th" = "q75")) # could do this with regex replacements
+
+# make labels to replace sex legend: first race, last quantile
+wages_sex_lbl <- wages_quant_to_dots |>
+  slice_min(race_eth) |>
+  slice_max(quantile)
+# make labels to replace quantile legend: first race, first sex
+wages_quant_lbl <- wages_quant_to_dots |>
+  slice_min(race_eth) |>
+  slice_max(sex)
+
+ggplot(wages_quant_to_dots, aes(x = sex, y = earn, color = quantile, shape = sex, group = sex)) +
+  geom_path(color = "gray80", linewidth = 2, alpha = 0.8) +
+  geom_point(size = 4, alpha = 0.9) +
+  # labels for sex
+  geom_text(aes(label = sex), 
+            data = wages_sex_lbl,
+            hjust = 0, vjust = 0.5, nudge_y = 3e3, fontface = "bold") +
+  # labels for quantile
+  geom_text(aes(label = quantile),
+            data = wages_quant_lbl,
+            hjust = "inward", vjust = 0, nudge_x = 0.7, fontface = "bold") +
+  # turn off clipping so quantile labels can spill over margin
+  coord_flip(clip = "off") +
+  scale_x_discrete(labels = NULL) +
+  scale_y_continuous(labels = dollar_k, breaks = seq(2e4, 1.4e5, by = 2e4),
+                     expand = expansion(mult = c(0.05, 0.1))) +
+  scale_color_manual(values = div_pal[c(1, 3, 5)]) +
+  scale_shape_manual(values = c("circle", "triangle")) +
+  facet_grid(rows = vars(race_eth), switch = "y") +
+  theme(panel.grid.major.x = element_line(),
+        panel.grid.major.y = element_line(linetype = "dashed"),
+        strip.text.y.left = element_text(angle = 0, hjust = 0),
+        plot.subtitle = element_text(margin = margin(0.2, 0, 1.5, 0, "lines")),
+        legend.position = "none") +
+  labs(x = NULL, y = NULL,
+       title = "Individual earnings by race/ethnicity and sex",
+       subtitle = "25th, 50th (median), and 75th percentiles\nAmong full-time workers ages 25+, Maryland, 2021")
+```
+
+```{r}
+#| fig-width: 7
+#| fig-height: 5
+#| include: false
+# another option to use ggdist
+wages_to_interval <- wages_sex_race |>
+  # filter(sex == "Total") |>
+  select(sex, race_eth, matches("earn_q\\d")) |>
+  rename(median = earn_q50) |>
+  tidyr::pivot_longer(matches("earn_q\\d"), names_to = c(".value", "quantile"), 
+                      names_pattern = "(^[a-z]+)_q(\\d+$)") |>
+  mutate(quantile = as.numeric(quantile)) |>
+  mutate(endpt = ifelse(quantile < 50, "lower", "upper")) |>
+  mutate(.width = (abs((50 - quantile)) * 2) / 100) |>
+  mutate(race_eth = forcats::fct_reorder(race_eth, median, .desc = TRUE)) |>
+  tidyr::pivot_wider(id_cols = c(sex, race_eth, median, .width), names_from = endpt, values_from = earn) 
+
+ggplot(wages_to_interval, aes(x = forcats::fct_rev(sex), y = median, ymin = lower, ymax = upper)) +
+  geom_interval(linewidth = 2) +
+  geom_point(aes(shape = "Median"), size = 3, color = "gray20") +
+  coord_flip() +
+  facet_grid(rows = vars(race_eth), switch = "y") +
+  scale_y_continuous(labels = dollar_k, breaks = seq(2e4, 2e5, by = 2e4)) +
+  scale_color_manual(values = RColorBrewer::brewer.pal(3, "Blues")[2:3],
+                     labels = c("20th–80th percentiles", "25th–75th percentiles")) +
+  theme(panel.grid.major.x = element_line(),
+        panel.grid.major.y = element_line(linetype = "dashed"),
+        strip.placement = "outside",
+        strip.text.y.left = element_text(angle = 0, hjust = 0),
+        plot.subtitle = element_text(margin = margin(0.2, 0, 1.5, 0, "lines")),
+        legend.position = "bottom") +
+  labs(x = NULL, y = NULL, shape = NULL,
+       title = "Individual earnings by race/ethnicity and sex",
+       subtitle = "Among full-time workers ages 25+, Maryland, 2021")
+```
+
+
+
+## Uncertainty
+
+It can be really hard to imagine or estimate uncertainty. We expect data to be exact, and it pretty much never is. Visualization can help explain this to people, but that can conflict with our usual desire to make our visualizations simple and quick to read. In fact, I dropped all the margins of error from the datasets in the justviz package when I made it, so I'm part of the problem.
+
+Wilke's chapter on [uncertainty](https://clauswilke.com/dataviz/visualizing-uncertainty.html) has some good examples of how to show uncertainty in terms of margin of error in a few different types of charts. At the same time, there are some arguments against using error bars like he's done in some of the examples. One of the case study readings (@C.G2014) finds that these can actually _harm_ people's ability to understand uncertainty.
+
+Probably the most famous and famously controversial attempt at visualizing uncertainty was the [gauge chart](https://vis4.net/blog/jittery-gauges-election-forecast) the New York Times used on election night 2016. It was meant to show that the vote margins were in flux as counts came in, but the jittering effect was actually hard-coded into the visualization rather than based directly on tallies updating. People got _extremely_ stressed and mad.
+
+For working in ggplot, the **ggdist** package (@Kay2024) has some good options for showing distributions and uncertainty. ^[`ggdist::geom_dots` or `ggdist::geom_interval` and its arguments could make a good replacement for the boxplot of median income above.]
+
+
+ To make up for dropping margins of error before, I made a new dataset that we'll use here. It's the same wages data by sex, education, and occupation group, and it includes margins of error at both the 90% and 95% confidence levels. ^[I can never define margin of error properly, but [here's a good overview](https://statisticsbyjim.com/hypothesis-testing/margin-of-error/).] When I analyzed the wage data, it came from a subset of the ACS, so a sample of a sample. With survey data like this, you have to worry about having large enough sample sizes to get reliable estimates. So far we've used fairly large groups (women in Maryland with bachelor's degrees, etc), but when we slice the data more, we start to get less reliable estimates.
+
+For example, calculating median income of women in military occupations by education leaves us with some very small sample sizes, and some very large MOEs. Rule of thumb is usually that you need at least 30 observations in your sample for estimates to be useful; you might also want to set a minimum number of estimated counts.
+
+```{r}
+#| echo: true
+wages_moe <- readRDS(here::here("inputs/wages_sex_edu_occ.rds")) |>
+  mutate(occ_group = forcats::as_factor(occ_group) |>
+           forcats::fct_relabel(stringr::str_replace, ",? \\band\\b", " &")) |>
+  mutate(lower_95 = earn_q50 - moe_95,
+         lower_90 = earn_q50 - moe_90,
+         upper_90 = earn_q50 + moe_90,
+         upper_95 = earn_q50 + moe_95)
+
+wages_moe |>
+  filter(sex == "Women",
+         occ_group == "Military Specific") |>
+  select(6:12)
+```
+
+Reporting that estimate for women in military occupations with a graduate degree would be silly: \$85k ± \$30k means that at a 95% confidence level, you've estimated the median to be between \$55k and \$115k, which tells you virtually nothing.
+
+Error bars are one simple way to show the MOE. When we don't split things up by education, and we look statewide, the MOEs aren't so bad for most occupational groups (note which ones _are_ pretty big, and for which genders).
+
+```{r}
+wages_moe |>
+  filter(edu == "Total") |>
+  mutate(occ_group = forcats::as_factor(occ_group) |>
+           forcats::fct_reorder(earn_q50, .fun = max)) |>
+  ggplot(aes(x = occ_group, y = earn_q50, color = sex, group = occ_group)) +
+  geom_errorbar(aes(ymin = lower_95, ymax = upper_95), width = 0.4,
+                position = position_dodge2(width = 0.8, padding = 0.1)) +
+  geom_point(size = 3, position = position_dodge2(width = 0.4)) +
+  # geom_pointrange(aes(ymin = lower_95, ymax = upper_95)) + # another option
+  coord_flip() +
+  scale_x_discrete(labels = scales::label_wrap(30)) +
+  scale_y_continuous(labels = dollar_k) +
+  scale_color_manual(values = gender_pal) +
+  theme(panel.grid.major.x = element_line(),
+        legend.position = "bottom") +
+  labs()
+```
+
+Once we split by education, however, we get wider margins. Note also that we still have pretty wide distributions within occupation: what's the difference between a healthcare job someone with a graduate degree has and one someone with at most a high school degree?
+
+```{r}
+wages_moe |>
+  filter(edu %in% c("High school or less", "Graduate degree")) |>
+  mutate(occ_group = forcats::as_factor(occ_group) |>
+           forcats::fct_reorder(earn_q50, .fun = max)) |>
+  ggplot(aes(x = occ_group, y = earn_q50, color = sex, group = occ_group)) +
+  geom_errorbar(aes(ymin = lower_95, ymax = upper_95), width = 0.4,
+                position = position_dodge2(width = 0.8, padding = 0.1)) +
+  geom_point(size = 3, position = position_dodge2(width = 0.4)) +
+  # geom_pointrange(aes(ymin = lower_95, ymax = upper_95)) + # another option
+  coord_flip() +
+  scale_x_discrete(labels = scales::label_wrap(30)) +
+  scale_y_continuous(labels = dollar_k) +
+  scale_color_manual(values = gender_pal) +
+  facet_wrap(vars(edu)) +
+  theme(panel.grid.major.x = element_line(),
+        legend.position = "bottom")
+```
+
+Another thing to know about margins of error is that they can be used as a kind of crude approximation of statistical testing (t-tests, etc). For example, the margins of error for people with graduate degrees in production occupations overlap, so we shouldn't say they differ by sex until we do formal testing. For service jobs, however, the MOEs don't overlap, so that's a safer bet (but not a replacement for tests of statistical significance).
+
+
+## Missing data
+
+There's a lot of different reasons data might be missing, and different ways to handle it. Here's just one tidbit to handle those small samples from the wage data that you're likely to encounter.
+
+```{r}
+#| echo: true
+# I'll use a few metrics to decide which observations to keep:
+# coefficient of variance (MOE / estimate) needs to be less than 0.3, based on 95% CI
+# sample size needs to be at least 50
+wages_sample_size <- wages_moe |>
+  mutate(cov = moe_95 / earn_q50) |>
+  filter(sex != "Total",
+         edu == "Graduate degree") |>
+  mutate(too_small = sample_n < 50 | cov > 0.3) |>
+  select(sex, occ_group, earn_q50, too_small)
+
+wages_sample_size |>
+  filter(too_small)
+```
+
+If we drop those unreliable values, or have a similar dataset with missing values, we'll get something like this:
+
+```{r}
+#| echo: true
+wages_sample_size |>
+  filter(!too_small) |>
+  ggplot(aes(x = occ_group, y = earn_q50, fill = sex)) +
+  geom_col(width = 0.8, position = position_dodge2()) +
+  coord_flip() +
+  scale_x_discrete(labels = scales::label_wrap(30)) +
+  scale_y_continuous(labels = dollar_k) +
+  scale_fill_manual(values = gender_pal) +
+  theme(panel.grid.major.x = element_line())
+```
+
+Dodged bars will fill up the available space by default. Instead, use `preserve = "single"` inside `position_dodge`.
+
+
+```{r}
+#| echo: true
+wages_sample_size |>
+  filter(!too_small) |>
+  ggplot(aes(x = occ_group, y = earn_q50, fill = sex, group = sex)) +
+  geom_col(width = 0.8, position = position_dodge2(preserve = "single")) +
+  coord_flip() +
+  scale_x_discrete(labels = scales::label_wrap(30)) +
+  scale_y_continuous(labels = dollar_k) +
+  scale_fill_manual(values = gender_pal) +
+  theme(panel.grid.major.x = element_line())
+```
+
+With time series data, you can usually assume the intervals are even (every month, every week, etc.). If it's not for whatever reason, you might want to add some visual cues for transparency. This is a forced example where I drop some observations from the unemployment data.
+
+```{r}
+unemp_missing <- unemployment |>
+  filter(name == "Maryland") |>
+  filter(lubridate::year(date) == 2023) |>
+  filter(!lubridate::month(date) %in% c(3, 10))
+
+ggplot(unemp_missing, aes(x = date, y = adjusted_rate)) +
+  geom_line() +
+  scale_x_date(date_breaks = "2 months", date_labels = "%b %Y") +
+  theme(panel.grid.major.x = element_line())
+```
+
+There are 2 months missing here, but you can't tell because the lines get connected regardless of discontinuities. Adding points makes it clearer when observations were made, although this might not work when you have a lot of points (that's why I'm only using one year for this example).
+
+```{r}
+ggplot(unemp_missing, aes(x = date, y = adjusted_rate)) +
+  geom_line() +
+  geom_point() +
+  scale_x_date(date_breaks = "2 months", date_labels = "%b %Y") +
+  theme(panel.grid.major.x = element_line())
+```
+
+In a lot of cases, that will be enough. If you need more accuracy, you might convert the data into a time series (I like the **tsibble** package because it works well with dplyr) and fill in missing observations. This also gives you options of imputing the missing values, but it's outside the scope of this class.
+
+```{r}
+library(tsibble)
+
+# fill_gaps adds explicitly missing observations in place of missing values, in this case monthly
+unemp_ts <- unemp_missing |>
+  mutate(month = yearmonth(date)) |>
+  as_tsibble(key = name, index = month) |>
+  fill_gaps() |>
+  as_tibble() |>
+  mutate(month = lubridate::ym(month))
+
+unemp_ts |>
+  ggplot(aes(x = month, y = adjusted_rate)) +
+  geom_line(aes(x = date), linetype = "dashed") +
+  geom_line() +
+  geom_point() +
+  scale_x_date(date_breaks = "2 months", date_labels = "%b %Y") +
+  theme(panel.grid.major.x = element_line())
+```
+
