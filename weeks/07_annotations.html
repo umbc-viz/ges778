@@ -85,6 +85,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../weeks/08_uncertainty.html" rel="next">
 <link href="../weeks/06_color.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -266,6 +267,12 @@ div.csl-indent {
  <span class="menu-text">7. Text and annotations</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/08_uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Uncertainty and distributions</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -318,7 +325,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 23, 2024</p>
+      <p class="date-modified">February 29, 2024</p>
     </div>
   </div>
     
@@ -360,10 +367,11 @@ Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making inf
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(justviz)</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"utils/plotting_utils.R"</span>))</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"utils/misc.R"</span>))</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># set a default theme from the one I defined in plotting_utils.R</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">theme_set</span>(<span class="fu">theme_nice</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co"># source(here::here("utils/misc.R"))</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>balt_metro <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"utils/balt_metro.rds"</span>))</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># set a default theme from the one I defined in plotting_utils.R</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">theme_set</span>(<span class="fu">theme_nice</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Identify all the text in this chart, what purpose it serves, and whether that could be done better through other means.</p>
 <div class="cell">
@@ -1059,6 +1067,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../weeks/08_uncertainty.html" class="pagination-link" aria-label="8. Uncertainty and distributions">
+        <span class="nav-page-text">8. Uncertainty and distributions</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
