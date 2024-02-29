@@ -36,6 +36,7 @@ website:
         #   - weeks/01_walkthrough.qmd
       - "---"
       - references.qmd
+    footer: "[Code for this site](https://github.com/umbc-viz/ges778.git)"
 
 #   - section-bibliographies
 
