@@ -28,7 +28,7 @@ gender_pal <- c(Total = "gray30", Men = qual_pal[8], Women = qual_pal[6])
 ```
 
 ```{r}
-#| include: false
+#| include: true
 readr::read_csv("https://docs.google.com/spreadsheets/u/2/d/1xq-rLyZgGp1dGP6ojiisyZUCCsBWwqcy9D-4JG2czJc/export?format=csv&id=1xq-rLyZgGp1dGP6ojiisyZUCCsBWwqcy9D-4JG2czJc&gid=376662766",
                 show_col_types = FALSE) |>
   tidyr::pivot_longer(-Timestamp, names_to = "phrase", values_to = "probability") |>
@@ -415,9 +415,14 @@ ggplot(unemp_missing, aes(x = date, y = adjusted_rate)) +
 In a lot of cases, that will be enough. If you need more accuracy, you might convert the data into a time series (I like the **tsibble** package because it works well with dplyr) and fill in missing observations. This also gives you options of imputing the missing values, but it's outside the scope of this class.
 
 ```{r}
+#| echo: true
+#| eval: false
+# install the tsibble library if you need to
 library(tsibble)
 
-# fill_gaps adds explicitly missing observations in place of missing values, in this case monthly
+# fill_gaps adds explicitly missing observations in place of missing values, 
+# in this case monthly
+# this isn't the best way to hack this chart together but it's the easiest
 unemp_ts <- unemp_missing |>
   mutate(month = yearmonth(date)) |>
   as_tsibble(key = name, index = month) |>
