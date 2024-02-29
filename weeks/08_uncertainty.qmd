@@ -416,7 +416,6 @@ In a lot of cases, that will be enough. If you need more accuracy, you might con
 
 ```{r}
 #| echo: true
-#| eval: false
 # install the tsibble library if you need to
 library(tsibble)
 

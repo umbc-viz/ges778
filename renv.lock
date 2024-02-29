@@ -885,8 +885,8 @@
       "Package": "justviz",
       "Version": "0.1.0",
       "Source": "GitHub",
-      "Remotes": "CT-Data-Haven/cwi, camille-s/camiller",
       "RemoteType": "github",
+      "Remotes": "CT-Data-Haven/cwi, camille-s/camiller",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "justviz",
       "RemoteUsername": "umbc-viz",
@@ -1326,26 +1326,6 @@
       ],
       "Hash": "4c8415e0ec1e29f3f4f6fc108bef0144"
     },
-    "rvest": {
-      "Package": "rvest",
-      "Version": "1.0.3",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "cli",
-        "glue",
-        "httr",
-        "lifecycle",
-        "magrittr",
-        "rlang",
-        "selectr",
-        "tibble",
-        "withr",
-        "xml2"
-      ],
-      "Hash": "a4a5ac819a467808c60e36e92ddf195e"
-    },
     "s2": {
       "Package": "s2",
       "Version": "1.1.6",
@@ -1391,19 +1371,6 @@
         "viridisLite"
       ],
       "Hash": "c19df082ba346b0ffa6f833e92de34d1"
-    },
-    "selectr": {
-      "Package": "selectr",
-      "Version": "0.4-2",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "R6",
-        "methods",
-        "stringr"
-      ],
-      "Hash": "3838071b66e0c566d55cc26bd6e27bf4"
     },
     "sf": {
       "Package": "sf",
@@ -1571,33 +1538,6 @@
         "vctrs"
       ],
       "Hash": "a84e2cc86d07289b3b6f5069df7a004c"
-    },
-    "tidycensus": {
-      "Package": "tidycensus",
-      "Version": "1.6",
-      "Source": "Repository",
-      "Repository": "RSPM",
-      "Requirements": [
-        "R",
-        "crayon",
-        "dplyr",
-        "httr",
-        "jsonlite",
-        "purrr",
-        "rappdirs",
-        "readr",
-        "rlang",
-        "rvest",
-        "sf",
-        "stringr",
-        "tidyr",
-        "tidyselect",
-        "tigris",
-        "units",
-        "utils",
-        "xml2"
-      ],
-      "Hash": "10d1f36623aa1e2e713e314091a309ec"
     },
     "tidyr": {
       "Package": "tidyr",
@@ -1827,15 +1767,14 @@
     },
     "xfun": {
       "Package": "xfun",
-      "Version": "0.42",
+      "Version": "0.41",
       "Source": "Repository",
-      "Repository": "RSPM",
+      "Repository": "CRAN",
       "Requirements": [
-        "grDevices",
         "stats",
         "tools"
       ],
-      "Hash": "fd1349170df31f7a10bd98b0189e85af"
+      "Hash": "460a5e0fe46a80ef87424ad216028014"
     },
     "xml2": {
       "Package": "xml2",
