@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -85,6 +85,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../weeks/09_decisions.html" rel="next">
 <link href="../weeks/07_annotations.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -273,6 +274,12 @@ div.csl-indent {
  <span class="menu-text">8. Uncertainty and distributions</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/09_decisions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Making responsible decisions</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -327,7 +334,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 29, 2024</p>
+      <p class="date-modified">March 6, 2024</p>
     </div>
   </div>
     
@@ -342,7 +349,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="warm-up">Warm up</h2>
 <p>Fill in this quick survey about probability: </p><div id="qrcode" class="qrcode"></div>
 <script type="text/javascript">
-var qrcode = new QRCode("qrcode", {"text":"https://forms.gle/2X6qaSeeYaRqxYuU9","width":128,"colorDark":"#000000","colorLight":"#ffffff","height":128});
+var qrcode = new QRCode("qrcode", {"height":128,"text":"https://forms.gle/2X6qaSeeYaRqxYuU9","colorLight":"#ffffff","colorDark":"#000000","width":128});
 </script>
     <p></p>
 <div class="cell">
@@ -381,7 +388,7 @@ var qrcode = new QRCode("qrcode", {"text":"https://forms.gle/2X6qaSeeYaRqxYuU9",
 </div>
 <p>Of the counties in the Baltimore metro area, Howard County has a much higher overall median income than Baltimore city, yet there’s also a lot of overlapping values. Baltimore city has several tracts with pretty high incomes, but that fact gets washed out when we only look at summary values. Even just look at how different the income scales are!</p>
 <p>Think back to the wage gap data. When we just look at wages for men vs women, <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> we lose differences within and between those groups. Before we saw how median earnings increase with educational attainment, but women’s pay lags about one education level behind men’s pay. We’ll see other gaps when we look at earnings by sex and race/ethnicity.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;Speaking of distributions within data, there are gray areas in gender that aren’t captured by the Census.</p></div><div class="cell">
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Speaking of distributions within data, there are gray areas in gender that aren’t captured by the Census.</p></div></div><div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -391,7 +398,7 @@ var qrcode = new QRCode("qrcode", {"text":"https://forms.gle/2X6qaSeeYaRqxYuU9",
 </div>
 </div>
 <p>Side-by-side bars of race versus sex show much more of the range. When we talk about the wage gap as just men vs women, we miss the fact that white women have higher median earnings than Black or Latino men! <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;We also miss gaps within <em>those</em> groups, such as disparities by ethnicity, origin, and immigration status. An intern I worked with a few years ago made <a href="https://youtu.be/ahJZcp4JebU">this video</a> looking at the wage gaps within Asian American groups.</p></div><div class="cell">
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;We also miss gaps within <em>those</em> groups, such as disparities by ethnicity, origin, and immigration status. An intern I worked with a few years ago made <a href="https://youtu.be/ahJZcp4JebU">this video</a> looking at the wage gaps within Asian American groups.</p></div></div><div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -415,7 +422,7 @@ var qrcode = new QRCode("qrcode", {"text":"https://forms.gle/2X6qaSeeYaRqxYuU9",
 <p>Just like we can disaggregate the data into race vs sex, we can also tease apart the distributions within those groups. The wage gap data has not just medians, but also 20th, 25th, 75th, and 80th percentile values for every group.</p>
 <p>Here’s a bad chart of this data that just dumps all the data into a bunch of points. Looking at the examples from <span class="citation" data-cites="Yau2013">Yau (<a href="#ref-Yau2013" role="doc-biblioref">2013</a>)</span> (on Blackboard), brainstorm some better ways to show this data, including what you would want to filter out.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-Yau2013" class="csl-entry" role="listitem">
-Yau, N. (2013). <em>Data points: Visualization that means something</em>. <span>John Wiley &amp; Sons, Inc</span>.
+Yau, N. (2013). <em>Data points: Visualization that means something</em>. John Wiley &amp; Sons, Inc.
 </div></div><div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># reshape to long in order to make dot plot</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a>wages_quants <span class="ot">&lt;-</span> wages_sex_race <span class="sc">|&gt;</span></span>
@@ -466,7 +473,7 @@ Correll, M., &amp; Gleicher, M. (2014). Error <span>Bars Considered Harmful</spa
 <p>For working in ggplot, the <strong>ggdist</strong> package (<span class="citation" data-cites="Kay2024">Kay (<a href="#ref-Kay2024" role="doc-biblioref">2024</a>)</span>) has some good options for showing distributions and uncertainty. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
 <div class="no-row-height column-margin column-container"><div id="ref-Kay2024" class="csl-entry" role="listitem">
 Kay, M. (2024). <em>Mjskay/ggdist</em>. <a href="https://github.com/mjskay/ggdist">https://github.com/mjskay/ggdist</a>
-</div><p><sup>3</sup>&nbsp;<code>ggdist::geom_dots</code> or <code>ggdist::geom_interval</code> and its arguments could make a good replacement for the boxplot of median income above.</p><p><sup>4</sup>&nbsp;I can never define margin of error properly, but <a href="https://statisticsbyjim.com/hypothesis-testing/margin-of-error/">here’s a good overview</a>.</p></div><p>To make up for dropping margins of error before, I made a new dataset that we’ll use here. It’s the same wages data by sex, education, and occupation group, and it includes margins of error at both the 90% and 95% confidence levels. <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> When I analyzed the wage data, it came from a subset of the ACS, so a sample of a sample. With survey data like this, you have to worry about having large enough sample sizes to get reliable estimates. So far we’ve used fairly large groups (women in Maryland with bachelor’s degrees, etc), but when we slice the data more, we start to get less reliable estimates.</p>
+</div><div id="fn3"><p><sup>3</sup>&nbsp;<code>ggdist::geom_dots</code> or <code>ggdist::geom_interval</code> and its arguments could make a good replacement for the boxplot of median income above.</p></div><div id="fn4"><p><sup>4</sup>&nbsp;I can never define margin of error properly, but <a href="https://statisticsbyjim.com/hypothesis-testing/margin-of-error/">here’s a good overview</a>.</p></div></div><p>To make up for dropping margins of error before, I made a new dataset that we’ll use here. It’s the same wages data by sex, education, and occupation group, and it includes margins of error at both the 90% and 95% confidence levels. <a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> When I analyzed the wage data, it came from a subset of the ACS, so a sample of a sample. With survey data like this, you have to worry about having large enough sample sizes to get reliable estimates. So far we’ve used fairly large groups (women in Maryland with bachelor’s degrees, etc), but when we slice the data more, we start to get less reliable estimates.</p>
 <p>For example, calculating median income of women in military occupations by education leaves us with some very small sample sizes, and some very large MOEs. Rule of thumb is usually that you need at least 30 observations in your sample for estimates to be useful; you might also want to set a minimum number of estimated counts.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>wages_moe <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"inputs/wages_sex_edu_occ.rds"</span>)) <span class="sc">|&gt;</span></span>
@@ -938,6 +945,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -972,7 +997,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1253,6 +1282,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../weeks/09_decisions.html" class="pagination-link" aria-label="9. Making responsible decisions">
+        <span class="nav-page-text">9. Making responsible decisions</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

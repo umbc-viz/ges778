@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -239,6 +239,12 @@ div.csl-indent {
  <span class="menu-text">8. Uncertainty and distributions</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/09_decisions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Making responsible decisions</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -290,7 +296,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 29, 2024</p>
+      <p class="date-modified">March 6, 2024</p>
     </div>
   </div>
     
@@ -307,12 +313,12 @@ div.csl-indent {
 <div class="page-columns page-full"><blockquote class="blockquote">
 <p>The rendering of information in a visual format to help communicate data while also generating new patterns and knowledge through the act of visualization itself <span class="citation" data-cites="D.B.R2018">(<a href="#ref-D.B.R2018" role="doc-biblioref">Du Bois et al., 2018, p. 8</a>)</span></p>
 </blockquote><div class="no-row-height column-margin column-container"><div id="ref-D.B.R2018" class="csl-entry" role="listitem">
-Du Bois, W. E. B., Battle-Baptiste, W., &amp; Rusert, B. (2018). <em>W.<span>E</span>.<span>B Du Bois</span>’s data portraits: Visualizing <span>Black America</span></em> (First edition). <span>The W.E.B. Du Bois Center At the University of Massachusetts Amherst ; Princeton Architectural Press</span>.
+Du Bois, W. E. B., Battle-Baptiste, W., &amp; Rusert, B. (2018). <em>W.<span>E</span>.<span>B Du Bois</span>’s data portraits: Visualizing <span>Black America</span></em> (First edition). The W.E.B. Du Bois Center At the University of Massachusetts Amherst ; Princeton Architectural Press.
 </div></div></div>
 <div class="page-columns page-full"><blockquote class="blockquote">
 <p>The representation and presentation of data to facilitate understanding <span class="citation" data-cites="Kirk2016">(<a href="#ref-Kirk2016" role="doc-biblioref">Kirk, 2016, p. 19</a>)</span></p>
 </blockquote><div class="no-row-height column-margin column-container"><div id="ref-Kirk2016" class="csl-entry" role="listitem">
-Kirk, A. (2016). <em>Data visualisation: A handbook for data driven design</em>. <span>SAGE</span>.
+Kirk, A. (2016). <em>Data visualisation: A handbook for data driven design</em>. SAGE.
 </div></div></div>
 <p>It’s pretty common to find a book with hundreds of pages of details on data visualization, but no definition.</p>
 <p>What else could we add here?</p>
@@ -322,7 +328,7 @@ Kirk, A. (2016). <em>Data visualisation: A handbook for data driven design</em>.
 <div class="page-columns page-full"><blockquote class="blockquote">
 <p>Data visualization is part art and part science. The challenge is to get the art right without getting the science wrong and vice versa. A data visualization first and foremost has to accurately convey the data. It must not mislead or distort…. At the same time, a data visualization should be aesthetically pleasing <span class="citation" data-cites="Wilke2019">(<a href="#ref-Wilke2019" role="doc-biblioref">Wilke, 2019</a>, ch 1)</span></p>
 </blockquote><div class="no-row-height column-margin column-container"><div id="ref-Wilke2019" class="csl-entry" role="listitem">
-Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making informative and compelling figures</em> (First edition). <span>O’Reilly</span>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
+Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making informative and compelling figures</em> (First edition). O’Reilly. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
 </div></div></div>
 </section>
 <section id="why-visualize-data" class="level2">
@@ -600,6 +606,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -634,7 +658,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
