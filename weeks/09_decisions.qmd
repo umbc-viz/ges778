@@ -1,0 +1,137 @@
+---
+title: "9. Making responsible decisions"
+---
+
+```{r}
+#| label: setup
+library(dplyr)
+library(ggplot2)
+library(justviz)
+
+source(here::here("utils/plotting_utils.R"))
+update_geom_defaults("col", list(fill = qual_pal[3]))
+theme_set(theme_nice())
+
+```
+
+## Warm up
+
+* You want to know how UMBC graduate students feel about their job prospects, and how this might differ between students in STEM programs and students in social science programs (you're not interested in other degrees), so you're tabling on campus with a survey. The only actual survey question is "Do you feel good about your job prospects after graduation?" Draw a flowchart of the questions you might ask people before you get to the one survey question.
+* There's a virus circulating that has killed many people, but a vaccine is available and you trust reports that it greatly decreases the chances of dying from the disease. After about a year of a massive vaccination campaign, you find out that the majority of people dying from the disease at the hospital near you were already vaccinated. Does this change your beliefs about the vaccine's effectiveness? What other information might help explain this?
+
+:::{.callout-tip}
+### Brainstorm
+
+- 
+:::
+
+## Representing data
+
+Some of the ways we've talked about data visualization being misleading are intentional and malicious. That definitely happens, and how often you run into it might depend on your sources of information (Fox News, boardroom presentations, [Congress](https://floorcharts.com/), social media influencers...) but more often it's just lack of skill and fluency.
+
+:::{.aside}
+![Deceptive coffee creamer](../inputs/creamer.jpg){fig-alt="A close-up photo of a 64 ounce bottle of coffee creamer. In large, bold text on a bright red banner, it says '2x more creamer,' but in fine print clarifies 'than 32 ounce.'"}
+:::
+
+### Who's in the data
+
+One of the easiest things to mess up is the _universe_ of your data. This is basically your denominator---who or what is included and used as the unit of analysis. I've most often found (and made, and corrected) this type of mistake with survey data, because it can be hard to know exactly who's being asked every question. 
+
+An easy way to catch this is to **read the fine print** on your data sources, and to do it routinely because it might change. Some examples:
+
+* Birth outcomes: for some measures, unit might be babies; for others, parent giving birth
+* ACS tables: several tables seem like they match, but one is by household and another is by person. Be especially mindful with tables related to children and family composition---these get messy. ^[[This one is especially brain-melting](https://data.census.gov/table/ACSDT1Y2022.B05010?t=Families%20and%20Household%20Characteristics:Family%20Size%20and%20Type): Ratio of Income to Poverty Level in the Past 12 Months by Nativity of Children Under 18 Years in Families and Subfamilies by Living Arrangements and Nativity of Parents. The universe is own children under 18 years in families and subfamilies for whom poverty status is determined.]
+* Proxies: when I analyzed data on police stops, I tried to figure out a population to compare to. I didn't have data on how many people in each census tract had a driver's license, decennial data wasn't out yet so I didn't have reliable local counts of population 16 and up by race, so I just used population. It wasn't ideal.
+* Relationships: is a question being asked of parents, or of adults with a child in their household? These aren't necessarily the same.
+
+Another example: how would you make sense of this?
+
+```{r}
+#| echo: false
+#| tbl-cap: Share of adults reporting having been unfairly stopped by police, Connecticut, 2021
+police_stops |>
+  filter(name == "Connecticut",
+         category %in% c("Total", "Race/Ethnicity")) |>
+  mutate(across(ever_unfairly_stopped:multiple_times_3yr, scales::label_percent(accuracy = 1))) |>
+  knitr::kable(align = "lllrr")
+```
+
+
+### Obscuring data
+
+We've talked some about dealing with missing data, and often the solution to data-related problems is to get more of it. But sometimes it's important to _not_ be counted, or to _not_ show everything. There are even times when it might be good to intentionally mess up the data (maybe this isn't the role of the visualizer, however). ^[The Census Bureau made the controversial decision to basically do this, via differential privacy. @Wang2021b] I would argue that **hiding data when necessary should also be part of doing data analysis and viz responsibly**. Some examples:
+
+* Filling period tracking apps with fake data after Roe v Wade was overturned
+* Not adding citizenship to the census or other surveys; not asking about sexual orientation and gender identity. In theory these should both be fine, but in practice they may not be safe for people to disclose, or they could get misused.
+* Leaving out parts of your data that could be stigmatizing or lead to misinformation
+
+An example of this last point: 
+
+![](https://www.kff.org/wp-content/uploads/2021/02/9643-Figure-5.png){fig-alt='Bar chart of KFF survey questions on concerns adults have about the COVID-19 vaccines as of January 2021, among adults who say they want to wait and see how the vaccines work before getting them. The data is broken down by race for Black, Hispanic, and white adults, and Black adults are most likely to express concerns. The highest ranked concern is "the long-term effects of the COVID-19 vaccines are unknown."'}
+
+My organization's survey asked a similar set of questions, but we chose not to release the question about getting COVID from the vaccine. The others are valid concerns; that one is misinformation that we didn't want to repeat even with qualifiers.
+
+### Lack of a pattern
+
+Sometimes the pattern you expect to find in a dataset isn't there, and that's okay. You want to go into your work with an open mind, rather than force the data into the story you want it to tell. I'm really into situations where the pattern you think you're going to find isn't there, and _that's_ the story---it might point to a disruption in the usual pattern. 
+
+
+### Say what you mean
+
+* __Don't say "people of color" when you actually mean "Black people"__ or "Black and Latino people" or something else. This drives me crazy, and I'm sure I've done it as well. Sometimes because of small sample sizes or other limitations, you can't break your data down further than white vs people of color. But if you can disaggregate further, do so, at least in the EDA process. This especially goes for data that deals with something that historically targeted e.g. Black people or indigenous people or some other group.
+* Along those same lines, don't say BIPOC (Black, Indigenous, and people of color) if you don't actually have any data to show on indigenous people, or LGBT if you have no data on trans people.
+
+
+## Exercise
+
+The `youth_risks` dataset in the justviz package has a set of questions from the DataHaven Community Wellbeing Survey, where survey respondents are asked to rate the likelihood of young people in their area experiencing different events (@dcws). The allowed responses are "almost certain," "very likely," "a toss up," "not very likely," and "not at all likely"; this type of question is called a Likert scale. The universe of this dataset is adults in Connecticut, and the survey was conducted in 2021.
+
+Starting with just stacked bars for a single question at a time (see example), explore the data visually and see if you can find an anomaly. (Hint: one of these questions is not like the other.) Browse through @Pirrone2020 to get some ideas of more ways to visualize Likert data, especially ways that will illustrate the pattern well.
+
+```{r}
+#| label: tbl-risks
+#| tbl-cap: Ratings of likelihood that young people will graduate from high school, share of Connecticut adults, 2021
+div_pal <- c('#00748a', '#479886', '#adadad', '#d06b56', '#b83654') # based on carto-color Temps
+
+risks <- youth_risks |>
+  filter(category %in% c("Total", "Race/Ethnicity", "Income", "With children")) |>
+  mutate(question = forcats::as_factor(question))
+
+risks |>
+  filter(question == "Graduate from high school") |>
+  mutate(value = scales::label_percent(accuracy = 1)(value)) |>
+  tidyr::pivot_wider(id_cols = c(category, group), names_from = response) |>
+  knitr::kable(align = "llrrrrr")
+```
+
+
+```{r}
+#| include: false
+#| label: fig-risks-stack
+#| fig-height: 6
+ggplot(risks, aes(x = forcats::fct_rev(group), y = value, fill = response)) +
+  geom_col(width = 0.9, position = position_fill(), alpha = 0.9) +
+  coord_flip() +
+  facet_wrap(vars(question), ncol = 3, labeller = labeller(question = label_wrap_gen(30))) +
+  scale_fill_manual(values = div_pal) +
+  theme(legend.position = "bottom",
+        panel.grid.major.y = element_blank())
+```
+
+```{r}
+#| include: false
+#| label: fig-risks-split
+#| fig-height: 5
+risks |>
+  filter(question %in% c("Graduate from high school", "Abuse drugs or alcohol", "Be in a gang")) |>
+  ggplot(aes(x = forcats::fct_rev(group), y = value, fill = response)) +
+  geom_col(width = 0.9, alpha = 0.9) +
+  coord_flip() +
+  facet_grid(rows = vars(question), cols = vars(response),
+             # scales = "free", space = "free_x", # free spacing doesn't work well here
+             labeller = labeller(question = label_wrap_gen(30))) +
+  scale_fill_manual(values = div_pal) +
+  theme(legend.position = "none",
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line())
+```
