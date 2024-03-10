@@ -22,7 +22,9 @@ theme_set(theme_nice())
 :::{.callout-tip}
 ### Brainstorm
 
-- 
+- health of people who are dying before getting sick (comorbidities, etc)
+- how many people already vaccinated
+
 :::
 
 ## Representing data
