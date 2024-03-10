@@ -36,7 +36,7 @@ scale_y_barcontinuous <- function(...) {
 ############################## COLORS ####################
 # set of qualitative colors
 qual_pal <- rcartocolor::carto_pal(n = 12, "Bold")
-tf_pal <- c("TRUE" = qual_pal[12], "FALSE" = "white")
+tf_pal <- c("TRUE" = colorspace::darken(qual_pal[12], amount = 0.4), "FALSE" = "white")
 
 
 ############################## STRINGS ####################
