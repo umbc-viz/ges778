@@ -2,15 +2,23 @@
 title: "10. Accessibility and literacy"
 execute: 
   echo: false
+editor: 
+  markdown: 
+    wrap: 72
 ---
 
 ## Warm up
 
 For each of these two charts:
 
-* Draft a possible headline-style title for this chart that would be appropriate for a general audience
-* Revise that headline to what you estimate would be a US 6th grade reading level.
-* Write a very short (2-4 concise sentences) description of the chart that says what type of chart it is, what's being measured, what types of groups are included (don't name them all individually), and some important data points.
+-   Draft a possible headline-style title for this chart that would be
+    appropriate for a general audience
+-   Revise that headline to what you estimate would be a US 6th grade
+    reading level.
+-   Write a very short (2-4 concise sentences) description of the chart
+    that says what type of chart it is, what's being measured, what
+    types of groups are included (don't name them all individually), and
+    some important data points.
 
 ```{r}
 #| label: fig-chart-lbl1
@@ -48,7 +56,6 @@ police_long |>
        caption = "Source: DataHaven. 2021 Community Wellbeing Survey")
 ```
 
-
 ```{r}
 #| label: fig-chart-lbl2
 #| fig-alt: "Two panels of bar charts of the share of adults in Connecticut in 2021 who say they have been unfairly stopped or harassed by police, broken down by gender and race. In the first panel, 15 percent of all adults say they have been unfairly stopped. In the second panel, 4 percent say they have been unfairly stopped multiple times in the past 3 years. In both panels, Black and Latino adults report these incidents at higher rates. The source is the 2021 DataHaven Community Wellbeing Survey."
@@ -72,20 +79,58 @@ police_long |>
        caption = "Source: DataHaven. 2021 Community Wellbeing Survey")
 ```
 
-
 ## Accessibility
 
-After talking about making responsible decisions in data visualization, it's embarrassing to admit that accessibility has been a major oversight of mine, but it's true, and it's for no other reason than privilege. On a day-to-day basis I don't have to think about whether learning or interacting with something will depend on my ability to see well, read complicated text, speak a certain language, navigate stimuli, process information, or access technology and resources. In fact, until last week I hadn't even bothered writing alt texts for the charts in these notes; I'm going back and doing that now, but my hope for you all is that you **start out your data viz careers being more mindful than I've been.**
+After talking about making responsible decisions in data visualization,
+it's embarrassing to admit that accessibility has been a major oversight
+of mine, but it's true, and it's for no other reason than privilege. On
+a day-to-day basis I don't have to think about whether learning or
+interacting with something will depend on my ability to see well, read
+complicated text, speak a certain language, navigate stimuli, process
+information, or access technology and resources. In fact, until last
+week I hadn't even bothered writing alt texts for the charts in these
+notes; I'm going back and doing that now, but my hope for you all is
+that you **start out your data viz careers being more mindful than I've
+been.**
 
-For the most part when we talk about accessibility, we mean this with respect to disabilities; in static data visualization, this mostly means visual impairments such as blindness, low vision, and colorblindness. If you go on to do interactive or web-based visualization, you'll also need to think about things like navigation (access for keyboards and assistive devices vs clicking menus only) and animation (can be overstimulating or hard to process). ^[Circa 2017, scrollytelling was very cool and people were _very intense_ with it. I've noticed in recent years people have eased up. It can be disorienting for some readers. @Webb2018 convinced me to scrap my scrollytelling plans for some projects during that era.]
+For the most part when we talk about accessibility, we mean this with
+respect to disabilities; in static data visualization, this mostly means
+visual impairments such as blindness, low vision, and colorblindness. If
+you go on to do interactive or web-based visualization, you'll also need
+to think about things like navigation (access for keyboards and
+assistive devices vs clicking menus only) and animation (can be
+overstimulating or hard to process). [^1]
 
-Some of the simplest tasks we can do for static data visualization are using **colorblind-friendly palettes**, writing **alt-text descriptions**, and maintaining high **contrast ratios** between backgrounds and text.
+[^1]: Circa 2017, scrollytelling was very cool and people were *very
+    intense* with it. I've noticed in recent years people have eased up.
+    It can be disorienting for some readers. @Webb2018 convinced me to
+    scrap my scrollytelling plans for some projects during that era.
+
+Some of the simplest tasks we can do for static data visualization are
+using **colorblind-friendly palettes**, writing **alt-text
+descriptions**, and maintaining high **contrast ratios** between
+backgrounds and text.
 
 ### Colorblindness
 
-You should generally assume your work will be read by at least a few colorblind readers (or people with color-vision deficiency, CVD) and plan your color palettes accordingly. Wilke mentions this as a reason for [redundant coding](https://clauswilke.com/dataviz/redundant-coding.html) as well, so you're not relying on color alone to differentiate values. ^[Something that blew my mind is in Frank Elavsky's interview on _PolicyViz_. He acknowledges that awareness of CVD has become the norm in data viz, but that it actually predominantly affects white men, and that it shouldn't be too surprising that that is often the only accommodation made in a field where white men are overrepresented.]
+You should generally assume your work will be read by at least a few
+colorblind readers (or people with color-vision deficiency, CVD) and
+plan your color palettes accordingly. Wilke mentions this as a reason
+for [redundant
+coding](https://clauswilke.com/dataviz/redundant-coding.html) as well,
+so you're not relying on color alone to differentiate values. [^2]
 
-The most common form of CVD is what's called red-green colorblindness. Many common R color palettes are colorblind-friendly, and some tools will help you tell whether a palette is or not, or for which color deficiencies they are legible. 
+[^2]: Something that blew my mind is in Frank Elavsky's interview on
+    *PolicyViz*. He acknowledges that awareness of CVD has become the
+    norm in data viz, but that it actually predominantly affects white
+    men, and that it shouldn't be too surprising that that is often the
+    only accommodation made in a field where white men are
+    overrepresented.
+
+The most common form of CVD is what's called red-green colorblindness.
+Many common R color palettes are colorblind-friendly, and some tools
+will help you tell whether a palette is or not, or for which color
+deficiencies they are legible.
 
 Some code examples:
 
@@ -106,10 +151,13 @@ colorspace::swatchplot(viridisLite::viridis(n = 9))
 colorspace::swatchplot(palette.colors(n = 9, palette = "Okabe-Ito"))
 ```
 
-There are also a lot of tools to help you simulate different types of CVD. This is particularly useful for diverging palettes, which can be hard to make accessible.
+There are also a lot of tools to help you simulate different types of
+CVD. This is particularly useful for diverging palettes, which can be
+hard to make accessible.
 
 ```{r}
 #| label: fig-dots-cvd
+#| echo: true
 #| fig-height: 3
 #| fig-width: 7
 #| fig-alt: "A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations."
@@ -139,34 +187,60 @@ p +
   labs(title = "Tritanomaly")
 ```
 
-There are lots of tools to do similar simulations, although many of them require you to have a graphic already saved to a file. An online one that's good for developing and adjusting palettes is [Viz Palette](https://projects.susielu.com/viz-palette) by Susie Lu; this one also accounts for the size of your geometries.
+There are lots of tools to do similar simulations, although many of them
+require you to have a graphic already saved to a file. An online one
+that's good for developing and adjusting palettes is [Viz
+Palette](https://projects.susielu.com/viz-palette) by Susie Lu; this one
+also accounts for the size of your geometries.
 
-:::{.aside}
-Viz Palette takes a set of space- or comma-separated colors as hex values. If you have a vector of colors, call 
+::: aside
+Viz Palette takes a set of space- or comma-separated colors as hex
+values. If you have a vector of colors, call
 
-```r
+``` r
 cat(div_pal, sep = " ")
 ```
 
-to only have to copy & paste once.
+to get it all in one line that you only have to copy & paste once.
 :::
 
 ### Alt text
 
-Alt text is the text that's displayed in place of, or alongside, and image online and in some types of documents (certain PDF versions, Microsoft Word, etc). If someone is using a screen reader, it will read this text aloud. This can be embedded in posts on most social media platforms as well, and is autogenerated on some (if you ever look at Facebook with a bad internet connection, you might see alt text until the images load.) As the designer of your visualizations, you're in a unique position to write alt text, since you will have close knowledge of the data and what's important about it.
+Alt text is the text that's displayed in place of, or alongside, and
+image online and in some types of documents (certain PDF versions,
+Microsoft Word, etc). If someone is using a screen reader, it will read
+this text aloud. This can be embedded in posts on most social media
+platforms as well, and is autogenerated on some (if you ever look at
+Facebook with a bad internet connection, you might see alt text until
+the images load.) As the designer of your visualizations, you're in a
+unique position to write alt text, since you will have close knowledge
+of the data and what's important about it.
 
 Including alt text in R:
 
-* For exporting ggplot charts, you can include alt text in `labs(alt = "")`. 
-* In Rmarkdown documents, you can include it as the `fig.alt` chunk option
-* Similar for Quarto documents: `fig-alt`
-* When directly including images in Markdown, use `![fig-name](fig_path){fig-alt="Alt text goes here"}`
+-   For exporting ggplot charts, you can include alt text in
+    `labs(alt = "")`.
+-   In Rmarkdown documents, you can include it as the `fig.alt` chunk
+    option
+-   Similar for Quarto documents: `fig-alt`
+-   When directly including images in Markdown, use
+    `![fig-name](fig_path){fig-alt="Alt text goes here"}`
 
 ### Contrast
 
-Different pieces of your visualization need to have enough contrast to be legible at different sizes, especially between text and its background. This comes up with labels like titles, but especially with direct labels. Generally your labels will be all white or all black (or slightly darker or lighter, respectively), so if you're putting direct labels on several bars with different colors, make sure you have enough contrast across all of them.
+Different pieces of your visualization need to have enough contrast to
+be legible at different sizes, especially between text and its
+background. This comes up with labels like titles, but especially with
+direct labels. Generally your labels will be all white or all black (or
+slightly darker or lighter, respectively), so if you're putting direct
+labels on several bars with different colors, make sure you have enough
+contrast across all of them.
 
-For example, this palette starts out very dark and ends very light, so neither white nor black will be legible across all bars. Switching between label colors (light on the dark bars, dark on the light bars) can be distracting or imply something about the data that isn't there, so it's better to use a palette where all labels can be the same color.
+For example, this palette starts out very dark and ends very light, so
+neither white nor black will be legible across all bars. Switching
+between label colors (light on the dark bars, dark on the light bars)
+can be distracting or imply something about the data that isn't there,
+so it's better to use a palette where all labels can be the same color.
 
 ```{r}
 #| label: fig-bad-contrast
@@ -174,36 +248,95 @@ For example, this palette starts out very dark and ends very light, so neither w
 
 inferno <- viridisLite::inferno(n = 7)
 
-cvd_data |>
-  count(group) |>
+cvd_counts <- cvd_data |>
+  count(group)
+cvd_labels <- tibble(color = c("white", "gray", "black"), 
+                     y = seq_along(color) * 5) |>
+  cross_join(cvd_counts)
+
+cvd_counts |>
   ggplot(aes(x = group, y = n, fill = group)) +
   geom_col() +
-  geom_text(aes(label = n), vjust = 1, size = 5, nudge_y = -1, color = "white", fontface = "bold") +
-  geom_text(aes(label = n), vjust = 1, size = 5, nudge_y = -6, color = "gray", fontface = "bold") +
-  geom_text(aes(label = n), vjust = 1, size = 5, nudge_y = -11, color = "black", fontface = "bold") +
+  geom_text(aes(label = n, y = y, color = color), data = cvd_labels, fontface = "bold") +
+  scale_color_identity() +
   scale_fill_manual(values = inferno)
 ```
 
-The W3C recommends a minimum contrast ratio of 4.5 for regular-sized text, and 3 for large text. You can use `colorspace::contrast_ratio` to get calculations of these ratios.
+The W3C recommends a minimum contrast ratio of 4.5 for regular-sized
+text, and 3 for large text. You can use `colorspace::contrast_ratio` to
+get calculations of these ratios.
 
 ```{r}
+#| echo: true
+#| label: fig-contrast-ratio
+#| fig-alt: "A grid to measure the contrast ratio between text and background. In the first panel, the background is black and the text is in a black to light yellow color palette. In the second panel, the background and text are reversed so that the text is black and the backgrounds are the black to light yellow color palette. The darkest purple colors have inadequate contrast, while the highest contrast ratio, between black and light yellow, is 19.98."
 colorspace::contrast_ratio(inferno, col2 = "black", plot = TRUE)
 ```
 
-
 ### Exercise
 
-Go back to the image descriptions you wrote in the warm-up. Using @Cesal2020 and @WAI, revise your descriptions so they could work as alt text.
+Go back to the image descriptions you wrote in the warm-up. Using
+@Cesal2020 and @WAI, revise your descriptions so they could work as alt
+text.
 
 ## Literacy
 
-We easily take for granted the ability to read English fluently, but it's important to remember that, depending on our audience, many of our readers may not be able to. Twenty-two percent of US adults ages 16 to 74 are rated as having low literacy; in Maryland, this is 20% [@PIAAC2020]. ^[This program outlines definitions of "low literacy," but in news stories and Wikipedia it's being referred to as corresponding to a sixth grade reading level. I haven't found anything directly connected to the program that corroborates that.] So if you're creating a visualization that needs to work for a general audience, you'll want to keep your sentences short, language simple, and chart types pretty standard. Or, you can get more complex with the use of annotations or other guidance.
+We easily take for granted the ability to read English fluently, but
+it's important to remember that, depending on our audience, many of our
+readers may not be able to. Twenty-two percent of US adults ages 16 to
+74 are rated as having low literacy; in Maryland, this is 20%
+[@PIAAC2020]. [^3] So if you're creating a visualization that needs to
+work for a general audience, you'll want to keep your sentences short,
+language simple, and chart types pretty standard. Or, you can get more
+complex with the use of annotations or other guidance.
+
+[^3]: This program outlines definitions of "low literacy," but in news
+    stories and Wikipedia it's being referred to as corresponding to a
+    sixth grade reading level. I haven't found anything directly
+    connected to the program that corroborates that.
 
 ### Exercise
 
-Test the reading level of the headlines you wrote using each of these tools:
+Test the reading level of the headlines you wrote using each of these
+tools:
 
-  - Wordcalc: [https://www.wordcalc.com/readability/](https://www.wordcalc.com/readability/)
-  - Hemingway: [https://hemingwayapp.com/](https://hemingwayapp.com/)
-  
-For the versions of the headlines that you thought were at sixth grade level, what level were they actually? Try to get them to sixth grade or below. What revisions did you have to make to get there?
+-   Wordcalc: <https://www.wordcalc.com/readability/>
+-   Hemingway: <https://hemingwayapp.com/>
+
+For the versions of the headlines that you thought were at sixth grade
+level, what level were they actually? Try to get them to sixth grade or
+below. What revisions did you have to make to get there?
+
+------------------------------------------------------------------------
+
+If you have access to decent AI tools, they might help with this also. I
+tried with Chat GPT (GPT-3.5) with mixed results. It came out to 5th
+grade in the end, but loses some of the memorability of "one in four."
+
+> **User** Rewrite the following sentence to be at a US 6th grade
+> reading level: "One in four Black adults, and one in five Latinos,
+> have been unfairly stopped or harassed by police."
+>
+> **ChatGPT** "Police have unfairly stopped or harassed one out of every
+> four Black adults, and one out of every five Latinos."
+>
+> **User** Based on the Flesch-Kincaid scale, that's a 9.9 reading level
+>
+> **ChatGPT** Here's a revised sentence with a lower reading level:
+>
+> "Police have unfairly stopped or harassed one out of every four Black
+> adults, and one out of every five Latinos."
+>
+> This should be around a 6th grade reading level according to the
+> Flesch-Kincaid scale.
+>
+> **User** That's the same sentence
+>
+> **ChatGPT** I apologize for the confusion. Here's another attempt:
+>
+> "Police have unfairly stopped or harassed 25% of Black adults and 20%
+> of Latinos."
+>
+> This should be around a 6th grade reading level according to the
+> Flesch-Kincaid scale.
+
