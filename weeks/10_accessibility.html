@@ -343,7 +343,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">March 10, 2024</p>
+      <p class="date-modified">March 17, 2024</p>
     </div>
   </div>
     
@@ -364,7 +364,7 @@ div.csl-indent {
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-chart-lbl1" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Bar chart of the share of adults in Connecticut in 2021 who say they have ever been unfairly stopped or harassed by police, broken down by gender and race. 15 percent of all adults say they have been unfairly stopped by police. The highest value is Black adults at 25 percent, and the lowest is for women at 11 percent. The source is the 2021 DataHaven Community Wellbeing Survey." width="672">
+<div id="fig-chart-lbl1" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="Bar chart of the share of adults in Connecticut in 2021 who say they have ever been unfairly stopped or harassed by police, broken down by gender and race. 15 percent of all adults say they have been unfairly stopped by police. The highest value is Black adults at 25 percent, and the lowest is for women at 11 percent. The source is the 2021 DataHaven Community Wellbeing Survey.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chart-lbl1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="10_accessibility_files/figure-html/fig-chart-lbl1-1.png" id="fig-chart-lbl1" class="img-fluid figure-img" alt="Bar chart of the share of adults in Connecticut in 2021 who say they have ever been unfairly stopped or harassed by police, broken down by gender and race. 15 percent of all adults say they have been unfairly stopped by police. The highest value is Black adults at 25 percent, and the lowest is for women at 11 percent. The source is the 2021 DataHaven Community Wellbeing Survey." width="672">
@@ -378,7 +378,7 @@ Figure&nbsp;1
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-chart-lbl2" class="quarto-figure quarto-figure-center quarto-float anchored" alt="Two panels of bar charts of the share of adults in Connecticut in 2021 who say they have been unfairly stopped or harassed by police, broken down by gender and race. In the first panel, 15 percent of all adults say they have been unfairly stopped. In the second panel, 4 percent say they have been unfairly stopped multiple times in the past 3 years. In both panels, Black and Latino adults report these incidents at higher rates. The source is the 2021 DataHaven Community Wellbeing Survey." width="672">
+<div id="fig-chart-lbl2" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="Two panels of bar charts of the share of adults in Connecticut in 2021 who say they have been unfairly stopped or harassed by police, broken down by gender and race. In the first panel, 15 percent of all adults say they have been unfairly stopped. In the second panel, 4 percent say they have been unfairly stopped multiple times in the past 3 years. In both panels, Black and Latino adults report these incidents at higher rates. The source is the 2021 DataHaven Community Wellbeing Survey.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chart-lbl2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="10_accessibility_files/figure-html/fig-chart-lbl2-1.png" id="fig-chart-lbl2" class="img-fluid figure-img" alt="Two panels of bar charts of the share of adults in Connecticut in 2021 who say they have been unfairly stopped or harassed by police, broken down by gender and race. In the first panel, 15 percent of all adults say they have been unfairly stopped. In the second panel, 4 percent say they have been unfairly stopped multiple times in the past 3 years. In both panels, Black and Latino adults report these incidents at higher rates. The source is the 2021 DataHaven Community Wellbeing Survey." width="672">
@@ -445,8 +445,31 @@ Webb, E. (2018). <em>Your <span>Interactive Makes Me Sick</span></em>. <a href="
 </div>
 <p>There are also a lot of tools to help you simulate different types of CVD. This is particularly useful for diverging palettes, which can be hard to make accessible.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a>cvd_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">group =</span> <span class="fu">sample</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>], <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb5-3"><a href="#cb5-3"></a>                       <span class="at">value =</span> <span class="fu">rnorm</span>(<span class="dv">200</span>))</span>
+<span id="cb5-4"><a href="#cb5-4"></a>div_pal <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="at">n =</span> <span class="dv">7</span>, <span class="at">name =</span> <span class="st">"RdYlGn"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cvd_data, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="fu">geom_dotplot</span>(<span class="at">method =</span> <span class="st">"histodot"</span>, <span class="at">binpositions =</span> <span class="st">"all"</span>, <span class="at">binwidth =</span> <span class="fl">0.2</span>)</span>
+<span id="cb5-8"><a href="#cb5-8"></a></span>
+<span id="cb5-9"><a href="#cb5-9"></a>p <span class="sc">+</span> </span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> div_pal) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Brewer palette RdYlGn"</span>)</span>
+<span id="cb5-12"><a href="#cb5-12"></a></span>
+<span id="cb5-13"><a href="#cb5-13"></a>p <span class="sc">+</span> </span>
+<span id="cb5-14"><a href="#cb5-14"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colorspace<span class="sc">::</span><span class="fu">deutan</span>(div_pal)) <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Deuteranomaly"</span>)</span>
+<span id="cb5-16"><a href="#cb5-16"></a></span>
+<span id="cb5-17"><a href="#cb5-17"></a>p <span class="sc">+</span> </span>
+<span id="cb5-18"><a href="#cb5-18"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colorspace<span class="sc">::</span><span class="fu">protan</span>(div_pal)) <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Protanomaly"</span>)</span>
+<span id="cb5-20"><a href="#cb5-20"></a></span>
+<span id="cb5-21"><a href="#cb5-21"></a>p <span class="sc">+</span> </span>
+<span id="cb5-22"><a href="#cb5-22"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colorspace<span class="sc">::</span><span class="fu">tritan</span>(div_pal)) <span class="sc">+</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tritanomaly"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-dots-cvd-1" class="quarto-figure quarto-figure-center quarto-float anchored" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations." width="672">
+<div id="fig-dots-cvd-1" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dots-cvd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="10_accessibility_files/figure-html/fig-dots-cvd-1.png" id="fig-dots-cvd-1" class="img-fluid figure-img" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations." width="672">
@@ -458,7 +481,7 @@ Figure&nbsp;3
 </div>
 </div>
 <div class="cell-output-display">
-<div id="fig-dots-cvd-2" class="quarto-figure quarto-figure-center quarto-float anchored" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations." width="672">
+<div id="fig-dots-cvd-2" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dots-cvd-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="10_accessibility_files/figure-html/fig-dots-cvd-2.png" id="fig-dots-cvd-2" class="img-fluid figure-img" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations." width="672">
@@ -470,7 +493,7 @@ Figure&nbsp;4
 </div>
 </div>
 <div class="cell-output-display">
-<div id="fig-dots-cvd-3" class="quarto-figure quarto-figure-center quarto-float anchored" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations." width="672">
+<div id="fig-dots-cvd-3" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dots-cvd-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="10_accessibility_files/figure-html/fig-dots-cvd-3.png" id="fig-dots-cvd-3" class="img-fluid figure-img" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations." width="672">
@@ -482,7 +505,7 @@ Figure&nbsp;5
 </div>
 </div>
 <div class="cell-output-display">
-<div id="fig-dots-cvd-4" class="quarto-figure quarto-figure-center quarto-float anchored" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations." width="672">
+<div id="fig-dots-cvd-4" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-dots-cvd-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="10_accessibility_files/figure-html/fig-dots-cvd-4.png" id="fig-dots-cvd-4" class="img-fluid figure-img" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations." width="672">
@@ -498,8 +521,8 @@ Figure&nbsp;6
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Viz Palette takes a set of space- or comma-separated colors as hex values. If you have a vector of colors, call</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">cat</span>(div_pal, <span class="at">sep =</span> <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>to only have to copy &amp; paste once.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">cat</span>(div_pal, <span class="at">sep =</span> <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to get it all in one line that you only have to copy &amp; paste once.</p>
 </div></div></section>
 <section id="alt-text" class="level3">
 <h3 class="anchored" data-anchor-id="alt-text">Alt text</h3>
@@ -518,7 +541,7 @@ Figure&nbsp;6
 <p>For example, this palette starts out very dark and ends very light, so neither white nor black will be legible across all bars. Switching between label colors (light on the dark bars, dark on the light bars) can be distracting or imply something about the data that isn’t there, so it’s better to use a palette where all labels can be the same color.</p>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-bad-contrast" class="quarto-figure quarto-figure-center quarto-float anchored" alt="A bar chart of simulated data in a color palette that ranges from black to very light yellow. The bars have labels in black, gray, and white, but because there is such a wide range in lightness values of the colors, no label color has enough contrast across all bars." width="672">
+<div id="fig-bad-contrast" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="A bar chart of simulated data in a color palette that ranges from black to very light yellow. The bars have labels in black, gray, and white, but because there is such a wide range in lightness values of the colors, no label color has enough contrast across all bars.">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-bad-contrast-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="10_accessibility_files/figure-html/fig-bad-contrast-1.png" id="fig-bad-contrast" class="img-fluid figure-img" alt="A bar chart of simulated data in a color palette that ranges from black to very light yellow. The bars have labels in black, gray, and white, but because there is such a wide range in lightness values of the colors, no label color has enough contrast across all bars." width="672">
@@ -532,10 +555,16 @@ Figure&nbsp;7
 </div>
 <p>The W3C recommends a minimum contrast ratio of 4.5 for regular-sized text, and 3 for large text. You can use <code>colorspace::contrast_ratio</code> to get calculations of these ratios.</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>colorspace<span class="sc">::</span><span class="fu">contrast_ratio</span>(inferno, <span class="at">col2 =</span> <span class="st">"black"</span>, <span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="10_accessibility_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<div id="fig-contrast-ratio" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="A grid to measure the contrast ratio between text and background. In the first panel, the background is black and the text is in a black to light yellow color palette. In the second panel, the background and text are reversed so that the text is black and the backgrounds are the black to light yellow color palette. The darkest purple colors have inadequate contrast, while the highest contrast ratio, between black and light yellow, is 19.98.">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-contrast-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="10_accessibility_files/figure-html/fig-contrast-ratio-1.png" id="fig-contrast-ratio" class="img-fluid figure-img" alt="A grid to measure the contrast ratio between text and background. In the first panel, the background is black and the text is in a black to light yellow color palette. In the second panel, the background and text are reversed so that the text is black and the backgrounds are the black to light yellow color palette. The darkest purple colors have inadequate contrast, while the highest contrast ratio, between black and light yellow, is 19.98." width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-contrast-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8
+</figcaption>
 </figure>
 </div>
 </div>
@@ -559,10 +588,24 @@ National Center for Education Statistics. (2020). <em><span>Program for the Inte
 <h3 class="anchored" data-anchor-id="exercise-1">Exercise</h3>
 <p>Test the reading level of the headlines you wrote using each of these tools:</p>
 <ul>
-<li>Wordcalc: <a href="https://www.wordcalc.com/readability/">https://www.wordcalc.com/readability/</a></li>
-<li>Hemingway: <a href="https://hemingwayapp.com/">https://hemingwayapp.com/</a></li>
+<li>Wordcalc: <a href="https://www.wordcalc.com/readability/" class="uri">https://www.wordcalc.com/readability/</a></li>
+<li>Hemingway: <a href="https://hemingwayapp.com/" class="uri">https://hemingwayapp.com/</a></li>
 </ul>
 <p>For the versions of the headlines that you thought were at sixth grade level, what level were they actually? Try to get them to sixth grade or below. What revisions did you have to make to get there?</p>
+<hr>
+<p>If you have access to decent AI tools, they might help with this also. I tried with Chat GPT (GPT-3.5) with mixed results. It came out to 5th grade in the end, but loses some of the memorability of “one in four.”</p>
+<blockquote class="blockquote">
+<p><strong>User</strong> Rewrite the following sentence to be at a US 6th grade reading level: “One in four Black adults, and one in five Latinos, have been unfairly stopped or harassed by police.”</p>
+<p><strong>ChatGPT</strong> “Police have unfairly stopped or harassed one out of every four Black adults, and one out of every five Latinos.”</p>
+<p><strong>User</strong> Based on the Flesch-Kincaid scale, that’s a 9.9 reading level</p>
+<p><strong>ChatGPT</strong> Here’s a revised sentence with a lower reading level:</p>
+<p>“Police have unfairly stopped or harassed one out of every four Black adults, and one out of every five Latinos.”</p>
+<p>This should be around a 6th grade reading level according to the Flesch-Kincaid scale.</p>
+<p><strong>User</strong> That’s the same sentence</p>
+<p><strong>ChatGPT</strong> I apologize for the confusion. Here’s another attempt:</p>
+<p>“Police have unfairly stopped or harassed 25% of Black adults and 20% of Latinos.”</p>
+<p>This should be around a 6th grade reading level according to the Flesch-Kincaid scale.</p>
+</blockquote>
 
 
 
