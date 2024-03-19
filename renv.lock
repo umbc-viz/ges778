@@ -1,6 +1,6 @@
 {
   "R": {
-    "Version": "4.3.2",
+    "Version": "4.3.3",
     "Repositories": [
       {
         "Name": "RSPM",
@@ -883,21 +883,21 @@
     },
     "justviz": {
       "Package": "justviz",
-      "Version": "0.1.0",
+      "Version": "0.2.1",
       "Source": "GitHub",
-      "RemoteType": "github",
       "Remotes": "CT-Data-Haven/cwi, camille-s/camiller",
+      "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteRepo": "justviz",
       "RemoteUsername": "umbc-viz",
       "RemoteRef": "HEAD",
-      "RemoteSha": "42ba4f14053bc300d820e22adce2025f99a4f449",
+      "RemoteSha": "9242a83e0d62d0ec2e6ec345eefc4c914f4c3b91",
       "Requirements": [
         "R",
         "classInt",
         "cli"
       ],
-      "Hash": "d67587efe852bb460205654db42f9ff6"
+      "Hash": "a8e5fde7948123f08599d4d6a7b58db1"
     },
     "knitr": {
       "Package": "knitr",
