@@ -1,0 +1,129 @@
+---
+title: "11. Merging data"
+---
+
+```{r}
+library(dplyr)
+library(justviz)
+library(ggplot2)
+```
+
+Here are some notes on merging data from different data frames. A lot of the functions here come from dplyr, including all the `*_join` ones.
+
+
+## Types of joins
+
+There are different types of joins that are defined by what data you want to keep and under what circumstances. These are consistent across many different languages (e.g. same terminology in R should apply in most/all SQL variants). The ones you'll use most often are left joins and inner joins; when in doubt, a left join is safer than an inner join.
+
+There's an overly complicated chapter in _R for Data Science_ on [joins](https://r4ds.hadley.nz/joins.html). There are some less complicated examples in the [dplyr docs](https://dplyr.tidyverse.org/reference/mutate-joins.html#ref-examples).
+
+![An illustration of joins](https://learnsql.com/blog/learn-and-practice-sql-joins/2.png){fig-alt="A diagram from LearnSQL.com illustrating left joins, right joins, inner joins, and full joins as Venn diagrams between two tables."}
+
+Imagine we're joining two tables of data for counties A, B, C, D, and E, one row per county. The left table, `housing`, has housing information for each county but is missing County B. The right table, `income`, has income information for counties A, B, and E. That means there are a total of 5 counties, but only 2 of them are in both tables.
+
+* __Left join__ will include every county that's in `housing`, _regardless_ of whether it's also in `income.` There will be a row for income variables, but their values will be NA.
+* __Inner join__ will include every county that's in _both_ `housing` _and_ `income`.
+* __Right join__ is like left join: it will include every county that's in `income`, _regardless_ of whether it's also in `housing`.
+* __Full join__ will include every county in _either_ table.
+
+```{r}
+set.seed(1)
+housing <- data.frame(county = c("A", "C", "D", "E"), 
+                      homeownership = runif(4),
+                      vacancy = runif(4, min = 0, max = 0.1))
+income <- data.frame(county = c("A", "B", "E"), 
+                     poverty = runif(3))
+
+left_join(housing, income, by = "county")
+
+inner_join(housing, income, by = "county")
+
+right_join(housing, income, by = "county")
+
+full_join(housing, income, by = "county")
+```
+
+There are other joins that might be useful for filtering, but that don't add any new columns. Semi joins return the rows of the left table that have a match in the right table, and anti joins return the rows of the left table that do not have a match in the right table. If you were making separate charts on housing and income, but wanted your housing chart to only include counties that are also in your income data, semi join would help.
+
+```{r}
+semi_join(housing, income, by = "county")
+```
+
+
+## Joining justviz datasets
+
+```{r}
+acs_tract <- acs |> filter(level == "tract")
+
+head(acs_tract)
+
+head(ejscreen)
+```
+
+ACS data has several geographies, including census tracts (I've subset for just tract data). Their ID (GEOID, or FIPS codes) are in the column _name_. The EPA data is only by tract, and its column of IDs is labeled _tract_. So we'll be joining _name_ from `acs_tract` with _tract_ from `ejscreen`.
+
+```{r}
+n_distinct(acs_tract$name)
+n_distinct(ejscreen$tract)
+```
+
+There are 15 tracts that are included in the EPA data but not the ACS data. That's because those are tracts with no population that I dropped from the ACS table when I made it. I can check up on that with an anti-join (not running this here but it confirms that these are all zero-population tracts).
+
+```{r}
+#| eval: false
+pop <- tidycensus::get_acs("tract", table = "B01003", state = "MD", year = 2022)
+
+anti_join(ejscreen, acs_tract, by = c("tract" = "name")) |>
+  distinct(tract) |>
+  inner_join(pop, by = c("tract" = "GEOID"))
+```
+
+There's another hiccup for merging data here: the ACS data is in a wide format (each variable has its own column), while the EPA data is in a long format (one column gives the indicator, then different types of values have their own columns). Those formatting differences could be awkward because you'd end up with some values repeated. The easiest thing to do is select just the data you're interested in, either by selecting certain columns or filtering rows, then reshape, then join.
+
+Let's say I'm interested in the relationship, if any, between demographics and a few waste-related risk factors (proximity to wastewater, hazardous waste, and superfund sites). I'll filter `ejscreen` for just those 2 indicators and reshape it so the columns have the value percentiles for each of those two risk factors (not the adjusted percentiles). Then I'll select the columns I want from `acs`, then join them. 
+
+The `tidyr::pivot_wider` and `tidyr::pivot_longer` functions can be confusing, but there are some good examples in the docs and a lot of Stack Overflow posts on them. Basically here I'm reshaping from a long shape to a wide shape, so I'll use `pivot_wider`.
+
+```{r}
+# in practice I would do this all at once, but want to keep the steps separate
+# so they're more visible
+waste_long <- ejscreen |>
+  filter(indicator %in% c("haz_waste", "superfund", "wastewater"))
+
+head(waste_long)
+
+# id_cols are the anchor of the pivoting
+# only using value_ptile as a value column, not scaled ones
+waste_wide <- waste_long |> 
+  tidyr::pivot_wider(id_cols = tract, 
+                     names_from = indicator, 
+                     values_from = value_ptile)
+
+head(waste_wide)
+```
+
+Then the columns I'm interested in from the ACS data:
+
+```{r}
+acs_demo <- acs_tract |>
+  select(name, county, white, poverty, foreign_born)
+
+head(acs_demo)
+```
+
+So each of these two data frames has a column of tract IDs, and several columns of relevant values. I only want tracts that are in both datasets, so I'll use an inner join.
+
+```{r}
+waste_x_demo <- inner_join(acs_demo, waste_wide, by = c("name" = "tract"))
+
+head(waste_x_demo)
+```
+
+```{r}
+ggplot(waste_x_demo, aes(x = poverty, y = haz_waste, color = county == "Baltimore city")) +
+  geom_point(alpha = 0.5, size = 1) +
+  scale_color_manual(values = c("TRUE" = "firebrick", "FALSE" = "gray60"))
+```
+
+Is there a pattern? Maybe not, but now we know how to investigate it. There's definitely something up with Baltimore though.
+
