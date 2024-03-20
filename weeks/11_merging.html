@@ -108,7 +108,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="nav-sidebar docked">
+<body class="nav-sidebar docked slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -293,11 +293,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#types-of-joins" id="toc-types-of-joins" class="nav-link active" data-scroll-target="#types-of-joins">Types of joins</a></li>
   <li><a href="#joining-justviz-datasets" id="toc-joining-justviz-datasets" class="nav-link" data-scroll-target="#joining-justviz-datasets">Joining justviz datasets</a></li>
+  <li><a href="#joining-with-a-crosswalk" id="toc-joining-with-a-crosswalk" class="nav-link" data-scroll-target="#joining-with-a-crosswalk">Joining with a crosswalk</a></li>
+  <li><a href="#joining-data-with-different-shapes" id="toc-joining-data-with-different-shapes" class="nav-link" data-scroll-target="#joining-data-with-different-shapes">Joining data with different shapes</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/11_merging.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/11_merging.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/11_merging.html">11. Merging data</a></li></ol></nav>
 <div class="quarto-title">
@@ -319,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">March 19, 2024</p>
+      <p class="date-modified">March 20, 2024</p>
     </div>
   </div>
     
@@ -832,7 +834,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">head</span>(ejscreen)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">head</span>(ej_natl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
@@ -849,57 +851,57 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td style="text-align: left;">24001000100</td>
 <td style="text-align: left;">pm25</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">9</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">25</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000100</td>
 <td style="text-align: left;">ozone</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">9</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24001000100</td>
 <td style="text-align: left;">diesel</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">5</td>
+<td style="text-align: right;">19</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">24</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000100</td>
 <td style="text-align: left;">air_cancer</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">20</td>
+<td style="text-align: right;">31</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24001000100</td>
 <td style="text-align: left;">air_respiratory</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">20</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000100</td>
 <td style="text-align: left;">releases_to_air</td>
-<td style="text-align: right;">65</td>
 <td style="text-align: right;">44</td>
-<td style="text-align: right;">73</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">50</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>ACS data has several geographies, including census tracts (I’ve subset for just tract data). Their ID (GEOID, or FIPS codes) are in the column <em>name</em>. The EPA data is only by tract, and its column of IDs is labeled <em>tract</em>. So we’ll be joining <em>name</em> from <code>acs_tract</code> with <em>tract</em> from <code>ejscreen</code>.</p>
+<p>ACS data has several geographies, including census tracts (I’ve subset for just tract data). Their ID (GEOID, or FIPS codes) are in the column <em>name</em>. The EPA data is only by tract, and its column of IDs is labeled <em>tract</em>. So we’ll be joining <em>name</em> from <code>acs_tract</code> with <em>tract</em> from <code>ej_natl</code> (this is the nationwide rankings, not the state ones).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">n_distinct</span>(acs_tract<span class="sc">$</span>name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1460</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">n_distinct</span>(ejscreen<span class="sc">$</span>tract)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">n_distinct</span>(ej_natl<span class="sc">$</span>tract)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1475</code></pre>
 </div>
@@ -908,17 +910,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>pop <span class="ot">&lt;-</span> tidycensus<span class="sc">::</span><span class="fu">get_acs</span>(<span class="st">"tract"</span>, <span class="at">table =</span> <span class="st">"B01003"</span>, <span class="at">state =</span> <span class="st">"MD"</span>, <span class="at">year =</span> <span class="dv">2022</span>)</span>
 <span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="fu">anti_join</span>(ejscreen, acs_tract, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"tract"</span> <span class="ot">=</span> <span class="st">"name"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="fu">anti_join</span>(ej_natl, acs_tract, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"tract"</span> <span class="ot">=</span> <span class="st">"name"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">distinct</span>(tract) <span class="sc">|&gt;</span></span>
 <span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">inner_join</span>(pop, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"tract"</span> <span class="ot">=</span> <span class="st">"GEOID"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There’s another hiccup for merging data here: the ACS data is in a wide format (each variable has its own column), while the EPA data is in a long format (one column gives the indicator, then different types of values have their own columns). Those formatting differences could be awkward because you’d end up with some values repeated. The easiest thing to do is select just the data you’re interested in, either by selecting certain columns or filtering rows, then reshape, then join.</p>
-<p>Let’s say I’m interested in the relationship, if any, between demographics and a few waste-related risk factors (proximity to wastewater, hazardous waste, and superfund sites). I’ll filter <code>ejscreen</code> for just those 2 indicators and reshape it so the columns have the value percentiles for each of those two risk factors (not the adjusted percentiles). Then I’ll select the columns I want from <code>acs</code>, then join them.</p>
+<p>Let’s say I’m interested in the relationship, if any, between demographics and a few waste-related risk factors (proximity to wastewater, hazardous waste, and superfund sites). I’ll filter <code>ej_natl</code> for just those 2 indicators and reshape it so the columns have the value percentiles for each of those two risk factors (not the adjusted percentiles). Then I’ll select the columns I want from <code>acs</code>, then join them.</p>
 <p>The <code>tidyr::pivot_wider</code> and <code>tidyr::pivot_longer</code> functions can be confusing, but there are some good examples in the docs and a lot of Stack Overflow posts on them. Basically here I’m reshaping from a long shape to a wide shape, so I’ll use <code>pivot_wider</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># in practice I would do this all at once, but want to keep the steps separate</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="co"># so they're more visible</span></span>
-<span id="cb14-3"><a href="#cb14-3"></a>waste_long <span class="ot">&lt;-</span> ejscreen <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>waste_long <span class="ot">&lt;-</span> ej_natl <span class="sc">|&gt;</span></span>
 <span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">filter</span>(indicator <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"haz_waste"</span>, <span class="st">"superfund"</span>, <span class="st">"wastewater"</span>))</span>
 <span id="cb14-5"><a href="#cb14-5"></a></span>
 <span id="cb14-6"><a href="#cb14-6"></a><span class="fu">head</span>(waste_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -938,44 +940,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td style="text-align: left;">24001000100</td>
 <td style="text-align: left;">superfund</td>
-<td style="text-align: right;">38</td>
-<td style="text-align: right;">31</td>
-<td style="text-align: right;">52</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">62</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000100</td>
 <td style="text-align: left;">haz_waste</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">3</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">12</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24001000100</td>
 <td style="text-align: left;">wastewater</td>
-<td style="text-align: right;">69</td>
-<td style="text-align: right;">46</td>
-<td style="text-align: right;">81</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">58</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000200</td>
 <td style="text-align: left;">superfund</td>
-<td style="text-align: right;">88</td>
-<td style="text-align: right;">67</td>
-<td style="text-align: right;">85</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">73</td>
+<td style="text-align: right;">81</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24001000200</td>
 <td style="text-align: left;">haz_waste</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: right;">27</td>
-<td style="text-align: right;">33</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">44</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000200</td>
 <td style="text-align: left;">wastewater</td>
-<td style="text-align: right;">80</td>
-<td style="text-align: right;">73</td>
-<td style="text-align: right;">89</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">65</td>
+<td style="text-align: right;">69</td>
 </tr>
 </tbody>
 </table>
@@ -1003,105 +1005,137 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">24001000100</td>
-<td style="text-align: right;">38</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">69</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">53</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000200</td>
-<td style="text-align: right;">88</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: right;">80</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">66</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24001000500</td>
 <td style="text-align: right;">90</td>
-<td style="text-align: right;">28</td>
-<td style="text-align: right;">24</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">7</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000600</td>
 <td style="text-align: right;">93</td>
-<td style="text-align: right;">36</td>
-<td style="text-align: right;">78</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">63</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24001000700</td>
 <td style="text-align: right;">92</td>
-<td style="text-align: right;">49</td>
-<td style="text-align: right;">83</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">68</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000800</td>
 <td style="text-align: right;">89</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">87</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">75</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </div>
-<p>Then the columns I’m interested in from the ACS data:</p>
+<p>Then the columns I’m interested in from the ACS data (For good measure, I’ll also add a variable to indicate that a tract is in Baltimore city):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>acs_demo <span class="ot">&lt;-</span> acs_tract <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">select</span>(name, county, white, poverty, foreign_born)</span>
-<span id="cb16-3"><a href="#cb16-3"></a></span>
-<span id="cb16-4"><a href="#cb16-4"></a><span class="fu">head</span>(acs_demo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">select</span>(name, county, total_pop, white, poverty, foreign_born, homeownership) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">mutate</span>(<span class="at">is_baltimore =</span> <span class="fu">ifelse</span>(county <span class="sc">==</span> <span class="st">"Baltimore city"</span>, <span class="st">"Baltimore"</span>, <span class="st">"Other counties"</span>))</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="fu">head</span>(acs_demo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 17%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 14%">
+<col style="width: 15%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">name</th>
 <th style="text-align: left;">county</th>
+<th style="text-align: right;">total_pop</th>
 <th style="text-align: right;">white</th>
 <th style="text-align: right;">poverty</th>
 <th style="text-align: right;">foreign_born</th>
+<th style="text-align: right;">homeownership</th>
+<th style="text-align: left;">is_baltimore</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">24001000100</td>
 <td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">3474</td>
 <td style="text-align: right;">0.98</td>
 <td style="text-align: right;">0.12</td>
 <td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: left;">Other counties</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000200</td>
 <td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">4052</td>
 <td style="text-align: right;">0.75</td>
 <td style="text-align: right;">0.11</td>
 <td style="text-align: right;">0.03</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: left;">Other counties</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24001000500</td>
 <td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">2304</td>
 <td style="text-align: right;">0.66</td>
 <td style="text-align: right;">0.27</td>
 <td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.60</td>
+<td style="text-align: left;">Other counties</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000600</td>
 <td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">3005</td>
 <td style="text-align: right;">0.91</td>
 <td style="text-align: right;">0.14</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: left;">Other counties</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24001000700</td>
 <td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">3233</td>
 <td style="text-align: right;">0.93</td>
 <td style="text-align: right;">0.28</td>
 <td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.49</td>
+<td style="text-align: left;">Other counties</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000800</td>
 <td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">1932</td>
 <td style="text-align: right;">0.89</td>
 <td style="text-align: right;">0.35</td>
 <td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: left;">Other counties</td>
 </tr>
 </tbody>
 </table>
@@ -1117,22 +1151,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="kable-table">
 <table class="table table-sm table-striped small">
 <colgroup>
-<col style="width: 13%">
-<col style="width: 18%">
-<col style="width: 6%">
 <col style="width: 9%">
-<col style="width: 15%">
-<col style="width: 11%">
+<col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 4%">
+<col style="width: 6%">
+<col style="width: 10%">
 <col style="width: 11%">
 <col style="width: 12%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
 </colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">name</th>
 <th style="text-align: left;">county</th>
+<th style="text-align: right;">total_pop</th>
 <th style="text-align: right;">white</th>
 <th style="text-align: right;">poverty</th>
 <th style="text-align: right;">foreign_born</th>
+<th style="text-align: right;">homeownership</th>
+<th style="text-align: left;">is_baltimore</th>
 <th style="text-align: right;">superfund</th>
 <th style="text-align: right;">haz_waste</th>
 <th style="text-align: right;">wastewater</th>
@@ -1142,62 +1182,80 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tr class="odd">
 <td style="text-align: left;">24001000100</td>
 <td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">3474</td>
 <td style="text-align: right;">0.98</td>
 <td style="text-align: right;">0.12</td>
 <td style="text-align: right;">0.01</td>
-<td style="text-align: right;">38</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">69</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">53</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000200</td>
 <td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">4052</td>
 <td style="text-align: right;">0.75</td>
 <td style="text-align: right;">0.11</td>
 <td style="text-align: right;">0.03</td>
-<td style="text-align: right;">88</td>
-<td style="text-align: right;">21</td>
-<td style="text-align: right;">80</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">66</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24001000500</td>
 <td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">2304</td>
 <td style="text-align: right;">0.66</td>
 <td style="text-align: right;">0.27</td>
 <td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.60</td>
+<td style="text-align: left;">Other counties</td>
 <td style="text-align: right;">90</td>
-<td style="text-align: right;">28</td>
-<td style="text-align: right;">24</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">7</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000600</td>
 <td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">3005</td>
 <td style="text-align: right;">0.91</td>
 <td style="text-align: right;">0.14</td>
 <td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: left;">Other counties</td>
 <td style="text-align: right;">93</td>
-<td style="text-align: right;">36</td>
-<td style="text-align: right;">78</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">63</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">24001000700</td>
 <td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">3233</td>
 <td style="text-align: right;">0.93</td>
 <td style="text-align: right;">0.28</td>
 <td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.49</td>
+<td style="text-align: left;">Other counties</td>
 <td style="text-align: right;">92</td>
-<td style="text-align: right;">49</td>
-<td style="text-align: right;">83</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">68</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">24001000800</td>
 <td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">1932</td>
 <td style="text-align: right;">0.89</td>
 <td style="text-align: right;">0.35</td>
 <td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: left;">Other counties</td>
 <td style="text-align: right;">89</td>
-<td style="text-align: right;">70</td>
-<td style="text-align: right;">87</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">75</td>
 </tr>
 </tbody>
 </table>
@@ -1205,21 +1263,346 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(waste_x_demo, <span class="fu">aes</span>(<span class="at">x =</span> poverty, <span class="at">y =</span> haz_waste, <span class="at">color =</span> county <span class="sc">==</span> <span class="st">"Baltimore city"</span>)) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> <span class="st">"firebrick"</span>, <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"gray60"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(waste_x_demo, <span class="fu">aes</span>(<span class="at">x =</span> poverty, <span class="at">y =</span> haz_waste)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> is_baltimore, <span class="at">shape =</span> is_baltimore), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"purple"</span>, <span class="st">"gray60"</span>)) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"circle"</span>, <span class="st">"triangle"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="11_merging_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="11_merging_files/figure-html/waste-x-poverty-1.png" class="img-fluid figure-img" alt="A scatterplot of data by tract in Maryland. The x-axis shows poverty rates, ranging from 0 percent to 100 percent. The y-axis shows hazardous waste percentiles within the state, ranging from 0 to 100. Points are colored to show whether the tract is in Baltimore city. There isn't a clear correlation between the two variables, but points in the city are clustered at the high end of hazardous waste percentiles, as well as higher poverty rates." width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Is there a pattern? Maybe not, but now we know how to investigate it. There’s definitely something up with Baltimore though.</p>
+<p>Is there a pattern? Maybe, maybe not, but now we know how to investigate it. There’s definitely something up with Baltimore though.</p>
+</section>
+<section id="joining-with-a-crosswalk" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="joining-with-a-crosswalk">Joining with a crosswalk</h2>
+<p>This follows the example in the docs for the <code>justviz::xwalk_tract_10_to_20</code> dataset. This has columns for 2010 tract GEOIDs, 2020 GEOIDs, and weights to use for converting values based on 2010 geographies to those based on 2020 geographies. This is necessary if you want to join the CDC health data with the ACS or EJSCREEN data, because the CDC data uses 2010 geographies. Let’s expand the example from the docs to merge health indicators with the previous demographic and environmental ones—say we want to know if there’s a relationship between adult asthma rates and waste-related risks.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># these are based on 2010 geographies</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>asthma10 <span class="ot">&lt;-</span> cdc <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4"></a>         indicator <span class="sc">==</span> <span class="st">"Current asthma"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5"></a></span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="fu">head</span>(asthma10)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">level</th>
+<th style="text-align: left;">year</th>
+<th style="text-align: left;">location</th>
+<th style="text-align: left;">indicator</th>
+<th style="text-align: right;">value</th>
+<th style="text-align: right;">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">tract</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">24005408200</td>
+<td style="text-align: left;">Current asthma</td>
+<td style="text-align: right;">8.6</td>
+<td style="text-align: right;">1853</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tract</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">24003706700</td>
+<td style="text-align: left;">Current asthma</td>
+<td style="text-align: right;">8.8</td>
+<td style="text-align: right;">4890</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tract</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">24015030506</td>
+<td style="text-align: left;">Current asthma</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">8223</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tract</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">24005401301</td>
+<td style="text-align: left;">Current asthma</td>
+<td style="text-align: right;">11.3</td>
+<td style="text-align: right;">3891</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tract</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">24005411302</td>
+<td style="text-align: left;">Current asthma</td>
+<td style="text-align: right;">9.3</td>
+<td style="text-align: right;">3310</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tract</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">24005402403</td>
+<td style="text-align: left;">Current asthma</td>
+<td style="text-align: right;">11.3</td>
+<td style="text-align: right;">2283</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># calculate a weighted mean of 2010 tract rates, weighted sum of 2010 counts (pop)</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="co"># both grouped by 2020 tract</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>asthma20 <span class="ot">&lt;-</span> asthma10 <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">inner_join</span>(xwalk_tract_10_to_20, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"location"</span> <span class="ot">=</span> <span class="st">"tract10"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">group_by</span>(tract20) <span class="sc">|&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>  <span class="co"># don't know why cdc rates aren't divided by 100 so do it now</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>  <span class="fu">summarise</span>(<span class="at">asthma =</span> <span class="fu">weighted.mean</span>(value, weight) <span class="sc">/</span> <span class="dv">100</span>,</span>
+<span id="cb20-8"><a href="#cb20-8"></a>            <span class="at">adult_pop =</span> <span class="fu">sum</span>(pop <span class="sc">*</span> weight)) <span class="sc">|&gt;</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb20-10"><a href="#cb20-10"></a></span>
+<span id="cb20-11"><a href="#cb20-11"></a>waste_x_demo_x_cdc <span class="ot">&lt;-</span> waste_x_demo <span class="sc">|&gt;</span></span>
+<span id="cb20-12"><a href="#cb20-12"></a>  <span class="fu">left_join</span>(asthma20, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name"</span> <span class="ot">=</span> <span class="st">"tract20"</span>))</span>
+<span id="cb20-13"><a href="#cb20-13"></a></span>
+<span id="cb20-14"><a href="#cb20-14"></a><span class="fu">head</span>(waste_x_demo_x_cdc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 4%">
+<col style="width: 5%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 6%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">county</th>
+<th style="text-align: right;">total_pop</th>
+<th style="text-align: right;">white</th>
+<th style="text-align: right;">poverty</th>
+<th style="text-align: right;">foreign_born</th>
+<th style="text-align: right;">homeownership</th>
+<th style="text-align: left;">is_baltimore</th>
+<th style="text-align: right;">superfund</th>
+<th style="text-align: right;">haz_waste</th>
+<th style="text-align: right;">wastewater</th>
+<th style="text-align: right;">asthma</th>
+<th style="text-align: right;">adult_pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">24001000100</td>
+<td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">3474</td>
+<td style="text-align: right;">0.98</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.01</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">0.1040000</td>
+<td style="text-align: right;">3718.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24001000200</td>
+<td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">4052</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.03</td>
+<td style="text-align: right;">0.86</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">0.0920000</td>
+<td style="text-align: right;">4564.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">24001000500</td>
+<td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">2304</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">0.04</td>
+<td style="text-align: right;">0.60</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: right;">90</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.1149507</td>
+<td style="text-align: right;">2735.419</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24001000600</td>
+<td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">3005</td>
+<td style="text-align: right;">0.91</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.00</td>
+<td style="text-align: right;">0.70</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: right;">93</td>
+<td style="text-align: right;">50</td>
+<td style="text-align: right;">63</td>
+<td style="text-align: right;">0.1038916</td>
+<td style="text-align: right;">2979.443</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">24001000700</td>
+<td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">3233</td>
+<td style="text-align: right;">0.93</td>
+<td style="text-align: right;">0.28</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.49</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: right;">92</td>
+<td style="text-align: right;">60</td>
+<td style="text-align: right;">68</td>
+<td style="text-align: right;">0.1160000</td>
+<td style="text-align: right;">3387.000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24001000800</td>
+<td style="text-align: left;">Allegany County</td>
+<td style="text-align: right;">1932</td>
+<td style="text-align: right;">0.89</td>
+<td style="text-align: right;">0.35</td>
+<td style="text-align: right;">0.02</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">78</td>
+<td style="text-align: right;">75</td>
+<td style="text-align: right;">0.1190000</td>
+<td style="text-align: right;">2213.000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>So now we’ve got a data frame with some demographic indicators, some environmental risks, and rates of a major health outcome. Expanding the previous question to include asthma rates:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(waste_x_demo_x_cdc, <span class="fu">aes</span>(<span class="at">x =</span> haz_waste, <span class="at">y =</span> asthma)) <span class="sc">+</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> is_baltimore, <span class="at">shape =</span> is_baltimore), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"purple"</span>, <span class="st">"gray60"</span>)) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"circle"</span>, <span class="st">"triangle"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_merging_files/figure-html/waste-x-asthma-1.png" class="img-fluid figure-img" alt="A scatterplot of data by tract in Maryland. The x-axis shows hazardous waste percentiles within the state, ranging from 0 to 100. The y-axis shows adult asthma rates, ranging from about 7 percent to 18 percent. Points are colored to show whether the tract is in Baltimore city. There is a positive correlation between the two variables. Points in the city are clustered at the high end of hazardous waste percentiles, as well as higher asthma rates." width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So there does seem to be a correlation between the two variables, with Baltimore city tracts standing out on both. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;It’s worth noting that the CDC data uses crude rates, not age-adjusted ones, which we don’t have to get into but it becomes important with age-related health conditions like cancer. That’s why I chose asthma instead.</p></div></div></section>
+<section id="joining-data-with-different-shapes" class="level2">
+<h2 class="anchored" data-anchor-id="joining-data-with-different-shapes">Joining data with different shapes</h2>
+<p>Last, an example of a situation where you might want to join one long data frame with one wide one. If I want to compare poverty rate to each of the waste risk factors, and create <a href="https://clauswilke.com/dataviz/multi-panel-figures.html#small-multiples">small multiple</a> charts, I’ll need a variable to facet on. So I’ll go back to <code>waste_long</code> and join that to the ACS data. Because of those differing shapes, the ACS data will be repeated, once for each waste indicator.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>waste_long_x_demo <span class="ot">&lt;-</span> waste_long <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">inner_join</span>(acs_demo, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"tract"</span> <span class="ot">=</span> <span class="st">"name"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">select</span>(tract, is_baltimore, indicator, value_ptile, poverty)</span>
+<span id="cb22-4"><a href="#cb22-4"></a></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="fu">head</span>(waste_long_x_demo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">tract</th>
+<th style="text-align: left;">is_baltimore</th>
+<th style="text-align: left;">indicator</th>
+<th style="text-align: right;">value_ptile</th>
+<th style="text-align: right;">poverty</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">24001000100</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: left;">superfund</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">0.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24001000100</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: left;">haz_waste</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.12</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">24001000100</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: left;">wastewater</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">0.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24001000200</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: left;">superfund</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: right;">0.11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">24001000200</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: left;">haz_waste</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">0.11</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24001000200</td>
+<td style="text-align: left;">Other counties</td>
+<td style="text-align: left;">wastewater</td>
+<td style="text-align: right;">66</td>
+<td style="text-align: right;">0.11</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>As you can see, the first of these tracts (24001000100) takes up 3 rows, one for each of the 3 waste indicators. To match it, that tract’s poverty rate (0.12) is repeated 3 times.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(waste_long_x_demo, <span class="fu">aes</span>(<span class="at">x =</span> value_ptile, <span class="at">y =</span> poverty)) <span class="sc">+</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> is_baltimore, <span class="at">shape =</span> is_baltimore), <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"purple"</span>, <span class="st">"gray60"</span>)) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">scale_shape_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"circle"</span>, <span class="st">"triangle"</span>)) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(indicator), <span class="at">nrow =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_merging_files/figure-html/waste-x-poverty-multiples-1.png" class="img-fluid figure-img" alt="Small multiple panels of 3 scatterplots of data by tract in Maryland. For each panel, the x-axis shows percentile rankings of one of 3 environmental risk factors (superfunds, hazardous waste, and wastewater). Each of these ranges from 0 to 100. The y-axis shows poverty rates, ranging from 0 percent to 100 percent. Points are colored to show whether the tract is in Baltimore city. There aren't clear correlations between the variables, but Baltimore city tracts are clustered at the higher ends of superfund and hazardous waste rankings." width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
+
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
