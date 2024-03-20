@@ -57,14 +57,14 @@ acs_tract <- acs |> filter(level == "tract")
 
 head(acs_tract)
 
-head(ejscreen)
+head(ej_natl)
 ```
 
-ACS data has several geographies, including census tracts (I've subset for just tract data). Their ID (GEOID, or FIPS codes) are in the column _name_. The EPA data is only by tract, and its column of IDs is labeled _tract_. So we'll be joining _name_ from `acs_tract` with _tract_ from `ejscreen`.
+ACS data has several geographies, including census tracts (I've subset for just tract data). Their ID (GEOID, or FIPS codes) are in the column _name_. The EPA data is only by tract, and its column of IDs is labeled _tract_. So we'll be joining _name_ from `acs_tract` with _tract_ from `ej_natl` (this is the nationwide rankings, not the state ones).
 
 ```{r}
 n_distinct(acs_tract$name)
-n_distinct(ejscreen$tract)
+n_distinct(ej_natl$tract)
 ```
 
 There are 15 tracts that are included in the EPA data but not the ACS data. That's because those are tracts with no population that I dropped from the ACS table when I made it. I can check up on that with an anti-join (not running this here but it confirms that these are all zero-population tracts).
@@ -73,21 +73,21 @@ There are 15 tracts that are included in the EPA data but not the ACS data. That
 #| eval: false
 pop <- tidycensus::get_acs("tract", table = "B01003", state = "MD", year = 2022)
 
-anti_join(ejscreen, acs_tract, by = c("tract" = "name")) |>
+anti_join(ej_natl, acs_tract, by = c("tract" = "name")) |>
   distinct(tract) |>
   inner_join(pop, by = c("tract" = "GEOID"))
 ```
 
 There's another hiccup for merging data here: the ACS data is in a wide format (each variable has its own column), while the EPA data is in a long format (one column gives the indicator, then different types of values have their own columns). Those formatting differences could be awkward because you'd end up with some values repeated. The easiest thing to do is select just the data you're interested in, either by selecting certain columns or filtering rows, then reshape, then join.
 
-Let's say I'm interested in the relationship, if any, between demographics and a few waste-related risk factors (proximity to wastewater, hazardous waste, and superfund sites). I'll filter `ejscreen` for just those 2 indicators and reshape it so the columns have the value percentiles for each of those two risk factors (not the adjusted percentiles). Then I'll select the columns I want from `acs`, then join them. 
+Let's say I'm interested in the relationship, if any, between demographics and a few waste-related risk factors (proximity to wastewater, hazardous waste, and superfund sites). I'll filter `ej_natl` for just those 2 indicators and reshape it so the columns have the value percentiles for each of those two risk factors (not the adjusted percentiles). Then I'll select the columns I want from `acs`, then join them. 
 
 The `tidyr::pivot_wider` and `tidyr::pivot_longer` functions can be confusing, but there are some good examples in the docs and a lot of Stack Overflow posts on them. Basically here I'm reshaping from a long shape to a wide shape, so I'll use `pivot_wider`.
 
 ```{r}
 # in practice I would do this all at once, but want to keep the steps separate
 # so they're more visible
-waste_long <- ejscreen |>
+waste_long <- ej_natl |>
   filter(indicator %in% c("haz_waste", "superfund", "wastewater"))
 
 head(waste_long)
@@ -102,16 +102,17 @@ waste_wide <- waste_long |>
 head(waste_wide)
 ```
 
-Then the columns I'm interested in from the ACS data:
+Then the columns I'm interested in from the ACS data (For good measure, I'll also add a variable to indicate that a tract is in Baltimore city):
 
 ```{r}
 acs_demo <- acs_tract |>
-  select(name, county, white, poverty, foreign_born)
+  select(name, county, total_pop, white, poverty, foreign_born, homeownership) |>
+  mutate(is_baltimore = ifelse(county == "Baltimore city", "Baltimore", "Other counties"))
 
 head(acs_demo)
 ```
 
-So each of these two data frames has a column of tract IDs, and several columns of relevant values. I only want tracts that are in both datasets, so I'll use an inner join.
+So each of these two data frames has a column of tract IDs, and several columns of relevant values. I only want tracts that are in both datasets, so I'll use an inner join. 
 
 ```{r}
 waste_x_demo <- inner_join(acs_demo, waste_wide, by = c("name" = "tract"))
@@ -120,10 +121,82 @@ head(waste_x_demo)
 ```
 
 ```{r}
-ggplot(waste_x_demo, aes(x = poverty, y = haz_waste, color = county == "Baltimore city")) +
-  geom_point(alpha = 0.5, size = 1) +
-  scale_color_manual(values = c("TRUE" = "firebrick", "FALSE" = "gray60"))
+#| label: waste-x-poverty
+#| fig-alt: "A scatterplot of data by tract in Maryland. The x-axis shows poverty rates, ranging from 0 percent to 100 percent. The y-axis shows hazardous waste percentiles within the state, ranging from 0 to 100. Points are colored to show whether the tract is in Baltimore city. There isn't a clear correlation between the two variables, but points in the city are clustered at the high end of hazardous waste percentiles, as well as higher poverty rates."
+ggplot(waste_x_demo, aes(x = poverty, y = haz_waste)) +
+  geom_point(aes(color = is_baltimore, shape = is_baltimore), alpha = 0.7) +
+  scale_color_manual(values = c("purple", "gray60")) +
+  scale_shape_manual(values = c("circle", "triangle"))
 ```
 
-Is there a pattern? Maybe not, but now we know how to investigate it. There's definitely something up with Baltimore though.
+Is there a pattern? Maybe, maybe not, but now we know how to investigate it. There's definitely something up with Baltimore though.
+
+## Joining with a crosswalk
+
+This follows the example in the docs for the `justviz::xwalk_tract_10_to_20` dataset. This has columns for 2010 tract GEOIDs, 2020 GEOIDs, and weights to use for converting values based on 2010 geographies to those based on 2020 geographies. This is necessary if you want to join the CDC health data with the ACS or EJSCREEN data, because the CDC data uses 2010 geographies. Let's expand the example from the docs to merge health indicators with the previous demographic and environmental ones---say we want to know if there's a relationship between adult asthma rates and waste-related risks.
+
+```{r}
+# these are based on 2010 geographies
+asthma10 <- cdc |>
+  filter(level == "tract",
+         indicator == "Current asthma")
+
+head(asthma10)
+
+# calculate a weighted mean of 2010 tract rates, weighted sum of 2010 counts (pop)
+# both grouped by 2020 tract
+asthma20 <- asthma10 |>
+  inner_join(xwalk_tract_10_to_20, by = c("location" = "tract10")) |>
+  group_by(tract20) |>
+  # don't know why cdc rates aren't divided by 100 so do it now
+  summarise(asthma = weighted.mean(value, weight) / 100,
+            adult_pop = sum(pop * weight)) |>
+  ungroup()
+
+waste_x_demo_x_cdc <- waste_x_demo |>
+  left_join(asthma20, by = c("name" = "tract20"))
+
+head(waste_x_demo_x_cdc)
+```
+
+So now we've got a data frame with some demographic indicators, some environmental risks, and rates of a major health outcome. Expanding the previous question to include asthma rates:
+
+```{r}
+#| label: waste-x-asthma
+#| fig-alt: "A scatterplot of data by tract in Maryland. The x-axis shows hazardous waste percentiles within the state, ranging from 0 to 100. The y-axis shows adult asthma rates, ranging from about 7 percent to 18 percent. Points are colored to show whether the tract is in Baltimore city. There is a positive correlation between the two variables. Points in the city are clustered at the high end of hazardous waste percentiles, as well as higher asthma rates."
+
+ggplot(waste_x_demo_x_cdc, aes(x = haz_waste, y = asthma)) +
+  geom_point(aes(color = is_baltimore, shape = is_baltimore), alpha = 0.7) +
+  scale_color_manual(values = c("purple", "gray60")) +
+  scale_shape_manual(values = c("circle", "triangle"))
+```
+
+So there does seem to be a correlation between the two variables, with Baltimore city tracts standing out on both. ^[It's worth noting that the CDC data uses crude rates, not age-adjusted ones, which we don't have to get into but it becomes important with age-related health conditions like cancer. That's why I chose asthma instead.]
+
+## Joining data with different shapes
+
+Last, an example of a situation where you might want to join one long data frame with one wide one. If I want to compare poverty rate to each of the waste risk factors, and create [small multiple](https://clauswilke.com/dataviz/multi-panel-figures.html#small-multiples) charts, I'll need a variable to facet on. So I'll go back to `waste_long` and join that to the ACS data. Because of those differing shapes, the ACS data will be repeated, once for each waste indicator.
+
+```{r}
+waste_long_x_demo <- waste_long |>
+  inner_join(acs_demo, by = c("tract" = "name")) |>
+  select(tract, is_baltimore, indicator, value_ptile, poverty)
+
+head(waste_long_x_demo)
+```
+
+As you can see, the first of these tracts (24001000100) takes up 3 rows, one for each of the 3 waste indicators. To match it, that tract's poverty rate (0.12) is repeated 3 times.
+
+```{r}
+#| label: waste-x-poverty-multiples
+#| fig-alt: "Small multiple panels of 3 scatterplots of data by tract in Maryland. For each panel, the x-axis shows percentile rankings of one of 3 environmental risk factors (superfunds, hazardous waste, and wastewater). Each of these ranges from 0 to 100. The y-axis shows poverty rates, ranging from 0 percent to 100 percent. Points are colored to show whether the tract is in Baltimore city. There aren't clear correlations between the variables, but Baltimore city tracts are clustered at the higher ends of superfund and hazardous waste rankings."
+
+ggplot(waste_long_x_demo, aes(x = value_ptile, y = poverty)) +
+  geom_point(aes(color = is_baltimore, shape = is_baltimore), alpha = 0.7) +
+  scale_color_manual(values = c("purple", "gray60")) +
+  scale_shape_manual(values = c("circle", "triangle")) +
+  facet_wrap(vars(indicator), nrow = 1) +
+  theme(legend.position = "bottom")
+```
+
 
