@@ -1,5 +1,5 @@
 ---
-title: "11. Merging data"
+title: "Merging data"
 ---
 
 ```{r}
