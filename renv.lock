@@ -1397,7 +1397,7 @@
     },
     "showtext": {
       "Package": "showtext",
-      "Version": "0.9-6",
+      "Version": "0.9-7",
       "Source": "Repository",
       "Repository": "RSPM",
       "Requirements": [
@@ -1405,7 +1405,7 @@
         "showtextdb",
         "sysfonts"
       ],
-      "Hash": "c0fd332d248b195bbcb94a0dfda37b0d"
+      "Hash": "ebc23fc796c28737ffe0a64e5404f3d1"
     },
     "showtextdb": {
       "Package": "showtextdb",

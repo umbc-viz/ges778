@@ -35,6 +35,9 @@ website:
         #   - weeks/00_definitions.qmd
         #   - weeks/01_walkthrough.qmd
       - "---"
+      - section: "Tips & tricks"
+        contents: "tips/*.qmd"
+      - "---"
       - references.qmd
     footer: "[Code for this site](https://github.com/umbc-viz/ges778.git)"
 
