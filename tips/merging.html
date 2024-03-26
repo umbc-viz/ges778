@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>GES 778, Spring 2024 - 11. Merging data</title>
+<title>GES 778, Spring 2024 - Merging data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../weeks/10_accessibility.html" rel="prev">
+<link href="../tips/fonts.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/11_merging.html">11. Merging data</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tips/fonts.html">Tips &amp; tricks</a></li><li class="breadcrumb-item"><a href="../tips/merging.html">Merging data</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -264,10 +264,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">10. Accessibility and literacy</span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Tips &amp; tricks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/11_merging.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">11. Merging data</span></a>
+  <a href="../tips/fonts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fonts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tips/merging.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Merging data</span></a>
   </div>
 </li>
       </ul>
@@ -296,14 +314,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#joining-with-a-crosswalk" id="toc-joining-with-a-crosswalk" class="nav-link" data-scroll-target="#joining-with-a-crosswalk">Joining with a crosswalk</a></li>
   <li><a href="#joining-data-with-different-shapes" id="toc-joining-data-with-different-shapes" class="nav-link" data-scroll-target="#joining-data-with-different-shapes">Joining data with different shapes</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/11_merging.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/11_merging.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/tips/merging.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/tips/merging.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/11_merging.html">11. Merging data</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tips/fonts.html">Tips &amp; tricks</a></li><li class="breadcrumb-item"><a href="../tips/merging.html">Merging data</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">11. Merging data</h1>
+<h1 class="title">Merging data</h1>
 </div>
 
 
@@ -321,7 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">March 20, 2024</p>
+      <p class="date-modified">March 26, 2024</p>
     </div>
   </div>
     
@@ -1270,7 +1288,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="11_merging_files/figure-html/waste-x-poverty-1.png" class="img-fluid figure-img" alt="A scatterplot of data by tract in Maryland. The x-axis shows poverty rates, ranging from 0 percent to 100 percent. The y-axis shows hazardous waste percentiles within the state, ranging from 0 to 100. Points are colored to show whether the tract is in Baltimore city. There isn't a clear correlation between the two variables, but points in the city are clustered at the high end of hazardous waste percentiles, as well as higher poverty rates." width="672"></p>
+<p><img src="merging_files/figure-html/waste-x-poverty-1.png" class="img-fluid figure-img" alt="A scatterplot of data by tract in Maryland. The x-axis shows poverty rates, ranging from 0 percent to 100 percent. The y-axis shows hazardous waste percentiles within the state, ranging from 0 to 100. Points are colored to show whether the tract is in Baltimore city. There isn't a clear correlation between the two variables, but points in the city are clustered at the high end of hazardous waste percentiles, as well as higher poverty rates." width="672"></p>
 </figure>
 </div>
 </div>
@@ -1507,7 +1525,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="11_merging_files/figure-html/waste-x-asthma-1.png" class="img-fluid figure-img" alt="A scatterplot of data by tract in Maryland. The x-axis shows hazardous waste percentiles within the state, ranging from 0 to 100. The y-axis shows adult asthma rates, ranging from about 7 percent to 18 percent. Points are colored to show whether the tract is in Baltimore city. There is a positive correlation between the two variables. Points in the city are clustered at the high end of hazardous waste percentiles, as well as higher asthma rates." width="672"></p>
+<p><img src="merging_files/figure-html/waste-x-asthma-1.png" class="img-fluid figure-img" alt="A scatterplot of data by tract in Maryland. The x-axis shows hazardous waste percentiles within the state, ranging from 0 to 100. The y-axis shows adult asthma rates, ranging from about 7 percent to 18 percent. Points are colored to show whether the tract is in Baltimore city. There is a positive correlation between the two variables. Points in the city are clustered at the high end of hazardous waste percentiles, as well as higher asthma rates." width="672"></p>
 </figure>
 </div>
 </div>
@@ -1594,7 +1612,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="11_merging_files/figure-html/waste-x-poverty-multiples-1.png" class="img-fluid figure-img" alt="Small multiple panels of 3 scatterplots of data by tract in Maryland. For each panel, the x-axis shows percentile rankings of one of 3 environmental risk factors (superfunds, hazardous waste, and wastewater). Each of these ranges from 0 to 100. The y-axis shows poverty rates, ranging from 0 percent to 100 percent. Points are colored to show whether the tract is in Baltimore city. There aren't clear correlations between the variables, but Baltimore city tracts are clustered at the higher ends of superfund and hazardous waste rankings." width="672"></p>
+<p><img src="merging_files/figure-html/waste-x-poverty-multiples-1.png" class="img-fluid figure-img" alt="Small multiple panels of 3 scatterplots of data by tract in Maryland. For each panel, the x-axis shows percentile rankings of one of 3 environmental risk factors (superfunds, hazardous waste, and wastewater). Each of these ranges from 0 to 100. The y-axis shows poverty rates, ranging from 0 percent to 100 percent. Points are colored to show whether the tract is in Baltimore city. There aren't clear correlations between the variables, but Baltimore city tracts are clustered at the higher ends of superfund and hazardous waste rankings." width="672"></p>
 </figure>
 </div>
 </div>
@@ -2160,8 +2178,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/10_accessibility.html" class="pagination-link" aria-label="10. Accessibility and literacy">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">10. Accessibility and literacy</span>
+      <a href="../tips/fonts.html" class="pagination-link" aria-label="Fonts">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Fonts</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -2172,4 +2190,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/11_merging.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/11_merging.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/tips/merging.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/tips/merging.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
