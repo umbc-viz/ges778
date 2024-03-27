@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>GES 778, Spring 2024 - Weekly notes</title>
+<title>GES 778, Spring 2024 - Exporting and distributing your work</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -31,9 +65,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../weeks/00_definitions.html" rel="next">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<link href="../tips/fonts.html" rel="next">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -72,69 +104,11 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-file-modified',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-sidebar docked">
+<body class="nav-sidebar docked slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -143,7 +117,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tips/exporting.html">Tips &amp; tricks</a></li><li class="breadcrumb-item"><a href="../tips/exporting.html">Exporting and distributing your work</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -211,7 +185,7 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../weeks/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../weeks/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Weekly notes</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -304,7 +278,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tips/exporting.html" class="sidebar-item-text sidebar-link">
+  <a href="../tips/exporting.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Exporting and distributing your work</span></a>
   </div>
 </li>
@@ -337,14 +311,25 @@ window.Quarto = {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#tldr" id="toc-tldr" class="nav-link active" data-scroll-target="#tldr">tl;dr</a></li>
+  <li><a href="#exporting-your-work-when-why-how" id="toc-exporting-your-work-when-why-how" class="nav-link" data-scroll-target="#exporting-your-work-when-why-how">Exporting your work: when, why &amp; how</a>
+  <ul class="collapse">
+  <li><a href="#when-why" id="toc-when-why" class="nav-link" data-scroll-target="#when-why">When &amp; why</a></li>
+  <li><a href="#how" id="toc-how" class="nav-link" data-scroll-target="#how">How</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/tips/exporting.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/tips/exporting.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tips/exporting.html">Tips &amp; tricks</a></li><li class="breadcrumb-item"><a href="../tips/exporting.html">Exporting and distributing your work</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Weekly notes</h1>
+<h1 class="title">Exporting and distributing your work</h1>
 </div>
 
 
@@ -373,141 +358,102 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title-sort" data-direction="asc">
-          Title
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
+<section id="tldr" class="level2">
+<h2 class="anchored" data-anchor-id="tldr">tl;dr</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"plots/wages_by_race_x_sex.png"</span>), </span>
+<span id="cb1-2"><a href="#cb1-2"></a>       <span class="at">plot =</span> wage_chart,</span>
+<span id="cb1-3"><a href="#cb1-3"></a>       <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">bg =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<table class="quarto-listing-table table">
-<thead>
-<tr>
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-<th>
-Modified
-</th>
-</tr>
-</thead>
-<tbody class="list">
-<tr data-index="0" data-listing-file-modified-sort="1711566483678" data-listing-reading-time-sort="2" data-listing-word-count-sort="204" data-listing-title-sort="0. Definitions" data-listing-filename-sort="00_definitions.qmd">
-<td>
-<a href="../weeks/00_definitions.html" class="title listing-title">0. Definitions</a>
-</td>
-<td>
-<span class="listing-file-modified">March 27, 2024</span>
-</td>
-</tr>
-<tr data-index="1" data-listing-file-modified-sort="1711566483678" data-listing-reading-time-sort="10" data-listing-word-count-sort="1937" data-listing-title-sort="1. Walkthrough" data-listing-filename-sort="01_walkthrough.qmd">
-<td>
-<a href="../weeks/01_walkthrough.html" class="title listing-title">1. Walkthrough</a>
-</td>
-<td>
-<span class="listing-file-modified">March 27, 2024</span>
-</td>
-</tr>
-<tr data-index="2" data-listing-file-modified-sort="1711566483678" data-listing-reading-time-sort="12" data-listing-word-count-sort="2378" data-listing-title-sort="10. Accessibility and literacy" data-listing-filename-sort="10_accessibility.qmd">
-<td>
-<a href="../weeks/10_accessibility.html" class="title listing-title">10. Accessibility and literacy</a>
-</td>
-<td>
-<span class="listing-file-modified">March 27, 2024</span>
-</td>
-</tr>
-<tr data-index="3" data-listing-file-modified-sort="1711566483678" data-listing-reading-time-sort="6" data-listing-word-count-sort="1155" data-listing-title-sort="2. Components of a chart" data-listing-filename-sort="02_components.qmd">
-<td>
-<a href="../weeks/02_components.html" class="title listing-title">2. Components of a chart</a>
-</td>
-<td>
-<span class="listing-file-modified">March 27, 2024</span>
-</td>
-</tr>
-<tr data-index="4" data-listing-file-modified-sort="1711566483678" data-listing-reading-time-sort="5" data-listing-word-count-sort="902" data-listing-title-sort="3. Visual encoding" data-listing-filename-sort="03_encoding.qmd">
-<td>
-<a href="../weeks/03_encoding.html" class="title listing-title">3. Visual encoding</a>
-</td>
-<td>
-<span class="listing-file-modified">March 27, 2024</span>
-</td>
-</tr>
-<tr data-index="5" data-listing-file-modified-sort="1711566483678" data-listing-reading-time-sort="1" data-listing-word-count-sort="32" data-listing-title-sort="3b. Encoding cheatsheets" data-listing-filename-sort="03b_encoding_refs.qmd">
-<td>
-<a href="../weeks/03b_encoding_refs.html" class="title listing-title">3b. Encoding cheatsheets</a>
-</td>
-<td>
-<span class="listing-file-modified">March 27, 2024</span>
-</td>
-</tr>
-<tr data-index="6" data-listing-file-modified-sort="1711566483678" data-listing-reading-time-sort="7" data-listing-word-count-sort="1320" data-listing-title-sort="4. Learning about your data" data-listing-filename-sort="04_understanding_data.qmd">
-<td>
-<a href="../weeks/04_understanding_data.html" class="title listing-title">4. Learning about your data</a>
-</td>
-<td>
-<span class="listing-file-modified">March 27, 2024</span>
-</td>
-</tr>
-<tr data-index="7" data-listing-file-modified-sort="1711566483678" data-listing-reading-time-sort="8" data-listing-word-count-sort="1401" data-listing-title-sort="5. Writing good code" data-listing-filename-sort="05_good_code.qmd">
-<td>
-<a href="../weeks/05_good_code.html" class="title listing-title">5. Writing good code</a>
-</td>
-<td>
-<span class="listing-file-modified">March 27, 2024</span>
-</td>
-</tr>
-<tr data-index="8" data-listing-file-modified-sort="1711566483678" data-listing-reading-time-sort="7" data-listing-word-count-sort="1340" data-listing-title-sort="6. Color" data-listing-filename-sort="06_color.qmd">
-<td>
-<a href="../weeks/06_color.html" class="title listing-title">6. Color</a>
-</td>
-<td>
-<span class="listing-file-modified">March 27, 2024</span>
-</td>
-</tr>
-<tr data-index="9" data-listing-file-modified-sort="1711566483678" data-listing-reading-time-sort="17" data-listing-word-count-sort="3345" data-listing-title-sort="7. Text and annotations" data-listing-filename-sort="07_annotations.qmd">
-<td>
-<a href="../weeks/07_annotations.html" class="title listing-title">7. Text and annotations</a>
-</td>
-<td>
-<span class="listing-file-modified">March 27, 2024</span>
-</td>
-</tr>
-<tr data-index="10" data-listing-file-modified-sort="1711566483678" data-listing-reading-time-sort="18" data-listing-word-count-sort="3576" data-listing-title-sort="8. Uncertainty and distributions" data-listing-filename-sort="08_uncertainty.qmd">
-<td>
-<a href="../weeks/08_uncertainty.html" class="title listing-title">8. Uncertainty and distributions</a>
-</td>
-<td>
-<span class="listing-file-modified">March 27, 2024</span>
-</td>
-</tr>
-<tr data-index="11" data-listing-file-modified-sort="1711566483678" data-listing-reading-time-sort="8" data-listing-word-count-sort="1454" data-listing-title-sort="9. Making responsible decisions" data-listing-filename-sort="09_decisions.qmd">
-<td>
-<a href="../weeks/09_decisions.html" class="title listing-title">9. Making responsible decisions</a>
-</td>
-<td>
-<span class="listing-file-modified">March 27, 2024</span>
-</td>
-</tr>
-</tbody>
-</table>
-<div class="listing-no-matching d-none">
-No matching items
+</section>
+<section id="exporting-your-work-when-why-how" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="exporting-your-work-when-why-how">Exporting your work: when, why &amp; how</h2>
+<section id="when-why" class="level3">
+<h3 class="anchored" data-anchor-id="when-why">When &amp; why</h3>
+<p>So far we’ve just left our charts in their notebooks. Sometimes that’s fine—you can use RMarkdown or Quarto notebooks to write a paper or report or build a website, then render the whole thing directly to <a href="https://quarto.org/docs/output-formats/all-formats.html">another format</a>. I do a lot of my work in Quarto notebooks, and these generally take one of three routes:</p>
+<ul>
+<li><strong>EDA or drafts</strong> of sections of a project that’s being written elsewhere
+<ul>
+<li>Spend just enough time adjusting figure sizes, layout, fonts, etc to be legible</li>
+<li>Render to a markdown document (set <code>format: gfm</code>, short for GitHub-flavored markdown)</li>
+<li>Push it to GitHub so my coworkers &amp; I can reference it</li>
+<li>Most likely don’t save charts outside of the notebook</li>
+</ul></li>
+<li><strong>Full standalone documents</strong> (blog posts, reports to distribute, webpages)
+<ul>
+<li>Spend a lot of time getting figure sizes, layout, fonts, color, etc exactly right</li>
+<li>Render to something portable depending on the project type (pdf, html, docx)</li>
+<li>If colleagues or clients might want separate copies of charts, export each chart into its own hi-res image file (usually pdf and png)</li>
+<li>If clients might use charts for presentations, etc, attach our logo to the chart when exporting it</li>
+</ul></li>
+<li><strong>Chart-only projects</strong> not part of a larger document
+<ul>
+<li>Spend a lot of time getting figure sizes, layout, fonts, color, etc exactly right</li>
+<li>Make sure charts are self-contained (annotations and titles give full picture, source in caption)</li>
+<li>Render to markdown to have reproducible reference to how charts were created</li>
+<li>Export each chart into its own hi-res image file (usually pdf and png; svg if working with graphic designers) with our logo</li>
+</ul></li>
+</ul>
+<p>The first important thing to do to export your work is to <strong>make sure it renders</strong>. Documents like RMarkdown or Quarto need to be self-contained; if you assign some variable in your console, then reference it in your Quarto document, you’ll get an error that the variable is undefined. That’s because the knitting/rendering process by default happens in a separate environment. That is, the notebook only knows what you’ve told it directly. That’s by design to make your work reproducible. If you’re collaborating with someone else and they can’t reproduce your work, what was the point in doing it?</p>
+<p>Rendering a document in certain formats (html, markdown) will actually save a local copy of each image. If I render a notebook called <code>cool_analysis.qmd</code> into <code>cool_analysis.md</code>, it will actually create a folder in the same directory called <code>cool_analysis_files</code>; in that folder will be all the images that are displayed in the markdown document. That’s because some formats, particularly text-based ones, don’t have a way of directly embedding images; they just reference an image file from somewhere else. Those images will be named after the code chunks that created them (one good reason to name your chunks!). They’ll have whatever characteristics were set either for the document defaults or for the specific chunk (dimensions, resolution).</p>
+</section>
+<section id="how" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="how">How</h3>
+<p>If you need to distribute your images, it’s better to <em>be intentional about how they’re saved</em>.</p>
+<ul>
+<li>Make a folder where you write all your charts (unsurprisingly I usually call it “plots”).</li>
+<li>Write your code to export the charts to that folder within code chunks so they’re always up to date. Don’t just do it one time in the console, make it part of your workflow.</li>
+<li>Open the image in a separate program (your OS’s default image preview program is fine) to verify that things came out the way you expected and wanted. Zoom in to make sure the resolution is high enough.</li>
+<li>Adjust dimensions, etc as necessary.</li>
+</ul>
+<p>The easiest way to export a ggplot-based chart is with <code>ggplot2::ggsave</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"utils/plotting_utils.R"</span>))</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a>wage_chart <span class="ot">&lt;-</span> justviz<span class="sc">::</span>wages <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">filter</span>(dimension <span class="sc">==</span> <span class="st">"race_x_sex"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">mutate</span>(<span class="at">race_eth =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(race_eth, earn_q50, <span class="at">.fun =</span> max),</span>
+<span id="cb2-9"><a href="#cb2-9"></a>         <span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(name, earn_q50, <span class="at">.fun =</span> max, <span class="at">.desc =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-10"><a href="#cb2-10"></a>         <span class="at">sex =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(sex, earn_q50, <span class="at">.fun =</span> mean, <span class="at">.desc =</span> <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> earn_q50, <span class="at">y =</span> race_eth, <span class="at">group =</span> race_eth)) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="fu">geom_path</span>(<span class="at">color =</span> <span class="st">"gray70"</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> sex), <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> dollar_k) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">Men =</span> qual_pal[<span class="dv">3</span>], <span class="at">Women =</span> qual_pal[<span class="dv">6</span>])) <span class="sc">+</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(name)) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Median individual earnings by race/ethnicity and sex"</span>,</span>
+<span id="cb2-18"><a href="#cb2-18"></a>       <span class="at">subtitle =</span> <span class="st">"Maryland adults ages 25+ working full time, 2021"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, <span class="at">color =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>  <span class="fu">theme_nice</span>() <span class="sc">+</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(),</span>
+<span id="cb2-22"><a href="#cb2-22"></a>        <span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">linetype =</span> <span class="st">"dotted"</span>, <span class="at">color =</span> <span class="st">"gray50"</span>),</span>
+<span id="cb2-23"><a href="#cb2-23"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24"></a></span>
+<span id="cb2-25"><a href="#cb2-25"></a>wage_chart</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exporting_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="480"></p>
+</figure>
 </div>
-</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggsave</span>(<span class="at">filename =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"plots/wages_by_race_x_sex.png"</span>), </span>
+<span id="cb3-2"><a href="#cb3-2"></a>       <span class="at">plot =</span> wage_chart,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>       <span class="at">width =</span> <span class="dv">5</span>, <span class="at">height =</span> <span class="dv">5</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">bg =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now there’s a chart saved to <code>./plots/wages_by_race_x_sex.png</code> that is ready to post somewhere, use in a document outside of R, or distribute.</p>
+<p>Double check that the file type is what you expected—if you don’t give <code>ggsave</code> a file type or graphics device to use, it will infer from the path’s extension (in this example, the path I gave has a “.png” extension, so it write out a PNG file). There are ways you can tinker with the graphics devices, but in general the default device used for the extension you choose is fine. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The argument <code>bg = "white"</code> is necessary for PNG files because otherwise they’ll have a transparent background by default. This isn’t the case with other file types like PDF.</p></div><div id="fn2"><p><sup>2</sup>&nbsp;I realized this the hard/annoying way a few years ago. I was working with a graphic designer, pushing plots to GitHub for her to edit. She thought I kept messing with them after I’d said they were ready for her. Finally I realized I had made randomly-placed labels with <code>ggrepel</code> but hadn’t set the seed, so every time I edited the notebook, the placement changed slightly, which got picked up in Git as me having changed the charts. When you set a seed, (pseudo)random numbers will be generated in the same sequence, avoiding this problem.</p></div></div><p>One last tip: if anything in your chart depends on randomization (<code>ggplot2::position_jitter</code> or anything from the <code>ggrepel</code> package for example, or if you’re taking a random subset of data like with <code>sample</code> or <code>dplyr::slice_sample</code>) <em><a href="https://en.wikipedia.org/wiki/Random_seed">set a seed</a> in the same chunk as the plot</em>. Many of these functions will have an argument for this. If not, call <code>set.seed(1)</code> or some other number before the code that has the randomization. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+
+
+</section>
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1065,8 +1011,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../weeks/00_definitions.html" class="pagination-link" aria-label="0. Definitions">
-        <span class="nav-page-text">0. Definitions</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tips/fonts.html" class="pagination-link" aria-label="Fonts">
+        <span class="nav-page-text">Fonts</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1075,4 +1021,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/tips/exporting.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/tips/exporting.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
