@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.552">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Camille Seaberry">
+
+<title>GES 778, Spring 2024 - 11. Project 1 troubleshooting</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../weeks/10_accessibility.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/11_project1.html">11. Project 1 troubleshooting</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">GES 778, Spring 2024</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/umbc-viz/ges778.git" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/umbc-viz/justviz.git" title="justviz package" class="quarto-navigation-tool px-1" aria-label="justviz package"><i class="bi bi-code-slash"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../readings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Readings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../decision_checklist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Decisionmaking checklist</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../weeks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/00_definitions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">0. Definitions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/01_walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Walkthrough</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/02_components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Components of a chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/03_encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Visual encoding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/03b_encoding_refs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3b. Encoding cheatsheets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/04_understanding_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Learning about your data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/05_good_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Writing good code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/06_color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Color</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/07_annotations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Text and annotations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/08_uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Uncertainty and distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/09_decisions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Making responsible decisions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/10_accessibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. Accessibility and literacy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/11_project1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">11. Project 1 troubleshooting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Tips &amp; tricks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tips/exporting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exporting and distributing your work</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tips/fonts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fonts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tips/merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Merging data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References by topic</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+<div class="quarto-sidebar-footer"><div class="sidebar-footer-item">
+<p><a href="https://github.com/umbc-viz/ges778.git">Code for this site</a></p>
+</div></div></nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#changing-facet-labels" id="toc-changing-facet-labels" class="nav-link active" data-scroll-target="#changing-facet-labels">Changing facet labels</a></li>
+  <li><a href="#multiple-distributions" id="toc-multiple-distributions" class="nav-link" data-scroll-target="#multiple-distributions">Multiple distributions</a></li>
+  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix">Correlation matrix</a></li>
+  <li><a href="#heatmap" id="toc-heatmap" class="nav-link" data-scroll-target="#heatmap">Heatmap</a></li>
+  <li><a href="#groups-of-scatterplots" id="toc-groups-of-scatterplots" class="nav-link" data-scroll-target="#groups-of-scatterplots">Groups of scatterplots</a></li>
+  <li><a href="#splitting-by-region" id="toc-splitting-by-region" class="nav-link" data-scroll-target="#splitting-by-region">Splitting by region</a></li>
+  <li><a href="#direct-labels" id="toc-direct-labels" class="nav-link" data-scroll-target="#direct-labels">Direct labels</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/11_project1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/11_project1.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/11_project1.html">11. Project 1 troubleshooting</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">11. Project 1 troubleshooting</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Camille Seaberry </p>
+          </div>
+  </div>
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">March 28, 2024</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Here are some notes on our troubleshooting in class.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(justviz)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(dplyr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="changing-facet-labels" class="level2">
+<h2 class="anchored" data-anchor-id="changing-facet-labels">Changing facet labels</h2>
+<p>There are a few functions for relabeling facets directly; the syntax is a little unusual but see <code>ggplot2::labeller</code>. However, this is one of those things that I think is easier / safer to do yourself as part of prepping your data <em>before</em> visualizing it. You can do this by changing factor labels. If the variable you’re faceting by isn’t already a factor, convert it to one with either <code>as.factor</code> (which will arrange in alphabetical order) or <code>forcats::as_factor</code> (which will keep the order it’s in when you call the function). I greatly prefer the <code>forcats</code> functions—they make it easy to do a variety of relabeling and reordering tasks.</p>
+<p>Without making any changes, the levels of the indicator variable are:</p>
+<ul>
+<li>In snake case (snake_case vs camelCase vs kebab-case vs Title Case vs Sentence case)</li>
+<li>In an arbitrary order (i.e.&nbsp;order doesn’t tell us anything about the data)</li>
+<li>A few of the abbreviated labels are unclear</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>ej_natl <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(d2_ptile)) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> d2_ptile)) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(indicator))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/facet-lbls1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Some revisions (in practice I’d do all these <code>mutate</code> functions in one call, but by keeping them in separate lines you can go through and see individual changes):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>ej_natl <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(d2_ptile)) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="co"># change to sentence case</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">mutate</span>(<span class="at">indicator =</span> forcats<span class="sc">::</span><span class="fu">fct_relabel</span>(indicator, snakecase<span class="sc">::</span>to_sentence_case)) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="co"># manually adjust a few labels</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">mutate</span>(<span class="at">indicator =</span> forcats<span class="sc">::</span><span class="fu">fct_recode</span>(indicator,</span>
+<span id="cb3-7"><a href="#cb3-7"></a>                                         <span class="st">"PM-25"</span> <span class="ot">=</span> <span class="st">"Pm 25"</span>,</span>
+<span id="cb3-8"><a href="#cb3-8"></a>                                         <span class="st">"Air-related cancers"</span> <span class="ot">=</span> <span class="st">"Air cancer"</span>,</span>
+<span id="cb3-9"><a href="#cb3-9"></a>                                         <span class="st">"Air-related respiratory"</span> <span class="ot">=</span> <span class="st">"Air respiratory"</span>,</span>
+<span id="cb3-10"><a href="#cb3-10"></a>                                         <span class="st">"Superfund sites"</span> <span class="ot">=</span> <span class="st">"Superfund"</span>,</span>
+<span id="cb3-11"><a href="#cb3-11"></a>                                         <span class="st">"Hazardous waste treatment"</span> <span class="ot">=</span> <span class="st">"Haz waste"</span>,</span>
+<span id="cb3-12"><a href="#cb3-12"></a>                                         <span class="st">"Underground storage"</span> <span class="ot">=</span> <span class="st">"Undergrnd storage"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="co"># reorder based on median per indicator</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a>  <span class="fu">mutate</span>(<span class="at">indicator =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(indicator, d2_ptile, <span class="at">.fun =</span> median)) <span class="sc">|&gt;</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> d2_ptile)) <span class="sc">+</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(indicator))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/facet-lbls2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="multiple-distributions" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-distributions">Multiple distributions</h2>
+<p>For just a few groups, layering distributions as either histograms or density curves are another option, and less technical than boxplots.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>waste_vs_superfund <span class="ot">&lt;-</span> ej_natl <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">filter</span>(indicator <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"wastewater"</span>, <span class="st">"superfund"</span>),</span>
+<span id="cb4-3"><a href="#cb4-3"></a>         <span class="sc">!</span><span class="fu">is.na</span>(d2_ptile))</span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co"># use position identity to keep them from stacking</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="fu">ggplot</span>(waste_vs_superfund, <span class="fu">aes</span>(<span class="at">x =</span> d2_ptile, <span class="at">fill =</span> indicator)) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">geom_histogram</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>, <span class="at">position =</span> <span class="fu">position_identity</span>(), <span class="at">binwidth =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/mult-histograms-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggplot</span>(waste_vs_superfund, <span class="fu">aes</span>(<span class="at">x =</span> d2_ptile, <span class="at">color =</span> indicator)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/mult-histograms-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="correlation-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="correlation-matrix">Correlation matrix</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>acs_to_corr <span class="ot">&lt;-</span> acs <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">select</span>(name, white, diversity_idx, homeownership, total_cost_burden, pop_density, median_hh_income) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="co"># drop any rows with NA; otherwise set `use` argument in `cor`</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co"># drop names--only want numeric columns</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>acs_mtx <span class="ot">&lt;-</span> acs_to_corr <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">select</span>(<span class="sc">-</span>name) <span class="sc">|&gt;</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">cor</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>  <span class="co"># need base data.frame, not tibble, to keep row names</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a>  <span class="fu">as.data.frame</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>  tibble<span class="sc">::</span><span class="fu">rownames_to_column</span>(<span class="at">var =</span> <span class="st">"var1"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>  <span class="co"># pivot to get 2 columns of variable names, 1 column of correlation coefficients</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="sc">-</span>var1, <span class="at">names_to =</span> <span class="st">"var2"</span>, <span class="at">values_to =</span> <span class="st">"coef"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>  <span class="co"># make both vars factors, order by coefficients</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(var1<span class="sc">:</span>var2, forcats<span class="sc">::</span>as_factor)) <span class="sc">|&gt;</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(var1<span class="sc">:</span>var2, <span class="cf">function</span>(x) forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(x, coef, <span class="at">.fun =</span> median)))</span>
+<span id="cb6-19"><a href="#cb6-19"></a></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="fu">head</span>(acs_mtx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">var1</th>
+<th style="text-align: left;">var2</th>
+<th style="text-align: right;">coef</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">white</td>
+<td style="text-align: right;">1.0000000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">diversity_idx</td>
+<td style="text-align: right;">-0.2503525</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">homeownership</td>
+<td style="text-align: right;">0.4539800</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">total_cost_burden</td>
+<td style="text-align: right;">-0.5478637</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">pop_density</td>
+<td style="text-align: right;">-0.4011644</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">white</td>
+<td style="text-align: left;">median_hh_income</td>
+<td style="text-align: right;">0.3198306</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># needs a diverging palette, but it's off center so I'll build it manually</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>div_pal <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="at">n =</span> <span class="dv">7</span>, <span class="at">name =</span> <span class="st">"BrBG"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># reverse one var so it starts in top left corner</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="fu">ggplot</span>(acs_mtx, <span class="fu">aes</span>(<span class="at">x =</span> var1, <span class="at">y =</span> forcats<span class="sc">::</span><span class="fu">fct_rev</span>(var2), <span class="at">fill =</span> coef)) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="co"># this doesn't work well since it's skewed</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="co"># scale_fill_distiller(palette = "BrBG")</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="co"># instead get first, last, middle values of diverging palette manually</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>  <span class="fu">scale_fill_gradient2</span>(<span class="at">low =</span> div_pal[<span class="dv">1</span>], <span class="at">high =</span> div_pal[<span class="dv">7</span>], <span class="at">mid =</span> div_pal[<span class="dv">4</span>],</span>
+<span id="cb7-11"><a href="#cb7-11"></a>                       <span class="at">midpoint =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/correlation-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># alternatively cut coefficient values into bins</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co"># problem with this is it's tricky to align the palette</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>div_pal2 <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="dv">10</span>, <span class="st">"BrBG"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4"></a>acs_mtx <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">mutate</span>(<span class="at">coef_brk =</span> <span class="fu">cut</span>(coef, <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.25</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> var1, <span class="at">y =</span> forcats<span class="sc">::</span><span class="fu">fct_rev</span>(var2), <span class="at">fill =</span> coef_brk)) <span class="sc">+</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="co"># set drop = FALSE in case some bins don't have observations</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="co"># subset palette to make sure it lines up--</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="co"># want lightest brown on -0.25-0, lightest green on 0-0.25</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> div_pal2[<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>], <span class="at">drop =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/correlation-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It’s also worth considering dropping the diagonals, since they skew the distribution of coefficients and don’t really add anything (you don’t expect the diagonals of a coefficient matrix to be anything other than 1) but I’ll leave that to you.</p>
+</section>
+<section id="heatmap" class="level2">
+<h2 class="anchored" data-anchor-id="heatmap">Heatmap</h2>
+<p>An alternative to cramming lots of dimensions into a scatterplot—however, this only really works when 1) the variables are all on the same scale (all percentages, all dollar amounts on the same order of magnitude, etc), and 2) you don’t have a ton of observations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>acs <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"county"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">select</span>(name, less_than_high_school<span class="sc">:</span>grad_degree) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="co"># reshape to put variable on the x axis</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="sc">-</span>name, <span class="at">names_to =</span> <span class="st">"edu"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="co"># keep same order since it's meaningful (less than HS through grad degree)</span></span>
+<span id="cb9-7"><a href="#cb9-7"></a>  <span class="fu">mutate</span>(<span class="at">edu =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(edu)) <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  <span class="co"># reorder county based on increasing education levels AND value</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="co"># so counties are ordered by decreasing share of adults w/o high school diploma</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="co"># very annoying function to work with tho</span></span>
+<span id="cb9-11"><a href="#cb9-11"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>           forcats<span class="sc">::</span><span class="fu">fct_reorder2</span>(<span class="fu">desc</span>(edu), value, <span class="at">.desc =</span> <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> edu, <span class="at">y =</span> name, <span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a>  <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/heatmap-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="groups-of-scatterplots" class="level2">
+<h2 class="anchored" data-anchor-id="groups-of-scatterplots">Groups of scatterplots</h2>
+<p>Compare a few of those acs variables vs median household income—gotta do a weird reshaping to make that happen. In class we did this with EJ data vs poverty from ACS.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>acs_to_corr <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">select</span>(name, median_hh_income, white, diversity_idx, pop_density) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(white<span class="sc">:</span>pop_density, <span class="at">names_to =</span> <span class="st">"var"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> median_hh_income)) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">shape =</span> <span class="st">"circle open"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="co"># these scales are very different---white is a percentage, </span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>  <span class="co"># diversity index isn't a percentage but scales 0 to 1</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a>  <span class="co"># pop density has range 0 to infinity</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(var), <span class="at">scales =</span> <span class="st">"free_x"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/scatterplots-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>  <span class="co"># labeling axis ticks would be a pain tho because of the different scales</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="co"># ggh4x package has some fixes for this</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="splitting-by-region" class="level2">
+<h2 class="anchored" data-anchor-id="splitting-by-region">Splitting by region</h2>
+<p>Copying Angela’s division of counties into regions of the state, but putting it into a data frame to join to ACS data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>central_md <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Anne Arundel County"</span>, <span class="st">"Baltimore County"</span>, <span class="st">"Harford County"</span>, <span class="st">"Howard County"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2"></a>eastern_shore <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Caroline County"</span>, <span class="st">"Cecil County"</span>, <span class="st">"Dorchester County"</span>, <span class="st">"Kent County"</span>, <span class="st">"Queen Anne's County"</span>, <span class="st">"Somerset County"</span>, <span class="st">"Talbot County"</span>, <span class="st">"Wicomico County"</span>, <span class="st">"Worcester County"</span>)</span>
+<span id="cb12-3"><a href="#cb12-3"></a>southern_md <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Calvert County"</span>, <span class="st">"Charles County"</span>, <span class="st">"Montgomery County"</span>, <span class="st">"Prince George's County"</span>, <span class="st">"St. Mary's County"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a>western_md <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Allegany County"</span>, <span class="st">"Carroll County"</span>, <span class="st">"Frederick County"</span>, <span class="st">"Garrett County"</span>, <span class="st">"Washington County"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5"></a>baltimore_city <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Baltimore city"</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="co"># lst creates names for the list from variable names</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>county_regions <span class="ot">&lt;-</span> tibble<span class="sc">::</span><span class="fu">lst</span>(central_md, eastern_shore, southern_md, western_md, baltimore_city) <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>  <span class="co"># then pack it into a data frame</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a>  tibble<span class="sc">::</span><span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"region"</span>, <span class="at">value =</span> <span class="st">"county"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a>  <span class="co"># then unnest it---names start as a list-column</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a>  tidyr<span class="sc">::</span><span class="fu">unnest</span>(county) <span class="sc">|&gt;</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>  <span class="co"># change from snake case to title, replace Md with MD</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a>  <span class="fu">mutate</span>(<span class="at">region =</span> snakecase<span class="sc">::</span><span class="fu">to_title_case</span>(region) <span class="sc">|&gt;</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a>           stringr<span class="sc">::</span><span class="fu">str_replace</span>(<span class="st">"Md"</span>, <span class="st">"MD"</span>))</span>
+<span id="cb12-16"><a href="#cb12-16"></a></span>
+<span id="cb12-17"><a href="#cb12-17"></a><span class="fu">head</span>(county_regions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">region</th>
+<th style="text-align: left;">county</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Central MD</td>
+<td style="text-align: left;">Anne Arundel County</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Central MD</td>
+<td style="text-align: left;">Baltimore County</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Central MD</td>
+<td style="text-align: left;">Harford County</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Central MD</td>
+<td style="text-align: left;">Howard County</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Eastern Shore</td>
+<td style="text-align: left;">Caroline County</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eastern Shore</td>
+<td style="text-align: left;">Cecil County</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>acs <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="co"># use left join to catch if we missed any counties</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">left_join</span>(county_regions, <span class="at">by =</span> <span class="st">"county"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="co"># no NAs in region column so all good</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> grad_degree, <span class="at">y =</span> low_income)) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="co"># 2D binning is a way to deal with overplotting---I don't love it</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>  <span class="fu">geom_bin2d</span>() <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(region)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/regions-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To join to EJ data or anything else tract-based, you need to know which county each tract is in. You can chop up the FIPS codes and join them to a lookup table (e.g.&nbsp;<code>tidycensus::fips_codes</code>), but we already have tracts &amp; counties available in the ACS data to use as a lookup table.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>tract_to_county <span class="ot">&lt;-</span> acs <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="fu">select</span>(<span class="at">tract =</span> name, county)</span>
+<span id="cb14-4"><a href="#cb14-4"></a></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="fu">head</span>(tract_to_county)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">tract</th>
+<th style="text-align: left;">county</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">24001000100</td>
+<td style="text-align: left;">Allegany County</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24001000200</td>
+<td style="text-align: left;">Allegany County</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">24001000500</td>
+<td style="text-align: left;">Allegany County</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24001000600</td>
+<td style="text-align: left;">Allegany County</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">24001000700</td>
+<td style="text-align: left;">Allegany County</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">24001000800</td>
+<td style="text-align: left;">Allegany County</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>waste_vs_superfund <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="co"># join to tract_to_county to get county names</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">inner_join</span>(tract_to_county, <span class="at">by =</span> <span class="st">"tract"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="co"># then join to regions table</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">left_join</span>(county_regions, <span class="at">by =</span> <span class="st">"county"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>  <span class="co"># reshape to do a scatterplot</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="fu">c</span>(tract, county, region), </span>
+<span id="cb15-8"><a href="#cb15-8"></a>                     <span class="at">names_from =</span> indicator, <span class="at">values_from =</span> d2_ptile) <span class="sc">|&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> superfund, <span class="at">y =</span> wastewater)) <span class="sc">+</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(region))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="direct-labels" class="level2">
+<h2 class="anchored" data-anchor-id="direct-labels">Direct labels</h2>
+<p>We’ll write some functions to do more complex direct labeling later in the semester but for simple cases (either single set of bars or faceted bars but all on similar scales) you can just bump values by a small offset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>balt_metro <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"utils/balt_metro.rds"</span>))</span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="co"># define a function to make percentage labels</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>percent_100 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb16-5"><a href="#cb16-5"></a>  scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)(x)</span>
+<span id="cb16-6"><a href="#cb16-6"></a>}</span>
+<span id="cb16-7"><a href="#cb16-7"></a></span>
+<span id="cb16-8"><a href="#cb16-8"></a>metro_edu <span class="ot">&lt;-</span> acs <span class="sc">|&gt;</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>  <span class="fu">select</span>(name, less_than_high_school<span class="sc">:</span>grad_degree) <span class="sc">|&gt;</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>  <span class="fu">filter</span>(name <span class="sc">%in%</span> balt_metro) <span class="sc">|&gt;</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a>           forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(less_than_high_school))</span>
+<span id="cb16-13"><a href="#cb16-13"></a></span>
+<span id="cb16-14"><a href="#cb16-14"></a><span class="fu">ggplot</span>(metro_edu, <span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> less_than_high_school)) <span class="sc">+</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a>  <span class="co"># adjust vertical justification to align top of text at value</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a>  <span class="co"># since numbers are small, only offset by half a percent</span></span>
+<span id="cb16-18"><a href="#cb16-18"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">percent_100</span>(less_than_high_school)), <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb16-19"><a href="#cb16-19"></a>            <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.005</span>) <span class="sc">+</span></span>
+<span id="cb16-20"><a href="#cb16-20"></a>  <span class="co"># since values are labeled, axis labels are redundant</span></span>
+<span id="cb16-21"><a href="#cb16-21"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/direct-lbls1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="co"># similar but with coords flipped</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="co"># smaller offset since the gap looks bigger on horizontal bars (trial &amp; error, friends)</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">ggplot</span>(metro_edu, <span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> less_than_high_school)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>  <span class="co"># switch vjust to hjust</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">percent_100</span>(less_than_high_school)), <span class="at">color =</span> <span class="st">"white"</span>,</span>
+<span id="cb17-7"><a href="#cb17-7"></a>            <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.0025</span>) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a>  <span class="fu">coord_flip</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/direct-lbls1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>With stacked bars, align labels in centers of bars. It gets a little tricky:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>metro_edu_long <span class="ot">&lt;-</span> metro_edu <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="co"># reshape to have edu all in one column</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="sc">-</span>name, <span class="at">names_to =</span> <span class="st">"edu"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="co"># keep factor order</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">mutate</span>(<span class="at">edu =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(edu) <span class="sc">|&gt;</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>           forcats<span class="sc">::</span><span class="fu">fct_recode</span>(<span class="at">some_college_or_associates =</span> <span class="st">"some_college_or_aa"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>           forcats<span class="sc">::</span><span class="fu">fct_relabel</span>(snakecase<span class="sc">::</span>to_sentence_case)) </span>
+<span id="cb18-8"><a href="#cb18-8"></a></span>
+<span id="cb18-9"><a href="#cb18-9"></a><span class="co"># reverse edu so less than HS is on bottom</span></span>
+<span id="cb18-10"><a href="#cb18-10"></a>metro_edu_long <span class="sc">|&gt;</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a>  <span class="fu">mutate</span>(<span class="at">edu =</span> forcats<span class="sc">::</span><span class="fu">fct_rev</span>(edu)) <span class="sc">|&gt;</span></span>
+<span id="cb18-12"><a href="#cb18-12"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> value, <span class="at">fill =</span> edu)) <span class="sc">+</span></span>
+<span id="cb18-13"><a href="#cb18-13"></a>  <span class="co"># set to position fill in case rounding made them not add to exactly 100%</span></span>
+<span id="cb18-14"><a href="#cb18-14"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_fill</span>(), <span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb18-15"><a href="#cb18-15"></a>  <span class="co"># set same position for labels but align to center of bars</span></span>
+<span id="cb18-16"><a href="#cb18-16"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">percent_100</span>(value)), <span class="at">position =</span> <span class="fu">position_fill</span>(<span class="at">vjust =</span> <span class="fl">0.5</span>)) <span class="sc">+</span></span>
+<span id="cb18-17"><a href="#cb18-17"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span></span>
+<span id="cb18-18"><a href="#cb18-18"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb18-19"><a href="#cb18-19"></a>  <span class="co"># wrap long labels</span></span>
+<span id="cb18-20"><a href="#cb18-20"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_wrap</span>(<span class="at">width =</span> <span class="dv">12</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>An example with my <code>stylehaven::offset_lbls</code> helper function for more complicated situations. In this first one, all labels are offset by the same amount, but the scales are different (less than HS only goes up to 13, others are larger) so the gaps between labels and ends of bars is different in each facet.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># if not already installed</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="co"># devtools::install_github("CT-Data-Haven/stylehaven")</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a>metro_edu_long <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">percent_100</span>(value)), <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.02</span>) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_wrap</span>(<span class="at">width =</span> <span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a>  <span class="co"># give a little extra space at upper limit</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.015</span>)), <span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb19-12"><a href="#cb19-12"></a>  <span class="co"># let scale vary</span></span>
+<span id="cb19-13"><a href="#cb19-13"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(edu), <span class="at">scales =</span> <span class="st">"free"</span>, </span>
+<span id="cb19-14"><a href="#cb19-14"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">.cols =</span> <span class="fu">label_wrap_gen</span>(<span class="at">width =</span> <span class="dv">15</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># check arguments in ?stylehaven::offset_lbls--use it by group</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="co"># can supply a function for labeling, then use that in geom_text</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="co"># creates a y column to use for label placement</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="co"># other columns help with offsetting labels if some might be cutoff---see examples in docs</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>edu_with_lbls <span class="ot">&lt;-</span> metro_edu_long <span class="sc">|&gt;</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>  <span class="fu">group_by</span>(edu) <span class="sc">|&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>  stylehaven<span class="sc">::</span><span class="fu">offset_lbls</span>(<span class="at">value =</span> value, <span class="at">frac =</span> <span class="fl">0.075</span>, <span class="at">fun =</span> percent_100) </span>
+<span id="cb20-8"><a href="#cb20-8"></a></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="fu">head</span>(edu_with_lbls)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 30%">
+<col style="width: 6%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 9%">
+<col style="width: 5%">
+<col style="width: 4%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">edu</th>
+<th style="text-align: right;">value</th>
+<th style="text-align: left;">is_small</th>
+<th style="text-align: right;">off</th>
+<th style="text-align: right;">y</th>
+<th style="text-align: right;">just</th>
+<th style="text-align: left;">lbl</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: left;">Less than high school</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">-0.00975</td>
+<td style="text-align: right;">0.05025</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">6%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: left;">High school grad</td>
+<td style="text-align: right;">0.22</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">-0.02175</td>
+<td style="text-align: right;">0.19825</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">22%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: left;">Some college or associates</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">-0.02175</td>
+<td style="text-align: right;">0.24825</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">27%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: left;">Bachelors</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">-0.02325</td>
+<td style="text-align: right;">0.22675</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">25%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: left;">Grad degree</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">-0.02475</td>
+<td style="text-align: right;">0.16525</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">19%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: left;">Less than high school</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">-0.00975</td>
+<td style="text-align: right;">0.07025</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">8%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>edu_with_lbls <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> y, <span class="at">label =</span> lbl), <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_wrap</span>(<span class="at">width =</span> <span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="co"># give a little extra space at upper limit</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.015</span>)), <span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a>  <span class="co"># let scale vary for the sake of illustration</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(edu), <span class="at">scales =</span> <span class="st">"free"</span>, </span>
+<span id="cb21-11"><a href="#cb21-11"></a>             <span class="at">labeller =</span> <span class="fu">labeller</span>(<span class="at">.cols =</span> <span class="fu">label_wrap_gen</span>(<span class="at">width =</span> <span class="dv">15</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="11_project1_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../weeks/10_accessibility.html" class="pagination-link" aria-label="10. Accessibility and literacy">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">10. Accessibility and literacy</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/11_project1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/11_project1.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
