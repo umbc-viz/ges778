@@ -18,7 +18,7 @@ library(sf)
 library(ggplot2)
 
 # justviz::tracts_sf is only baltimore & neighboring counties
-all_tracts_sf <- tigris::tracts(state = "24", cb = TRUE) |>
+all_tracts_sf <- tigris::tracts(state = "24", cb = TRUE, progress_bar = FALSE) |>
   select(geoid = GEOID, county = NAMELSADCO)
 counties_sf <- all_tracts_sf |>
   group_by(county) |>
