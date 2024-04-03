@@ -582,6 +582,22 @@
       ],
       "Hash": "313d31eff2274ecf4c1d3581db7241f9"
     },
+    "ggrepel": {
+      "Package": "ggrepel",
+      "Version": "0.9.5",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "ggplot2",
+        "grid",
+        "rlang",
+        "scales",
+        "withr"
+      ],
+      "Hash": "cc3361e234c4a5050e29697d675764aa"
+    },
     "ggridges": {
       "Package": "ggridges",
       "Version": "0.5.6",
@@ -884,20 +900,16 @@
     "justviz": {
       "Package": "justviz",
       "Version": "0.2.1",
-      "Source": "GitHub",
+      "Source": "Local",
       "Remotes": "CT-Data-Haven/cwi, camille-s/camiller",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteRepo": "justviz",
-      "RemoteUsername": "umbc-viz",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "9242a83e0d62d0ec2e6ec345eefc4c914f4c3b91",
+      "RemoteType": "local",
+      "RemoteUrl": "/home/camille/code/justviz",
       "Requirements": [
         "R",
         "classInt",
         "cli"
       ],
-      "Hash": "a8e5fde7948123f08599d4d6a7b58db1"
+      "Hash": "1daa743f09a564434ae417044f59782d"
     },
     "knitr": {
       "Package": "knitr",
@@ -1102,6 +1114,24 @@
         "utils"
       ],
       "Hash": "737924139a1e4fc96356ff377c754c35"
+    },
+    "patchwork": {
+      "Package": "patchwork",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "cli",
+        "ggplot2",
+        "grDevices",
+        "graphics",
+        "grid",
+        "gtable",
+        "rlang",
+        "stats",
+        "utils"
+      ],
+      "Hash": "9c8ab14c00ac07e9e04d1664c0b74486"
     },
     "pillar": {
       "Package": "pillar",
