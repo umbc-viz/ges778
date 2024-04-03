@@ -900,16 +900,20 @@
     "justviz": {
       "Package": "justviz",
       "Version": "0.2.1",
-      "Source": "Local",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "umbc-viz",
+      "RemoteRepo": "justviz",
+      "RemoteRef": "main",
+      "RemoteSha": "9242a83e0d62d0ec2e6ec345eefc4c914f4c3b91",
       "Remotes": "CT-Data-Haven/cwi, camille-s/camiller",
-      "RemoteType": "local",
-      "RemoteUrl": "/home/camille/code/justviz",
       "Requirements": [
         "R",
         "classInt",
         "cli"
       ],
-      "Hash": "1daa743f09a564434ae417044f59782d"
+      "Hash": "542c492e1d324999010152eb47203de5"
     },
     "knitr": {
       "Package": "knitr",
