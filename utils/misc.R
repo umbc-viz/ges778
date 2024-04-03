@@ -21,4 +21,10 @@ balt_metro <- msa_sf |>
 # delete the county centroids since we don't need them
 rm(county_cents)
 
+# get states
+states_sf <- tigris::states(cb = TRUE)
+
+
+saveRDS(states_sf, "utils/states_sf.rds")
 saveRDS(balt_metro, "utils/balt_metro.rds")
+
