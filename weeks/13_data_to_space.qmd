@@ -55,7 +55,7 @@ counties_sf |>
   ggplot() +
   geom_sf(aes(fill = pop_density)) +
   scale_fill_distiller(palette = "YlGnBu", direction = 1) +
-  theme(legend.position = "none")
+  theme(legend.position = "right")
 ```
 
 ## Areal units
@@ -168,6 +168,16 @@ ggplot(sf_on_right) +
 ```
 
 You'll probably make this mistake anyway---I do it all the time---but now you have a heads up about it.
+
+You can also just convert your data frame with an `sf` column back into a `sf` data frame.
+
+```{r}
+sf_once_again <- sf_on_right |>
+  sf::st_as_sf()
+
+class(sf_once_again)
+```
+
 
 ### Joining spatial and nonspatial data for real
 
