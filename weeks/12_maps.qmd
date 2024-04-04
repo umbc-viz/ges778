@@ -135,7 +135,7 @@ counties_sf
 
 ggplot(tracts_sf) +
   geom_sf(aes(fill = county)) +
-  geom_sf(data = counties_sf, fill = NA, color = "black", linewidth = 0.6)
+  geom_sf(data = counties_sf, fill = NA, color = "black", linewidth = 0.6) 
 ```
 
 ### Projections
@@ -203,9 +203,9 @@ Fill in the missing CRS code below and draw the maps. What do you notice?
 
 ```{r}
 #| label: md-crs
-#| eval: false
+#| eval: true
 
-crs_code <- NA
+crs_code <- 2248
 
 md_sf <- states_sf |> filter(state == "MD")
 
