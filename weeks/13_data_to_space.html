@@ -387,7 +387,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 3, 2024</p>
+      <p class="date-modified">April 4, 2024</p>
     </div>
   </div>
     
@@ -948,17 +948,27 @@ Mennis, J. (2019). Problems of <span>Scale</span> and <span>Zoning</span>. <em>G
 <span id="cb20-8"><a href="#cb20-8"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">geometry =</span> geometry))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>You’ll probably make this mistake anyway—I do it all the time—but now you have a heads up about it.</p>
+<p>You can also just convert your data frame with an <code>sf</code> column back into a <code>sf</code> data frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>sf_once_again <span class="ot">&lt;-</span> sf_on_right <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  sf<span class="sc">::</span><span class="fu">st_as_sf</span>()</span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a><span class="fu">class</span>(sf_once_again)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "sf"         "tbl_df"     "tbl"        "data.frame"</code></pre>
+</div>
+</div>
 </section>
 <section id="joining-spatial-and-nonspatial-data-for-real" class="level3">
 <h3 class="anchored" data-anchor-id="joining-spatial-and-nonspatial-data-for-real">Joining spatial and nonspatial data for real</h3>
 <p>Now that we know what to watch out for, we can actually join our spatial and nonspatial data and make a <strong>choropleth</strong>. This is a type of thematic map (probably the most common type) where you shade areas in a map based on some additional value. These can be very useful but also easily misleading.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>all_tracts_sf <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">left_join</span>(acs, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"name"</span>, <span class="st">"county"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb21-3"><a href="#cb21-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> white)) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb21-6"><a href="#cb21-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Percent white, Maryland tracts, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>all_tracts_sf <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">left_join</span>(acs, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"name"</span>, <span class="st">"county"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> white)) <span class="sc">+</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Percent white, Maryland tracts, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -969,13 +979,13 @@ Mennis, J. (2019). Problems of <span>Scale</span> and <span>Zoning</span>. <em>G
 </div>
 <p>There’s a minor problem with this map, but it’s a byproduct of the very different areas of tracts here, particularly in dense urban tracts: some of those values in Baltimore or PG County look very low. Is it really because their values are close to 0, or is some of it just the white borders around tracts?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>all_tracts_sf <span class="sc">|&gt;</span></span>
-<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">left_join</span>(acs, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"name"</span>, <span class="st">"county"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> white)) <span class="sc">+</span></span>
-<span id="cb22-4"><a href="#cb22-4"></a>  <span class="co"># set linewidth to adjust thickness of borders</span></span>
-<span id="cb22-5"><a href="#cb22-5"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb22-6"><a href="#cb22-6"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb22-7"><a href="#cb22-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Percent white, Maryland tracts, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>all_tracts_sf <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">left_join</span>(acs, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"name"</span>, <span class="st">"county"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> white)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4"></a>  <span class="co"># set linewidth to adjust thickness of borders</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Percent white, Maryland tracts, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">

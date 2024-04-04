@@ -392,7 +392,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 3, 2024</p>
+      <p class="date-modified">April 4, 2024</p>
     </div>
   </div>
     
@@ -623,7 +623,7 @@ Brainstorming
 </div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(tracts_sf) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> county)) <span class="sc">+</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> counties_sf, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> counties_sf, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.6</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -739,7 +739,7 @@ GEOGCRS["NAD83",
 <div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Using feet for your units (or a different projection that uses meters) is useful for doing things like buffers or measuring distances; we’ll do a bit of this later.</p></div></div><p>You might find more than one that fits these requirements, just pick one. (For this sort of work you won’t be able to see any difference.)</p>
 <p>Fill in the missing CRS code below and draw the maps. What do you notice?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>crs_code <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>crs_code <span class="ot">&lt;-</span> <span class="dv">2248</span></span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
 <span id="cb14-3"><a href="#cb14-3"></a>md_sf <span class="ot">&lt;-</span> states_sf <span class="sc">|&gt;</span> <span class="fu">filter</span>(state <span class="sc">==</span> <span class="st">"MD"</span>)</span>
 <span id="cb14-4"><a href="#cb14-4"></a></span>
@@ -747,13 +747,26 @@ GEOGCRS["NAD83",
 <span id="cb14-6"><a href="#cb14-6"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(crs_code) <span class="sc">|&gt;</span></span>
 <span id="cb14-7"><a href="#cb14-7"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb14-8"><a href="#cb14-8"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
-<span id="cb14-9"><a href="#cb14-9"></a>  <span class="fu">labs</span>(<span class="at">title =</span> stringr<span class="sc">::</span><span class="fu">str_glue</span>(<span class="st">"Maryland, CRS {crs_code}"</span>))</span>
-<span id="cb14-10"><a href="#cb14-10"></a></span>
-<span id="cb14-11"><a href="#cb14-11"></a>states_sf <span class="sc">|&gt;</span></span>
-<span id="cb14-12"><a href="#cb14-12"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(crs_code) <span class="sc">|&gt;</span></span>
-<span id="cb14-13"><a href="#cb14-13"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb14-14"><a href="#cb14-14"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
-<span id="cb14-15"><a href="#cb14-15"></a>  <span class="fu">labs</span>(<span class="at">title =</span> stringr<span class="sc">::</span><span class="fu">str_glue</span>(<span class="st">"US, CRS {crs_code}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-9"><a href="#cb14-9"></a>  <span class="fu">labs</span>(<span class="at">title =</span> stringr<span class="sc">::</span><span class="fu">str_glue</span>(<span class="st">"Maryland, CRS {crs_code}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12_maps_files/figure-html/md-crs-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>states_sf <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(crs_code) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> stringr<span class="sc">::</span><span class="fu">str_glue</span>(<span class="st">"US, CRS {crs_code}"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12_maps_files/figure-html/md-crs-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 
 
