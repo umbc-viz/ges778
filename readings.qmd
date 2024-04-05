@@ -47,9 +47,30 @@ Focus on finishing the case studies---only one reading and it's a podcast
 
 * Listen to @Schwabish2021c and browse through the accessibility tool they discuss: @Elavsky2022
 
-## Week 7, March 13: Accessibility and empathy
+## Week 7, March 13: accessibility and empathy
 
 * I forgot to put last week's podcast on Blackboard, so if you missed it please listen to it for this week
 * @Makulec2020
 * @BocoupLLC2017
 * @Elghany2023
+
+## Week 8, March 27: midterm projects
+
+* @Yau2017
+
+## Week 9, April 3: intro to spatial data viz
+
+* @Wilke2019 chapter 15
+* Listen to @swd2021
+
+## Week 10, April 10: color, text, annotations part 2
+
+* @Muth2024b
+* @Muth2024a
+* Listen or read (or both): @ODonohue2020
+* @L.N.M2019---skim / use just as a reference
+
+## Week 11, April 17: responsibility
+
+* @Sadler2016
+* @Wiseman2015
