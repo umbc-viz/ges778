@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>GES 778, Spring 2024 - 10. Accessibility and literacy</title>
+<title>GES 778, Spring 2024 - 15. Color, text, and annotations in mapping</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -85,8 +85,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../weeks/11_project1.html" rel="next">
-<link href="../weeks/09_decisions.html" rel="prev">
+<link href="../weeks/14_geos.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,7 +137,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/10_accessibility.html">10. Accessibility and literacy</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/15_color_text_mapping.html">15. Color, text, and annotations in mapping</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -281,7 +280,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/10_accessibility.html" class="sidebar-item-text sidebar-link active">
+  <a href="../weeks/10_accessibility.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">10. Accessibility and literacy</span></a>
   </div>
 </li>
@@ -311,7 +310,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/15_color_text_mapping.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/15_color_text_mapping.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">15. Color, text, and annotations in mapping</span></a>
   </div>
 </li>
@@ -366,27 +365,20 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm up</a></li>
-  <li><a href="#accessibility" id="toc-accessibility" class="nav-link" data-scroll-target="#accessibility">Accessibility</a>
-  <ul class="collapse">
-  <li><a href="#colorblindness" id="toc-colorblindness" class="nav-link" data-scroll-target="#colorblindness">Colorblindness</a></li>
-  <li><a href="#alt-text" id="toc-alt-text" class="nav-link" data-scroll-target="#alt-text">Alt text</a></li>
-  <li><a href="#contrast" id="toc-contrast" class="nav-link" data-scroll-target="#contrast">Contrast</a></li>
-  <li><a href="#exercise" id="toc-exercise" class="nav-link" data-scroll-target="#exercise">Exercise</a></li>
-  </ul></li>
-  <li><a href="#literacy" id="toc-literacy" class="nav-link" data-scroll-target="#literacy">Literacy</a>
-  <ul class="collapse">
-  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise</a></li>
-  </ul></li>
+  <li><a href="#color" id="toc-color" class="nav-link active" data-scroll-target="#color">Color</a></li>
+  <li><a href="#breaks" id="toc-breaks" class="nav-link" data-scroll-target="#breaks">Breaks</a></li>
+  <li><a href="#does-this-scale" id="toc-does-this-scale" class="nav-link" data-scroll-target="#does-this-scale">Does this scale?</a></li>
+  <li><a href="#text" id="toc-text" class="nav-link" data-scroll-target="#text">Text</a></li>
+  <li><a href="#annotations" id="toc-annotations" class="nav-link" data-scroll-target="#annotations">Annotations</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/10_accessibility.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/10_accessibility.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/15_color_text_mapping.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/15_color_text_mapping.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/10_accessibility.html">10. Accessibility and literacy</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/15_color_text_mapping.html">15. Color, text, and annotations in mapping</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">10. Accessibility and literacy</h1>
+<h1 class="title">15. Color, text, and annotations in mapping</h1>
 </div>
 
 
@@ -415,264 +407,132 @@ div.csl-indent {
 </header>
 
 
-<section id="warm-up" class="level2">
-<h2 class="anchored" data-anchor-id="warm-up">Warm up</h2>
-<p>For each of these two charts:</p>
-<ul>
-<li>Draft a possible headline-style title for this chart that would be appropriate for a general audience</li>
-<li>Revise that headline to what you estimate would be a US 6th grade reading level.</li>
-<li>Write a very short (2-4 concise sentences) description of the chart that says what type of chart it is, what’s being measured, what types of groups are included (don’t name them all individually), and some important data points.</li>
-</ul>
 <div class="cell">
-<div class="cell-output-display">
-<div id="fig-chart-lbl1" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="Bar chart of the share of adults in Connecticut in 2021 who say they have ever been unfairly stopped or harassed by police, broken down by gender and race. 15 percent of all adults say they have been unfairly stopped by police. The highest value is Black adults at 25 percent, and the lowest is for women at 11 percent. The source is the 2021 DataHaven Community Wellbeing Survey.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-chart-lbl1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="10_accessibility_files/figure-html/fig-chart-lbl1-1.png" id="fig-chart-lbl1" class="img-fluid figure-img" alt="Bar chart of the share of adults in Connecticut in 2021 who say they have ever been unfairly stopped or harassed by police, broken down by gender and race. 15 percent of all adults say they have been unfairly stopped by police. The highest value is Black adults at 25 percent, and the lowest is for women at 11 percent. The source is the 2021 DataHaven Community Wellbeing Survey." width="672">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(justviz)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggplot2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-chart-lbl1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
+<section id="color" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="color">Color</h2>
+<p>As usual, Lisa Charlotte Muth has done great, simple roundups of working with color: see <span class="citation" data-cites="Muth2024a">Muth (<a href="#ref-Muth2024a" role="doc-biblioref">2024b</a>)</span> and <span class="citation" data-cites="Muth2024b">Muth (<a href="#ref-Muth2024b" role="doc-biblioref">2024a</a>)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Muth2024a" class="csl-entry" role="listitem">
+Muth, L. C. (2024b). How to choose an interpolation for your color scale - <span>Datawrapper Blog</span>. In <em>Datawrapper</em>. <a href="https://blog.datawrapper.de/interpolation-for-color-scales-and-maps/">https://blog.datawrapper.de/interpolation-for-color-scales-and-maps/</a>
+</div><div id="ref-Muth2024b" class="csl-entry" role="listitem">
+Muth, L. C. (2024a). How to choose a color palette for choropleth maps. In <em>Datawrapper</em>. <a href="https://blog.datawrapper.de/how-to-choose-a-color-palette-for-choropleth-maps/">https://blog.datawrapper.de/how-to-choose-a-color-palette-for-choropleth-maps/</a>
+</div></div><p>In data visualization, you’ll generally need to put something on your map besides just boundaries. One of the big ways you’ll do this is by making choropleths or other thematic maps.</p>
+<p>With a choropleth, the main encoding for your data is the color. Color is generally not read as accurately as encodings like length, position, and angle, so you need to weigh some pros and cons before deciding to make a choropleth. You can maximize the legibility of your color—wide variation in lightness and saturation, some variation in hue.</p>
+<p>Here’s an example of a choropleth with a bad palette. It’s not incorrect as far as how the values are encoded to color, but it’s not good. Why not? Try to change the assignment of <code>bad_pal</code> to make it better.</p>
 <div class="cell">
-<div class="cell-output-display">
-<div id="fig-chart-lbl2" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="Two panels of bar charts of the share of adults in Connecticut in 2021 who say they have been unfairly stopped or harassed by police, broken down by gender and race. In the first panel, 15 percent of all adults say they have been unfairly stopped. In the second panel, 4 percent say they have been unfairly stopped multiple times in the past 3 years. In both panels, Black and Latino adults report these incidents at higher rates. The source is the 2021 DataHaven Community Wellbeing Survey.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-chart-lbl2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="10_accessibility_files/figure-html/fig-chart-lbl2-1.png" id="fig-chart-lbl2" class="img-fluid figure-img" alt="Two panels of bar charts of the share of adults in Connecticut in 2021 who say they have been unfairly stopped or harassed by police, broken down by gender and race. In the first panel, 15 percent of all adults say they have been unfairly stopped. In the second panel, 4 percent say they have been unfairly stopped multiple times in the past 3 years. In both panels, Black and Latino adults report these incidents at higher rates. The source is the 2021 DataHaven Community Wellbeing Survey." width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-chart-lbl2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="accessibility" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="accessibility">Accessibility</h2>
-<p>After talking about making responsible decisions in data visualization, it’s embarrassing to admit that accessibility has been a major oversight of mine, but it’s true, and it’s for no other reason than privilege. On a day-to-day basis I don’t have to think about whether learning or interacting with something will depend on my ability to see well, read complicated text, speak a certain language, navigate stimuli, process information, or access technology and resources. In fact, until last week I hadn’t even bothered writing alt texts for the charts in these notes; I’m going back and doing that now, but my hope for you all is that you <strong>start out your data viz careers being more mindful than I’ve been.</strong></p>
-<p>For the most part when we talk about accessibility, we mean this with respect to disabilities; in static data visualization, this mostly means visual impairments such as blindness, low vision, and colorblindness. If you go on to do interactive or web-based visualization, you’ll also need to think about things like navigation (access for keyboards and assistive devices vs clicking menus only) and animation (can be overstimulating or hard to process). <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Circa 2017, scrollytelling was very cool and people were <em>very intense</em> with it. I’ve noticed in recent years people have eased up. It can be disorienting for some readers. <span class="citation" data-cites="Webb2018">Webb (<a href="#ref-Webb2018" role="doc-biblioref">2018</a>)</span> convinced me to scrap my scrollytelling plans for some projects during that era.</p><div id="ref-Webb2018" class="csl-entry" role="listitem">
-Webb, E. (2018). <em>Your <span>Interactive Makes Me Sick</span></em>. <a href="https://source.opennews.org/articles/motion-sick/">https://source.opennews.org/articles/motion-sick/</a>
-</div></div></div><p>Some of the simplest tasks we can do for static data visualization are using <strong>colorblind-friendly palettes</strong>, writing <strong>alt-text descriptions</strong>, and maintaining high <strong>contrast ratios</strong> between backgrounds and text.</p>
-<section id="colorblindness" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="colorblindness">Colorblindness</h3>
-<p>You should generally assume your work will be read by at least a few colorblind readers (or people with color-vision deficiency, CVD) and plan your color palettes accordingly. Wilke mentions this as a reason for <a href="https://clauswilke.com/dataviz/redundant-coding.html">redundant coding</a> as well, so you’re not relying on color alone to differentiate values. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Something that blew my mind is in Frank Elavsky’s interview on <em>PolicyViz</em>. He acknowledges that awareness of CVD has become the norm in data viz, but that it actually predominantly affects white men, and that it shouldn’t be too surprising that that is often the only accommodation made in a field where white men are overrepresented.</p></div></div><p>The most common form of CVD is what’s called red-green colorblindness. Many common R color palettes are colorblind-friendly, and some tools will help you tell whether a palette is or not, or for which color deficiencies they are legible.</p>
-<p>Some code examples:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Not all Color Brewer palettes are CVD-friendly, but you can filter in the R package</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="co"># or on the website for ones that are</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>RColorBrewer<span class="sc">::</span><span class="fu">display.brewer.all</span>(<span class="at">colorblindFriendly =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>acs_sf <span class="ot">&lt;-</span> tracts_sf <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">left_join</span>(acs, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"name"</span>, <span class="st">"county"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">st_transform</span>(<span class="dv">2248</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>bad_pal <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">name =</span> <span class="st">"YlGnBu"</span>)[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)]</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="fu">ggplot</span>(acs_sf, <span class="fu">aes</span>(<span class="at">fill =</span> foreign_born)) <span class="sc">+</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">geom_sf</span>(<span class="at">linewidth =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low =</span> bad_pal[<span class="dv">1</span>], <span class="at">high =</span> bad_pal[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_accessibility_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="15_color_text_mapping_files/figure-html/bad-palette-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Same goes for Carto Colors</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a>rcartocolor<span class="sc">::</span><span class="fu">display_carto_all</span>(<span class="at">colorblind_friendly =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="breaks" class="level2">
+<h2 class="anchored" data-anchor-id="breaks">Breaks</h2>
+<p>The big decision is a choropleth is whether you want to keep the color scale continuous or cut it into bins, and if so, how. I almost always cut my choropleths into bins, but some people argue against it. Color scales broken into bins can be easier to read quickly, but you do lose some of the granularity. This is the part that Lisa Charlotte Muth called a <a href="https://blog.datawrapper.de/interpolation-for-color-scales-and-maps/#compromise-betweeen-truthfulness-and-usefulness">“compromise between truthfulness and usefulness”</a>, and it’s one of those decisions you make as a data viz designer that will impact how the data are perceived.</p>
+<p>There are many different algorithms for deciding on breaks, and some are more appropriate than others depending on the data. In my day job, I almost always use natural breaks (also called Jenks breaks after the statistician who came up with them); these are well-suited for showing skewed distributions, and since most of my work is about inequality of various sorts, it’s often a good choice. The downside is the breaks aren’t obviously clear or easy to explain (some people say if you’re going to cut your data, you need to explain the breaks, and I never do…). On the other hand, if a value ranges from 0% to 50%, and you break it into 0-9, 10-19, …, it might not show the pattern in the data as well but it’s easy to understand (these are usually called pretty breaks).</p>
+<p>You should also inspect whether the bins make sense and are useful: if you have a value that ranges from 0% to 10%, are 5 different bins really that important? Maybe they are for something where any increase is urgent, like child lead poisoning, but in many cases it might not be. Muth’s posts on color give examples of this as well.</p>
+<p>There are several functions that will help you cut your data into breaks (including base R’s <code>cut</code>); I wrote one in a work package just for Jenks breaks. The classInt package has several of these algorithms, and now has a function to easily cut your data up for you.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>pal <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">name =</span> <span class="st">"PuBuGn"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>choro1 <span class="ot">&lt;-</span> acs_sf <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">mutate</span>(<span class="at">brk =</span> classInt<span class="sc">::</span><span class="fu">classify_intervals</span>(<span class="at">var =</span> foreign_born, <span class="at">n =</span> <span class="dv">5</span>, <span class="at">style =</span> <span class="st">"quantile"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> brk)) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">geom_sf</span>(<span class="at">linewidth =</span> <span class="dv">0</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> pal)</span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a>choro1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_accessibility_files/figure-html/unnamed-chunk-3-2.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="15_color_text_mapping_files/figure-html/bins1-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># All Viridis palettes are designed to be CVD-friendly</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># use them with e.g. ggplot2::scale_fill_viridis_c()</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>colorspace<span class="sc">::</span><span class="fu">swatchplot</span>(viridisLite<span class="sc">::</span><span class="fu">viridis</span>(<span class="at">n =</span> <span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The function to make this choropleth-histogram exploration plot is in the lab.</p>
+<div class="cell">
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_accessibility_files/figure-html/unnamed-chunk-3-3.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="15_color_text_mapping_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Okabe-Ito is built into R and based on lots of research into CVD</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>colorspace<span class="sc">::</span><span class="fu">swatchplot</span>(<span class="fu">palette.colors</span>(<span class="at">n =</span> <span class="dv">9</span>, <span class="at">palette =</span> <span class="st">"Okabe-Ito"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10_accessibility_files/figure-html/unnamed-chunk-3-4.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="15_color_text_mapping_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="15_color_text_mapping_files/figure-html/unnamed-chunk-4-3.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>There are also a lot of tools to help you simulate different types of CVD. This is particularly useful for diverging palettes, which can be hard to make accessible.</p>
+</section>
+<section id="does-this-scale" class="level2">
+<h2 class="anchored" data-anchor-id="does-this-scale">Does this scale?</h2>
+<p>Sometimes you choose an algorithm for your data that doesn’t work well once you change something—maybe you zoom out to include more areas, or you want a different number of breaks. If you switch to a larger area (e.g.&nbsp;all tracts in the state) or a smaller area (e.g.&nbsp;all tracts in Howard County, only 59), you might need to adjust the algorithm and/or number of bins. It also, once again, might depend on your purpose: a planning group looking at towns in a small region might only want to know relative high, low, and middle values (3 bins), whereas the state’s public health department might need much more granular breaks (5 or maybe more bins).</p>
+</section>
+<section id="text" class="level2">
+<h2 class="anchored" data-anchor-id="text">Text</h2>
+<p>You wouldn’t want to put text labels on every tract, because there would just be too many, but you could on something with fewer geographies, like counties in the metro area. We can also start using boundaries to give context and make things easier to read. You can use <code>geom_sf_text</code> to place labels near the centroid of each shape.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb5-2"><a href="#cb5-2"></a>cvd_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">group =</span> <span class="fu">sample</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">7</span>], <span class="at">size =</span> <span class="dv">200</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb5-3"><a href="#cb5-3"></a>                       <span class="at">value =</span> <span class="fu">rnorm</span>(<span class="dv">200</span>))</span>
-<span id="cb5-4"><a href="#cb5-4"></a>div_pal <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="at">n =</span> <span class="dv">7</span>, <span class="at">name =</span> <span class="st">"RdYlGn"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a></span>
-<span id="cb5-6"><a href="#cb5-6"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(cvd_data, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">fill =</span> group)) <span class="sc">+</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>  <span class="fu">geom_dotplot</span>(<span class="at">method =</span> <span class="st">"histodot"</span>, <span class="at">binpositions =</span> <span class="st">"all"</span>, <span class="at">binwidth =</span> <span class="fl">0.2</span>)</span>
-<span id="cb5-8"><a href="#cb5-8"></a></span>
-<span id="cb5-9"><a href="#cb5-9"></a>p <span class="sc">+</span> </span>
-<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> div_pal) <span class="sc">+</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Brewer palette RdYlGn"</span>)</span>
-<span id="cb5-12"><a href="#cb5-12"></a></span>
-<span id="cb5-13"><a href="#cb5-13"></a>p <span class="sc">+</span> </span>
-<span id="cb5-14"><a href="#cb5-14"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colorspace<span class="sc">::</span><span class="fu">deutan</span>(div_pal)) <span class="sc">+</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Deuteranomaly"</span>)</span>
-<span id="cb5-16"><a href="#cb5-16"></a></span>
-<span id="cb5-17"><a href="#cb5-17"></a>p <span class="sc">+</span> </span>
-<span id="cb5-18"><a href="#cb5-18"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colorspace<span class="sc">::</span><span class="fu">protan</span>(div_pal)) <span class="sc">+</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Protanomaly"</span>)</span>
-<span id="cb5-20"><a href="#cb5-20"></a></span>
-<span id="cb5-21"><a href="#cb5-21"></a>p <span class="sc">+</span> </span>
-<span id="cb5-22"><a href="#cb5-22"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colorspace<span class="sc">::</span><span class="fu">tritan</span>(div_pal)) <span class="sc">+</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Tritanomaly"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>county_sf <span class="ot">&lt;-</span> tracts_sf <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">group_by</span>(county) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">summarise</span>() </span>
+<span id="cb4-4"><a href="#cb4-4"></a></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="fu">ggplot</span>(county_sf) <span class="sc">+</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">geom_sf_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> stringr<span class="sc">::</span><span class="fu">str_wrap</span>(county, <span class="at">width =</span> <span class="dv">12</span>)), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">vjust =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-dots-cvd-1" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-dots-cvd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="10_accessibility_files/figure-html/fig-dots-cvd-1.png" id="fig-dots-cvd-1" class="img-fluid figure-img" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations." width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-dots-cvd-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div id="fig-dots-cvd-2" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-dots-cvd-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="10_accessibility_files/figure-html/fig-dots-cvd-2.png" id="fig-dots-cvd-2" class="img-fluid figure-img" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations." width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-dots-cvd-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div id="fig-dots-cvd-3" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-dots-cvd-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="10_accessibility_files/figure-html/fig-dots-cvd-3.png" id="fig-dots-cvd-3" class="img-fluid figure-img" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations." width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-dots-cvd-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div id="fig-dots-cvd-4" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-dots-cvd-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="10_accessibility_files/figure-html/fig-dots-cvd-4.png" id="fig-dots-cvd-4" class="img-fluid figure-img" alt="A colored dot plot shown as an example of simulations of different types of color vision deficiencies. The original palette is not colorblind friendly, as shown by the simulations." width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-dots-cvd-4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6
-</figcaption>
+<div>
+<figure class="figure">
+<p><img src="15_color_text_mapping_files/figure-html/cent-labels-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>There are lots of tools to do similar simulations, although many of them require you to have a graphic already saved to a file. An online one that’s good for developing and adjusting palettes is <a href="https://projects.susielu.com/viz-palette">Viz Palette</a> by Susie Lu; this one also accounts for the size of your geometries.</p>
-
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Viz Palette takes a set of space- or comma-separated colors as hex values. If you have a vector of colors, call</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">cat</span>(div_pal, <span class="at">sep =</span> <span class="st">" "</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>to get it all in one line that you only have to copy &amp; paste once.</p>
-</div></div></section>
-<section id="alt-text" class="level3">
-<h3 class="anchored" data-anchor-id="alt-text">Alt text</h3>
-<p>Alt text is the text that’s displayed in place of, or alongside, and image online and in some types of documents (certain PDF versions, Microsoft Word, etc). If someone is using a screen reader, it will read this text aloud. This can be embedded in posts on most social media platforms as well, and is autogenerated on some (if you ever look at Facebook with a bad internet connection, you might see alt text until the images load.) As the designer of your visualizations, you’re in a unique position to write alt text, since you will have close knowledge of the data and what’s important about it.</p>
-<p>Including alt text in R:</p>
-<ul>
-<li>For exporting ggplot charts, you can include alt text in <code>labs(alt = "")</code>.</li>
-<li>In Rmarkdown documents, you can include it as the <code>fig.alt</code> chunk option</li>
-<li>Similar for Quarto documents: <code>fig-alt</code></li>
-<li>When directly including images in Markdown, use <code>![fig-name](fig_path){fig-alt="Alt text goes here"}</code></li>
-</ul>
 </section>
-<section id="contrast" class="level3">
-<h3 class="anchored" data-anchor-id="contrast">Contrast</h3>
-<p>Different pieces of your visualization need to have enough contrast to be legible at different sizes, especially between text and its background. This comes up with labels like titles, but especially with direct labels. Generally your labels will be all white or all black (or slightly darker or lighter, respectively), so if you’re putting direct labels on several bars with different colors, make sure you have enough contrast across all of them.</p>
-<p>For example, this palette starts out very dark and ends very light, so neither white nor black will be legible across all bars. Switching between label colors (light on the dark bars, dark on the light bars) can be distracting or imply something about the data that isn’t there, so it’s better to use a palette where all labels can be the same color.</p>
+<section id="annotations" class="level2">
+<h2 class="anchored" data-anchor-id="annotations">Annotations</h2>
+<p>I usually don’t use scales and north arrows because it’s just not relevant to my usual audience. If I were in a field like planning or environmental engineering, I’d probably use them all the time. The package <code>ggspatial</code> has ggplot add-ons for this. Here’s an example of the scale annotation with the defaults:</p>
 <div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>choro1 <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_scale</span>(<span class="at">unit_category =</span> <span class="st">"imperial"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="fig-bad-contrast" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="A bar chart of simulated data in a color palette that ranges from black to very light yellow. The bars have labels in black, gray, and white, but because there is such a wide range in lightness values of the colors, no label color has enough contrast across all bars.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-bad-contrast-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="10_accessibility_files/figure-html/fig-bad-contrast-1.png" id="fig-bad-contrast" class="img-fluid figure-img" alt="A bar chart of simulated data in a color palette that ranges from black to very light yellow. The bars have labels in black, gray, and white, but because there is such a wide range in lightness values of the colors, no label color has enough contrast across all bars." width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-bad-contrast-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7
-</figcaption>
+<div>
+<figure class="figure">
+<p><img src="15_color_text_mapping_files/figure-html/annotations-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The W3C recommends a minimum contrast ratio of 4.5 for regular-sized text, and 3 for large text. You can use <code>colorspace::contrast_ratio</code> to get calculations of these ratios.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>colorspace<span class="sc">::</span><span class="fu">contrast_ratio</span>(inferno, <span class="at">col2 =</span> <span class="st">"black"</span>, <span class="at">plot =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div id="fig-contrast-ratio" class="quarto-figure quarto-figure-center quarto-float anchored" width="672" alt="A grid to measure the contrast ratio between text and background. In the first panel, the background is black and the text is in a black to light yellow color palette. In the second panel, the background and text are reversed so that the text is black and the backgrounds are the black to light yellow color palette. The darkest purple colors have inadequate contrast, while the highest contrast ratio, between black and light yellow, is 19.98.">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-contrast-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="10_accessibility_files/figure-html/fig-contrast-ratio-1.png" id="fig-contrast-ratio" class="img-fluid figure-img" alt="A grid to measure the contrast ratio between text and background. In the first panel, the background is black and the text is in a black to light yellow color palette. In the second panel, the background and text are reversed so that the text is black and the backgrounds are the black to light yellow color palette. The darkest purple colors have inadequate contrast, while the highest contrast ratio, between black and light yellow, is 19.98." width="672">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-contrast-ratio-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="exercise" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="exercise">Exercise</h3>
-<p>Go back to the image descriptions you wrote in the warm-up. Using <span class="citation" data-cites="Cesal2020">Cesal (<a href="#ref-Cesal2020" role="doc-biblioref">2020</a>)</span> and <span class="citation" data-cites="WAI">W3C Web Accessibility Initiative (<a href="#ref-WAI" role="doc-biblioref">2024</a>)</span>, revise your descriptions so they could work as alt text.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-Cesal2020" class="csl-entry" role="listitem">
-Cesal, A. (2020). Writing <span>Alt Text</span> for <span>Data Visualization</span>, <span>Nightingale</span>. In <em>Nightingale</em>. <a href="https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81?source=friends_link&amp;sk=32db60d651933b5ac2c5b6507f3763b5">https://medium.com/nightingale/writing-alt-text-for-data-visualization-2a218ef43f81?source=friends_link&amp;sk=32db60d651933b5ac2c5b6507f3763b5</a>
-</div><div id="ref-WAI" class="csl-entry" role="listitem">
-W3C Web Accessibility Initiative. (2024). Images <span>Tutorial</span>: <span>Complex Images</span>. In <em>Web Accessibility Initiative (WAI)</em>. <a href="https://www.w3.org/WAI/tutorials/images/complex/">https://www.w3.org/WAI/tutorials/images/complex/</a>
-</div></div></section>
-</section>
-<section id="literacy" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="literacy">Literacy</h2>
-<p>We easily take for granted the ability to read English fluently, but it’s important to remember that, depending on our audience, many of our readers may not be able to. Twenty-two percent of US adults ages 16 to 74 are rated as having low literacy; in Maryland, this is 20% <span class="citation" data-cites="PIAAC2020">(<a href="#ref-PIAAC2020" role="doc-biblioref">National Center for Education Statistics, 2020</a>)</span>. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> So if you’re creating a visualization that needs to work for a general audience, you’ll want to keep your sentences short, language simple, and chart types pretty standard. Or, you can get more complex with the use of annotations or other guidance.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-PIAAC2020" class="csl-entry" role="listitem">
-National Center for Education Statistics. (2020). <em><span>Program for the International Assessment of Adult Competencies (PIAAC)</span></em>. National Center for Education Statistics. <a href="https://nces.ed.gov/surveys/piaac/state-county-estimates.asp">https://nces.ed.gov/surveys/piaac/state-county-estimates.asp</a>
-</div><div id="fn3"><p><sup>3</sup>&nbsp;This program outlines definitions of “low literacy,” but in news stories and Wikipedia it’s being referred to as corresponding to a sixth grade reading level. I haven’t found anything directly connected to the program that corroborates that.</p></div></div><section id="exercise-1" class="level3">
-<h3 class="anchored" data-anchor-id="exercise-1">Exercise</h3>
-<p>Test the reading level of the headlines you wrote using each of these tools:</p>
-<ul>
-<li>Wordcalc: <a href="https://www.wordcalc.com/readability/" class="uri">https://www.wordcalc.com/readability/</a></li>
-<li>Hemingway: <a href="https://hemingwayapp.com/" class="uri">https://hemingwayapp.com/</a></li>
-</ul>
-<p>For the versions of the headlines that you thought were at sixth grade level, what level were they actually? Try to get them to sixth grade or below. What revisions did you have to make to get there?</p>
-<hr>
-<p>If you have access to decent AI tools, they might help with this also. I tried with Chat GPT (GPT-3.5) with mixed results. It came out to 5th grade in the end, but loses some of the memorability of “one in four.”</p>
-<blockquote class="blockquote">
-<p><strong>User</strong> Rewrite the following sentence to be at a US 6th grade reading level: “One in four Black adults, and one in five Latinos, have been unfairly stopped or harassed by police.”</p>
-<p><strong>ChatGPT</strong> “Police have unfairly stopped or harassed one out of every four Black adults, and one out of every five Latinos.”</p>
-<p><strong>User</strong> Based on the Flesch-Kincaid scale, that’s a 9.9 reading level</p>
-<p><strong>ChatGPT</strong> Here’s a revised sentence with a lower reading level:</p>
-<p>“Police have unfairly stopped or harassed one out of every four Black adults, and one out of every five Latinos.”</p>
-<p>This should be around a 6th grade reading level according to the Flesch-Kincaid scale.</p>
-<p><strong>User</strong> That’s the same sentence</p>
-<p><strong>ChatGPT</strong> I apologize for the confusion. Here’s another attempt:</p>
-<p>“Police have unfairly stopped or harassed 25% of Black adults and 20% of Latinos.”</p>
-<p>This should be around a 6th grade reading level according to the Flesch-Kincaid scale.</p>
-</blockquote>
 
 
 
 </section>
-</section>
-
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1230,14 +1090,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/09_decisions.html" class="pagination-link" aria-label="9. Making responsible decisions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">9. Making responsible decisions</span>
+      <a href="../weeks/14_geos.html" class="pagination-link" aria-label="14. Manipulating geographies">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">14. Manipulating geographies</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../weeks/11_project1.html" class="pagination-link" aria-label="11. Project 1 troubleshooting">
-        <span class="nav-page-text">11. Project 1 troubleshooting</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -1245,4 +1102,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/10_accessibility.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/10_accessibility.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/15_color_text_mapping.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/15_color_text_mapping.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
