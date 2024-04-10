@@ -55,7 +55,8 @@ counties_sf |>
   ggplot() +
   geom_sf(aes(fill = pop_density)) +
   scale_fill_distiller(palette = "YlGnBu", direction = 1) +
-  theme(legend.position = "right")
+  theme(legend.position = "right") +
+  labs(fill = NULL)
 ```
 
 ## Areal units
