@@ -29,7 +29,7 @@ acs_sf <- tracts_sf |>
   left_join(acs, by = c("geoid" = "name", "county")) |>
   st_transform(2248)
 
-bad_pal <- RColorBrewer::brewer.pal(n = 5, name = "YlGnBu")[c(3, 5)]
+bad_pal <- RColorBrewer::brewer.pal(n = 5, name = "YlGnBu")[c(1, 5)]
 
 ggplot(acs_sf, aes(fill = foreign_born)) +
   geom_sf(linewidth = 0, color = "white") +
@@ -52,7 +52,8 @@ There are several functions that will help you cut your data into breaks (includ
 pal <- RColorBrewer::brewer.pal(n = 5, name = "PuBuGn")
 
 choro1 <- acs_sf |>
-  mutate(brk = classInt::classify_intervals(var = foreign_born, n = 5, style = "quantile")) |>
+  mutate(brk = classInt::classify_intervals(var = foreign_born, n = 5, 
+                                            style = "quantile")) |>
   ggplot(aes(fill = brk)) +
   geom_sf(linewidth = 0, color = "white") +
   scale_fill_manual(values = pal)

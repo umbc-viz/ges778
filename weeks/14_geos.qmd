@@ -62,7 +62,7 @@ Sometimes when you have a lot of shapes, especially very small ones, you'll want
 all_tracts |>
   filter(county == "Baltimore County") |>
   select(geometry) |>
-  st_simplify(dTolerance = 10) |>
+  st_simplify(dTolerance = 50) |>
   plot()
 ```
 

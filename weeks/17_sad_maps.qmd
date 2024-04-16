@@ -1,0 +1,104 @@
+---
+title: 17. Avoiding sad maps
+---
+
+If you remember nothing else from this class, remember this: **AVOID MAKING SAD MAPS**. This is a term I learned at a conference on the launch of the 500 Cities Project, the predecessor to the project whose data is in `justviz::cdc`. I don't remember which one of the panelists said it, and I have no idea where my notes are from the conference, but it's stuck with me. The panelist defined "sad maps" as maps, often choropleths, that just show hotspots of the same depressing patterns across neighborhoods over and over without supplying any sense of neighborhoods' assets or source of strength.
+
+At that point, I'd been making maps for a year or two, and I've been making maps for probably seven years since, and I'm still guilty of making *many* sad maps. It's unavoidable, especially when it's your job to make maps about public health and inequality. That's why your task isn't to *never* make a sad map, but to try to find other ways of doing things. Maybe that means showing distributions instead of neighborhood vs neighborhood or town vs town comparisons, or contextualizing the sad data with assets and history, or using a visualization that's not a map, or not visualizing it at all, or having different people at the table making decisions on how to tell the story. ^[The Anti-Eviction Mapping Project, one of the projects for the second case study, describes the challenge of balancing research on hardship with empowering stories, and give a lot of credit to the fact that their work is community-led.]
+
+This was one of the major reasons I had for pushing my organization away from choropleths---I got tired of making the same sad map. It was doubly frustrating because I lived in one of those "sad" hotspots in New Haven, and I didn't like thinking I might be reinforcing my neighbors' disenfranchisement.
+
+Here's an example with Baltimore:
+
+```{r}
+#| label: setup
+#| echo: false
+library(dplyr)
+library(ggplot2)
+library(sf)
+library(justviz)
+
+source(here::here("utils/plotting_utils.R"))
+theme_set(theme_nice())
+```
+
+
+```{r}
+#| label: maps1
+#| echo: false
+#| fig-height: 8 
+small_tracts <- acs |>
+  filter(level == "tract",
+         total_hh < 50 | total_pop < 100)
+
+black_butterfly <- acs |>
+  filter(level == "tract",
+         county == "Baltimore city",
+         black > 0.5) |>
+  inner_join(tracts_sf, by = c("name" = "geoid")) |>
+  st_as_sf() |>
+  group_by(area = "Black butterfly") |>
+  summarise()
+
+sad_data <- list(
+  cdc = cdc |>
+    filter(indicator %in% c("Mental health", "Diabetes")) |>
+    mutate(value = value / 100) |>
+    select(location, indicator, value),
+  ej = ej_natl |>
+    filter(indicator %in% c("lead_paint")) |>
+    select(location = tract, indicator, value = value_ptile),
+  acs = acs |>
+    select(location = name, poverty, cost_burden_rate = total_cost_burden) |>
+    tidyr::pivot_longer(-location, names_to = "indicator"),
+  vacant = vacant |>
+    select(location = geoid, vacancy_rate) |>
+    mutate(vacancy_rate = round(vacancy_rate, 2)) |>
+    tidyr::pivot_longer(-location, names_to = "indicator")
+) |>
+  bind_rows(.id = "dataset") |>
+  mutate(indicator = forcats::as_factor(indicator) |>
+           forcats::fct_recode("Poor mental health" = "Mental health") |>
+           forcats::fct_relabel(snakecase::to_sentence_case)) |>
+  anti_join(small_tracts, by = c("location" = "name"))
+
+sad_maps <- sad_data |>
+  split(~indicator) |>
+  purrr::imap(function(df, id) {
+    tracts_sf |>
+      filter(county == "Baltimore city") |>
+      left_join(df, by = c("geoid" = "location")) |>
+      mutate(brk = suppressWarnings(classInt::classify_intervals(value, n = 5, style = "quantile"))) |>
+      ggplot() +
+      geom_sf(aes(fill = brk), color = "white", linewidth = 0) +
+      scale_fill_brewer(palette = "YlGnBu", direction = 1, na.value = "gray80") +
+      labs(title = id, fill = NULL) +
+      coord_sf(ndiscr = 0)
+  })
+
+patchwork::wrap_plots(sad_maps, ncol = 2)
+```
+
+Those are different variables, and while the two from the CDC Places data (poor mental health and diabetes rate) are in part modeled using data from the ACS, our naive hypothesis would be that the maps look different. But they look pretty similar---not exactly the same of course, but with similar patterns. I'd consider these sad maps, and I wouldn't want to present them all together like this without additional historical context.
+
+However, in Baltimore we have an example of the sad map being reclaimed in a way: Dr. Lawrence Brown coined the "Black Butterfly" (@Brown2021) to describe the pattern of majority-Black neighborhoods fanning out in East and West Baltimore, with the "White L" cutting through them. He's then studied how these sad indicators play out across the Black Butterfly, but uses this data in a way that aims to be empowering. It's become the sort of image you can't unsee once you see it, and it invites others to describe their research and surroundings in that same framework (here's one example, @UrbanInstitute2019).
+
+Here are those same maps with majority-Black tracts outlined:
+
+```{r}
+#| label: butterfly
+#| echo: false
+#| warning: false
+#| fig-height: 8
+
+sad_maps |>
+  purrr::map(function(p) {
+    p +
+      geom_sf(data = black_butterfly, color = "black", linewidth = 0.6, fill = NA) +
+      coord_sf(ndiscr = 0)
+  }) |>
+  patchwork::wrap_plots(ncol = 2)
+```
+
+Again, it's not exactly the same every time, but one of the purposes of data visualization is understanding and contextualizing patterns, and one of the purposes of this sort of branding is bringing that idea to life. After all, when was the last time you saw an [urban farming program](https://farmalliancebaltimore.org/theacademy/) named after a data visualization??
+
