@@ -2,6 +2,10 @@
 title: 16. Putting spatial data in context
 ---
 
+## Warm up
+
+Sketch a map of a place you're familiar with. Mark off locations associated with something secret, or that people might want privacy around, or that are in some way stigmatized, things that even if people know the location is there they might not want their activity publicized. You don't have to identify anything. For example, the places you used to go when you cut school as a teenager, places you know people sell or use drugs, methadone clinics.
+
 There are lots of ways to provide context for the data in your maps; we'll only look at a few.
 
 # TODO: How to get an API key 
@@ -37,14 +41,14 @@ balt_centroid <- st_centroid(balt_merge) |>
 balt_bbox <- st_bbox(balt_merge) |>
   setNames(c("left", "bottom", "right", "top"))
 
-google_road <- get_map(location = balt_centroid, 
-                       source = "google", 
-                       zoom = 12,
-                       maptype = "roadmap") # see other options
-google_sat <- get_map(location = balt_centroid, 
-                      source = "google", 
-                      zoom = 12,
-                      maptype = "satellite")
+# google_road <- get_map(location = balt_centroid, 
+#                        source = "google", 
+#                        zoom = 12,
+#                        maptype = "roadmap") # see other options
+# google_sat <- get_map(location = balt_centroid, 
+#                       source = "google", 
+#                       zoom = 12,
+#                       maptype = "satellite")
 
 stamen_toner <- get_map(location = balt_bbox,
                         source = "stadia",
@@ -65,21 +69,21 @@ stamen_lite <- get_map(location = balt_bbox,
 
 # need to set inherit.aes = FALSE for all geom_sf layers
 # otherwise they'll try to inherit the aesthetics of the basemap
-ggmap(google_road) +
-  geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
-  labs("Google roadmap, hard to read") +
-  coord_sf(ndiscr = 0)
-
-# why is this still called darken if you can use any color?
-ggmap(google_road, darken = c(0.5, "white")) +
-  geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
-  labs("Google roadmap, faded") +
-  coord_sf(ndiscr = 0)
-
-ggmap(google_sat) +
-  geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
-  labs("Google satellite") +
-  coord_sf(ndiscr = 0)
+# ggmap(google_road) +
+#   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
+#   labs("Google roadmap, hard to read") +
+#   coord_sf(ndiscr = 0)
+# 
+# # why is this still called darken if you can use any color?
+# ggmap(google_road, darken = c(0.5, "white")) +
+#   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
+#   labs("Google roadmap, faded") +
+#   coord_sf(ndiscr = 0)
+# 
+# ggmap(google_sat) +
+#   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
+#   labs("Google satellite") +
+#   coord_sf(ndiscr = 0)
 
 ggmap(stamen_toner) +
   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
