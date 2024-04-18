@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>GES 778, Spring 2024 - 3b. Encoding cheatsheets</title>
+<title>GES 778, Spring 2024 - 17. Avoiding sad maps</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -51,8 +51,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../weeks/04_understanding_data.html" rel="next">
-<link href="../weeks/03_encoding.html" rel="prev">
+<link href="../weeks/16_context.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -104,7 +103,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/03b_encoding_refs.html">3b. Encoding cheatsheets</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/17_sad_maps.html">17. Avoiding sad maps</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -205,7 +204,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/03b_encoding_refs.html" class="sidebar-item-text sidebar-link active">
+  <a href="../weeks/03b_encoding_refs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3b. Encoding cheatsheets</span></a>
   </div>
 </li>
@@ -289,7 +288,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/17_sad_maps.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/17_sad_maps.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">17. Avoiding sad maps</span></a>
   </div>
 </li>
@@ -345,9 +344,9 @@ div.csl-indent {
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/03b_encoding_refs.html">3b. Encoding cheatsheets</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/17_sad_maps.html">17. Avoiding sad maps</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">3b. Encoding cheatsheets</h1>
+<h1 class="title">17. Avoiding sad maps</h1>
 </div>
 
 
@@ -376,29 +375,37 @@ div.csl-indent {
 </header>
 
 
-<p>A few references on visual encodings that we’ll continue to go back to:</p>
-<ul>
-<li>The chapter of <em>Data Points</em> on Blackboard</li>
-<li>Chapter 2 of <span class="citation" data-cites="Wilke2019">(<a href="#ref-Wilke2019" role="doc-biblioref">Wilke, 2019</a>)</span> about aesthetics</li>
-</ul>
-<div class="no-row-height column-margin column-container"><div id="ref-Wilke2019" class="csl-entry" role="listitem">
-Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making informative and compelling figures</em> (First edition). O’Reilly. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
-</div></div><div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="../inputs/perception.png" class="img-fluid figure-img"></p>
-<figcaption>From <span class="citation" data-cites="Yau2013">Yau (<a href="#ref-Yau2013" role="doc-biblioref">2013</a>)</span> p.&nbsp;104</figcaption>
-<div class="no-row-height column-margin column-container"><div id="ref-Yau2013" class="csl-entry" role="listitem">
-Yau, N. (2013). <em>Data points: Visualization that means something</em>. John Wiley &amp; Sons, Inc.
-</div></div></figure>
+<p>If you remember nothing else from this class, remember this: <strong>AVOID MAKING SAD MAPS</strong>. This is a term I learned at a conference on the launch of the 500 Cities Project, the predecessor to the project whose data is in <code>justviz::cdc</code>. I don’t remember which one of the panelists said it, and I have no idea where my notes are from the conference, but it’s stuck with me. The panelist defined “sad maps” as maps, often choropleths, that just show hotspots of the same depressing patterns across neighborhoods over and over without supplying any sense of neighborhoods’ assets or source of strength.</p>
+<p>At that point, I’d been making maps for a year or two, and I’ve been making maps for probably seven years since, and I’m still guilty of making <em>many</em> sad maps. It’s unavoidable, especially when it’s your job to make maps about public health and inequality. That’s why your task isn’t to <em>never</em> make a sad map, but to try to find other ways of doing things. Maybe that means showing distributions instead of neighborhood vs neighborhood or town vs town comparisons, or contextualizing the sad data with assets and history, or using a visualization that’s not a map, or not visualizing it at all, or having different people at the table making decisions on how to tell the story. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The Anti-Eviction Mapping Project, one of the projects for the second case study, describes the challenge of balancing research on hardship with empowering stories, and give a lot of credit to the fact that their work is community-led.</p></div></div><p>This was one of the major reasons I had for pushing my organization away from choropleths—I got tired of making the same sad map. It was doubly frustrating because I lived in one of those “sad” hotspots in New Haven, and I didn’t like thinking I might be reinforcing my neighbors’ disenfranchisement.</p>
+<p>Here’s an example with Baltimore:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="17_sad_maps_files/figure-html/maps1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="../inputs/munzner_encoding.png" class="img-fluid figure-img"></p>
-<figcaption>From <span class="citation" data-cites="Munzner2014">Munzner (<a href="#ref-Munzner2014" role="doc-biblioref">2014</a>)</span> p.&nbsp;94</figcaption>
-<div class="no-row-height column-margin column-container"><div id="ref-Munzner2014" class="csl-entry" role="listitem">
-Munzner, T. (2014). <em>Visualization <span>Analysis</span> and <span>Design</span></em>. A K Peters/CRC Press. <a href="https://doi.org/10.1201/b17511">https://doi.org/10.1201/b17511</a>
-</div></div></figure>
 </div>
+</div>
+<p>Those are different variables, and while the two from the CDC Places data (poor mental health and diabetes rate) are in part modeled using data from the ACS, our naive hypothesis would be that the maps look different. But they look pretty similar—not exactly the same of course, but with similar patterns. I’d consider these sad maps, and I wouldn’t want to present them all together like this without additional historical context.</p>
+<p>However, in Baltimore we have an example of the sad map being reclaimed in a way: Dr.&nbsp;Lawrence Brown coined the “Black Butterfly” (<span class="citation" data-cites="Brown2021">Brown (<a href="#ref-Brown2021" role="doc-biblioref">2021</a>)</span>) to describe the pattern of majority-Black neighborhoods fanning out in East and West Baltimore, with the “White L” cutting through them. He’s then studied how these sad indicators play out across the Black Butterfly, but uses this data in a way that aims to be empowering. It’s become the sort of image you can’t unsee once you see it, and it invites others to describe their research and surroundings in that same framework (here’s one example, <span class="citation" data-cites="UrbanInstitute2019">Urban Institute (<a href="#ref-UrbanInstitute2019" role="doc-biblioref">2019</a>)</span>).</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Brown2021" class="csl-entry" role="listitem">
+Brown, L. T. (2021). <em>The black butterfly: The harmful politics of race and space in <span>America</span></em>. Johns Hopkins University Press.
+</div><div id="ref-UrbanInstitute2019" class="csl-entry" role="listitem">
+Urban Institute. (2019). <em>The <span>Black Butterfly</span>: <span>Racial Segregation</span> and <span>Investment Patterns</span> in <span>Baltimore</span></em>. <a href="https://urbn.is/baltimore">https://urbn.is/baltimore</a>
+</div></div><p>Here are those same maps with majority-Black tracts outlined:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="17_sad_maps_files/figure-html/butterfly-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Again, it’s not exactly the same every time, but one of the purposes of data visualization is understanding and contextualizing patterns, and one of the purposes of this sort of branding is bringing that idea to life. After all, when was the last time you saw an <a href="https://farmalliancebaltimore.org/theacademy/">urban farming program</a> named after a data visualization??</p>
+
 
 
 
@@ -959,14 +966,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/03_encoding.html" class="pagination-link" aria-label="3. Visual encoding">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3. Visual encoding</span>
+      <a href="../weeks/16_context.html" class="pagination-link" aria-label="16. Putting spatial data in context">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">16. Putting spatial data in context</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../weeks/04_understanding_data.html" class="pagination-link" aria-label="4. Learning about your data">
-        <span class="nav-page-text">4. Learning about your data</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -974,4 +978,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/03b_encoding_refs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/03b_encoding_refs.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/17_sad_maps.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/17_sad_maps.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

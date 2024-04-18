@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>GES 778, Spring 2024 - 3b. Encoding cheatsheets</title>
+<title>GES 778, Spring 2024 - 16. Putting spatial data in context</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,27 +21,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -51,8 +65,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../weeks/04_understanding_data.html" rel="next">
-<link href="../weeks/03_encoding.html" rel="prev">
+<link href="../weeks/17_sad_maps.html" rel="next">
+<link href="../weeks/15_color_text_mapping.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -104,7 +118,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/03b_encoding_refs.html">3b. Encoding cheatsheets</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/16_context.html">16. Putting spatial data in context</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -205,7 +219,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/03b_encoding_refs.html" class="sidebar-item-text sidebar-link active">
+  <a href="../weeks/03b_encoding_refs.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">3b. Encoding cheatsheets</span></a>
   </div>
 </li>
@@ -283,7 +297,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/16_context.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/16_context.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">16. Putting spatial data in context</span></a>
   </div>
 </li>
@@ -340,14 +354,27 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm up</a></li>
+  <li><a href="#todo-how-to-get-an-api-key" id="toc-todo-how-to-get-an-api-key" class="nav-link" data-scroll-target="#todo-how-to-get-an-api-key">TODO: How to get an API key</a>
+  <ul class="collapse">
+  <li><a href="#basemaps" id="toc-basemaps" class="nav-link" data-scroll-target="#basemaps">Basemaps</a></li>
+  <li><a href="#other-locations" id="toc-other-locations" class="nav-link" data-scroll-target="#other-locations">Other locations</a></li>
+  <li><a href="#things-that-arent-data" id="toc-things-that-arent-data" class="nav-link" data-scroll-target="#things-that-arent-data">Things that aren’t data</a></li>
+  <li><a href="#bottom-line" id="toc-bottom-line" class="nav-link" data-scroll-target="#bottom-line">Bottom line</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/16_context.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/16_context.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/03b_encoding_refs.html">3b. Encoding cheatsheets</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/16_context.html">16. Putting spatial data in context</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">3b. Encoding cheatsheets</h1>
+<h1 class="title">16. Putting spatial data in context</h1>
 </div>
 
 
@@ -376,31 +403,209 @@ div.csl-indent {
 </header>
 
 
-<p>A few references on visual encodings that we’ll continue to go back to:</p>
+<section id="warm-up" class="level2">
+<h2 class="anchored" data-anchor-id="warm-up">Warm up</h2>
+<p>Sketch a map of a place you’re familiar with. Mark off locations associated with something secret, or that people might want privacy around, or that are in some way stigmatized, things that even if people know the location is there they might not want their activity publicized. You don’t have to identify anything. For example, the places you used to go when you cut school as a teenager, places you know people sell or use drugs, methadone clinics.</p>
+<p>There are lots of ways to provide context for the data in your maps; we’ll only look at a few.</p>
+</section>
+<section id="todo-how-to-get-an-api-key" class="level1 page-columns page-full">
+<h1>TODO: How to get an API key</h1>
+<section id="basemaps" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="basemaps">Basemaps</h2>
+<p>Put your map on a map. There are lots of options; Google Maps and OpenStreetMap are both very popular for map tiles, but they contain a lot of colors and symbols. For data visualization, simple grayscale or black &amp; white basemaps work well, like the map tiles from Stamen (now distributed through Stadia) and Carto. These often require an API key. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;One thing to note with the ggmap package is that several of the providers have gone out of business since the package was first released, and the functions for them haven’t all been removed. Don’t be surprised if you get errors downloading map tiles from one provider—just try another one. There are also a few other packages to download basemaps but none are updated often.</p></div></div><div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(justviz)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggmap) <span class="co"># easy access to downloading basemaps</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To get map tiles, you’ll need either coordinates for the center of the map and a zoom level (e.g.&nbsp;for Google maps), or a bounding box (e.g.&nbsp;for Stamen/Stadia).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>balt_tracts <span class="ot">&lt;-</span> tracts_sf <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Baltimore city"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a>balt_merge <span class="ot">&lt;-</span> <span class="fu">st_union</span>(balt_tracts)</span>
+<span id="cb2-5"><a href="#cb2-5"></a></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co"># center coordinates need to be a vector of two values</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>balt_centroid <span class="ot">&lt;-</span> <span class="fu">st_centroid</span>(balt_merge) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">st_coordinates</span>()</span>
+<span id="cb2-9"><a href="#cb2-9"></a></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co"># bbox needs to be a vector of left, bottom, right, top with those names</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a>balt_bbox <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(balt_merge) <span class="sc">|&gt;</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"bottom"</span>, <span class="st">"right"</span>, <span class="st">"top"</span>))</span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># google_road &lt;- get_map(location = balt_centroid, </span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#                        source = "google", </span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#                        zoom = 12,</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#                        maptype = "roadmap") # see other options</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a><span class="co"># google_sat &lt;- get_map(location = balt_centroid, </span></span>
+<span id="cb2-19"><a href="#cb2-19"></a><span class="co">#                       source = "google", </span></span>
+<span id="cb2-20"><a href="#cb2-20"></a><span class="co">#                       zoom = 12,</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="co">#                       maptype = "satellite")</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a></span>
+<span id="cb2-23"><a href="#cb2-23"></a>stamen_toner <span class="ot">&lt;-</span> <span class="fu">get_map</span>(<span class="at">location =</span> balt_bbox,</span>
+<span id="cb2-24"><a href="#cb2-24"></a>                        <span class="at">source =</span> <span class="st">"stadia"</span>,</span>
+<span id="cb2-25"><a href="#cb2-25"></a>                        <span class="at">maptype =</span> <span class="st">"stamen_toner"</span>)</span>
+<span id="cb2-26"><a href="#cb2-26"></a></span>
+<span id="cb2-27"><a href="#cb2-27"></a>stamen_bg <span class="ot">&lt;-</span> <span class="fu">get_map</span>(<span class="at">location =</span> balt_bbox,</span>
+<span id="cb2-28"><a href="#cb2-28"></a>                        <span class="at">source =</span> <span class="st">"stadia"</span>,</span>
+<span id="cb2-29"><a href="#cb2-29"></a>                        <span class="at">maptype =</span> <span class="st">"stamen_toner_background"</span>)</span>
+<span id="cb2-30"><a href="#cb2-30"></a></span>
+<span id="cb2-31"><a href="#cb2-31"></a>stamen_lite <span class="ot">&lt;-</span> <span class="fu">get_map</span>(<span class="at">location =</span> balt_bbox,</span>
+<span id="cb2-32"><a href="#cb2-32"></a>                        <span class="at">source =</span> <span class="st">"stadia"</span>,</span>
+<span id="cb2-33"><a href="#cb2-33"></a>                        <span class="at">maptype =</span> <span class="st">"stamen_toner_lite"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># need to set inherit.aes = FALSE for all geom_sf layers</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="co"># otherwise they'll try to inherit the aesthetics of the basemap</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># ggmap(google_road) +</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#   labs("Google roadmap, hard to read") +</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#   coord_sf(ndiscr = 0)</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># </span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co"># # why is this still called darken if you can use any color?</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co"># ggmap(google_road, darken = c(0.5, "white")) +</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#   labs("Google roadmap, faded") +</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#   coord_sf(ndiscr = 0)</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co"># </span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co"># ggmap(google_sat) +</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#   labs("Google satellite") +</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#   coord_sf(ndiscr = 0)</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="fu">ggmap</span>(stamen_toner) <span class="sc">+</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a>  <span class="fu">labs</span>(<span class="st">"Stamen toner"</span>) <span class="sc">+</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_context_files/figure-html/data-on-base-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggmap</span>(stamen_bg) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">labs</span>(<span class="st">"Stamen toner background"</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_context_files/figure-html/data-on-base-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggmap</span>(stamen_lite) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">labs</span>(<span class="st">"Stamen toner lite"</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_context_files/figure-html/data-on-base-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There are also OSM tiles in ggspatial with a few styles, but they require the raster package where the sf ecosystem is moving toward terra and seem to rely on deprecated functions from other packages. I don’t love it…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(prettymapr) <span class="co"># not using but needed for ggspatial</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">ggplot</span>(art_sf) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_map_tile</span>(<span class="at">zoom =</span> <span class="dv">12</span>, <span class="at">progress =</span> <span class="st">"none"</span>, <span class="at">type =</span> <span class="st">"cartolight"</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Carto light via ggspatial"</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_context_files/figure-html/osm-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>My personal favorite is Stamen toner background (no text labels) with the <code>darken</code> argument to fade the color to gray.</p>
+<p>You can also get specific types of data from OpenStreetMap and use them to create the background yourself with ggplot—we probably won’t have time to get into this but it lets you do something comparable to what in web mapping would be vector tiles.</p>
+</section>
+<section id="other-locations" class="level2">
+<h2 class="anchored" data-anchor-id="other-locations">Other locations</h2>
+<p>Put other stuff on your map. If there are specific locations that provide important context, you might try adding a few essential ones (don’t overdo it). Same goes for regional boundaries, major roads, landmarks to help your reading orient themself, buffers around a location, etc. A few examples I’ve done:</p>
 <ul>
-<li>The chapter of <em>Data Points</em> on Blackboard</li>
-<li>Chapter 2 of <span class="citation" data-cites="Wilke2019">(<a href="#ref-Wilke2019" role="doc-biblioref">Wilke, 2019</a>)</span> about aesthetics</li>
+<li>Using dashed lines to mark an area used in some analyses as a proxy for the focus region</li>
+<li>Using points to mark locations of jails and prisons for a map about tracts incarcerated people come from</li>
+<li>Overlaying lines of major highways (I’m not a huge fan of this if the data isn’t related to highways, but people ask for it sometimes)</li>
+<li>Layering a dot density map of population today by race over historic redlining maps</li>
 </ul>
-<div class="no-row-height column-margin column-container"><div id="ref-Wilke2019" class="csl-entry" role="listitem">
-Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making informative and compelling figures</em> (First edition). O’Reilly. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
-</div></div><div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="../inputs/perception.png" class="img-fluid figure-img"></p>
-<figcaption>From <span class="citation" data-cites="Yau2013">Yau (<a href="#ref-Yau2013" role="doc-biblioref">2013</a>)</span> p.&nbsp;104</figcaption>
-<div class="no-row-height column-margin column-container"><div id="ref-Yau2013" class="csl-entry" role="listitem">
-Yau, N. (2013). <em>Data points: Visualization that means something</em>. John Wiley &amp; Sons, Inc.
-</div></div></figure>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>waste_sf <span class="ot">&lt;-</span> balt_tracts <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">left_join</span>(ej_natl, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"tract"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">filter</span>(indicator <span class="sc">==</span> <span class="st">"haz_waste"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4"></a></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co"># filter by geometry to only get brownfields in city</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>balt_brownfields <span class="ot">&lt;-</span> brownfields_sf <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">st_transform</span>(<span class="fu">st_crs</span>(balt_tracts)) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">st_filter</span>(balt_merge) <span class="sc">|&gt;</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">filter</span>(<span class="sc">!</span>is_archived)</span>
+<span id="cb7-10"><a href="#cb7-10"></a></span>
+<span id="cb7-11"><a href="#cb7-11"></a><span class="fu">ggplot</span>(waste_sf) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value_ptile), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>  <span class="co"># force a legend</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">shape =</span> <span class="st">"Brownfield"</span>), <span class="at">data =</span> balt_brownfields, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> balt_merge, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>  <span class="fu">scale_fill_fermenter</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Proximity to hazardous waste treatment, national percentile by tract"</span>,</span>
+<span id="cb7-19"><a href="#cb7-19"></a>       <span class="at">fill =</span> <span class="st">"Percentile"</span>, <span class="at">shape =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_colorbar</span>(<span class="at">order =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_context_files/figure-html/waste-map-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
-<p><img src="../inputs/munzner_encoding.png" class="img-fluid figure-img"></p>
-<figcaption>From <span class="citation" data-cites="Munzner2014">Munzner (<a href="#ref-Munzner2014" role="doc-biblioref">2014</a>)</span> p.&nbsp;94</figcaption>
-<div class="no-row-height column-margin column-container"><div id="ref-Munzner2014" class="csl-entry" role="listitem">
-Munzner, T. (2014). <em>Visualization <span>Analysis</span> and <span>Design</span></em>. A K Peters/CRC Press. <a href="https://doi.org/10.1201/b17511">https://doi.org/10.1201/b17511</a>
-</div></div></figure>
 </div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>air_sf <span class="ot">&lt;-</span> balt_tracts <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">left_join</span>(ej_natl, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"tract"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">filter</span>(indicator <span class="sc">==</span> <span class="st">"pm25"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5"></a>balt_highways <span class="ot">&lt;-</span> highways_sf  <span class="sc">|&gt;</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">st_transform</span>(<span class="fu">st_crs</span>(balt_tracts)) <span class="sc">|&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">st_filter</span>(balt_merge)</span>
+<span id="cb8-8"><a href="#cb8-8"></a></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="fu">ggplot</span>(air_sf) <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value_ptile), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>  <span class="co"># force a legend</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Major highways"</span>), <span class="at">data =</span> balt_highways, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> balt_merge, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>  <span class="fu">scale_fill_fermenter</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"gray20"</span>)) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Elevated particulate matter, national percentile by tract"</span>,</span>
+<span id="cb8-18"><a href="#cb8-18"></a>       <span class="at">fill =</span> <span class="st">"Percentile"</span>, <span class="at">color =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_colorbar</span>(<span class="at">order =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_context_files/figure-html/air-map-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="things-that-arent-data" class="level2">
+<h2 class="anchored" data-anchor-id="things-that-arent-data">Things that aren’t data</h2>
+<p>Tell a story outside of your map. Pair the map with text, photos, or other media that provide context and history. Story maps can do this well, and many news outlets run maps in their articles that help you use a map to understand the text and vice versa.</p>
+</section>
+<section id="bottom-line" class="level2">
+<h2 class="anchored" data-anchor-id="bottom-line">Bottom line</h2>
+<p>For a complex analysis or history, a map is often not enough. Practice writing about your data and maps, or collaborate with people who do this well.</p>
 
 
+</section>
+</section>
 
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -959,13 +1164,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/03_encoding.html" class="pagination-link" aria-label="3. Visual encoding">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">3. Visual encoding</span>
+      <a href="../weeks/15_color_text_mapping.html" class="pagination-link" aria-label="15. Color, text, and annotations in mapping">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">15. Color, text, and annotations in mapping</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../weeks/04_understanding_data.html" class="pagination-link" aria-label="4. Learning about your data">
-        <span class="nav-page-text">4. Learning about your data</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../weeks/17_sad_maps.html" class="pagination-link" aria-label="17. Avoiding sad maps">
+        <span class="nav-page-text">17. Avoiding sad maps</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -974,4 +1179,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/03b_encoding_refs.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/03b_encoding_refs.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/16_context.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/16_context.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
