@@ -37,13 +37,17 @@ jobs:
         with:
           cache-version: 1
 
+      - name: Register keys
+        # run r code
+        run: |
+          R -e 'ggmap::register_google(key = ${{ secrets.GGMAP_GOOGLE_API_KEY }}, write = TRUE)'
+          R -e 'ggmap::register_stadiamaps(key = ${{ secrets.GGMAP_STADIAMAPS_API_KEY }}, write = TRUE)'
+
+
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
           target: gh-pages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GGMAP_GOOGLE_API_KEY: ${{ secrets.GGMAP_GOOGLE_API_KEY }}
-          GGMAP_STADIAMAPS_API_KEY: ${{ secrets.GGMAP_STADIAMAPS_API_KEY }}
-
 
