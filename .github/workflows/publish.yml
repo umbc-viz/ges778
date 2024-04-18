@@ -41,11 +41,11 @@ jobs:
         env:
           GGMAP_GOOGLE_API_KEY: ${{ secrets.GGMAP_GOOGLE_API_KEY }}
           GGMAP_STADIAMAPS_API_KEY: ${{ secrets.GGMAP_STADIAMAPS_API_KEY }}
-        # run r code
         run: |
-          R -e "ggmap::register_google(key = $GGMAP_GOOGLE_API_KEY, write = TRUE)"
-          R -e "ggmap::register_stadiamaps(key = $GGMAP_STADIAMAPS_API_KEY, write = TRUE)"
+          echo "GGMAP_GOOGLE_API_KEY=$GGMAP_GOOGLE_API_KEY" >> .Renviron
+          echo "GGMAP_STADIAMAPS_API_KEY=$GGMAP_STADIAMAPS_API_KEY" >> .Renviron
 
+        
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
         with:
