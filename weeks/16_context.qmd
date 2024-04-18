@@ -105,6 +105,8 @@ There are also OSM tiles in ggspatial with a few styles, but they require the ra
 
 ```{r}
 #| label: osm
+library(prettymapr) # not using but needed for ggspatial
+
 ggplot(art_sf) +
   ggspatial::annotation_map_tile(zoom = 12, progress = "none", type = "cartolight") +
   geom_sf(color = "orchid") +
