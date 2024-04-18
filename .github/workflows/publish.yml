@@ -42,8 +42,8 @@ jobs:
           GGMAP_GOOGLE_API_KEY: ${{ secrets.GGMAP_GOOGLE_API_KEY }}
           GGMAP_STADIAMAPS_API_KEY: ${{ secrets.GGMAP_STADIAMAPS_API_KEY }}
         run: |
-          echo "GGMAP_GOOGLE_API_KEY=$GGMAP_GOOGLE_API_KEY" >> .Renviron
-          echo "GGMAP_STADIAMAPS_API_KEY=$GGMAP_STADIAMAPS_API_KEY" >> .Renviron
+          echo "GGMAP_GOOGLE_API_KEY=$GGMAP_GOOGLE_API_KEY" >> ~/.Renviron
+          echo "GGMAP_STADIAMAPS_API_KEY=$GGMAP_STADIAMAPS_API_KEY" >> ~/.Renviron
 
         
       - name: Render and Publish
