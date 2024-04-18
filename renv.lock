@@ -679,9 +679,14 @@
     },
     "ggspatial": {
       "Package": "ggspatial",
-      "Version": "1.1.9",
-      "Source": "Repository",
-      "Repository": "RSPM",
+      "Version": "1.1.9.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "paleolimbot",
+      "RemoteRepo": "ggspatial",
+      "RemoteRef": "master",
+      "RemoteSha": "5c4c903a0785702d83acfe6d9753294882ed676c",
       "Requirements": [
         "R",
         "abind",
@@ -696,7 +701,7 @@
         "tibble",
         "tidyr"
       ],
-      "Hash": "0a4e5ed181eb823957df790ec11a28fc"
+      "Hash": "1a972e655860fae9d74e8a7d95852b97"
     },
     "ggtext": {
       "Package": "ggtext",
@@ -1374,6 +1379,11 @@
       ],
       "Hash": "5e3c5dc0b071b21fa128676560dbe94d"
     },
+    "raster": {
+      "Package": "raster",
+      "Version": "3.6-26",
+      "Source": "Repository"
+    },
     "rcartocolor": {
       "Package": "rcartocolor",
       "Version": "2.1.1",
@@ -1753,6 +1763,11 @@
         "cpp11"
       ],
       "Hash": "15b594369e70b975ba9f064295983499"
+    },
+    "terra": {
+      "Package": "terra",
+      "Version": "1.7-71",
+      "Source": "Repository"
     },
     "tibble": {
       "Package": "tibble",
