@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      GGMAP_GOOGLE_API_KEY: ${{ secrets.GGMAP_GOOGLE_API_KEY }}
+      GGMAP_STADIAMAPS_API_KEY: ${{ secrets.GGMAP_STADIAMAPS_API_KEY }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
