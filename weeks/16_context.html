@@ -359,13 +359,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm up</a></li>
-  <li><a href="#todo-how-to-get-an-api-key" id="toc-todo-how-to-get-an-api-key" class="nav-link" data-scroll-target="#todo-how-to-get-an-api-key">TODO: How to get an API key</a>
+  <li><a href="#basemaps" id="toc-basemaps" class="nav-link" data-scroll-target="#basemaps">Basemaps</a>
   <ul class="collapse">
-  <li><a href="#basemaps" id="toc-basemaps" class="nav-link" data-scroll-target="#basemaps">Basemaps</a></li>
+  <li><a href="#getting-and-saving-api-keys" id="toc-getting-and-saving-api-keys" class="nav-link" data-scroll-target="#getting-and-saving-api-keys">Getting and saving API keys</a></li>
+  </ul></li>
   <li><a href="#other-locations" id="toc-other-locations" class="nav-link" data-scroll-target="#other-locations">Other locations</a></li>
+  <li><a href="#putting-it-all-together" id="toc-putting-it-all-together" class="nav-link" data-scroll-target="#putting-it-all-together">Putting it all together</a></li>
   <li><a href="#things-that-arent-data" id="toc-things-that-arent-data" class="nav-link" data-scroll-target="#things-that-arent-data">Things that aren’t data</a></li>
   <li><a href="#bottom-line" id="toc-bottom-line" class="nav-link" data-scroll-target="#bottom-line">Bottom line</a></li>
-  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/16_context.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/16_context.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -408,18 +409,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Sketch a map of a place you’re familiar with. Mark off locations associated with something secret, or that people might want privacy around, or that are in some way stigmatized, things that even if people know the location is there they might not want their activity publicized. You don’t have to identify anything. For example, the places you used to go when you cut school as a teenager, places you know people sell or use drugs, methadone clinics.</p>
 <p>There are lots of ways to provide context for the data in your maps; we’ll only look at a few.</p>
 </section>
-<section id="todo-how-to-get-an-api-key" class="level1 page-columns page-full">
-<h1>TODO: How to get an API key</h1>
 <section id="basemaps" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="basemaps">Basemaps</h2>
 <p>Put your map on a map. There are lots of options; Google Maps and OpenStreetMap are both very popular for map tiles, but they contain a lot of colors and symbols. For data visualization, simple grayscale or black &amp; white basemaps work well, like the map tiles from Stamen (now distributed through Stadia) and Carto. These often require an API key. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;One thing to note with the ggmap package is that several of the providers have gone out of business since the package was first released, and the functions for them haven’t all been removed. Don’t be surprised if you get errors downloading map tiles from one provider—just try another one. There are also a few other packages to download basemaps but none are updated often.</p></div></div><div class="cell">
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;One thing to note with the ggmap package is that several of the providers have gone out of business since the package was first released, and the functions for them haven’t all been removed. Don’t be surprised if you get errors downloading map tiles from one provider—just try another one. There are also a few other packages to download basemaps but none are updated often.</p></div></div><p>Also note that map tiles will generally be in the web Mercator projection (CRS 4369), so if you’re layering any geoms on top of them, you’ll want to transform into 4369. There are some ways to transform the tiles but they don’t generally look good.</p>
+<section id="getting-and-saving-api-keys" class="level3">
+<h3 class="anchored" data-anchor-id="getting-and-saving-api-keys">Getting and saving API keys</h3>
+<p>We had a fair amount of trouble with this in class, but API keys can be tricky to get and store. Even for a service that doesn’t seem like someone could cause any trouble with it, you want to treat your API keys like passwords—it’s a good habit to get into. Many packages that use APIs will have functions to help you save your key, and they’ll generally save to a specific <a href="https://kinsta.com/knowledgebase/what-is-an-environment-variable/">environment variable</a>. For example, <code>tidycensus::census_api_key</code> will save your key to the environment variable <code>CENSUS_API_KEY</code>, and that’s where its functions will also look for the key when you make API calls. This allows you to use a secret value (the key) without explicitly using it in your code. Some of these sorts of functions, including the ones in <code>ggmap</code>, won’t save the key between sessions by default; the <code>ggmap::register_*</code> helper functions take an argument <code>write = TRUE</code> in order to save the key permanently. That will mean the key is written to a file called <code>.Renviron</code>, usually saved to your computer’s home directory, which gets read every time you start an R session on that computer.</p>
+<p>Both Google Maps and Stamen/Stadia require API keys, and Google requires the API key be from an account with billing set up, even if you won’t hit your free tier quota. Stadia keys are free, and you can register from their site. Look at the help docs for details and the link to get a key: <code>?ggmap::register_stadiamaps</code>. Copy your key from that website, then <strong>IN YOUR R CONSOLE, not a script or notebook</strong>, call the registration function (in this case <code>ggmap::register_stadiamaps</code>) with your key. Remember that the key is like a password. In order to not have to do this every session and to make sure you have access to it in a notebook, set <code>write = TRUE</code> when you save the key.</p>
+<p>The process will vary some with other API services, but the gist is generally the same:</p>
+<ul>
+<li>Register for a service</li>
+<li>Copy the API key</li>
+<li>Save it somewhere R will be able to retrieve it securely, usually with a helper function</li>
+<li>Use the service <em>without referencing the key itself in your code</em></li>
+</ul>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(sf)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(justviz)</span>
 <span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(ggmap) <span class="co"># easy access to downloading basemaps</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>To get map tiles, you’ll need either coordinates for the center of the map and a zoom level (e.g.&nbsp;for Google maps), or a bounding box (e.g.&nbsp;for Stamen/Stadia).</p>
+<p>To get map tiles, you’ll need either coordinates for the center of the map and a zoom level (e.g.&nbsp;for Google maps), or a bounding box (e.g.&nbsp;for Stamen/Stadia). Unless you want to set up billing for Google Cloud, stick to Stadia which are more designed for data visualization anyway. There are several different options that you can use in the <code>maptype</code> argument; see the package docs for what’s available. Adjust the zoom to get more or less detail, but note that zooming in more will require more tiles, which will take longer to download.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>balt_tracts <span class="ot">&lt;-</span> tracts_sf <span class="sc">|&gt;</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Baltimore city"</span>)</span>
@@ -431,53 +442,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">st_coordinates</span>()</span>
 <span id="cb2-9"><a href="#cb2-9"></a></span>
 <span id="cb2-10"><a href="#cb2-10"></a><span class="co"># bbox needs to be a vector of left, bottom, right, top with those names</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>balt_bbox <span class="ot">&lt;-</span> <span class="fu">st_bbox</span>(balt_merge) <span class="sc">|&gt;</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"bottom"</span>, <span class="st">"right"</span>, <span class="st">"top"</span>))</span>
-<span id="cb2-13"><a href="#cb2-13"></a></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># google_road &lt;- get_map(location = balt_centroid, </span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#                        source = "google", </span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#                        zoom = 12,</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#                        maptype = "roadmap") # see other options</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a><span class="co"># google_sat &lt;- get_map(location = balt_centroid, </span></span>
-<span id="cb2-19"><a href="#cb2-19"></a><span class="co">#                       source = "google", </span></span>
-<span id="cb2-20"><a href="#cb2-20"></a><span class="co">#                       zoom = 12,</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="co">#                       maptype = "satellite")</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a></span>
-<span id="cb2-23"><a href="#cb2-23"></a>stamen_toner <span class="ot">&lt;-</span> <span class="fu">get_map</span>(<span class="at">location =</span> balt_bbox,</span>
-<span id="cb2-24"><a href="#cb2-24"></a>                        <span class="at">source =</span> <span class="st">"stadia"</span>,</span>
-<span id="cb2-25"><a href="#cb2-25"></a>                        <span class="at">maptype =</span> <span class="st">"stamen_toner"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># put a small buffer around the merged shape to get a little extra space on the sides</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co"># transform into feet because that's easier than figuring out lat-long degree buffers</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>balt_bbox <span class="ot">&lt;-</span> balt_merge  <span class="sc">|&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">st_transform</span>(<span class="dv">2248</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="fu">st_buffer</span>(<span class="at">dist =</span> <span class="dv">1</span> <span class="sc">*</span> <span class="dv">5280</span>) <span class="sc">|&gt;</span> <span class="co"># one mile buffer</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="fu">st_transform</span>(<span class="fu">st_crs</span>(balt_tracts)) <span class="sc">|&gt;</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">st_bbox</span>() <span class="sc">|&gt;</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"left"</span>, <span class="st">"bottom"</span>, <span class="st">"right"</span>, <span class="st">"top"</span>))</span>
+<span id="cb2-19"><a href="#cb2-19"></a></span>
+<span id="cb2-20"><a href="#cb2-20"></a>google_road <span class="ot">&lt;-</span> <span class="fu">get_map</span>(</span>
+<span id="cb2-21"><a href="#cb2-21"></a>  <span class="at">location =</span> balt_centroid,</span>
+<span id="cb2-22"><a href="#cb2-22"></a>  <span class="at">source =</span> <span class="st">"google"</span>,</span>
+<span id="cb2-23"><a href="#cb2-23"></a>  <span class="at">zoom =</span> <span class="dv">12</span>,</span>
+<span id="cb2-24"><a href="#cb2-24"></a>  <span class="at">maptype =</span> <span class="st">"roadmap"</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>) <span class="co"># see other options</span></span>
 <span id="cb2-26"><a href="#cb2-26"></a></span>
-<span id="cb2-27"><a href="#cb2-27"></a>stamen_bg <span class="ot">&lt;-</span> <span class="fu">get_map</span>(<span class="at">location =</span> balt_bbox,</span>
-<span id="cb2-28"><a href="#cb2-28"></a>                        <span class="at">source =</span> <span class="st">"stadia"</span>,</span>
-<span id="cb2-29"><a href="#cb2-29"></a>                        <span class="at">maptype =</span> <span class="st">"stamen_toner_background"</span>)</span>
-<span id="cb2-30"><a href="#cb2-30"></a></span>
-<span id="cb2-31"><a href="#cb2-31"></a>stamen_lite <span class="ot">&lt;-</span> <span class="fu">get_map</span>(<span class="at">location =</span> balt_bbox,</span>
-<span id="cb2-32"><a href="#cb2-32"></a>                        <span class="at">source =</span> <span class="st">"stadia"</span>,</span>
-<span id="cb2-33"><a href="#cb2-33"></a>                        <span class="at">maptype =</span> <span class="st">"stamen_toner_lite"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-27"><a href="#cb2-27"></a>google_sat <span class="ot">&lt;-</span> <span class="fu">get_map</span>(</span>
+<span id="cb2-28"><a href="#cb2-28"></a>  <span class="at">location =</span> balt_centroid,</span>
+<span id="cb2-29"><a href="#cb2-29"></a>  <span class="at">source =</span> <span class="st">"google"</span>,</span>
+<span id="cb2-30"><a href="#cb2-30"></a>  <span class="at">zoom =</span> <span class="dv">12</span>,</span>
+<span id="cb2-31"><a href="#cb2-31"></a>  <span class="at">maptype =</span> <span class="st">"satellite"</span></span>
+<span id="cb2-32"><a href="#cb2-32"></a>)</span>
+<span id="cb2-33"><a href="#cb2-33"></a></span>
+<span id="cb2-34"><a href="#cb2-34"></a>stamen_toner <span class="ot">&lt;-</span> <span class="fu">get_map</span>(</span>
+<span id="cb2-35"><a href="#cb2-35"></a>  <span class="at">location =</span> balt_bbox,</span>
+<span id="cb2-36"><a href="#cb2-36"></a>  <span class="at">source =</span> <span class="st">"stadia"</span>,</span>
+<span id="cb2-37"><a href="#cb2-37"></a>  <span class="at">maptype =</span> <span class="st">"stamen_toner"</span></span>
+<span id="cb2-38"><a href="#cb2-38"></a>)</span>
+<span id="cb2-39"><a href="#cb2-39"></a></span>
+<span id="cb2-40"><a href="#cb2-40"></a>stamen_bg <span class="ot">&lt;-</span> <span class="fu">get_map</span>(</span>
+<span id="cb2-41"><a href="#cb2-41"></a>  <span class="at">location =</span> balt_bbox,</span>
+<span id="cb2-42"><a href="#cb2-42"></a>  <span class="at">source =</span> <span class="st">"stadia"</span>,</span>
+<span id="cb2-43"><a href="#cb2-43"></a>  <span class="at">maptype =</span> <span class="st">"stamen_toner_background"</span></span>
+<span id="cb2-44"><a href="#cb2-44"></a>)</span>
+<span id="cb2-45"><a href="#cb2-45"></a></span>
+<span id="cb2-46"><a href="#cb2-46"></a>stamen_zoom <span class="ot">&lt;-</span> <span class="fu">get_map</span>(</span>
+<span id="cb2-47"><a href="#cb2-47"></a>  <span class="at">location =</span> balt_bbox,</span>
+<span id="cb2-48"><a href="#cb2-48"></a>  <span class="at">source =</span> <span class="st">"stadia"</span>,</span>
+<span id="cb2-49"><a href="#cb2-49"></a>  <span class="at">zoom =</span> <span class="dv">13</span>,</span>
+<span id="cb2-50"><a href="#cb2-50"></a>  <span class="at">maptype =</span> <span class="st">"stamen_toner_background"</span></span>
+<span id="cb2-51"><a href="#cb2-51"></a>)</span>
+<span id="cb2-52"><a href="#cb2-52"></a></span>
+<span id="cb2-53"><a href="#cb2-53"></a>stamen_lite <span class="ot">&lt;-</span> <span class="fu">get_map</span>(</span>
+<span id="cb2-54"><a href="#cb2-54"></a>  <span class="at">location =</span> balt_bbox,</span>
+<span id="cb2-55"><a href="#cb2-55"></a>  <span class="at">source =</span> <span class="st">"stadia"</span>,</span>
+<span id="cb2-56"><a href="#cb2-56"></a>  <span class="at">maptype =</span> <span class="st">"stamen_toner_lite"</span></span>
+<span id="cb2-57"><a href="#cb2-57"></a>)</span>
+<span id="cb2-58"><a href="#cb2-58"></a></span>
+<span id="cb2-59"><a href="#cb2-59"></a>stamen_terrain <span class="ot">&lt;-</span> <span class="fu">get_map</span>(</span>
+<span id="cb2-60"><a href="#cb2-60"></a>  <span class="at">location =</span> balt_bbox,</span>
+<span id="cb2-61"><a href="#cb2-61"></a>  <span class="at">source =</span> <span class="st">"stadia"</span>,</span>
+<span id="cb2-62"><a href="#cb2-62"></a>  <span class="at">maptype =</span> <span class="st">"stamen_terrain_background"</span></span>
+<span id="cb2-63"><a href="#cb2-63"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Looking at the package source, there are actually a few other styles that are available from Stadia but not documented: in addition to what’s in the docs, you can use “alidade_smooth”, “alidade_smooth_dark”, and “outdoors”.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># need to set inherit.aes = FALSE for all geom_sf layers</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="co"># otherwise they'll try to inherit the aesthetics of the basemap</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># ggmap(google_road) +</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a><span class="co">#   labs("Google roadmap, hard to read") +</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#   coord_sf(ndiscr = 0)</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="co"># </span></span>
-<span id="cb3-8"><a href="#cb3-8"></a><span class="co"># # why is this still called darken if you can use any color?</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a><span class="co"># ggmap(google_road, darken = c(0.5, "white")) +</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a><span class="co">#   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a><span class="co">#   labs("Google roadmap, faded") +</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a><span class="co">#   coord_sf(ndiscr = 0)</span></span>
-<span id="cb3-13"><a href="#cb3-13"></a><span class="co"># </span></span>
-<span id="cb3-14"><a href="#cb3-14"></a><span class="co"># ggmap(google_sat) +</span></span>
-<span id="cb3-15"><a href="#cb3-15"></a><span class="co">#   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +</span></span>
-<span id="cb3-16"><a href="#cb3-16"></a><span class="co">#   labs("Google satellite") +</span></span>
-<span id="cb3-17"><a href="#cb3-17"></a><span class="co">#   coord_sf(ndiscr = 0)</span></span>
-<span id="cb3-18"><a href="#cb3-18"></a></span>
-<span id="cb3-19"><a href="#cb3-19"></a><span class="fu">ggmap</span>(stamen_toner) <span class="sc">+</span></span>
-<span id="cb3-20"><a href="#cb3-20"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
-<span id="cb3-21"><a href="#cb3-21"></a>  <span class="fu">labs</span>(<span class="st">"Stamen toner"</span>) <span class="sc">+</span></span>
-<span id="cb3-22"><a href="#cb3-22"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">ggmap</span>(google_road) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Google roadmap, hard to read"</span>) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -485,10 +511,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">ggmap</span>(stamen_bg) <span class="sc">+</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">labs</span>(<span class="st">"Stamen toner background"</span>) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># why is this still called darken if you can use any color?</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">ggmap</span>(google_road, <span class="at">darken =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="st">"white"</span>)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Google roadmap, faded"</span>) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -496,9 +523,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggmap</span>(stamen_lite) <span class="sc">+</span></span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggmap</span>(google_sat) <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">labs</span>(<span class="st">"Stamen toner lite"</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Google satellite"</span>) <span class="sc">+</span></span>
 <span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
@@ -507,16 +534,71 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggmap</span>(stamen_toner) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stamen toner"</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_context_files/figure-html/data-on-base-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
-<p>There are also OSM tiles in ggspatial with a few styles, but they require the raster package where the sf ecosystem is moving toward terra and seem to rely on deprecated functions from other packages. I don’t love it…</p>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggmap</span>(stamen_bg) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stamen toner background"</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_context_files/figure-html/data-on-base-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggmap</span>(stamen_zoom) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stamen toner background, zoom = 13"</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_context_files/figure-html/data-on-base-6.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggmap</span>(stamen_lite) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stamen toner lite"</span>) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_context_files/figure-html/data-on-base-7.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggmap</span>(stamen_terrain) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stamen terrain background"</span>) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_context_files/figure-html/data-on-base-8.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There are also OSM tiles in ggspatial with a few styles, but they require the raster package (whereas the sf ecosystem is moving toward terra) and seem to rely on deprecated functions from other packages. I don’t love it…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(prettymapr) <span class="co"># not using but needed for ggspatial</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">ggplot</span>(art_sf) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_map_tile</span>(<span class="at">zoom =</span> <span class="dv">12</span>, <span class="at">progress =</span> <span class="st">"none"</span>, <span class="at">type =</span> <span class="st">"cartolight"</span>) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Carto light via ggspatial"</span>) <span class="sc">+</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">library</span>(prettymapr) <span class="co"># not using but needed for ggspatial</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="fu">ggplot</span>(art_sf) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_map_tile</span>(<span class="at">zoom =</span> <span class="dv">12</span>, <span class="at">progress =</span> <span class="st">"none"</span>, <span class="at">type =</span> <span class="st">"cartolight"</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Carto light via ggspatial"</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -528,6 +610,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>My personal favorite is Stamen toner background (no text labels) with the <code>darken</code> argument to fade the color to gray.</p>
 <p>You can also get specific types of data from OpenStreetMap and use them to create the background yourself with ggplot—we probably won’t have time to get into this but it lets you do something comparable to what in web mapping would be vector tiles.</p>
 </section>
+</section>
 <section id="other-locations" class="level2">
 <h2 class="anchored" data-anchor-id="other-locations">Other locations</h2>
 <p>Put other stuff on your map. If there are specific locations that provide important context, you might try adding a few essential ones (don’t overdo it). Same goes for regional boundaries, major roads, landmarks to help your reading orient themself, buffers around a location, etc. A few examples I’ve done:</p>
@@ -538,26 +621,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Layering a dot density map of population today by race over historic redlining maps</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>waste_sf <span class="ot">&lt;-</span> balt_tracts <span class="sc">|&gt;</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">left_join</span>(ej_natl, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"tract"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">filter</span>(indicator <span class="sc">==</span> <span class="st">"haz_waste"</span>)</span>
-<span id="cb7-4"><a href="#cb7-4"></a></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="co"># filter by geometry to only get brownfields in city</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>balt_brownfields <span class="ot">&lt;-</span> brownfields_sf <span class="sc">|&gt;</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">st_transform</span>(<span class="fu">st_crs</span>(balt_tracts)) <span class="sc">|&gt;</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">st_filter</span>(balt_merge) <span class="sc">|&gt;</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">filter</span>(<span class="sc">!</span>is_archived)</span>
-<span id="cb7-10"><a href="#cb7-10"></a></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="fu">ggplot</span>(waste_sf) <span class="sc">+</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value_ptile), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a>  <span class="co"># force a legend</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">shape =</span> <span class="st">"Brownfield"</span>), <span class="at">data =</span> balt_brownfields, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> balt_merge, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a>  <span class="fu">scale_fill_fermenter</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Proximity to hazardous waste treatment, national percentile by tract"</span>,</span>
-<span id="cb7-19"><a href="#cb7-19"></a>       <span class="at">fill =</span> <span class="st">"Percentile"</span>, <span class="at">shape =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_colorbar</span>(<span class="at">order =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>waste_sf <span class="ot">&lt;-</span> balt_tracts <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">left_join</span>(ej_natl, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"tract"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">filter</span>(indicator <span class="sc">==</span> <span class="st">"haz_waste"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="co"># filter by geometry to only get brownfields in city</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>balt_brownfields <span class="ot">&lt;-</span> brownfields_sf <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">st_transform</span>(<span class="fu">st_crs</span>(balt_tracts)) <span class="sc">|&gt;</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">st_filter</span>(balt_merge) <span class="sc">|&gt;</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>  <span class="fu">filter</span>(<span class="sc">!</span>is_archived)</span>
+<span id="cb12-10"><a href="#cb12-10"></a></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="fu">ggplot</span>(waste_sf) <span class="sc">+</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value_ptile), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>  <span class="co"># force a legend</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">shape =</span> <span class="st">"Brownfield"</span>), <span class="at">data =</span> balt_brownfields, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> balt_merge, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a>  <span class="fu">scale_fill_fermenter</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb12-18"><a href="#cb12-18"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-19"><a href="#cb12-19"></a>    <span class="at">title =</span> <span class="st">"Proximity to hazardous waste treatment, national percentile by tract"</span>,</span>
+<span id="cb12-20"><a href="#cb12-20"></a>    <span class="at">fill =</span> <span class="st">"Percentile"</span>, <span class="at">shape =</span> <span class="cn">NULL</span></span>
+<span id="cb12-21"><a href="#cb12-21"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-22"><a href="#cb12-22"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_colorbar</span>(<span class="at">order =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -567,29 +652,56 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>air_sf <span class="ot">&lt;-</span> balt_tracts <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">left_join</span>(ej_natl, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"tract"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">filter</span>(indicator <span class="sc">==</span> <span class="st">"pm25"</span>)</span>
-<span id="cb8-4"><a href="#cb8-4"></a></span>
-<span id="cb8-5"><a href="#cb8-5"></a>balt_highways <span class="ot">&lt;-</span> highways_sf  <span class="sc">|&gt;</span></span>
-<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">st_transform</span>(<span class="fu">st_crs</span>(balt_tracts)) <span class="sc">|&gt;</span></span>
-<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">st_filter</span>(balt_merge)</span>
-<span id="cb8-8"><a href="#cb8-8"></a></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="fu">ggplot</span>(air_sf) <span class="sc">+</span></span>
-<span id="cb8-10"><a href="#cb8-10"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value_ptile), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb8-11"><a href="#cb8-11"></a>  <span class="co"># force a legend</span></span>
-<span id="cb8-12"><a href="#cb8-12"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Major highways"</span>), <span class="at">data =</span> balt_highways, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb8-13"><a href="#cb8-13"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> balt_merge, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
-<span id="cb8-14"><a href="#cb8-14"></a>  <span class="fu">scale_fill_fermenter</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"gray20"</span>)) <span class="sc">+</span></span>
-<span id="cb8-16"><a href="#cb8-16"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb8-17"><a href="#cb8-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Elevated particulate matter, national percentile by tract"</span>,</span>
-<span id="cb8-18"><a href="#cb8-18"></a>       <span class="at">fill =</span> <span class="st">"Percentile"</span>, <span class="at">color =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
-<span id="cb8-19"><a href="#cb8-19"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_colorbar</span>(<span class="at">order =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>air_sf <span class="ot">&lt;-</span> balt_tracts <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">left_join</span>(ej_natl, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"tract"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">filter</span>(indicator <span class="sc">==</span> <span class="st">"pm25"</span>)</span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a>balt_highways <span class="ot">&lt;-</span> highways_sf <span class="sc">|&gt;</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">st_transform</span>(<span class="fu">st_crs</span>(balt_tracts)) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>  <span class="fu">st_filter</span>(balt_merge)</span>
+<span id="cb13-8"><a href="#cb13-8"></a></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="fu">ggplot</span>(air_sf) <span class="sc">+</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value_ptile), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a>  <span class="co"># force a legend</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="st">"Major highways"</span>), <span class="at">data =</span> balt_highways, <span class="at">linewidth =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> balt_merge, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a>  <span class="fu">scale_fill_fermenter</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"gray20"</span>)) <span class="sc">+</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-18"><a href="#cb13-18"></a>    <span class="at">title =</span> <span class="st">"Elevated particulate matter, national percentile by tract"</span>,</span>
+<span id="cb13-19"><a href="#cb13-19"></a>    <span class="at">fill =</span> <span class="st">"Percentile"</span>, <span class="at">color =</span> <span class="cn">NULL</span></span>
+<span id="cb13-20"><a href="#cb13-20"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-21"><a href="#cb13-21"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_colorbar</span>(<span class="at">order =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="16_context_files/figure-html/air-map-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="putting-it-all-together" class="level2">
+<h2 class="anchored" data-anchor-id="putting-it-all-together">Putting it all together</h2>
+<p>Here’s everything: a basemap, a choropleth, and some points. Replace the previous <code>ggplot</code> with <code>ggmap</code>, and make sure each layer gets a data argument.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggmap</span>(stamen_bg) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value_ptile), <span class="at">data =</span> waste_sf, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  <span class="co"># force a legend</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">shape =</span> <span class="st">"Brownfield"</span>), <span class="at">data =</span> balt_brownfields, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> balt_merge, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>  <span class="fu">scale_fill_fermenter</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-9"><a href="#cb14-9"></a>    <span class="at">title =</span> <span class="st">"Proximity to hazardous waste treatment, national percentile by tract"</span>,</span>
+<span id="cb14-10"><a href="#cb14-10"></a>    <span class="at">fill =</span> <span class="st">"Percentile"</span>, <span class="at">shape =</span> <span class="cn">NULL</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a>  <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_colorbar</span>(<span class="at">order =</span> <span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="16_context_files/figure-html/basemap-choro-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -604,7 +716,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For a complex analysis or history, a map is often not enough. Practice writing about your data and maps, or collaborate with people who do this well.</p>
 
 
-</section>
 </section>
 
 
