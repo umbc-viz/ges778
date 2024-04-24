@@ -1708,6 +1708,11 @@
       ],
       "Hash": "5e3c5dc0b071b21fa128676560dbe94d"
     },
+    "raster": {
+      "Package": "raster",
+      "Version": "3.6-26",
+      "Source": "Repository"
+    },
     "rcartocolor": {
       "Package": "rcartocolor",
       "Version": "2.1.1",
@@ -2146,6 +2151,11 @@
         "cpp11"
       ],
       "Hash": "15b594369e70b975ba9f064295983499"
+    },
+    "terra": {
+      "Package": "terra",
+      "Version": "1.7-71",
+      "Source": "Repository"
     },
     "testthat": {
       "Package": "testthat",
