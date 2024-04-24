@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>GES 778, Spring 2024 - 6. Color</title>
+<title>GES 778, Spring 2024 - Spatial and non-spatial EDA</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,27 +55,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -85,8 +65,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../weeks/07_annotations.html" rel="next">
-<link href="../weeks/05_good_code.html" rel="prev">
+<link href="../tips/exporting.html" rel="next">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -129,7 +108,7 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-sidebar docked slimcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -138,7 +117,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/06_color.html">6. Color</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tips/eda.html">Tips &amp; tricks</a></li><li class="breadcrumb-item"><a href="../tips/eda.html">Spatial and non-spatial EDA</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -257,7 +236,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/06_color.html" class="sidebar-item-text sidebar-link active">
+  <a href="../weeks/06_color.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">6. Color</span></a>
   </div>
 </li>
@@ -341,7 +320,7 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tips/eda.html" class="sidebar-item-text sidebar-link">
+  <a href="../tips/eda.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Spatial and non-spatial EDA</span></a>
   </div>
 </li>
@@ -384,24 +363,17 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm-up</a>
-  <ul class="collapse">
-  <li><a href="#color-perception" id="toc-color-perception" class="nav-link" data-scroll-target="#color-perception">Color perception</a></li>
-  <li><a href="#colors-in-r" id="toc-colors-in-r" class="nav-link" data-scroll-target="#colors-in-r">Colors in R</a></li>
-  </ul></li>
-  <li><a href="#chapters" id="toc-chapters" class="nav-link" data-scroll-target="#chapters">Chapters</a></li>
-  <li><a href="#tools" id="toc-tools" class="nav-link" data-scroll-target="#tools">Tools</a></li>
-  <li><a href="#types-of-color-palettes" id="toc-types-of-color-palettes" class="nav-link" data-scroll-target="#types-of-color-palettes">Types of color palettes</a></li>
-  <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a></li>
+  <li><a href="#distributions-etc-of-cdc-data" id="toc-distributions-etc-of-cdc-data" class="nav-link active" data-scroll-target="#distributions-etc-of-cdc-data">Distributions, etc of CDC data</a></li>
+  <li><a href="#spatial-stuff" id="toc-spatial-stuff" class="nav-link" data-scroll-target="#spatial-stuff">Spatial stuff</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/06_color.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/06_color.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/tips/eda.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/tips/eda.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/06_color.html">6. Color</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tips/eda.html">Tips &amp; tricks</a></li><li class="breadcrumb-item"><a href="../tips/eda.html">Spatial and non-spatial EDA</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">6. Color</h1>
+<h1 class="title">Spatial and non-spatial EDA</h1>
 </div>
 
 
@@ -430,500 +402,485 @@ div.csl-indent {
 </header>
 
 
+<p>Remember that when you’re working with data you <em>could</em> put on a map, you want to double check whether you <em>should</em> put it on a map. One of the best ways you can do this is just by doing your regular EDA first—understand your distributions, correlations, outliers, disparities, etc before you think about it spatially. Then start to investigate whether there are spatial patterns. Both spatial and non-spatial visualizations will have their strengths and weaknesses, so you’ll want to pair them such that they complement each other. Here are some examples with the CDC health data. I’ll start looking at preventive care measures (checkup, health insurance, dental visit) and basic health outcomes (asthma, diabetes) for Baltimore and surrounding counties.</p>
 <div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(justviz)</span>
-<span id="cb1-4"><a href="#cb1-4"></a></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"utils/plotting_utils.R"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
-<section id="warm-up" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="warm-up">Warm-up</h2>
-<section id="color-perception" class="level3">
-<h3 class="anchored" data-anchor-id="color-perception">Color perception</h3>
-<p>Which row uses a darker color?</p>
-<div class="cell">
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(justviz)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a>county_fips <span class="ot">&lt;-</span> tidycensus<span class="sc">::</span>fips_codes <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>  <span class="fu">filter</span>(state_code <span class="sc">==</span> <span class="st">"24"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="fu">select</span>(state_code, county_code, county)</span>
+<span id="cb1-9"><a href="#cb1-9"></a></span>
+<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># CDC data still uses 2010 tracts, so I'll download that shapefile</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># keep county FIPS codes to join with names in order to filter</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>tracts10 <span class="ot">&lt;-</span> tigris<span class="sc">::</span><span class="fu">tracts</span>(<span class="at">state =</span> <span class="st">"24"</span>, <span class="at">cb =</span> <span class="cn">TRUE</span>, <span class="at">year =</span> <span class="dv">2010</span>, <span class="at">progress_bar =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a>  <span class="fu">select</span>(<span class="at">tract =</span> GEO_ID, <span class="at">state_code =</span> STATE, <span class="at">county_code =</span> COUNTY) <span class="sc">|&gt;</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>  <span class="fu">left_join</span>(county_fips, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"state_code"</span>, <span class="st">"county_code"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-15"><a href="#cb1-15"></a>  <span class="fu">filter</span>(county <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Baltimore city"</span>, <span class="st">"Baltimore County"</span>, <span class="st">"Howard County"</span>, <span class="st">"Anne Arundel County"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16"></a>  <span class="co"># drop "1400000US" from FIPS codes, only keep digits til end of string</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>  <span class="fu">mutate</span>(<span class="at">tract =</span> stringr<span class="sc">::</span><span class="fu">str_extract</span>(tract, <span class="st">"</span><span class="sc">\\</span><span class="st">d+$"</span>))</span>
+<span id="cb1-18"><a href="#cb1-18"></a></span>
+<span id="cb1-19"><a href="#cb1-19"></a>tracts10 <span class="sc">|&gt;</span></span>
+<span id="cb1-20"><a href="#cb1-20"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>  <span class="fu">count</span>(county)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="06_color_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Which line uses a darker color?</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="06_color_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Which line uses a darker color?</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="06_color_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>How many purple dots are in each row?</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="06_color_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="colors-in-r" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="colors-in-r">Colors in R</h3>
-<p>If you don’t already have a color selection tool on your computer <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> you can <a href="https://github.com/daattali/colourpicker?tab=readme-ov-file#install">install the colourpicker package</a> that has a color picker addin for RStudio.</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Maybe the thing I miss most since switching from Mac to Linux is the color picker app Sip, definitely recommend it</p></div></div></section>
-</section>
-<section id="chapters" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="chapters">Chapters</h2>
-<p>We’ll walk through Wilke chapters 4 and 19–I don’t have a ton to add until we get to mapping.</p>
-<ul>
-<li><a href="https://clauswilke.com/dataviz/color-basics.html">Wilke chapter 4</a></li>
-<li><a href="https://clauswilke.com/dataviz/color-pitfalls.html">Wilke chapter 19</a></li>
-<li><span class="citation" data-cites="Datawrapper2021">Datawrapper (<a href="#ref-Datawrapper2021" role="doc-biblioref">2021</a>)</span></li>
-</ul>
-<div class="no-row-height column-margin column-container"><div id="ref-Datawrapper2021" class="csl-entry" role="listitem">
-Datawrapper. (2021). <em>What to consider when choosing colors for data visualization</em>. <a href="https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization">https://academy.datawrapper.de/article/140-what-to-consider-when-choosing-colors-for-data-visualization</a>
-</div></div></section>
-<section id="tools" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="tools">Tools</h2>
-<ul>
-<li><a href="https://colorbrewer2.org">ColorBrewer</a> (access to these palettes comes with ggplot)</li>
-<li><a href="https://carto.com/carto-colors/">Carto Colors</a> (access comes with the rcartocolor package)</li>
-<li><a href="https://projects.susielu.com/viz-palette">Viz Palette</a> generator &amp; preview</li>
-<li><a href="https://gka.github.io/palettes">Gregor Aisch’s chroma palettes</a> generator</li>
-<li><a href="http://vrl.cs.brown.edu/color">Colorgorical categorical color generator</a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
-</ul>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;I just read a post making fun of Colorgorical for leaning toward puke green colors; haven’t used it in a while but heads up I guess?</p></div></div></section>
-<section id="types-of-color-palettes" class="level2">
-<h2 class="anchored" data-anchor-id="types-of-color-palettes">Types of color palettes</h2>
-<p>The main types of color palettes are:</p>
-<ul>
-<li>sequential / quantitative: values are numeric and continuous; values and colors (saturation, lightness, hue) increase in some way in tandem</li>
-<li>diverging: values are likely numeric, but colors trend in opposite directions</li>
-<li>qualitative / categorical: values are <em>not</em> numeric / continuous, and colors should <em>not</em> imply continuity</li>
-</ul>
-<p>ColorBrewer and Carto Colors are great because they have options for all three of these.</p>
-<p>These are rough examples using ColorBrewer palettes; in practice you might want to make some adjustments to these.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="06_color_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-</section>
-<section id="exercises" class="level2">
-<h2 class="anchored" data-anchor-id="exercises">Exercises</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>local_counties <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Baltimore city"</span>, <span class="st">"Baltimore County"</span>, <span class="st">"Harford County"</span>, <span class="st">"Howard County"</span>, <span class="st">"Anne Arundel County"</span>)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>acs_county <span class="ot">&lt;-</span> acs <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">filter</span>(level <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"us"</span>, <span class="st">"state"</span>, <span class="st">"county"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">mutate</span>(<span class="at">local1 =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>           forcats<span class="sc">::</span><span class="fu">fct_other</span>(<span class="at">keep =</span> <span class="fu">c</span>(local_counties, <span class="st">"United States"</span>, <span class="st">"Maryland"</span>), <span class="at">other_level =</span> <span class="st">"Other counties"</span>),</span>
-<span id="cb2-6"><a href="#cb2-6"></a>         <span class="at">local2 =</span> forcats<span class="sc">::</span><span class="fu">fct_collapse</span>(local1, <span class="st">"Outside Baltimore"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Baltimore County"</span>, <span class="st">"Harford County"</span>, <span class="st">"Howard County"</span>, <span class="st">"Anne Arundel County"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a>           forcats<span class="sc">::</span><span class="fu">fct_relevel</span>(<span class="st">"Outside Baltimore"</span>, <span class="st">"Other counties"</span>, <span class="at">after =</span> <span class="cn">Inf</span>))</span>
-<span id="cb2-8"><a href="#cb2-8"></a></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="fu">theme_set</span>(<span class="fu">theme_nice</span>())</span>
-<span id="cb2-10"><a href="#cb2-10"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(acs_county))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
+<div class="kable-table">
 <table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 1%">
-<col style="width: 1%">
-<col style="width: 4%">
-<col style="width: 2%">
-<col style="width: 1%">
-<col style="width: 1%">
-<col style="width: 1%">
-<col style="width: 1%">
-<col style="width: 2%">
-<col style="width: 2%">
-<col style="width: 2%">
-<col style="width: 2%">
-<col style="width: 2%">
-<col style="width: 3%">
-<col style="width: 5%">
-<col style="width: 3%">
-<col style="width: 5%">
-<col style="width: 3%">
-<col style="width: 5%">
-<col style="width: 2%">
-<col style="width: 3%">
-<col style="width: 2%">
-<col style="width: 4%">
-<col style="width: 3%">
-<col style="width: 3%">
-<col style="width: 2%">
-<col style="width: 2%">
-<col style="width: 4%">
-<col style="width: 1%">
-<col style="width: 2%">
-<col style="width: 2%">
-<col style="width: 2%">
-<col style="width: 4%">
-<col style="width: 3%">
-</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">level</th>
 <th style="text-align: left;">county</th>
-<th style="text-align: left;">name</th>
-<th style="text-align: right;">total_pop</th>
-<th style="text-align: right;">white</th>
-<th style="text-align: right;">black</th>
-<th style="text-align: right;">latino</th>
-<th style="text-align: right;">asian</th>
-<th style="text-align: right;">other_race</th>
-<th style="text-align: right;">diversity_idx</th>
-<th style="text-align: right;">foreign_born</th>
-<th style="text-align: right;">total_hh</th>
-<th style="text-align: right;">homeownership</th>
-<th style="text-align: right;">total_cost_burden</th>
-<th style="text-align: right;">total_severe_cost_burden</th>
-<th style="text-align: right;">owner_cost_burden</th>
-<th style="text-align: right;">owner_severe_cost_burden</th>
-<th style="text-align: right;">renter_cost_burden</th>
-<th style="text-align: right;">renter_severe_cost_burden</th>
-<th style="text-align: right;">no_vehicle_hh</th>
-<th style="text-align: right;">median_hh_income</th>
-<th style="text-align: right;">ages25plus</th>
-<th style="text-align: right;">less_than_high_school</th>
-<th style="text-align: right;">high_school_grad</th>
-<th style="text-align: right;">some_college_or_aa</th>
-<th style="text-align: right;">bachelors</th>
-<th style="text-align: right;">grad_degree</th>
-<th style="text-align: right;">pov_status_determined</th>
-<th style="text-align: right;">poverty</th>
-<th style="text-align: right;">low_income</th>
-<th style="text-align: right;">area_sqmi</th>
-<th style="text-align: right;">pop_density</th>
-<th style="text-align: left;">local1</th>
-<th style="text-align: left;">local2</th>
+<th style="text-align: right;">n</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">us</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">United States</td>
-<td style="text-align: right;">331097593</td>
-<td style="text-align: right;">0.59</td>
-<td style="text-align: right;">0.12</td>
-<td style="text-align: right;">0.19</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.05</td>
-<td style="text-align: right;">0.7376547</td>
-<td style="text-align: right;">0.14</td>
-<td style="text-align: right;">125736353</td>
-<td style="text-align: right;">0.65</td>
-<td style="text-align: right;">0.29</td>
-<td style="text-align: right;">0.14</td>
-<td style="text-align: right;">0.21</td>
-<td style="text-align: right;">0.09</td>
-<td style="text-align: right;">0.45</td>
-<td style="text-align: right;">0.23</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">75149</td>
-<td style="text-align: right;">226600992</td>
-<td style="text-align: right;">0.11</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.28</td>
-<td style="text-align: right;">0.21</td>
-<td style="text-align: right;">0.13</td>
-<td style="text-align: right;">323275448</td>
-<td style="text-align: right;">0.13</td>
-<td style="text-align: right;">0.29</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">United States</td>
-<td style="text-align: left;">United States</td>
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: right;">105</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">state</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Maryland</td>
-<td style="text-align: right;">6161707</td>
-<td style="text-align: right;">0.49</td>
-<td style="text-align: right;">0.29</td>
-<td style="text-align: right;">0.11</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.05</td>
-<td style="text-align: right;">0.7905359</td>
-<td style="text-align: right;">0.16</td>
-<td style="text-align: right;">2318124</td>
-<td style="text-align: right;">0.67</td>
-<td style="text-align: right;">0.29</td>
-<td style="text-align: right;">0.13</td>
-<td style="text-align: right;">0.21</td>
-<td style="text-align: right;">0.09</td>
-<td style="text-align: right;">0.46</td>
-<td style="text-align: right;">0.23</td>
-<td style="text-align: right;">0.09</td>
-<td style="text-align: right;">98461</td>
-<td style="text-align: right;">4260095</td>
-<td style="text-align: right;">0.09</td>
-<td style="text-align: right;">0.24</td>
-<td style="text-align: right;">0.25</td>
-<td style="text-align: right;">0.22</td>
-<td style="text-align: right;">0.20</td>
-<td style="text-align: right;">6034320</td>
-<td style="text-align: right;">0.09</td>
-<td style="text-align: right;">0.21</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">Maryland</td>
-<td style="text-align: left;">Maryland</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: right;">214</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">county</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Allegany County</td>
-<td style="text-align: right;">68161</td>
-<td style="text-align: right;">0.87</td>
-<td style="text-align: right;">0.07</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">0.01</td>
-<td style="text-align: right;">0.03</td>
-<td style="text-align: right;">0.3379538</td>
-<td style="text-align: right;">0.02</td>
-<td style="text-align: right;">27462</td>
-<td style="text-align: right;">0.70</td>
-<td style="text-align: right;">0.23</td>
-<td style="text-align: right;">0.10</td>
-<td style="text-align: right;">0.16</td>
-<td style="text-align: right;">0.07</td>
-<td style="text-align: right;">0.39</td>
-<td style="text-align: right;">0.17</td>
-<td style="text-align: right;">0.10</td>
-<td style="text-align: right;">55248</td>
-<td style="text-align: right;">47914</td>
-<td style="text-align: right;">0.09</td>
-<td style="text-align: right;">0.41</td>
-<td style="text-align: right;">0.29</td>
-<td style="text-align: right;">0.12</td>
-<td style="text-align: right;">0.09</td>
-<td style="text-align: right;">61098</td>
-<td style="text-align: right;">0.16</td>
-<td style="text-align: right;">0.36</td>
-<td style="text-align: right;">422.19881</td>
-<td style="text-align: right;">161.4429</td>
-<td style="text-align: left;">Other counties</td>
-<td style="text-align: left;">Other counties</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: right;">200</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">county</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Anne Arundel County</td>
-<td style="text-align: right;">588109</td>
-<td style="text-align: right;">0.65</td>
-<td style="text-align: right;">0.17</td>
-<td style="text-align: right;">0.09</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.05</td>
-<td style="text-align: right;">0.6745018</td>
-<td style="text-align: right;">0.09</td>
-<td style="text-align: right;">221704</td>
-<td style="text-align: right;">0.75</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.11</td>
-<td style="text-align: right;">0.20</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">0.44</td>
-<td style="text-align: right;">0.19</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">116009</td>
-<td style="text-align: right;">409052</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.22</td>
-<td style="text-align: right;">0.27</td>
-<td style="text-align: right;">0.25</td>
-<td style="text-align: right;">0.19</td>
-<td style="text-align: right;">577547</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.14</td>
-<td style="text-align: right;">414.80643</td>
-<td style="text-align: right;">1417.7914</td>
-<td style="text-align: left;">Anne Arundel County</td>
-<td style="text-align: left;">Outside Baltimore</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">county</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Baltimore County</td>
-<td style="text-align: right;">850737</td>
-<td style="text-align: right;">0.54</td>
-<td style="text-align: right;">0.30</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.7241974</td>
-<td style="text-align: right;">0.12</td>
-<td style="text-align: right;">328611</td>
-<td style="text-align: right;">0.67</td>
-<td style="text-align: right;">0.29</td>
-<td style="text-align: right;">0.14</td>
-<td style="text-align: right;">0.20</td>
-<td style="text-align: right;">0.09</td>
-<td style="text-align: right;">0.48</td>
-<td style="text-align: right;">0.24</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">88157</td>
-<td style="text-align: right;">589611</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">0.24</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.23</td>
-<td style="text-align: right;">0.18</td>
-<td style="text-align: right;">830921</td>
-<td style="text-align: right;">0.10</td>
-<td style="text-align: right;">0.23</td>
-<td style="text-align: right;">598.35821</td>
-<td style="text-align: right;">1421.7855</td>
-<td style="text-align: left;">Baltimore County</td>
-<td style="text-align: left;">Outside Baltimore</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">county</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Baltimore city</td>
-<td style="text-align: right;">584548</td>
-<td style="text-align: right;">0.27</td>
-<td style="text-align: right;">0.61</td>
-<td style="text-align: right;">0.06</td>
-<td style="text-align: right;">0.03</td>
-<td style="text-align: right;">0.04</td>
-<td style="text-align: right;">0.6483744</td>
-<td style="text-align: right;">0.08</td>
-<td style="text-align: right;">247232</td>
-<td style="text-align: right;">0.48</td>
-<td style="text-align: right;">0.37</td>
-<td style="text-align: right;">0.19</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.13</td>
-<td style="text-align: right;">0.47</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">0.26</td>
-<td style="text-align: right;">58349</td>
-<td style="text-align: right;">410221</td>
-<td style="text-align: right;">0.13</td>
-<td style="text-align: right;">0.28</td>
-<td style="text-align: right;">0.24</td>
-<td style="text-align: right;">0.18</td>
-<td style="text-align: right;">0.17</td>
-<td style="text-align: right;">564634</td>
-<td style="text-align: right;">0.20</td>
-<td style="text-align: right;">0.38</td>
-<td style="text-align: right;">80.94606</td>
-<td style="text-align: right;">7221.4510</td>
-<td style="text-align: left;">Baltimore city</td>
-<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Howard County</td>
+<td style="text-align: right;">55</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>Find some ways to improve the use of color in these charts, including whether color even <em>should</em> be used. Before writing any code, write down:</p>
-<ul>
-<li>How color is used / what color signifies</li>
-<li>What’s wrong with that use of color</li>
-<li>How you want to change it</li>
-</ul>
-<p>Here are some charts that are bad because they use color inappropriately.</p>
+</div>
+<p>Keeping in mind that Balt city &amp; county each have about twice as many tracts as Anne Arundel, 4 times as many as Howard, so they’ll likely dominate distributions that aren’t split out by county.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>acs_county <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(homeownership)) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> homeownership, <span class="at">fill =</span> name)) <span class="sc">+</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, </span>
-<span id="cb3-7"><a href="#cb3-7"></a>       <span class="at">title =</span> <span class="st">"Homeownership rate by location"</span>, </span>
-<span id="cb3-8"><a href="#cb3-8"></a>       <span class="at">subtitle =</span> <span class="st">"US, Maryland, and Maryland counties, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">head</span>(cdc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">level</th>
+<th style="text-align: left;">year</th>
+<th style="text-align: left;">location</th>
+<th style="text-align: left;">indicator</th>
+<th style="text-align: right;">value</th>
+<th style="text-align: right;">pop</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">US</td>
+<td style="text-align: left;">Health insurance</td>
+<td style="text-align: right;">10.8</td>
+<td style="text-align: right;">331893745</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">US</td>
+<td style="text-align: left;">Cancer (except skin)</td>
+<td style="text-align: right;">7.0</td>
+<td style="text-align: right;">331893745</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">US</td>
+<td style="text-align: left;">Mental health</td>
+<td style="text-align: right;">14.7</td>
+<td style="text-align: right;">331893745</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">US</td>
+<td style="text-align: left;">Diabetes</td>
+<td style="text-align: right;">11.3</td>
+<td style="text-align: right;">331893745</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">2020</td>
+<td style="text-align: left;">US</td>
+<td style="text-align: left;">Dental visit</td>
+<td style="text-align: right;">64.8</td>
+<td style="text-align: right;">331893745</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">2021</td>
+<td style="text-align: left;">US</td>
+<td style="text-align: left;">Current asthma</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">331893745</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># remind myself what indicators are here</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">unique</span>(cdc<span class="sc">$</span>indicator)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Health insurance"     "Cancer (except skin)" "Mental health"       
+ [4] "Diabetes"             "Dental visit"         "Current asthma"      
+ [7] "Sleep &lt;7 hours"       "Annual checkup"       "Mobility disability" 
+[10] "Depression"          </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># remind myself what geographic levels are here</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">levels</span>(cdc<span class="sc">$</span>level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "us"     "state"  "county" "tract" </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># filter for indicators I want, and if it's a tract, only the ones in this region</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="co"># cdc data says "Baltimore City", FIPS table says "Baltimore city"</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="co"># cdc also doesn't say "County", just e.g. "St. Mary's"</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># want to also have county names for tracts--use a left join to not drop other levels</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="co"># county portion of FIPS code is digits 3 to 5</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="co"># relabel "health insurance" to "no health insurance" since that's what it actually is</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>cdc_subset <span class="ot">&lt;-</span> cdc <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">mutate</span>(<span class="at">county_code =</span> <span class="fu">ifelse</span>(level <span class="sc">==</span> <span class="st">"tract"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9"></a>                         <span class="fu">substr</span>(location, <span class="at">start =</span> <span class="dv">3</span>, <span class="at">stop =</span> <span class="dv">5</span>),</span>
+<span id="cb7-10"><a href="#cb7-10"></a>                         <span class="cn">NA_character_</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">left_join</span>(county_fips, <span class="at">by =</span> <span class="st">"county_code"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>  <span class="fu">select</span>(<span class="sc">-</span>county_code, <span class="sc">-</span>state_code) <span class="sc">|&gt;</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>  <span class="fu">mutate</span>(<span class="at">location =</span> stringr<span class="sc">::</span><span class="fu">str_replace</span>(location, <span class="at">pattern =</span> <span class="st">"City"</span>, <span class="at">replacement =</span> <span class="st">"city"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>  <span class="co"># for counties, if string doesn't end with "city", replace the ending boundary with " County"</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>  <span class="fu">mutate</span>(<span class="at">location =</span> <span class="fu">ifelse</span>(level <span class="sc">==</span> <span class="st">"county"</span>,</span>
+<span id="cb7-16"><a href="#cb7-16"></a>                           stringr<span class="sc">::</span><span class="fu">str_replace</span>(location, <span class="st">"(?&lt;!city)</span><span class="sc">\\</span><span class="st">b$"</span>, <span class="st">" County"</span>),</span>
+<span id="cb7-17"><a href="#cb7-17"></a>                           location)) <span class="sc">|&gt;</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>  <span class="fu">filter</span>(indicator <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Health insurance"</span>, <span class="st">"Diabetes"</span>, <span class="st">"Dental visit"</span>, <span class="st">"Current asthma"</span>, <span class="st">"Annual checkup"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-19"><a href="#cb7-19"></a>  <span class="co"># use | to make an OR statement</span></span>
+<span id="cb7-20"><a href="#cb7-20"></a>  <span class="fu">filter</span>((level <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"us"</span>, <span class="st">"state"</span>)) <span class="sc">|</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a>           (level <span class="sc">==</span> <span class="st">"county"</span> <span class="sc">&amp;</span> location <span class="sc">%in%</span> tracts10<span class="sc">$</span>county) <span class="sc">|</span></span>
+<span id="cb7-22"><a href="#cb7-22"></a>           (level <span class="sc">==</span> <span class="st">"tract"</span> <span class="sc">&amp;</span> location <span class="sc">%in%</span> tracts10<span class="sc">$</span>tract)) <span class="sc">|&gt;</span></span>
+<span id="cb7-23"><a href="#cb7-23"></a>  <span class="fu">mutate</span>(<span class="at">value =</span> value <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-24"><a href="#cb7-24"></a>  <span class="fu">mutate</span>(<span class="at">indicator =</span> <span class="fu">ifelse</span>(indicator <span class="sc">==</span> <span class="st">"Health insurance"</span>, <span class="st">"No health insurance"</span>, indicator))</span>
+<span id="cb7-25"><a href="#cb7-25"></a></span>
+<span id="cb7-26"><a href="#cb7-26"></a>cdc_subset <span class="sc">|&gt;</span></span>
+<span id="cb7-27"><a href="#cb7-27"></a>  <span class="fu">distinct</span>(level, location) <span class="sc">|&gt;</span></span>
+<span id="cb7-28"><a href="#cb7-28"></a>  <span class="fu">count</span>(level)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">level</th>
+<th style="text-align: right;">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">us</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">state</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tract</td>
+<td style="text-align: right;">568</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Counting the distinct number of locations per level helped me figure out the string replacements I needed to make above—originally I had 1 county and no tracts, and knew that was wrong.</p>
+<section id="distributions-etc-of-cdc-data" class="level2">
+<h2 class="anchored" data-anchor-id="distributions-etc-of-cdc-data">Distributions, etc of CDC data</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>cdc_subset <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value)) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">25</span>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(indicator), <span class="at">scales =</span> <span class="st">"free"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="06_color_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="eda_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
+<p>Annual checkup is about as close to normally distributed as you’ll see with public health data. Dental visit has a long lower tail—many tracts have a majority getting a dental visit but some have rates much lower. Diabetes has most values clustered around ~10% but then a heavy upper tail. Similar for lacking health insurance and asthma.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>acs_county <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(homeownership)) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> homeownership, <span class="at">fill =</span> local2)) <span class="sc">+</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.7</span>, <span class="at">color =</span> <span class="st">"gray20"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, </span>
-<span id="cb4-7"><a href="#cb4-7"></a>       <span class="at">title =</span> <span class="st">"Homeownership rate by location"</span>, </span>
-<span id="cb4-8"><a href="#cb4-8"></a>       <span class="at">subtitle =</span> <span class="st">"US, Maryland, and Maryland counties, 2022"</span>) <span class="sc">+</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"GnBu"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>cdc_subset <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">filter</span>(level <span class="sc">!=</span> <span class="st">"tract"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> location)) <span class="sc">+</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(indicator), <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>  <span class="fu">theme</span>(<span class="at">panel.spacing.x =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"in"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="06_color_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="eda_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>cdc_subset <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">filter</span>(level <span class="sc">!=</span> <span class="st">"tract"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> location)) <span class="sc">+</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(indicator), <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">theme</span>(<span class="at">panel.spacing.x =</span> <span class="fu">unit</span>(<span class="fl">0.2</span>, <span class="st">"in"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/unnamed-chunk-4-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Here’s a chart that’s okay but not great; it uses color in a way that’s not wrong but not effective either.</p>
+<p>Bar chart is good for looking at absolute values but in this case not as good as a dot plot for seeing the differences <em>between</em> values. Looking at averages across large areas (state &amp; counties) some of these have very similar values, esp annual checkup and asthma. That points to the disparities at smaller geographies being really important—that amount of variation seen in the histograms is washed out at the county level. Maps might be able to help shine a light on that, especially if the high or low values are clustered in certain areas.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>acs_county <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(homeownership)) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> homeownership, <span class="at">fill =</span> local2)) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, </span>
-<span id="cb5-7"><a href="#cb5-7"></a>       <span class="at">title =</span> <span class="st">"Homeownership rate by location"</span>, </span>
-<span id="cb5-8"><a href="#cb5-8"></a>       <span class="at">subtitle =</span> <span class="st">"US, Maryland, and Maryland counties, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>cdc_subset <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> county)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(indicator), <span class="at">scales =</span> <span class="st">"free_x"</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="06_color_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="eda_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>Here’s one that uses color when it should actually use something else to convey its pattern. What type of chart would be more appropriate?</p>
+<p>On each of these Baltimore city has enormous variations—this makes sense since we have huge disparities within the city. (For the cities I study in Connecticut, this would more often be a city/suburb pattern; Connecticut’s major cities don’t have the sorts of affluent neighborhoods in them that Baltimore has, those neighborhoods are in affluent suburbs instead.)</p>
+<p>Some basic stats testing of each indicator by county:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>acs_county <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(homeownership)) <span class="sc">|&gt;</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> homeownership, <span class="at">fill =</span> median_hh_income)) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>, </span>
-<span id="cb6-7"><a href="#cb6-7"></a>       <span class="at">title =</span> <span class="st">"Homeownership rate vs median household income by location"</span>, </span>
-<span id="cb6-8"><a href="#cb6-8"></a>       <span class="at">subtitle =</span> <span class="st">"US, Maryland, and Maryland counties, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># split into a list of data frames to keep indicators separate</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>cdc_split <span class="ot">&lt;-</span> cdc_subset <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">split</span>(<span class="sc">~</span>indicator)</span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="fu">str</span>(cdc_split, <span class="at">max.level =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 5
+ $ Annual checkup     : tibble [568 × 7] (S3: tbl_df/tbl/data.frame)
+ $ Current asthma     : tibble [568 × 7] (S3: tbl_df/tbl/data.frame)
+ $ Dental visit       : tibble [568 × 7] (S3: tbl_df/tbl/data.frame)
+ $ Diabetes           : tibble [568 × 7] (S3: tbl_df/tbl/data.frame)
+ $ No health insurance: tibble [568 × 7] (S3: tbl_df/tbl/data.frame)</code></pre>
+</div>
+</div>
+<p>One-way ANOVA test of equal means across counties, weighted by tract population. Post-hoc testing with Tukey’s HSD to see which counties have significantly higher or lower mean values. Feel free to ignore if you haven’t gotten this far in stats.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="co"># shorten names, increase margin size</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">2</span>) <span class="sc">+</span> <span class="fl">0.1</span>)</span>
+<span id="cb14-3"><a href="#cb14-3"></a></span>
+<span id="cb14-4"><a href="#cb14-4"></a>cdc_split <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(mutate, <span class="at">county =</span> stringr<span class="sc">::</span><span class="fu">str_remove</span>(county, <span class="st">" County"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(<span class="cf">function</span>(df) {</span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="co"># use aov for one-way ANOVA</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>  <span class="fu">aov</span>(value <span class="sc">~</span> county, <span class="at">data =</span> df, <span class="at">weights =</span> pop)</span>
+<span id="cb14-9"><a href="#cb14-9"></a>}) <span class="sc">|&gt;</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(TukeyHSD) <span class="sc">|&gt;</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(plot, <span class="at">las =</span> <span class="dv">1</span>, <span class="at">cex =</span> <span class="fl">0.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="06_color_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="eda_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/unnamed-chunk-7-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/unnamed-chunk-7-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/unnamed-chunk-7-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/unnamed-chunk-7-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`Annual checkup`
+NULL
 
+$`Current asthma`
+NULL
+
+$`Dental visit`
+NULL
+
+$Diabetes
+NULL
+
+$`No health insurance`
+NULL</code></pre>
+</div>
+</div>
+<p>Levene’s test of equal variances</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>cdc_split <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  purrr<span class="sc">::</span><span class="fu">map</span>(<span class="cf">function</span>(df) {</span>
+<span id="cb16-3"><a href="#cb16-3"></a>    car<span class="sc">::</span><span class="fu">leveneTest</span>(value <span class="sc">~</span> county, <span class="at">data =</span> df, <span class="at">weights =</span> pop)</span>
+<span id="cb16-4"><a href="#cb16-4"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`Annual checkup`
+Levene's Test for Homogeneity of Variance (center = median: pop)
+       Df F value    Pr(&gt;F)    
+group   3  28.076 &lt; 2.2e-16 ***
+      564                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+$`Current asthma`
+Levene's Test for Homogeneity of Variance (center = median: pop)
+       Df F value    Pr(&gt;F)    
+group   3  54.708 &lt; 2.2e-16 ***
+      564                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+$`Dental visit`
+Levene's Test for Homogeneity of Variance (center = median: pop)
+       Df F value    Pr(&gt;F)    
+group   3  38.712 &lt; 2.2e-16 ***
+      564                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+$Diabetes
+Levene's Test for Homogeneity of Variance (center = median: pop)
+       Df F value    Pr(&gt;F)    
+group   3   86.57 &lt; 2.2e-16 ***
+      564                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+$`No health insurance`
+Levene's Test for Homogeneity of Variance (center = median: pop)
+       Df F value    Pr(&gt;F)    
+group   3  32.651 &lt; 2.2e-16 ***
+      564                      
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Every indicator has unequal variance across counties. Again points to important neighborhood-level disparities in at least some of the cities / counties.</p>
+</section>
+<section id="spatial-stuff" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-stuff">Spatial stuff</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>tracts10 <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">left_join</span>(cdc_subset, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"tract"</span> <span class="ot">=</span> <span class="st">"location"</span>, <span class="st">"county"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>  rmapshaper<span class="sc">::</span><span class="fu">ms_simplify</span>(<span class="at">keep =</span> <span class="fl">0.8</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(indicator))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Two things that don’t work well here: there are a few tracts without data so they end up in an NA facet. For EDA that’s not a big deal, but for a final project I’d want to handle it. Also, the scale doesn’t work because ranges are very different across indicators. Switch to using split data instead so each panel can get its own color scale:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>cdc_split <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  purrr<span class="sc">::</span><span class="fu">imap</span>(<span class="cf">function</span>(df, indicator) {</span>
+<span id="cb19-3"><a href="#cb19-3"></a>    tracts10 <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>      <span class="fu">left_join</span>(df, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"tract"</span> <span class="ot">=</span> <span class="st">"location"</span>, <span class="st">"county"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a>      <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a>      <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>      <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb19-8"><a href="#cb19-8"></a>      <span class="fu">labs</span>(<span class="at">title =</span> indicator)</span>
+<span id="cb19-9"><a href="#cb19-9"></a>  })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$`Annual checkup`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`Current asthma`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`Dental visit`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/unnamed-chunk-10-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$Diabetes</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/unnamed-chunk-10-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+$`No health insurance`</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="eda_files/figure-html/unnamed-chunk-10-5.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>That also handled the missing values!</p>
+<p>For a final project I might want to do a couple of these maps alongside a bar chart or dot plot at the state &amp; county level.</p>
+<p>I also might want to try overlaying some of our locations such as brownfields (those could exacerbate asthma) and highways (those definitely exacerbate asthma).</p>
+<p>There are similar statistical tests you might do for spatial data, such as Moran’s test of spatial autocorrelation (clustering of high/low values).</p>
 
 
 </section>
-
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1481,13 +1438,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/05_good_code.html" class="pagination-link" aria-label="5. Writing good code">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">5. Writing good code</span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../weeks/07_annotations.html" class="pagination-link" aria-label="7. Text and annotations">
-        <span class="nav-page-text">7. Text and annotations</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../tips/exporting.html" class="pagination-link" aria-label="Exporting and distributing your work">
+        <span class="nav-page-text">Exporting and distributing your work</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1496,4 +1450,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/06_color.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/06_color.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/tips/eda.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/tips/eda.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

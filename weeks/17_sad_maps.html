@@ -306,6 +306,12 @@ div.csl-indent {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../tips/eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial and non-spatial EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../tips/exporting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Exporting and distributing your work</span></a>
   </div>
@@ -339,7 +345,14 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm-up</a></li>
+  <li><a href="#being-a-responsible-mapmaker" id="toc-being-a-responsible-mapmaker" class="nav-link" data-scroll-target="#being-a-responsible-mapmaker">Being a responsible mapmaker</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/17_sad_maps.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/17_sad_maps.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
@@ -364,7 +377,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 18, 2024</p>
+      <p class="date-modified">April 24, 2024</p>
     </div>
   </div>
     
@@ -375,9 +388,15 @@ div.csl-indent {
 </header>
 
 
+<section id="warm-up" class="level2">
+<h2 class="anchored" data-anchor-id="warm-up">Warm-up</h2>
+<p>Think of a cause, issue, or argument that you’ve been involved in at some point that’s tied to a place. It can be something big and serious like an activist campaign, something simple like a neighborhood cleanup, or just the assets and locations that make you think your city or neighborhood is the best place to live. Sketch a map that you could use in support of this work. What are the locations you need to show in order to persuade people of your argument? How can you provide the context necessary to truly understand the issue?</p>
+</section>
+<section id="being-a-responsible-mapmaker" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="being-a-responsible-mapmaker">Being a responsible mapmaker</h2>
 <p>If you remember nothing else from this class, remember this: <strong>AVOID MAKING SAD MAPS</strong>. This is a term I learned at a conference on the launch of the 500 Cities Project, the predecessor to the project whose data is in <code>justviz::cdc</code>. I don’t remember which one of the panelists said it, and I have no idea where my notes are from the conference, but it’s stuck with me. The panelist defined “sad maps” as maps, often choropleths, that just show hotspots of the same depressing patterns across neighborhoods over and over without supplying any sense of neighborhoods’ assets or source of strength.</p>
-<p>At that point, I’d been making maps for a year or two, and I’ve been making maps for probably seven years since, and I’m still guilty of making <em>many</em> sad maps. It’s unavoidable, especially when it’s your job to make maps about public health and inequality. That’s why your task isn’t to <em>never</em> make a sad map, but to try to find other ways of doing things. Maybe that means showing distributions instead of neighborhood vs neighborhood or town vs town comparisons, or contextualizing the sad data with assets and history, or using a visualization that’s not a map, or not visualizing it at all, or having different people at the table making decisions on how to tell the story. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The Anti-Eviction Mapping Project, one of the projects for the second case study, describes the challenge of balancing research on hardship with empowering stories, and give a lot of credit to the fact that their work is community-led.</p></div></div><p>This was one of the major reasons I had for pushing my organization away from choropleths—I got tired of making the same sad map. It was doubly frustrating because I lived in one of those “sad” hotspots in New Haven, and I didn’t like thinking I might be reinforcing my neighbors’ disenfranchisement.</p>
+<p>At that point, I’d been making maps for a year or two, and I’ve been making maps for probably seven years since, and I’m still guilty of making <em>many</em> sad maps. It’s unavoidable, especially when it’s your job to make maps about public health and inequality. That’s why your task isn’t to <em>never</em> make a sad map, but to try to find other ways of doing things. Maybe that means showing distributions instead of neighborhood vs neighborhood or town vs town comparisons, or contextualizing the sad data with community strengths and history, or using a visualization that’s not a map, or not visualizing it at all, or having different people at the table making decisions on how to tell the story. It might also mean using the names and boundaries of places that residents use, which aren’t always the same as what the government or researchers use. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The Anti-Eviction Mapping Project, one of the projects for the second case study, describes the challenge of balancing research on hardship with empowering stories, and give a lot of credit to the fact that their work is community-led.</p></div></div><p>This was one of the major reasons I had for pushing my organization away from choropleths—I got tired of making the same sad map. It was doubly frustrating because I lived in one of those “sad” hotspots in New Haven, and I didn’t like thinking I might be reinforcing my neighbors’ or my own disenfranchisement.</p>
 <p>Here’s an example with Baltimore:</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -408,6 +427,7 @@ Urban Institute. (2019). <em>The <span>Black Butterfly</span>: <span>Racial Segr
 
 
 
+</section>
 
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -978,4 +998,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/17_sad_maps.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/17_sad_maps.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/17_sad_maps.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/17_sad_maps.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
