@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -391,7 +391,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 25, 2024</p>
+      <p class="date-modified">April 24, 2024</p>
     </div>
   </div>
     
@@ -878,142 +878,6 @@ $`No health insurance`</code></pre>
 <p>For a final project I might want to do a couple of these maps alongside a bar chart or dot plot at the state &amp; county level.</p>
 <p>I also might want to try overlaying some of our locations such as brownfields (those could exacerbate asthma) and highways (those definitely exacerbate asthma).</p>
 <p>There are similar statistical tests you might do for spatial data, such as Moran’s test of spatial autocorrelation (clustering of high/low values).</p>
-<p>But more simply I could define some cutoff for some of these values and count how many tracts / what population has very high or low values.</p>
-<p>For example, asthma:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>us_asthma <span class="ot">&lt;-</span> cdc_subset <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"us"</span>,</span>
-<span id="cb25-3"><a href="#cb25-3"></a>         indicator <span class="sc">==</span> <span class="st">"Current asthma"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb25-4"><a href="#cb25-4"></a>  <span class="fu">pull</span>(value)</span>
-<span id="cb25-5"><a href="#cb25-5"></a></span>
-<span id="cb25-6"><a href="#cb25-6"></a>cdc_split<span class="sc">$</span><span class="st">`</span><span class="at">Current asthma</span><span class="st">`</span> <span class="sc">|&gt;</span></span>
-<span id="cb25-7"><a href="#cb25-7"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb25-8"><a href="#cb25-8"></a>  <span class="fu">mutate</span>(<span class="at">is_above_us_avg =</span> value <span class="sc">&gt;</span> us_asthma) <span class="sc">|&gt;</span></span>
-<span id="cb25-9"><a href="#cb25-9"></a>  <span class="fu">group_by</span>(county, is_above_us_avg) <span class="sc">|&gt;</span></span>
-<span id="cb25-10"><a href="#cb25-10"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(),</span>
-<span id="cb25-11"><a href="#cb25-11"></a>            <span class="at">adult_pop =</span> <span class="fu">sum</span>(pop)) <span class="sc">|&gt;</span></span>
-<span id="cb25-12"><a href="#cb25-12"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(n<span class="sc">:</span>adult_pop, <span class="fu">list</span>(<span class="at">pct =</span> \(x) x <span class="sc">/</span> <span class="fu">sum</span>(x)))) <span class="sc">|&gt;</span></span>
-<span id="cb25-13"><a href="#cb25-13"></a>  <span class="fu">filter</span>(is_above_us_avg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="kable-table">
-<table class="table table-sm table-striped small">
-<colgroup>
-<col style="width: 27%">
-<col style="width: 21%">
-<col style="width: 5%">
-<col style="width: 13%">
-<col style="width: 13%">
-<col style="width: 18%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;">county</th>
-<th style="text-align: left;">is_above_us_avg</th>
-<th style="text-align: right;">n</th>
-<th style="text-align: right;">adult_pop</th>
-<th style="text-align: right;">n_pct</th>
-<th style="text-align: right;">adult_pop_pct</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Anne Arundel County</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">90230</td>
-<td style="text-align: right;">0.1747573</td>
-<td style="text-align: right;">0.1678267</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Baltimore County</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: right;">103</td>
-<td style="text-align: right;">414711</td>
-<td style="text-align: right;">0.4881517</td>
-<td style="text-align: right;">0.5151504</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Baltimore city</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: right;">178</td>
-<td style="text-align: right;">557034</td>
-<td style="text-align: right;">0.8944724</td>
-<td style="text-align: right;">0.8970833</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Howard County</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">19734</td>
-<td style="text-align: right;">0.0727273</td>
-<td style="text-align: right;">0.0687392</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<p>Air must be nice over in Howard County because only 7% of their tracts have asthma rates higher than the US average, vs 89% of tracts in Baltimore city. Note that these population totals are the count and share of people who live in a tract with an above-average asthma rate, <em>not</em> the count or share of people with asthma!</p>
-<p>Compared with brownfield locations: By taking a spatial overlay (<code>st_intersection</code>), I now know what county these brownfields are in.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="co"># get just brownfields that are 1) current, and 2) within these counties</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="co"># also need same CRS</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a>county_sf <span class="ot">&lt;-</span> tracts10 <span class="sc">|&gt;</span></span>
-<span id="cb26-4"><a href="#cb26-4"></a>  <span class="fu">group_by</span>(county) <span class="sc">|&gt;</span></span>
-<span id="cb26-5"><a href="#cb26-5"></a>  <span class="fu">summarise</span>()</span>
-<span id="cb26-6"><a href="#cb26-6"></a></span>
-<span id="cb26-7"><a href="#cb26-7"></a>balt_brown <span class="ot">&lt;-</span> brownfields_sf <span class="sc">|&gt;</span></span>
-<span id="cb26-8"><a href="#cb26-8"></a>  <span class="fu">filter</span>(<span class="sc">!</span>is_archived) <span class="sc">|&gt;</span></span>
-<span id="cb26-9"><a href="#cb26-9"></a>  <span class="fu">st_transform</span>(<span class="fu">st_crs</span>(tracts10)) <span class="sc">|&gt;</span></span>
-<span id="cb26-10"><a href="#cb26-10"></a>  <span class="fu">st_intersection</span>(county_sf)</span>
-<span id="cb26-11"><a href="#cb26-11"></a></span>
-<span id="cb26-12"><a href="#cb26-12"></a>balt_brown <span class="sc">|&gt;</span></span>
-<span id="cb26-13"><a href="#cb26-13"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
-<span id="cb26-14"><a href="#cb26-14"></a>  <span class="fu">count</span>(county)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div class="kable-table">
-<table class="table table-sm table-striped small">
-<thead>
-<tr class="header">
-<th style="text-align: left;">county</th>
-<th style="text-align: right;">n</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Anne Arundel County</td>
-<td style="text-align: right;">3</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Baltimore County</td>
-<td style="text-align: right;">5</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Baltimore city</td>
-<td style="text-align: right;">43</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>tracts10 <span class="sc">|&gt;</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">left_join</span>(cdc_split<span class="sc">$</span><span class="st">`</span><span class="at">Current asthma</span><span class="st">`</span>, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"tract"</span> <span class="ot">=</span> <span class="st">"location"</span>, <span class="st">"county"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value), <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">linewidth =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">color =</span> site_type), <span class="at">data =</span> balt_brown, <span class="at">shape =</span> <span class="dv">21</span>) <span class="sc">+</span></span>
-<span id="cb27-6"><a href="#cb27-6"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb27-7"><a href="#cb27-7"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">brownfield =</span> <span class="st">"gray10"</span>, <span class="at">npl =</span> <span class="st">"firebrick"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="eda_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>That’s a lot of brownfields &amp; superfund sites (NPL = national priority list) in areas that also have high asthma rates, especially around East Baltimore and industrial areas in South Baltimore.</p>
 
 
 </section>
@@ -1242,24 +1106,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1294,11 +1140,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');

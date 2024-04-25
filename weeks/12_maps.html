@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -422,7 +422,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 25, 2024</p>
+      <p class="date-modified">April 4, 2024</p>
     </div>
   </div>
     
@@ -529,7 +529,7 @@ Brainstorming
 <span id="cb1-12"><a href="#cb1-12"></a><span class="fu">install.packages</span>(pkgs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Much of the R spatial ecosystem has migrated from an older set of packages (<code>sp</code>, <code>rgeos</code>, <code>rgdal</code>) to a newer one (<code>sf</code>, plus its friends like <code>stars</code> and <code>terra</code>) designed to fit into the tidyverse packages. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <code>sf</code> is also nice because many of the functions are based on PostGIS, so if you’ve worked with spatial databases (or might in the future) it’s easy to translate code.</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;This was actually a major <a href="https://r-spatial.org/r/2022/04/12/evolution.html">concerted effort</a> over the past few years because the original maintainer of many of those packages was retiring.</p></div></div><p>There are a few <code>sf</code>-based shapefiles in the justviz package, and many others are easy to get (<code>tigris</code> is very easy to use for Census Bureau data, and we’ll use <code>osmdata</code> to get OpenStreetMap shapefiles and data).</p>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;This was actually a major <a href="https://r-spatial.org/r/2022/04/12/evolution.html">concerted effort</a> over the past few years because the original maintainer of many of those packages was retiring.</p></div><p>There are a few <code>sf</code>-based shapefiles in the justviz package, and many others are easy to get (<code>tigris</code> is very easy to use for Census Bureau data, and we’ll use <code>osmdata</code> to get OpenStreetMap shapefiles and data).</p>
 <p><code>sf</code> objects can be data frames with a geometry column, so you can work with them in many of the same ways as regular data frames; you might also see just plain geometry objects without any data attached.</p>
 </section>
 <section id="plotting" class="level3 page-columns page-full">
@@ -766,7 +766,7 @@ GEOGCRS["NAD83",
 <li>Uses feet (units will be listed as “ftUS”) <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
 <li>In the NAD83 system (not NAD27)</li>
 </ol>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Using feet for your units (or a different projection that uses meters) is useful for doing things like buffers or measuring distances; we’ll do a bit of this later.</p></div></div><p>You might find more than one that fits these requirements, just pick one. (For this sort of work you won’t be able to see any difference.)</p>
+<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Using feet for your units (or a different projection that uses meters) is useful for doing things like buffers or measuring distances; we’ll do a bit of this later.</p></div><p>You might find more than one that fits these requirements, just pick one. (For this sort of work you won’t be able to see any difference.)</p>
 <p>Fill in the missing CRS code below and draw the maps. What do you notice?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>crs_code <span class="ot">&lt;-</span> <span class="dv">2248</span></span>
@@ -1029,24 +1029,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1081,11 +1063,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1361,7 +1339,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/11_project1.html" class="pagination-link" aria-label="11. Project 1 troubleshooting">
+      <a 1="" href="../weeks/11_project1.html" class="pagination-link  aria-label=" 11.="" project="" troubleshooting"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">11. Project 1 troubleshooting</span>
       </a>          
   </div>

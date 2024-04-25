@@ -1,119 +1,119 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://umbc-viz.github.io/ges778/readings.html</loc>
-    <lastmod>2024-04-25T00:36:53.098Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/index.html</loc>
-    <lastmod>2024-04-25T00:36:53.094Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/tips/exporting.html</loc>
-    <lastmod>2024-04-25T00:36:53.102Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/tips/eda.html</loc>
-    <lastmod>2024-04-25T00:36:53.102Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/15_color_text_mapping.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/03_encoding.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/index.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/11_project1.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/09_decisions.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/14_geos.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/05_good_code.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/02_components.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/03b_encoding_refs.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/10_accessibility.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/syllabus.html</loc>
-    <lastmod>2024-04-25T00:36:53.102Z</lastmod>
-  </url>
-  <url>
     <loc>https://umbc-viz.github.io/ges778/decision_checklist.html</loc>
-    <lastmod>2024-04-25T00:36:53.094Z</lastmod>
+    <lastmod>2024-02-16T16:29:39.439Z</lastmod>
   </url>
   <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/12_maps.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/07_annotations.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/06_color.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/00_definitions.html</loc>
-    <lastmod>2024-04-25T00:36:53.106Z</lastmod>
+    <loc>https://umbc-viz.github.io/ges778/readings.html</loc>
+    <lastmod>2024-04-16T15:19:58.878Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/weeks/04_understanding_data.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
+    <lastmod>2024-02-08T16:21:10.728Z</lastmod>
   </url>
   <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/16_context.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/17_sad_maps.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
+    <loc>https://umbc-viz.github.io/ges778/weeks/10_accessibility.html</loc>
+    <lastmod>2024-03-17T18:45:14.236Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/weeks/08_uncertainty.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
+    <lastmod>2024-02-29T17:38:50.447Z</lastmod>
   </url>
   <url>
-    <loc>https://umbc-viz.github.io/ges778/weeks/01_walkthrough.html</loc>
-    <lastmod>2024-04-25T00:36:53.106Z</lastmod>
+    <loc>https://umbc-viz.github.io/ges778/weeks/03_encoding.html</loc>
+    <lastmod>2024-02-15T17:12:50.726Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/weeks/13_data_to_space.html</loc>
-    <lastmod>2024-04-25T00:36:53.110Z</lastmod>
+    <lastmod>2024-04-10T20:44:33.510Z</lastmod>
   </url>
   <url>
-    <loc>https://umbc-viz.github.io/ges778/tips/merging.html</loc>
-    <lastmod>2024-04-25T00:36:53.102Z</lastmod>
+    <loc>https://umbc-viz.github.io/ges778/weeks/00_definitions.html</loc>
+    <lastmod>2024-02-06T17:54:22.476Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/11_project1.html</loc>
+    <lastmod>2024-03-28T16:00:59.208Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/02_components.html</loc>
+    <lastmod>2024-02-13T05:06:03.589Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/09_decisions.html</loc>
+    <lastmod>2024-03-10T14:28:49.936Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/05_good_code.html</loc>
+    <lastmod>2024-02-16T16:29:39.443Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/tips/eda.html</loc>
+    <lastmod>2024-04-25T00:27:04.338Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/tips/fonts.html</loc>
-    <lastmod>2024-04-25T00:36:53.102Z</lastmod>
+    <lastmod>2024-03-26T04:59:42.490Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/syllabus.html</loc>
+    <lastmod>2024-02-13T05:06:03.589Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/references.html</loc>
-    <lastmod>2024-04-25T00:36:53.098Z</lastmod>
+    <lastmod>2024-02-14T17:55:10.893Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/tips/exporting.html</loc>
+    <lastmod>2024-03-27T19:07:38.730Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/tips/merging.html</loc>
+    <lastmod>2024-04-10T20:44:33.510Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/16_context.html</loc>
+    <lastmod>2024-04-18T21:32:42.094Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/17_sad_maps.html</loc>
+    <lastmod>2024-04-24T22:04:55.101Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/15_color_text_mapping.html</loc>
+    <lastmod>2024-04-16T15:19:58.882Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/06_color.html</loc>
+    <lastmod>2024-02-21T03:32:30.547Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/07_annotations.html</loc>
+    <lastmod>2024-03-06T20:35:49.780Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/14_geos.html</loc>
+    <lastmod>2024-04-16T15:19:58.882Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/12_maps.html</loc>
+    <lastmod>2024-04-04T14:07:03.802Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/01_walkthrough.html</loc>
+    <lastmod>2024-02-13T05:06:03.589Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/index.html</loc>
+    <lastmod>2024-02-07T02:17:23.354Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/weeks/03b_encoding_refs.html</loc>
+    <lastmod>2024-02-13T05:06:03.589Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/index.html</loc>
+    <lastmod>2024-01-30T21:04:54.847Z</lastmod>
   </url>
 </urlset>

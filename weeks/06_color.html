@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -419,7 +419,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 25, 2024</p>
+      <p class="date-modified">February 20, 2024</p>
     </div>
   </div>
     
@@ -488,7 +488,7 @@ div.csl-indent {
 <section id="colors-in-r" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="colors-in-r">Colors in R</h3>
 <p>If you don’t already have a color selection tool on your computer <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> you can <a href="https://github.com/daattali/colourpicker?tab=readme-ov-file#install">install the colourpicker package</a> that has a color picker addin for RStudio.</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Maybe the thing I miss most since switching from Mac to Linux is the color picker app Sip, definitely recommend it</p></div></div></section>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;Maybe the thing I miss most since switching from Mac to Linux is the color picker app Sip, definitely recommend it</p></div></section>
 </section>
 <section id="chapters" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="chapters">Chapters</h2>
@@ -510,7 +510,7 @@ Datawrapper. (2021). <em>What to consider when choosing colors for data visualiz
 <li><a href="https://gka.github.io/palettes">Gregor Aisch’s chroma palettes</a> generator</li>
 <li><a href="http://vrl.cs.brown.edu/color">Colorgorical categorical color generator</a> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
 </ul>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;I just read a post making fun of Colorgorical for leaning toward puke green colors; haven’t used it in a while but heads up I guess?</p></div></div></section>
+<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;I just read a post making fun of Colorgorical for leaning toward puke green colors; haven’t used it in a while but heads up I guess?</p></div></section>
 <section id="types-of-color-palettes" class="level2">
 <h2 class="anchored" data-anchor-id="types-of-color-palettes">Types of color palettes</h2>
 <p>The main types of color palettes are:</p>
@@ -1149,24 +1149,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1201,11 +1183,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1481,7 +1459,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/05_good_code.html" class="pagination-link" aria-label="5. Writing good code">
+      <a href="../weeks/05_good_code.html" class="pagination-link  aria-label=" 5.="" writing="" good="" code"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">5. Writing good code</span>
       </a>          
   </div>
