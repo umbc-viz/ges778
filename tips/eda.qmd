@@ -188,4 +188,57 @@ I also might want to try overlaying some of our locations such as brownfields (t
 
 There are similar statistical tests you might do for spatial data, such as Moran's test of spatial autocorrelation (clustering of high/low values).
 
+But more simply I could define some cutoff for some of these values and count how many tracts / what population has very high or low values.
+
+For example, asthma:
+
+```{r}
+us_asthma <- cdc_subset |>
+  filter(level == "us",
+         indicator == "Current asthma") |>
+  pull(value)
+
+cdc_split$`Current asthma` |>
+  filter(level == "tract") |>
+  mutate(is_above_us_avg = value > us_asthma) |>
+  group_by(county, is_above_us_avg) |>
+  summarise(n = n(),
+            adult_pop = sum(pop)) |>
+  mutate(across(n:adult_pop, list(pct = \(x) x / sum(x)))) |>
+  filter(is_above_us_avg)
+```
+
+Air must be nice over in Howard County because only 7% of their tracts have asthma rates higher than the US average, vs 89% of tracts in Baltimore city. Note that these population totals are the count and share of people who live in a tract with an above-average asthma rate, *not* the count or share of people with asthma!
+
+Compared with brownfield locations: By taking a spatial overlay (`st_intersection`), I now know what county these brownfields are in.
+
+```{r}
+# get just brownfields that are 1) current, and 2) within these counties
+# also need same CRS
+county_sf <- tracts10 |>
+  group_by(county) |>
+  summarise()
+
+balt_brown <- brownfields_sf |>
+  filter(!is_archived) |>
+  st_transform(st_crs(tracts10)) |>
+  st_intersection(county_sf)
+
+balt_brown |>
+  st_drop_geometry() |>
+  count(county)
+```
+
+
+```{r}
+tracts10 |>
+  left_join(cdc_split$`Current asthma`, by = c("tract" = "location", "county")) |>
+  ggplot() +
+  geom_sf(aes(fill = value), color = "white", linewidth = 0) +
+  geom_sf(aes(color = site_type), data = balt_brown, shape = 21) +
+  scale_fill_distiller(palette = "YlGnBu", direction = 1) +
+  scale_color_manual(values = c(brownfield = "gray10", npl = "firebrick"))
+```
+
+That's a lot of brownfields & superfund sites (NPL = national priority list) in areas that also have high asthma rates, especially around East Baltimore and industrial areas in South Baltimore.
 
