@@ -129,6 +129,8 @@ str(cdc_split, max.level = 1)
 One-way ANOVA test of equal means across counties, weighted by tract population. Post-hoc testing with Tukey's HSD to see which counties have significantly higher or lower mean values. Feel free to ignore if you haven't gotten this far in stats.
 
 ```{r}
+#| eval: false
+# turning this off because no one cares lol 
 # shorten names, increase margin size
 par(mar = c(5, 10, 4, 2) + 0.1)
 
@@ -150,7 +152,10 @@ Levene's test of equal variances
 cdc_split |>
   purrr::map(function(df) {
     car::leveneTest(value ~ county, data = df, weights = pop)
-  })
+  }) |>
+  # coerce test output back into data frames, then bind
+  purrr::map(broom::tidy) |>
+  bind_rows(.id = "indicator")
 ```
 
 Every indicator has unequal variance across counties. Again points to important neighborhood-level disparities in at least some of the cities / counties.
@@ -166,7 +171,7 @@ tracts10 |>
   facet_wrap(vars(indicator))
 ```
 
-Two things that don't work well here: there are a few tracts without data so they end up in an NA facet. For EDA that's not a big deal, but for a final project I'd want to handle it. Also, the scale doesn't work because ranges are very different across indicators. Switch to using split data instead so each panel can get its own color scale:
+Two things that don't work well here: there are a few tracts without data so they end up in an NA facet. For EDA that's not a big deal, but for a final project I'd want to handle it. Also, the scale doesn't work because ranges are very different across indicators. Switch to using split data instead so each panel can get its own color scale. If you're doing just a few indicators, instead of splitting the data into a list you could just filter for each indicator.
 
 ```{r}
 cdc_split |>
@@ -198,7 +203,7 @@ us_asthma <- cdc_subset |>
          indicator == "Current asthma") |>
   pull(value)
 
-cdc_split$`Current asthma` |>
+cdc_split[["Current asthma"]] |>
   filter(level == "tract") |>
   mutate(is_above_us_avg = value > us_asthma) |>
   group_by(county, is_above_us_avg) |>
@@ -232,7 +237,7 @@ balt_brown |>
 
 ```{r}
 tracts10 |>
-  left_join(cdc_split$`Current asthma`, by = c("tract" = "location", "county")) |>
+  left_join(cdc_split[["Current asthma"]], by = c("tract" = "location", "county")) |>
   ggplot() +
   geom_sf(aes(fill = value), color = "white", linewidth = 0) +
   geom_sf(aes(color = site_type), data = balt_brown, shape = 21) +
