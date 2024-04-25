@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -399,7 +399,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 18, 2024</p>
+      <p class="date-modified">April 25, 2024</p>
     </div>
   </div>
     
@@ -418,7 +418,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="basemaps" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="basemaps">Basemaps</h2>
 <p>Put your map on a map. There are lots of options; Google Maps and OpenStreetMap are both very popular for map tiles, but they contain a lot of colors and symbols. For data visualization, simple grayscale or black &amp; white basemaps work well, like the map tiles from Stamen (now distributed through Stadia) and Carto. These often require an API key. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;One thing to note with the ggmap package is that several of the providers have gone out of business since the package was first released, and the functions for them haven’t all been removed. Don’t be surprised if you get errors downloading map tiles from one provider—just try another one. There are also a few other packages to download basemaps but none are updated often.</p></div><p>Also note that map tiles will generally be in the web Mercator projection (CRS 4369), so if you’re layering any geoms on top of them, you’ll want to transform into 4369. There are some ways to transform the tiles but they don’t generally look good.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;One thing to note with the ggmap package is that several of the providers have gone out of business since the package was first released, and the functions for them haven’t all been removed. Don’t be surprised if you get errors downloading map tiles from one provider—just try another one. There are also a few other packages to download basemaps but none are updated often.</p></div></div><p>Also note that map tiles will generally be in the web Mercator projection (CRS 4369), so if you’re layering any geoms on top of them, you’ll want to transform into 4369. There are some ways to transform the tiles but they don’t generally look good.</p>
 <section id="getting-and-saving-api-keys" class="level3">
 <h3 class="anchored" data-anchor-id="getting-and-saving-api-keys">Getting and saving API keys</h3>
 <p>We had a fair amount of trouble with this in class, but API keys can be tricky to get and store. Even for a service that doesn’t seem like someone could cause any trouble with it, you want to treat your API keys like passwords—it’s a good habit to get into. Many packages that use APIs will have functions to help you save your key, and they’ll generally save to a specific <a href="https://kinsta.com/knowledgebase/what-is-an-environment-variable/">environment variable</a>. For example, <code>tidycensus::census_api_key</code> will save your key to the environment variable <code>CENSUS_API_KEY</code>, and that’s where its functions will also look for the key when you make API calls. This allows you to use a secret value (the key) without explicitly using it in your code. Some of these sorts of functions, including the ones in <code>ggmap</code>, won’t save the key between sessions by default; the <code>ggmap::register_*</code> helper functions take an argument <code>write = TRUE</code> in order to save the key permanently. That will mean the key is written to a file called <code>.Renviron</code>, usually saved to your computer’s home directory, which gets read every time you start an R session on that computer.</p>
@@ -949,6 +949,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -983,7 +1001,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1259,7 +1281,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/15_color_text_mapping.html" class="pagination-link  aria-label=" 15.="" color,="" text,="" and="" annotations="" in="" mapping"="">
+      <a href="../weeks/15_color_text_mapping.html" class="pagination-link" aria-label="15. Color, text, and annotations in mapping">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">15. Color, text, and annotations in mapping</span>
       </a>          
   </div>

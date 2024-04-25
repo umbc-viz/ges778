@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -422,7 +422,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">March 17, 2024</p>
+      <p class="date-modified">April 25, 2024</p>
     </div>
   </div>
     
@@ -474,13 +474,13 @@ Figure&nbsp;2
 <h2 class="anchored" data-anchor-id="accessibility">Accessibility</h2>
 <p>After talking about making responsible decisions in data visualization, it’s embarrassing to admit that accessibility has been a major oversight of mine, but it’s true, and it’s for no other reason than privilege. On a day-to-day basis I don’t have to think about whether learning or interacting with something will depend on my ability to see well, read complicated text, speak a certain language, navigate stimuli, process information, or access technology and resources. In fact, until last week I hadn’t even bothered writing alt texts for the charts in these notes; I’m going back and doing that now, but my hope for you all is that you <strong>start out your data viz careers being more mindful than I’ve been.</strong></p>
 <p>For the most part when we talk about accessibility, we mean this with respect to disabilities; in static data visualization, this mostly means visual impairments such as blindness, low vision, and colorblindness. If you go on to do interactive or web-based visualization, you’ll also need to think about things like navigation (access for keyboards and assistive devices vs clicking menus only) and animation (can be overstimulating or hard to process). <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;Circa 2017, scrollytelling was very cool and people were <em>very intense</em> with it. I’ve noticed in recent years people have eased up. It can be disorienting for some readers. <span class="citation" data-cites="Webb2018">Webb (<a href="#ref-Webb2018" role="doc-biblioref">2018</a>)</span> convinced me to scrap my scrollytelling plans for some projects during that era.</p><div id="ref-Webb2018" class="csl-entry" role="listitem">
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;Circa 2017, scrollytelling was very cool and people were <em>very intense</em> with it. I’ve noticed in recent years people have eased up. It can be disorienting for some readers. <span class="citation" data-cites="Webb2018">Webb (<a href="#ref-Webb2018" role="doc-biblioref">2018</a>)</span> convinced me to scrap my scrollytelling plans for some projects during that era.</p><div id="ref-Webb2018" class="csl-entry" role="listitem">
 Webb, E. (2018). <em>Your <span>Interactive Makes Me Sick</span></em>. <a href="https://source.opennews.org/articles/motion-sick/">https://source.opennews.org/articles/motion-sick/</a>
-</div></div><p>Some of the simplest tasks we can do for static data visualization are using <strong>colorblind-friendly palettes</strong>, writing <strong>alt-text descriptions</strong>, and maintaining high <strong>contrast ratios</strong> between backgrounds and text.</p>
+</div></div></div><p>Some of the simplest tasks we can do for static data visualization are using <strong>colorblind-friendly palettes</strong>, writing <strong>alt-text descriptions</strong>, and maintaining high <strong>contrast ratios</strong> between backgrounds and text.</p>
 <section id="colorblindness" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="colorblindness">Colorblindness</h3>
 <p>You should generally assume your work will be read by at least a few colorblind readers (or people with color-vision deficiency, CVD) and plan your color palettes accordingly. Wilke mentions this as a reason for <a href="https://clauswilke.com/dataviz/redundant-coding.html">redundant coding</a> as well, so you’re not relying on color alone to differentiate values. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Something that blew my mind is in Frank Elavsky’s interview on <em>PolicyViz</em>. He acknowledges that awareness of CVD has become the norm in data viz, but that it actually predominantly affects white men, and that it shouldn’t be too surprising that that is often the only accommodation made in a field where white men are overrepresented.</p></div><p>The most common form of CVD is what’s called red-green colorblindness. Many common R color palettes are colorblind-friendly, and some tools will help you tell whether a palette is or not, or for which color deficiencies they are legible.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Something that blew my mind is in Frank Elavsky’s interview on <em>PolicyViz</em>. He acknowledges that awareness of CVD has become the norm in data viz, but that it actually predominantly affects white men, and that it shouldn’t be too surprising that that is often the only accommodation made in a field where white men are overrepresented.</p></div></div><p>The most common form of CVD is what’s called red-green colorblindness. Many common R color palettes are colorblind-friendly, and some tools will help you tell whether a palette is or not, or for which color deficiencies they are legible.</p>
 <p>Some code examples:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Not all Color Brewer palettes are CVD-friendly, but you can filter in the R package</span></span>
@@ -663,7 +663,7 @@ W3C Web Accessibility Initiative. (2024). Images <span>Tutorial</span>: <span>Co
 <p>We easily take for granted the ability to read English fluently, but it’s important to remember that, depending on our audience, many of our readers may not be able to. Twenty-two percent of US adults ages 16 to 74 are rated as having low literacy; in Maryland, this is 20% <span class="citation" data-cites="PIAAC2020">(<a href="#ref-PIAAC2020" role="doc-biblioref">National Center for Education Statistics, 2020</a>)</span>. <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> So if you’re creating a visualization that needs to work for a general audience, you’ll want to keep your sentences short, language simple, and chart types pretty standard. Or, you can get more complex with the use of annotations or other guidance.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-PIAAC2020" class="csl-entry" role="listitem">
 National Center for Education Statistics. (2020). <em><span>Program for the International Assessment of Adult Competencies (PIAAC)</span></em>. National Center for Education Statistics. <a href="https://nces.ed.gov/surveys/piaac/state-county-estimates.asp">https://nces.ed.gov/surveys/piaac/state-county-estimates.asp</a>
-</div><p><sup>3</sup>&nbsp;This program outlines definitions of “low literacy,” but in news stories and Wikipedia it’s being referred to as corresponding to a sixth grade reading level. I haven’t found anything directly connected to the program that corroborates that.</p></div><section id="exercise-1" class="level3">
+</div><div id="fn3"><p><sup>3</sup>&nbsp;This program outlines definitions of “low literacy,” but in news stories and Wikipedia it’s being referred to as corresponding to a sixth grade reading level. I haven’t found anything directly connected to the program that corroborates that.</p></div></div><section id="exercise-1" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-1">Exercise</h3>
 <p>Test the reading level of the headlines you wrote using each of these tools:</p>
 <ul>
@@ -916,6 +916,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -950,7 +968,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1226,7 +1248,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/09_decisions.html" class="pagination-link  aria-label=" 9.="" making="" responsible="" decisions"="">
+      <a href="../weeks/09_decisions.html" class="pagination-link" aria-label="9. Making responsible decisions">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">9. Making responsible decisions</span>
       </a>          
   </div>

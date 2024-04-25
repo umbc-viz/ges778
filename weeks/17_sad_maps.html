@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.553">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -377,7 +377,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 24, 2024</p>
+      <p class="date-modified">April 25, 2024</p>
     </div>
   </div>
     
@@ -396,7 +396,7 @@ div.csl-indent {
 <h2 class="anchored" data-anchor-id="being-a-responsible-mapmaker">Being a responsible mapmaker</h2>
 <p>If you remember nothing else from this class, remember this: <strong>AVOID MAKING SAD MAPS</strong>. This is a term I learned at a conference on the launch of the 500 Cities Project, the predecessor to the project whose data is in <code>justviz::cdc</code>. I don’t remember which one of the panelists said it, and I have no idea where my notes are from the conference, but it’s stuck with me. The panelist defined “sad maps” as maps, often choropleths, that just show hotspots of the same depressing patterns across neighborhoods over and over without supplying any sense of neighborhoods’ assets or source of strength.</p>
 <p>At that point, I’d been making maps for a year or two, and I’ve been making maps for probably seven years since, and I’m still guilty of making <em>many</em> sad maps. It’s unavoidable, especially when it’s your job to make maps about public health and inequality. That’s why your task isn’t to <em>never</em> make a sad map, but to try to find other ways of doing things. Maybe that means showing distributions instead of neighborhood vs neighborhood or town vs town comparisons, or contextualizing the sad data with community strengths and history, or using a visualization that’s not a map, or not visualizing it at all, or having different people at the table making decisions on how to tell the story. It might also mean using the names and boundaries of places that residents use, which aren’t always the same as what the government or researchers use. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;The Anti-Eviction Mapping Project, one of the projects for the second case study, describes the challenge of balancing research on hardship with empowering stories, and give a lot of credit to the fact that their work is community-led.</p></div><p>This was one of the major reasons I had for pushing my organization away from choropleths—I got tired of making the same sad map. It was doubly frustrating because I lived in one of those “sad” hotspots in New Haven, and I didn’t like thinking I might be reinforcing my neighbors’ or my own disenfranchisement.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;The Anti-Eviction Mapping Project, one of the projects for the second case study, describes the challenge of balancing research on hardship with empowering stories, and give a lot of credit to the fact that their work is community-led.</p></div></div><p>This was one of the major reasons I had for pushing my organization away from choropleths—I got tired of making the same sad map. It was doubly frustrating because I lived in one of those “sad” hotspots in New Haven, and I didn’t like thinking I might be reinforcing my neighbors’ or my own disenfranchisement.</p>
 <p>Here’s an example with Baltimore:</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -654,6 +654,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -688,7 +706,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -964,7 +986,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/16_context.html" class="pagination-link  aria-label=" 16.="" putting="" spatial="" data="" in="" context"="">
+      <a href="../weeks/16_context.html" class="pagination-link" aria-label="16. Putting spatial data in context">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">16. Putting spatial data in context</span>
       </a>          
   </div>
