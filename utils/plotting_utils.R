@@ -1,7 +1,7 @@
 ############################## GGPLOT ####################
 
 # basic theme that can be added onto
-theme_nice <- function(base_size = 14, base_family = "Arial") {
+theme_nice <- function(base_size = 14, base_family = "") {
   
   out <- ggplot2::theme_light(base_size = base_size, base_family = base_family) +
     ggplot2::theme(

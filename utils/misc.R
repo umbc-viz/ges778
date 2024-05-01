@@ -13,10 +13,8 @@ county_cents <- tigris::counties(state = "MD", progress = FALSE, refresh = FALSE
 # filter msa for just the one that has Baltimore in the name, 
 # get intersection with counties
 # pull out the full names column into a vector
-balt_metro <- msa_sf |>
-  dplyr::filter(grepl("Baltimore", name)) |>
-  sf::st_intersection(county_cents) |>
-  dplyr::pull(namelsad)
+balt_metro <- sf::st_intersects(county_cents, msa_sf$geometry[grepl("Baltimore", msa_sf$name)])
+balt_metro <- county_cents$namelsad[lengths(balt_metro) > 0]
 
 # delete the county centroids since we don't need them
 rm(county_cents)
@@ -27,4 +25,5 @@ states_sf <- tigris::states(cb = TRUE)
 
 saveRDS(states_sf, "utils/states_sf.rds")
 saveRDS(balt_metro, "utils/balt_metro.rds")
+
 
