@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Camille Seaberry">
+
+<title>GES 778, Spring 2024 - 18. Experimentation</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../weeks/17_sad_maps.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/18_experiments.html">18. Experimentation</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">GES 778, Spring 2024</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/umbc-viz/ges778.git" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/umbc-viz/justviz.git" title="justviz package" class="quarto-navigation-tool px-1" aria-label="justviz package"><i class="bi bi-code-slash"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../readings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Readings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../decision_checklist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Decisionmaking checklist</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../weeks/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Weekly notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/00_definitions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">0. Definitions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/01_walkthrough.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">1. Walkthrough</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/02_components.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">2. Components of a chart</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/03_encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3. Visual encoding</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/03b_encoding_refs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">3b. Encoding cheatsheets</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/04_understanding_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">4. Learning about your data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/05_good_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">5. Writing good code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/06_color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">6. Color</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/07_annotations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">7. Text and annotations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/08_uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">8. Uncertainty and distributions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/09_decisions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">9. Making responsible decisions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/10_accessibility.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. Accessibility and literacy</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/11_project1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Project 1 troubleshooting</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/12_maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. Spatial data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/13_data_to_space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13. Mapping data to space</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/14_geos.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14. Manipulating geographies</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/15_color_text_mapping.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15. Color, text, and annotations in mapping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/16_context.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">16. Putting spatial data in context</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/17_sad_maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">17. Avoiding sad maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/18_experiments.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">18. Experimentation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Tips &amp; tricks</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tips/eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Spatial and non-spatial EDA</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tips/exporting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exporting and distributing your work</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tips/fonts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Fonts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../tips/merging.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Merging data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References by topic</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+<div class="quarto-sidebar-footer"><div class="sidebar-footer-item">
+<p><a href="https://github.com/umbc-viz/ges778.git">Code for this site</a></p>
+</div></div></nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#non-spatial" id="toc-non-spatial" class="nav-link active" data-scroll-target="#non-spatial">Non-spatial</a>
+  <ul class="collapse">
+  <li><a href="#slopegraphs" id="toc-slopegraphs" class="nav-link" data-scroll-target="#slopegraphs">Slopegraphs</a></li>
+  <li><a href="#marginal-plots" id="toc-marginal-plots" class="nav-link" data-scroll-target="#marginal-plots">Marginal plots</a></li>
+  <li><a href="#beeswarm-plots" id="toc-beeswarm-plots" class="nav-link" data-scroll-target="#beeswarm-plots">Beeswarm plots</a></li>
+  <li><a href="#pie-charts" id="toc-pie-charts" class="nav-link" data-scroll-target="#pie-charts">Pie charts</a></li>
+  <li><a href="#waffle-plots" id="toc-waffle-plots" class="nav-link" data-scroll-target="#waffle-plots">Waffle plots *</a></li>
+  <li><a href="#mosaic-plot-marimekko" id="toc-mosaic-plot-marimekko" class="nav-link" data-scroll-target="#mosaic-plot-marimekko">Mosaic plot / marimekko</a></li>
+  <li><a href="#hierarchical-visualizations" id="toc-hierarchical-visualizations" class="nav-link" data-scroll-target="#hierarchical-visualizations">Hierarchical visualizations *</a></li>
+  </ul></li>
+  <li><a href="#spatial" id="toc-spatial" class="nav-link" data-scroll-target="#spatial">Spatial</a>
+  <ul class="collapse">
+  <li><a href="#bubble-map" id="toc-bubble-map" class="nav-link" data-scroll-target="#bubble-map">Bubble map</a></li>
+  <li><a href="#cartograms" id="toc-cartograms" class="nav-link" data-scroll-target="#cartograms">Cartograms *</a></li>
+  <li><a href="#grid-map" id="toc-grid-map" class="nav-link" data-scroll-target="#grid-map">Grid map *</a></li>
+  <li><a href="#dot-density-map" id="toc-dot-density-map" class="nav-link" data-scroll-target="#dot-density-map">Dot density map *</a></li>
+  <li><a href="#binned-or-kernel-density-maps" id="toc-binned-or-kernel-density-maps" class="nav-link" data-scroll-target="#binned-or-kernel-density-maps">Binned or kernel density maps *</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/18_experiments.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/18_experiments.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/18_experiments.html">18. Experimentation</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">18. Experimentation</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Camille Seaberry </p>
+          </div>
+  </div>
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">May 1, 2024</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>This is a grab bag of less ordinary chart types that we didn’t get to during the semester. Feel free to try them out for your project—if it has an asterisk next to it, it’s complex enough to count for 2 of your 3 charts. Note that none of these are super polished, <em>so charts for your project should look nicer than these!</em> Many of these ggplot add-ons have lots of arguments that I didn’t experiment with here, so make sure to read through their documentation.</p>
+<p>I also made up a few more small datasets to match the chart types I wanted to show here; the scripts for those are in the <code>utils</code> folder, and the datasets are in the <code>inputs</code> folder.</p>
+<p>Also we didn’t get a chance to talk about annotations in mapping, but I put examples of north arrows and scales in [<code>./15_color_text_mapping.html</code>].</p>
+<p>Additional packages you’ll need to run everything here:</p>
+<ul>
+<li>ggrepel</li>
+<li>ggExtra</li>
+<li>ggbeeswarm</li>
+<li>data.tree</li>
+<li>tidygraph</li>
+<li>ggraph</li>
+<li>cartogram</li>
+<li>waffle (the one on CRAN is way outdated; use the one on GitHub <code>remotes::install_github("hrbrmstr/waffle")</code>)</li>
+<li>showtext in order to make the pictogram with waffle; use <code>waffle::install_fa_fonts()</code> to install Font Awesome</li>
+<li>ggmosaic (again install from Github: <code>remotes::install_github("haleyjeppson/ggmosaic")</code>)</li>
+<li>geofacet</li>
+<li>geogrid (installs with geofacet)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(justviz)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(showtext)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">library</span>(waffle)</span>
+<span id="cb1-7"><a href="#cb1-7"></a><span class="fu">library</span>(ggmosaic)</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="fu">library</span>(geofacet)</span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="fu">library</span>(ggraph)</span>
+<span id="cb1-10"><a href="#cb1-10"></a></span>
+<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># for pictogram, requires installing Font Awesome font first</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>sysfonts<span class="sc">::</span><span class="fu">font_add</span>(fa5_solid, <span class="st">"fa-solid-900.ttf"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="fu">showtext_auto</span>()</span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="fu">showtext_opts</span>(<span class="at">dpi =</span> <span class="dv">200</span>)</span>
+<span id="cb1-15"><a href="#cb1-15"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"utils/plotting_utils.R"</span>))</span>
+<span id="cb1-16"><a href="#cb1-16"></a>balt_metro <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Baltimore city"</span>, <span class="st">"Baltimore County"</span>, <span class="st">"Carroll County"</span>, <span class="st">"Anne Arundel County"</span>,</span>
+<span id="cb1-17"><a href="#cb1-17"></a>                <span class="st">"Howard County"</span>, <span class="st">"Queen Anne's County"</span>, <span class="st">"Harford County"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="fu">theme_set</span>(<span class="fu">theme_nice</span>())</span>
+<span id="cb1-19"><a href="#cb1-19"></a></span>
+<span id="cb1-20"><a href="#cb1-20"></a>counties_sf <span class="ot">&lt;-</span> tigris<span class="sc">::</span><span class="fu">counties</span>(<span class="at">state =</span> <span class="st">"24"</span>, <span class="at">cb =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21"></a>  <span class="fu">select</span>(<span class="at">name =</span> NAMELSAD)</span>
+<span id="cb1-22"><a href="#cb1-22"></a>states_sf <span class="ot">&lt;-</span> tigris<span class="sc">::</span><span class="fu">states</span>(<span class="at">cb =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-23"><a href="#cb1-23"></a>  janitor<span class="sc">::</span><span class="fu">clean_names</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-24"><a href="#cb1-24"></a>  <span class="fu">select</span>(geoid, name) <span class="sc">|&gt;</span></span>
+<span id="cb1-25"><a href="#cb1-25"></a>  <span class="fu">st_shift_longitude</span>() <span class="sc">|&gt;</span></span>
+<span id="cb1-26"><a href="#cb1-26"></a>  rmapshaper<span class="sc">::</span><span class="fu">ms_simplify</span>(<span class="at">keep =</span> <span class="fl">0.05</span>)</span>
+<span id="cb1-27"><a href="#cb1-27"></a></span>
+<span id="cb1-28"><a href="#cb1-28"></a>edu_by_state <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"inputs/edu_by_state.rds"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="non-spatial" class="level2">
+<h2 class="anchored" data-anchor-id="non-spatial">Non-spatial</h2>
+<section id="slopegraphs" class="level3">
+<h3 class="anchored" data-anchor-id="slopegraphs">Slopegraphs</h3>
+<p>A slopegraph is pretty much just a line chart with (generally) only start and end values. They’re useful for quickly showing how several groups change some value between 2 points in time, and how all the groups compare to one another at both of those endpoints. The drawback is that you miss any important changes that may have happened in between those 2 points, so make sure there isn’t any volatility or other patterns you could be leaving out. These work well for something where steady growth or decline is a reasonable expectation, not something that fluctuates like unemployment rates.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>ej_endpts <span class="ot">&lt;-</span> ej_trend <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">group_by</span>(year, indicator) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">summarise</span>(<span class="at">med_d2 =</span> <span class="fu">median</span>(d2_ptile)) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2018</span>, <span class="dv">2023</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="co"># only include indicators that appear in both years</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">group_by</span>(indicator) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">filter</span>(<span class="fu">n</span>() <span class="sc">==</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>  <span class="fu">ungroup</span>()<span class="sc">|&gt;</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="co"># taking a subset to keep simple</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">filter</span>(indicator <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"lead_paint"</span>, <span class="st">"ozone"</span>, <span class="st">"superfund"</span>, <span class="st">"traffic"</span>, <span class="st">"haz_waste"</span>, <span class="st">"wastewater"</span>, <span class="st">"risk_mgmt_plan"</span>))</span>
+<span id="cb2-11"><a href="#cb2-11"></a></span>
+<span id="cb2-12"><a href="#cb2-12"></a>ej_endpts  <span class="sc">|&gt;</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="fu">mutate</span>(<span class="at">indicator =</span> forcats<span class="sc">::</span><span class="fu">fct_relabel</span>(indicator, snakecase<span class="sc">::</span>to_sentence_case)) <span class="sc">|&gt;</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>  <span class="fu">mutate</span>(<span class="at">lbl =</span> <span class="fu">paste</span>(indicator, med_d2, <span class="at">sep =</span> <span class="st">": "</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="co"># set group to the same variable as color</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> med_d2, <span class="at">color =</span> indicator, <span class="at">group =</span> indicator)) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>  ggrepel<span class="sc">::</span><span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> lbl), <span class="at">hjust =</span> <span class="st">"outward"</span>, <span class="at">size =</span> <span class="dv">5</span>,</span>
+<span id="cb2-20"><a href="#cb2-20"></a>                           <span class="at">seed =</span> <span class="dv">1</span>, <span class="at">direction =</span> <span class="st">"y"</span>, <span class="at">point.padding =</span> <span class="fu">unit</span>(<span class="fl">0.5</span>, <span class="st">"lines"</span>)) <span class="sc">+</span></span>
+<span id="cb2-21"><a href="#cb2-21"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2018</span>, <span class="dv">2023</span>), </span>
+<span id="cb2-22"><a href="#cb2-22"></a>                     <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fl">1.5</span>)) <span class="sc">+</span></span>
+<span id="cb2-23"><a href="#cb2-23"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb2-24"><a href="#cb2-24"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> qual_pal) <span class="sc">+</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb2-26"><a href="#cb2-26"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb2-27"><a href="#cb2-27"></a>       <span class="at">title =</span> <span class="st">"Median EJSCREEN environmental justice index percentile by risk factor, Maryland block groups, 2018-2023"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/slopegraph-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>When you have a slopegraph with a lot of observations but where it’s more important to show the overall patterns than individual paths, you can set the lines all the same color except one to highlight, or set the color based on whether lines are trending upward or downward.</p>
+</section>
+<section id="marginal-plots" class="level3">
+<h3 class="anchored" data-anchor-id="marginal-plots">Marginal plots</h3>
+<p>Marginal plots are kind of smaller plots that, like the name implies, are squeezed into the margins along a larger plot. Using <code>ggExtra</code> these are easy to do but the syntax is a little different from other geoms: you save your plot to a variable, then pass it to the marginal plotting function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>to_margin <span class="ot">&lt;-</span> acs <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3"></a>         total_pop <span class="sc">&gt;</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_density, <span class="at">y =</span> foreign_born)) <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> total_pop), <span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> qual_pal[<span class="dv">2</span>]) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="co"># theme(legend.position = "left") +</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Foreign-born population vs population density,</span><span class="sc">\n</span><span class="st">Maryland tracts, 2022"</span>) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="co"># doesn't seem to work with the title text wrapping that's in theme_nice, so replace it</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>  <span class="co"># The new version of ggplot uses a different argument to place legends</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="fl">0.02</span>, <span class="fl">0.98</span>),</span>
+<span id="cb3-14"><a href="#cb3-14"></a>        <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb3-15"><a href="#cb3-15"></a></span>
+<span id="cb3-16"><a href="#cb3-16"></a>ggExtra<span class="sc">::</span><span class="fu">ggMarginal</span>(to_margin, <span class="at">type =</span> <span class="st">"histogram"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/margin-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="beeswarm-plots" class="level3">
+<h3 class="anchored" data-anchor-id="beeswarm-plots">Beeswarm plots</h3>
+<p>Beeswarms are a way to show the distribution of a continuous variable, which also keeping symbols for individual observations. They can be useful when they don’t have a ton of points, or when you have some wiggle room in terms of accuracy.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>acs <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>         county <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Baltimore city"</span>, <span class="st">"Baltimore County"</span>, <span class="st">"Howard County"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> homeownership, <span class="at">y =</span> county)) <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="co"># also try ggbeeswarm::geom_beeswarm, and lots of different arguments</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>  ggbeeswarm<span class="sc">::</span><span class="fu">geom_quasirandom</span>(<span class="at">method =</span> <span class="st">"quasirandom"</span>, <span class="at">nbins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb4-8"><a href="#cb4-8"></a>       <span class="at">title =</span> <span class="st">"Homeownership rates by county, Maryland tracts, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/beeswarm-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="pie-charts" class="level3">
+<h3 class="anchored" data-anchor-id="pie-charts">Pie charts</h3>
+<p>We haven’t talked about pie charts because they are terribly overused. (A warm-up we didn’t do in class was just searching “are pie charts evil” online.) There are some cases where they’re appropriate, however, mostly when there are very few categories and they have very distinct proportions. In ggplot, a pie chart is just a stacked bar chart in polar coordinates. Pie charts should be used to show the parts of some whole.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>commute <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"inputs/public_transit_commutes.rds"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(type)) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">group_by</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="co"># dots for making a waffle plot</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  <span class="fu">mutate</span>(<span class="at">dots =</span> justviz<span class="sc">::</span><span class="fu">round_sum100</span>(share <span class="sc">*</span> <span class="dv">100</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb5-7"><a href="#cb5-7"></a></span>
+<span id="cb5-8"><a href="#cb5-8"></a>commute2 <span class="ot">&lt;-</span> commute <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="fu">filter</span>(name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Baltimore city"</span>, <span class="st">"Prince George's County"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="fu">mutate</span>(<span class="at">type =</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(type, share, <span class="at">.fun =</span> max, <span class="at">.desc =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb5-11"><a href="#cb5-11"></a></span>
+<span id="cb5-12"><a href="#cb5-12"></a>commute2 <span class="sc">|&gt;</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="dv">1</span>, <span class="at">y =</span> share, <span class="at">fill =</span> type)) <span class="sc">+</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_fill</span>()) <span class="sc">+</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>  <span class="co"># run code without this coord_polar call to see how it changes</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(name)) <span class="sc">+</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> qual_pal) <span class="sc">+</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb5-22"><a href="#cb5-22"></a>       <span class="at">title =</span> <span class="st">"Means of transportation to work, share of workers who commute by public transportation, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/piechart-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="waffle-plots" class="level3">
+<h3 class="anchored" data-anchor-id="waffle-plots">Waffle plots *</h3>
+<p>A waffle plot serves a similar purpose to a pie chart, but can do it more flexibly and can be easier to read accurately. If you replace your squares or dots with symbols for your categories, you’ve got a pictograph / isotype. These work best when you can get your data into some easy denominator, such as having 100 squares with each representing the proportion of some group. The last time I did one of these it was school district enrollment by race/ethnicity, so there were 100 dots and each represented one child out of 100. They don’t <em>have</em> to be square, however, but then you lose out on some of the ability to humanize your data through the ease of counting points. The function <code>justviz::round_sum100</code> will do its best to coerce your data so it adds to 100 in spite of rounding.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>commute2 <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="co"># waffle hasn't updated from size argument to linewidth</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  waffle<span class="sc">::</span><span class="fu">geom_waffle</span>(<span class="fu">aes</span>(<span class="at">fill =</span> type, <span class="at">values =</span> dots),</span>
+<span id="cb6-5"><a href="#cb6-5"></a>                      <span class="at">flip =</span> <span class="cn">TRUE</span>, <span class="at">color =</span> <span class="st">"white"</span>, <span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(name)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> qual_pal) <span class="sc">+</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Means of transportation to work, per 100 workers who commute by public transportation, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/waffle-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can use <code>waffle::geom_pictogram</code> and names of <a href="https://fontawesome.com/search">Font Awesome icons</a> to turn this into a pictogram.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>commute2 <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  waffle<span class="sc">::</span><span class="fu">geom_pictogram</span>(<span class="fu">aes</span>(<span class="at">color =</span> type, <span class="at">label =</span> type, <span class="at">values =</span> dots),</span>
+<span id="cb7-4"><a href="#cb7-4"></a>                      <span class="at">flip =</span> <span class="cn">TRUE</span>, <span class="at">size =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(name)) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> qual_pal) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">breaks =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>  waffle<span class="sc">::</span><span class="fu">scale_label_pictogram</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"ship"</span>, <span class="st">"tram"</span>, <span class="st">"train"</span>, <span class="st">"subway"</span>, <span class="st">"bus"</span>)) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Means of transportation to work, per 100 workers who commute by public transportation, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/picto-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="mosaic-plot-marimekko" class="level3">
+<h3 class="anchored" data-anchor-id="mosaic-plot-marimekko">Mosaic plot / marimekko</h3>
+<p>Mosaic plots are another way to show parts of a whole, but they do it in multiple dimensions, kind of a 2D stacked bar chart. I’ve used them for things like population by race/ethnicity across age groups, or population by race/ethnicity across redlining map grades. Here is an example that shows educational attainment and place of birth as the x and y dimensions, with the size in each direction representing the share or count. Along the x-axis, widths of boxes will add up to the total number of people at that education level, and along the y-axis, heights will add up to the total number of people with that place of birth. (If contingency tables mean anything to you, this is like the graphic equivalent.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>commute <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">filter</span>(name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Baltimore city"</span>, <span class="st">"Baltimore County"</span>, <span class="st">"Anne Arundel County"</span>, <span class="st">"Howard County"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">where</span>(is.factor), forcats<span class="sc">::</span>fct_drop)) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="co"># order counties by total transit workers</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="co"># not sure why wrapping labels in scale_x_productlist call doesn't work so did it here</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>  <span class="fu">mutate</span>(<span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>           forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(count, <span class="at">.fun =</span> sum, <span class="at">.desc =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>           forcats<span class="sc">::</span><span class="fu">fct_relabel</span>(scales<span class="sc">::</span><span class="fu">label_wrap</span>(<span class="dv">5</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">fill =</span> type, <span class="at">weight =</span> count)) <span class="sc">+</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a>  <span class="co"># special scale from ggmosaic</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a>  <span class="fu">scale_x_productlist</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>))) <span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> qual_pal) <span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Means of transportation to work, of workers who commute by public transportation, 2022"</span>) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/mosaic-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="hierarchical-visualizations" class="level3">
+<h3 class="anchored" data-anchor-id="hierarchical-visualizations">Hierarchical visualizations *</h3>
+<p>Occasionally you’ll come across data with a hierarchical structure, such that one observation is a “child” or subset of another, moving through some set of layers. Think of a directory structure on your computer, where you can start with one folder, but then have folders nested inside folders, nested inside more folders. The consumer expenditure survey data is structured like this (<code>justviz::spending</code>); this will be similar to what I did for the example midterm. There are several packages for working with hierarchical / tree-shaped structures specifically, and graph / network analysis more broadly, but it can be hard to wrangle your data into the right shape. One of the easier ways I’ve found is the package <code>data.tree</code>, which is designed for working with file paths but you can set any other data up to mimic file paths.</p>
+<p>The <code>tidygraph</code> and <code>ggraph</code> packages are written by one of ggplot’s maintainers and help with creating graph / network data in a tidyverse-based workflow and plotting it with ggplot, respectively.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>food_hier <span class="ot">&lt;-</span> spending <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2022</span>,</span>
+<span id="cb9-3"><a href="#cb9-3"></a>         l2 <span class="sc">==</span> <span class="st">"Food"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">select</span>(item, <span class="fu">matches</span>(<span class="st">"^l</span><span class="sc">\\</span><span class="st">d"</span>), qtotal) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  tidyr<span class="sc">::</span><span class="fu">unite</span>(<span class="st">"fake_path"</span>, l2, l3, l4, l5, <span class="at">remove =</span> <span class="cn">FALSE</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">"/"</span>)</span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a>food_network <span class="ot">&lt;-</span> data.tree<span class="sc">::</span><span class="fu">as.Node</span>(food_hier, <span class="at">pathName =</span> <span class="st">"fake_path"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>  tidygraph<span class="sc">::</span><span class="fu">as_tbl_graph</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9"></a>  <span class="co"># join some columns back in</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>  <span class="fu">left_join</span>(food_hier <span class="sc">|&gt;</span> <span class="fu">select</span>(item, l3, l4, qtotal), </span>
+<span id="cb9-11"><a href="#cb9-11"></a>            <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name"</span> <span class="ot">=</span> <span class="st">"item"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-12"><a href="#cb9-12"></a>  <span class="co"># is this the lowest level in its branch?</span></span>
+<span id="cb9-13"><a href="#cb9-13"></a>  <span class="fu">mutate</span>(<span class="at">is_leaf =</span> tidygraph<span class="sc">::</span><span class="fu">node_is_leaf</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a>  <span class="co"># if so, make sure it has a subcategory</span></span>
+<span id="cb9-15"><a href="#cb9-15"></a>  <span class="fu">mutate</span>(<span class="at">subcat =</span> <span class="fu">ifelse</span>(is_leaf, <span class="fu">coalesce</span>(l4, l3), <span class="cn">NA_character_</span>))</span>
+<span id="cb9-16"><a href="#cb9-16"></a></span>
+<span id="cb9-17"><a href="#cb9-17"></a><span class="fu">ggraph</span>(food_network, <span class="at">layout =</span> <span class="st">"tree"</span>) <span class="sc">+</span></span>
+<span id="cb9-18"><a href="#cb9-18"></a>  <span class="fu">geom_edge_diagonal2</span>(<span class="fu">aes</span>(<span class="at">color =</span> node.l4), <span class="at">linewidth =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19"></a>  <span class="fu">geom_node_point</span>(<span class="fu">aes</span>(<span class="at">size =</span> qtotal), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb9-20"><a href="#cb9-20"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">data =</span> <span class="sc">~</span><span class="fu">filter</span>(., is_leaf), </span>
+<span id="cb9-21"><a href="#cb9-21"></a>                 <span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>, <span class="at">nudge_y =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb9-22"><a href="#cb9-22"></a>  <span class="co"># geom_node_text(aes(label = name), data = ~filter(., is_leaf)) +</span></span>
+<span id="cb9-23"><a href="#cb9-23"></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb9-24"><a href="#cb9-24"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">add =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">1</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/tree-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Obviously that needs some work but hopefully you get the idea. Circle packing is another type of hierarchical layout.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggraph</span>(food_network, <span class="at">layout =</span> <span class="st">"circlepack"</span>, <span class="at">weight =</span> qtotal) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_node_circle</span>(<span class="fu">aes</span>(<span class="at">fill =</span> subcat)) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">geom_node_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name), <span class="at">size =</span> <span class="dv">3</span>, <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">seed =</span> <span class="dv">1</span>,</span>
+<span id="cb10-4"><a href="#cb10-4"></a>                 <span class="at">data =</span> <span class="sc">~</span><span class="fu">filter</span>(., is_leaf)) <span class="sc">+</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="co"># equal coordinates so these stay circles</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="fu">coord_fixed</span>() <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> qual_pal, <span class="at">na.value =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/circle-pack-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Again, needs a lot of tedious cleaning.</p>
+</section>
+</section>
+<section id="spatial" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="spatial">Spatial</h2>
+<section id="bubble-map" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="bubble-map">Bubble map</h3>
+<p>Instead of filling the space of each polygon for a choropleth, you place a circle there (usually its centroid) and scale it based on your data. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> These can work well for things that aren’t appropriate for a choropleth, such as counts instead of rates, especially counts of something relatively rare where a single additional event could throw off the rate of a small area (that’s the main time I’ve used them, things like drug overdose deaths).</p>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;There are some different algorithms you can explore for defining the center of a region, since common definitions of a centroid can actually fall outside the polygon. You also might try schemes to weight the centroid to be more of a center of population mass than just a center of land mass. (<a href="https://stackoverflow.com/q/44327994/5325862">example</a>)</p></div><div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="co"># just to have an example of a count instead of rate, calculate number of people with grad degrees</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>grad_degrees <span class="ot">&lt;-</span> counties_sf <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">left_join</span>(acs, <span class="at">by =</span> <span class="st">"name"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>  <span class="fu">st_transform</span>(<span class="dv">2248</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">mutate</span>(<span class="at">n_grad_degree =</span> <span class="fu">round</span>(grad_degree <span class="sc">*</span> ages25plus))</span>
+<span id="cb11-6"><a href="#cb11-6"></a></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="co"># draw county boundaries, then draw points at their centroids</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>grad_cents <span class="ot">&lt;-</span> <span class="fu">st_centroid</span>(grad_degrees)</span>
+<span id="cb11-9"><a href="#cb11-9"></a></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="co"># putting data frames in separate geom_sf calls just to avoid confusing myself</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="co"># as to which data frame is in which geom layer</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a><span class="fu">ggplot</span>(grad_degrees) <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"gray20"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">size =</span> n_grad_degree), <span class="at">data =</span> grad_cents, <span class="at">color =</span> qual_pal[<span class="dv">2</span>], <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb11-15"><a href="#cb11-15"></a>  <span class="co"># make sure to scale by area, not radius</span></span>
+<span id="cb11-16"><a href="#cb11-16"></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">10</span>) <span class="sc">+</span></span>
+<span id="cb11-17"><a href="#cb11-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of people with graduate degrees, Maryland adults ages 25+ by county, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/bubblemap-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="cartograms" class="level3">
+<h3 class="anchored" data-anchor-id="cartograms">Cartograms *</h3>
+<p>A cartogram is like a choropleth, but the shapes have been distorted to account for the effect of different area sizes on how you view the choropleth, such as scaling area proportional to population. The downside is they’re hard to read for a place you’re not very familiar with, so I mostly only see them done well for something like the US by state, or the world by country.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># the cartogram package has 3 different algorithms for creating cartograms</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co"># returns an sf object, requires input be projected</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="co"># could instead scale by pop 25+</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a>grad_degrees <span class="sc">|&gt;</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>  cartogram<span class="sc">::</span><span class="fu">cartogram_cont</span>(<span class="at">weight =</span> <span class="st">"total_pop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> grad_degree)) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Share of adults with graduate degrees, Maryland adults ages 25+ by county, 2022"</span>,</span>
+<span id="cb12-10"><a href="#cb12-10"></a>       <span class="at">subtitle =</span> <span class="st">"Shapes sized by total population"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/cartogram-md-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This is totally ridiculous though—not a lot of people are going to know Maryland counties well enough for this to be useful. For reference, I just searched online for “US cartogram” and mostly got presidential election maps, some of which make me nauseous.</p>
+<p>An alternative is a Dorling cartogram, which replaces the polygon oozing effect with a circle packing algorithm.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>grad_degrees <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a>  cartogram<span class="sc">::</span><span class="fu">cartogram_dorling</span>(<span class="at">weight =</span> <span class="st">"total_pop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> grad_degree)) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Share of adults with graduate degrees, Maryland adults ages 25+ by county, 2022"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7"></a>       <span class="at">subtitle =</span> <span class="st">"Shapes sized by total population"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/dorling-md-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Again, not great for counties, but works okay for states.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>grad_degrees_us <span class="ot">&lt;-</span> edu_by_state <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">filter</span>(place_of_birth <span class="sc">==</span> <span class="st">"total"</span>, edu <span class="sc">==</span> <span class="st">"grad_degree"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> <span class="fu">c</span>(geoid, name, total_pop),</span>
+<span id="cb14-4"><a href="#cb14-4"></a>   <span class="at">names_from =</span> edu, <span class="at">values_from =</span> share)</span>
+<span id="cb14-5"><a href="#cb14-5"></a></span>
+<span id="cb14-6"><a href="#cb14-6"></a>states_sf <span class="sc">|&gt;</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="co"># to do contiguous cartogram keeping only continental US, sorry AK and HI</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>  <span class="fu">filter</span>(<span class="sc">!</span>name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Alaska"</span>, <span class="st">"Hawaii"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>  <span class="co"># needs to be projected so put it in albers equal us</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>  <span class="fu">st_transform</span>(<span class="dv">5070</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-11"><a href="#cb14-11"></a>  <span class="co"># inner join in order to drop state-ish areas that don't have data e.g. Guam</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a>  <span class="fu">inner_join</span>(grad_degrees_us, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span>, <span class="st">"name"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a>  cartogram<span class="sc">::</span><span class="fu">cartogram_cont</span>(<span class="at">weight =</span> <span class="st">"total_pop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-14"><a href="#cb14-14"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> grad_degree)) <span class="sc">+</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb14-17"><a href="#cb14-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Share of adults with graduate degrees, adults ages 25+ by state, 2022"</span>,</span>
+<span id="cb14-18"><a href="#cb14-18"></a>       <span class="at">subtitle =</span> <span class="st">"Shapes sized by total population"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/cartogram-us-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Still hard to see the area with the highest rate by far, DC, since even scaling by population it’s way smaller than anywhere else.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>states_sf <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">filter</span>(<span class="sc">!</span>name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Alaska"</span>, <span class="st">"Hawaii"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="fu">st_transform</span>(<span class="dv">5070</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="fu">inner_join</span>(grad_degrees_us, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span>, <span class="st">"name"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  cartogram<span class="sc">::</span><span class="fu">cartogram_dorling</span>(<span class="at">weight =</span> <span class="st">"total_pop"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> grad_degree)) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Share of adults with graduate degrees, adults ages 25+ by state, 2022"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10"></a>       <span class="at">subtitle =</span> <span class="st">"Shapes sized by total population"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/dorling-us-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Gives DC a little more breathing room. <a href="https://medium.com/tdebeus/trump-should-ignore-the-mercator-map-when-showing-election-results-52ad2d33b740">Here</a> are a bunch more examples.</p>
+</section>
+<section id="grid-map" class="level3">
+<h3 class="anchored" data-anchor-id="grid-map">Grid map *</h3>
+<p>I don’t know if that’s really the right name for it. They use these a lot on NPR’s site. Like the cartograms, these are best used for very familiar geographies. You can get grids premade from the <code>geofacets</code> package, including states in the US and counties in some large states (not MD).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>percent <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a>edu_by_state <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">filter</span>(edu <span class="sc">==</span> <span class="st">"grad_degree"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> share, <span class="at">y =</span> forcats<span class="sc">::</span><span class="fu">fct_rev</span>(place_of_birth), <span class="at">fill =</span> place_of_birth)) <span class="sc">+</span></span>
+<span id="cb16-6"><a href="#cb16-6"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.4</span>, <span class="at">by =</span> <span class="fl">0.2</span>),</span>
+<span id="cb16-8"><a href="#cb16-8"></a>                     <span class="at">labels =</span> percent) <span class="sc">+</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>  <span class="fu">scale_y_discrete</span>(<span class="at">labels =</span> <span class="cn">NULL</span>) <span class="sc">+</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> qual_pal) <span class="sc">+</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>  <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb16-12"><a href="#cb16-12"></a>        <span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(),</span>
+<span id="cb16-13"><a href="#cb16-13"></a>        <span class="at">strip.text.x.top =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>()),</span>
+<span id="cb16-14"><a href="#cb16-14"></a>        <span class="at">axis.text.x.bottom =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">0.7</span>)),</span>
+<span id="cb16-15"><a href="#cb16-15"></a>        <span class="at">legend.position =</span> <span class="st">"bottom"</span>) <span class="sc">+</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a>  <span class="fu">facet_geo</span>(<span class="fu">vars</span>(name), <span class="at">grid =</span> <span class="st">"us_state_grid2"</span>, <span class="at">label =</span> <span class="st">"code"</span>) <span class="sc">+</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Share of adults with graduate degrees by place of birth, adults ages 25+ by state, 2022"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/geofacet-us-1.png" class="img-fluid figure-img" width="1200"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>You can make a grid of any shapefile, such as Baltimore neighborhoods. Here are local businesses per 1,000 residents for Baltimore’s 55 community statistical areas (courtesy of our friends at BNIA):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>nb_business <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"inputs/business_by_nhood.rds"</span>))</span>
+<span id="cb17-2"><a href="#cb17-2"></a>balt_nb <span class="ot">&lt;-</span> nb_business <span class="sc">|&gt;</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  <span class="fu">slice_max</span>(year) <span class="sc">|&gt;</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">select</span>(name, geometry)</span>
+<span id="cb17-5"><a href="#cb17-5"></a></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="co"># doesn't actually generate the names it's expecting</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>nb_facet <span class="ot">&lt;-</span> geofacet<span class="sc">::</span><span class="fu">grid_auto</span>(balt_nb, <span class="at">seed =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>  <span class="fu">rename</span>(<span class="at">name =</span> name_name) <span class="sc">|&gt;</span></span>
+<span id="cb17-9"><a href="#cb17-9"></a>  <span class="fu">mutate</span>(<span class="at">code =</span> name)</span>
+<span id="cb17-10"><a href="#cb17-10"></a></span>
+<span id="cb17-11"><a href="#cb17-11"></a>nb_business <span class="sc">|&gt;</span></span>
+<span id="cb17-12"><a href="#cb17-12"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> value)) <span class="sc">+</span></span>
+<span id="cb17-13"><a href="#cb17-13"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb17-14"><a href="#cb17-14"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">2010</span>, <span class="dv">2021</span>)) <span class="sc">+</span></span>
+<span id="cb17-15"><a href="#cb17-15"></a>  <span class="fu">facet_geo</span>(<span class="fu">vars</span>(name), <span class="at">grid =</span> nb_facet, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb17-16"><a href="#cb17-16"></a>  <span class="fu">theme</span>(<span class="at">strip.text.x.top =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">0.7</span>)),</span>
+<span id="cb17-17"><a href="#cb17-17"></a>        <span class="at">axis.text.x.bottom =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">0.7</span>))) <span class="sc">+</span></span>
+<span id="cb17-18"><a href="#cb17-18"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Local businesses per 1,000 residents, Baltimore neighborhoods, 2010-2021"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/geofacet-balt-1.png" class="img-fluid figure-img" width="1200"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you wanted to do something like that, you should definitely tweak it (the package docs have some instructions and even an app) because the placement isn’t all right—Fell’s Point is way off.</p>
+<p>This one’s a little different, but the package <code>geogrid</code> makes grids of a shapefile, either a square grid or a hexagonal one. You can make a grid with <code>sf</code> and interpolate data over it (see the scripts to generate data for the MAUP notebook); the tricky part is maintaining the same number of polygons. Since this is what <code>geofacet</code> uses to create its grid, this unfortunately also puts Fell’s Point in the wrong place.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>nb_grid <span class="ot">&lt;-</span> geogrid<span class="sc">::</span><span class="fu">calculate_grid</span>(balt_nb, <span class="at">grid_type =</span> <span class="st">"regular"</span>, <span class="at">seed =</span> <span class="dv">1</span>)</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>geogrid<span class="sc">::</span><span class="fu">assign_polygons</span>(balt_nb, nb_grid) <span class="sc">|&gt;</span> </span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">left_join</span>(nb_business <span class="sc">|&gt;</span> <span class="fu">slice_max</span>(year) <span class="sc">|&gt;</span> <span class="fu">st_drop_geometry</span>(), <span class="at">by =</span> <span class="st">"name"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> value)) <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Local businesses per 1,000 residents, Baltimore neighborhoods, 2021"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/geogrid-balt-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="dot-density-map" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="dot-density-map">Dot density map *</h3>
+<p>A dot density map is a type of thematic map where instead of shading polygons, you fill in each space with randomized dots to represent your data. Generally this will be populations, so you might have one dot per person, or one dot per 100 people, or something to that effect. Most famously these have been done by race/ethnicity across different cities or the whole country.</p>
+<p>To be more accurate, I usually like to do these with block-level data, which you only get from the decennial census (every 10 years). A few packages create randomized dots for you, or you can calculate manually. <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Generating the points for a dot density map is usually a pretty compute-intensive process: I used the <code>dots</code> package (the script is at <code>utils/dot_density.R</code>) and even with 48GB of RAM, only 3 variables, only Baltimore city, <em>and</em> scaling the counts by a factor of 5, it still took about 5 or 6 minutes to calculate. That package doesn’t have an option for parallel processing, so for anything bigger than this I’d modify the package’s code or write the algorithm from scratch to work in parallel.</p></div><div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># takes almost 5 minutes so it's in a different script</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>tenure_dots <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"inputs/tenure_dot_density.rds"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">st_transform</span>(<span class="dv">2248</span>)</span>
+<span id="cb19-4"><a href="#cb19-4"></a></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="co"># combine into multi-point geometries---should take less memory</span></span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="co"># shuffle first in case since they're drawn by block</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb19-8"><a href="#cb19-8"></a>tenure_dots_merge <span class="ot">&lt;-</span> tenure_dots <span class="sc">|&gt;</span></span>
+<span id="cb19-9"><a href="#cb19-9"></a>  <span class="fu">slice_sample</span>(<span class="at">prop =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-10"><a href="#cb19-10"></a>  <span class="fu">group_by</span>(dots_type) <span class="sc">|&gt;</span></span>
+<span id="cb19-11"><a href="#cb19-11"></a>  <span class="fu">summarise</span>()</span>
+<span id="cb19-12"><a href="#cb19-12"></a></span>
+<span id="cb19-13"><a href="#cb19-13"></a>tenure_dots_merge <span class="sc">|&gt;</span></span>
+<span id="cb19-14"><a href="#cb19-14"></a>  <span class="fu">filter</span>(dots_type <span class="sc">==</span> <span class="st">"total_hh"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-15"><a href="#cb19-15"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb19-16"><a href="#cb19-16"></a>  <span class="fu">geom_sf</span>(<span class="at">size =</span> <span class="fl">0.05</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb19-17"><a href="#cb19-17"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="st">"lines"</span>))) <span class="sc">+</span></span>
+<span id="cb19-18"><a href="#cb19-18"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Dot density map, total households, Baltimore city, 2020"</span>,</span>
+<span id="cb19-19"><a href="#cb19-19"></a>       <span class="at">subtitle =</span> <span class="st">"One dot = 5 households"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/dot-density-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>tenure_dots_merge <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">filter</span>(dots_type <span class="sc">!=</span> <span class="st">"total_hh"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">color =</span> dots_type), <span class="at">size =</span> <span class="fl">0.05</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a>  <span class="fu">theme</span>(<span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="st">"lines"</span>))) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> qual_pal[<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>)],</span>
+<span id="cb20-7"><a href="#cb20-7"></a>                     <span class="at">guide =</span> <span class="fu">guide_legend</span>(<span class="at">override.aes =</span> <span class="fu">list</span>(<span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="dv">1</span>))) <span class="sc">+</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Dot density map, total households, Baltimore city, 2020"</span>,</span>
+<span id="cb20-9"><a href="#cb20-9"></a>       <span class="at">subtitle =</span> <span class="st">"One dot = 5 households"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/dot-density-2.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="binned-or-kernel-density-maps" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="binned-or-kernel-density-maps">Binned or kernel density maps *</h3>
+<p>To make a kernel density map, you calculate the density of points in two (or more I suppose) dimensions using a smoothing function, then map the intensity. There are different ways to do this, including interpolating values over space and modeling them over a raster, or using point pattern analysis (package <code>spdep</code> is the workhorse for this). Here’s a cheap way by getting the x &amp; y coordinates of points, then just plotting the density with ggplot’s built-in 2D density geom.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>balt_sf <span class="ot">&lt;-</span> counties_sf <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Baltimore city"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a>art_xy <span class="ot">&lt;-</span> art_sf <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">st_filter</span>(balt_sf) <span class="sc">|&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="fu">st_transform</span>(<span class="dv">2248</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a>  <span class="fu">mutate</span>(<span class="at">coords =</span> <span class="fu">st_coordinates</span>(geometry)) <span class="sc">|&gt;</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a>  <span class="fu">mutate</span>(<span class="at">x =</span> coords[, <span class="dv">1</span>],</span>
+<span id="cb21-9"><a href="#cb21-9"></a>         <span class="at">y =</span> coords[, <span class="dv">2</span>])</span>
+<span id="cb21-10"><a href="#cb21-10"></a></span>
+<span id="cb21-11"><a href="#cb21-11"></a><span class="co"># also try geom_bin2d instead of geom_hex</span></span>
+<span id="cb21-12"><a href="#cb21-12"></a><span class="fu">ggplot</span>(art_xy, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb21-13"><a href="#cb21-13"></a>  <span class="co"># half-mile bin width</span></span>
+<span id="cb21-14"><a href="#cb21-14"></a>  <span class="fu">geom_hex</span>(<span class="at">binwidth =</span> <span class="dv">5280</span> <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb21-15"><a href="#cb21-15"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> balt_sf, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb21-16"><a href="#cb21-16"></a>  <span class="co"># coerce back into coordinate-space</span></span>
+<span id="cb21-17"><a href="#cb21-17"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="dv">2248</span>) <span class="sc">+</span></span>
+<span id="cb21-18"><a href="#cb21-18"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb21-19"><a href="#cb21-19"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Locations of public art, Baltimore city"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/kernel-1.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">ggplot</span>(art_xy, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="co"># calculates a density and sets fill automatically</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="fu">geom_density_2d_filled</span>(<span class="at">bins =</span> <span class="dv">8</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> balt_sf, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a>  <span class="co"># coerce back into coordinate-space</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="fu">coord_sf</span>(<span class="at">crs =</span> <span class="dv">2248</span>) <span class="sc">+</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>  <span class="fu">scale_fill_brewer</span>() <span class="sc">+</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Locations of public art, Baltimore city"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="18_experiments_files/figure-html/kernel-2.png" class="img-fluid figure-img" width="1050"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>That second one isn’t great! (If you change the palette to something with a dark color for low values, like the viridis scales, you’ll see why.) You could adjust it to fill the whole city, or you could limit the plot to the area that’s actually included in the density. There are better examples in <span class="citation" data-cites="L.N.M2019a">Lovelace et al. (<a href="#ref-L.N.M2019a" role="doc-biblioref">2019</a>)</span> but they get more into the weeds of raster analysis than we can do here.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-L.N.M2019a" class="csl-entry" role="listitem">
+Lovelace, R., Nowosad, J., &amp; Muenchow, J. (2019). Chapter 6 <span class="nocase">Raster-vector</span> interactions. In <em>Geocomputation with <span>R</span></em>. <a href="https://r.geocompx.org/raster-vector.html">https://r.geocompx.org/raster-vector.html</a>
+</div></div><div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">sessionInfo</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>R version 4.3.3 (2024-02-29)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 22.04.4 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: America/New_York
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices datasets  utils     methods   base     
+
+other attached packages:
+ [1] ggraph_2.2.1   geofacet_0.2.1 ggmosaic_0.3.4 waffle_1.0.2   showtext_0.9-7
+ [6] showtextdb_3.0 sysfonts_0.8.8 sf_1.0-15      justviz_0.2.3  ggplot2_3.5.1 
+[11] dplyr_1.1.4   
+
+loaded via a namespace (and not attached):
+  [1] RColorBrewer_1.1-3  wk_0.9.1            jsonlite_1.8.8     
+  [4] imguR_1.0.3         magrittr_2.0.3      ggbeeswarm_0.7.2   
+  [7] farver_2.1.1        rmarkdown_2.25      vctrs_0.6.5        
+ [10] memoise_2.0.1       terra_1.7-71        janitor_2.2.0      
+ [13] htmltools_0.5.7     forcats_1.0.0       curl_5.2.0         
+ [16] s2_1.1.6            KernSmooth_2.23-22  htmlwidgets_1.6.4  
+ [19] plyr_1.8.9          plotly_4.10.4       lubridate_1.9.3    
+ [22] cachem_1.0.8        uuid_1.2-0          commonmark_1.9.0   
+ [25] igraph_2.0.3        mime_0.12           lifecycle_1.0.4    
+ [28] pkgconfig_2.0.3     R6_2.5.1            fastmap_1.1.1      
+ [31] shiny_1.8.1.1       snakecase_0.11.1    digest_0.6.34      
+ [34] colorspace_2.1-0    rprojroot_2.0.4     productplots_0.1.1 
+ [37] labeling_0.4.3      fansi_1.0.6         timechange_0.3.0   
+ [40] httr_1.4.7          polyclip_1.10-6     compiler_4.3.3     
+ [43] here_1.0.1          proxy_0.4-27        withr_3.0.0        
+ [46] viridis_0.6.5       DBI_1.2.1           hexbin_1.28.3      
+ [49] ggforce_0.4.2       Rttf2pt1_1.3.12     MASS_7.3-60.0.1    
+ [52] geogrid_0.1.2       rappdirs_0.3.3      classInt_0.4-10    
+ [55] tools_4.3.3         units_0.8-5         vipor_0.4.7        
+ [58] beeswarm_0.4.0      httpuv_1.6.15       extrafontdb_1.0    
+ [61] glue_1.7.0          promises_1.2.1      gridtext_0.1.5     
+ [64] grid_4.3.3          generics_0.1.3      isoband_0.2.7      
+ [67] gtable_0.3.4        class_7.3-22        tidyr_1.3.1        
+ [70] data.table_1.15.4   tidygraph_1.3.1     sp_2.1-3           
+ [73] xml2_1.3.6          utf8_1.2.4          ggrepel_0.9.5      
+ [76] pillar_1.9.0        markdown_1.12       stringr_1.5.1      
+ [79] ggExtra_0.10.1      later_1.3.2         ggtext_0.1.2       
+ [82] tweenr_2.0.3        lattice_0.22-5      renv_1.0.3         
+ [85] tidyselect_1.2.1    miniUI_0.1.1.1      knitr_1.45         
+ [88] gridExtra_2.3       V8_4.4.1            xfun_0.41          
+ [91] graphlayouts_1.1.1  DT_0.33             stringi_1.8.3      
+ [94] lazyeval_0.2.2      yaml_2.3.8          geojsonsf_2.0.3    
+ [97] rmapshaper_0.5.0    evaluate_0.23       codetools_0.2-20   
+[100] cartogram_0.3.0     data.tree_1.1.0     extrafont_0.19     
+[103] tibble_3.2.1        packcircles_0.3.6   cli_3.6.2          
+[106] xtable_1.8-4        munsell_0.5.0       Rcpp_1.0.12        
+[109] rnaturalearth_1.0.1 png_0.1-8           rcartocolor_2.1.1  
+[112] jpeg_0.1-10         viridisLite_0.4.2   tigris_2.1         
+[115] scales_1.3.0        e1071_1.7-14        purrr_1.0.2        
+[118] rlang_1.1.3        </code></pre>
+</div>
+</div>
+
+
+
+</section>
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../weeks/17_sad_maps.html" class="pagination-link  aria-label=" 17.="" avoiding="" sad="" maps"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">17. Avoiding sad maps</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/18_experiments.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/18_experiments.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

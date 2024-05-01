@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.553">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -307,6 +307,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">17. Avoiding sad maps</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/18_experiments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">18. Experimentation</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -399,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">April 25, 2024</p>
+      <p class="date-modified">May 1, 2024</p>
     </div>
   </div>
     
@@ -410,6 +416,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><strong>Note:</strong> with the newer version of ggplot (3.5.0), setting <code>ndiscr = 0</code> inside <code>coord_sf</code> seems to be broken. I haven’t had a chance to investigate this yet but for now I’ve taken it out of this notebook.</p>
 <section id="warm-up" class="level2">
 <h2 class="anchored" data-anchor-id="warm-up">Warm up</h2>
 <p>Sketch a map of a place you’re familiar with. Mark off locations associated with something secret, or that people might want privacy around, or that are in some way stigmatized, things that even if people know the location is there they might not want their activity publicized. You don’t have to identify anything. For example, the places you used to go when you cut school as a teenager, places you know people sell or use drugs, methadone clinics.</p>
@@ -418,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="basemaps" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="basemaps">Basemaps</h2>
 <p>Put your map on a map. There are lots of options; Google Maps and OpenStreetMap are both very popular for map tiles, but they contain a lot of colors and symbols. For data visualization, simple grayscale or black &amp; white basemaps work well, like the map tiles from Stamen (now distributed through Stadia) and Carto. These often require an API key. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;One thing to note with the ggmap package is that several of the providers have gone out of business since the package was first released, and the functions for them haven’t all been removed. Don’t be surprised if you get errors downloading map tiles from one provider—just try another one. There are also a few other packages to download basemaps but none are updated often.</p></div></div><p>Also note that map tiles will generally be in the web Mercator projection (CRS 4369), so if you’re layering any geoms on top of them, you’ll want to transform into 4369. There are some ways to transform the tiles but they don’t generally look good.</p>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;One thing to note with the ggmap package is that several of the providers have gone out of business since the package was first released, and the functions for them haven’t all been removed. Don’t be surprised if you get errors downloading map tiles from one provider—just try another one. There are also a few other packages to download basemaps but none are updated often.</p></div><p>Also note that map tiles will generally be in the web Mercator projection (CRS 4369), so if you’re layering any geoms on top of them, you’ll want to transform into 4369. There are some ways to transform the tiles but they don’t generally look good.</p>
 <section id="getting-and-saving-api-keys" class="level3">
 <h3 class="anchored" data-anchor-id="getting-and-saving-api-keys">Getting and saving API keys</h3>
 <p>We had a fair amount of trouble with this in class, but API keys can be tricky to get and store. Even for a service that doesn’t seem like someone could cause any trouble with it, you want to treat your API keys like passwords—it’s a good habit to get into. Many packages that use APIs will have functions to help you save your key, and they’ll generally save to a specific <a href="https://kinsta.com/knowledgebase/what-is-an-environment-variable/">environment variable</a>. For example, <code>tidycensus::census_api_key</code> will save your key to the environment variable <code>CENSUS_API_KEY</code>, and that’s where its functions will also look for the key when you make API calls. This allows you to use a secret value (the key) without explicitly using it in your code. Some of these sorts of functions, including the ones in <code>ggmap</code>, won’t save the key between sessions by default; the <code>ggmap::register_*</code> helper functions take an argument <code>write = TRUE</code> in order to save the key permanently. That will mean the key is written to a file called <code>.Renviron</code>, usually saved to your computer’s home directory, which gets read every time you start an R session on that computer.</p>
@@ -509,7 +516,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-3"><a href="#cb3-3"></a><span class="fu">ggmap</span>(google_road) <span class="sc">+</span></span>
 <span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
 <span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Google roadmap, hard to read"</span>) <span class="sc">+</span></span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -521,7 +528,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-2"><a href="#cb4-2"></a><span class="fu">ggmap</span>(google_road, <span class="at">darken =</span> <span class="fu">c</span>(<span class="fl">0.5</span>, <span class="st">"white"</span>)) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Google roadmap, faded"</span>) <span class="sc">+</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -532,7 +539,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">ggmap</span>(google_sat) <span class="sc">+</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Google satellite"</span>) <span class="sc">+</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -543,7 +550,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggmap</span>(stamen_toner) <span class="sc">+</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stamen toner"</span>) <span class="sc">+</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -554,7 +561,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggmap</span>(stamen_bg) <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stamen toner background"</span>) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -565,7 +572,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggmap</span>(stamen_zoom) <span class="sc">+</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stamen toner background, zoom = 13"</span>) <span class="sc">+</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-4"><a href="#cb8-4"></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -576,7 +583,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">ggmap</span>(stamen_lite) <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stamen toner lite"</span>) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -587,7 +594,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggmap</span>(stamen_terrain) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> art_sf, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
 <span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Stamen terrain background"</span>) <span class="sc">+</span></span>
-<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -604,7 +611,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb11-4"><a href="#cb11-4"></a>  ggspatial<span class="sc">::</span><span class="fu">annotation_map_tile</span>(<span class="at">zoom =</span> <span class="dv">12</span>, <span class="at">progress =</span> <span class="st">"none"</span>, <span class="at">type =</span> <span class="st">"cartolight"</span>) <span class="sc">+</span></span>
 <span id="cb11-5"><a href="#cb11-5"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"orchid"</span>) <span class="sc">+</span></span>
 <span id="cb11-6"><a href="#cb11-6"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Carto light via ggspatial"</span>) <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="fu">coord_sf</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -643,7 +650,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-14"><a href="#cb12-14"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">shape =</span> <span class="st">"Brownfield"</span>), <span class="at">data =</span> balt_brownfields, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
 <span id="cb12-15"><a href="#cb12-15"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> balt_merge, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
 <span id="cb12-16"><a href="#cb12-16"></a>  <span class="fu">scale_fill_fermenter</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb12-17"><a href="#cb12-17"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a>  <span class="fu">coord_sf</span>() <span class="sc">+</span></span>
 <span id="cb12-18"><a href="#cb12-18"></a>  <span class="fu">labs</span>(</span>
 <span id="cb12-19"><a href="#cb12-19"></a>    <span class="at">title =</span> <span class="st">"Proximity to hazardous waste treatment, national percentile by tract"</span>,</span>
 <span id="cb12-20"><a href="#cb12-20"></a>    <span class="at">fill =</span> <span class="st">"Percentile"</span>, <span class="at">shape =</span> <span class="cn">NULL</span></span>
@@ -673,7 +680,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-13"><a href="#cb13-13"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> balt_merge, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
 <span id="cb13-14"><a href="#cb13-14"></a>  <span class="fu">scale_fill_fermenter</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
 <span id="cb13-15"><a href="#cb13-15"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"gray20"</span>)) <span class="sc">+</span></span>
-<span id="cb13-16"><a href="#cb13-16"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a>  <span class="fu">coord_sf</span>() <span class="sc">+</span></span>
 <span id="cb13-17"><a href="#cb13-17"></a>  <span class="fu">labs</span>(</span>
 <span id="cb13-18"><a href="#cb13-18"></a>    <span class="at">title =</span> <span class="st">"Elevated particulate matter, national percentile by tract"</span>,</span>
 <span id="cb13-19"><a href="#cb13-19"></a>    <span class="at">fill =</span> <span class="st">"Percentile"</span>, <span class="at">color =</span> <span class="cn">NULL</span></span>
@@ -698,7 +705,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">shape =</span> <span class="st">"Brownfield"</span>), <span class="at">data =</span> balt_brownfields, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> balt_merge, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>, <span class="at">fill =</span> <span class="cn">NA</span>, <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb14-6"><a href="#cb14-6"></a>  <span class="fu">scale_fill_fermenter</span>(<span class="at">palette =</span> <span class="st">"YlGnBu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb14-7"><a href="#cb14-7"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="fu">coord_sf</span>() <span class="sc">+</span></span>
 <span id="cb14-8"><a href="#cb14-8"></a>  <span class="fu">labs</span>(</span>
 <span id="cb14-9"><a href="#cb14-9"></a>    <span class="at">title =</span> <span class="st">"Proximity to hazardous waste treatment, national percentile by tract"</span>,</span>
 <span id="cb14-10"><a href="#cb14-10"></a>    <span class="at">fill =</span> <span class="st">"Percentile"</span>, <span class="at">shape =</span> <span class="cn">NULL</span></span>
@@ -949,24 +956,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-      }
-    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1001,11 +990,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
+      return note.innerHTML;
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
@@ -1281,7 +1266,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/15_color_text_mapping.html" class="pagination-link" aria-label="15. Color, text, and annotations in mapping">
+      <a href="../weeks/15_color_text_mapping.html" class="pagination-link  aria-label=" 15.="" color,="" text,="" and="" annotations="" in="" mapping"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">15. Color, text, and annotations in mapping</span>
       </a>          
   </div>
