@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>GES 778, Spring 2024 - Fonts</title>
+<title>GES 778, Spring 2024 - 19. Project 2 troubleshooting</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -55,27 +55,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -85,8 +65,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../tips/merging.html" rel="next">
-<link href="../tips/exporting.html" rel="prev">
+<link href="../weeks/18_experiments.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -129,7 +108,7 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-sidebar docked slimcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -138,7 +117,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tips/eda.html">Tips &amp; tricks</a></li><li class="breadcrumb-item"><a href="../tips/fonts.html">Fonts</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/19_project2.html">19. Project 2 troubleshooting</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -335,7 +314,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/19_project2.html" class="sidebar-item-text sidebar-link">
+  <a href="../weeks/19_project2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">19. Project 2 troubleshooting</span></a>
   </div>
 </li>
@@ -365,7 +344,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../tips/fonts.html" class="sidebar-item-text sidebar-link active">
+  <a href="../tips/fonts.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Fonts</span></a>
   </div>
 </li>
@@ -396,17 +375,16 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#typefaces" id="toc-typefaces" class="nav-link active" data-scroll-target="#typefaces">Typefaces</a></li>
-  <li><a href="#getting-and-using-fonts" id="toc-getting-and-using-fonts" class="nav-link" data-scroll-target="#getting-and-using-fonts">Getting and using fonts</a></li>
+  <li><a href="#spatial-joins" id="toc-spatial-joins" class="nav-link active" data-scroll-target="#spatial-joins">Spatial joins</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/tips/fonts.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/tips/fonts.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/19_project2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/19_project2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../tips/eda.html">Tips &amp; tricks</a></li><li class="breadcrumb-item"><a href="../tips/fonts.html">Fonts</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/index.html">Weekly notes</a></li><li class="breadcrumb-item"><a href="../weeks/19_project2.html">19. Project 2 troubleshooting</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Fonts</h1>
+<h1 class="title">19. Project 2 troubleshooting</h1>
 </div>
 
 
@@ -424,7 +402,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">March 26, 2024</p>
+      <p class="date-modified">May 2, 2024</p>
     </div>
   </div>
     
@@ -435,154 +413,203 @@ div.csl-indent {
 </header>
 
 
-<section id="typefaces" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="typefaces">Typefaces</h2>
-<p>There are a few main types of typefaces; most commonly you’ll see serif, sans-serif, and monospace. Serif typefaces have fancy dangly bits on the ends of different lines, sans-serif (i.e.&nbsp;“without serif”) ones don’t, and monospace typefaces have all characters with the same width (such as typewriters or what you most likely use for code).</p>
-<p>Text in general and type specifically can be an afterthought in data visualization, and I don’t often see much discussion on it but as always Datawrapper has a good, concise guide (<span class="citation" data-cites="Muth2024">Muth (<a href="#ref-Muth2024" role="doc-biblioref">2024</a>)</span>). Usually, though, a few things you’ll want to think about when choosing typefaces for data visualization (none of these are hard &amp; fast rules):</p>
-<div class="no-row-height column-margin column-container"><div id="ref-Muth2024" class="csl-entry" role="listitem">
-Muth, L. C. (2024). Which fonts to use for your charts and tables. In <em>Datawrapper</em>. <a href="https://blog.datawrapper.de/fonts-for-data-visualization/">https://blog.datawrapper.de/fonts-for-data-visualization/</a>
-</div></div><ul>
-<li>Lean toward sans-serifs over serifs for data viz</li>
-<li>Text should be legible at small sizes, such as on axis ticks</li>
-<li>Use a typeface with varying weights (these get numbered from 300 (light) to 900 (black))</li>
-<li>Be consistent: pick a typeface and stick with it throughout the visualization or the whole project, using varying weights and sizes</li>
-<li>Avoid <a href="https://fonts.google.com/knowledge/introducing_type/understanding_numerals">oldstyle numerals</a></li>
-<li>Keep it simple and avoid ambiguous characters</li>
-</ul>
-<p>My preference is usually to use slightly narrow sans-serif typefaces that are boxy with numerals of pretty uniform sizes. <a href="https://fonts.google.com/specimen/Barlow+Semi+Condensed?stroke=Sans+Serif">Barlow Semi Condensed</a> is my go-to for standalone charts or online visualizations; <a href="https://fonts.google.com/specimen/Source+Sans+3?stroke=Sans+Serif">Source Sans 3</a> is one I use a lot when I’m embedding charts into a document alongside long text and tables, all in the same typeface or another one that pairs well with it. Other good ones on Google Fonts are PT Sans, Roboto, Open Sans; Arial works well too but isn’t on Google.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(justviz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="spatial-joins" class="level2">
+<h2 class="anchored" data-anchor-id="spatial-joins">Spatial joins</h2>
+<p>Here’s how you can join sf points with sf polygons in order to find, for example, the number of points in each polygon. This example is brownfields per county. Like with other joins, it matters which is on the left &amp; which is on the right. <code>sf::st_join</code> has an argument to change from a left join to an inner join by setting <code>left = TRUE</code> (the default) to <code>left = FALSE</code>, respectively. The geometry after the join will follow the type of object on the left.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>counties_sf <span class="ot">&lt;-</span> tigris<span class="sc">::</span><span class="fu">counties</span>(<span class="at">state =</span> <span class="st">"24"</span>, <span class="at">cb =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">select</span>(<span class="at">county =</span> NAMELSAD)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># need to get into same crs</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>brownfields_transform <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(brownfields_sf, <span class="fu">st_crs</span>(counties_sf)) <span class="sc">|&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="co"># selecting just a subset of columns to make it easier to see what's going on</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">select</span>(<span class="at">site =</span> name, is_archived)</span>
+<span id="cb2-8"><a href="#cb2-8"></a></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="fu">st_join</span>(counties_sf, brownfields_transform) <span class="sc">|&gt;</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="fu">head</span>() <span class="co"># polygon join point = polygon</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 14%">
+<col style="width: 42%">
+<col style="width: 10%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">county</th>
+<th style="text-align: left;">site</th>
+<th style="text-align: left;">is_archived</th>
+<th style="text-align: left;">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">60</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: left;">Sauer Dump</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">MULTIPOLYGON (((-76.3257 39…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">60.1</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: left;">Aviation Station</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">MULTIPOLYGON (((-76.3257 39…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">60.2</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: left;">68th Street Dump/ East Baltimore Dumping Complex</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">MULTIPOLYGON (((-76.3257 39…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">60.3</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: left;">Industrial Enterprises</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">MULTIPOLYGON (((-76.3257 39…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">60.4</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: left;">Bear Creek Sediments</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">MULTIPOLYGON (((-76.3257 39…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">61</td>
+<td style="text-align: left;">Worcester County</td>
+<td style="text-align: left;">Campbell Soup Property</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">MULTIPOLYGON (((-75.66061 3…</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">st_join</span>(brownfields_transform, counties_sf) <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">head</span>() <span class="co"># point join polygon = point</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<colgroup>
+<col style="width: 44%">
+<col style="width: 11%">
+<col style="width: 22%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">site</th>
+<th style="text-align: left;">is_archived</th>
+<th style="text-align: left;">geometry</th>
+<th style="text-align: left;">county</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FNT Realty Cherry Hill</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">POINT (-76.6335 39.2574)</td>
+<td style="text-align: left;">Baltimore city</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bush Valley Landfill</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">POINT (-76.2619 39.4671)</td>
+<td style="text-align: left;">Harford County</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">101 Garrett Street</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">POINT (-76.6143 39.2376)</td>
+<td style="text-align: left;">Baltimore city</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Northhampton, City of Largo</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">POINT (-76.8279 38.8806)</td>
+<td style="text-align: left;">Prince George’s County</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Shellfish Seafood, Ltd.</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">POINT (-75.688 38.2008)</td>
+<td style="text-align: left;">Somerset County</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Former PPG - Works No.&nbsp;7 (Pittsburg Plate Glass)</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">POINT (-78.7479 39.5914)</td>
+<td style="text-align: left;">Allegany County</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>There are 150 rows in the brownfields data, but the first join, the dataframe with points joined onto polygons, has 153 rows. That’s because there are 3 counties with no brownfields. To deal with that, I’ll redo the join with <code>left = FALSE</code> to make it an inner join, so I don’t have any counties without brownfields.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>sites_per_county <span class="ot">&lt;-</span> <span class="fu">st_join</span>(counties_sf, brownfields_transform, <span class="at">left =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="co"># drop geometry---just want data frame for now</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="fu">group_by</span>(county) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">summarise</span>(<span class="at">n_total_sites =</span> <span class="fu">n</span>(),</span>
+<span id="cb4-6"><a href="#cb4-6"></a>            <span class="co"># throwing in another example aggregation</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>            <span class="at">n_open_sites =</span> <span class="fu">sum</span>(<span class="sc">!</span>is_archived))</span>
+<span id="cb4-8"><a href="#cb4-8"></a></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co"># join back onto counties shape, so every county has a polygon with a count</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co"># that makes sure we get a true 0 observation for counties without sites</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>sites_per_county_sf <span class="ot">&lt;-</span> counties_sf <span class="sc">|&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>  <span class="fu">left_join</span>(sites_per_county, <span class="at">by =</span> <span class="st">"county"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a>  <span class="co"># fill in 0 for counties with no observations</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(n_total_sites<span class="sc">:</span>n_open_sites, \(x) tidyr<span class="sc">::</span><span class="fu">replace_na</span>(x, <span class="dv">0</span>)))</span>
+<span id="cb4-15"><a href="#cb4-15"></a></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="fu">ggplot</span>(sites_per_county_sf) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> n_open_sites), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>  <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"BuPu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Number of current brownfields by county"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="19_project2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Maybe a more meaningful thing to do would be a rate, such as brownfields per 100,000 residents or brownfields per square mile, using data from the ACS dataset.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>sites_per_county_sf <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">left_join</span>(acs <span class="sc">|&gt;</span> <span class="fu">select</span>(name, total_pop, area_sqmi), <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"county"</span> <span class="ot">=</span> <span class="st">"name"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">mutate</span>(<span class="at">open_sites_per_100k =</span> (n_open_sites <span class="sc">/</span> total_pop) <span class="sc">*</span> <span class="dv">100000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> open_sites_per_100k), <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>    <span class="fu">scale_fill_distiller</span>(<span class="at">palette =</span> <span class="st">"BuPu"</span>, <span class="at">direction =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Current brownfields per 100k residents by county"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="19_project2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If instead we were interested in the points themselves but wanted to know what counties they were each in, a join with brownfields on the left would be helpful. For this example it wouldn’t be super useful, but for other project ideas (such as finding points within buffers) it could be.</p>
+
+
 </section>
-<section id="getting-and-using-fonts" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="getting-and-using-fonts">Getting and using fonts</h2>
-<p>Getting fonts working in R is very annoying. It is a different type of annoying in every operating system. One of the easier ways to do it is with the <a href="https://github.com/yixuan/showtext"><strong>showtext</strong></a> package, which also installs one called <strong>sysfonts</strong>. This lets you register a font within your code, including by downloading one directly from <a href="https://fonts.google.com/">Google Fonts</a>, and is generally compatible with ggplot themes and geoms. However, you’ll get weird rendering in your previews in RStudio, and I haven’t yet figured out whether it’s better or worse since switching from RMarkdown to Quarto (or from macOS to Linux). It gets especially weird in combination with specifying figure sizes, or when using other packages like ggtext and cowplot. You’ll also get long streams of warnings, text will come out super small or super huge, etc.</p>
-<p>My general advice is to get everything you want set in your chart first before you worry about fonts, and test them out by saving the image (<code>ggsave</code>) or looking at a preview of your document (e.g.&nbsp;<code>quarto::quarto_preview</code>) instead of wondering why it looks bad within RStudio.</p>
-
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Google Fonts has a <a href="https://fonts.google.com/knowledge">collection of articles</a> about typography that I recommend if you want to get more into this. I’m particularly leaning on their definitions to keep from mixing up <a href="https://fonts.google.com/knowledge/glossary/typeface">typeface and font</a>; they describe it as “a typeface is to a song as a font is to an MP3 file.”</p>
-</div></div><p>You’ll need to let your renderer know you’re using showtext via the YAML at the top of your document:</p>
-<p>For RMarkdown: <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;Supposedly RMarkdown will detect that you’re using showtext, but the whole thing is so finicky you might as well specify it.</p></div><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">fig.showtext</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>For Quarto:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">knitr</span><span class="kw">:</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="at">  </span><span class="fu">opts_knit</span><span class="kw">:</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="at">    </span><span class="fu">fig.showtext</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>I’ve also set</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">fig-dpi</span><span class="kw">:</span><span class="at"> </span><span class="dv">150</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>which might need to be adjusted on different computers.</p>
-<p>You also need to call <code>showtext_auto()</code> before trying to change any fonts, and you should set the resolution (DPI).</p>
-<p>Register a font with <code>sysfonts::font_add</code> or <code>sysfonts::font_add_google</code>. The first of these requires you to find a font on your computer, which can be tricky and is less portable than using the ones from Google. You can use <code>sysfonts::font_paths()</code> to find the paths that are searched for fonts on your computer. You can also adjust the weights used—400 for regular and 700 for bold are industry standards, but you can use different weights if they’re available.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">library</span>(showtext)</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="fu">source</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"utils/plotting_utils.R"</span>))</span>
-<span id="cb4-6"><a href="#cb4-6"></a></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="fu">showtext_auto</span>()</span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="fu">showtext_opts</span>(<span class="at">dpi =</span> <span class="dv">300</span>)</span>
-<span id="cb4-9"><a href="#cb4-9"></a></span>
-<span id="cb4-10"><a href="#cb4-10"></a>sysfonts<span class="sc">::</span><span class="fu">font_families</span>() <span class="co"># before loading any custom fonts</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "sans"         "serif"        "mono"         "wqy-microhei"</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Libre Franklin"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2"></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Open Sans"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3"></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Roboto Condensed"</span>)</span>
-<span id="cb6-4"><a href="#cb6-4"></a>sysfonts<span class="sc">::</span><span class="fu">font_add_google</span>(<span class="st">"Barlow Semi Condensed"</span>, <span class="at">bold.wt =</span> <span class="dv">600</span>) <span class="co"># make it a little less bold</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>sysfonts<span class="sc">::</span><span class="fu">font_families</span>() <span class="co"># after loading </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "sans"                  "serif"                 "mono"                 
-[4] "wqy-microhei"          "Libre Franklin"        "Open Sans"            
-[7] "Roboto Condensed"      "Barlow Semi Condensed"</code></pre>
-</div>
-</div>
-<p>You can set the fonts in a ggplot theme, e.g.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">theme_light</span>(<span class="at">base_family =</span> <span class="st">"Roboto Condensed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>That setting will then trickle down to any other text-based theme elements in the chart, such as axis titles or legend labels. You could then override specific elements if you want.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>p <span class="ot">&lt;-</span> justviz<span class="sc">::</span>wages <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">filter</span>(dimension <span class="sc">==</span> <span class="st">"edu"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> edu, <span class="at">y =</span> earn_q50, <span class="at">fill =</span> name)) <span class="sc">+</span></span>
-<span id="cb9-4"><a href="#cb9-4"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="fu">position_dodge2</span>(), <span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Median individual earnings by educational attainment, 2021"</span>)</span>
-<span id="cb9-6"><a href="#cb9-6"></a></span>
-<span id="cb9-7"><a href="#cb9-7"></a>p <span class="sc">+</span></span>
-<span id="cb9-8"><a href="#cb9-8"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Default"</span>) <span class="sc">+</span></span>
-<span id="cb9-9"><a href="#cb9-9"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="fonts_files/figure-html/bars1-1.png" class="img-fluid figure-img" alt="Three dodged bar charts of wage gap data intended to show how to use different fonts in ggplot. All three are sans-serif typefaces suited for data visualization." width="1050"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>p <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Libre Franklin"</span>) <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3"></a>  <span class="fu">theme_light</span>(<span class="at">base_family =</span> <span class="st">"Libre Franklin"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="fonts_files/figure-html/bars1-2.png" class="img-fluid figure-img" alt="Three dodged bar charts of wage gap data intended to show how to use different fonts in ggplot. All three are sans-serif typefaces suited for data visualization." width="1050"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>p <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>  <span class="fu">labs</span>(<span class="at">subtitle =</span> <span class="st">"Barlow Semi Condensed"</span>) <span class="sc">+</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a>  <span class="fu">theme_light</span>(<span class="at">base_family =</span> <span class="st">"Barlow Semi Condensed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="fonts_files/figure-html/bars1-3.png" class="img-fluid figure-img" alt="Three dodged bar charts of wage gap data intended to show how to use different fonts in ggplot. All three are sans-serif typefaces suited for data visualization." width="1050"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Theme settings only affect theme elements, though. If there were a text-based geom, it gets its font set separately.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>p <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">dollar_k</span>(earn_q50), <span class="at">y =</span> earn_q50 <span class="sc">-</span> <span class="fl">2e3</span>), </span>
-<span id="cb12-3"><a href="#cb12-3"></a>            <span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">theme_light</span>(<span class="at">base_family =</span> <span class="st">"Barlow Semi Condensed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="fonts_files/figure-html/bars2-1.png" class="img-fluid figure-img" alt="A dodged bar chart of wage gap data intended to show that changing fonts for a ggplot theme will not change the font for its geom_text. In this chart, the theme elements have the typeface Barlow Semi Condensed, but the text geom still has the default sans-serif font." width="1050"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>If you want to change the font of the geom, you have to do it directly:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>p <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">dollar_k</span>(earn_q50), <span class="at">y =</span> earn_q50 <span class="sc">-</span> <span class="fl">2e3</span>), </span>
-<span id="cb13-3"><a href="#cb13-3"></a>            <span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
-<span id="cb13-4"><a href="#cb13-4"></a>            <span class="at">family =</span> <span class="st">"Barlow Semi Condensed"</span>) <span class="sc">+</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a>  <span class="fu">theme_light</span>(<span class="at">base_family =</span> <span class="st">"Barlow Semi Condensed"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="fonts_files/figure-html/bars3-1.png" class="img-fluid figure-img" alt="A dodged bar chart of wage gap data. The font in the geom_text has now been changed to Barlow Semi Condensed to match the font in the chart's theme." width="1050"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Last, if you need to export your chart, you should do that and double check that the text looks right.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>final_plot <span class="ot">&lt;-</span> p <span class="sc">+</span></span>
-<span id="cb14-2"><a href="#cb14-2"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">dollar_k</span>(earn_q50), <span class="at">y =</span> earn_q50 <span class="sc">-</span> <span class="fl">2e3</span>), </span>
-<span id="cb14-3"><a href="#cb14-3"></a>            <span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">width =</span> <span class="fl">0.8</span>), <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">fontface =</span> <span class="st">"bold"</span>,</span>
-<span id="cb14-4"><a href="#cb14-4"></a>            <span class="at">family =</span> <span class="st">"Barlow Semi Condensed"</span>) <span class="sc">+</span></span>
-<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">theme_light</span>(<span class="at">base_family =</span> <span class="st">"Barlow Semi Condensed"</span>)</span>
-<span id="cb14-6"><a href="#cb14-6"></a></span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="fu">ggsave</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"inputs/nice_fonts_plot.png"</span>), final_plot,</span>
-<span id="cb14-8"><a href="#cb14-8"></a>       <span class="at">width =</span> <span class="dv">7</span>, <span class="at">height =</span> <span class="dv">4</span>, <span class="at">dpi =</span> <span class="dv">300</span>, <span class="at">bg =</span> <span class="st">"white"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>The saved result:</p>
-<p><img src="../inputs/nice_fonts_plot.png" class="img-fluid"></p>
-
-
-
-</section>
-
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1118,14 +1145,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../tips/exporting.html" class="pagination-link  aria-label=" exporting="" and="" distributing="" your="" work"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Exporting and distributing your work</span>
+      <a href="../weeks/18_experiments.html" class="pagination-link  aria-label=" 18.="" experimentation"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">18. Experimentation</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../tips/merging.html" class="pagination-link" aria-label="Merging data">
-        <span class="nav-page-text">Merging data</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -1133,4 +1157,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/tips/fonts.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/tips/fonts.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/19_project2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/19_project2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
