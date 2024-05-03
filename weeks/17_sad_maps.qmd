@@ -79,8 +79,7 @@ sad_maps <- sad_data |>
       ggplot() +
       geom_sf(aes(fill = brk), color = "white", linewidth = 0) +
       scale_fill_brewer(palette = "YlGnBu", direction = 1, na.value = "gray80") +
-      labs(title = id, fill = NULL) +
-      coord_sf(ndiscr = 0)
+      labs(title = id, fill = NULL) 
   })
 
 patchwork::wrap_plots(sad_maps, ncol = 2)
@@ -101,8 +100,7 @@ Here are those same maps with majority-Black tracts outlined:
 sad_maps |>
   purrr::map(function(p) {
     p +
-      geom_sf(data = black_butterfly, color = "black", linewidth = 0.6, fill = NA) +
-      coord_sf(ndiscr = 0)
+      geom_sf(data = black_butterfly, color = "black", linewidth = 0.6, fill = NA) 
   }) |>
   patchwork::wrap_plots(ncol = 2)
 ```

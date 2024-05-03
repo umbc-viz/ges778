@@ -8,6 +8,13 @@ knitr:
     fig.showtext: true
 ---
 
+
+## Warm-up
+
+It's May Day, International Workers Day! In honor of the best holiday, spend a few minutes exploring Working Class History's online map of hidden gems in labor and social justice history around the world: [https://map.workingclasshistory.com/] Where do you see clusters in space and/or time? Zoom in on a place you're familiar with. Do any of the events there already have monuments or any other identifiers? How could those places be marked in ways that are accessible to the surrounding area?
+
+## Experiments
+
 This is a grab bag of less ordinary chart types that we didn't get to during the semester. Feel free to try them out for your project---if it has an asterisk next to it, it's complex enough to count for 2 of your 3 charts. Note that none of these are super polished, _so charts for your project should look nicer than these!_ Many of these ggplot add-ons have lots of arguments that I didn't experiment with here, so make sure to read through their documentation.
 
 I also made up a few more small datasets to match the chart types I wanted to show here; the scripts for those are in the `utils` folder, and the datasets are in the `inputs` folder.

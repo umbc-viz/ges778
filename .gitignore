@@ -9,3 +9,5 @@ renv/library
 inputs/tigris_cache
 
 notrack/
+
+weeks/rosm.cache

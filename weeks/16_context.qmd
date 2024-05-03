@@ -2,6 +2,8 @@
 title: 16. Putting spatial data in context
 ---
 
+**Note:** with the newer version of ggplot (3.5.0), setting `ndiscr = 0` inside `coord_sf` seems to be broken. I haven't had a chance to investigate this yet but for now I've taken it out of this notebook.
+
 ## Warm up
 
 Sketch a map of a place you're familiar with. Mark off locations associated with something secret, or that people might want privacy around, or that are in some way stigmatized, things that even if people know the location is there they might not want their activity publicized. You don't have to identify anything. For example, the places you used to go when you cut school as a teenager, places you know people sell or use drugs, methadone clinics.
@@ -117,43 +119,43 @@ Looking at the package source, there are actually a few other styles that are av
 ggmap(google_road) +
   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
   labs(title = "Google roadmap, hard to read") +
-  coord_sf(ndiscr = 0)
+  coord_sf()
 
 # why is this still called darken if you can use any color?
 ggmap(google_road, darken = c(0.5, "white")) +
   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
   labs(title = "Google roadmap, faded") +
-  coord_sf(ndiscr = 0)
+  coord_sf()
 
 ggmap(google_sat) +
   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
   labs(title = "Google satellite") +
-  coord_sf(ndiscr = 0)
+  coord_sf()
 
 ggmap(stamen_toner) +
   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
   labs(title = "Stamen toner") +
-  coord_sf(ndiscr = 0)
+  coord_sf()
 
 ggmap(stamen_bg) +
   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
   labs(title = "Stamen toner background") +
-  coord_sf(ndiscr = 0)
+  coord_sf()
 
 ggmap(stamen_zoom) +
   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
   labs(title = "Stamen toner background, zoom = 13") +
-  coord_sf(ndiscr = 0)
+  coord_sf()
 
 ggmap(stamen_lite) +
   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
   labs(title = "Stamen toner lite") +
-  coord_sf(ndiscr = 0)
+  coord_sf()
 
 ggmap(stamen_terrain) +
   geom_sf(data = art_sf, inherit.aes = FALSE, color = "orchid") +
   labs(title = "Stamen terrain background") +
-  coord_sf(ndiscr = 0)
+  coord_sf()
 ```
 
 There are also OSM tiles in ggspatial with a few styles, but they require the raster package (whereas the sf ecosystem is moving toward terra) and seem to rely on deprecated functions from other packages. I don't love it...
@@ -166,7 +168,7 @@ ggplot(art_sf) +
   ggspatial::annotation_map_tile(zoom = 12, progress = "none", type = "cartolight") +
   geom_sf(color = "orchid") +
   labs(title = "Carto light via ggspatial") +
-  coord_sf(ndiscr = 0)
+  coord_sf()
 ```
 
 
@@ -201,7 +203,7 @@ ggplot(waste_sf) +
   geom_sf(aes(shape = "Brownfield"), data = balt_brownfields, size = 2, alpha = 0.9) +
   geom_sf(data = balt_merge, color = "black", linewidth = 0.2, fill = NA) +
   scale_fill_fermenter(palette = "YlGnBu", direction = 1) +
-  coord_sf(ndiscr = 0) +
+  coord_sf() +
   labs(
     title = "Proximity to hazardous waste treatment, national percentile by tract",
     fill = "Percentile", shape = NULL
@@ -227,7 +229,7 @@ ggplot(air_sf) +
   geom_sf(data = balt_merge, color = "black", linewidth = 0.2, fill = NA) +
   scale_fill_fermenter(palette = "YlGnBu", direction = 1) +
   scale_color_manual(values = c("gray20")) +
-  coord_sf(ndiscr = 0) +
+  coord_sf() +
   labs(
     title = "Elevated particulate matter, national percentile by tract",
     fill = "Percentile", color = NULL
@@ -247,7 +249,7 @@ ggmap(stamen_bg) +
   geom_sf(aes(shape = "Brownfield"), data = balt_brownfields, size = 2, alpha = 0.9, inherit.aes = FALSE) +
   geom_sf(data = balt_merge, color = "black", linewidth = 0.2, fill = NA, inherit.aes = FALSE) +
   scale_fill_fermenter(palette = "YlGnBu", direction = 1) +
-  coord_sf(ndiscr = 0) +
+  coord_sf() +
   labs(
     title = "Proximity to hazardous waste treatment, national percentile by tract",
     fill = "Percentile", shape = NULL

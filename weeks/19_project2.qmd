@@ -1,0 +1,69 @@
+---
+title: "19. Project 2 troubleshooting"
+---
+
+```{r}
+#| label: setup
+#| message: false
+library(dplyr)
+library(sf)
+library(ggplot2)
+library(justviz)
+```
+
+## Spatial joins
+
+Here's how you can join sf points with sf polygons in order to find, for example, the number of points in each polygon. This example is brownfields per county. Like with other joins, it matters which is on the left & which is on the right. `sf::st_join` has an argument to change from a left join to an inner join by setting `left = TRUE` (the default) to `left = FALSE`, respectively. The geometry after the join will follow the type of object on the left.
+
+```{r}
+counties_sf <- tigris::counties(state = "24", cb = TRUE) |>
+  select(county = NAMELSAD)
+
+# need to get into same crs
+brownfields_transform <- st_transform(brownfields_sf, st_crs(counties_sf)) |>
+  # selecting just a subset of columns to make it easier to see what's going on
+  select(site = name, is_archived)
+
+st_join(counties_sf, brownfields_transform) |>
+  head() # polygon join point = polygon
+st_join(brownfields_transform, counties_sf) |>
+  head() # point join polygon = point
+```
+
+There are 150 rows in the brownfields data, but the first join, the dataframe with points joined onto polygons, has 153 rows. That's because there are 3 counties with no brownfields. To deal with that, I'll redo the join with `left = FALSE` to make it an inner join, so I don't have any counties without brownfields.
+
+```{r}
+sites_per_county <- st_join(counties_sf, brownfields_transform, left = FALSE) |>
+  # drop geometry---just want data frame for now
+  st_drop_geometry() |>
+  group_by(county) |>
+  summarise(n_total_sites = n(),
+            # throwing in another example aggregation
+            n_open_sites = sum(!is_archived))
+
+# join back onto counties shape, so every county has a polygon with a count
+# that makes sure we get a true 0 observation for counties without sites
+sites_per_county_sf <- counties_sf |>
+  left_join(sites_per_county, by = "county") |>
+  # fill in 0 for counties with no observations
+  mutate(across(n_total_sites:n_open_sites, \(x) tidyr::replace_na(x, 0)))
+
+ggplot(sites_per_county_sf) +
+  geom_sf(aes(fill = n_open_sites), color = "black", linewidth = 0.2) +
+  scale_fill_distiller(palette = "BuPu", direction = 1) +
+  labs(title = "Number of current brownfields by county")
+```
+
+Maybe a more meaningful thing to do would be a rate, such as brownfields per 100,000 residents or brownfields per square mile, using data from the ACS dataset.
+
+```{r}
+sites_per_county_sf |>
+  left_join(acs |> select(name, total_pop, area_sqmi), by = c("county" = "name")) |>
+  mutate(open_sites_per_100k = (n_open_sites / total_pop) * 100000) |>
+  ggplot() +
+    geom_sf(aes(fill = open_sites_per_100k), color = "black", linewidth = 0.2) +
+    scale_fill_distiller(palette = "BuPu", direction = 1) +
+    labs(title = "Current brownfields per 100k residents by county")
+```
+
+If instead we were interested in the points themselves but wanted to know what counties they were each in, a join with brownfields on the left would be helpful. For this example it wouldn't be super useful, but for other project ideas (such as finding points within buffers) it could be.
