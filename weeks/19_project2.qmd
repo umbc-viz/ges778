@@ -67,3 +67,90 @@ sites_per_county_sf |>
 ```
 
 If instead we were interested in the points themselves but wanted to know what counties they were each in, a join with brownfields on the left would be helpful. For this example it wouldn't be super useful, but for other project ideas (such as finding points within buffers) it could be.
+
+## Lumping factor levels
+
+If you have a variable with several values you want to collapse into one, the easiest way to do this is to make it a factor if it isn't already, then use one of `forcats`' helper functions.
+
+With a character column, we can use `fct_other` or the various `fct_lump_*` functions to select which levels to keep; everything else gets dumped into the "other" category. The advantage of doing this with factors (as opposed to character vectors) is that factor levels have an order, and these functions will automatically put the "order" level last. Here are a few of those functions:
+
+```{r}
+# way more medium values than would be useful
+art_types <- art_sf |>
+  st_drop_geometry() |>
+  filter(!is.na(medium))
+
+art_types |>
+  count(medium, sort = TRUE) |>
+  mutate(share = n / sum(n))
+```
+
+Only keep 3 most common levels:
+
+```{r}
+art_types |>
+  mutate(medium_grps = forcats::fct_lump_n(medium, 
+                                           n = 3, 
+                                           other_level = "other types")) |>
+  count(medium_grps)
+```
+
+Only keep levels with at least 12 observations:
+
+```{r}
+art_types |>
+  mutate(medium_grps = forcats::fct_lump_min(medium, 
+                                           min = 12, 
+                                           other_level = "other types")) |>
+  count(medium_grps)
+```
+
+Only keep levels I've specifically chosen (let's say I'm interested in a few sculpture types):
+
+```{r}
+art_types |>
+  mutate(medium_grps = forcats::fct_other(medium, 
+                                          keep = c("concrete", "marble", "limestone", "granite"),
+                                          other_level = "other types")) |>
+  count(medium_grps)
+# rstudio started warning that you need the drop argument also; that's a lie
+```
+
+
+## Booleans / logical values
+
+Going back over the bit of boolean math we talked about: logical values (true / false) can translate in most (all?) languages to numeric values (1 / 0). That gives you some shortcuts when you need to aggregate data based on logical values.
+
+```{r}
+x_logic <- c(TRUE, FALSE, TRUE, TRUE, FALSE)
+
+# count of true values
+sum(x_logic)
+
+# count of false values
+sum(!x_logic)
+
+# share of values that are true
+mean(x_logic)
+```
+
+## Encoding data to size
+
+If you map data onto the size of a point, encode that information in the point's *area*, not its *radius*. Perception studies show that area is what we're reading more than radius, and you want your data to have a 1 to 1 relationship with the thing you're encoding to (data-to-ink ratio). The default in ggplot is radius, but you can override that with `scale_size_area`. Normally, size scales (e.g. `scale_size_continuous`) would have an argument `range` for the smallest and largest values to use; for area, you give `max_size` as a single number. If you have a 0 in your data, it will have an area of 0, unlike when using the continuous scale.
+
+```{r}
+x_area <- data.frame(location = 1:4, 
+                     value = c(1, 0, 2, 5))
+
+# why would a value of 0 have a point?? We wouldn't draw a bar in a bar chart
+# for a 0 value
+ggplot(x_area, aes(x = location, y = 1, size = value)) +
+  geom_point() +
+  scale_size_continuous(range = c(1, 10))
+
+# still kinda has a dot for 0 but that might be a graphic device artifact..?
+ggplot(x_area, aes(x = location, y = 1, size = value)) +
+  geom_point() +
+  scale_size_area(max_size = 10)
+```
+
