@@ -25,7 +25,9 @@ jobs:
               libgdal-dev \
               libgeos-dev \
               libproj-dev \
-              libde265-dev
+              libde265-dev \
+              libglpk-dev \
+              libxml2-dev
 
       - name: Install R
         uses: r-lib/actions/setup-r@v2
