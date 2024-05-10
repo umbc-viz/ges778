@@ -376,6 +376,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#spatial-joins" id="toc-spatial-joins" class="nav-link active" data-scroll-target="#spatial-joins">Spatial joins</a></li>
+  <li><a href="#lumping-factor-levels" id="toc-lumping-factor-levels" class="nav-link" data-scroll-target="#lumping-factor-levels">Lumping factor levels</a></li>
+  <li><a href="#booleans-logical-values" id="toc-booleans-logical-values" class="nav-link" data-scroll-target="#booleans-logical-values">Booleans / logical values</a></li>
+  <li><a href="#encoding-data-to-size" id="toc-encoding-data-to-size" class="nav-link" data-scroll-target="#encoding-data-to-size">Encoding data to size</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/19_project2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/19_project2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -402,7 +405,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 2, 2024</p>
+      <p class="date-modified">May 9, 2024</p>
     </div>
   </div>
     
@@ -607,6 +610,1013 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>If instead we were interested in the points themselves but wanted to know what counties they were each in, a join with brownfields on the left would be helpful. For this example it wouldn’t be super useful, but for other project ideas (such as finding points within buffers) it could be.</p>
+</section>
+<section id="lumping-factor-levels" class="level2">
+<h2 class="anchored" data-anchor-id="lumping-factor-levels">Lumping factor levels</h2>
+<p>If you have a variable with several values you want to collapse into one, the easiest way to do this is to make it a factor if it isn’t already, then use one of <code>forcats</code>’ helper functions.</p>
+<p>With a character column, we can use <code>fct_other</code> or the various <code>fct_lump_*</code> functions to select which levels to keep; everything else gets dumped into the “other” category. The advantage of doing this with factors (as opposed to character vectors) is that factor levels have an order, and these functions will automatically put the “order” level last. Here are a few of those functions:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># way more medium values than would be useful</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>art_types <span class="ot">&lt;-</span> art_sf <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(medium))</span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a>art_types <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">count</span>(medium, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">mutate</span>(<span class="at">share =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">medium</th>
+<th style="text-align: right;">n</th>
+<th style="text-align: right;">share</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">mural</td>
+<td style="text-align: right;">147</td>
+<td style="text-align: right;">0.2639138</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bronze</td>
+<td style="text-align: right;">83</td>
+<td style="text-align: right;">0.1490126</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">painted steel</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0.0323160</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">steel</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">0.0305206</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">concrete</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">0.0251346</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">aluminum</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0197487</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mural (non-city funded)</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0197487</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sculpture</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">0.0197487</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">marble</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">0.0179533</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ceramic tiles</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.0161580</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">limestone</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.0161580</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stainless steel</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0.0161580</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weathering steel</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">0.0143627</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">corten steel</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0.0125673</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">oil/canvas</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0089767</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stained glass</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.0089767</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ceramic tile</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.0071813</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cor ten</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.0071813</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fabric wall hanging</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.0071813</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fiber</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.0071813</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">granite</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0.0071813</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">acrylic</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.0053860</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">acrylic, wood</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.0053860</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">painted aluminum</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.0053860</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">polyester resin</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0.0053860</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">acrylic paint</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">acrylic windows</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">brick</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ceramics</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">chrome</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">copper</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">corten</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">epoxy resin</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fiberglass, stainless ste</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metal</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metal sculpture</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metal wall sculpture</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mixed media</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mosaic tile</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">neon</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stone aggregate</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">terra cotta</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0.0035907</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">acrylic on canvas</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">acrylic window</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">aggregate stone</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">aluminum and bronze</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">aluminum plate</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">aluminum relief</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">aluminum wall relief</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">aluminum, corten, stainle</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">aluminum, plexiglas, mirr</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bas relief</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">black tennensee marble</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">brass</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">brick and concrete</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">brick sculptured wall</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">brick wall hanging</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bridge repainting</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bronze &amp; marble</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bronze and granite</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bronze and unpolished granite</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bronze and welded copper</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bronze bust, stainless steel pedestal</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">bronze coated steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bronze1992/orig.cast iron</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">burnished aluminum</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">bus shelters</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cast aluminum</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cast granite</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cast iron</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">cast stone</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cement</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ceramic bas relief</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">ceramic tree</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">clay</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">collage</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">concrete aggregate</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">concrete and corten steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">concrete and glass</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">concrete and rubber</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">concrete with ceramic til</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">concrete, aluminum, steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">concrete, steel, aluminum</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">concrete/ stone</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">copper and stainless steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">cor-ten &amp; stainless steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">corten &amp; steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">corten steel and aluminum</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">etched glass</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">exposed aggregate</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fiberglass</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">fiberglass &amp; clock</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">forged steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">formica frames</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">free-standing sculpture</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">galvanized playground str</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">glass-reinforced polyester resin</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">granite &amp; steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">granite and aluminum?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gunite</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">iron</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">limestone and cedar</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">limestone/stainless steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mayari r steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">memorial</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">metal (bronze?)</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">metalic sculpture</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mosaic</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mosaic tile/concrete sculpture</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mosaic tiles</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">oil on canvas</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">oil on canvas, framed</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">oil/masonite</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">painted corten plate steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">painted metal</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">painted mural</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">painted steel tubing</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">painting</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">photographic display case</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">photographic emulsion</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">photographic mural</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">photographic relief piece</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">plaques</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">polished steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">porcelain enameling iron</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">portrait</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">print, wood</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">quarry tile floor</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">restoration of paintings</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sandstone</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sculptural garden</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sculptural panel and mura</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sculpture - neon, aluminum &amp; resin</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sculpture, painted steel</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">sculptured display cases</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sheet bronze doors</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">slate &amp; cor ten</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stained glass mobile</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stainglass</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stainless steel / aluminum?</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stainless steel and alumi</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stainless steel and bronz</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">steel &amp; steel cable</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">steel and aluminum</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">steel and corten</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">steel, aluminum, cable,castconcrete</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">steel, forged iron, wood</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">stone</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">stone (or terracotta)</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tactile relief mural</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tennenese limestine</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">terra-cotta</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">tiles</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">urns</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wall hangings</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">welded metal sculpture</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">welded metal wall sculptu</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">wood</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">wood relief</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.0017953</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Only keep 3 most common levels:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>art_types <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">mutate</span>(<span class="at">medium_grps =</span> forcats<span class="sc">::</span><span class="fu">fct_lump_n</span>(medium, </span>
+<span id="cb7-3"><a href="#cb7-3"></a>                                           <span class="at">n =</span> <span class="dv">3</span>, </span>
+<span id="cb7-4"><a href="#cb7-4"></a>                                           <span class="at">other_level =</span> <span class="st">"other types"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>  <span class="fu">count</span>(medium_grps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">medium_grps</th>
+<th style="text-align: right;">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">bronze</td>
+<td style="text-align: right;">83</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">mural</td>
+<td style="text-align: right;">147</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">painted steel</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">other types</td>
+<td style="text-align: right;">309</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Only keep levels with at least 12 observations:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>art_types <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  <span class="fu">mutate</span>(<span class="at">medium_grps =</span> forcats<span class="sc">::</span><span class="fu">fct_lump_min</span>(medium, </span>
+<span id="cb8-3"><a href="#cb8-3"></a>                                           <span class="at">min =</span> <span class="dv">12</span>, </span>
+<span id="cb8-4"><a href="#cb8-4"></a>                                           <span class="at">other_level =</span> <span class="st">"other types"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>  <span class="fu">count</span>(medium_grps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">medium_grps</th>
+<th style="text-align: right;">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">bronze</td>
+<td style="text-align: right;">83</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">concrete</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mural</td>
+<td style="text-align: right;">147</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">painted steel</td>
+<td style="text-align: right;">18</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">steel</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">other types</td>
+<td style="text-align: right;">278</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Only keep levels I’ve specifically chosen (let’s say I’m interested in a few sculpture types):</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>art_types <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">mutate</span>(<span class="at">medium_grps =</span> forcats<span class="sc">::</span><span class="fu">fct_other</span>(medium, </span>
+<span id="cb9-3"><a href="#cb9-3"></a>                                          <span class="at">keep =</span> <span class="fu">c</span>(<span class="st">"concrete"</span>, <span class="st">"marble"</span>, <span class="st">"limestone"</span>, <span class="st">"granite"</span>),</span>
+<span id="cb9-4"><a href="#cb9-4"></a>                                          <span class="at">other_level =</span> <span class="st">"other types"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a>  <span class="fu">count</span>(medium_grps)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">medium_grps</th>
+<th style="text-align: right;">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">concrete</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">granite</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">limestone</td>
+<td style="text-align: right;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">marble</td>
+<td style="text-align: right;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">other types</td>
+<td style="text-align: right;">520</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="co"># rstudio started warning that you need the drop argument also; that's a lie</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="booleans-logical-values" class="level2">
+<h2 class="anchored" data-anchor-id="booleans-logical-values">Booleans / logical values</h2>
+<p>Going back over the bit of boolean math we talked about: logical values (true / false) can translate in most (all?) languages to numeric values (1 / 0). That gives you some shortcuts when you need to aggregate data based on logical values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>x_logic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="co"># count of true values</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">sum</span>(x_logic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="co"># count of false values</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">sum</span>(<span class="sc">!</span>x_logic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="co"># share of values that are true</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="fu">mean</span>(x_logic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6</code></pre>
+</div>
+</div>
+</section>
+<section id="encoding-data-to-size" class="level2">
+<h2 class="anchored" data-anchor-id="encoding-data-to-size">Encoding data to size</h2>
+<p>If you map data onto the size of a point, encode that information in the point’s <em>area</em>, not its <em>radius</em>. Perception studies show that area is what we’re reading more than radius, and you want your data to have a 1 to 1 relationship with the thing you’re encoding to (data-to-ink ratio). The default in ggplot is radius, but you can override that with <code>scale_size_area</code>. Normally, size scales (e.g.&nbsp;<code>scale_size_continuous</code>) would have an argument <code>range</code> for the smallest and largest values to use; for area, you give <code>max_size</code> as a single number. If you have a 0 in your data, it will have an area of 0, unlike when using the continuous scale.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>x_area <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">location =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, </span>
+<span id="cb17-2"><a href="#cb17-2"></a>                     <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>))</span>
+<span id="cb17-3"><a href="#cb17-3"></a></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="co"># why would a value of 0 have a point?? We wouldn't draw a bar in a bar chart</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="co"># for a 0 value</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a><span class="fu">ggplot</span>(x_area, <span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">size =</span> value)) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8"></a>  <span class="fu">scale_size_continuous</span>(<span class="at">range =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="19_project2_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="co"># still kinda has a dot for 0 but that might be a graphic device artifact..?</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">ggplot</span>(x_area, <span class="fu">aes</span>(<span class="at">x =</span> location, <span class="at">y =</span> <span class="dv">1</span>, <span class="at">size =</span> value)) <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="fu">scale_size_area</span>(<span class="at">max_size =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="19_project2_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 </section>
