@@ -9,6 +9,7 @@ library(dplyr)
 library(sf)
 library(ggplot2)
 library(justviz)
+library(ggmosaic)
 ```
 
 ## Spatial joins
@@ -152,5 +153,111 @@ ggplot(x_area, aes(x = location, y = 1, size = value)) +
 ggplot(x_area, aes(x = location, y = 1, size = value)) +
   geom_point() +
   scale_size_area(max_size = 10)
+```
+
+## Two-way contingency table as mosaic plot
+
+Two true/false variables (or other qualitative variables) can be shown as a contingency table with a mosaic plot. Adding facets gives you the option of more than two dimensions.
+
+```{r}
+current_brownfields <- brownfields_sf |>
+  st_drop_geometry() |>
+  filter(!is_archived) |>
+  count(is_ongoing_assess, is_ongoing_remed)
+
+# number of sites currently being assessed, remediated, neither, both
+current_brownfields
+
+ggplot(current_brownfields) +
+  geom_mosaic(aes(x = product(is_ongoing_assess), fill = is_ongoing_remed, weight = n))
+```
+
+## Creating a new spatial variable
+
+For things that are related to distance, such as accessibility (e.g. bus stops) or hazards (e.g. brownfields) if can be useful to create a variable flagging whether a location is within some certain distance of a target. You can do this with spatial overlays. The locations you use as your unit of analysis don't have to be points that may be within some buffer of the target; they could also be an area like census tracts.
+
+Here's a local superfund site (the Sauer dump in Baltimore County) with a 2 mile radius around it. We can create a dummy variable denoting whether locations are in that buffer, join the buffer to our unit of analysis (tracts), then use that flag as a way to split up the data.
+
+```{r}
+dump_buffer <- brownfields_sf |>
+  filter(name == "Sauer Dump") |>
+  sf::st_transform(2248) |>
+  sf::st_buffer(dist = 2 * 5280) |>
+  select(geometry) |>
+  # dummy variable to show that tracts are within the buffer
+  mutate(is_near_sauer = TRUE)
+```
+
+There are a couple ways to join spatial data---`st_join` will join data from the sf object y onto the sf object x; this can be a left join (`left = TRUE`, the default) or an inner join (`left = FALSE`). The geometry of x stays the same.
+
+```{r}
+# baltimore-area tracts
+balt_tracts <- tracts_sf |>
+  # need same crs
+  st_transform(2248)
+
+# left join keeps all tracts
+st_join(balt_tracts, dump_buffer, left = TRUE) |>
+  select(is_near_sauer) |>
+  plot(main = "left join")
+
+# inner join keeps only tracts in buffer
+st_join(balt_tracts, dump_buffer, left = FALSE) |>
+  select(is_near_sauer) |>
+  plot(main = "inner join")
+```
+
+Calculating the intersection of geometries instead (`st_intersection`) changes the geometry of x based on how it intersects with y. 
+
+```{r}
+st_intersection(balt_tracts, dump_buffer) |>
+  select(is_near_sauer) |>
+  plot(main = "intersection")
+```
+
+To make a variable that allows us to compare some data for tracts within the buffer versus those outside the buffer, we want the spatial left join. For the `NA`s that result from the join, fill in FALSE.
+
+```{r}
+dump_tracts <- st_join(balt_tracts, dump_buffer, left = TRUE) |>
+  mutate(is_near_sauer = tidyr::replace_na(is_near_sauer, replace = FALSE))
+
+dump_tracts |>
+  st_drop_geometry() |>
+  count(is_near_sauer)
+
+dump_tracts |>
+  left_join(ej_natl, by = c("geoid" = "tract")) |>
+  filter(indicator %in% c("diesel", "releases_to_air", "risk_mgmt_plan", "wastewater")) |>
+  ggplot(aes(x = indicator, y = value_ptile, color = is_near_sauer)) +
+  geom_boxplot()
+```
+
+Because these two groups are so skewed (only 18 tracts in the buffer), another chart that shows the distributions but also gives some sense of the group size might be more appropriate (beeswarm, density). You could do something similar with more than one buffer around more than one site, such as ACS variables split by whether a tract is within 2 miles of a superfund (NPL) site.
+
+```{r}
+all_tracts_sf <- tigris::tracts(state = "24", cb = TRUE) |>
+  select(geoid = GEOID) |>
+  st_transform(2248)
+
+npl_buffer <- brownfields_sf |>
+  filter(!is_archived,
+         site_type %in% c("npl", "both")) |>
+  st_transform(2248) |>
+  st_buffer(dist = 2 * 5280) |>
+  mutate(is_near_npl = TRUE) |>
+  group_by(is_near_npl) |>
+  summarise()
+
+acs_x_npl <- all_tracts_sf |>
+  st_join(npl_buffer, left = TRUE) |>
+  mutate(is_near_npl = tidyr::replace_na(is_near_npl, FALSE)) |>
+  left_join(acs, by = c("geoid" = "name"))
+
+acs_x_npl |>
+  select(geoid, is_near_npl, white, poverty, less_than_high_school, homeownership, foreign_born) |>
+  st_drop_geometry() |>
+  tidyr::pivot_longer(-geoid:-is_near_npl, names_to = "variable") |>
+  ggplot(aes(x = variable, y = value, color = is_near_npl)) +
+  geom_boxplot()
 ```
 
