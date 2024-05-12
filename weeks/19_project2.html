@@ -379,6 +379,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#lumping-factor-levels" id="toc-lumping-factor-levels" class="nav-link" data-scroll-target="#lumping-factor-levels">Lumping factor levels</a></li>
   <li><a href="#booleans-logical-values" id="toc-booleans-logical-values" class="nav-link" data-scroll-target="#booleans-logical-values">Booleans / logical values</a></li>
   <li><a href="#encoding-data-to-size" id="toc-encoding-data-to-size" class="nav-link" data-scroll-target="#encoding-data-to-size">Encoding data to size</a></li>
+  <li><a href="#two-way-contingency-table-as-mosaic-plot" id="toc-two-way-contingency-table-as-mosaic-plot" class="nav-link" data-scroll-target="#two-way-contingency-table-as-mosaic-plot">Two-way contingency table as mosaic plot</a></li>
+  <li><a href="#creating-a-new-spatial-variable" id="toc-creating-a-new-spatial-variable" class="nav-link" data-scroll-target="#creating-a-new-spatial-variable">Creating a new spatial variable</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/weeks/19_project2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/weeks/19_project2.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -405,7 +407,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">May 9, 2024</p>
+      <p class="date-modified">May 11, 2024</p>
     </div>
   </div>
     
@@ -420,7 +422,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(sf)</span>
 <span id="cb1-3"><a href="#cb1-3"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(justviz)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">library</span>(justviz)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">library</span>(ggmosaic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="spatial-joins" class="level2">
 <h2 class="anchored" data-anchor-id="spatial-joins">Spatial joins</h2>
@@ -1613,6 +1616,197 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div>
 <figure class="figure">
 <p><img src="19_project2_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="two-way-contingency-table-as-mosaic-plot" class="level2">
+<h2 class="anchored" data-anchor-id="two-way-contingency-table-as-mosaic-plot">Two-way contingency table as mosaic plot</h2>
+<p>Two true/false variables (or other qualitative variables) can be shown as a contingency table with a mosaic plot. Adding facets gives you the option of more than two dimensions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>current_brownfields <span class="ot">&lt;-</span> brownfields_sf <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="fu">filter</span>(<span class="sc">!</span>is_archived) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="fu">count</span>(is_ongoing_assess, is_ongoing_remed)</span>
+<span id="cb19-5"><a href="#cb19-5"></a></span>
+<span id="cb19-6"><a href="#cb19-6"></a><span class="co"># number of sites currently being assessed, remediated, neither, both</span></span>
+<span id="cb19-7"><a href="#cb19-7"></a>current_brownfields</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">is_ongoing_assess</th>
+<th style="text-align: left;">is_ongoing_remed</th>
+<th style="text-align: right;">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">101</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggplot</span>(current_brownfields) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a>  <span class="fu">geom_mosaic</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">product</span>(is_ongoing_assess), <span class="at">fill =</span> is_ongoing_remed, <span class="at">weight =</span> n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="19_project2_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="creating-a-new-spatial-variable" class="level2">
+<h2 class="anchored" data-anchor-id="creating-a-new-spatial-variable">Creating a new spatial variable</h2>
+<p>For things that are related to distance, such as accessibility (e.g.&nbsp;bus stops) or hazards (e.g.&nbsp;brownfields) if can be useful to create a variable flagging whether a location is within some certain distance of a target. You can do this with spatial overlays. The locations you use as your unit of analysis don’t have to be points that may be within some buffer of the target; they could also be an area like census tracts.</p>
+<p>Here’s a local superfund site (the Sauer dump in Baltimore County) with a 2 mile radius around it. We can create a dummy variable denoting whether locations are in that buffer, join the buffer to our unit of analysis (tracts), then use that flag as a way to split up the data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>dump_buffer <span class="ot">&lt;-</span> brownfields_sf <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Sauer Dump"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="dv">2248</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>  sf<span class="sc">::</span><span class="fu">st_buffer</span>(<span class="at">dist =</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">5280</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-5"><a href="#cb21-5"></a>  <span class="fu">select</span>(geometry) <span class="sc">|&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="co"># dummy variable to show that tracts are within the buffer</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a>  <span class="fu">mutate</span>(<span class="at">is_near_sauer =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>There are a couple ways to join spatial data—<code>st_join</code> will join data from the sf object y onto the sf object x; this can be a left join (<code>left = TRUE</code>, the default) or an inner join (<code>left = FALSE</code>). The geometry of x stays the same.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># baltimore-area tracts</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>balt_tracts <span class="ot">&lt;-</span> tracts_sf <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="co"># need same crs</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="fu">st_transform</span>(<span class="dv">2248</span>)</span>
+<span id="cb22-5"><a href="#cb22-5"></a></span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="co"># left join keeps all tracts</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a><span class="fu">st_join</span>(balt_tracts, dump_buffer, <span class="at">left =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="fu">select</span>(is_near_sauer) <span class="sc">|&gt;</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a>  <span class="fu">plot</span>(<span class="at">main =</span> <span class="st">"left join"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="19_project2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="co"># inner join keeps only tracts in buffer</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">st_join</span>(balt_tracts, dump_buffer, <span class="at">left =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="fu">select</span>(is_near_sauer) <span class="sc">|&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>  <span class="fu">plot</span>(<span class="at">main =</span> <span class="st">"inner join"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="19_project2_files/figure-html/unnamed-chunk-13-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Calculating the intersection of geometries instead (<code>st_intersection</code>) changes the geometry of x based on how it intersects with y.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">st_intersection</span>(balt_tracts, dump_buffer) <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="fu">select</span>(is_near_sauer) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3"></a>  <span class="fu">plot</span>(<span class="at">main =</span> <span class="st">"intersection"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="19_project2_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>To make a variable that allows us to compare some data for tracts within the buffer versus those outside the buffer, we want the spatial left join. For the <code>NA</code>s that result from the join, fill in FALSE.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>dump_tracts <span class="ot">&lt;-</span> <span class="fu">st_join</span>(balt_tracts, dump_buffer, <span class="at">left =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>  <span class="fu">mutate</span>(<span class="at">is_near_sauer =</span> tidyr<span class="sc">::</span><span class="fu">replace_na</span>(is_near_sauer, <span class="at">replace =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a>dump_tracts <span class="sc">|&gt;</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a>  <span class="fu">count</span>(is_near_sauer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">is_near_sauer</th>
+<th style="text-align: right;">n</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">588</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: right;">18</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a>dump_tracts <span class="sc">|&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="fu">left_join</span>(ej_natl, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"tract"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="fu">filter</span>(indicator <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"diesel"</span>, <span class="st">"releases_to_air"</span>, <span class="st">"risk_mgmt_plan"</span>, <span class="st">"wastewater"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> indicator, <span class="at">y =</span> value_ptile, <span class="at">color =</span> is_near_sauer)) <span class="sc">+</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="19_project2_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Because these two groups are so skewed (only 18 tracts in the buffer), another chart that shows the distributions but also gives some sense of the group size might be more appropriate (beeswarm, density). You could do something similar with more than one buffer around more than one site, such as ACS variables split by whether a tract is within 2 miles of a superfund (NPL) site.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a>all_tracts_sf <span class="ot">&lt;-</span> tigris<span class="sc">::</span><span class="fu">tracts</span>(<span class="at">state =</span> <span class="st">"24"</span>, <span class="at">cb =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="fu">select</span>(<span class="at">geoid =</span> GEOID) <span class="sc">|&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="fu">st_transform</span>(<span class="dv">2248</span>)</span>
+<span id="cb27-4"><a href="#cb27-4"></a></span>
+<span id="cb27-5"><a href="#cb27-5"></a>npl_buffer <span class="ot">&lt;-</span> brownfields_sf <span class="sc">|&gt;</span></span>
+<span id="cb27-6"><a href="#cb27-6"></a>  <span class="fu">filter</span>(<span class="sc">!</span>is_archived,</span>
+<span id="cb27-7"><a href="#cb27-7"></a>         site_type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"npl"</span>, <span class="st">"both"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb27-8"><a href="#cb27-8"></a>  <span class="fu">st_transform</span>(<span class="dv">2248</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-9"><a href="#cb27-9"></a>  <span class="fu">st_buffer</span>(<span class="at">dist =</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">5280</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-10"><a href="#cb27-10"></a>  <span class="fu">mutate</span>(<span class="at">is_near_npl =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-11"><a href="#cb27-11"></a>  <span class="fu">group_by</span>(is_near_npl) <span class="sc">|&gt;</span></span>
+<span id="cb27-12"><a href="#cb27-12"></a>  <span class="fu">summarise</span>()</span>
+<span id="cb27-13"><a href="#cb27-13"></a></span>
+<span id="cb27-14"><a href="#cb27-14"></a>acs_x_npl <span class="ot">&lt;-</span> all_tracts_sf <span class="sc">|&gt;</span></span>
+<span id="cb27-15"><a href="#cb27-15"></a>  <span class="fu">st_join</span>(npl_buffer, <span class="at">left =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-16"><a href="#cb27-16"></a>  <span class="fu">mutate</span>(<span class="at">is_near_npl =</span> tidyr<span class="sc">::</span><span class="fu">replace_na</span>(is_near_npl, <span class="cn">FALSE</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb27-17"><a href="#cb27-17"></a>  <span class="fu">left_join</span>(acs, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"name"</span>))</span>
+<span id="cb27-18"><a href="#cb27-18"></a></span>
+<span id="cb27-19"><a href="#cb27-19"></a>acs_x_npl <span class="sc">|&gt;</span></span>
+<span id="cb27-20"><a href="#cb27-20"></a>  <span class="fu">select</span>(geoid, is_near_npl, white, poverty, less_than_high_school, homeownership, foreign_born) <span class="sc">|&gt;</span></span>
+<span id="cb27-21"><a href="#cb27-21"></a>  <span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb27-22"><a href="#cb27-22"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="sc">-</span>geoid<span class="sc">:-</span>is_near_npl, <span class="at">names_to =</span> <span class="st">"variable"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb27-23"><a href="#cb27-23"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> variable, <span class="at">y =</span> value, <span class="at">color =</span> is_near_npl)) <span class="sc">+</span></span>
+<span id="cb27-24"><a href="#cb27-24"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="19_project2_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
