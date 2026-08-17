@@ -1,0 +1,13 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+/.quarto/
+_site/
+renv/library
+inputs/tigris_cache
+
+notrack/
+
+notes/rosm.cache

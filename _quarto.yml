@@ -1,0 +1,72 @@
+project:
+  type: website
+
+website:
+  back-to-top-navigation: true
+  page-navigation: true
+  title: "GES 778, Fall 2026"
+  description: "Advanced Visualization and Presentation"
+  site-url: https://umbc-viz.github.io/ges778/
+  repo-url: https://github.com/umbc-viz/ges778.git
+  repo-actions: [edit, issue, source]
+  reader-mode: false
+
+  sidebar:
+    style: "docked"
+    search: true
+    tools:
+      - icon: github
+        href: https://github.com/umbc-viz/ges778.git
+        text: "GitHub"
+      - icon: code-slash
+        href: https://github.com/umbc-viz/justviz.git
+        text: "justviz package"
+    contents:
+      - section: "Overview"
+        contents:
+          - index.qmd
+          # - syllabus.qmd
+          # - readings.qmd
+      - "---"
+      # - section: "Notes"
+      #   contents: "notes/*.qmd"
+      - "---"
+      # - section: "Tips & tricks"
+      #   contents: "tips/*.qmd"
+      - "---"
+      # - references.qmd
+    footer: "[Code for this site](https://github.com/umbc-viz/ges778.git)"
+
+#   - section-bibliographies
+
+author: Camille Seaberry
+bibliography: references.bib
+csl: apa.csl
+citeproc: true
+toc: true
+
+date-format: long
+date-modified: last-modified
+
+highlight-style: a11y
+
+format:
+  html:
+    theme:
+      light: [flatly, theme.scss, theme-light.scss]
+      dark: [darkly, theme.scss, theme-dark.scss]
+    mainfont: "Source Sans 3"
+    monofont: "Source Code Pro"
+    code-copy: true
+    email-obfuscation: javascript
+    tbl-cap-location: top
+    code-line-numbers: true
+
+number-sections: false
+execute:
+  warning: false
+  message: false
+
+df-print: kable
+reference-location: margin
+citation-location: margin
