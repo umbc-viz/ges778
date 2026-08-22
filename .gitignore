@@ -11,3 +11,6 @@ inputs/tigris_cache
 notrack/
 
 notes/rosm.cache
+
+**/*.quarto_ipynb
+.vscode

@@ -25,11 +25,11 @@ website:
       - section: "Overview"
         contents:
           - index.qmd
-          # - syllabus.qmd
+          - syllabus.qmd
           # - readings.qmd
       - "---"
-      # - section: "Notes"
-      #   contents: "notes/*.qmd"
+      - section: "Notes"
+        contents: "notes/*.qmd"
       - "---"
       # - section: "Tips & tricks"
       #   contents: "tips/*.qmd"
