@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>Advanced Visualization and Presentation, Fall 2026 – GES 778, Fall 2026</title>
+<title>02. Writing good code – GES 778, Fall 2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -30,28 +30,28 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./syllabus.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-eaeb381c6b7494c50009502241a4985c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5c3649c7e3133eb8c44389898c25c3bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-f11ceae8cf846bd1f3ee6bc1b04a9bf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-5c3649c7e3133eb8c44389898c25c3bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../notes/01_intro_to_data_viz.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-eaeb381c6b7494c50009502241a4985c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5c3649c7e3133eb8c44389898c25c3bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-f11ceae8cf846bd1f3ee6bc1b04a9bf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-5c3649c7e3133eb8c44389898c25c3bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -254,7 +254,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./index.html">Advanced Visualization and Presentation, Fall 2026</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/02_good_code.html">02. Writing good code</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -269,7 +269,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">GES 778, Fall 2026</a> 
+      <a href="../">GES 778, Fall 2026</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/umbc-viz/ges778.git" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
     <a href="https://github.com/umbc-viz/justviz.git" title="justviz package" class="quarto-navigation-tool px-1" aria-label="justviz package"><i class="bi bi-code-slash"></i></a>
@@ -300,13 +300,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Advanced Visualization and Presentation, Fall 2026</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
@@ -315,7 +315,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./notes/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../notes/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Notes</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -324,19 +324,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notes/00_setup.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/00_setup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. Setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notes/01_intro_to_data_viz.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/01_intro_to_data_viz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">01. Intro to data viz</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notes/02_good_code.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/02_good_code.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">02. Writing good code</span></a>
   </div>
 </li>
@@ -351,16 +351,29 @@ ul.task-list li input[type="checkbox"] {
 </div></div></nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#good-coding-practices" id="toc-good-coding-practices" class="nav-link active" data-scroll-target="#good-coding-practices">Good coding practices</a></li>
+  <li><a href="#documenting-code" id="toc-documenting-code" class="nav-link" data-scroll-target="#documenting-code">Documenting code</a></li>
+  <li><a href="#reusable-code" id="toc-reusable-code" class="nav-link" data-scroll-target="#reusable-code">Reusable code</a></li>
+  <li><a href="#organization" id="toc-organization" class="nav-link" data-scroll-target="#organization">Organization</a>
+  <ul class="collapse">
+  <li><a href="#know-where-your-files-are-how-to-get-to-them" id="toc-know-where-your-files-are-how-to-get-to-them" class="nav-link" data-scroll-target="#know-where-your-files-are-how-to-get-to-them">Know where your files are &amp; how to get to them</a></li>
+  </ul></li>
+  <li><a href="#lab" id="toc-lab" class="nav-link" data-scroll-target="#lab">Lab</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/02_good_code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/02_good_code.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./index.html">Advanced Visualization and Presentation, Fall 2026</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/02_good_code.html">02. Writing good code</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Advanced Visualization and Presentation, Fall 2026</h1>
+<h1 class="title">02. Writing good code</h1>
 </div>
 
 
@@ -389,9 +402,85 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome to GES 778, Digital Cartography and Visualization at UMBC! This site will serve as the main source of notes as we work through the course. It will be updated regularly, including as we work through things in class. All code is available for you to browse.</p>
+<section id="good-coding-practices" class="level2">
+<h2 class="anchored" data-anchor-id="good-coding-practices">Good coding practices</h2>
+<p>Some basic good habits will get you a long way in programming.</p>
+<ul>
+<li>Document what you’re doing in <a href="https://mopac-ds.github.io/Learning-Resource-Best-Coding-Practices-in-R/commenting-code.html">comments</a></li>
+<li>Document <a href="https://r-pkgs.org/man.html">functions</a></li>
+<li>Keep track of sources of data—I try to have downloading data be something I do programmatically in a script, whether it’s from an API, downloaded from an open data portal, scraped from a website, <code>curl</code> calls, or anything else.</li>
+<li>If you base your code off a Stack Overflow answer, a tutorial, a chatbot, or anything else, leave yourself a comment with a link to the source. It keeps you honest and will point you back to where you got help in the first place.</li>
+<li>Organize your work into <a href="https://r4ds.hadley.nz/workflow-scripts.html">projects</a> with a consistent structure</li>
+<li>Use naming conventions that describe what you’re doing or what something is</li>
+<li>Write informative <a href="https://github.blog/developer-skills/github/write-better-commits-build-better-projects/">git commit messages</a></li>
+<li>If you get into larger projects, manage orchestration with build tools</li>
+<li><em>READ THE DOCUMENTATION</em></li>
+</ul>
+</section>
+<section id="documenting-code" class="level2">
+<h2 class="anchored" data-anchor-id="documenting-code">Documenting code</h2>
+<p>One of the most important things you can do as a programmer is to document your code. This can be hard to do well, but it’s essential to making sure your code is clear and accountable and that your work can be reproduced or repurposed. (If you’ve followed the <a href="https://www.nature.com/articles/533452a">“replicability crisis”</a> in the sciences over the past decade or so, you’ve seen what can go very wrong when your work isn’t documented accurately for yourself and others!)</p>
+<p>A common suggestion is to write your code assuming you’ll come back to it in 6 months and need to be able to pick up where you left off. I usually also assume a coworker or colleague will need to rerun or reuse my code, so even if I’m doing something that I’ll remember 6 months from now, they might not know what things mean. It also gets me out of spending unnecessary amounts of time walking interns through an analysis if I can say, “I tried to document everything really well, so read through it, run all the code, and let me know if you need help after that.” Documenting code also helps ease the transition into package development, which requires <em>a lot</em> of documentation.</p>
+<p>I don’t document <em>everything</em>—plenty of my work is routine and straightforward enough—but some of the things I try to always take note of:</p>
+<ul>
+<li>Any sort of analysis or process that’s <strong>out of the ordinary or complex</strong>. Don’t assume you’ll remember later why you used a new approach.</li>
+<li>Anything I know <strong>someone else will need</strong> to be able to reference. Sometimes I do EDA on something that a coworker will then finish up or need to write about. I need to make sure they can do that accurately.</li>
+<li><strong>Outside sources</strong> that don’t come from that specific project. If your project is contained within a set of folders, and you’ve copied data in from some other project, make a note of where it comes from so if you need to update it you know where to get it from.</li>
+<li><strong>Decision-making</strong> that you might need to keep track of or argue for later. e.g.&nbsp;a comparison of categories between datasets with a note that says “these categories changed significantly since the previous data collection” will be helpful when someone asks why you didn’t include trends in an analysis.</li>
+<li><strong>References</strong>. If I came up with some code based on a Stack Overflow post or a blog post somewhere, or I’m building off of someone else’s methodology, I’ll usually include a link in my comments.</li>
+</ul>
+<p>This also applies to simple things like organizing your projects. If you have a bunch of folders called things like “data analysis 1” and they all contain a jumble of different notebooks and scripts for different purposes, and the scripts are all called “analysis_of_stuff.R”, you’re going to lose things easily and not know how different pieces build on each other. Similarly, don’t spend time doing an analysis only to write your data out to a file called “data.csv” and a plot called “map.png”. This might seem obvious, <em>but I’ve seen people do all of these things</em>.</p>
+</section>
+<section id="reusable-code" class="level2">
+<h2 class="anchored" data-anchor-id="reusable-code">Reusable code</h2>
+<p>One rule of thumb I’ve heard is that it’s fine to repeat your code to do the same thing twice, but if you need to do it a third time, <a href="https://r4ds.hadley.nz/functions">you should write a function</a>. It might mean taking a step back from what you’re working on at the moment, but it’s pretty much always worth the time. Alongside documenting your code in general, it’s important to document your functions—what they do, what the arguments mean, what types of values arguments can take. Try to your functions and their arguments in ways that make it clear what they mean as well.</p>
+</section>
+<section id="organization" class="level2">
+<h2 class="anchored" data-anchor-id="organization">Organization</h2>
+<p>Come up with a structure of directories you like for a project, and stick with it. The starter repo for each project in this class will have a pared down version of what I usually use, but a full version of what I might have, even for a small project, looks like this:</p>
+<pre><code>cool_project          
+ ¦--analysis          # EDA, notebooks, and scripts that create output
+ |--design            # scripts *only* for creating publishable charts
+ ¦--fetch_data        # raw data, often downloaded in a script
+ ¦   ¦--permits_xlsx  # folders for each raw data source
+ ¦   °--housing_pums       
+ ¦--input_data        # cleaned data that is sourced for the project
+ ¦--output_data       # data that's a product of analysis in this project
+ ¦--plots             # plots that can be distributed or published
+ ¦--prep_scripts      # scripts that download, clean, reshape data
+ °--utils             # misc scripts &amp; bits of data to use throughout the project</code></pre>
+<section id="know-where-your-files-are-how-to-get-to-them" class="level3">
+<h3 class="anchored" data-anchor-id="know-where-your-files-are-how-to-get-to-them">Know where your files are &amp; how to get to them</h3>
+<p>When you run code in notebook formats like Rmarkdown and quarto, the code is executed relative to that file. When you source a script, code is executed relative to where it’s sourced from, likely the root directory of the project. This can lead to errors when you render a notebook, because your code can no longer find files you’re referring to. The helper function <code>here::here</code> points to the root of the project and builds paths from there.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>An aside: build tools
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Build tools are outside the scope of this class, but for larger projects especially or projects that will need to be updated over time, they’ll save you a lot of headaches. I have some projects that I rebuild once a year when new ACS data comes out, and I’ve got things down to where I can make one or two calls on the command line flagging the year as a variable, and all the data wrangling and analyses are ready to go. In fact, this site rebuilds from a frozen list of packages every time I push to GitHub, and if that build is successful, it publishes automatically.</p>
+<p>Some tools I use:</p>
+<ul>
+<li><a href="https://www.gnu.org/software/make/">GNU Make</a>, the OG build tool</li>
+<li><a href="https://snakemake.readthedocs.io/">Snakemake</a>, like GNU Make but written in Python and designed for data analysis</li>
+<li><a href="https://github.com/features/actions">GitHub actions</a>, including ones specifically for <a href="https://github.com/r-lib/actions/">R</a></li>
+<li><a href="https://www.docker.com/">Docker</a>, build a small isolated environment for your projects, some designed for <a href="https://github.com/rocker-org/rocker-versioned2">R</a></li>
+<li>Package &amp; environment managers: <a href="https://mamba.readthedocs.io">mamba</a> or <a href="https://github.com/astral-sh/uv">uv</a> for Python, <a href="https://rstudio.github.io/renv/">renv</a> for R</li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="lab" class="level2">
+<h2 class="anchored" data-anchor-id="lab">Lab</h2>
+<p>In the lab for this topic, we’ll get started with developing helper functions that we’ll use and iterate on throughout the course.</p>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -809,11 +898,11 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../notes/01_intro_to_data_viz.html" class="pagination-link" aria-label="01. Intro to data viz">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">01. Intro to data viz</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./syllabus.html" class="pagination-link" aria-label="Syllabus">
-        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -821,4 +910,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/02_good_code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/02_good_code.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

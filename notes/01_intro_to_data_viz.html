@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>Advanced Visualization and Presentation, Fall 2026 – GES 778, Fall 2026</title>
+<title>01. Intro to data viz – GES 778, Fall 2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,31 +27,52 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./syllabus.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-eaeb381c6b7494c50009502241a4985c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5c3649c7e3133eb8c44389898c25c3bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-f11ceae8cf846bd1f3ee6bc1b04a9bf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-5c3649c7e3133eb8c44389898c25c3bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../notes/02_good_code.html" rel="next">
+<link href="../notes/00_setup.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-eaeb381c6b7494c50009502241a4985c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5c3649c7e3133eb8c44389898c25c3bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-f11ceae8cf846bd1f3ee6bc1b04a9bf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-5c3649c7e3133eb8c44389898c25c3bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -83,7 +104,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -254,7 +275,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./index.html">Advanced Visualization and Presentation, Fall 2026</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/01_intro_to_data_viz.html">01. Intro to data viz</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -269,7 +290,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">GES 778, Fall 2026</a> 
+      <a href="../">GES 778, Fall 2026</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/umbc-viz/ges778.git" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
     <a href="https://github.com/umbc-viz/justviz.git" title="justviz package" class="quarto-navigation-tool px-1" aria-label="justviz package"><i class="bi bi-code-slash"></i></a>
@@ -300,13 +321,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Advanced Visualization and Presentation, Fall 2026</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
@@ -315,7 +336,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./notes/index.html" class="sidebar-item-text sidebar-link">
+            <a href="../notes/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Notes</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -324,19 +345,19 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notes/00_setup.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/00_setup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">00. Setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notes/01_intro_to_data_viz.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/01_intro_to_data_viz.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">01. Intro to data viz</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./notes/02_good_code.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/02_good_code.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">02. Writing good code</span></a>
   </div>
 </li>
@@ -351,16 +372,27 @@ ul.task-list li input[type="checkbox"] {
 </div></div></nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-data-visualization" id="toc-what-is-data-visualization" class="nav-link active" data-scroll-target="#what-is-data-visualization">What is data visualization?</a></li>
+  <li><a href="#what-should-visualization-do" id="toc-what-should-visualization-do" class="nav-link" data-scroll-target="#what-should-visualization-do">What should visualization do?</a></li>
+  <li><a href="#why-visualize-data" id="toc-why-visualize-data" class="nav-link" data-scroll-target="#why-visualize-data">Why visualize data?</a></li>
+  <li><a href="#how-can-data-visualization-be-used" id="toc-how-can-data-visualization-be-used" class="nav-link" data-scroll-target="#how-can-data-visualization-be-used">How can data visualization be used?</a></li>
+  <li><a href="#do-you-even-need-a-chart" id="toc-do-you-even-need-a-chart" class="nav-link" data-scroll-target="#do-you-even-need-a-chart">Do you even need a chart?</a></li>
+  <li><a href="#lab" id="toc-lab" class="nav-link" data-scroll-target="#lab">Lab</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/01_intro_to_data_viz.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/01_intro_to_data_viz.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./index.html">Advanced Visualization and Presentation, Fall 2026</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/01_intro_to_data_viz.html">01. Intro to data viz</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Advanced Visualization and Presentation, Fall 2026</h1>
+<h1 class="title">01. Intro to data viz</h1>
 </div>
 
 
@@ -389,9 +421,191 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Welcome to GES 778, Digital Cartography and Visualization at UMBC! This site will serve as the main source of notes as we work through the course. It will be updated regularly, including as we work through things in class. All code is available for you to browse.</p>
+<section id="what-is-data-visualization" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-is-data-visualization">What is data visualization?</h2>
+<p>It’s pretty common to find a book with hundreds of pages of details on data visualization, but no definition. Two I’ve found useful:</p>
+<div class="page-columns page-full"><blockquote class="blockquote">
+<p>The rendering of information in a visual format to help communicate data while also generating new patterns and knowledge through the act of visualization itself <span class="citation" data-cites="wilson2018">(<a href="#ref-wilson2018" role="doc-biblioref">Wilson, 2018, p. 8</a>)</span></p>
+</blockquote><div class="no-row-height column-margin column-container"><div id="ref-wilson2018" class="csl-entry" role="listitem">
+Wilson, M. O. (2018). The <span>Cartography</span> of <span>W</span>.<span>E</span>.<span>B</span>. <span>Du Bois</span>’s <span>Color Line</span>. In <em>W.<span>E</span>.<span>B</span>. <span>Du Bois</span>’s <span>Data Portraits</span>: <span>Visualizing Black America</span></em>. The W.E.B. Du Bois Center at the University of Massachusetts Amherst.
+</div></div></div>
+<div class="page-columns page-full"><blockquote class="blockquote">
+<p>The representation and presentation of data to facilitate understanding <span class="citation" data-cites="kirk2016">(<a href="#ref-kirk2016" role="doc-biblioref">Kirk, 2016, p. 19</a>)</span></p>
+</blockquote><div class="no-row-height column-margin column-container"></div></div>
+</section>
+<section id="what-should-visualization-do" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="what-should-visualization-do">What should visualization do?</h2>
+<div class="page-columns page-full"><blockquote class="blockquote">
+<p>Data visualization is part art and part science. The challenge is to get the art right without getting the science wrong and vice versa. A data visualization first and foremost has to accurately convey the data. It must not mislead or distort…. At the same time, a data visualization should be aesthetically pleasing <span class="citation" data-cites="wilke2019">(<a href="#ref-wilke2019" role="doc-biblioref">Wilke, 2019</a>, ch 1)</span></p>
+</blockquote><div class="no-row-height column-margin column-container"><div id="ref-wilke2019" class="csl-entry" role="listitem">
+Wilke, C. O. (2019). <em>Fundamentals of <span>Data Visualization</span></em>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
+</div></div></div>
+</section>
+<section id="why-visualize-data" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="why-visualize-data">Why visualize data?</h2>
+<p>As you create data viz, you’ll have different purposes. I think of them in two big categories:</p>
+<ul>
+<li>Visualization for myself / my colleagues (i.e.&nbsp;private)</li>
+<li>Visualization for others (i.e.&nbsp;public)</li>
+</ul>
+<p>In order to make a public chart, I make many, many private ones.</p>
+<p><span class="citation" data-cites="kirk2016">Kirk (<a href="#ref-kirk2016" role="doc-biblioref">2016</a>)</span> uses an interesting framework (p.&nbsp;76) where visualization can be mapped along two axes, experience and tone. Tone is broken into feeling vs reading, and experience is broken into explaining, exhibiting, and exploring. We’ll come back to this framework when we think about the purposes of our visualizations, what we want to convey, and how.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-kirk2016" class="csl-entry" role="listitem">
+Kirk, A. (2016). <em>Data visualisation: A handbook for data driven design</em>. SAGE.
+</div></div></section>
+<section id="how-can-data-visualization-be-used" class="level2">
+<h2 class="anchored" data-anchor-id="how-can-data-visualization-be-used">How can data visualization be used?</h2>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Brainstorming
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<section id="positive-constructive" class="level4">
+<h4 class="anchored" data-anchor-id="positive-constructive">Positive / constructive</h4>
+<ul>
+<li></li>
+</ul>
+</section>
+<section id="negative-destructive" class="level4">
+<h4 class="anchored" data-anchor-id="negative-destructive">Negative / destructive</h4>
+<ul>
+<li></li>
+</ul>
+</section>
+</div>
+</div>
+</section>
+<section id="do-you-even-need-a-chart" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="do-you-even-need-a-chart">Do you even need a chart?</h2>
+<p>Sometimes we assume that because we have data, we should just make a chart. That can come with some tradeoffs that we’ll talk about over the course of the semester: charts abstract data, take up space in documents, and require certain types of literacy. They also take a lot of time and skill to make well. If you’re short on time, space, or knowhow, you might be better off using something simple like bullet points or pullout text to briefly describe your data, rather than making a chart that is big, unwieldy, or misleading.</p>
+<p>For example, I analyze wage data to measure what’s referred to as the wage gap. From that, I know that Maryland workers ages 25 and up have median earnings of $65,586. On its own, there’s no reason to make a chart.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>As an aside, the reason why I always do this analysis for adults ages 25+ is to be able to control for education.</p>
+</div></div><div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_intro_to_data_viz_files/figure-html/wages1-1.png" class="img-fluid figure-img" width="576"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If I have a few more numbers I might be able to justify taking up the space:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_intro_to_data_viz_files/figure-html/wages2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If this is a handout or report of some sort, I’m probably still better off with just text:</p>
+<div class="lead">
+<blockquote class="blockquote">
+<p>Of Maryland workers ages 25 and up, part-time workers earn a median $25,488, while full-time workers earn $77,203.</p>
+</blockquote>
+</div>
+<p>More likely, I’d round the numbers to the nearest thousand, and describe one number in relation to the other:</p>
+<div class="lead">
+<blockquote class="blockquote">
+<p>Of Maryland workers ages 25 and up, part-time workers earn a median of just over $25,000. Full-time workers average 3 times as much.</p>
+</blockquote>
+</div>
+<p>More numbers than this, especially with these large dollar amounts, becomes unwieldy. For a few observations, a table works without being overwhelming:</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Median individual earnings by work status, Maryland adults ages 25+, 2024</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">status</th>
+<th style="text-align: right;">median_earnings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">all_workers</td>
+<td style="text-align: right;">$65,586</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">part_time</td>
+<td style="text-align: right;">$25,488</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">full_time</td>
+<td style="text-align: right;">$77,203</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>We’ll talk about tables as a type of data visualization later, but if I want to make anything more than this, <em>and</em> I don’t need my reader to be able to read every single number, I’ll move to a chart.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="01_intro_to_data_viz_files/figure-html/wages4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>That would be hard to cram into a short sentence, and the large gaps likely won’t be as apparent in a table, so this is now a good candidate for a chart.</p>
+<p>Now that I’ve got data by both work status and sex, I might flip the story a little. Showing income by sex could be useful, but usually when we talk about wage gaps, it’s the ratio of one group’s income to another’s, e.g.&nbsp;“women on average make XX cents on the male dollar.” If we just calculate that for the numbers in this chart, and only want to present that, we’re back down to only 3 numbers.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Median individual earnings by sex and full-time status, Maryland adults ages 25+, 2024</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">status</th>
+<th style="text-align: right;">men</th>
+<th style="text-align: right;">women</th>
+<th style="text-align: right;">ratio_women_to_men</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">all_workers</td>
+<td style="text-align: right;">$72,873</td>
+<td style="text-align: right;">$59,513</td>
+<td style="text-align: right;">$0.82</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">part_time</td>
+<td style="text-align: right;">$27,484</td>
+<td style="text-align: right;">$24,291</td>
+<td style="text-align: right;">$0.88</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">full_time</td>
+<td style="text-align: right;">$82,589</td>
+<td style="text-align: right;">$72,000</td>
+<td style="text-align: right;">$0.87</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>If my readers need to know exact dollar amounts and the ratio, a table like this works. If all they need are ratios, you might skip the chart and table and go for pullout text:</p>
+<div class="lead">
+<p>Among Maryland workers ages 25 and over, women earn an average of 82 cents on the male dollar. Because women are more likely to work part-time, the wage gap is smaller between only part-time workers or only full-time workers.</p>
+</div>
+<p><strong>Tl;dr:</strong> Make a chart because you <em>should</em>, not because you <em>could</em>.</p>
+</section>
+<section id="lab" class="level2">
+<h2 class="anchored" data-anchor-id="lab">Lab</h2>
+<p>The lab for this topic will be a quick check that you have all the packages you need installed and working.</p>
 
 
+
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -809,10 +1023,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../notes/00_setup.html" class="pagination-link" aria-label="00. Setup">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">00. Setup</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./syllabus.html" class="pagination-link" aria-label="Syllabus">
-        <span class="nav-page-text">Syllabus</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../notes/02_good_code.html" class="pagination-link" aria-label="02. Writing good code">
+        <span class="nav-page-text">02. Writing good code</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -821,4 +1038,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/01_intro_to_data_viz.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/01_intro_to_data_viz.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

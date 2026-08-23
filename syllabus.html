@@ -2,18 +2,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Camille Seaberry">
 
-<title>GES 778, Spring 2024 - Syllabus</title>
+<title>Syllabus - Advanced Visualization and Presentation – GES 778, Fall 2026</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -51,19 +57,21 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./readings.html" rel="next">
 <link href="./index.html" rel="prev">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-eaeb381c6b7494c50009502241a4985c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-5c3649c7e3133eb8c44389898c25c3bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-f11ceae8cf846bd1f3ee6bc1b04a9bf4.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-5c3649c7e3133eb8c44389898c25c3bf.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,19 +103,181 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-sidebar docked slimcontent">
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./syllabus.html">Syllabus</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -119,11 +289,16 @@ div.csl-indent {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">GES 778, Spring 2024</a> 
+      <a href="./">GES 778, Fall 2026</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/umbc-viz/ges778.git" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
     <a href="https://github.com/umbc-viz/justviz.git" title="justviz package" class="quarto-navigation-tool px-1" aria-label="justviz package"><i class="bi bi-code-slash"></i></a>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
 </div>
     </div>
       </div>
@@ -136,9 +311,9 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Overview</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -146,7 +321,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Setup</span></a>
+ <span class="menu-text">Advanced Visualization and Presentation, Fall 2026</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -155,201 +330,40 @@ div.csl-indent {
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./readings.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Readings</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./decision_checklist.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Decisionmaking checklist</span></a>
-  </div>
-</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./weeks/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Weekly notes</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+            <a href="./notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/00_definitions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">0. Definitions</span></a>
+  <a href="./notes/00_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00. Setup</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/01_walkthrough.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">1. Walkthrough</span></a>
+  <a href="./notes/01_intro_to_data_viz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. Intro to data viz</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./weeks/02_components.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">2. Components of a chart</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/03_encoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3. Visual encoding</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/03b_encoding_refs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">3b. Encoding cheatsheets</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/04_understanding_data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">4. Learning about your data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/05_good_code.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">5. Writing good code</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/06_color.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">6. Color</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/07_annotations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">7. Text and annotations</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/08_uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">8. Uncertainty and distributions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/09_decisions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">9. Making responsible decisions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/10_accessibility.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">10. Accessibility and literacy</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/11_project1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">11. Project 1 troubleshooting</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/12_maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">12. Spatial data</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/13_data_to_space.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">13. Mapping data to space</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/14_geos.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">14. Manipulating geographies</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/15_color_text_mapping.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">15. Color, text, and annotations in mapping</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/16_context.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">16. Putting spatial data in context</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/17_sad_maps.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">17. Avoiding sad maps</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/18_experiments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">18. Experimentation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./weeks/19_project2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">19. Project 2 troubleshooting</span></a>
+  <a href="./notes/02_good_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. Writing good code</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
- <span class="menu-text">Tips &amp; tricks</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tips/eda.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Spatial and non-spatial EDA</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tips/exporting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Exporting and distributing your work</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tips/fonts.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Fonts</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./tips/merging.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Merging data</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">References by topic</span></a>
-  </div>
-</li>
     </ul>
     </div>
 <div class="quarto-sidebar-footer"><div class="sidebar-footer-item">
@@ -375,31 +389,34 @@ div.csl-indent {
   </ul></li>
   <li><a href="#grading" id="toc-grading" class="nav-link" data-scroll-target="#grading">Grading</a>
   <ul class="collapse">
-  <li><a href="#participation" id="toc-participation" class="nav-link" data-scroll-target="#participation">Participation</a></li>
+  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
   <li><a href="#projects" id="toc-projects" class="nav-link" data-scroll-target="#projects">Projects</a></li>
-  <li><a href="#other-assignments" id="toc-other-assignments" class="nav-link" data-scroll-target="#other-assignments">Other assignments</a></li>
+  <li><a href="#case-studies" id="toc-case-studies" class="nav-link" data-scroll-target="#case-studies">Case studies</a></li>
+  <li><a href="#extensions" id="toc-extensions" class="nav-link" data-scroll-target="#extensions">Extensions</a></li>
   <li><a href="#grading-scale" id="toc-grading-scale" class="nav-link" data-scroll-target="#grading-scale">Grading scale</a></li>
   <li><a href="#grade-distribution" id="toc-grade-distribution" class="nav-link" data-scroll-target="#grade-distribution">Grade distribution</a></li>
   </ul></li>
   <li><a href="#attendance" id="toc-attendance" class="nav-link" data-scroll-target="#attendance">Attendance</a></li>
+  <li><a href="#ai" id="toc-ai" class="nav-link" data-scroll-target="#ai">AI</a></li>
+  <li><a href="#plagiarism-and-academic-integrity" id="toc-plagiarism-and-academic-integrity" class="nav-link" data-scroll-target="#plagiarism-and-academic-integrity">Plagiarism and academic integrity</a></li>
   <li><a href="#umbc-policies-and-resources" id="toc-umbc-policies-and-resources" class="nav-link" data-scroll-target="#umbc-policies-and-resources">UMBC policies and resources</a>
   <ul class="collapse">
+  <li><a href="#immigration-and-international-students" id="toc-immigration-and-international-students" class="nav-link" data-scroll-target="#immigration-and-international-students">Immigration and international students</a></li>
   <li><a href="#accessibility-and-disability-accommodations-guidance-and-resources" id="toc-accessibility-and-disability-accommodations-guidance-and-resources" class="nav-link" data-scroll-target="#accessibility-and-disability-accommodations-guidance-and-resources">Accessibility and Disability Accommodations, Guidance and Resources</a></li>
   <li><a href="#sexual-assault-sexual-harassment-and-gender-based-violence-and-discrimination" id="toc-sexual-assault-sexual-harassment-and-gender-based-violence-and-discrimination" class="nav-link" data-scroll-target="#sexual-assault-sexual-harassment-and-gender-based-violence-and-discrimination">Sexual Assault, Sexual Harassment, and Gender Based Violence and Discrimination</a></li>
-  <li><a href="#pregnant-and-parenting-students" id="toc-pregnant-and-parenting-students" class="nav-link" data-scroll-target="#pregnant-and-parenting-students">Pregnant and Parenting Students</a></li>
-  <li><a href="#religious-observances-accommodations" id="toc-religious-observances-accommodations" class="nav-link" data-scroll-target="#religious-observances-accommodations">Religious Observances &amp; Accommodations</a></li>
-  <li><a href="#hate-bias-discrimination-and-harassment" id="toc-hate-bias-discrimination-and-harassment" class="nav-link" data-scroll-target="#hate-bias-discrimination-and-harassment">Hate, Bias, Discrimination and Harassment</a></li>
+  <li><a href="#other-resources" id="toc-other-resources" class="nav-link" data-scroll-target="#other-resources">Other Resources</a></li>
   <li><a href="#umbc-writing-center" id="toc-umbc-writing-center" class="nav-link" data-scroll-target="#umbc-writing-center">UMBC Writing Center</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/syllabus.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/syllabus.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/syllabus.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/syllabus.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="syllabus.pdf"><i class="bi bi-file-pdf"></i>Typst</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
+
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Overview</a></li><li class="breadcrumb-item"><a href="./syllabus.html">Syllabus</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Syllabus</h1>
+<h1 class="title">Syllabus - Advanced Visualization and Presentation</h1>
 </div>
 
 
@@ -417,7 +434,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">February 13, 2024</p>
+      <p class="date-modified">August 23, 2026</p>
     </div>
   </div>
     
@@ -429,9 +446,9 @@ div.csl-indent {
 
 
 <p>At its essence, the aim of data visualization is to move data and its meaning(s) and context(s) from some origin (spreadsheets, observed phenomena, etc.) to a larger audience. It’s a spectrum of incredibly powerful tools for not just understanding and explaining facts, but also for shaping what those facts are and creating the narrative around them. By the end of this course, you will have thought through your role and responsibility in an evolving field, developed a set of best practices that is likely to continue to change, engaged with larger social currents toward your own goals, and strengthened your skills in R.</p>
-<p>Because this is part of a professional studies program based on open source software and the ethos behind it, the course will be very hands-on and require everyone’s willingness to contribute and participate. Instead of tests and graded homework assignments, we’ll focus on practice, critique, and revision, building continuously on individual projects and shared tools. To some extent, the class structure will mimic a workplace, where you have projects with checkpoints and meetings to brainstorm and workshop your ideas, with time to work both in class and on your own at home.</p>
-<p>Because data science and data visualization—and the software we use for both—change so quickly, a lot of the community’s discourse happens in less formal settings, such as blogs, social media, podcasts, and workshops, rather than just traditional academic journals and books. Our readings (defined loosely enough to include videos of talks, podcasts, and simply browsing through data visualization projects) will likewise fall along this spectrum, and you’ll have some flexibility in what you read and share.</p>
-<p><strong>Above all, I want this to be a course that is useful to you as you build a career of critical engagement with data.</strong> The schedule is intentionally loose so we can adjust based on skills we may want or need to build upon, and each student’s goals and interests. Please be willing to share what you want to learn, contribute resources, and ask for what you need of me and each other.</p>
+<p>Because this is part of a professional studies program based on open source software and the ethos behind it, the course will be very hands-on and require everyone’s willingness to contribute and participate. Instead of tests and graded homework assignments, we’ll focus on practice, critique, and revision, building continuously on individual projects and shared tools.</p>
+<p>Because data science and data visualization—and the software we use for both—change so quickly, a lot of the community’s discourse happens in less formal settings, such as blogs, social media, podcasts, and workshops, rather than just traditional academic journals and books. Our readings will likewise fall along this spectrum, and you’ll have some flexibility in what you read and share.</p>
+<p><strong>Above all, I want this to be a course that is useful to you as you build a career of critical engagement with data.</strong> The schedule has some flexibility so we can adjust things to fit your needs and interests. Please be willing to share what you want to learn, contribute resources, and ask for what you need of me and each other.</p>
 <section id="objectives" class="level2">
 <h2 class="anchored" data-anchor-id="objectives">Objectives</h2>
 <p>The first half of the course will be focused on non-spatial data visualization; the second half will be focused on spatial data and how to integrate the two. Some of the principles we go over for non-spatial and spatial will differ, but objectives remain the same.</p>
@@ -457,16 +474,14 @@ div.csl-indent {
 <section id="readings" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="readings">Readings</h3>
 <p>All readings will be available to students for free. Many will be open source texts and have code available. Readings will be a mix of theory and practice.</p>
-<p>The schedule of the course will roughly follow the structure of the book <em>Fundamentals of Data Visualization</em> <span class="citation" data-cites="Wilke2019">(<a href="#ref-Wilke2019" role="doc-biblioref">Wilke, 2019</a>)</span>. Both the book and the source code used to write it are available for free online.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-Wilke2019" class="csl-entry" role="listitem">
-Wilke, C. (2019). <em>Fundamentals of data visualization: A primer on making informative and compelling figures</em> (First edition). O’Reilly. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
-</div><div id="ref-W.C.G2023" class="csl-entry" role="listitem">
-Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for data science: Import, tidy, transform, visualize, and model data</em> (2nd edition). O’Reilly. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>
-</div><div id="ref-Cairo2019" class="csl-entry" role="listitem">
+<p>The schedule of the course will roughly follow the structure of the book <em>Fundamentals of Data Visualization</em> <span class="citation" data-cites="wilke2019">(<a href="#ref-wilke2019" role="doc-biblioref">Wilke, 2019</a>)</span> Both the book and the source code used to write it are available for free online.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-wilke2019" class="csl-entry" role="listitem">
+Wilke, C. O. (2019). <em>Fundamentals of <span>Data Visualization</span></em>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
+</div><div id="ref-wickham2023" class="csl-entry" role="listitem">
+Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for data science</em> (2nd ed.). O’Reilly Media, Incorporated. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>
+</div><div id="ref-cairo2019" class="csl-entry" role="listitem">
 Cairo, A. (2019). <em>How charts lie: Getting smarter about visual information</em> (First edition). W. W. Norton &amp; Company.
-</div><div id="ref-Yau2013" class="csl-entry" role="listitem">
-Yau, N. (2013). <em>Data points: Visualization that means something</em>. John Wiley &amp; Sons, Inc.
-</div></div><p>We’ll also read portions of <em>R for Data Science</em> <span class="citation" data-cites="W.C.G2023">(<a href="#ref-W.C.G2023" role="doc-biblioref">Wickham et al., 2023</a>)</span> (also open source), <em>How Charts Lie</em> <span class="citation" data-cites="Cairo2019">(<a href="#ref-Cairo2019" role="doc-biblioref">Cairo, 2019</a>)</span>, and <em>Data Points</em> <span class="citation" data-cites="Yau2013">(<a href="#ref-Yau2013" role="doc-biblioref">Yau, 2013</a>)</span>, as well as a variety of other sources of different media. I’ll keep a running list of resources in the online class notes with other tutorials and references.</p>
+</div></div><p>We’ll also read portions of <em>R for Data Science</em> <span class="citation" data-cites="wickham2023">(<a href="#ref-wickham2023" role="doc-biblioref">Wickham et al., 2023</a>)</span> (also open source) and <em>How Charts Lie</em> <span class="citation" data-cites="cairo2019">(<a href="#ref-cairo2019" role="doc-biblioref">Cairo, 2019</a>)</span>, as well as a variety of other sources of different media. I’ll keep a running list of resources in the online class notes with other tutorials and references.</p>
 </section>
 <section id="software" class="level3">
 <h3 class="anchored" data-anchor-id="software">Software</h3>
@@ -474,12 +489,11 @@ Yau, N. (2013). <em>Data points: Visualization that means something</em>. John W
 <ul>
 <li><em><a href="https://cran.r-project.org/">R programming language</a></em></li>
 <li><em><a href="https://ggplot2.tidyverse.org/">ggplot2</a> and <a href="https://exts.ggplot2.tidyverse.org/gallery/">related packages</a></em></li>
-<li><em><a href="https://posit.co/downloads/">RStudio</a></em> or another integrated development environment</li>
+<li><em><a href="https://posit.co/downloads/">RStudio</a></em>, <em><a href="https://positron.posit.co/">Positron</a></em>, or another integrated development environment</li>
 <li><em><a href="https://quarto.org/">Quarto</a>,</em> a markdown-based publishing system from the same team as RStudio</li>
-<li><em><a href="https://git-scm.com/">git</a></em> for version control, <a href="https://github.com/">GitHub</a> for storage of version-controlled materials, and GitHub Classroom for discussions and submitting code</li>
+<li><em><a href="https://git-scm.com/">git</a></em> for version control, <a href="https://github.com/">GitHub</a> for storage of version-controlled materials and submitting code</li>
 <li>Blackboard for assignments and announcements</li>
 </ul>
-<p>I’m open to suggestions on any other tools you all think would be useful.</p>
 </section>
 <section id="other-tools" class="level3">
 <h3 class="anchored" data-anchor-id="other-tools">Other tools</h3>
@@ -490,11 +504,11 @@ Yau, N. (2013). <em>Data points: Visualization that means something</em>. John W
 <section id="schedule" class="level2">
 <h2 class="anchored" data-anchor-id="schedule">Schedule</h2>
 <p>The schedule has some flexibility built into it, but tentatively goes as follows:</p>
-<table class="table">
+<table class="caption-top table">
 <colgroup>
 <col style="width: 5%">
-<col style="width: 25%">
-<col style="width: 70%">
+<col style="width: 28%">
+<col style="width: 66%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -507,148 +521,134 @@ Yau, N. (2013). <em>Data points: Visualization that means something</em>. John W
 <tr class="odd">
 <td style="text-align: right;">1</td>
 <td>Non-spatial data viz</td>
-<td>What is a chart, and do you need one?</td>
+<td>Intro to data viz; writing good code</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">2</td>
 <td></td>
-<td>Encoding data to visuals; making meaning of your data</td>
+<td>Encoding data to visuals; making good decisions</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">3</td>
 <td></td>
-<td>Writing good code; working with color</td>
+<td>Tables; exploratory data visualization</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">4</td>
 <td></td>
-<td>Text and annotation; uncertainty and distribution</td>
+<td>Color, styleguides</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">5</td>
 <td></td>
-<td>Making good decisions pt.&nbsp;1</td>
+<td>Text &amp; annotation; uncertainty</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">6</td>
 <td></td>
-<td>Accessibility, literacy, and audience</td>
+<td>Audience &amp; accessibility</td>
 </tr>
 <tr class="odd">
 <td style="text-align: right;">7</td>
 <td></td>
-<td>Storytelling pt.&nbsp;1 (empathy &amp; equity); experimentation</td>
+<td>Responsibility &amp; ethics</td>
 </tr>
 <tr class="even">
 <td style="text-align: right;">8</td>
-<td>Spatial data viz</td>
-<td>What is a map, and do you need one?</td>
+<td></td>
+<td>Project 1 work session</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;"></td>
-<td></td>
-<td><em>Project 1 due</em></td>
+<td style="text-align: right;">9</td>
+<td>Spatial data viz</td>
+<td>Review of spatial viz &amp; spatial encodings</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">9</td>
-<td></td>
-<td>Encoding data to space; harmful practices</td>
-</tr>
-<tr class="odd">
 <td style="text-align: right;">10</td>
 <td></td>
-<td>Color, text, and annotations pt.&nbsp;2</td>
+<td>Guiding readers</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: right;">11</td>
 <td></td>
-<td>Making good decisions pt.&nbsp;2</td>
+<td>Building context</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: right;">12</td>
 <td></td>
-<td>Storytelling pt.&nbsp;2 (history &amp; cohesion); experimentation</td>
+<td>Manipulating geographies</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: right;">13</td>
 <td></td>
-<td>Final critique; tying up loose ends</td>
+<td>Data viz for community action</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: right;">14</td>
 <td></td>
-<td>Finishing touches on projects</td>
+<td>Flex time / catch up</td>
 </tr>
-<tr class="even">
-<td style="text-align: right;"></td>
+<tr class="odd">
+<td style="text-align: right;">15</td>
 <td></td>
-<td><em>Project 2 due</em></td>
+<td>Project 2 work session</td>
 </tr>
 </tbody>
 </table>
+<p>All assignments and due dates will be updated on Blackboard.</p>
 <section id="class-structure" class="level3">
 <h3 class="anchored" data-anchor-id="class-structure">Class structure</h3>
-<p>A typical class session will be roughly:</p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Activity</th>
-<th style="text-align: right;">Time</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Warm-up</td>
-<td style="text-align: right;">5-10 minutes</td>
-</tr>
-<tr class="even">
-<td>Report-backs</td>
-<td style="text-align: right;">10-15 minutes, if any</td>
-</tr>
-<tr class="odd">
-<td>Lecture</td>
-<td style="text-align: right;">1 hour max + questions</td>
-</tr>
-<tr class="even">
-<td>Workshop, critique, or lab</td>
-<td style="text-align: right;">Remaining time</td>
-</tr>
-</tbody>
-</table>
+<p>To keep the class active, I’ll aim to lecture for no more than 1 hour, leaving the rest of the time for labs and group discussion. We will have labs every session, except the last class before each project is due, when we’ll spend the full class period working on projects.</p>
 </section>
 </section>
 <section id="grading" class="level2">
 <h2 class="anchored" data-anchor-id="grading">Grading</h2>
 <p>In data visualization there aren’t any perfectly right answers, and there aren’t too many perfectly wrong ones either. As a result, rather than tedious quizzes and problem sets, your grade will reflect the effort you put into developing your process and your critical eye, and how successfully you create compelling stories with data.</p>
-<section id="participation" class="level3">
-<h3 class="anchored" data-anchor-id="participation">Participation</h3>
-<p>There will be opportunities for participation points every week, including:</p>
+<section id="labs" class="level3">
+<h3 class="anchored" data-anchor-id="labs">Labs</h3>
+<p>For every lab, there will be 3 tasks that earn you points:</p>
 <ul>
-<li>Bringing in visualizations you’ve found for us to discuss</li>
-<li>Opening your work up for workshopping</li>
-<li>Contributing code (there’s an R package in development for this class), with more points given for students with less experience in R—this includes the less glamorous but crucial tasks of testing, debugging, and documenting</li>
-<li>Doing an optional reading or attending a talk and reporting back to the class on some interesting things you learned</li>
-<li>Adding a resource to the class notes</li>
+<li>Uploading your lab notebook (1-2 points based on effort, not correctness)</li>
+<li>Sharing a chart or map from your lab for feedback from your classmates (1 point)</li>
+<li>Providing <em>constructive</em> feedback to a classmate (1 point)</li>
 </ul>
-<p>There will be two opportunities to lose points as well:</p>
+<section id="submitting-your-lab" class="level4">
+<h4 class="anchored" data-anchor-id="submitting-your-lab">Submitting your lab</h4>
+<p>There will be one repo on GitHub where I post lab notebooks. You’ll fork this repo (we’ll walk through this together in the first session) so you have your own copy under your account. This also allows you to keep your repo up to date as I add each week’s lab. As you work, you’ll commit your changes and push them back to your repo. Whatever is there Tuesday before class is what I’ll grade based on. You get 1 point for submitting something with a minimal amount of effort, and 2 points for having worked through all or most of the lab.</p>
+</section>
+<section id="feedback" class="level4">
+<h4 class="anchored" data-anchor-id="feedback">Feedback</h4>
+<p>At the end of each class, I’ll remind everyone to share a chart on our discussion forum (TBD but probably Slack). (If you don’t have anything yet you’re comfortable sharing, you can do it throughout the week, but might miss out of getting feedback.) This does not have to be a finished chart; a work in progress or sketch is fine. If there are specific things you’d like feedback or advice on, feel free to let us know. You’ll also need to provide at least one comment to a classmate.</p>
+<p>Examples of constructive feedback:</p>
 <ul>
-<li>Being mean or unnecessarily harsh in critique</li>
-<li>Unexcused absences (see below)</li>
+<li>“I like the colors you chose. They grab my attention but are still easy to read since they’re not too bright.”</li>
+<li>“I don’t quite understand the headline. Do you mean something like …?”</li>
+<li>“I think you need more contrast between the labels and the background. I’m having trouble reading this without my glasses. You might want to try…”</li>
 </ul>
-<p>There’s no set number of participation points you need—just rack them up when you can, forgo them when you have to, and I’ll scale them at the end of the semester. Notice that most of these involve contributing to your classmates’ growth as well as your own.</p>
+<p>Examples of feedback that isn’t constructive:</p>
+<ul>
+<li>“I hate these colors.”</li>
+<li>“It’s good.”</li>
+</ul>
+<p>Being able to give (and receive) feedback and critique rooted in kindness and respect is a crucial workplace skill that we’ll practice. <strong>Mean, rude, or unnecessarily harsh feedback will cost points.</strong></p>
+</section>
 </section>
 <section id="projects" class="level3">
 <h3 class="anchored" data-anchor-id="projects">Projects</h3>
-<p>There will be 2 projects, one midterm and one final, that you’ll be working on throughout the semester. Both will build upon the exercises, and you’ll have lots of time to work on them in class and receive feedback from myself and your peers. The first will be non-spatial data, and the second will be both spatial and non-spatial. You’ll be responsible for moving from a dataset through to a polished visualization that tells a story and has real-world impact. You will also document your process along the way and have check-ins regularly. Each project will also have a semi-formal write-up to explain what you did and why, and to situate your work into the theory and principles we study.</p>
+<p>There will be 2 projects, one midterm and one final, that you’ll be working on throughout the semester. Both will build upon the lab work, and you’ll have time to work on them in class and receive feedback from myself and your peers. The first will be non-spatial data, and the second will be both spatial and non-spatial. You’ll be responsible for moving from a dataset through to a polished visualization that tells a story and has real-world impact. You will also document your process along the way. Each project will also have a brief write-up to explain what you did and why, and to situate your work into the theory and principles we study.</p>
 </section>
-<section id="other-assignments" class="level3">
-<h3 class="anchored" data-anchor-id="other-assignments">Other assignments</h3>
-<p>We’ll have a few more small assignments, including short case studies and peer reviews.</p>
+<section id="case-studies" class="level3">
+<h3 class="anchored" data-anchor-id="case-studies">Case studies</h3>
+<p>We’ll have 2 case studies, again where one focuses on non-spatial and one on spatial data. For each, you’ll choose 1 of 2 published visualization projects to study, as well as several readings from a list. You’ll facilitate a sort of “discussion” between the authors of the readings you choose, the author of the visualization, and yourself, creating your own unique framework for understanding someone else’s work.</p>
+</section>
+<section id="extensions" class="level3">
+<h3 class="anchored" data-anchor-id="extensions">Extensions</h3>
+<p>If you need an extension for an assignment, reach out <em>in advance</em> letting me know why you need the extension and when you think you can have the assignment done. Unless there’s a serious disruption in your life, I’d prefer extensions to be a week at most. Since labs aren’t graded, unless you aren’t able to get a single thing done, you shouldn’t need extensions for them.</p>
 </section>
 <section id="grading-scale" class="level3">
 <h3 class="anchored" data-anchor-id="grading-scale">Grading scale</h3>
 <p>Grades will be rounded to the nearest whole percent.</p>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Grade</th>
@@ -713,7 +713,7 @@ Yau, N. (2013). <em>Data points: Visualization that means something</em>. John W
 </section>
 <section id="grade-distribution" class="level3">
 <h3 class="anchored" data-anchor-id="grade-distribution">Grade distribution</h3>
-<table class="table">
+<table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Category</th>
@@ -726,28 +726,24 @@ Yau, N. (2013). <em>Data points: Visualization that means something</em>. John W
 <td style="text-align: right;">15%</td>
 </tr>
 <tr class="even">
-<td>Peer review &amp; reflections</td>
-<td style="text-align: right;">5%</td>
+<td>Labs</td>
+<td style="text-align: right;">30%</td>
 </tr>
 <tr class="odd">
-<td>Participation</td>
-<td style="text-align: right;">20%</td>
-</tr>
-<tr class="even">
 <td>Project 1 visualization</td>
 <td style="text-align: right;">20%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Project 1 write-up</td>
 <td style="text-align: right;">5%</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Project 2 visualization</td>
 <td style="text-align: right;">25%</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Project 2 write-up</td>
-<td style="text-align: right;">10%</td>
+<td style="text-align: right;">5%</td>
 </tr>
 </tbody>
 </table>
@@ -755,39 +751,92 @@ Yau, N. (2013). <em>Data points: Visualization that means something</em>. John W
 </section>
 <section id="attendance" class="level2">
 <h2 class="anchored" data-anchor-id="attendance">Attendance</h2>
-<p>As grad students, your course load is one of many responsibilities you juggle, so I know things will come up from time to time that prevent you from getting to class. If you need to miss class or will be late, just let me know in advance (email or DM), and as long as absences don’t become excessive, it should be fine. If there is some reason you’ll need to miss class several times, such as chronic illness (after all, COVID’s still here), just let me know and we can figure something out. If you can’t attend class but are able to participate remotely, I can stream on Zoom or WebEx.</p>
-<p>Unexcused absences, except for a serious emergency (e.g.&nbsp;you got into a car accident on the way to campus), will cost you participation points. Excused absences will not.</p>
+<p>As grad students, your course load is one of many responsibilities you juggle, so I know things may come up that prevent you from getting to class. If you need to miss class or will be late, just let me know in advance (email or DM), and as long as absences don’t become excessive, it should be fine. If there is some reason you’ll need to miss class several times, such as chronic illness (after all, COVID’s still here), just let me know and we can figure something out. If you can’t attend class but are able to participate remotely, I can stream on Zoom or WebEx. If your absense is excused in advance and you cannot attend remotely, I’ll give you a brief summary of what you missed. Beyond that it is up to you to catch up through the readings and course notes.</p>
+<p>Each unexcused absence, except for a serious emergency (e.g.&nbsp;you got into a car accident on the way to campus), will cost you a point off your grade. Excused absences will not.</p>
+</section>
+<section id="ai" class="level2">
+<h2 class="anchored" data-anchor-id="ai">AI</h2>
+<p>I generally don’t use AI (LLMs, code generators, etc) in my work. With the tools I’ve tried, I’ve mostly found that the code is low quality if it even runs at all. This is a class on creativity and critical thinking, and a proprietary computer program sold by a defense contractor cannot do those things for you. My goal is for you to become the sorts of developers and data visualizers that can build skills for yourselves, keep up with best practices, and weather industry changes.</p>
+<p>That said, there are 2 areas where you will be allowed to use AI tools of your choosing:</p>
+<ol type="1">
+<li>Debugging code <em>you have written yourself</em></li>
+<li>Generating documentation that you then check and edit</li>
+</ol>
+<p>If you go that route, <strong>you’re on your own</strong> to choose, vet, pay for, and fight with your tools. Keep all prompts as comments in your code so you can trace back through your work later. Please don’t ask me to debug AI-generated code for you (I won’t). Please don’t submit code with incorrect AI-generated documentation.</p>
+<p><strong>You are not allowed to use AI for written assignments.</strong> There is no formal writing in this class; there is very little writing at all, and it’s all about your opinions and interests. I would rather read a case study handwritten on a napkin and full of misspellings than one that reads like a chatbot.</p>
+<p>If I have serious suspicions that you have submitted AI-generated or heavily AI-assisted writing, I will run it through several AI checkers. If the majority flag it as likely AI, we’ll have a conversation, and you’ll have the opportunity to convince me it’s your own work, or resubmit a handwritten assignment.</p>
+<p>Let’s just not go down this road. You’re all adults, and I’d rather trust and treat you as such. Anything less isn’t a good use of anyone’s time, tuition money, or tokens.</p>
+</section>
+<section id="plagiarism-and-academic-integrity" class="level2">
+<h2 class="anchored" data-anchor-id="plagiarism-and-academic-integrity">Plagiarism and academic integrity</h2>
+<p>UMBC <a href="https://www2.umbc.edu/policies/pdfs/UMBC%20III%201.10.02%20Policy%20and%20Procedures%20for%20Graduate%20Student%20Academic%20Misconduct.pdf">defines plagiarism</a> as:</p>
+<blockquote class="blockquote">
+<p>The intentional or knowing representation of the words, ideas or work of others as one’s own in an academic exercise. The appropriation of the language, ideas or thoughts of another and representation of them as one’s own original work.</p>
+</blockquote>
+<p>I take plagiarism seriously. If I find any evidence of plagiarism, we’ll have a conversation to work out a solution, which, depending on the situation, can be anything from redoing the assignment with a penalty, to a formal disciplinary process.</p>
+<p>Two examples of plagiarism that could arise in this course:</p>
+<ul>
+<li>Passing AI-generated writing off as your own (see above about AI use)</li>
+<li>Reusing text from readings without proper citation</li>
+</ul>
+<p>If you have questions about this or need help, please just ask me before it becomes a problem. The Office of Academic Integrity also has <a href="https://academicconduct.umbc.edu/plagiarism/">resources</a> to help understand how to avoid plagiarism.</p>
 </section>
 <section id="umbc-policies-and-resources" class="level2">
 <h2 class="anchored" data-anchor-id="umbc-policies-and-resources">UMBC policies and resources</h2>
+<section id="immigration-and-international-students" class="level3">
+<h3 class="anchored" data-anchor-id="immigration-and-international-students">Immigration and international students</h3>
+<p>UMBC’s Office of International Students and Scholars puts out <a href="https://isss.umbc.edu/updates/">guidance and updates regarding changes in federal immigration policy</a>, including details on <a href="https://isss.umbc.edu/admitted-students-2/entering-the-usa-what-documents-do-you-need/">entering the US</a>. I try to keep track of these, but I encourage you all to keep track as well in order to support yourself and your peers.</p>
+<p>From UMBC’s <a href="https://ogc.umbc.edu/guidance-related-to-federal-immigration-enforcement/">general counsel</a>:</p>
+<blockquote class="blockquote">
+<p>UMBC is not aware of any requests or actions concerning our campus from U.S. Immigration and Customs Enforcement (ICE) or other federal law enforcement agencies at this time. The information here is general guidance concerning requests from any external law enforcement agencies for information, records, or access to non-public areas of the campus.</p>
+<p>As a public institution, UMBC’s campus is largely open to the public, but many spaces are restricted for reasons of privacy, safety, and operational needs—including residence halls, classrooms, laboratories, and administrative and faculty offices. To access such non-public areas, law enforcement must have a judicial warrant or subpoena. Additionally, federal privacy laws generally prohibit the release of information from a student’s records, including to law enforcement, without a valid court order or subpoena.</p>
+<p>If you receive a request from external law enforcement for information, records, or access to non-public space on campus, <strong>notify UMBC Police (410-455-5555)</strong>, who will coordinate with relevant university officials and respond to the request. More specifically, we advise that you:</p>
+<ol type="1">
+<li>Call UMBC Police, as noted above.</li>
+<li>Inform the government/law enforcement agent that you are not authorized to provide access and that they should coordinate with UMBC Police.</li>
+<li>Invite them to wait in a public area while you contact UMBC Police.</li>
+<li>Do not accept a subpoena or warrant on behalf of the university yourself.</li>
+<li>Do not physically block or interfere with enforcement action.</li>
+<li>Document the interaction. You have the right to document the situation, including:
+<ul>
+<li>Date and time</li>
+<li>Officer name and identification number</li>
+<li>Agency affiliation</li>
+<li>Details of the interaction</li>
+</ul></li>
+</ol>
+<p><strong>If you have further questions, please reach out to <a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=ogc@umbc.edu">ogc@umbc.edu</a>.</strong></p>
+</blockquote>
+</section>
 <section id="accessibility-and-disability-accommodations-guidance-and-resources" class="level3">
 <h3 class="anchored" data-anchor-id="accessibility-and-disability-accommodations-guidance-and-resources">Accessibility and Disability Accommodations, Guidance and Resources</h3>
-<p>Accommodations for students with disabilities are provided for all students with a qualified disability under the Americans with Disabilities Act (ADA &amp; ADAAA) and Section 504 of the Rehabilitation Act who request and are eligible for accommodations. The Office of Student Disability Services (SDS) is the UMBC department designated to coordinate accommodations that creates equal access for students when barriers to participation exist in University courses, programs, or activities.</p>
-<p>If you have a documented disability and need to request academic accommodations in your courses, please refer to the SDS website at <a href="http://sds.umbc.edu/">sds.umbc.edu</a> for registration information and office procedures.</p>
-<p>SDS email: <script type="text/javascript">
+<p>From <a href="https://ecr.umbc.edu/sample-title-ix-responsible-employee-syllabus-language/">UMBC’s Office of Equity and Civil Rights</a></p>
+<p>Accommodations for students with disabilities are provided for all students with a qualified disability under the Americans with Disabilities Act (ADA &amp; ADAAA) and Section 504 of the Rehabilitation Act who request and are eligible for accommodations. The Office of Disability Access and Resources (DAR) is the UMBC department designated to coordinate accommodations that creates equal access for students when barriers to participation exist in University courses, programs, or activities.</p>
+<p>If you have a documented disability and need to request academic accommodations in your courses, please refer to the DAR website at <a href="https://accessibility.umbc.edu/">accessibility.umbc.edu</a> for registration information and office procedures.</p>
+<p>DAR email: <script type="text/javascript">
 <!--
-h='&#x75;&#x6d;&#98;&#x63;&#46;&#x65;&#100;&#x75;';a='&#64;';n='&#100;&#x69;&#x73;&#x61;&#98;&#x69;&#108;&#x69;&#116;&#x79;';e=n+a+h;
-document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#100;&#x69;&#x73;&#x41;&#98;&#x69;&#108;&#x69;&#116;&#x79;&#64;&#x75;&#x6d;&#98;&#x63;&#46;&#x65;&#100;&#x75;'+'<\/'+'a'+'>');
+h='&#x75;&#x6d;&#98;&#x63;&#46;&#x65;&#100;&#x75;';a='&#64;';n='&#x61;&#100;&#x61;&#x73;&#x75;&#112;&#112;&#x6f;&#114;&#116;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
 // -->
-</script><noscript>disAbility@umbc.edu (disability at umbc dot edu)</noscript></p>
-<p>SDS phone: <a href="tel:410-455-2459">410-455-2459</a></p>
-<p>If you will be using SDS approved accommodations in this class, please contact the instructor to discuss implementation of the accommodations. During remote instruction requirements due to COVID, communication and flexibility will be essential for success.</p>
+</script><noscript>adasupport at umbc dot edu</noscript></p>
+<p>DAR phone: <a href="tel:410-455-2459">410-455-2459</a></p>
+<p>If you will be using DAR approved accommodations in this class, please contact the instructor to discuss implementation of the accommodations. During remote instruction requirements due to COVID, communication and flexibility will be essential for success.</p>
 </section>
 <section id="sexual-assault-sexual-harassment-and-gender-based-violence-and-discrimination" class="level3">
 <h3 class="anchored" data-anchor-id="sexual-assault-sexual-harassment-and-gender-based-violence-and-discrimination">Sexual Assault, Sexual Harassment, and Gender Based Violence and Discrimination</h3>
-<p><a href="https://ecr.umbc.edu/gender-discrimination-sexual-misconduct/">UMBC Policy</a> in addition to federal and state law (to include Title IX) prohibits discrimination and harassment on the basis of sex, sexual orientation, and gender identity in University programs and activities. Any student who is impacted by sexual harassment, sexual assault, domestic violence, dating violence, stalking, sexual exploitation, gender discrimination, pregnancy discrimination, gender-based harassment, or related retaliation should contact the University’s Title IX Coordinator to make a report and/or access support and resources. The Title IX Coordinator can be reached at <script type="text/javascript">
+<p><a href="https://ecr.umbc.edu/interim-policy-on-sex-discrimination-sex-based-harassment-and-sexual-misconduct-august-1-2024/">UMBC Policy</a> in addition to federal and state law (to include Title IX) prohibits discrimination and harassment on the basis of sex, sexual orientation, and gender identity in University programs and activities. Any student who is impacted by sexual harassment, sexual assault, domestic violence, dating violence, stalking, sexual exploitation, gender discrimination, pregnancy discrimination, gender-based harassment, or related retaliation should contact the University’s Title IX Coordinator to make a report and/or access support and resources. The Title IX Coordinator can be reached at <script type="text/javascript">
 <!--
-h='&#x75;&#x6d;&#98;&#x63;&#46;&#x65;&#100;&#x75;';a='&#64;';n='&#116;&#x69;&#116;&#108;&#x65;&#x69;&#120;&#x63;&#x6f;&#x6f;&#114;&#100;&#x69;&#110;&#x61;&#116;&#x6f;&#114;';e=n+a+h;
+h='&#x75;&#x6d;&#98;&#x63;&#46;&#x65;&#100;&#x75;';a='&#64;';n='&#x65;&#x63;&#114;';e=n+a+h;
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
 // -->
-</script><noscript>titleixcoordinator at umbc dot edu</noscript> or 410-455-1717.</p>
+</script><noscript>ecr at umbc dot edu</noscript>&nbsp;or 410-455-1717.</p>
 <p>You can access support and resources even if you do not want to take any further action. You will not be forced to file a formal complaint or police report. Please be aware that the University may take action on its own if essential to protect the safety of the community.</p>
 <p>If you are interested in making a report, please use the <a href="https://umbc-advocate.symplicity.com/titleix_report/index.php/pid364290?">Online Reporting/Referral Form</a>.&nbsp; Please note that, if you report anonymously, the University’s ability to respond will be limited.</p>
-<section id="notice-that-faculty-and-teaching-assistants-are-responsible-employees-with-mandatory-reporting-obligations" class="level4">
-<h4 class="anchored" data-anchor-id="notice-that-faculty-and-teaching-assistants-are-responsible-employees-with-mandatory-reporting-obligations">Notice that Faculty and Teaching Assistants are Responsible Employees with Mandatory Reporting Obligations</h4>
-<p>All faculty members and teaching assistants are considered Responsible Employees, per UMBC’s <a href="https://ecr.umbc.edu/policy-on-sexual-misconduct-sexual-harassment-and-gender-discrimination/">Policy on Sexual Misconduct, Sexual Harassment, and Gender Discrimination</a>. Faculty and teaching assistants therefore required to report all known information regarding alleged conduct that may be a violation of the Policy to the Title IX Coordinator, even if a student discloses an experience that occurred before attending UMBC and/or an incident that only involves people not affiliated with UMBC.&nbsp; Reports are required regardless of the amount of detail provided and even in instances where support has already been offered or received.</p>
-<p>While faculty members want to encourage you to share information related to your life experiences through discussion and written work, students should understand that faculty are required to report past and present sexual harassment, sexual assault, domestic and dating violence, stalking, and gender discrimination that is shared with them to the Title IX Coordinator so that the University can inform students of their <a href="https://ecr.umbc.edu/rights-and-resources/">rights, resources, and support</a>.&nbsp; While you are encouraged to do so, you are not obligated to respond to outreach conducted as a result of a report to the Title IX Coordinator.</p>
-<p>If you need to speak with someone in confidence, who does not have an obligation to report to the Title IX Coordinator, UMBC has a number of <a href="https://ecr.umbc.edu/policy-on-sexual-misconduct-sexual-harassment-and-gender-discrimination/#confidential-resources">Confidential Resources</a> available to support you:&nbsp;</p>
+<section id="notice-that-faculty-and-teaching-assistants-are-mandated-reporters-with-mandatory-reporting-obligations" class="level4">
+<h4 class="anchored" data-anchor-id="notice-that-faculty-and-teaching-assistants-are-mandated-reporters-with-mandatory-reporting-obligations">Notice that Faculty and Teaching Assistants are Mandated Reporters with Mandatory Reporting Obligations</h4>
+<p>All faculty members and teaching assistants are considered Mandated Reporters, per UMBC’s <a href="https://ecr.umbc.edu/interim-policy-on-sex-discrimination-sex-based-harassment-and-sexual-misconduct-august-1-2024/">Interim Policy on Sex Discrimination, Sex-Based Harassment, and Sexual Misconduct</a>. Faculty and teaching assistants therefore required to report all known information regarding alleged conduct that may be a violation of the Policy to the Title IX Coordinator, even if a student discloses an experience that occurred before attending UMBC and/or an incident that only involves people not affiliated with UMBC.&nbsp; Reports are required regardless of the amount of detail provided and even in instances where support has already been offered or received.</p>
+<p>While faculty members want to encourage you to share information related to your life experiences through discussion and written work, students should understand that faculty are required to report past and present sexual harassment, sexual assault, domestic and dating violence, stalking, and gender discrimination that is shared with them to the Title IX Coordinator so that the University can inform students of their <a href="https://ecr.umbc.edu/resources-2/">rights, resources, and support</a>.&nbsp; While you are encouraged to do so, you are not obligated to respond to outreach conducted as a result of a report to the Title IX Coordinator.</p>
+<p>If you need to speak with someone in confidence, who does not have an obligation to report to the Title IX Coordinator, UMBC has a number of <a href="https://ecr.umbc.edu/resources-3/">Confidential Resources</a> available to support you:&nbsp;</p>
 <p><a href="https://health.umbc.edu/">Retriever Integrated Health</a>&nbsp;(Main Campus): 410-455-2472; Monday – Friday 8:30 a.m. – 5 p.m.; For After-Hours Support, Call 988.</p>
 <p><a href="https://shadygrove.umd.edu/student-affairs/counseling-well-being">Center for Counseling and Well-Being</a> (Shady Grove Campus): 301-738-6273; Monday-Thursday 10:00a.m. – 7:00 p.m. and Friday 10:00 a.m. – 2:00 p.m. (virtual) <a href="https://shadygrove.titaniumhwc.com/">Online Appointment Request Form</a></p>
 <p>Pastoral Counseling via <a href="https://i3b.umbc.edu/spaces/the-gathering-space-for-spiritual-well-being/">The Gathering Space for Spiritual Well-Being</a>: 410-455-6795; <script type="text/javascript">
@@ -796,45 +845,46 @@ h='&#x75;&#x6d;&#98;&#x63;&#46;&#x65;&#100;&#x75;';a='&#64;';n='&#x69;&#x33;&#98
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
 // -->
 </script><noscript>i3b at umbc dot edu</noscript>; Monday – Friday 8:00 a.m. – 10:00 p.m.</p>
-</section>
-<section id="other-resources" class="level4">
-<h4 class="anchored" data-anchor-id="other-resources">Other Resources</h4>
-<p><a href="https://womenscenter.umbc.edu/">Women’s Center</a> (open to students of all genders): <a href="tel:410-455-2714">410-455-2714</a>; <script type="text/javascript">
+<p><a href="https://womenscenter.umbc.edu/">Women’s, Gender, and Equity Center</a> (open to students of all genders): <a href="tel:410-455-2714">410-455-2714</a>; <script type="text/javascript">
 <!--
 h='&#x75;&#x6d;&#98;&#x63;&#46;&#x65;&#100;&#x75;';a='&#64;';n='&#x77;&#x6f;&#x6d;&#x65;&#110;&#x73;&#x63;&#x65;&#110;&#116;&#x65;&#114;';e=n+a+h;
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
 // -->
 </script><noscript>womenscenter at umbc dot edu</noscript>; Monday – Thursday 9:30 a.m. – 5:00 p.m. and Friday 10:00 a.m. – 4 p.m.</p>
-<p><a href="https://ecr.umbc.edu/shady-grove-title-ix-resources/">Shady Grove Student Resources</a>,&nbsp;<a href="https://ecr.umbc.edu/maryland-resources/">Maryland Resources</a>, <a href="https://ecr.umbc.edu/national-resources/">National Resources</a>.</p>
 </section>
+</section>
+<section id="other-resources" class="level3">
+<h3 class="anchored" data-anchor-id="other-resources">Other Resources</h3>
+<p><a href="https://ecr.umbc.edu/shady-grove-title-ix-resources/">Shady Grove Student Resources</a>,&nbsp;<a href="https://ecr.umbc.edu/maryland-resources/">Maryland Resources</a>, <a href="https://ecr.umbc.edu/national-resources/">National Resources</a>.</p>
 <section id="child-abuse-and-neglect" class="level4">
 <h4 class="anchored" data-anchor-id="child-abuse-and-neglect"><a href="https://ecr.umbc.edu/child-protection/">Child Abuse and Neglect</a></h4>
 <p>Please note that Maryland law and&nbsp;<a href="https://education.umbc.edu/child-abuse-reporting-policy//">UMBC policy</a> require that faculty report all disclosures or suspicions of child abuse or neglect to the Department of Social Services and_/_or the police even if the person who experienced the abuse or neglect is now over 18.</p>
 </section>
+<section id="pregnant-and-parenting-students" class="level4">
+<h4 class="anchored" data-anchor-id="pregnant-and-parenting-students"><a href="https://www2.ed.gov/about/offices/list/ocr/docs/pregnancy.html">Pregnant and Parenting Students</a></h4>
+<p>UMBC’s <a href="https://ecr.umbc.edu/interim-policy-on-sex-discrimination-sex-based-harassment-and-sexual-misconduct-august-1-2024/">Interim Policy on Sex Discrimination, Sex-Based Harassment, and Sexual Misconduct</a>&nbsp;expressly prohibits all forms of discrimination and harassment on the basis of sex, including pregnancy. Resources for pregnant, parenting and breastfeeding students are available through the University’s <a href="https://ecr.umbc.edu/students/">Office of Equity and Civil Rights</a>.&nbsp; Pregnant and parenting students are encouraged to contact the Title IX Coordinator to discuss plans and ensure ongoing access to their academic program with respect to a leave of absence – returning following leave, or any other accommodation that may be needed related to pregnancy, childbirth, adoption, breastfeeding, and/or the early months of parenting.</p>
+<p>In addition, students who are pregnant and have an impairment related to their pregnancy that qualifies as disability under the ADA may be entitled to accommodations through the <a href="https://sds.umbc.edu/accommodations/registering-with-sds/">Office of Disability Access and Resources (DAR)</a>.</p>
 </section>
-<section id="pregnant-and-parenting-students" class="level3">
-<h3 class="anchored" data-anchor-id="pregnant-and-parenting-students"><a href="https://www2.ed.gov/about/offices/list/ocr/docs/pregnancy.html">Pregnant and Parenting Students</a></h3>
-<p>UMBC’s <a href="https://ecr.umbc.edu/policy-on-sexual-misconduct-sexual-harassment-and-gender-discrimination/">Policy on Sexual Misconduct, Sexual Harassment and Gender Discrimination</a> expressly prohibits all forms of discrimination and harassment on the basis of sex, including pregnancy. Resources for pregnant, parenting and breastfeeding students are available through the University’s <a href="https://ecr.umbc.edu/students/">Office of Equity and Civil Rights</a>.&nbsp; Pregnant and parenting students are encouraged to contact the Title IX Coordinator to discuss plans and ensure ongoing access to their academic program with respect to a leave of absence – returning following leave, or any other accommodation that may be needed related to pregnancy, childbirth, adoption, breastfeeding, and/or the early months of parenting.</p>
-<p>In addition, students who are pregnant and have an impairment related to their pregnancy that qualifies as disability under the ADA may be entitled to accommodations through the <a href="https://sds.umbc.edu/accommodations/registering-with-sds/">Office of Student Disability Services</a>.</p>
-</section>
-<section id="religious-observances-accommodations" class="level3">
-<h3 class="anchored" data-anchor-id="religious-observances-accommodations">Religious Observances &amp; Accommodations</h3>
-<p>UMBC <a href="https://provost.umbc.edu/wp-content/uploads/sites/46/2022/08/Religious-Observance-Academic-Policy-2022_2023.pdf">Policy</a> provides that students should not be penalized because of observances of their religious beliefs, and that students shall be given an opportunity, whenever feasible, to make up within a reasonable time any academic assignment that is missed due to individual participation in religious observances. It is the responsibility of the student to inform the instructor of any intended absences or requested modifications for religious observances in advance, and as early as possible. For questions or guidance regarding religious observances and accommodations, please contact the Office of Equity and Civil Rights at <script type="text/javascript">
+<section id="religious-observances-accommodations" class="level4">
+<h4 class="anchored" data-anchor-id="religious-observances-accommodations">Religious Observances &amp; Accommodations</h4>
+<p>UMBC <a href="https://ecr.umbc.edu/faith-based-and-religious-accommodations/">Policy</a> provides that students should not be penalized because of observances of their religious beliefs, and that students shall be given an opportunity, whenever feasible, to make up within a reasonable time any academic assignment that is missed due to individual participation in religious observances. It is the responsibility of the student to inform the instructor of any intended absences or requested modifications for religious observances in advance, and as early as possible. For questions or guidance regarding religious observances and accommodations, please contact the Office of Equity and Civil Rights at <script type="text/javascript">
 <!--
 h='&#x75;&#x6d;&#98;&#x63;&#46;&#x65;&#100;&#x75;';a='&#64;';n='&#x65;&#x63;&#114;';e=n+a+h;
 document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\/'+'a'+'>');
 // -->
 </script><noscript>ecr at umbc dot edu</noscript>.</p>
 </section>
-<section id="hate-bias-discrimination-and-harassment" class="level3">
-<h3 class="anchored" data-anchor-id="hate-bias-discrimination-and-harassment">Hate, Bias, Discrimination and Harassment</h3>
+<section id="hate-bias-discrimination-and-harassment" class="level4">
+<h4 class="anchored" data-anchor-id="hate-bias-discrimination-and-harassment">Hate, Bias, Discrimination and Harassment</h4>
 <p>UMBC values safety, cultural and ethnic diversity, social responsibility, lifelong learning, equity, and civic engagement.</p>
 <p>Consistent with these principles, <a href="https://ecr.umbc.edu/discrimination-and-bias/">UMBC Policy</a> prohibits discrimination and harassment in its educational programs and activities or with respect to employment terms and conditions based on race, creed, color, religion, sex, gender, pregnancy, ancestry, age, gender identity or expression, national origin, veterans status, marital status, sexual orientation, physical or mental disability, or genetic information.</p>
 <p>Students (and faculty and staff) who experience discrimination, harassment, hate, or bias based upon a protected status or who have such matters reported to them should use the <a href="https://umbc-advocate.symplicity.com/titleix_report/index.php/pid954154?">online reporting/referral form</a> to report discrimination, hate, or bias incidents. You may report incidents that happen to you anonymously. Please note that, if you report anonymously, the University’s ability to respond may be limited.</p>
 </section>
+</section>
 <section id="umbc-writing-center" class="level3">
 <h3 class="anchored" data-anchor-id="umbc-writing-center">UMBC Writing Center</h3>
-<p>The Academic Success Center offers free writing assistance through our Writing Center, which is located on the first floor of the Library. We also offer online and asynchronous tutoring. Writing tutors are students like you who receive ongoing training to stay up-to-date on the best tutoring techniques. To make an appointment, please visit http://academicsuccess.umbc.edu/writing-center</p>
+<p>From the <a href="https://academicsuccess.umbc.edu/writing-center/">Academic Success Center</a>:</p>
+<p>The Academic Success Center offers free writing assistance through our Writing Center, which is located on the first floor of the Library. We also offer online and asynchronous tutoring. Writing tutors are students like you who receive ongoing training to stay up-to-date on the best tutoring techniques. To make an appointment, please visit <a href="http://academicsuccess.umbc.edu/writing-center">http://academicsuccess.umbc.edu/writing-center</a></p>
 
 
 
@@ -843,187 +893,71 @@ document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+e+'<\
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
@@ -1031,162 +965,184 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
       return codeEl.innerText;
     }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1194,195 +1150,168 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link  aria-label=" setup"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Setup</span>
+      <a href="./index.html" class="pagination-link" aria-label="Advanced Visualization and Presentation, Fall 2026">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Advanced Visualization and Presentation, Fall 2026</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./readings.html" class="pagination-link" aria-label="Readings">
-        <span class="nav-page-text">Readings</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
