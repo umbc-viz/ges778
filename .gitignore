@@ -12,3 +12,5 @@ notrack/
 
 notes/rosm.cache
 .vscode
+
+**/*.quarto_ipynb
