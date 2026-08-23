@@ -73,6 +73,43 @@ time doing an analysis only to write your data out to a file called "data.csv"
 and a plot called "map.png". This might seem obvious, *but I've seen people do
 all of these things*.
 
+## Git commit messages
+
+We'll use git for version control with our work in this class, as you have in
+previous classes. If you need a refresher or references, I recommend:
+
+- Chacon, S., & Straub, B. (2014). Pro Git (2nd ed). Apress L. P.
+  https://git-scm.com/book/en/v2 for detailed references,
+- [Dang It, Git?!](https://dangitgit.com) for things that commonly go wrong
+  (more commonly known by its other name, Oh Shit, Git?!, and available as an
+  illustrated zine)
+- Bryan, J. (2025). Happy git and GitHub for the useR.
+  https://happygitwithr.com/
+
+When you finish some portion of a task in writing code or documentation, you'll
+want to save, add, and commit your changes to the version history. You'll either
+do this in a GUI, like the one included in RStudio, GitHub Desktop, or some
+similar software, or on the command line. **Either way, your commit message
+should be fairly specific and informative.**
+
+If you use a time tracker for work, like log how much time you spend on specific
+projects, think of commit messages as being part of a similar system. When I'm
+billing a client, I need to report something more specific than "Wrote code,"
+and something a little less specific than "Wrote the script
+income_analysis_by_geography.R to conduct the following analyses..." A happy
+medium would be something like "Income analysis by geography for viz relaunch."
+Your commit messages should serve a similar purpose: they give a brief record of
+what you did in that chunk of work so that you, your colleagues, and any clients
+who might see your code know what you did and why you changed it.
+
+Translating that to commit messages:
+
+- "Push to GitHub" is not an informative commit message.
+- "Add the utility functions dollar, dollar_thousands, dollar_change,
+  lots_of_dollars, dollars_with_cents to utils/helper_functions.R" is too much
+  detail and repeats info tracked in the commit itself
+- "Add functions to format dollar amounts to helpers" is a good middle ground
+
 ## Reusable code
 
 One rule of thumb I've heard is that it's fine to repeat your code to do the

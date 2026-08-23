@@ -220,9 +220,9 @@ works. If all they need are ratios, you might skip the chart and table and go
 for pullout text:
 
 ::: {.lead}
-Among Maryland workers ages 25 and over, women earn an average of 82 cents on
-the male dollar. Because women are more likely to work part-time, the wage gap
-is smaller between only part-time workers or only full-time workers.
+> Among Maryland workers ages 25 and over, women earn an average of 82 cents on
+> the male dollar. Because women are more likely to work part-time, the wage gap
+> is smaller between only part-time workers or only full-time workers.
 :::
 
 **Tl;dr:** Make a chart because you *should*, not because you *could*.
