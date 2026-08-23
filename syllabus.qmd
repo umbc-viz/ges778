@@ -1,5 +1,5 @@
 ---
-title: Digital Cartography & Visualization, Fall 2026 syllabus
+title: Syllabus - Advanced Visualization and Presentation
 format:
   html:
     toc: true

@@ -1,5 +1,5 @@
 --- 
-title: Digital Cartography & Visualization, Fall 2026
+title: Advanced Visualization and Presentation, Fall 2026
 --- 
 
 Welcome to GES 778, Digital Cartography and Visualization at UMBC! This site
