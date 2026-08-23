@@ -9,7 +9,7 @@ website:
   site-url: https://umbc-viz.github.io/ges778/
   repo-url: https://github.com/umbc-viz/ges778.git
   repo-actions: [edit, issue, source]
-  reader-mode: false
+  reader-mode: true
 
   sidebar:
     style: "docked"
@@ -25,11 +25,13 @@ website:
       - section: "Overview"
         contents:
           - index.qmd
-          # - syllabus.qmd
+          - id: syllabus
+            text: "Syllabus"
+            href: syllabus.qmd
           # - readings.qmd
       - "---"
-      # - section: "Notes"
-      #   contents: "notes/*.qmd"
+      - section: "Notes"
+        contents: "notes/*.qmd"
       - "---"
       # - section: "Tips & tricks"
       #   contents: "tips/*.qmd"

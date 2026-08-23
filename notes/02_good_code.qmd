@@ -1,0 +1,147 @@
+---
+title: 02. Writing good code
+---
+
+## Good coding practices
+
+Some basic good habits will get you a long way in programming.
+
+- Document what you're doing in
+  [comments](https://mopac-ds.github.io/Learning-Resource-Best-Coding-Practices-in-R/commenting-code.html)
+- Document [functions](https://r-pkgs.org/man.html)
+- Keep track of sources of data---I try to have downloading data be something I
+  do programmatically in a script, whether it's from an API, downloaded from an
+  open data portal, scraped from a website, `curl` calls, or anything else.
+- If you base your code off a Stack Overflow answer, a tutorial, a chatbot, or
+  anything else, leave yourself a comment with a link to the source. It keeps
+  you honest and will point you back to where you got help in the first place.
+- Organize your work into
+  [projects](https://r4ds.hadley.nz/workflow-scripts.html) with a consistent
+  structure
+- Use naming conventions that describe what you're doing or what something is
+- Write informative [git commit
+  messages](https://github.blog/developer-skills/github/write-better-commits-build-better-projects/)
+- If you get into larger projects, manage orchestration with build tools
+- *READ THE DOCUMENTATION*
+
+## Documenting code
+
+One of the most important things you can do as a programmer is to document your
+code. This can be hard to do well, but it's essential to making sure your code
+is clear and accountable and that your work can be reproduced or repurposed. (If
+you've followed the ["replicability
+crisis"](https://www.nature.com/articles/533452a) in the sciences over the past
+decade or so, you've seen what can go very wrong when your work isn't documented
+accurately for yourself and others!)
+
+A common suggestion is to write your code assuming you'll come back to it in 6
+months and need to be able to pick up where you left off. I usually also assume
+a coworker or colleague will need to rerun or reuse my code, so even if I'm
+doing something that I'll remember 6 months from now, they might not know what
+things mean. It also gets me out of spending unnecessary amounts of time walking
+interns through an analysis if I can say, "I tried to document everything really
+well, so read through it, run all the code, and let me know if you need help
+after that." Documenting code also helps ease the transition into package
+development, which requires *a lot* of documentation.
+
+I don't document *everything*---plenty of my work is routine and straightforward
+enough---but some of the things I try to always take note of:
+
+- Any sort of analysis or process that's **out of the ordinary or complex**.
+  Don't assume you'll remember later why you used a new approach.
+- Anything I know **someone else will need** to be able to reference. Sometimes
+  I do EDA on something that a coworker will then finish up or need to write
+  about. I need to make sure they can do that accurately.
+- **Outside sources** that don't come from that specific project. If your
+  project is contained within a set of folders, and you've copied data in from
+  some other project, make a note of where it comes from so if you need to
+  update it you know where to get it from.
+- **Decision-making** that you might need to keep track of or argue for later.
+  e.g. a comparison of categories between datasets with a note that says "these
+  categories changed significantly since the previous data collection" will be
+  helpful when someone asks why you didn't include trends in an analysis.
+- **References**. If I came up with some code based on a Stack Overflow post or
+  a blog post somewhere, or I'm building off of someone else's methodology, I'll
+  usually include a link in my comments.
+
+This also applies to simple things like organizing your projects. If you have a
+bunch of folders called things like "data analysis 1" and they all contain a
+jumble of different notebooks and scripts for different purposes, and the
+scripts are all called "analysis_of_stuff.R", you're going to lose things easily
+and not know how different pieces build on each other. Similarly, don't spend
+time doing an analysis only to write your data out to a file called "data.csv"
+and a plot called "map.png". This might seem obvious, *but I've seen people do
+all of these things*.
+
+## Reusable code
+
+One rule of thumb I've heard is that it's fine to repeat your code to do the
+same thing twice, but if you need to do it a third time, [you should write a
+function](https://r4ds.hadley.nz/functions). It might mean taking a step back
+from what you're working on at the moment, but it's pretty much always worth the
+time. Alongside documenting your code in general, it's important to document
+your functions---what they do, what the arguments mean, what types of values
+arguments can take. Try to your functions and their arguments in ways that make
+it clear what they mean as well.
+
+## Organization
+
+Come up with a structure of directories you like for a project, and stick with
+it. The starter repo for each project in this class will have a pared down
+version of what I usually use, but a full version of what I might have, even for
+a small project, looks like this:
+
+```
+cool_project          
+ ¦--analysis          # EDA, notebooks, and scripts that create output
+ |--design            # scripts *only* for creating publishable charts
+ ¦--fetch_data        # raw data, often downloaded in a script
+ ¦   ¦--permits_xlsx  # folders for each raw data source
+ ¦   °--housing_pums       
+ ¦--input_data        # cleaned data that is sourced for the project
+ ¦--output_data       # data that's a product of analysis in this project
+ ¦--plots             # plots that can be distributed or published
+ ¦--prep_scripts      # scripts that download, clean, reshape data
+ °--utils             # misc scripts & bits of data to use throughout the project
+```
+
+### Know where your files are & how to get to them
+
+When you run code in notebook formats like Rmarkdown and quarto, the code is
+executed relative to that file. When you source a script, code is executed
+relative to where it's sourced from, likely the root directory of the project.
+This can lead to errors when you render a notebook, because your code can no
+longer find files you're referring to. The helper function `here::here` points
+to the root of the project and builds paths from there.
+
+::: {.callout-note}
+## An aside: build tools
+
+Build tools are outside the scope of this class, but for larger projects
+especially or projects that will need to be updated over time, they'll save you
+a lot of headaches. I have some projects that I rebuild once a year when new ACS
+data comes out, and I've got things down to where I can make one or two calls on
+the command line flagging the year as a variable, and all the data wrangling and
+analyses are ready to go. In fact, this site rebuilds from a frozen list of
+packages every time I push to GitHub, and if that build is successful, it
+publishes automatically.
+
+Some tools I use:
+
+- [GNU Make](https://www.gnu.org/software/make/), the OG build tool
+- [Snakemake](https://snakemake.readthedocs.io/), like GNU Make but written in
+  Python and designed for data analysis
+- [GitHub actions](https://github.com/features/actions), including ones
+  specifically for [R](https://github.com/r-lib/actions/)
+- [Docker](https://www.docker.com/), build a small isolated environment for your
+  projects, some designed for
+  [R](https://github.com/rocker-org/rocker-versioned2)
+- Package & environment managers: [mamba](https://mamba.readthedocs.io) or
+  [uv](https://github.com/astral-sh/uv) for Python,
+  [renv](https://rstudio.github.io/renv/) for R
+:::
+
+## Lab
+
+In the lab for this topic, we'll get started with developing helper functions
+that we'll use and iterate on throughout the course.

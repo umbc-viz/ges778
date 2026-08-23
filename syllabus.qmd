@@ -1,0 +1,578 @@
+---
+title: Syllabus - Advanced Visualization and Presentation
+format:
+  html:
+    toc: true
+  typst:
+    papersize: us-letter
+    margin:
+      x: 0.5in
+      y: 0.5in
+    toc: false
+    mainfont: "Source Sans 3"
+    citation-location: document
+    reference-location: document
+---
+
+At its essence, the aim of data visualization is to move data and its meaning(s)
+and context(s) from some origin (spreadsheets, observed phenomena, etc.) to a
+larger audience. It's a spectrum of incredibly powerful tools for not just
+understanding and explaining facts, but also for shaping what those facts are
+and creating the narrative around them. By the end of this course, you will have
+thought through your role and responsibility in an evolving field, developed a
+set of best practices that is likely to continue to change, engaged with larger
+social currents toward your own goals, and strengthened your skills in R.
+
+Because this is part of a professional studies program based on open source
+software and the ethos behind it, the course will be very hands-on and require
+everyone's willingness to contribute and participate. Instead of tests and
+graded homework assignments, we'll focus on practice, critique, and revision,
+building continuously on individual projects and shared tools.
+
+Because data science and data visualization---and the software we use for
+both---change so quickly, a lot of the community's discourse happens in less
+formal settings, such as blogs, social media, podcasts, and workshops, rather
+than just traditional academic journals and books. Our readings will likewise
+fall along this spectrum, and you'll have some flexibility in what you read and
+share.
+
+**Above all, I want this to be a course that is useful to you as you build a
+career of critical engagement with data.** The schedule has some flexibility so
+we can adjust things to fit your needs and interests. Please be willing to share
+what you want to learn, contribute resources, and ask for what you need of me
+and each other.
+
+## Objectives
+
+The first half of the course will be focused on non-spatial data visualization;
+the second half will be focused on spatial data and how to integrate the two.
+Some of the principles we go over for non-spatial and spatial will differ, but
+objectives remain the same.
+
+By the end of the course, students will:
+
+- Have an understanding of the **basics of visual perception**, and how to use
+  that knowledge to design data visualizations well
+- Be familiar with the **grammar of graphics** framework to think about
+  components and purposes of visual elements
+- Be skilled in **programming in R** and using the ggplot2 data visualization
+  ecosystem
+- Know how to **give and receive constructive feedback** on visualizations, both
+  their own and others', and to revise and improve upon their work
+- Be able to **identify potential harms** done by inappropriate or misleading
+  visualizations, and make corrections
+- Be able to make, articulate, and argue for **good decisions** in designing
+  charts and maps
+- Have made many, many unpolished visualizations and several polished,
+  presentation-ready ones
+
+Successful students will finish the course with finished products for their
+portfolios of high enough quality to include with applications to jobs or other
+academic programs:
+
+- 1--2 completed, **presentation-ready data visualization projects**
+- **reproducible, documented code** that can be repurposed at another
+  organization
+- contributions to an **open source codebase**
+
+## Materials
+
+### Readings
+
+All readings will be available to students for free. Many will be open source
+texts and have code available. Readings will be a mix of theory and practice.
+
+The schedule of the course will roughly follow the structure of the book
+*Fundamentals of Data Visualization* [@wilke2019] Both the book and the source
+code used to write it are available for free online.
+
+We'll also read portions of *R for Data Science* [@wickham2023] (also open
+source) and *How Charts Lie* [@cairo2019], as well as a variety of other sources
+of different media. I'll keep a running list of resources in the online class
+notes with other tutorials and references.
+
+### Software
+
+This is a rough set of the software and tools we will use, with open source
+software in italics:
+
+- *[R programming language](https://cran.r-project.org/)*
+- *[ggplot2](https://ggplot2.tidyverse.org/) and [related
+  packages](https://exts.ggplot2.tidyverse.org/gallery/)*
+- *[RStudio](https://posit.co/downloads/)*,
+  *[Positron](https://positron.posit.co/)*, or another integrated development
+  environment
+- *[Quarto](https://quarto.org/),* a markdown-based publishing system from the
+  same team as RStudio
+- *[git](https://git-scm.com/)* for version control,
+  [GitHub](https://github.com/) for storage of version-controlled materials and
+  submitting code
+- Blackboard for assignments and announcements
+
+### Other tools
+
+If at all possible, **you should have a laptop of your own** for this class. All
+the software we're using is free and open source, so you should be able to
+install everything on your computer. If you do not have a laptop, you can borrow
+one from the library, or, because we will be using git for version tracking and
+GitHub for storage, you can use a lab computer and make sure to upload your work
+regularly.
+
+We'll be doing a lot of sketching by hand (you don't have to be good at
+drawing), so you'll need **a notebook and pens or pencils** that are nice to
+doodle with. I highly, *highly* recommend finding a graph paper or dotted
+notebook.
+
+## Schedule
+
+The schedule has some flexibility built into it, but tentatively goes as
+follows:
+
+  | Week | Section              | Topic                                           |
+  | ---: | -------------------- | ----------------------------------------------- |
+  |    1 | Non-spatial data viz | Intro to data viz; writing good code            |
+  |    2 |                      | Encoding data to visuals; making good decisions |
+  |    3 |                      | Tables; exploratory data visualization          |
+  |    4 |                      | Color, styleguides                              |
+  |    5 |                      | Text & annotation; uncertainty                  |
+  |    6 |                      | Audience & accessibility                        |
+  |    7 |                      | Responsibility & ethics                         |
+  |    8 |                      | Project 1 work session                          |
+  |    9 | Spatial data viz     | Review of spatial viz & spatial encodings       |
+  |   10 |                      | Guiding readers                                 |
+  |   11 |                      | Building context                                |
+  |   12 |                      | Manipulating geographies                        |
+  |   13 |                      | Data viz for community action                   |
+  |   14 |                      | Flex time / catch up                            |
+  |   15 |                      | Project 2 work session                          |
+
+All assignments and due dates will be updated on Blackboard.
+
+### Class structure
+
+To keep the class active, I'll aim to lecture for no more than 1 hour, leaving
+the rest of the time for labs and group discussion. We will have labs every
+session, except the last class before each project is due, when we'll spend the
+full class period working on projects.
+
+## Grading
+
+In data visualization there aren't any perfectly right answers, and there aren't
+too many perfectly wrong ones either. As a result, rather than tedious quizzes
+and problem sets, your grade will reflect the effort you put into developing
+your process and your critical eye, and how successfully you create compelling
+stories with data.
+
+### Labs
+
+For every lab, there will be 3 tasks that earn you points:
+
+- Uploading your lab notebook (1-2 points based on effort, not correctness)
+- Sharing a chart or map from your lab for feedback from your classmates (1
+  point)
+- Providing *constructive* feedback to a classmate (1 point)
+
+#### Submitting your lab
+
+There will be one repo on GitHub where I post lab notebooks. You'll fork this
+repo (we'll walk through this together in the first session) so you have your
+own copy under your account. This also allows you to keep your repo up to date
+as I add each week's lab. As you work, you'll commit your changes and push them
+back to your repo. Whatever is there Tuesday before class is what I'll grade
+based on. You get 1 point for submitting something with a minimal amount of
+effort, and 2 points for having worked through all or most of the lab.
+
+#### Feedback
+
+At the end of each class, I'll remind everyone to share a chart on our
+discussion forum (TBD but probably Slack). (If you don't have anything yet
+you're comfortable sharing, you can do it throughout the week, but might miss
+out of getting feedback.) This does not have to be a finished chart; a work in
+progress or sketch is fine. If there are specific things you'd like feedback or
+advice on, feel free to let us know. You'll also need to provide at least one
+comment to a classmate.
+
+Examples of constructive feedback:
+
+- "I like the colors you chose. They grab my attention but are still easy to
+  read since they're not too bright."
+- "I don't quite understand the headline. Do you mean something like ...?"
+- "I think you need more contrast between the labels and the background. I'm
+  having trouble reading this without my glasses. You might want to try..."
+
+Examples of feedback that isn't constructive:
+
+- "I hate these colors."
+- "It's good."
+
+Being able to give (and receive) feedback and critique rooted in kindness and
+respect is a crucial workplace skill that we'll practice. **Mean, rude, or
+unnecessarily harsh feedback will cost points.**
+
+### Projects
+
+There will be 2 projects, one midterm and one final, that you'll be working on
+throughout the semester. Both will build upon the lab work, and you'll have time
+to work on them in class and receive feedback from myself and your peers. The
+first will be non-spatial data, and the second will be both spatial and
+non-spatial. You'll be responsible for moving from a dataset through to a
+polished visualization that tells a story and has real-world impact. You will
+also document your process along the way. Each project will also have a brief
+write-up to explain what you did and why, and to situate your work into the
+theory and principles we study.
+
+### Case studies
+
+We'll have 2 case studies, again where one focuses on non-spatial and one on
+spatial data. For each, you'll choose 1 of 2 published visualization projects to
+study, as well as several readings from a list. You'll facilitate a sort of
+"discussion" between the authors of the readings you choose, the author of the
+visualization, and yourself, creating your own unique framework for
+understanding someone else's work.
+
+### Extensions
+
+If you need an extension for an assignment, reach out *in advance* letting me
+know why you need the extension and when you think you can have the assignment
+done. Unless there's a serious disruption in your life, I'd prefer extensions to
+be a week at most. Since labs aren't graded, unless you aren't able to get a
+single thing done, you shouldn't need extensions for them.
+
+### Grading scale
+
+Grades will be rounded to the nearest whole percent.
+
+  | Grade | Percentage |
+  | ----- | ---------: |
+  | A+    |      97% + |
+  | A     |     93-96% |
+  | A-    |     90-92% |
+  | B+    |     87-89% |
+  | B     |     83-86% |
+  | B-    |     80-82% |
+  | C+    |     77-79% |
+  | C     |     73-76% |
+  | C-    |     70-72% |
+  | D+    |     67-69% |
+  | D     |     63-66% |
+  | D-    |     60-62% |
+  | F     |      < 60% |
+
+### Grade distribution
+
+  | Category                | Share of grade |
+  | ----------------------- | -------------: |
+  | Case studies            |            15% |
+  | Labs                    |            30% |
+  | Project 1 visualization |            20% |
+  | Project 1 write-up      |             5% |
+  | Project 2 visualization |            25% |
+  | Project 2 write-up      |             5% |
+
+## Attendance
+
+As grad students, your course load is one of many responsibilities you juggle,
+so I know things may come up that prevent you from getting to class. If you need
+to miss class or will be late, just let me know in advance (email or DM), and as
+long as absences don't become excessive, it should be fine. If there is some
+reason you'll need to miss class several times, such as chronic illness (after
+all, COVID's still here), just let me know and we can figure something out. If
+you can't attend class but are able to participate remotely, I can stream on
+Zoom or WebEx. If your absense is excused in advance and you cannot attend
+remotely, I'll give you a brief summary of what you missed. Beyond that it is up
+to you to catch up through the readings and course notes.
+
+Each unexcused absence, except for a serious emergency (e.g. you got into a car
+accident on the way to campus), will cost you a point off your grade. Excused
+absences will not.
+
+## AI
+
+I generally don't use AI (LLMs, code generators, etc) in my work. With the tools
+I've tried, I've mostly found that the code is low quality if it even runs at
+all. This is a class on creativity and critical thinking, and a proprietary
+computer program sold by a defense contractor cannot do those things for you. My
+goal is for you to become the sorts of developers and data visualizers that can
+build skills for yourselves, keep up with best practices, and weather industry
+changes.
+
+That said, there are 2 areas where you will be allowed to use AI tools of your
+choosing:
+
+1. Debugging code *you have written yourself*
+2. Generating documentation that you then check and edit
+
+If you go that route, **you're on your own** to choose, vet, pay for, and fight
+with your tools. Keep all prompts as comments in your code so you can trace back
+through your work later. Please don't ask me to debug AI-generated code for you
+(I won't). Please don't submit code with incorrect AI-generated documentation.
+
+**You are not allowed to use AI for written assignments.** There is no formal
+writing in this class; there is very little writing at all, and it's all about
+your opinions and interests. I would rather read a case study handwritten on a
+napkin and full of misspellings than one that reads like a chatbot.
+
+If I have serious suspicions that you have submitted AI-generated or heavily
+AI-assisted writing, I will run it through several AI checkers. If the majority
+flag it as likely AI, we'll have a conversation, and you'll have the opportunity
+to convince me it's your own work, or resubmit a handwritten assignment.
+
+Let's just not go down this road. You're all adults, and I'd rather trust and
+treat you as such. Anything less isn't a good use of anyone's time, tuition
+money, or tokens.
+
+## Plagiarism and academic integrity
+
+UMBC [ defines plagiarism
+](https://www2.umbc.edu/policies/pdfs/UMBC%20III%201.10.02%20Policy%20and%20Procedures%20for%20Graduate%20Student%20Academic%20Misconduct.pdf)
+as:
+
+> The intentional or knowing representation of the words, ideas or work of
+> others as one's own in an academic exercise. The appropriation of the
+> language, ideas or thoughts of another and representation of them as one's own
+> original work.
+
+I take plagiarism seriously. If I find any evidence of plagiarism, we'll have a
+conversation to work out a solution, which, depending on the situation, can be
+anything from redoing the assignment with a penalty, to a formal disciplinary
+process.
+
+Two examples of plagiarism that could arise in this course:
+
+- Passing AI-generated writing off as your own (see above about AI use)
+- Reusing text from readings without proper citation
+
+If you have questions about this or need help, please just ask me before it
+becomes a problem. The Office of Academic Integrity also has
+[resources](https://academicconduct.umbc.edu/plagiarism/) to help understand how
+to avoid plagiarism.
+
+## UMBC policies and resources
+
+### Immigration and international students
+
+UMBC's Office of International Students and Scholars puts out [guidance and
+updates regarding changes in federal immigration
+policy](https://isss.umbc.edu/updates/), including details on [entering the
+US](https://isss.umbc.edu/admitted-students-2/entering-the-usa-what-documents-do-you-need/).
+I try to keep track of these, but I encourage you all to keep track as well in
+order to support yourself and your peers.
+
+From UMBC's [general
+counsel](https://ogc.umbc.edu/guidance-related-to-federal-immigration-enforcement/):
+
+> UMBC is not aware of any requests or actions concerning our campus from U.S.
+> Immigration and Customs Enforcement (ICE) or other federal law enforcement
+> agencies at this time. The information here is general guidance concerning
+> requests from any external law enforcement agencies for information, records,
+> or access to non-public areas of the campus.
+>
+> As a public institution, UMBC's campus is largely open to the public, but many
+> spaces are restricted for reasons of privacy, safety, and operational
+> needs---including residence halls, classrooms, laboratories, and
+> administrative and faculty offices. To access such non-public areas, law
+> enforcement must have a judicial warrant or subpoena. Additionally, federal
+> privacy laws generally prohibit the release of information from a student's
+> records, including to law enforcement, without a valid court order or
+> subpoena.
+>
+> If you receive a request from external law enforcement for information,
+> records, or access to non-public space on campus, **notify UMBC Police
+> (410-455-5555)**, who will coordinate with relevant university officials and
+> respond to the request. More specifically, we advise that you:
+>
+> 1. Call UMBC Police, as noted above.
+> 2. Inform the government/law enforcement agent that you are not authorized to
+>    provide access and that they should coordinate with UMBC Police.
+> 3. Invite them to wait in a public area while you contact UMBC Police.
+> 4. Do not accept a subpoena or warrant on behalf of the university yourself.
+> 5. Do not physically block or interfere with enforcement action.
+> 6. Document the interaction. You have the right to document the situation,
+>    including:
+>    - Date and time
+>    - Officer name and identification number
+>    - Agency affiliation
+>    - Details of the interaction
+>
+> **If you have further questions, please reach out to
+> [ogc@umbc.edu](https://mail.google.com/mail/?view=cm&fs=1&to=ogc@umbc.edu).**
+
+### Accessibility and Disability Accommodations, Guidance and Resources
+
+From [UMBC's Office of Equity and Civil
+Rights](https://ecr.umbc.edu/sample-title-ix-responsible-employee-syllabus-language/)
+
+Accommodations for students with disabilities are provided for all students with
+a qualified disability under the Americans with Disabilities Act (ADA & ADAAA)
+and Section 504 of the Rehabilitation Act who request and are eligible for
+accommodations. The Office of Disability Access and Resources (DAR) is the UMBC
+department designated to coordinate accommodations that creates equal access for
+students when barriers to participation exist in University courses, programs,
+or activities.
+
+If you have a documented disability and need to request academic accommodations
+in your courses, please refer to the DAR website at
+[accessibility.umbc.edu](https://accessibility.umbc.edu/) for registration
+information and office procedures.
+
+DAR email: [adasupport@umbc.edu](mailto:adasupport@umbc.edu)
+
+DAR phone: [410-455-2459](tel:410-455-2459)
+
+If you will be using DAR approved accommodations in this class, please contact
+the instructor to discuss implementation of the accommodations. During remote
+instruction requirements due to COVID, communication and flexibility will be
+essential for success.
+
+### Sexual Assault, Sexual Harassment, and Gender Based Violence and Discrimination
+
+[UMBC
+Policy](https://ecr.umbc.edu/interim-policy-on-sex-discrimination-sex-based-harassment-and-sexual-misconduct-august-1-2024/)
+in addition to federal and state law (to include Title IX) prohibits
+discrimination and harassment on the basis of sex, sexual orientation, and
+gender identity in University programs and activities. Any student who is
+impacted by sexual harassment, sexual assault, domestic violence, dating
+violence, stalking, sexual exploitation, gender discrimination, pregnancy
+discrimination, gender-based harassment, or related retaliation should contact
+the University's Title IX Coordinator to make a report and/or access support and
+resources. The Title IX Coordinator can be reached at
+[ecr@umbc.edu](mailto:ecr@umbc.edu) or 410-455-1717.
+
+You can access support and resources even if you do not want to take any further
+action. You will not be forced to file a formal complaint or police report.
+Please be aware that the University may take action on its own if essential to
+protect the safety of the community.
+
+If you are interested in making a report, please use the [Online
+Reporting/Referral
+Form](https://umbc-advocate.symplicity.com/titleix_report/index.php/pid364290?). 
+Please note that, if you report anonymously, the University's ability to respond
+will be limited.
+
+#### Notice that Faculty and Teaching Assistants are Mandated Reporters with Mandatory Reporting Obligations
+
+All faculty members and teaching assistants are considered Mandated Reporters,
+per UMBC's [Interim Policy on Sex Discrimination, Sex-Based Harassment, and
+Sexual
+Misconduct](https://ecr.umbc.edu/interim-policy-on-sex-discrimination-sex-based-harassment-and-sexual-misconduct-august-1-2024/).
+Faculty and teaching assistants therefore required to report all known
+information regarding alleged conduct that may be a violation of the Policy to
+the Title IX Coordinator, even if a student discloses an experience that
+occurred before attending UMBC and/or an incident that only involves people not
+affiliated with UMBC.  Reports are required regardless of the amount of detail
+provided and even in instances where support has already been offered or
+received.
+
+While faculty members want to encourage you to share information related to your
+life experiences through discussion and written work, students should understand
+that faculty are required to report past and present sexual harassment, sexual
+assault, domestic and dating violence, stalking, and gender discrimination that
+is shared with them to the Title IX Coordinator so that the University can
+inform students of their [rights, resources, and
+support](https://ecr.umbc.edu/resources-2/).  While you are encouraged to do so,
+you are not obligated to respond to outreach conducted as a result of a report
+to the Title IX Coordinator.
+
+If you need to speak with someone in confidence, who does not have an obligation
+to report to the Title IX Coordinator, UMBC has a number of [Confidential
+Resources](https://ecr.umbc.edu/resources-3/) available to support you: 
+
+[Retriever Integrated Health](https://health.umbc.edu/) (Main Campus):
+410-455-2472; Monday -- Friday 8:30 a.m. -- 5 p.m.; For After-Hours Support,
+Call 988.
+
+[Center for Counseling and
+Well-Being](https://shadygrove.umd.edu/student-affairs/counseling-well-being)
+(Shady Grove Campus): 301-738-6273; Monday-Thursday 10:00a.m. -- 7:00 p.m. and
+Friday 10:00 a.m. -- 2:00 p.m. (virtual) [Online Appointment Request
+Form](https://shadygrove.titaniumhwc.com/)
+
+Pastoral Counseling via [The Gathering Space for Spiritual
+Well-Being](https://i3b.umbc.edu/spaces/the-gathering-space-for-spiritual-well-being/):
+410-455-6795; [i3b@umbc.edu](mailto:i3b@umbc.edu); Monday -- Friday 8:00 a.m. --
+10:00 p.m.
+
+[Women's, Gender, and Equity Center](https://womenscenter.umbc.edu/) (open to
+students of all genders): [410-455-2714](tel:410-455-2714);
+[womenscenter@umbc.edu](mailto:womenscenter@umbc.edu); Monday -- Thursday 9:30
+a.m. -- 5:00 p.m. and Friday 10:00 a.m. -- 4 p.m.
+
+### Other Resources
+
+[Shady Grove Student
+Resources](https://ecr.umbc.edu/shady-grove-title-ix-resources/), [Maryland
+Resources](https://ecr.umbc.edu/maryland-resources/), [National
+Resources](https://ecr.umbc.edu/national-resources/).
+
+#### [Child Abuse and Neglect](https://ecr.umbc.edu/child-protection/)
+
+Please note that Maryland law and [UMBC
+policy](https://education.umbc.edu/child-abuse-reporting-policy//) require that
+faculty report all disclosures or suspicions of child abuse or neglect to the
+Department of Social Services and\_/\_or the police even if the person who
+experienced the abuse or neglect is now over 18.
+
+#### [Pregnant and Parenting Students ](https://www2.ed.gov/about/offices/list/ocr/docs/pregnancy.html)
+
+UMBC's [Interim Policy on Sex Discrimination, Sex-Based Harassment, and Sexual
+Misconduct](https://ecr.umbc.edu/interim-policy-on-sex-discrimination-sex-based-harassment-and-sexual-misconduct-august-1-2024/) expressly
+prohibits all forms of discrimination and harassment on the basis of sex,
+including pregnancy. Resources for pregnant, parenting and breastfeeding
+students are available through the University's [Office of Equity and Civil
+Rights](https://ecr.umbc.edu/students/).  Pregnant and parenting students are
+encouraged to contact the Title IX Coordinator to discuss plans and ensure
+ongoing access to their academic program with respect to a leave of absence --
+returning following leave, or any other accommodation that may be needed related
+to pregnancy, childbirth, adoption, breastfeeding, and/or the early months of
+parenting.
+
+In addition, students who are pregnant and have an impairment related to their
+pregnancy that qualifies as disability under the ADA may be entitled to
+accommodations through the [Office of Disability Access and Resources
+(DAR)](https://sds.umbc.edu/accommodations/registering-with-sds/).
+
+#### Religious Observances & Accommodations
+
+UMBC [Policy](https://ecr.umbc.edu/faith-based-and-religious-accommodations/)
+provides that students should not be penalized because of observances of their
+religious beliefs, and that students shall be given an opportunity, whenever
+feasible, to make up within a reasonable time any academic assignment that is
+missed due to individual participation in religious observances. It is the
+responsibility of the student to inform the instructor of any intended absences
+or requested modifications for religious observances in advance, and as early as
+possible. For questions or guidance regarding religious observances and
+accommodations, please contact the Office of Equity and Civil Rights at
+[ecr@umbc.edu](mailto:ecr@umbc.edu).
+
+#### Hate, Bias, Discrimination and Harassment
+
+UMBC values safety, cultural and ethnic diversity, social responsibility,
+lifelong learning, equity, and civic engagement.
+
+Consistent with these principles, [UMBC
+Policy](https://ecr.umbc.edu/discrimination-and-bias/) prohibits discrimination
+and harassment in its educational programs and activities or with respect to
+employment terms and conditions based on race, creed, color, religion, sex,
+gender, pregnancy, ancestry, age, gender identity or expression, national
+origin, veterans status, marital status, sexual orientation, physical or mental
+disability, or genetic information.
+
+Students (and faculty and staff) who experience discrimination, harassment,
+hate, or bias based upon a protected status or who have such matters reported to
+them should use the [online reporting/referral
+form](https://umbc-advocate.symplicity.com/titleix_report/index.php/pid954154?)
+to report discrimination, hate, or bias incidents. You may report incidents that
+happen to you anonymously. Please note that, if you report anonymously, the
+University's ability to respond may be limited.
+
+### UMBC Writing Center
+
+From the [Academic Success
+Center](https://academicsuccess.umbc.edu/writing-center/):
+
+The Academic Success Center offers free writing assistance through our Writing
+Center, which is located on the first floor of the Library. We also offer online
+and asynchronous tutoring. Writing tutors are students like you who receive
+ongoing training to stay up-to-date on the best tutoring techniques. To make an
+appointment, please visit [ http://academicsuccess.umbc.edu/writing-center
+](http://academicsuccess.umbc.edu/writing-center)

@@ -1,0 +1,14 @@
+--- 
+title: Notes
+listing:
+  contents:
+    - "./[0-9]*.qmd"
+  type: table
+  fields: [title, file-modified]
+---
+
+Please note that pages are numbered by topic in the order I intend to teach
+them, not the week number of the course.
+
+In some of the notes, you'll see a box that says "Brainstorming" for content
+that we'll fill in together in class.

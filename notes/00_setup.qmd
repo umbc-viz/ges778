@@ -1,0 +1,45 @@
+---
+title: 00. Setup
+---
+
+First, install the course's companion R package,
+[`justviz`](https://github.com/umbc-viz/justviz.git). This is in the class's
+GitHub organization.
+
+```{r}
+#| label: install1
+#| eval: false
+
+# install.packages("remotes")
+remotes::install_github("umbc-viz/justviz")
+```
+
+Next, some packages that aren't required by the `justviz` package but will get
+us started for class and are used in these notes:
+
+```{r}
+#| label: install2
+#| eval: false
+
+cran_pkgs <- c(
+    "ggplot2", # data visualization powerhouse
+    "dplyr", # nice for calculations and data manipulation
+    "tidyr", # data reshaping
+    "forcats", # handling factors
+    "stringr", # string cleanup
+    "ggrepel", # force-repelled placement of labels
+    "patchwork", # assembling plots
+    "here", # marks project roots
+    "knitr", # preps conversions between markdown and other formats
+    "gt", # like ggplot but for tables
+    "kableExtra", # additional styling helpers for knitr tables
+    "rcartocolor" # color palettes,
+    "snakecase", # convert string styles
+    "svglite", # save plots in SVG format
+    "ggtext" # better text formatting in ggplot
+)
+
+install.packages(cran_pkgs)
+# or use pak:
+# pak::pkg_install(cran_pkgs)
+```
