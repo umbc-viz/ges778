@@ -1,0 +1,293 @@
+---
+title: 03. Visual encodings
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+We'll work with a subset of the wages data in justviz and follow along some of
+what's in @wilke2019, ch. 2 and 20. In [Table
+2.1](https://clauswilke.com/dataviz/aesthetic-mapping.html#tab:basic-data-types),
+Wilke goes over types of variables that we might find in our data and the scales
+that fit each.
+
+```{r}
+#| label: setup
+#| fig-height: 2
+
+library(ggplot2)
+library(dplyr)
+
+# pull a qualitative palette from carto colors
+qual_pal <- rcartocolor::carto_pal(name = "Bold")
+# colorspace::swatchplot(qual_pal)
+gender_pal <- qual_pal[c(3, 7)]
+
+# pull a diverging palette but make center value gray
+div_pal <- rcartocolor::carto_pal(n = 3, name = "Earth")
+div_pal[2] <- "gray40"
+
+sex_x_edu <- justviz::wages |>
+    filter(dimension %in% c("by_edu", "by_sex_x_edu"), status == "full_time") |>
+    select(sex, edu, earn_q20, earn_q50, earn_q80)
+
+sex_x_edu |>
+    # head() |>
+    knitr::kable(caption = "Wages data by sex & education")
+```
+
+In this subset of data, we have 2 qualitative variables (sex and educational
+attainment) and 3 continuous quantitative ones (20th, 50th, and 80th percentile
+earnings).
+
+On the ACS, the Census Bureau only asks gender as male or female, so there are
+no gradations recorded. Educational attainment starts off quantitative: the way
+it's measured is roughly the number of years of school completed (i.e.
+discrete), but it could also be measured to include fractions of a year (i.e.
+continuous). For simplicity's sake, however, I lumped it into broader categories
+that no longer have specific identifiable numbers associated.
+
+I also only included people with positive earnings in the past year in my
+analysis, so earnings are bounded at $1.
+
+Here's the foundation for a chart of median earnings by education.
+
+```{r}
+#| label: wages-fdn
+
+sex_x_edu |>
+    filter(sex == "total") |>
+    ggplot(aes(x = edu, y = earn_q50)) +
+    scale_y_continuous(breaks = seq(0, 1e6, by = 1e4))
+```
+
+So far we've got a discrete x axis for education and a continuous y axis for
+median earnings. Without setting any geometries (bars, points, etc) the default
+y range is just based on what's included in the data, which goes from about 40k
+to somewhere above 110k (I've added extra breaks on the y-axis to see this
+better).
+
+If I plot points, this range doesn't need to change.
+
+```{r}
+#| label: wages-dot
+
+sex_x_edu |>
+    filter(sex == "total") |>
+    ggplot(aes(x = edu, y = earn_q50)) +
+    geom_point(size = 6) +
+    scale_y_continuous(breaks = seq(0, 1e6, by = 1e4))
+```
+
+However, I want to make a bar chart. Points encode values to their *positions*,
+whereas bar charts encode their data to the *length* of the bar. For a value to
+correspond to the length of a bar, it needs to start at 0. By adding a column
+geometry, ggplot knows to start the y-axis at 0.
+
+```{r}
+#| label: wages-bar-1
+
+sex_x_edu |>
+    filter(sex == "total") |>
+    ggplot(aes(x = edu, y = earn_q50)) +
+    geom_col(width = 0.8) +
+    scale_y_continuous(breaks = seq(0, 1e6, by = 1e4))
+```
+
+So now we've got a discrete axis for education, a continuous axis for median
+earnings, and bars whose lengths give the median earnings for each group. We
+have room for more encodings:
+
+```{r}
+#| label: wages-sex-1
+
+sex_x_edu |>
+    filter(sex != "total") |>
+    ggplot(aes(x = edu, y = earn_q50, fill = sex)) +
+    geom_col(width = 0.8) +
+    scale_fill_manual(values = gender_pal)
+```
+
+**Something's wrong,** though: by stacking the bars, we're saying that there's
+some meaning to the combined lengths. That could be the case for some data (e.g.
+median wage earnings in one group stacked with median income from other sources
+like pension in another group could, in fact, give a sense of total income from
+multiple sources). But in this case, the average woman's earnings plus the
+average man's earnings doesn't mean anything. So the bars should be clustered
+instead.
+
+```{r}
+#| label: wages-sex-2
+
+sex_x_edu |>
+    filter(sex != "total") |>
+    ggplot(aes(x = edu, y = earn_q50, fill = sex)) +
+    geom_col(width = 0.8, position = position_dodge2()) +
+    scale_fill_manual(values = gender_pal) +
+    scale_y_continuous(breaks = seq(0, 1e6, by = 1e4))
+```
+
+Now sex is encoded to color. Notice that the y-axis has to go a little higher
+now to fit values for men with graduate degrees.
+
+We could also include other percentiles of earnings, not just medians. The
+*type* of continuous value on the y-axis will stay the same, but the *range* of
+values will change again, because the 20th percentile values will be lower than
+the medians and the 80th percentile values will be much higher.
+
+Just income percentiles by education:
+
+```{r}
+#| label: wages-ptile-bar
+
+sex_x_edu |>
+    filter(sex == "total") |>
+    tidyr::pivot_longer(
+        -sex:-edu,
+        names_to = "percentile",
+        values_to = "earnings"
+    ) |>
+    mutate(percentile = forcats::as_factor(percentile)) |>
+    ggplot(aes(x = edu, y = earnings, fill = percentile)) +
+    geom_col(width = 0.8, position = position_dodge2()) +
+    scale_fill_manual(values = div_pal) +
+    scale_y_continuous(breaks = seq(0, 1e6, by = 1e4))
+```
+
+This is okay, but it's not super interesting. It doesn't show me anything
+besides what I would expect---that people with higher educational attainment
+average higher earnings, which we already knew, and that the 80th percentiles
+are much higher than the 20th percentiles, which is just true by their
+definition. What's more interesting are the *gaps* between values. Using points
+instead of bars lets us zoom in a little better on the actual range of values
+since we don't have to include 0, and it shifts what our attention is drawn to.
+
+```{r}
+#| label: wages-ptile-1
+
+sex_x_edu |>
+    filter(sex == "total") |>
+    tidyr::pivot_longer(
+        -sex:-edu,
+        names_to = "percentile",
+        values_to = "earnings"
+    ) |>
+    mutate(percentile = forcats::as_factor(percentile)) |>
+    ggplot(aes(x = edu, y = earnings, color = percentile)) +
+    geom_point(size = 6) +
+    scale_color_manual(values = div_pal) +
+    scale_y_continuous(breaks = seq(0, 1e6, by = 1e4))
+```
+
+Rather than just reading amounts by the ends of bars, this emphasizes the range
+of values within each group. The range from 20th to 80th percentiles within each
+group is implied, but we can make it explicit by adding paths behind the points.
+
+```{r}
+#| label: wages-ptile-2
+
+sex_x_edu |>
+    filter(sex == "total") |>
+    tidyr::pivot_longer(
+        -sex:-edu,
+        names_to = "percentile",
+        values_to = "earnings"
+    ) |>
+    mutate(percentile = forcats::as_factor(percentile)) |>
+    ggplot(aes(x = edu, y = earnings, color = percentile)) +
+    geom_path(color = "gray80", linewidth = 3) +
+    geom_point(size = 6) +
+    scale_color_manual(values = div_pal)
+```
+
+If I want the focus to be on medians, I can add size of points as another
+encoding, making the medians larger and other percentiles smaller. By default,
+size would be assumed to be continuous, but you can also make it discrete. (I
+might do this on the fly in practice, but here I'll create a separate variable):
+
+```{r}
+#| label: wages-ptile-3
+
+sex_x_edu |>
+    filter(sex == "total") |>
+    tidyr::pivot_longer(
+        -sex:-edu,
+        names_to = "percentile",
+        values_to = "earnings"
+    ) |>
+    mutate(percentile = forcats::as_factor(percentile)) |>
+    mutate(
+        ptile_type = ifelse(percentile == "earn_q50", "median", "endpoint")
+    ) |>
+    ggplot(aes(
+        x = edu,
+        y = earnings,
+        color = percentile,
+        size = ptile_type,
+        group = edu
+    )) +
+    geom_path(color = "gray80", linewidth = 3) +
+    geom_point() +
+    scale_color_manual(values = div_pal) +
+    scale_size_manual(values = c(median = 6, endpoint = 3.5))
+```
+
+Instead of size, this could have also been something like point shape. This is
+what Wilke describes as *redundant encodings*, where the percentile comes from
+both color and size. I've chosen colors that should be colorblind-friendly, and
+the points in this chart don't overlap, but in some situations having 2
+encodings might help make things easier to read (see his examples with
+scatterplots with both color and shape).
+
+In fact, let's imagine we need a chart that can be printed in black and white.
+This color palette probably won't hold up, so we can go ahead and add shape as a
+backup encoding if color fails.
+
+::: {.aside}
+Call `?scale_shape` to get a cheat sheet of valid shape labels and codes. I have
+to do this every time.
+:::
+
+```{r}
+#| label: wages-ptile-4
+
+sex_x_edu |>
+    filter(sex == "total") |>
+    tidyr::pivot_longer(
+        -sex:-edu,
+        names_to = "percentile",
+        values_to = "earnings"
+    ) |>
+    mutate(percentile = forcats::as_factor(percentile)) |>
+    mutate(
+        ptile_type = ifelse(percentile == "earn_q50", "median", "endpoint")
+    ) |>
+    ggplot(aes(
+        x = edu,
+        y = earnings,
+        color = percentile,
+        fill = percentile,
+        size = ptile_type,
+        group = edu,
+        shape = percentile
+    )) +
+    geom_path(color = "gray80", linewidth = 3) +
+    geom_point() +
+    scale_color_manual(values = div_pal, aesthetics = c("color", "fill")) +
+    scale_size_manual(values = c(median = 6, endpoint = 3.5)) +
+    scale_shape_manual(values = c(earn_q20 = 25, earn_q80 = 24, earn_q50 = 18))
+```
+
+There are more things we could do now, but I'll leave it here. We still have
+data by sex, which I'm really interested in, but we've maxed out encodings that
+we've used so far. It would be confusing to add another pair of colors or
+shapes, for example, so one pair can be men and another pair could be women.
+Instead, I'd likely split the plot into facets to get small multiples---we'll
+talk about that later but see if you can imagine what that might look like.
+
+## Labs
+
+For this week's labs, you'll practice identifying the encodings in different
+types of charts, then fix a chart with inappropriate encodings.
+
