@@ -33,9 +33,10 @@ cran_pkgs <- c(
     "knitr", # preps conversions between markdown and other formats
     "gt", # like ggplot but for tables
     "kableExtra", # additional styling helpers for knitr tables
-    "rcartocolor" # color palettes,
+    "rcartocolor", # color palettes,
     "snakecase", # convert string styles
     "svglite", # save plots in SVG format
+    "colorspace", # helpers for working with color
     "ggtext" # better text formatting in ggplot
 )
 
