@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>Notes – GES 778, Fall 2026</title>
+<title>03. Visual encodings – GES 778, Fall 2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,7 +27,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,9 +57,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../notes/00_setup.html" rel="next">
-<script src="../site_libs/quarto-listing/list.min.js"></script>
-<script src="../site_libs/quarto-listing/quarto-listing.js"></script>
+<link href="../notes/02_good_code.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -81,69 +99,11 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-<script>
 
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-file-modified',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  </script>
-
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
-<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -314,7 +274,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/03_encodings.html">03. Visual encodings</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -375,7 +335,7 @@ window.Quarto = {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="../notes/index.html" class="sidebar-item-text sidebar-link active">
+            <a href="../notes/index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Notes</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
@@ -402,7 +362,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/03_encodings.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/03_encodings.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">03. Visual encodings</span></a>
   </div>
 </li>
@@ -417,16 +377,22 @@ window.Quarto = {
 </div></div></nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#labs" id="toc-labs" class="nav-link active" data-scroll-target="#labs">Labs</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/03_encodings.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/03_encodings.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/03_encodings.html">03. Visual encodings</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Notes</h1>
+<h1 class="title">03. Visual encodings</h1>
 </div>
 
 
@@ -455,89 +421,252 @@ window.Quarto = {
 </header>
 
 
-<p>Please note that pages are numbered by topic in the order I intend to teach them, not the week number of the course.</p>
-<p>In some of the notes, you’ll see a box that says “Brainstorming” for content that we’ll fill in together in class.</p>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-    <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-    <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-      <option value="" disabled="" selected="" hidden="">Order By</option>
-      <option value="index" data-direction="asc">Default</option>
-      <option value="listing-title-sort" data-direction="asc">
-        Title
-      </option>
-    </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
-<table class="quarto-listing-table table">
+<p>We’ll work with a subset of the wages data in justviz and follow along some of what’s in <span class="citation" data-cites="wilke2019">Wilke (<a href="#ref-wilke2019" role="doc-biblioref">2019</a>)</span>, ch.&nbsp;2 and 20. In <a href="https://clauswilke.com/dataviz/aesthetic-mapping.html#tab:basic-data-types">Table 2.1</a>, Wilke goes over types of variables that we might find in our data and the scales that fit each.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-wilke2019" class="csl-entry" role="listitem">
+Wilke, C. O. (2019). <em>Fundamentals of <span>Data Visualization</span></em>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
+</div></div><div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Wages data by sex &amp; education</caption>
 <thead>
-<tr>
-
-<th>
-<a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Title</a>
-</th>
-
-<th>
-Modified
-</th>
-
+<tr class="header">
+<th style="text-align: left;">sex</th>
+<th style="text-align: left;">edu</th>
+<th style="text-align: right;">earn_q20</th>
+<th style="text-align: right;">earn_q50</th>
+<th style="text-align: right;">earn_q80</th>
 </tr>
 </thead>
-<tbody class="list">
-
-<tr data-index="0" data-listing-file-modified-sort="1787632143396" data-listing-reading-time-sort="1" data-listing-word-count-sort="191" data-listing-title-sort="00. Setup" data-listing-filename-sort="00_setup.qmd">
-<td>
-<a href="../notes/00_setup.html" class="title listing-title">00. Setup</a>
-</td>
-<td>
-<span class="listing-file-modified">August 25, 2026</span>
-</td>
-
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">total</td>
+<td style="text-align: left;">no_diploma</td>
+<td style="text-align: right;">27868</td>
+<td style="text-align: right;">43234</td>
+<td style="text-align: right;">70000</td>
 </tr>
-
-<tr data-index="1" data-listing-file-modified-sort="1787632143397" data-listing-reading-time-sort="8" data-listing-word-count-sort="1417" data-listing-title-sort="01. Intro to data viz" data-listing-filename-sort="01_intro_to_data_viz.qmd">
-<td>
-<a href="../notes/01_intro_to_data_viz.html" class="title listing-title">01. Intro to data viz</a>
-</td>
-<td>
-<span class="listing-file-modified">August 25, 2026</span>
-</td>
-
+<tr class="even">
+<td style="text-align: left;">total</td>
+<td style="text-align: left;">high_school_diploma</td>
+<td style="text-align: right;">33227</td>
+<td style="text-align: right;">52520</td>
+<td style="text-align: right;">85018</td>
 </tr>
-
-<tr data-index="2" data-listing-file-modified-sort="1787632143397" data-listing-reading-time-sort="8" data-listing-word-count-sort="1551" data-listing-title-sort="02. Writing good code" data-listing-filename-sort="02_good_code.qmd">
-<td>
-<a href="../notes/02_good_code.html" class="title listing-title">02. Writing good code</a>
-</td>
-<td>
-<span class="listing-file-modified">August 25, 2026</span>
-</td>
-
+<tr class="odd">
+<td style="text-align: left;">total</td>
+<td style="text-align: left;">some_college</td>
+<td style="text-align: right;">40000</td>
+<td style="text-align: right;">64311</td>
+<td style="text-align: right;">104451</td>
 </tr>
-
-<tr data-index="3" data-listing-file-modified-sort="1787632143397" data-listing-reading-time-sort="9" data-listing-word-count-sort="1759" data-listing-title-sort="03. Visual encodings" data-listing-filename-sort="03_encodings.qmd">
-<td>
-<a href="../notes/03_encodings.html" class="title listing-title">03. Visual encodings</a>
-</td>
-<td>
-<span class="listing-file-modified">August 25, 2026</span>
-</td>
-
+<tr class="even">
+<td style="text-align: left;">total</td>
+<td style="text-align: left;">bachelors</td>
+<td style="text-align: right;">54655</td>
+<td style="text-align: right;">91091</td>
+<td style="text-align: right;">145771</td>
 </tr>
-
+<tr class="odd">
+<td style="text-align: left;">total</td>
+<td style="text-align: left;">graduate_degree</td>
+<td style="text-align: right;">72873</td>
+<td style="text-align: right;">116000</td>
+<td style="text-align: right;">181895</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">men</td>
+<td style="text-align: left;">no_diploma</td>
+<td style="text-align: right;">30881</td>
+<td style="text-align: right;">48582</td>
+<td style="text-align: right;">75145</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">men</td>
+<td style="text-align: left;">high_school_diploma</td>
+<td style="text-align: right;">36436</td>
+<td style="text-align: right;">58000</td>
+<td style="text-align: right;">92644</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">men</td>
+<td style="text-align: left;">some_college</td>
+<td style="text-align: right;">42874</td>
+<td style="text-align: right;">72057</td>
+<td style="text-align: right;">115382</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">men</td>
+<td style="text-align: left;">bachelors</td>
+<td style="text-align: right;">60727</td>
+<td style="text-align: right;">102938</td>
+<td style="text-align: right;">162199</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">men</td>
+<td style="text-align: left;">graduate_degree</td>
+<td style="text-align: right;">81100</td>
+<td style="text-align: right;">134000</td>
+<td style="text-align: right;">202749</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">women</td>
+<td style="text-align: left;">no_diploma</td>
+<td style="text-align: right;">21617</td>
+<td style="text-align: right;">35264</td>
+<td style="text-align: right;">57928</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">women</td>
+<td style="text-align: left;">high_school_diploma</td>
+<td style="text-align: right;">30700</td>
+<td style="text-align: right;">46322</td>
+<td style="text-align: right;">72873</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">women</td>
+<td style="text-align: left;">some_college</td>
+<td style="text-align: right;">36436</td>
+<td style="text-align: right;">56616</td>
+<td style="text-align: right;">92685</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">women</td>
+<td style="text-align: left;">bachelors</td>
+<td style="text-align: right;">50000</td>
+<td style="text-align: right;">80160</td>
+<td style="text-align: right;">126000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">women</td>
+<td style="text-align: left;">graduate_degree</td>
+<td style="text-align: right;">68015</td>
+<td style="text-align: right;">102938</td>
+<td style="text-align: right;">157891</td>
+</tr>
 </tbody>
 </table>
-<div class="listing-no-matching d-none">No matching items</div>
-</div><a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+</div>
+</div>
+<p>In this subset of data, we have 2 qualitative variables (sex and educational attainment) and 3 continuous quantitative ones (20th, 50th, and 80th percentile earnings).</p>
+<p>On the ACS, the Census Bureau only asks gender as male or female, so there are no gradations recorded. Educational attainment starts off quantitative: the way it’s measured is roughly the number of years of school completed (i.e. discrete), but it could also be measured to include fractions of a year (i.e. continuous). For simplicity’s sake, however, I lumped it into broader categories that no longer have specific identifiable numbers associated.</p>
+<p>I also only included people with positive earnings in the past year in my analysis, so earnings are bounded at $1.</p>
+<p>Here’s the foundation for a chart of median earnings by education.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_encodings_files/figure-html/wages-fdn-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So far we’ve got a discrete x axis for education and a continuous y axis for median earnings. Without setting any geometries (bars, points, etc) the default y range is just based on what’s included in the data, which goes from about 40k to somewhere above 110k (I’ve added extra breaks on the y-axis to see this better).</p>
+<p>If I plot points, this range doesn’t need to change.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_encodings_files/figure-html/wages-dot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>However, I want to make a bar chart. Points encode values to their <em>positions</em>, whereas bar charts encode their data to the <em>length</em> of the bar. For a value to correspond to the length of a bar, it needs to start at 0. By adding a column geometry, ggplot knows to start the y-axis at 0.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_encodings_files/figure-html/wages-bar-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>So now we’ve got a discrete axis for education, a continuous axis for median earnings, and bars whose lengths give the median earnings for each group. We have room for more encodings:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_encodings_files/figure-html/wages-sex-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Something’s wrong,</strong> though: by stacking the bars, we’re saying that there’s some meaning to the combined lengths. That could be the case for some data (e.g. median wage earnings in one group stacked with median income from other sources like pension in another group could, in fact, give a sense of total income from multiple sources). But in this case, the average woman’s earnings plus the average man’s earnings doesn’t mean anything. So the bars should be clustered instead.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_encodings_files/figure-html/wages-sex-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Now sex is encoded to color. Notice that the y-axis has to go a little higher now to fit values for men with graduate degrees.</p>
+<p>We could also include other percentiles of earnings, not just medians. The <em>type</em> of continuous value on the y-axis will stay the same, but the <em>range</em> of values will change again, because the 20th percentile values will be lower than the medians and the 80th percentile values will be much higher.</p>
+<p>Just income percentiles by education:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_encodings_files/figure-html/wages-ptile-bar-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This is okay, but it’s not super interesting. It doesn’t show me anything besides what I would expect—that people with higher educational attainment average higher earnings, which we already knew, and that the 80th percentiles are much higher than the 20th percentiles, which is just true by their definition. What’s more interesting are the <em>gaps</em> between values. Using points instead of bars lets us zoom in a little better on the actual range of values since we don’t have to include 0, and it shifts what our attention is drawn to.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_encodings_files/figure-html/wages-ptile-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Rather than just reading amounts by the ends of bars, this emphasizes the range of values within each group. The range from 20th to 80th percentiles within each group is implied, but we can make it explicit by adding paths behind the points.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_encodings_files/figure-html/wages-ptile-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If I want the focus to be on medians, I can add size of points as another encoding, making the medians larger and other percentiles smaller. By default, size would be assumed to be continuous, but you can also make it discrete. (I might do this on the fly in practice, but here I’ll create a separate variable):</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_encodings_files/figure-html/wages-ptile-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Instead of size, this could have also been something like point shape. This is what Wilke describes as <em>redundant encodings</em>, where the percentile comes from both color and size. I’ve chosen colors that should be colorblind-friendly, and the points in this chart don’t overlap, but in some situations having 2 encodings might help make things easier to read (see his examples with scatterplots with both color and shape).</p>
+<p>In fact, let’s imagine we need a chart that can be printed in black and white. This color palette probably won’t hold up, so we can go ahead and add shape as a backup encoding if color fails.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Call <code>?scale_shape</code> to get a cheat sheet of valid shape labels and codes. I have to do this every time.</p>
+</div></div><div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="03_encodings_files/figure-html/wages-ptile-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There are more things we could do now, but I’ll leave it here. We still have data by sex, which I’m really interested in, but we’ve maxed out encodings that we’ve used so far. It would be confusing to add another pair of colors or shapes, for example, so one pair can be men and another pair could be women. Instead, I’d likely split the plot into facets to get small multiples—we’ll talk about that later but see if you can imagine what that might look like.</p>
+<section id="labs" class="level2">
+<h2 class="anchored" data-anchor-id="labs">Labs</h2>
+<p>For this week’s labs, you’ll practice identifying the encodings in different types of charts, then fix a chart with inappropriate encodings.</p>
+
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
@@ -953,11 +1082,11 @@ Modified
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../notes/02_good_code.html" class="pagination-link" aria-label="02. Writing good code">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">02. Writing good code</span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notes/00_setup.html" class="pagination-link" aria-label="00. Setup">
-        <span class="nav-page-text">00. Setup</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -965,4 +1094,4 @@ Modified
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/index.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/03_encodings.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/03_encodings.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
