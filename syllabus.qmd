@@ -3,15 +3,15 @@ title: Syllabus - Advanced Visualization and Presentation
 format:
   html:
     toc: true
-  typst:
-    papersize: us-letter
-    margin:
-      x: 0.5in
-      y: 0.5in
-    toc: false
-    mainfont: "Source Sans 3"
-    citation-location: document
-    reference-location: document
+    # typst:
+    # papersize: us-letter
+    # margin:
+    #   x: 0.5in
+    #   y: 0.5in
+    # toc: false
+    # mainfont: "Source Sans 3"
+    # citation-location: document
+    # reference-location: document
 ---
 
 At its essence, the aim of data visualization is to move data and its meaning(s)
