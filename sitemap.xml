@@ -2,34 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/00_setup.html</loc>
-    <lastmod>2026-08-25T04:29:03.396Z</lastmod>
+    <lastmod>2026-08-31T16:53:29.156Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/03_encodings.html</loc>
-    <lastmod>2026-08-25T04:29:03.397Z</lastmod>
+    <lastmod>2026-08-31T16:53:29.158Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/index.html</loc>
-    <lastmod>2026-08-25T04:29:03.397Z</lastmod>
+    <lastmod>2026-08-31T16:53:29.158Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/index.html</loc>
-    <lastmod>2026-08-25T04:29:03.396Z</lastmod>
+    <lastmod>2026-08-31T16:53:29.156Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/extras/encodings.html</loc>
+    <lastmod>2026-08-31T16:53:29.156Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/LICENSE.html</loc>
-    <lastmod>2026-08-25T04:29:03.396Z</lastmod>
+    <lastmod>2026-08-31T16:53:29.156Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/syllabus.html</loc>
-    <lastmod>2026-08-25T04:29:03.399Z</lastmod>
+    <lastmod>2026-08-31T16:53:29.159Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/01_intro_to_data_viz.html</loc>
-    <lastmod>2026-08-25T04:29:03.397Z</lastmod>
+    <lastmod>2026-08-31T16:53:29.158Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/02_good_code.html</loc>
-    <lastmod>2026-08-25T04:29:03.397Z</lastmod>
+    <lastmod>2026-08-31T16:53:29.158Z</lastmod>
   </url>
 </urlset>

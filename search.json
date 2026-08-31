@@ -37,7 +37,7 @@
     "href": "notes/index.html",
     "title": "Notes",
     "section": "",
-    "text": "Please note that pages are numbered by topic in the order I intend to teach them, not the week number of the course.\nIn some of the notes, you’ll see a box that says “Brainstorming” for content that we’ll fill in together in class.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nModified\n\n\n\n\n\n\n\n\n00. Setup\n\n\nAugust 25, 2026\n\n\n\n\n\n\n01. Intro to data viz\n\n\nAugust 25, 2026\n\n\n\n\n\n\n02. Writing good code\n\n\nAugust 25, 2026\n\n\n\n\n\n\n03. Visual encodings\n\n\nAugust 25, 2026\n\n\n\n\n\n\nNo matching items\n Back to top",
+    "text": "Please note that pages are numbered by topic in the order I intend to teach them, not the week number of the course.\nIn some of the notes, you’ll see a box that says “Brainstorming” for content that we’ll fill in together in class.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nTitle\n\n\n\nModified\n\n\n\n\n\n\n\n\n00. Setup\n\n\nAugust 31, 2026\n\n\n\n\n\n\n01. Intro to data viz\n\n\nAugust 31, 2026\n\n\n\n\n\n\n02. Writing good code\n\n\nAugust 31, 2026\n\n\n\n\n\n\n03. Visual encodings\n\n\nAugust 31, 2026\n\n\n\n\n\n\nNo matching items\n Back to top",
     "crumbs": [
       "Notes"
     ]
@@ -51,6 +51,17 @@
     "crumbs": [
       "Overview",
       "Advanced Visualization and Presentation, Fall 2026"
+    ]
+  },
+  {
+    "objectID": "extras/encodings.html",
+    "href": "extras/encodings.html",
+    "title": "Reference - visual encodings",
+    "section": "",
+    "text": "A lot of research has gone into how we read visual encodings. This is a good summary from Munzner (2014), which you can read in full through UMBC’s library. There are also very thorough slides online from a course she taught on the same topics (this is on page 59).\n\nMunzner, T. (2014). Visualization Analysis and Design. A K Peters/CRC Press. https://doi.org/10.1201/b17511\n\n\n\nVisual channel rankings, Munzner\n\n\n\n\n\n\n Back to top",
+    "crumbs": [
+      "References & extras",
+      "Reference - visual encodings"
     ]
   },
   {
@@ -208,7 +219,7 @@
     "href": "notes/01_intro_to_data_viz.html#how-can-data-visualization-be-used",
     "title": "01. Intro to data viz",
     "section": "How can data visualization be used?",
-    "text": "How can data visualization be used?\n\n\n\n\n\n\nTipBrainstorming\n\n\n\n\nPositive / constructive\n\n\n\n\n\nNegative / destructive",
+    "text": "How can data visualization be used?\n\n\n\n\n\n\nTipBrainstorming\n\n\n\n\nPositive / constructive\n\npredicting weather\nmaking preparations\nsports analytics\nawareness in health\nexplaining / understanding scope\nmaking an argument\nmitigating risk\ncommunicating risk / possible outcomes / dangers\n\n\n\nNegative / destructive\n\nskewed, biased, not fully accurate data\nremoval of context, e.g. absolutes instead of per capita\nmaking an argument\ndownplaying or overemphasizing a risk",
     "crumbs": [
       "Notes",
       "01. Intro to data viz"
