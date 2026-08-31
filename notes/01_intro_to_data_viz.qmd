@@ -49,11 +49,21 @@ visualizations, what we want to convey, and how.
 
 #### Positive / constructive
 
-- 
+- predicting weather
+- making preparations
+- sports analytics
+- awareness in health
+- explaining / understanding scope
+- making an argument
+- mitigating risk
+- communicating risk / possible outcomes / dangers
 
 #### Negative / destructive
 
-- 
+- skewed, biased, not fully accurate data
+- removal of context, e.g. absolutes instead of per capita
+- making an argument
+- downplaying or overemphasizing a risk
 :::
 
 ## Do you even need a chart?
