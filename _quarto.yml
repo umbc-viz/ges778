@@ -33,8 +33,8 @@ website:
       - section: "Notes"
         contents: "notes/*.qmd"
       - "---"
-      # - section: "Tips & tricks"
-      #   contents: "tips/*.qmd"
+      - section: "References & extras"
+        contents: "extras/*.qmd"
       - "---"
       # - references.qmd
     footer: "[Code for this site](https://github.com/umbc-viz/ges778.git)"
