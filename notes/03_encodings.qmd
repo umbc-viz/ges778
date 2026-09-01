@@ -6,6 +6,12 @@ execute:
   message: false
 ---
 
+## Warm-up
+
+@bbc2010: Hans Rosling gives a master class in storytelling with multidimensional data.
+
+## Mapping data to visual elements
+
 We'll work with a subset of the wages data in justviz and follow along some of
 what's in @wilke2019, ch. 2 and 20. In [Table
 2.1](https://clauswilke.com/dataviz/aesthetic-mapping.html#tab:basic-data-types),
@@ -286,8 +292,12 @@ shapes, for example, so one pair can be men and another pair could be women.
 Instead, I'd likely split the plot into facets to get small multiples---we'll
 talk about that later but see if you can imagine what that might look like.
 
+## Bad examples
+
+Sometimes bad examples stick with you better than good examples. @lan2025 studied and categorized bad data visualizations and came up with a taxonomy of 76 data viz mistakes. The [website](https://flawviz.github.io) that goes alongside it has great & hilarious examples. See if you can identify any of these types of mistakes in any of the lab charts.
+
 ## Labs
 
 For this week's labs, you'll practice identifying the encodings in different
-types of charts, then fix a chart with inappropriate encodings.
+types of charts, then fix some charts with inappropriate encodings.
 
