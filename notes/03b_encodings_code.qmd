@@ -1,0 +1,283 @@
+---
+title: 03b. Code for visual encodings notes
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+These are the charts from the notes on [visual encodings](03_encodings.qmd), but focused on the code. Otherwise, as always, the code for this whole site is [on GitHub](https://github.com/umbc-viz/ges778).
+
+```{r}
+#| label: setup
+#| fig-height: 2
+
+library(ggplot2)
+library(dplyr)
+
+# pull a qualitative palette from carto colors
+qual_pal <- rcartocolor::carto_pal(name = "Bold")
+# colorspace::swatchplot(qual_pal)
+gender_pal <- qual_pal[c(3, 7)]
+
+# pull a diverging palette but make center value gray
+div_pal <- rcartocolor::carto_pal(n = 3, name = "Earth")
+div_pal[2] <- "gray40"
+
+sex_x_edu <- justviz::wages |>
+    filter(dimension %in% c("by_edu", "by_sex_x_edu"), status == "full_time") |>
+    select(sex, edu, earn_q20, earn_q50, earn_q80)
+
+sex_x_edu
+```
+
+Palettes are just vectors of colors, usually hex codes. For example, `gender_pal` is just `r gender_pal`. There are functions to view them: you already have `colorspace` installed, so call `colorspace::swatchplot(gender_pal)` to view the colors.
+
+```{r}
+#| label: swatchplot
+colorspace::swatchplot(qual_pal)
+```
+
+Scales only, no geometries: inside `ggplot`'s `aes` (aesthestics) call, assign education to the x scale and median earnings to the y scale. Let's call this chart 1.
+
+```{r}
+#| label: wages-fdn
+
+sex_x_edu |>
+    filter(sex == "total") |>
+    ggplot(aes(x = edu, y = earn_q50))
+```
+
+Same as chart 1, but add a point geometry (see `?geom_point`)
+
+```{r}
+#| label: wages-dot
+
+sex_x_edu |>
+    filter(sex == "total") |>
+    ggplot(aes(x = edu, y = earn_q50)) +
+    geom_point(size = 6)
+```
+
+Same as chart 1, but instead add a column geometry (see `?geom_col`). Call this chart 2.
+
+```{r}
+#| label: wages-bar-1
+
+sex_x_edu |>
+    filter(sex == "total") |>
+    ggplot(aes(x = edu, y = earn_q50)) +
+    geom_col(width = 0.8)
+```
+
+Modify chart 2 to also map sex onto the fill aesthetic. Note that there are independent aesthetics for color and fill, and most larger shapes like columns will default to a fill but not a color (color would provide an outline), while most smaller shapes like points and lines have a color only. (If you look at the standard codes for point shapes, some have both a fill and an outline color; this is very useful in some cases but we won't get into it now.) **Tl;dr** if you try to set what you think of as color and don't see it change, it might actually be the fill.
+
+Add a manual fill scale so we can use the palette we pulled out earlier.
+
+```{r}
+#| label: wages-sex-1
+
+sex_x_edu |>
+    filter(sex != "total") |>
+    ggplot(aes(x = edu, y = earn_q50, fill = sex)) +
+    geom_col(width = 0.8) +
+    scale_fill_manual(values = gender_pal)
+```
+
+Bars shouldn't be stacked, so set the position to dodge them, i.e. put them next to each other. Each bar is a combination of x/education and fill/sex. `position_dodge2` puts a nice lil gap between the bars at each x value, whereas `position_dodge` will have them smooshed together.
+
+```{r}
+#| label: wages-sex-2
+
+sex_x_edu |>
+    filter(sex != "total") |>
+    ggplot(aes(x = edu, y = earn_q50, fill = sex)) +
+    geom_col(width = 0.8, position = position_dodge2()) +
+    scale_fill_manual(values = gender_pal)
+```
+
+Instead of medians by sex, now show values at each of 3 percentiles. 20th, 50th, and 80th percentiles each have their own column in the original dataset, but if we want to assign percentile to a fill, we need a single variable that has those percentile breaks and another single variable that has values. This is called [_tidy data_](https://r4ds.hadley.nz/data-tidy.html), coined by the main dev of ggplot. The `tidyr` package helps get data into the correct shape for the tidy data/grammar of graphics paradigm.
+
+Just the data tidying step:
+
+```{r}
+#| label: tidy-data
+ptiles_tidy <- sex_x_edu |>
+    filter(sex == "total") |>
+    tidyr::pivot_longer(
+        -sex:-edu,
+        names_to = "percentile",
+        values_to = "earnings",
+        names_ptypes = list(percentile = factor())
+    )
+ptiles_tidy
+```
+
+Now plot that data with earnings on y and percentile on fill. Call it chart 3
+
+```{r}
+#| label: wages-ptile-bar
+ptiles_tidy |>
+    ggplot(aes(x = edu, y = earnings, fill = percentile)) +
+    geom_col(width = 0.8, position = position_dodge2()) +
+    scale_fill_manual(values = div_pal)
+```
+
+Chart 3 but with points instead of bars. Note that this requires switching from fill to color as our aesthetic.
+
+```{r}
+#| label: wages-ptile-1
+ptiles_tidy |>
+    ggplot(aes(x = edu, y = earnings, color = percentile)) +
+    geom_point(size = 6) +
+    scale_color_manual(values = div_pal)
+```
+
+Add a path geometry to join the points _within_ each education level and _across_ percentiles. Put it before the point layer so points are on top.
+
+```{r}
+#| label: wages-ptile-2
+ptiles_tidy |>
+    ggplot(aes(x = edu, y = earnings, color = percentile)) +
+    geom_path(color = "gray80", linewidth = 3) +
+    geom_point(size = 6) +
+    scale_color_manual(values = div_pal)
+```
+
+Add a variable for percentile type, whether it's 50th percentile (median) or one of the others (we'll call them endpoints, I don't have a better name). This gives us a column to assign more aesthetics to so medians stand out from 20th & 80th percentiles and have more visual importance.
+
+Now assign point size to percentile type (note that you can do an `aes` call within any geom; since it only affects points I've put it there). Add a manual size scale.
+
+```{r}
+#| label: wages-ptile-3
+
+ptiles_endpts <- ptiles_tidy |>
+    mutate(
+        ptile_type = ifelse(percentile == "earn_q50", "median", "endpoint")
+    )
+
+ptiles_endpts
+
+ptiles_endpts |>
+    ggplot(aes(
+        x = edu,
+        y = earnings,
+        color = percentile
+    )) +
+    geom_path(color = "gray80", linewidth = 3) +
+    geom_point(aes(size = ptile_type)) +
+    scale_color_manual(values = div_pal) +
+    scale_size_manual(values = c(median = 6, endpoint = 3.5))
+```
+
+Add a third aesthetic to the points: percentile types should get different shapes as well. This requires a group aesthetic to make clear how the paths should be grouped. Look up the shape codes to find IDs of shapes you want. Some of these shapes are filled, so set both fill and color as the same scale (try taking out the aesthetics argument of the color scale). Add a manual shape scale.
+
+```{r}
+#| label: wages-ptile-4
+ptiles_endpts |>
+    ggplot(aes(
+        x = edu,
+        y = earnings,
+        color = percentile,
+        fill = percentile,
+        group = edu
+    )) +
+    geom_path(color = "gray80", linewidth = 3) +
+    geom_point(aes(size = ptile_type, shape = percentile)) +
+    scale_color_manual(values = div_pal, aesthetics = c("color", "fill")) +
+    scale_size_manual(values = c(median = 6.5, endpoint = 3.5)) +
+    scale_shape_manual(values = c(earn_q20 = 25, earn_q80 = 24, earn_q50 = 19))
+```
+
+Last, clean it up. Walk through this code line by line to see the effects of the changes.
+
+
+```{r}
+#| label: final-plot
+#| fig-width: 7
+#| fig-height: 5  
+
+# sentence case + line wrapping
+wrap_lbls <- function(x) {
+    wrapper <- scales::label_wrap(width = 12)
+    x <- snakecase::to_sentence_case(x)
+    wrapper(x)
+}
+
+ptiles_endpts |>
+    mutate(
+        percentile = forcats::fct_recode(
+            percentile,
+            "20th pct" = "earn_q20",
+            Median = "earn_q50",
+            "80th pct" = "earn_q80"
+        )
+    ) |>
+    ggplot(aes(
+        x = edu,
+        y = earnings,
+        color = percentile,
+        fill = percentile,
+        group = edu
+    )) +
+    geom_path(color = "gray80", linewidth = 3) +
+    geom_point(aes(size = percentile, shape = percentile)) +
+    scale_color_manual(
+        values = div_pal,
+        aesthetics = c("color", "fill"),
+        guide = guide_legend(reverse = TRUE)
+    ) +
+    scale_size_manual(
+        values = c("20th pct" = 3.5, "80th pct" = 3.5, Median = 6.5),
+        guide = guide_legend(reverse = TRUE)
+    ) +
+    scale_shape_manual(
+        values = c("20th pct" = 25, "80th pct" = 24, Median = 19),
+        guide = guide_legend(reverse = TRUE)
+    ) +
+    scale_x_discrete(labels = wrap_lbls) +
+    scale_y_continuous(
+        labels = scales::label_dollar(scale = 1 / 1000, suffix = "K"),
+        breaks = seq(0, 2e5, by = 2.5e4),
+        limits = c(0, NA),
+        expand = expansion(mult = c(0, 0.05))
+    ) +
+    labs(
+        title = "Lower-paid adults with graduate degrees earn about as much as higher-paid adults with no diploma",
+        subtitle = "20th percentile, median, and 80th percentile individual earnings,\nMaryland adults ages 25+ by educational attainment, 2024",
+        caption = "Source: US Census Bureau American Community Survey 2024 5-year estimates,\npublic use microdata sample via IPUMS",
+        x = NULL,
+        y = "Earnings",
+        color = "Percentile",
+        fill = "Percentile",
+        shape = "Percentile",
+        size = "Percentile"
+    ) +
+    theme_minimal(base_size = 12) +
+    theme(
+        plot.title.position = "plot",
+        plot.caption.position = "plot",
+        axis.ticks = element_blank(),
+        panel.grid = element_line(color = "gray85"),
+        panel.grid.major.x = element_blank(),
+        axis.title.y.left = element_text(
+            hjust = 1,
+            margin = margin(8, 10, 0, 0, unit = "pt"),
+            size = rel(0.8)
+        ),
+        legend.title = element_text(size = rel(0.8)),
+        axis.line.x = element_line(color = "gray50"),
+        plot.title = ggtext::element_textbox_simple(
+            face = "bold",
+            lineheight = 0.9,
+            margin = margin_part(b = 7)
+        ),
+        plot.subtitle = element_text(margin = margin_part(b = 10)),
+        plot.caption = element_text(
+            hjust = 0,
+            size = rel(0.7),
+            margin = margin_part(t = 15)
+        )
+    )
+```
+
