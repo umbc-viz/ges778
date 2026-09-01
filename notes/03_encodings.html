@@ -399,7 +399,10 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#labs" id="toc-labs" class="nav-link active" data-scroll-target="#labs">Labs</a></li>
+  <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm-up</a></li>
+  <li><a href="#mapping-data-to-visual-elements" id="toc-mapping-data-to-visual-elements" class="nav-link" data-scroll-target="#mapping-data-to-visual-elements">Mapping data to visual elements</a></li>
+  <li><a href="#bad-examples" id="toc-bad-examples" class="nav-link" data-scroll-target="#bad-examples">Bad examples</a></li>
+  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/03_encodings.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/03_encodings.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -427,7 +430,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">August 31, 2026</p>
+      <p class="date-modified">September 1, 2026</p>
     </div>
   </div>
     
@@ -438,6 +441,14 @@ div.csl-indent {
 </header>
 
 
+<section id="warm-up" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="warm-up">Warm-up</h2>
+<p><span class="citation" data-cites="bbc2010"><em>Hans <span>Rosling</span>’s 200 <span>Countries</span>, 200 <span>Years</span>, 4 <span>Minutes</span></em> (<a href="#ref-bbc2010" role="doc-biblioref">2010</a>)</span>: Hans Rosling gives a master class in storytelling with multidimensional data.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-bbc2010" class="csl-entry" role="listitem">
+<em>Hans <span>Rosling</span>’s 200 <span>Countries</span>, 200 <span>Years</span>, 4 <span>Minutes</span></em>. (2010). BBC Four. <a href="https://www.youtube.com/watch?v=jbkSRLYSojo">https://www.youtube.com/watch?v=jbkSRLYSojo</a>
+</div></div></section>
+<section id="mapping-data-to-visual-elements" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="mapping-data-to-visual-elements">Mapping data to visual elements</h2>
 <p>We’ll work with a subset of the wages data in justviz and follow along some of what’s in <span class="citation" data-cites="wilke2019">Wilke (<a href="#ref-wilke2019" role="doc-biblioref">2019</a>)</span>, ch.&nbsp;2 and 20. In <a href="https://clauswilke.com/dataviz/aesthetic-mapping.html#tab:basic-data-types">Table 2.1</a>, Wilke goes over types of variables that we might find in our data and the scales that fit each.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-wilke2019" class="csl-entry" role="listitem">
 Wilke, C. O. (2019). <em>Fundamentals of <span>Data Visualization</span></em>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
@@ -675,9 +686,16 @@ Wilke, C. O. (2019). <em>Fundamentals of <span>Data Visualization</span></em>. <
 </div>
 </div>
 <p>There are more things we could do now, but I’ll leave it here. We still have data by sex, which I’m really interested in, but we’ve maxed out encodings that we’ve used so far. It would be confusing to add another pair of colors or shapes, for example, so one pair can be men and another pair could be women. Instead, I’d likely split the plot into facets to get small multiples—we’ll talk about that later but see if you can imagine what that might look like.</p>
+</section>
+<section id="bad-examples" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="bad-examples">Bad examples</h2>
+<p>Sometimes bad examples stick with you better than good examples. <span class="citation" data-cites="lan2025">Lan &amp; Liu (<a href="#ref-lan2025" role="doc-biblioref">2025</a>)</span> studied and categorized bad data visualizations and came up with a taxonomy of 76 data viz mistakes. The <a href="https://flawviz.github.io">website</a> that goes alongside it has great &amp; hilarious examples. See if you can identify any of these types of mistakes in any of the lab charts.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-lan2025" class="csl-entry" role="listitem">
+Lan, X., &amp; Liu, Y. (2025). "<span>I Came Across</span> a <span>Junk</span>": <span>Understanding Design Flaws</span> of <span>Data Visualization</span> from the <span>Public</span>’s <span>Perspective</span>. <em>IEEE Transactions on Visualization and Computer Graphics</em>, <em>31</em>(1), 393–403. <a href="https://doi.org/10.1109/TVCG.2024.3456341">https://doi.org/10.1109/TVCG.2024.3456341</a>
+</div></div></section>
 <section id="labs" class="level2">
 <h2 class="anchored" data-anchor-id="labs">Labs</h2>
-<p>For this week’s labs, you’ll practice identifying the encodings in different types of charts, then fix a chart with inappropriate encodings.</p>
+<p>For this week’s labs, you’ll practice identifying the encodings in different types of charts, then fix some charts with inappropriate encodings.</p>
 
 
 
