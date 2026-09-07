@@ -1,0 +1,219 @@
+---
+title: 04. Tables
+execute: 
+  echo: true
+---
+
+```{r}
+#| label: setup
+#| message: false
+# subset of acs data to use for examples
+acs_balt <- justviz::acs |>
+    dplyr::filter(
+        name %in%
+            c(
+                "United States",
+                "Maryland",
+                "Baltimore city",
+                "Baltimore County",
+                "Anne Arundel County",
+                "Howard County"
+            )
+    ) |>
+    dplyr::select(level, name, total_hh, homeownership, median_hh_income)
+```
+
+This is a brief look at using tables as part of your data visualization toolbox. We're doing them early in the semester because they can sometimes be a better solution than a traditional visual. 
+
+Situations where a table might be a good route:
+
+- You only have a few numbers to display or you're tight on space, i.e. your data or your needs don't warrant the sacrifices you'd make for a chart (space in a document, abstraction of data)
+- Your audience needs access to multiple specific values---common with scientific results, public health data, etc.
+- Your data has more dimensions that you can easily visualize
+- You want to give an overview of data that your reader will encounter throughout a long document (i.e. "at a glance" type profiles)
+
+A table can be a good counterpart to a chart as well: research papers often have a boxplot or bar chart to display results of an experiment, then a table of specific diagnostics like p-values. My organization puts out a lot of reports and things that are used by grant writers, so when there's a set of data that we know grant writers will want lots of specific numbers, we'll opt for a table over a chart, or do both to meet multiple sets of needs.
+
+There are a few sets of tools for making tables in R, and more than with charts, what you use will depend on the format of your output. We'll only explore a few.
+
+## Some basic tools
+
+### `print`
+
+R's `print` function will print out most types of objects, including data frames. You probably want to do more than just print your data frame for any documents that anyone besides you and your other programmer colleagues, but for just looking at some data in a tabular format, this can be fine.
+
+```{r}
+#| label: base-print
+# by default just calling the variable `acs_balt` will print it,
+# but I'll do it explicitly
+print(acs_balt)
+```
+
+### `kable`
+
+The `knitr` package has a function `kable` that handles some basic table formatting and can prep tables for different types of output, mainly markdown (what we're generally writing out to in this class), HTML, and PDF (using LaTeX formatting). The package [`kableExtra`](https://github.com/haozhu233/kableExtra) will take that output and do additional formatting.
+
+```{r}
+#| label: kable
+knitr::kable(acs_balt)
+```
+
+In your console, `kable` will output a markdown table, which with the default format, will look like this:
+
+```markdown
+|level  |name                |  total_hh| homeownership| median_hh_income|
+|:------|:-------------------|---------:|-------------:|----------------:|
+|us     |United States       | 129227496|          0.65|            80734|
+|state  |Maryland            |   2362928|          0.68|           103678|
+|county |Anne Arundel County |    224748|          0.75|           124911|
+|county |Baltimore County    |    332801|          0.66|            91768|
+|county |Baltimore city      |    255668|          0.48|            62177|
+|county |Harford County      |    101795|          0.80|           112265|
+```
+
+:::{.aside}
+You can see the formatting used in markdown tables: column names are separated by a row of dashes, and the alignment of each column is set by the side that has a colon.
+:::
+
+
+### `gt` package
+
+[`gt`](https://gt.rstudio.com/) is a relatively newer package from the RStudio devs that follows the grammar of graphics idea used in ggplot. Similar to how we assign visual encodings to different aspects of the data, with `gt` we assign pieces of the table to different aspects of the data. I've had a hard time getting the hang of it for more complex tables, but it is very capable. Unlike some other packages that are focused on one or two output formats, `gt` can export to many types of documents, and can also export high-res images of tables. Its starting function is also called `gt`:
+
+```{r}
+#| label: gt
+gt::gt(acs_balt)
+```
+
+## Column names
+
+If all you do is print a data frame, it will just print out the column names as they are. If you're only printing the data into your notebook, you probably don't care. Some easy ways to change all the column names:
+
+### Changing the data frame's names directly
+
+Base R's `setNames` requires a character vector of the same length as the number of columns:
+
+```{r}
+#| label: print-setnames 
+setNames(
+    acs_balt,
+    c(
+        "Level",
+        "Name",
+        "Total households",
+        "Homeownership rate",
+        "Median household income"
+    )
+)
+```
+
+`dplyr::rename` takes a format like `new_name = old_name`, where both new & old column names are bare column names (not a string in quotes), _as long as those names are [syntactically valid](https://stackoverflow.com/q/9195718/5325862)_. If they're not valid, wrap them in backticks. One advantage of `dplyr::rename` is that you don't have to rename or rewrite every column, just the ones you want to change.
+
+::: {.aside}
+If you have a function you want to use for batch renaming multiple columns, [`dplyr::rename_with`](https://dplyr.tidyverse.org/reference/rename.html) is very handy
+:::
+
+```{r}
+#| label: print-rename
+dplyr::rename(
+    acs_balt,
+    Level = level,
+    Name = name,
+    `Total households` = total_hh,
+    `Homeownership rate` = homeownership,
+    `Median household income` = median_hh_income
+)
+```
+
+### With `kable`
+
+`knitr::kable` has an argument to take column names. Like with `setNames`, you'll need to give all column names, even ones you aren't changing.
+
+```{r}
+#| label: kable-colnames
+knitr::kable(
+    acs_balt,
+    col.names = c(
+        "Level",
+        "Name",
+        "Total households",
+        "Homeownership rate",
+        "Median household income"
+    )
+)
+```
+
+### With `gt`
+
+`gt::gt` relabels columns in another function. It uses a syntax similar to `dplyr::rename`, except because of how `gt` thinks about names vs labels, you'll use `old_name = label` instead.
+
+```{r}
+#| label: gt-colnames
+gt::gt(acs_balt) |>
+    gt::cols_label(
+        level = "Level",
+        name = "Name",
+        total_hh = "Total households",
+        homeownership = "Homeownership rate",
+        median_hh_income = "Median household income"
+    )
+```
+
+## Formatting
+
+One thing all 3 tables have in common is that the numbers are unformatted, e.g. homeownership is written as 0.65 instead of 65%. `knitr::kable` has some arguments for rounding numbers and for using the base `format` function, but no easy options for specifically formatting percentages, etc. (Some examples are in the function docs.) I like to be in control of formatting anyway, so when I'm using `kable`, I usually format all my columns myself---that's why our first programming exercise was writing formatting functions.
+
+Here I'll write some formatter functions like we did the first week and use those on the corresponding columns, then show what it looks like with `kable`.
+
+```{r}
+#| label: kable-fmt
+# remember that the scales::label_* functions return formatter functions to reuse
+comma <- scales::label_comma(accuracy = 1) # round to nearest whole number
+percent <- scales::label_percent(accuracy = 1)
+dollar <- scales::label_currency(accuracy = 1)
+
+acs_fmttd <- acs_balt |>
+    dplyr::mutate(total_hh = comma(total_hh)) |>
+    dplyr::mutate(homeownership = percent(homeownership)) |>
+    dplyr::mutate(median_hh_income = dollar(median_hh_income))
+
+knitr::kable(acs_fmttd)
+```
+
+A hiccup! `kable` automatically aligns columns based on their data types, where strings or similar column types are left-aligned, and numbers are right-aligned. By formatting numbers in this way, the numeric columns are now strings, not actual numeric type values. The `align` argument takes alignments (left, center, right) all stuck together as one string.
+
+```{r}
+#| label: kable-align
+knitr::kable(acs_fmttd, align = "llrrr")
+```
+
+`gt` on the other hand has _a lot_ of formatting functions built in. You call those functions with some arguments that fit the format type, and then the columns the formatter should apply to.
+
+```{r}
+#| label: gt-fmt
+gt::gt(acs_balt) |>
+    gt::fmt_number(columns = total_hh, decimals = 0) |>
+    gt::fmt_percent(columns = homeownership, decimals = 0) |>
+    gt::fmt_currency(columns = median_hh_income, decimals = 0)
+```
+
+## Putting it all together + next steps
+
+We could do a lot more, but this is all we have time for this semester. For your tables in this class, if you can put together the data subsetting, formatting, and renaming to get something like this, you're all set. For more complex documents or presentations, definitely dig into the docs for `kableExtra` or `gt`, among other packages.
+
+
+```{r}
+#| label: final-tbl
+knitr::kable(
+    acs_fmttd,
+    align = "llrrr",
+    col.names = c(
+        "Level",
+        "Name",
+        "Total households",
+        "Homeownership rate",
+        "Median household income"
+    ),
+    caption = "Select housing and income indicators, Baltimore and nearby counties, 2024"
+)
+```
