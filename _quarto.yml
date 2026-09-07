@@ -28,7 +28,7 @@ website:
           - id: syllabus
             text: "Syllabus"
             href: syllabus.qmd
-          # - readings.qmd
+          - readings.md
       - "---"
       - section: "Notes"
         contents: "notes/*.qmd"
