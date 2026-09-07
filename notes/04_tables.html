@@ -1,0 +1,3084 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Camille Seaberry">
+
+<title>04. Tables – GES 778, Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../notes/03b_encodings_code.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-eaeb381c6b7494c50009502241a4985c.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3419ea62b3ca2d77d3d547f86109e84e.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-4f85fd3035f460fdacc8ff72c3f40e07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-b488a86b801974a9fdd4a2a100d0b3fd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-4f85fd3035f460fdacc8ff72c3f40e07.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/04_tables.html">04. Tables</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">GES 778, Fall 2026</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/umbc-viz/ges778.git" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/umbc-viz/justviz.git" title="justviz package" class="quarto-navigation-tool px-1" aria-label="justviz package"><i class="bi bi-code-slash"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced Visualization and Presentation, Fall 2026</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../readings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading list</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/00_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00. Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/01_intro_to_data_viz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. Intro to data viz</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/02_good_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. Writing good code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/03_encodings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. Visual encodings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/03b_encodings_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03b. Code for visual encodings notes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/04_tables.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">04. Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">References &amp; extras</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/encodings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reference - visual encodings</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+    </ul>
+    </div>
+<div class="quarto-sidebar-footer"><div class="sidebar-footer-item">
+<p><a href="https://github.com/umbc-viz/ges778.git">Code for this site</a></p>
+</div></div></nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#some-basic-tools" id="toc-some-basic-tools" class="nav-link active" data-scroll-target="#some-basic-tools">Some basic tools</a>
+  <ul class="collapse">
+  <li><a href="#print" id="toc-print" class="nav-link" data-scroll-target="#print"><code>print</code></a></li>
+  <li><a href="#kable" id="toc-kable" class="nav-link" data-scroll-target="#kable"><code>kable</code></a></li>
+  <li><a href="#gt-package" id="toc-gt-package" class="nav-link" data-scroll-target="#gt-package"><code>gt</code> package</a></li>
+  </ul></li>
+  <li><a href="#column-names" id="toc-column-names" class="nav-link" data-scroll-target="#column-names">Column names</a>
+  <ul class="collapse">
+  <li><a href="#changing-the-data-frames-names-directly" id="toc-changing-the-data-frames-names-directly" class="nav-link" data-scroll-target="#changing-the-data-frames-names-directly">Changing the data frame’s names directly</a></li>
+  <li><a href="#with-kable" id="toc-with-kable" class="nav-link" data-scroll-target="#with-kable">With <code>kable</code></a></li>
+  <li><a href="#with-gt" id="toc-with-gt" class="nav-link" data-scroll-target="#with-gt">With <code>gt</code></a></li>
+  </ul></li>
+  <li><a href="#formatting" id="toc-formatting" class="nav-link" data-scroll-target="#formatting">Formatting</a></li>
+  <li><a href="#putting-it-all-together-next-steps" id="toc-putting-it-all-together-next-steps" class="nav-link" data-scroll-target="#putting-it-all-together-next-steps">Putting it all together + next steps</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/04_tables.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/04_tables.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/04_tables.html">04. Tables</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">04. Tables</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Camille Seaberry </p>
+          </div>
+  </div>
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">September 7, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="co"># subset of acs data to use for examples</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>acs_balt <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>        name <span class="sc">%in%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>            <span class="fu">c</span>(</span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>                <span class="st">"United States"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>                <span class="st">"Maryland"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>                <span class="st">"Baltimore city"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>                <span class="st">"Baltimore County"</span>,</span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a>                <span class="st">"Anne Arundel County"</span>,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>                <span class="st">"Howard County"</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>            )</span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(level, name, total_hh, homeownership, median_hh_income)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>This is a brief look at using tables as part of your data visualization toolbox. We’re doing them early in the semester because they can sometimes be a better solution than a traditional visual.</p>
+<p>Situations where a table might be a good route:</p>
+<ul>
+<li>You only have a few numbers to display or you’re tight on space, i.e.&nbsp;your data or your needs don’t warrant the sacrifices you’d make for a chart (space in a document, abstraction of data)</li>
+<li>Your audience needs access to multiple specific values—common with scientific results, public health data, etc.</li>
+<li>Your data has more dimensions that you can easily visualize</li>
+<li>You want to give an overview of data that your reader will encounter throughout a long document (i.e.&nbsp;“at a glance” type profiles)</li>
+</ul>
+<p>A table can be a good counterpart to a chart as well: research papers often have a boxplot or bar chart to display results of an experiment, then a table of specific diagnostics like p-values. My organization puts out a lot of reports and things that are used by grant writers, so when there’s a set of data that we know grant writers will want lots of specific numbers, we’ll opt for a table over a chart, or do both to meet multiple sets of needs.</p>
+<p>There are a few sets of tools for making tables in R, and more than with charts, what you use will depend on the format of your output. We’ll only explore a few.</p>
+<section id="some-basic-tools" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="some-basic-tools">Some basic tools</h2>
+<section id="print" class="level3">
+<h3 class="anchored" data-anchor-id="print"><code>print</code></h3>
+<p>R’s <code>print</code> function will print out most types of objects, including data frames. You probably want to do more than just print your data frame for any documents that anyone besides you and your other programmer colleagues, but for just looking at some data in a tabular format, this can be fine.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="co"># by default just calling the variable `acs_balt` will print it,</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a><span class="co"># but I'll do it explicitly</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a><span class="fu">print</span>(acs_balt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  level  name                 total_hh homeownership median_hh_income
+  &lt;fct&gt;  &lt;chr&gt;                   &lt;dbl&gt;         &lt;dbl&gt;            &lt;dbl&gt;
+1 us     United States       129227496          0.65            80734
+2 state  Maryland              2362928          0.68           103678
+3 county Anne Arundel County    224748          0.75           124911
+4 county Baltimore County       332801          0.66            91768
+5 county Baltimore city         255668          0.48            62177
+6 county Howard County          121065          0.71           149763</code></pre>
+</div>
+</div>
+</section>
+<section id="kable" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="kable"><code>kable</code></h3>
+<p>The <code>knitr</code> package has a function <code>kable</code> that handles some basic table formatting and can prep tables for different types of output, mainly markdown (what we’re generally writing out to in this class), HTML, and PDF (using LaTeX formatting). The package <a href="https://github.com/haozhu233/kableExtra"><code>kableExtra</code></a> will take that output and do additional formatting.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(acs_balt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 29%">
+<col style="width: 14%">
+<col style="width: 20%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">level</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">total_hh</th>
+<th style="text-align: right;">homeownership</th>
+<th style="text-align: right;">median_hh_income</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: right;">129227496</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">80734</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">Maryland</td>
+<td style="text-align: right;">2362928</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">103678</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: right;">224748</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">124911</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: right;">332801</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">91768</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: right;">255668</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">62177</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Howard County</td>
+<td style="text-align: right;">121065</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">149763</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>In your console, <code>kable</code> will output a markdown table, which with the default format, will look like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a><span class="pp">|</span>level  <span class="pp">|</span>name                <span class="pp">|</span>  total_hh<span class="pp">|</span> homeownership<span class="pp">|</span> median_hh_income<span class="pp">|</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a><span class="pp">|:------|:-------------------|---------:|-------------:|----------------:|</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a><span class="pp">|</span>us     <span class="pp">|</span>United States       <span class="pp">|</span> 129227496<span class="pp">|</span>          0.65<span class="pp">|</span>            80734<span class="pp">|</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a><span class="pp">|</span>state  <span class="pp">|</span>Maryland            <span class="pp">|</span>   2362928<span class="pp">|</span>          0.68<span class="pp">|</span>           103678<span class="pp">|</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a><span class="pp">|</span>county <span class="pp">|</span>Anne Arundel County <span class="pp">|</span>    224748<span class="pp">|</span>          0.75<span class="pp">|</span>           124911<span class="pp">|</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a><span class="pp">|</span>county <span class="pp">|</span>Baltimore County    <span class="pp">|</span>    332801<span class="pp">|</span>          0.66<span class="pp">|</span>            91768<span class="pp">|</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a><span class="pp">|</span>county <span class="pp">|</span>Baltimore city      <span class="pp">|</span>    255668<span class="pp">|</span>          0.48<span class="pp">|</span>            62177<span class="pp">|</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a><span class="pp">|</span>county <span class="pp">|</span>Harford County      <span class="pp">|</span>    101795<span class="pp">|</span>          0.80<span class="pp">|</span>           112265<span class="pp">|</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>You can see the formatting used in markdown tables: column names are separated by a row of dashes, and the alignment of each column is set by the side that has a colon.</p>
+</div></div></section>
+<section id="gt-package" class="level3">
+<h3 class="anchored" data-anchor-id="gt-package"><code>gt</code> package</h3>
+<p><a href="https://gt.rstudio.com/"><code>gt</code></a> is a relatively newer package from the RStudio devs that follows the grammar of graphics idea used in ggplot. Similar to how we assign visual encodings to different aspects of the data, with <code>gt</code> we assign pieces of the table to different aspects of the data. I’ve had a hard time getting the hang of it for more complex tables, but it is very capable. Unlike some other packages that are focused on one or two output formats, <code>gt</code> can export to many types of documents, and can also export high-res images of tables. Its starting function is also called <code>gt</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>gt<span class="sc">::</span><span class="fu">gt</span>(acs_balt)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="yjlejaxosj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yjlejaxosj table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#yjlejaxosj thead, #yjlejaxosj tbody, #yjlejaxosj tfoot, #yjlejaxosj tr, #yjlejaxosj td, #yjlejaxosj th {
+  border-style: none;
+}
+
+#yjlejaxosj p {
+  margin: 0;
+  padding: 0;
+}
+
+#yjlejaxosj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#yjlejaxosj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#yjlejaxosj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#yjlejaxosj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#yjlejaxosj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yjlejaxosj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yjlejaxosj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#yjlejaxosj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#yjlejaxosj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#yjlejaxosj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#yjlejaxosj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#yjlejaxosj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#yjlejaxosj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#yjlejaxosj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#yjlejaxosj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#yjlejaxosj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#yjlejaxosj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#yjlejaxosj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#yjlejaxosj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yjlejaxosj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#yjlejaxosj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#yjlejaxosj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#yjlejaxosj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yjlejaxosj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#yjlejaxosj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#yjlejaxosj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yjlejaxosj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yjlejaxosj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#yjlejaxosj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yjlejaxosj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#yjlejaxosj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#yjlejaxosj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yjlejaxosj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yjlejaxosj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#yjlejaxosj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#yjlejaxosj .gt_left {
+  text-align: left;
+}
+
+#yjlejaxosj .gt_center {
+  text-align: center;
+}
+
+#yjlejaxosj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#yjlejaxosj .gt_font_normal {
+  font-weight: normal;
+}
+
+#yjlejaxosj .gt_font_bold {
+  font-weight: bold;
+}
+
+#yjlejaxosj .gt_font_italic {
+  font-style: italic;
+}
+
+#yjlejaxosj .gt_super {
+  font-size: 65%;
+}
+
+#yjlejaxosj .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#yjlejaxosj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#yjlejaxosj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#yjlejaxosj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#yjlejaxosj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#yjlejaxosj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#yjlejaxosj .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#yjlejaxosj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#yjlejaxosj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="level" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">level</th>
+<th id="name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">name</th>
+<th id="total_hh" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">total_hh</th>
+<th id="homeownership" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">homeownership</th>
+<th id="median_hh_income" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">median_hh_income</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="level">us</td>
+<td class="gt_row gt_left" headers="name">United States</td>
+<td class="gt_row gt_right" headers="total_hh">129227496</td>
+<td class="gt_row gt_right" headers="homeownership">0.65</td>
+<td class="gt_row gt_right" headers="median_hh_income">80734</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="level">state</td>
+<td class="gt_row gt_left" headers="name">Maryland</td>
+<td class="gt_row gt_right" headers="total_hh">2362928</td>
+<td class="gt_row gt_right" headers="homeownership">0.68</td>
+<td class="gt_row gt_right" headers="median_hh_income">103678</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="level">county</td>
+<td class="gt_row gt_left" headers="name">Anne Arundel County</td>
+<td class="gt_row gt_right" headers="total_hh">224748</td>
+<td class="gt_row gt_right" headers="homeownership">0.75</td>
+<td class="gt_row gt_right" headers="median_hh_income">124911</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="level">county</td>
+<td class="gt_row gt_left" headers="name">Baltimore County</td>
+<td class="gt_row gt_right" headers="total_hh">332801</td>
+<td class="gt_row gt_right" headers="homeownership">0.66</td>
+<td class="gt_row gt_right" headers="median_hh_income">91768</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="level">county</td>
+<td class="gt_row gt_left" headers="name">Baltimore city</td>
+<td class="gt_row gt_right" headers="total_hh">255668</td>
+<td class="gt_row gt_right" headers="homeownership">0.48</td>
+<td class="gt_row gt_right" headers="median_hh_income">62177</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="level">county</td>
+<td class="gt_row gt_left" headers="name">Howard County</td>
+<td class="gt_row gt_right" headers="total_hh">121065</td>
+<td class="gt_row gt_right" headers="homeownership">0.71</td>
+<td class="gt_row gt_right" headers="median_hh_income">149763</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="column-names" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="column-names">Column names</h2>
+<p>If all you do is print a data frame, it will just print out the column names as they are. If you’re only printing the data into your notebook, you probably don’t care. Some easy ways to change all the column names:</p>
+<section id="changing-the-data-frames-names-directly" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="changing-the-data-frames-names-directly">Changing the data frame’s names directly</h3>
+<p>Base R’s <code>setNames</code> requires a character vector of the same length as the number of columns:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="fu">setNames</span>(</span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>    acs_balt,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>    <span class="fu">c</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a>        <span class="st">"Level"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a>        <span class="st">"Name"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-label="6"></a>        <span class="st">"Total households"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-label="7"></a>        <span class="st">"Homeownership rate"</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-label="8"></a>        <span class="st">"Median household income"</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-label="9"></a>    )</span>
+<span id="cb7-10"><a href="#cb7-10" aria-label="10"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 22%">
+<col style="width: 19%">
+<col style="width: 21%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Level</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: right;">Total households</th>
+<th style="text-align: right;">Homeownership rate</th>
+<th style="text-align: right;">Median household income</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: right;">129227496</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">80734</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">Maryland</td>
+<td style="text-align: right;">2362928</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">103678</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: right;">224748</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">124911</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: right;">332801</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">91768</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: right;">255668</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">62177</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Howard County</td>
+<td style="text-align: right;">121065</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">149763</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><code>dplyr::rename</code> takes a format like <code>new_name = old_name</code>, where both new &amp; old column names are bare column names (not a string in quotes), <em>as long as those names are <a href="https://stackoverflow.com/q/9195718/5325862">syntactically valid</a></em>. If they’re not valid, wrap them in backticks. One advantage of <code>dplyr::rename</code> is that you don’t have to rename or rewrite every column, just the ones you want to change.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>If you have a function you want to use for batch renaming multiple columns, <a href="https://dplyr.tidyverse.org/reference/rename.html"><code>dplyr::rename_with</code></a> is very handy</p>
+</div></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>dplyr<span class="sc">::</span><span class="fu">rename</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>    acs_balt,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>    <span class="at">Level =</span> level,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>    <span class="at">Name =</span> name,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a>    <span class="st">`</span><span class="at">Total households</span><span class="st">`</span> <span class="ot">=</span> total_hh,</span>
+<span id="cb8-6"><a href="#cb8-6" aria-label="6"></a>    <span class="st">`</span><span class="at">Homeownership rate</span><span class="st">`</span> <span class="ot">=</span> homeownership,</span>
+<span id="cb8-7"><a href="#cb8-7" aria-label="7"></a>    <span class="st">`</span><span class="at">Median household income</span><span class="st">`</span> <span class="ot">=</span> median_hh_income</span>
+<span id="cb8-8"><a href="#cb8-8" aria-label="8"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 22%">
+<col style="width: 19%">
+<col style="width: 21%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Level</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: right;">Total households</th>
+<th style="text-align: right;">Homeownership rate</th>
+<th style="text-align: right;">Median household income</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: right;">129227496</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">80734</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">Maryland</td>
+<td style="text-align: right;">2362928</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">103678</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: right;">224748</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">124911</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: right;">332801</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">91768</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: right;">255668</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">62177</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Howard County</td>
+<td style="text-align: right;">121065</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">149763</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="with-kable" class="level3">
+<h3 class="anchored" data-anchor-id="with-kable">With <code>kable</code></h3>
+<p><code>knitr::kable</code> has an argument to take column names. Like with <code>setNames</code>, you’ll need to give all column names, even ones you aren’t changing.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>    acs_balt,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-label="4"></a>        <span class="st">"Level"</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-label="5"></a>        <span class="st">"Name"</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-label="6"></a>        <span class="st">"Total households"</span>,</span>
+<span id="cb9-7"><a href="#cb9-7" aria-label="7"></a>        <span class="st">"Homeownership rate"</span>,</span>
+<span id="cb9-8"><a href="#cb9-8" aria-label="8"></a>        <span class="st">"Median household income"</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-label="9"></a>    )</span>
+<span id="cb9-10"><a href="#cb9-10" aria-label="10"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 22%">
+<col style="width: 19%">
+<col style="width: 21%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Level</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: right;">Total households</th>
+<th style="text-align: right;">Homeownership rate</th>
+<th style="text-align: right;">Median household income</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: right;">129227496</td>
+<td style="text-align: right;">0.65</td>
+<td style="text-align: right;">80734</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">Maryland</td>
+<td style="text-align: right;">2362928</td>
+<td style="text-align: right;">0.68</td>
+<td style="text-align: right;">103678</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: right;">224748</td>
+<td style="text-align: right;">0.75</td>
+<td style="text-align: right;">124911</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: right;">332801</td>
+<td style="text-align: right;">0.66</td>
+<td style="text-align: right;">91768</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: right;">255668</td>
+<td style="text-align: right;">0.48</td>
+<td style="text-align: right;">62177</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Howard County</td>
+<td style="text-align: right;">121065</td>
+<td style="text-align: right;">0.71</td>
+<td style="text-align: right;">149763</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="with-gt" class="level3">
+<h3 class="anchored" data-anchor-id="with-gt">With <code>gt</code></h3>
+<p><code>gt::gt</code> relabels columns in another function. It uses a syntax similar to <code>dplyr::rename</code>, except because of how <code>gt</code> thinks about names vs labels, you’ll use <code>old_name = label</code> instead.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>gt<span class="sc">::</span><span class="fu">gt</span>(acs_balt) <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>    gt<span class="sc">::</span><span class="fu">cols_label</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a>        <span class="at">level =</span> <span class="st">"Level"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-label="4"></a>        <span class="at">name =</span> <span class="st">"Name"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-label="5"></a>        <span class="at">total_hh =</span> <span class="st">"Total households"</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-label="6"></a>        <span class="at">homeownership =</span> <span class="st">"Homeownership rate"</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-label="7"></a>        <span class="at">median_hh_income =</span> <span class="st">"Median household income"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-label="8"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="lsmfbxowjs" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#lsmfbxowjs table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#lsmfbxowjs thead, #lsmfbxowjs tbody, #lsmfbxowjs tfoot, #lsmfbxowjs tr, #lsmfbxowjs td, #lsmfbxowjs th {
+  border-style: none;
+}
+
+#lsmfbxowjs p {
+  margin: 0;
+  padding: 0;
+}
+
+#lsmfbxowjs .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#lsmfbxowjs .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#lsmfbxowjs .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#lsmfbxowjs .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#lsmfbxowjs .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lsmfbxowjs .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lsmfbxowjs .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#lsmfbxowjs .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#lsmfbxowjs .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#lsmfbxowjs .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#lsmfbxowjs .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#lsmfbxowjs .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#lsmfbxowjs .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#lsmfbxowjs .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#lsmfbxowjs .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#lsmfbxowjs .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#lsmfbxowjs .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#lsmfbxowjs .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#lsmfbxowjs .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lsmfbxowjs .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#lsmfbxowjs .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#lsmfbxowjs .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#lsmfbxowjs .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lsmfbxowjs .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#lsmfbxowjs .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#lsmfbxowjs .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lsmfbxowjs .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lsmfbxowjs .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#lsmfbxowjs .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lsmfbxowjs .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#lsmfbxowjs .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#lsmfbxowjs .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lsmfbxowjs .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lsmfbxowjs .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#lsmfbxowjs .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#lsmfbxowjs .gt_left {
+  text-align: left;
+}
+
+#lsmfbxowjs .gt_center {
+  text-align: center;
+}
+
+#lsmfbxowjs .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#lsmfbxowjs .gt_font_normal {
+  font-weight: normal;
+}
+
+#lsmfbxowjs .gt_font_bold {
+  font-weight: bold;
+}
+
+#lsmfbxowjs .gt_font_italic {
+  font-style: italic;
+}
+
+#lsmfbxowjs .gt_super {
+  font-size: 65%;
+}
+
+#lsmfbxowjs .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#lsmfbxowjs .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#lsmfbxowjs .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#lsmfbxowjs .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#lsmfbxowjs .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#lsmfbxowjs .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#lsmfbxowjs .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#lsmfbxowjs .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#lsmfbxowjs div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="level" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">Level</th>
+<th id="name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Name</th>
+<th id="total_hh" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Total households</th>
+<th id="homeownership" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Homeownership rate</th>
+<th id="median_hh_income" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Median household income</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="level">us</td>
+<td class="gt_row gt_left" headers="name">United States</td>
+<td class="gt_row gt_right" headers="total_hh">129227496</td>
+<td class="gt_row gt_right" headers="homeownership">0.65</td>
+<td class="gt_row gt_right" headers="median_hh_income">80734</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="level">state</td>
+<td class="gt_row gt_left" headers="name">Maryland</td>
+<td class="gt_row gt_right" headers="total_hh">2362928</td>
+<td class="gt_row gt_right" headers="homeownership">0.68</td>
+<td class="gt_row gt_right" headers="median_hh_income">103678</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="level">county</td>
+<td class="gt_row gt_left" headers="name">Anne Arundel County</td>
+<td class="gt_row gt_right" headers="total_hh">224748</td>
+<td class="gt_row gt_right" headers="homeownership">0.75</td>
+<td class="gt_row gt_right" headers="median_hh_income">124911</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="level">county</td>
+<td class="gt_row gt_left" headers="name">Baltimore County</td>
+<td class="gt_row gt_right" headers="total_hh">332801</td>
+<td class="gt_row gt_right" headers="homeownership">0.66</td>
+<td class="gt_row gt_right" headers="median_hh_income">91768</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="level">county</td>
+<td class="gt_row gt_left" headers="name">Baltimore city</td>
+<td class="gt_row gt_right" headers="total_hh">255668</td>
+<td class="gt_row gt_right" headers="homeownership">0.48</td>
+<td class="gt_row gt_right" headers="median_hh_income">62177</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="level">county</td>
+<td class="gt_row gt_left" headers="name">Howard County</td>
+<td class="gt_row gt_right" headers="total_hh">121065</td>
+<td class="gt_row gt_right" headers="homeownership">0.71</td>
+<td class="gt_row gt_right" headers="median_hh_income">149763</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="formatting" class="level2">
+<h2 class="anchored" data-anchor-id="formatting">Formatting</h2>
+<p>One thing all 3 tables have in common is that the numbers are unformatted, e.g.&nbsp;homeownership is written as 0.65 instead of 65%. <code>knitr::kable</code> has some arguments for rounding numbers and for using the base <code>format</code> function, but no easy options for specifically formatting percentages, etc. (Some examples are in the function docs.) I like to be in control of formatting anyway, so when I’m using <code>kable</code>, I usually format all my columns myself—that’s why our first programming exercise was writing formatting functions.</p>
+<p>Here I’ll write some formatter functions like we did the first week and use those on the corresponding columns, then show what it looks like with <code>kable</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a><span class="co"># remember that the scales::label_* functions return formatter functions to reuse</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a>comma <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">label_comma</span>(<span class="at">accuracy =</span> <span class="dv">1</span>) <span class="co"># round to nearest whole number</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-label="3"></a>percent <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-label="4"></a>dollar <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">label_currency</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-label="5"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-label="6"></a>acs_fmttd <span class="ot">&lt;-</span> acs_balt <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-label="7"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">total_hh =</span> <span class="fu">comma</span>(total_hh)) <span class="sc">|&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-label="8"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">homeownership =</span> <span class="fu">percent</span>(homeownership)) <span class="sc">|&gt;</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-label="9"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">median_hh_income =</span> <span class="fu">dollar</span>(median_hh_income))</span>
+<span id="cb11-10"><a href="#cb11-10" aria-label="10"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-label="11"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(acs_fmttd)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 28%">
+<col style="width: 17%">
+<col style="width: 20%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">level</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">total_hh</th>
+<th style="text-align: left;">homeownership</th>
+<th style="text-align: left;">median_hh_income</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">129,227,496</td>
+<td style="text-align: left;">65%</td>
+<td style="text-align: left;">$80,734</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">Maryland</td>
+<td style="text-align: left;">2,362,928</td>
+<td style="text-align: left;">68%</td>
+<td style="text-align: left;">$103,678</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: left;">224,748</td>
+<td style="text-align: left;">75%</td>
+<td style="text-align: left;">$124,911</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: left;">332,801</td>
+<td style="text-align: left;">66%</td>
+<td style="text-align: left;">$91,768</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">255,668</td>
+<td style="text-align: left;">48%</td>
+<td style="text-align: left;">$62,177</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Howard County</td>
+<td style="text-align: left;">121,065</td>
+<td style="text-align: left;">71%</td>
+<td style="text-align: left;">$149,763</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>A hiccup! <code>kable</code> automatically aligns columns based on their data types, where strings or similar column types are left-aligned, and numbers are right-aligned. By formatting numbers in this way, the numeric columns are now strings, not actual numeric type values. The <code>align</code> argument takes alignments (left, center, right) all stuck together as one string.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-label="1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(acs_fmttd, <span class="at">align =</span> <span class="st">"llrrr"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 28%">
+<col style="width: 17%">
+<col style="width: 20%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">level</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">total_hh</th>
+<th style="text-align: right;">homeownership</th>
+<th style="text-align: right;">median_hh_income</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: right;">129,227,496</td>
+<td style="text-align: right;">65%</td>
+<td style="text-align: right;">$80,734</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">Maryland</td>
+<td style="text-align: right;">2,362,928</td>
+<td style="text-align: right;">68%</td>
+<td style="text-align: right;">$103,678</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: right;">224,748</td>
+<td style="text-align: right;">75%</td>
+<td style="text-align: right;">$124,911</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: right;">332,801</td>
+<td style="text-align: right;">66%</td>
+<td style="text-align: right;">$91,768</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: right;">255,668</td>
+<td style="text-align: right;">48%</td>
+<td style="text-align: right;">$62,177</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Howard County</td>
+<td style="text-align: right;">121,065</td>
+<td style="text-align: right;">71%</td>
+<td style="text-align: right;">$149,763</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><code>gt</code> on the other hand has <em>a lot</em> of formatting functions built in. You call those functions with some arguments that fit the format type, and then the columns the formatter should apply to.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a>gt<span class="sc">::</span><span class="fu">gt</span>(acs_balt) <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-label="2"></a>    gt<span class="sc">::</span><span class="fu">fmt_number</span>(<span class="at">columns =</span> total_hh, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-label="3"></a>    gt<span class="sc">::</span><span class="fu">fmt_percent</span>(<span class="at">columns =</span> homeownership, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-label="4"></a>    gt<span class="sc">::</span><span class="fu">fmt_currency</span>(<span class="at">columns =</span> median_hh_income, <span class="at">decimals =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="ssmyhdjfyj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ssmyhdjfyj table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ssmyhdjfyj thead, #ssmyhdjfyj tbody, #ssmyhdjfyj tfoot, #ssmyhdjfyj tr, #ssmyhdjfyj td, #ssmyhdjfyj th {
+  border-style: none;
+}
+
+#ssmyhdjfyj p {
+  margin: 0;
+  padding: 0;
+}
+
+#ssmyhdjfyj .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ssmyhdjfyj .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ssmyhdjfyj .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ssmyhdjfyj .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ssmyhdjfyj .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ssmyhdjfyj .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ssmyhdjfyj .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ssmyhdjfyj .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ssmyhdjfyj .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ssmyhdjfyj .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ssmyhdjfyj .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ssmyhdjfyj .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ssmyhdjfyj .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ssmyhdjfyj .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ssmyhdjfyj .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ssmyhdjfyj .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ssmyhdjfyj .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ssmyhdjfyj .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ssmyhdjfyj .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ssmyhdjfyj .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ssmyhdjfyj .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ssmyhdjfyj .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ssmyhdjfyj .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ssmyhdjfyj .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ssmyhdjfyj .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ssmyhdjfyj .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ssmyhdjfyj .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ssmyhdjfyj .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ssmyhdjfyj .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ssmyhdjfyj .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ssmyhdjfyj .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ssmyhdjfyj .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ssmyhdjfyj .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ssmyhdjfyj .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ssmyhdjfyj .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ssmyhdjfyj .gt_left {
+  text-align: left;
+}
+
+#ssmyhdjfyj .gt_center {
+  text-align: center;
+}
+
+#ssmyhdjfyj .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ssmyhdjfyj .gt_font_normal {
+  font-weight: normal;
+}
+
+#ssmyhdjfyj .gt_font_bold {
+  font-weight: bold;
+}
+
+#ssmyhdjfyj .gt_font_italic {
+  font-style: italic;
+}
+
+#ssmyhdjfyj .gt_super {
+  font-size: 65%;
+}
+
+#ssmyhdjfyj .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ssmyhdjfyj .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ssmyhdjfyj .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ssmyhdjfyj .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ssmyhdjfyj .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ssmyhdjfyj .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ssmyhdjfyj .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#ssmyhdjfyj .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#ssmyhdjfyj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_col_headings header">
+<th id="level" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">level</th>
+<th id="name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">name</th>
+<th id="total_hh" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">total_hh</th>
+<th id="homeownership" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">homeownership</th>
+<th id="median_hh_income" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">median_hh_income</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_center" headers="level">us</td>
+<td class="gt_row gt_left" headers="name">United States</td>
+<td class="gt_row gt_right" headers="total_hh">129,227,496</td>
+<td class="gt_row gt_right" headers="homeownership">65%</td>
+<td class="gt_row gt_right" headers="median_hh_income">$80,734</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="level">state</td>
+<td class="gt_row gt_left" headers="name">Maryland</td>
+<td class="gt_row gt_right" headers="total_hh">2,362,928</td>
+<td class="gt_row gt_right" headers="homeownership">68%</td>
+<td class="gt_row gt_right" headers="median_hh_income">$103,678</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="level">county</td>
+<td class="gt_row gt_left" headers="name">Anne Arundel County</td>
+<td class="gt_row gt_right" headers="total_hh">224,748</td>
+<td class="gt_row gt_right" headers="homeownership">75%</td>
+<td class="gt_row gt_right" headers="median_hh_income">$124,911</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="level">county</td>
+<td class="gt_row gt_left" headers="name">Baltimore County</td>
+<td class="gt_row gt_right" headers="total_hh">332,801</td>
+<td class="gt_row gt_right" headers="homeownership">66%</td>
+<td class="gt_row gt_right" headers="median_hh_income">$91,768</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_center" headers="level">county</td>
+<td class="gt_row gt_left" headers="name">Baltimore city</td>
+<td class="gt_row gt_right" headers="total_hh">255,668</td>
+<td class="gt_row gt_right" headers="homeownership">48%</td>
+<td class="gt_row gt_right" headers="median_hh_income">$62,177</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_center" headers="level">county</td>
+<td class="gt_row gt_left" headers="name">Howard County</td>
+<td class="gt_row gt_right" headers="total_hh">121,065</td>
+<td class="gt_row gt_right" headers="homeownership">71%</td>
+<td class="gt_row gt_right" headers="median_hh_income">$149,763</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</section>
+<section id="putting-it-all-together-next-steps" class="level2">
+<h2 class="anchored" data-anchor-id="putting-it-all-together-next-steps">Putting it all together + next steps</h2>
+<p>We could do a lot more, but this is all we have time for this semester. For your tables in this class, if you can put together the data subsetting, formatting, and renaming to get something like this, you’re all set. For more complex documents or presentations, definitely dig into the docs for <code>kableExtra</code> or <code>gt</code>, among other packages.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-label="1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb14-2"><a href="#cb14-2" aria-label="2"></a>    acs_fmttd,</span>
+<span id="cb14-3"><a href="#cb14-3" aria-label="3"></a>    <span class="at">align =</span> <span class="st">"llrrr"</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" aria-label="4"></a>    <span class="at">col.names =</span> <span class="fu">c</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-label="5"></a>        <span class="st">"Level"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-label="6"></a>        <span class="st">"Name"</span>,</span>
+<span id="cb14-7"><a href="#cb14-7" aria-label="7"></a>        <span class="st">"Total households"</span>,</span>
+<span id="cb14-8"><a href="#cb14-8" aria-label="8"></a>        <span class="st">"Homeownership rate"</span>,</span>
+<span id="cb14-9"><a href="#cb14-9" aria-label="9"></a>        <span class="st">"Median household income"</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-label="10"></a>    ),</span>
+<span id="cb14-11"><a href="#cb14-11" aria-label="11"></a>    <span class="at">caption =</span> <span class="st">"Select housing and income indicators, Baltimore and nearby counties, 2024"</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-label="12"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Select housing and income indicators, Baltimore and nearby counties, 2024</caption>
+<colgroup>
+<col style="width: 8%">
+<col style="width: 22%">
+<col style="width: 19%">
+<col style="width: 21%">
+<col style="width: 27%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Level</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: right;">Total households</th>
+<th style="text-align: right;">Homeownership rate</th>
+<th style="text-align: right;">Median household income</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">us</td>
+<td style="text-align: left;">United States</td>
+<td style="text-align: right;">129,227,496</td>
+<td style="text-align: right;">65%</td>
+<td style="text-align: right;">$80,734</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">state</td>
+<td style="text-align: left;">Maryland</td>
+<td style="text-align: right;">2,362,928</td>
+<td style="text-align: right;">68%</td>
+<td style="text-align: right;">$103,678</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Anne Arundel County</td>
+<td style="text-align: right;">224,748</td>
+<td style="text-align: right;">75%</td>
+<td style="text-align: right;">$124,911</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: right;">332,801</td>
+<td style="text-align: right;">66%</td>
+<td style="text-align: right;">$91,768</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: right;">255,668</td>
+<td style="text-align: right;">48%</td>
+<td style="text-align: right;">$62,177</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">county</td>
+<td style="text-align: left;">Howard County</td>
+<td style="text-align: right;">121,065</td>
+<td style="text-align: right;">71%</td>
+<td style="text-align: right;">$149,763</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+</section>
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../notes/03b_encodings_code.html" class="pagination-link" aria-label="03b. Code for visual encodings notes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">03b. Code for visual encodings notes</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/04_tables.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/04_tables.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
