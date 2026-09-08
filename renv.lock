@@ -1562,7 +1562,7 @@
     },
     "justviz": {
       "Package": "justviz",
-      "Version": "0.2.4",
+      "Version": "0.2.6",
       "Source": "GitHub",
       "Type": "Package",
       "Title": "justviz visualization tools",
@@ -1612,7 +1612,7 @@
       "RemoteUsername": "umbc-viz",
       "RemotePkgRef": "umbc-viz/justviz",
       "RemoteRef": "HEAD",
-      "RemoteSha": "e39c7450f7fe103338438a0ab76037ac74164d6b",
+      "RemoteSha": "37f8fb424f13d5a053a45c92195edc31a5ba16bf",
       "NeedsCompilation": "no",
       "Author": "Camille Seaberry [cre, aut] (ORCID: <https://orcid.org/0000-0002-5102-995X>)",
       "Maintainer": "Camille Seaberry <camille.seaberry@gmail.com>"
@@ -2206,53 +2206,6 @@
       "NeedsCompilation": "no",
       "Author": "Greg Lin [aut, cre], Tanner Linsley [ctb, cph] (React Table library), Emotion team and other contributors [ctb, cph] (Emotion library), Kent Russell [ctb, cph] (reactR package), Ramnath Vaidyanathan [ctb, cph] (htmlwidgets package), Joe Cheng [ctb, cph] (htmlwidgets package), JJ Allaire [ctb, cph] (htmlwidgets package), Yihui Xie [ctb, cph] (htmlwidgets package), Kenton Russell [ctb, cph] (htmlwidgets package), Facebook, Inc. and its affiliates [ctb, cph] (React library), FormatJS [ctb, cph] (FormatJS libraries), Feross Aboukhadijeh, and other contributors [ctb, cph] (buffer library), Roman Shtylman [ctb, cph] (process library), James Halliday [ctb, cph] (stream-browserify library), Posit Software, PBC [fnd, cph]",
       "Maintainer": "Greg Lin <glin@glin.io>",
-      "Repository": "RSPM"
-    },
-    "remotes": {
-      "Package": "remotes",
-      "Version": "2.5.0",
-      "Source": "Repository",
-      "Title": "R Package Installation from Remote Repositories, Including 'GitHub'",
-      "Authors@R": "c( person(\"Gábor\", \"Csárdi\", , \"csardi.gabor@gmail.com\", role = c(\"aut\", \"cre\")), person(\"Jim\", \"Hester\", role = \"aut\"), person(\"Hadley\", \"Wickham\", role = \"aut\"), person(\"Winston\", \"Chang\", role = \"aut\"), person(\"Martin\", \"Morgan\", role = \"aut\"), person(\"Dan\", \"Tenenbaum\", role = \"aut\"), person(\"Posit Software, PBC\", role = c(\"cph\", \"fnd\")), person(\"Ascent Digital Services\", role = \"cph\") )",
-      "Description": "Download and install R packages stored in 'GitHub', 'GitLab', 'Bitbucket', 'Bioconductor', or plain 'subversion' or 'git' repositories.  This package provides the 'install_*' functions in 'devtools'. Indeed most of the code was copied over from 'devtools'.",
-      "License": "MIT + file LICENSE",
-      "URL": "https://remotes.r-lib.org, https://github.com/r-lib/remotes#readme",
-      "BugReports": "https://github.com/r-lib/remotes/issues",
-      "Depends": [
-        "R (>= 3.0.0)"
-      ],
-      "Imports": [
-        "methods",
-        "stats",
-        "tools",
-        "utils"
-      ],
-      "Suggests": [
-        "brew",
-        "callr",
-        "codetools",
-        "covr",
-        "curl",
-        "git2r (>= 0.23.0)",
-        "knitr",
-        "mockery",
-        "pingr",
-        "pkgbuild (>= 1.0.1)",
-        "rmarkdown",
-        "rprojroot",
-        "testthat (>= 3.0.0)",
-        "webfakes",
-        "withr"
-      ],
-      "VignetteBuilder": "knitr",
-      "Config/Needs/website": "tidyverse/tidytemplate",
-      "Config/testthat/edition": "3",
-      "Encoding": "UTF-8",
-      "RoxygenNote": "7.2.3",
-      "SystemRequirements": "Subversion for install_svn, git for install_git",
-      "NeedsCompilation": "no",
-      "Author": "Gábor Csárdi [aut, cre], Jim Hester [aut], Hadley Wickham [aut], Winston Chang [aut], Martin Morgan [aut], Dan Tenenbaum [aut], Posit Software, PBC [cph, fnd], Ascent Digital Services [cph]",
-      "Maintainer": "Gábor Csárdi <csardi.gabor@gmail.com>",
       "Repository": "RSPM"
     },
     "renv": {
