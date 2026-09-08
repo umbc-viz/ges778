@@ -1,0 +1,261 @@
+---
+title: 05. Exploratory data visualization
+execute: 
+  echo: true
+---
+
+Exploratory data visualization (EDV) is a method of using visualization to learn about your data. It's how you'll make the majority of your charts, eventually pulling out one or two to polish (maybe).
+
+::: {.aside}
+I'm saying exploratory data visualization here rather than exploratory data analysis, because we won't be doing the basic analyses, summary statistics, crappy hypothesis testing, etc. that would normally make up a more well-rounded EDA. Just the data viz.
+:::
+
+From @wickham2023, [Exploratory Data Analysis](https://r4ds.hadley.nz/eda) chapter:
+
+> There is no rule about which questions you should ask to guide your research. However, two types of questions will always be useful for making discoveries within your data. You can loosely word these questions as:
+> - What type of variation occurs within my variables?
+> - What type of covariation occurs between my variables?
+
+The questions I usually ask myself (or my boss asks me) in doing EDA/EDV are some variation on:
+
+- What overall patterns are here?
+- Are they interesting?
+- Are they surprising?
+- How are interesting/surprising patterns related to each other?
+
+We'll follow many of the steps of the EDA chapter using the `acs` dataset in the {justviz} package. For simplicity, we'll focus on Maryland census tracts and just a few variables dealing with housing and income.
+
+Start by just looking at your data. Get a summary of it. Figure out what each variable means and what its scale should be.
+
+```{r}
+#| label: setup
+#| message: false
+library(ggplot2)
+
+# set a default theme---easier to see some examples
+theme_set(theme_minimal())
+
+# make histogram default to a white border around bars
+update_geom_defaults("histogram", list(color = "white"))
+
+acs_all_tracts <- justviz::acs |>
+    dplyr::filter(level == "tract") |>
+    dplyr::select(
+        county,
+        name,
+        total_pop,
+        total_hh,
+        homeownership,
+        total_cost_burden,
+        renter_cost_burden,
+        owner_cost_burden,
+        no_vehicle_hh,
+        median_hh_income,
+        total_vacant_units,
+        pop_density
+    )
+
+head(acs_all_tracts)
+summary(acs_all_tracts)
+```
+
+Make sure nothing looks weird: 
+
+- We're using Maryland tracts, so there should be 24 unique values of county because there are 24 counties
+- Many of the numeric variables have some missing values (`NA`), but none have more than a few missing
+- Some numeric variables have very high maximum values, such as 100% owner cost burden rates. Keep this in mind as we go.
+
+## Variation
+
+First a histogram of median household income values:
+
+```{r}
+#| label: fig-income-hist-1
+ggplot(acs_all_tracts, aes(x = median_hh_income)) +
+    geom_histogram(color = "white")
+```
+
+There's a message and a warning: the message suggests being intentional about the number of bins, and the warning calls our attention to missing values in this column.
+
+Use the next few chunks of code to experiment with bin specifications. Does your understanding of the data's distribution change?
+
+```{r}
+#| label: hist-bins
+ggplot(acs_all_tracts, aes(x = median_hh_income)) +
+    geom_histogram(bins = 50) # bins can be determined by setting the number of bins
+```
+
+
+```{r}
+#| label: hist-binwidth
+ggplot(acs_all_tracts, aes(x = median_hh_income)) +
+    geom_histogram(binwidth = 10000) # or by the width of bins, with a scale corresponding to the x-axis
+```
+
+What are some values of bins or binwidth that seem reasonable? At what point do either of them start to obscure data?
+
+As for the missing values:
+
+```{r}
+#| label: missing-income
+acs_all_tracts |>
+    dplyr::filter(is.na(median_hh_income))
+```
+
+Even though we're probably not going to use the total population and total household variables for any analysis here, I kept them because those sorts of variables that define what your observational unit is are important for checking what's going on in your data. By which I mean a census tract is made up of a bunch of people (usually about 4,000) in a contiguous area who mostly live in households. But if you work with census data enough, you'll know that some places have population but few households, or only very small populations altogether---a tract might actually be a jail or a set of college dorms, or maybe the majority of a tract is those sorts of group quarters, and the remainder is too small to reliably calculate some of the data. What we want to do with those tracts can depend on context, but I'll drop them here.
+
+```{r}
+#| label: no-missing-income
+acs_income_tracts <- dplyr::filter(acs_all_tracts, !is.na(median_hh_income))
+```
+
+
+### Typical values
+
+Does anything seem weird about the median household income values? Look back at @fig-income-hist-1 where it may be more apparent. (We'll talk about this anomaly in the data.)
+
+Switching to cost burden rates:
+
+```{r}
+#| label: cost-hist
+ggplot(acs_income_tracts, aes(x = total_cost_burden)) +
+    geom_histogram(binwidth = 0.03)
+```
+
+This approaches a normal curve, but is skewed. From the histogram, the mean looks to be around 0.3 (looking back at the summary, this is correct), but with quite a few tracts with higher rates. Because this is a proportion, we don't expect there to be any values below 0 or above 1.
+
+A boxplot can make it a little easier to figure out what's typical in your distribution.
+
+### Unusual values
+
+```{r}
+#| label: density-hist-1
+ggplot(acs_income_tracts, aes(x = pop_density)) +
+    geom_histogram(binwidth = 1000)
+```
+
+There are a few tracts that are extremely dense. If we wanted to get a sense of more typical tracts, we could filter those, either from the data or within the limits of the chart:
+
+```{r}
+#| label: density-hist-filter
+acs_income_tracts |>
+    dplyr::filter(pop_density < 30000) |>
+    ggplot(aes(x = pop_density)) +
+    geom_histogram(binwidth = 1000)
+
+acs_income_tracts |>
+    ggplot(aes(x = pop_density)) +
+    geom_histogram(binwidth = 1000) +
+    scale_x_continuous(limits = c(NA, 30000))
+```
+
+We could decide to investigate those high-density tracts. For example, if we're interested in housing costs, we might drop tracts that seem to mostly be dorms. However, at least these tracts in Montgomery County are actually high-rise condos bordering DC, so we should keep them in.
+
+
+## Covariation
+
+Especially when we talk about housing and socio-economic data, we expect things to be correlated---probably even more so than with naturally occurring phenomena, since so much of where we live and what resources we have are determined by history and policy decisions. So it shouldn't surprise you to find correlations in data like this. In fact, the CDC PLACES dataset (`justviz::cdc`) uses demographic data to model health measures where they don't have direct measurements available, so in cases like that you actually want to lean _away_ from digging into correlations too much, or you might end up just confirming the makeup of the model, not finding anything new.
+
+### A categorical and a numerical variable
+
+I'll reshape the data to get housing tenure into one categorical variable so we can study housing cost burden by tenure. (If the code doesn't make sense, refer back to the [data wrangling notes](../extras/wrangling.qmd).)
+
+```{r}
+#| label: cost-burden
+cost_burden <- acs_income_tracts |>
+    tidyr::pivot_longer(
+        cols = dplyr::matches("cost_burden"),
+        names_to = "tenure",
+        values_to = "share"
+    ) |>
+    dplyr::select(county, name, total_hh, tenure, share) |>
+    # extract just the text in each tenure label before the underscore
+    dplyr::mutate(
+        tenure = stringr::str_extract(tenure, "^[a-z]+") |> forcats::as_factor()
+    ) |>
+    dplyr::filter(!is.na(share))
+
+head(cost_burden)
+```
+
+```{r}
+#| label: cost-freq
+ggplot(cost_burden, aes(x = share, color = tenure)) +
+    geom_freqpoly(binwidth = 0.02)
+```
+
+
+The bit about calling `after_stat` in the book chapter doesn't apply here, since we have the same number of observations for each tenure.
+
+```{r}
+#| label: cost-box
+ggplot(cost_burden, aes(x = tenure, y = share)) +
+    geom_boxplot()
+```
+
+```{r}
+#| label: cost-box-order
+ggplot(
+    cost_burden,
+    aes(x = forcats::fct_reorder(tenure, share), y = share)
+) +
+    geom_boxplot()
+```
+
+
+### Two categorical variables
+
+This is a pretty contrived example to match section 10.5.2, but I'll bin homeownership and housing cost burden into categorical variables, and look at these by count.
+
+```{r}
+#| label: income-bin-point
+acs_income_tracts |>
+    dplyr::mutate(
+        ownership_brk = cut(
+            homeownership,
+            breaks = c(0, 0.25, 0.5, 0.75, 1),
+            include.lowest = TRUE,
+            right = FALSE
+        )
+    ) |>
+    dplyr::mutate(
+        income_brk = cut(
+            median_hh_income,
+            breaks = c(0, 5e4, 1e5, 1.5e5, Inf),
+            include.lowest = TRUE,
+            right = FALSE
+        )
+    ) |>
+    dplyr::count(income_brk, ownership_brk) |>
+    ggplot(aes(x = income_brk, y = ownership_brk)) +
+    geom_point(aes(size = n)) +
+    scale_size_area()
+```
+
+### Two numerical variables
+
+Same variables, without the binning
+
+```{r}
+#| label: scatter-1
+ggplot(acs_income_tracts, aes(x = median_hh_income, y = homeownership)) +
+    geom_point()
+```
+
+The book goes through a few methods to deal with overplotting here, including change alpha (opacity) or using a 2D density.
+
+```{r}
+#| label: scatter-alpha
+ggplot(acs_income_tracts, aes(x = median_hh_income, y = homeownership)) +
+    geom_point(alpha = 0.2)
+```
+
+```{r}
+#| label: scatter-density
+ggplot(acs_income_tracts, aes(x = median_hh_income, y = homeownership)) +
+    geom_bin2d()
+```
+
+
+
+
