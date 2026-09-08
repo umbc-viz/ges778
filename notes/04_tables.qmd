@@ -217,3 +217,5 @@ knitr::kable(
     caption = "Select housing and income indicators, Baltimore and nearby counties, 2024"
 )
 ```
+
+Lastly, check out @thomas2025 for a great example of what you can do with a table. It's an incredible information-dense overview of a notoriously complicated set of procedures, and the table then leads into more detailed charts to explore different aspects of the issue (immigrants' eligibility for government assistance program). I can't think of a chart that would do this better.
