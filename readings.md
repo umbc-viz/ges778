@@ -41,7 +41,7 @@ No readings
 ## Week 06
 
 - @cesal2020
-- @schwabish2021
+- @schwabish2021c
 - @elavsky2022 (workbook to browse)
 - 1+ on audience TBD
 
