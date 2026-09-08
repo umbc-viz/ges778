@@ -505,7 +505,18 @@ div.csl-indent {
 </header>
 
 
-<p>Some notes on wrangling data for visualization. We won’t have time to go into a lot of detail, so please use the package docs for <a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a>, <a href="https://tidyr.tidyverse.org/"><code>tidyr</code></a>, and <a href="https://forcats.tidyverse.org/"><code>forcats</code></a> as reference, and chapters 3 &amp; 5 of <span class="citation" data-cites="wickham2023">Wickham et al. (<a href="#ref-wickham2023" role="doc-biblioref">2023</a>)</span></p>
+<p>Some notes on wrangling data for visualization. We won’t have time to go into a lot of detail, but there are lots of resources available to help solve these sorts of problems, such as:</p>
+<ul>
+<li>Relevant package docs:
+<ul>
+<li><a href="https://dplyr.tidyverse.org/"><code>dplyr</code></a></li>
+<li><a href="https://tidyr.tidyverse.org/"><code>tidyr</code></a></li>
+<li><a href="https://forcats.tidyverse.org/"><code>forcats</code></a></li>
+</ul></li>
+<li><a href="https://opensource.posit.co/resources/cheatsheets/">Cheatsheets</a> from RStudio, including many of the tidyverse packages</li>
+<li>Chapters 3 &amp; 5 of <span class="citation" data-cites="wickham2023">Wickham et al. (<a href="#ref-wickham2023" role="doc-biblioref">2023</a>)</span></li>
+<li>Stack Overflow, particularly the <a href="https://stackoverflow.com/questions/tagged/r-faq">curated r-faq tag</a></li>
+</ul>
 <div class="no-row-height column-margin column-container"><div id="ref-wickham2023" class="csl-entry" role="listitem">
 Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for data science</em> (2nd ed.). O’Reilly Media, Incorporated. <a href="https://r4ds.hadley.nz/">https://r4ds.hadley.nz/</a>
 </div></div><p>Also, for folks who haven’t yet taken GES 668, Building Spatial Datasets, see that class’s <a href="https://bldgspatialdata.github.io/website/">online notes</a>, especially <a href="https://bldgspatialdata.github.io/website/weeks/week_04.html">Week 4</a>.</p>
@@ -514,7 +525,7 @@ Wickham, H., Çetinkaya-Rundel, M., &amp; Grolemund, G. (2023). <em>R for data s
 <p>I was able to quickly get the notes for our class set up by copying the basic template <a href="https://github.com/elipousson">Eli</a> was using for Building Spatial Datasets. Shout out to open source.</p>
 </div></div><p>Some concerns in wrangling data as they relate to our work with ggplot:</p>
 <ul>
-<li>the shape (is it a <a href="https://r4ds.hadley.nz/data-tidy.html">tidy format</a>, i.e.&nbsp;has observations of given types in rows and features/variables in columns)</li>
+<li>the shape (is it a <a href="https://r4ds.hadley.nz/data-tidy.html">tidy format</a>, i.e. has observations of given types in rows and features/variables in columns)</li>
 <li>what’s included (filtering out data we don’t need to visualize)</li>
 <li>additional encodings (deriving new variables from existing ones)</li>
 </ul>

@@ -4,7 +4,7 @@
     "href": "extras/wrangling.html",
     "title": "Basic data wrangling",
     "section": "",
-    "text": "Some notes on wrangling data for visualization. We won’t have time to go into a lot of detail, so please use the package docs for dplyr, tidyr, and forcats as reference, and chapters 3 & 5 of Wickham et al. (2023)\nAlso, for folks who haven’t yet taken GES 668, Building Spatial Datasets, see that class’s online notes, especially Week 4.\nSome concerns in wrangling data as they relate to our work with ggplot:\nI like to think through what I’ll need in order to make the plot I want, especially what visual encodings there will be, then work backwards from there as needed.",
+    "text": "Some notes on wrangling data for visualization. We won’t have time to go into a lot of detail, but there are lots of resources available to help solve these sorts of problems, such as:\nAlso, for folks who haven’t yet taken GES 668, Building Spatial Datasets, see that class’s online notes, especially Week 4.\nSome concerns in wrangling data as they relate to our work with ggplot:\nI like to think through what I’ll need in order to make the plot I want, especially what visual encodings there will be, then work backwards from there as needed.",
     "crumbs": [
       "References & extras",
       "Basic data wrangling"
