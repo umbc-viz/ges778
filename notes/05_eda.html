@@ -92,6 +92,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../notes/06_details.html" rel="next">
 <link href="../notes/04_tables.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -425,6 +426,12 @@ div.csl-indent {
  <span class="menu-text">05. Exploratory data visualization</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/06_details.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Details, summarization, specificity, and uncertainty</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -479,7 +486,7 @@ div.csl-indent {
   <ul class="collapse">
   <li><a href="#a-categorical-and-a-numerical-variable" id="toc-a-categorical-and-a-numerical-variable" class="nav-link" data-scroll-target="#a-categorical-and-a-numerical-variable">A categorical and a numerical variable</a></li>
   <li><a href="#two-categorical-variables" id="toc-two-categorical-variables" class="nav-link" data-scroll-target="#two-categorical-variables">Two categorical variables</a></li>
-  <li><a href="#two-numerical-variables" id="toc-two-numerical-variables" class="nav-link" data-scroll-target="#two-numerical-variables">Two numerical variables</a></li>
+  <li><a href="#two-numeric-variables" id="toc-two-numeric-variables" class="nav-link" data-scroll-target="#two-numeric-variables">Two numeric variables</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/05_eda.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/05_eda.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -508,7 +515,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 8, 2026</p>
+      <p class="date-modified">September 14, 2026</p>
     </div>
   </div>
     
@@ -1136,8 +1143,8 @@ Figure&nbsp;1
 </div>
 </div>
 </section>
-<section id="two-numerical-variables" class="level3">
-<h3 class="anchored" data-anchor-id="two-numerical-variables">Two numerical variables</h3>
+<section id="two-numeric-variables" class="level3">
+<h3 class="anchored" data-anchor-id="two-numeric-variables">Two numeric variables</h3>
 <p>Same variables, without the binning</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-label="1"></a><span class="fu">ggplot</span>(acs_income_tracts, <span class="fu">aes</span>(<span class="at">x =</span> median_hh_income, <span class="at">y =</span> homeownership)) <span class="sc">+</span></span>
@@ -1600,6 +1607,9 @@ Figure&nbsp;1
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../notes/06_details.html" class="pagination-link" aria-label="06. Details, summarization, specificity, and uncertainty">
+        <span class="nav-page-text">06. Details, summarization, specificity, and uncertainty</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
