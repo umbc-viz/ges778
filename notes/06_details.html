@@ -697,57 +697,32 @@ Figure&nbsp;1
 </div>
 </div>
 </div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>md_unemp_rolling <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(rate_3mo)) <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>    tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>    dplyr<span class="sc">::</span><span class="fu">rename</span>(<span class="at">rate_measured =</span> rate) <span class="sc">|&gt;</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
-<span id="cb8-6"><a href="#cb8-6" aria-label="6"></a>        dplyr<span class="sc">::</span><span class="fu">matches</span>(<span class="st">"rate_"</span>),</span>
-<span id="cb8-7"><a href="#cb8-7" aria-label="7"></a>        <span class="at">names_to =</span> <span class="fu">c</span>(<span class="st">".value"</span>, <span class="st">"type"</span>),</span>
-<span id="cb8-8"><a href="#cb8-8" aria-label="8"></a>        <span class="at">names_sep =</span> <span class="st">"_"</span>,</span>
-<span id="cb8-9"><a href="#cb8-9" aria-label="9"></a>        <span class="at">names_ptypes =</span> <span class="fu">list</span>(<span class="at">type =</span> <span class="fu">factor</span>())</span>
-<span id="cb8-10"><a href="#cb8-10" aria-label="10"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-label="11"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date)) <span class="sc">|&gt;</span></span>
-<span id="cb8-12"><a href="#cb8-12" aria-label="12"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> rate, <span class="at">linetype =</span> type, <span class="at">color =</span> type)) <span class="sc">+</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-label="13"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb8-14"><a href="#cb8-14" aria-label="14"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">measured =</span> <span class="st">"gray50"</span>, <span class="st">"3mo"</span> <span class="ot">=</span> <span class="st">"gray10"</span>)) <span class="sc">+</span></span>
-<span id="cb8-15"><a href="#cb8-15" aria-label="15"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="at">measured =</span> <span class="st">"21"</span>, <span class="st">"3mo"</span> <span class="ot">=</span> <span class="st">"solid"</span>)) <span class="sc">+</span></span>
-<span id="cb8-16"><a href="#cb8-16" aria-label="16"></a>    <span class="fu">theme_minimal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><a href="06_details_files/figure-html/unnamed-chunk-1-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="06_details_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></a></p>
-</figure>
-</div>
-</div>
-</div>
 <p>I knew there was something iffy with the annual average data because I know what these numbers should be, so I caught the fact that the covid peak was washed out. I often use 3 months as a rolling average size anyway, but in this case that’s especially important since 3 months is about the time that spike lasted. You’ll lose that magnitude if you average across a bigger window; here’s a 6-month rolling mean instead.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>md_unemp <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">date =</span> tsibble<span class="sc">::</span><span class="fu">yearmonth</span>(date)) <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a>    tsibble<span class="sc">::</span><span class="fu">as_tsibble</span>(<span class="at">index =</span> date, <span class="at">key =</span> name) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-label="4"></a>    tsibble<span class="sc">::</span><span class="fu">group_by_key</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-label="5"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb9-6"><a href="#cb9-6" aria-label="6"></a>        <span class="at">rate_3mo =</span> slider<span class="sc">::</span><span class="fu">slide_dbl</span>(</span>
-<span id="cb9-7"><a href="#cb9-7" aria-label="7"></a>            rate,</span>
-<span id="cb9-8"><a href="#cb9-8" aria-label="8"></a>            mean,</span>
-<span id="cb9-9"><a href="#cb9-9" aria-label="9"></a>            <span class="at">.before =</span> <span class="dv">5</span>,</span>
-<span id="cb9-10"><a href="#cb9-10" aria-label="10"></a>            <span class="at">.complete =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-label="11"></a>            <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-label="12"></a>        )</span>
-<span id="cb9-13"><a href="#cb9-13" aria-label="13"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb9-14"><a href="#cb9-14" aria-label="14"></a>    tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-15"><a href="#cb9-15" aria-label="15"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date)) <span class="sc">|&gt;</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-label="16"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> rate_3mo)) <span class="sc">+</span></span>
-<span id="cb9-17"><a href="#cb9-17" aria-label="17"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb9-18"><a href="#cb9-18" aria-label="18"></a>    <span class="fu">labs</span>(</span>
-<span id="cb9-19"><a href="#cb9-19" aria-label="19"></a>        <span class="at">title =</span> <span class="st">"Monthly unemployment rate, 6-month rolling mean, Maryland, 2000-2025"</span></span>
-<span id="cb9-20"><a href="#cb9-20" aria-label="20"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>md_unemp <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">date =</span> tsibble<span class="sc">::</span><span class="fu">yearmonth</span>(date)) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>    tsibble<span class="sc">::</span><span class="fu">as_tsibble</span>(<span class="at">index =</span> date, <span class="at">key =</span> name) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>    tsibble<span class="sc">::</span><span class="fu">group_by_key</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-label="6"></a>        <span class="at">rate_3mo =</span> slider<span class="sc">::</span><span class="fu">slide_dbl</span>(</span>
+<span id="cb8-7"><a href="#cb8-7" aria-label="7"></a>            rate,</span>
+<span id="cb8-8"><a href="#cb8-8" aria-label="8"></a>            mean,</span>
+<span id="cb8-9"><a href="#cb8-9" aria-label="9"></a>            <span class="at">.before =</span> <span class="dv">5</span>,</span>
+<span id="cb8-10"><a href="#cb8-10" aria-label="10"></a>            <span class="at">.complete =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb8-11"><a href="#cb8-11" aria-label="11"></a>            <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-label="12"></a>        )</span>
+<span id="cb8-13"><a href="#cb8-13" aria-label="13"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-label="14"></a>    tibble<span class="sc">::</span><span class="fu">as_tibble</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-label="15"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">as.Date</span>(date)) <span class="sc">|&gt;</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-label="16"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> rate_3mo)) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-label="17"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-label="18"></a>    <span class="fu">labs</span>(</span>
+<span id="cb8-19"><a href="#cb8-19" aria-label="19"></a>        <span class="at">title =</span> <span class="st">"Monthly unemployment rate, 6-month rolling mean, Maryland, 2000-2025"</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-label="20"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="06_details_files/figure-html/unemp-roll-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="06_details_files/figure-html/unemp-roll-6-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="06_details_files/figure-html/unemp-roll-6-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="06_details_files/figure-html/unemp-roll-6-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -767,12 +742,12 @@ Correll, M., &amp; Gleicher, M. (2014). Error <span>Bars Considered Harmful</spa
 <p>To make up for having dropped MOEs earlier, I redid the analysis of homeownership by county with MOEs intact for the estimates of counts and my calculation of the rate. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Some simple ways to show the uncertainty as described by MOE could be error bars or the strategies in <code>ggdist</code> to make the estimates visually blurry. The built-in range functions (see <code>?geom_errorbar</code> for all of them) take a position along with min &amp; max endpoints.</p>
 <div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<a href="../misc_scripts/06_details_extras.R">Code</a></p></div></div><p>Revisiting the Cleveland dot plot in <a href="#fig-tenure-dots" class="quarto-xref">Figure&nbsp;1</a>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>tenure_moe <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"assets/tenure_with_moe.csv"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a>        <span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-label="4"></a>            forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(homeownership_rate)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-label="5"></a>    )</span>
-<span id="cb10-6"><a href="#cb10-6" aria-label="6"></a><span class="fu">head</span>(tenure_moe)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>tenure_moe <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"assets/tenure_with_moe.csv"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a>        <span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-label="4"></a>            forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(homeownership_rate)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-label="5"></a>    )</span>
+<span id="cb9-6"><a href="#cb9-6" aria-label="6"></a><span class="fu">head</span>(tenure_moe)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -855,21 +830,21 @@ Correll, M., &amp; Gleicher, M. (2014). Error <span>Bars Considered Harmful</spa
 </table>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a>tenure_moe <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb11-3"><a href="#cb11-3" aria-label="3"></a>        <span class="at">upper_rate =</span> homeownership_rate <span class="sc">+</span> homeownership_rate_moe,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-label="4"></a>        <span class="at">lower_rate =</span> homeownership_rate <span class="sc">-</span> homeownership_rate_moe</span>
-<span id="cb11-5"><a href="#cb11-5" aria-label="5"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-label="6"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> homeownership_rate, <span class="at">y =</span> name)) <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-label="7"></a>    <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> lower_rate, <span class="at">xmax =</span> upper_rate)) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-label="8"></a>    <span class="fu">labs</span>(</span>
-<span id="cb11-9"><a href="#cb11-9" aria-label="9"></a>        <span class="at">title =</span> <span class="st">"Homeownership rate by county, Maryland, 2024"</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-label="10"></a>        <span class="at">subtitle =</span> <span class="st">"With margins of error at 90% confidence level shown"</span></span>
-<span id="cb11-11"><a href="#cb11-11" aria-label="11"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>tenure_moe <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a>        <span class="at">upper_rate =</span> homeownership_rate <span class="sc">+</span> homeownership_rate_moe,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-label="4"></a>        <span class="at">lower_rate =</span> homeownership_rate <span class="sc">-</span> homeownership_rate_moe</span>
+<span id="cb10-5"><a href="#cb10-5" aria-label="5"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-label="6"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> homeownership_rate, <span class="at">y =</span> name)) <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-label="7"></a>    <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">xmin =</span> lower_rate, <span class="at">xmax =</span> upper_rate)) <span class="sc">+</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-label="8"></a>    <span class="fu">labs</span>(</span>
+<span id="cb10-9"><a href="#cb10-9" aria-label="9"></a>        <span class="at">title =</span> <span class="st">"Homeownership rate by county, Maryland, 2024"</span>,</span>
+<span id="cb10-10"><a href="#cb10-10" aria-label="10"></a>        <span class="at">subtitle =</span> <span class="st">"With margins of error at 90% confidence level shown"</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-label="11"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="06_details_files/figure-html/tenure-error-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10"><img src="06_details_files/figure-html/tenure-error-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="06_details_files/figure-html/tenure-error-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="06_details_files/figure-html/tenure-error-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
@@ -890,7 +865,7 @@ Correll, M., &amp; Gleicher, M. (2014). Error <span>Bars Considered Harmful</spa
 <p>You can use the <a href="https://wilkelab.org/ggridges/"><strong>ggridges</strong> package</a> to make ridgeline plots. (Getting even more off-topic, Wilke changed the name of the package from ggjoy to ggridges because of the gruesome meaning of the band’s name.)</p>
 </div></div><div class="quarto-figure quarto-figure-center page-columns page-full">
 <figure class="figure page-columns page-full">
-<p><a href="https://ygo-assets-websites-editorial-emea.yougov.net/images/Word20sentiment20US20variant-01.format-webp.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="From @smith2023"><img src="https://ygo-assets-websites-editorial-emea.yougov.net/images/Word20sentiment20US20variant-01.format-webp.webp" class="img-fluid figure-img" style="width:50.0%" alt="From Smith (2023)"></a></p>
+<p><a href="https://ygo-assets-websites-editorial-emea.yougov.net/images/Word20sentiment20US20variant-01.format-webp.webp" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="From @smith2023"><img src="https://ygo-assets-websites-editorial-emea.yougov.net/images/Word20sentiment20US20variant-01.format-webp.webp" class="img-fluid figure-img" style="width:50.0%" alt="From Smith (2023)"></a></p>
 <figcaption>From <span class="citation" data-cites="smith2023">Smith (<a href="#ref-smith2023" role="doc-biblioref">2023</a>)</span></figcaption>
 <div class="no-row-height column-margin column-container"><div id="ref-smith2023" class="csl-entry" role="listitem">
 Smith, N. (2023). <em>How not to be fooled by viral charts</em>. <a href="https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts">https://www.noahpinion.blog/p/how-not-to-be-fooled-by-viral-charts</a>
@@ -912,11 +887,11 @@ Smith, N. (2023). <em>How not to be fooled by viral charts</em>. <a href="https:
 <p>On the first run of the census in 1790, the demographic groups were free white men, free white women, all other free people, and slaves (no gender).</p>
 </div></div><p>That last one shows up in the unemployment data. If we zoom in, we can see there’s a small gap (ggplot also throws a warning about missing values):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-label="1"></a>md_unemp <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(lubridate<span class="sc">::</span><span class="fu">year</span>(date) <span class="sc">==</span> <span class="dv">2025</span>) <span class="sc">|&gt;</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-label="3"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> rate)) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-label="4"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-label="5"></a>    <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a>md_unemp <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(lubridate<span class="sc">::</span><span class="fu">year</span>(date) <span class="sc">==</span> <span class="dv">2025</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-label="3"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> rate)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-label="4"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-label="5"></a>    <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 1 row containing missing values or values outside the scale range
 (`geom_point()`).</code></pre>
@@ -924,12 +899,12 @@ Smith, N. (2023). <em>How not to be fooled by viral charts</em>. <a href="https:
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><a href="06_details_files/figure-html/unemp-missing-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12"><img src="06_details_files/figure-html/unemp-missing-1.png" class="img-fluid figure-img" width="672"></a></p>
+<p><a href="06_details_files/figure-html/unemp-missing-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11"><img src="06_details_files/figure-html/unemp-missing-1.png" class="img-fluid figure-img" width="672"></a></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-label="1"></a>md_unemp <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">is.na</span>(rate))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a>md_unemp <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="fu">is.na</span>(rate))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
