@@ -232,7 +232,7 @@ acs_income_tracts |>
     scale_size_area()
 ```
 
-### Two numerical variables
+### Two numeric variables
 
 Same variables, without the binning
 
