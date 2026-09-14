@@ -148,24 +148,6 @@ md_unemp_rolling |>
     )
 ```
 
-```{r}
-md_unemp_rolling |>
-    dplyr::filter(!is.na(rate_3mo)) |>
-    tibble::as_tibble() |>
-    dplyr::rename(rate_measured = rate) |>
-    tidyr::pivot_longer(
-        dplyr::matches("rate_"),
-        names_to = c(".value", "type"),
-        names_sep = "_",
-        names_ptypes = list(type = factor())
-    ) |>
-    dplyr::mutate(date = as.Date(date)) |>
-    ggplot(aes(x = date, y = rate, linetype = type, color = type)) +
-    geom_line() +
-    scale_color_manual(values = c(measured = "gray50", "3mo" = "gray10")) +
-    scale_linetype_manual(values = c(measured = "21", "3mo" = "solid")) +
-    theme_minimal()
-```
 
 I knew there was something iffy with the annual average data because I know what these numbers should be, so I caught the fact that the covid peak was washed out. I often use 3 months as a rolling average size anyway, but in this case that's especially important since 3 months is about the time that spike lasted. You'll lose that magnitude if you average across a bigger window; here's a 6-month rolling mean instead. 
 
