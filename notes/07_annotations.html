@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>03. Visual encodings – GES 778, Fall 2026</title>
+<title>07. Annotations – GES 778, Fall 2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -57,8 +92,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../notes/03b_encodings_code.html" rel="next">
-<link href="../notes/02_good_code.html" rel="prev">
+<link href="../notes/06_details.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -275,7 +309,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/03_encodings.html">03. Visual encodings</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/07_annotations.html">07. Annotations</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -369,7 +403,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/03_encodings.html" class="sidebar-item-text sidebar-link active">
+  <a href="../notes/03_encodings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">03. Visual encodings</span></a>
   </div>
 </li>
@@ -399,7 +433,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/07_annotations.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/07_annotations.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">07. Annotations</span></a>
   </div>
 </li>
@@ -448,20 +482,18 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm-up</a></li>
-  <li><a href="#mapping-data-to-visual-elements" id="toc-mapping-data-to-visual-elements" class="nav-link" data-scroll-target="#mapping-data-to-visual-elements">Mapping data to visual elements</a></li>
-  <li><a href="#bad-examples" id="toc-bad-examples" class="nav-link" data-scroll-target="#bad-examples">Bad examples</a></li>
-  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
+  <li><a href="#annotations-to-direct-attention" id="toc-annotations-to-direct-attention" class="nav-link active" data-scroll-target="#annotations-to-direct-attention">Annotations to direct attention</a></li>
+  <li><a href="#annotations-to-provide-contextual-information" id="toc-annotations-to-provide-contextual-information" class="nav-link" data-scroll-target="#annotations-to-provide-contextual-information">Annotations to provide contextual information</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/03_encodings.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/03_encodings.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/07_annotations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/07_annotations.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/03_encodings.html">03. Visual encodings</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/07_annotations.html">07. Annotations</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">03. Visual encodings</h1>
+<h1 class="title">07. Annotations</h1>
 </div>
 
 
@@ -490,261 +522,274 @@ div.csl-indent {
 </header>
 
 
-<section id="warm-up" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="warm-up">Warm-up</h2>
-<p><span class="citation" data-cites="bbc2010"><em>Hans <span>Rosling</span>’s 200 <span>Countries</span>, 200 <span>Years</span>, 4 <span>Minutes</span></em> (<a href="#ref-bbc2010" role="doc-biblioref">2010</a>)</span>: Hans Rosling gives a master class in storytelling with multidimensional data.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-bbc2010" class="csl-entry" role="listitem">
-<em>Hans <span>Rosling</span>’s 200 <span>Countries</span>, 200 <span>Years</span>, 4 <span>Minutes</span></em>. (2010). BBC Four. <a href="https://www.youtube.com/watch?v=jbkSRLYSojo">https://www.youtube.com/watch?v=jbkSRLYSojo</a>
-</div></div></section>
-<section id="mapping-data-to-visual-elements" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="mapping-data-to-visual-elements">Mapping data to visual elements</h2>
-<p>We’ll work with a subset of the wages data in justviz and follow along some of what’s in <span class="citation" data-cites="wilke2019">Wilke (<a href="#ref-wilke2019" role="doc-biblioref">2019</a>)</span>, ch.&nbsp;2 and 20. In <a href="https://clauswilke.com/dataviz/aesthetic-mapping.html#tab:basic-data-types">Table 2.1</a>, Wilke goes over types of variables that we might find in our data and the scales that fit each.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-wilke2019" class="csl-entry" role="listitem">
-Wilke, C. O. (2019). <em>Fundamentals of <span>Data Visualization</span></em>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
-</div></div><div class="cell">
+<p>Originally annotations and text were supposed to be the same topic, but annotations require some data wrangling tasks that I want to dedicate some time to.</p>
+<p>Annotations are basically the extras in your chart—they’re not the data itself, at least not in its entirety, and the chart could exist without them. But good annotations enhance the message of the chart, and help your reader dig deeper into the data or understand it more thoroughly than they would without them.</p>
+<p>Types of annotations in static visualization might be highlights, focus points, shaded areas, or callout boxes. These all direct your reader to a certain point or give them some context that you want to ensure they have.</p>
+<section id="annotations-to-direct-attention" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="annotations-to-direct-attention">Annotations to direct attention</h2>
+<p>Sometimes you’ll want to show all your data, but highlight specific observations, maybe outliers or a region or group your research is focused on. For example, here’s the same old type of scatterplot we’ve seen of Maryland tracts, but this time I’ve highlighted Baltimore city. Let’s say I’m studying housing costs, and want to see how renter cost burden rates compare to owner cost burden rates:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>qual_pal <span class="ot">&lt;-</span> rcartocolor<span class="sc">::</span><span class="fu">carto_pal</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">name =</span> <span class="st">"Bold"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>md_tracts <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>, total_hh <span class="sc">&gt;=</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>    <span class="co"># create a new variable for Balt city or nah</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a>        <span class="at">is_balt_city =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>            county <span class="sc">==</span> <span class="st">"Baltimore city"</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>            <span class="st">"Baltimore city tracts"</span>,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a>            <span class="st">"Other tracts"</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a>        )</span>
+<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a>    <span class="co"># make it a factor with focus area first</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a>        <span class="at">is_balt_city =</span> <span class="fu">as.factor</span>(is_balt_city) <span class="sc">|&gt;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-label="19"></a>            forcats<span class="sc">::</span><span class="fu">fct_relevel</span>(<span class="st">"Baltimore city tracts"</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-label="20"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-label="21"></a>    <span class="co"># get the other columns out of the way</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-label="22"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(</span>
+<span id="cb1-23"><a href="#cb1-23" aria-label="23"></a>        name,</span>
+<span id="cb1-24"><a href="#cb1-24" aria-label="24"></a>        county,</span>
+<span id="cb1-25"><a href="#cb1-25" aria-label="25"></a>        is_balt_city,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-label="26"></a>        total_hh,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-label="27"></a>        median_hh_income,</span>
+<span id="cb1-28"><a href="#cb1-28" aria-label="28"></a>        homeownership,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-label="29"></a>        total_severe_cost_burden,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-label="30"></a>        owner_severe_cost_burden,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-label="31"></a>        renter_severe_cost_burden,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-label="32"></a>        total_vacant_units</span>
+<span id="cb1-33"><a href="#cb1-33" aria-label="33"></a>    )</span>
+<span id="cb1-34"><a href="#cb1-34" aria-label="34"></a></span>
+<span id="cb1-35"><a href="#cb1-35" aria-label="35"></a><span class="fu">head</span>(md_tracts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
+<div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
-<caption>Wages data by sex &amp; education</caption>
+<colgroup>
+<col style="width: 6%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 10%">
+</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">sex</th>
-<th style="text-align: left;">edu</th>
-<th style="text-align: right;">earn_q20</th>
-<th style="text-align: right;">earn_q50</th>
-<th style="text-align: right;">earn_q80</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">county</th>
+<th style="text-align: left;">is_balt_city</th>
+<th style="text-align: right;">total_hh</th>
+<th style="text-align: right;">median_hh_income</th>
+<th style="text-align: right;">homeownership</th>
+<th style="text-align: right;">total_severe_cost_burden</th>
+<th style="text-align: right;">owner_severe_cost_burden</th>
+<th style="text-align: right;">renter_severe_cost_burden</th>
+<th style="text-align: right;">total_vacant_units</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">total</td>
-<td style="text-align: left;">no_diploma</td>
-<td style="text-align: right;">27868</td>
-<td style="text-align: right;">43234</td>
-<td style="text-align: right;">70000</td>
+<td style="text-align: left;">24001000100</td>
+<td style="text-align: left;">Allegany County</td>
+<td style="text-align: left;">Other tracts</td>
+<td style="text-align: right;">1403</td>
+<td style="text-align: right;">63415</td>
+<td style="text-align: right;">0.78</td>
+<td style="text-align: right;">0.13</td>
+<td style="text-align: right;">0.12</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.30</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">total</td>
-<td style="text-align: left;">high_school_diploma</td>
-<td style="text-align: right;">33227</td>
-<td style="text-align: right;">52520</td>
-<td style="text-align: right;">85018</td>
+<td style="text-align: left;">24001000200</td>
+<td style="text-align: left;">Allegany County</td>
+<td style="text-align: left;">Other tracts</td>
+<td style="text-align: right;">1343</td>
+<td style="text-align: right;">67724</td>
+<td style="text-align: right;">0.90</td>
+<td style="text-align: right;">0.16</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.24</td>
+<td style="text-align: right;">0.14</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">total</td>
-<td style="text-align: left;">some_college</td>
-<td style="text-align: right;">40000</td>
-<td style="text-align: right;">64311</td>
-<td style="text-align: right;">104451</td>
+<td style="text-align: left;">24001000500</td>
+<td style="text-align: left;">Allegany County</td>
+<td style="text-align: left;">Other tracts</td>
+<td style="text-align: right;">786</td>
+<td style="text-align: right;">34545</td>
+<td style="text-align: right;">0.58</td>
+<td style="text-align: right;">0.18</td>
+<td style="text-align: right;">0.08</td>
+<td style="text-align: right;">0.31</td>
+<td style="text-align: right;">0.31</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">total</td>
-<td style="text-align: left;">bachelors</td>
-<td style="text-align: right;">54655</td>
-<td style="text-align: right;">91091</td>
-<td style="text-align: right;">145771</td>
+<td style="text-align: left;">24001000600</td>
+<td style="text-align: left;">Allegany County</td>
+<td style="text-align: left;">Other tracts</td>
+<td style="text-align: right;">1349</td>
+<td style="text-align: right;">52250</td>
+<td style="text-align: right;">0.73</td>
+<td style="text-align: right;">0.11</td>
+<td style="text-align: right;">0.06</td>
+<td style="text-align: right;">0.25</td>
+<td style="text-align: right;">0.11</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">total</td>
-<td style="text-align: left;">graduate_degree</td>
-<td style="text-align: right;">72873</td>
-<td style="text-align: right;">116000</td>
-<td style="text-align: right;">181895</td>
+<td style="text-align: left;">24001000700</td>
+<td style="text-align: left;">Allegany County</td>
+<td style="text-align: left;">Other tracts</td>
+<td style="text-align: right;">1391</td>
+<td style="text-align: right;">36673</td>
+<td style="text-align: right;">0.45</td>
+<td style="text-align: right;">0.21</td>
+<td style="text-align: right;">0.14</td>
+<td style="text-align: right;">0.27</td>
+<td style="text-align: right;">0.22</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">men</td>
-<td style="text-align: left;">no_diploma</td>
-<td style="text-align: right;">30881</td>
-<td style="text-align: right;">48582</td>
-<td style="text-align: right;">75145</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">men</td>
-<td style="text-align: left;">high_school_diploma</td>
-<td style="text-align: right;">36436</td>
-<td style="text-align: right;">58000</td>
-<td style="text-align: right;">92644</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">men</td>
-<td style="text-align: left;">some_college</td>
-<td style="text-align: right;">42874</td>
-<td style="text-align: right;">72057</td>
-<td style="text-align: right;">115382</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">men</td>
-<td style="text-align: left;">bachelors</td>
-<td style="text-align: right;">60727</td>
-<td style="text-align: right;">102938</td>
-<td style="text-align: right;">162199</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">men</td>
-<td style="text-align: left;">graduate_degree</td>
-<td style="text-align: right;">81100</td>
-<td style="text-align: right;">134000</td>
-<td style="text-align: right;">202749</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">women</td>
-<td style="text-align: left;">no_diploma</td>
-<td style="text-align: right;">21617</td>
-<td style="text-align: right;">35264</td>
-<td style="text-align: right;">57928</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">women</td>
-<td style="text-align: left;">high_school_diploma</td>
-<td style="text-align: right;">30700</td>
-<td style="text-align: right;">46322</td>
-<td style="text-align: right;">72873</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">women</td>
-<td style="text-align: left;">some_college</td>
-<td style="text-align: right;">36436</td>
-<td style="text-align: right;">56616</td>
-<td style="text-align: right;">92685</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">women</td>
-<td style="text-align: left;">bachelors</td>
-<td style="text-align: right;">50000</td>
-<td style="text-align: right;">80160</td>
-<td style="text-align: right;">126000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">women</td>
-<td style="text-align: left;">graduate_degree</td>
-<td style="text-align: right;">68015</td>
-<td style="text-align: right;">102938</td>
-<td style="text-align: right;">157891</td>
+<td style="text-align: left;">24001000800</td>
+<td style="text-align: left;">Allegany County</td>
+<td style="text-align: left;">Other tracts</td>
+<td style="text-align: right;">816</td>
+<td style="text-align: right;">28056</td>
+<td style="text-align: right;">0.47</td>
+<td style="text-align: right;">0.19</td>
+<td style="text-align: right;">0.15</td>
+<td style="text-align: right;">0.23</td>
+<td style="text-align: right;">0.22</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>In this subset of data, we have 2 qualitative variables (sex and educational attainment) and 3 continuous quantitative ones (20th, 50th, and 80th percentile earnings).</p>
-<p>On the ACS, the Census Bureau only asks gender as male or female, so there are no gradations recorded. Educational attainment starts off quantitative: the way it’s measured is roughly the number of years of school completed (i.e. discrete), but it could also be measured to include fractions of a year (i.e. continuous). For simplicity’s sake, however, I lumped it into broader categories that no longer have specific identifiable numbers associated.</p>
-<p>I also only included people with positive earnings in the past year in my analysis, so earnings are bounded at $1.</p>
-<p>Here’s the foundation for a chart of median earnings by education.</p>
+</div>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>cost_scatter <span class="ot">&lt;-</span> md_tracts <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>    <span class="co"># not really useful to compare renters &amp; owners if there are no owners or no renters</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(homeownership <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> homeownership <span class="sc">&lt;</span> <span class="dv">1</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>        <span class="at">x =</span> renter_severe_cost_burden,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>        <span class="at">y =</span> owner_severe_cost_burden,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>        <span class="at">color =</span> is_balt_city</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>    )) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a>    <span class="co"># use a named vector to force colors attached to the levels you want</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-label="11"></a>    <span class="fu">scale_color_manual</span>(</span>
+<span id="cb2-12"><a href="#cb2-12" aria-label="12"></a>        <span class="at">values =</span> <span class="fu">c</span>(</span>
+<span id="cb2-13"><a href="#cb2-13" aria-label="13"></a>            <span class="st">"Baltimore city tracts"</span> <span class="ot">=</span> <span class="st">"mediumorchid"</span>,</span>
+<span id="cb2-14"><a href="#cb2-14" aria-label="14"></a>            <span class="st">"Other tracts"</span> <span class="ot">=</span> <span class="st">"gray70"</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-label="15"></a>        )</span>
+<span id="cb2-16"><a href="#cb2-16" aria-label="16"></a>    ) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-label="17"></a>    <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.2</span>))</span>
+<span id="cb2-18"><a href="#cb2-18" aria-label="18"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-label="19"></a>cost_scatter</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-fdn-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="07_annotations_files/figure-html/scatter-hilite-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>So far we’ve got a discrete x axis for education and a continuous y axis for median earnings. Without setting any geometries (bars, points, etc) the default y range is just based on what’s included in the data, which goes from about 40k to somewhere above 110k (I’ve added extra breaks on the y-axis to see this better).</p>
-<p>If I plot points, this range doesn’t need to change.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-dot-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>However, I want to make a bar chart. Points encode values to their <em>positions</em>, whereas bar charts encode their data to the <em>length</em> of the bar. For a value to correspond to the length of a bar, it needs to start at 0. By adding a column geometry, ggplot knows to start the y-axis at 0.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-bar-1-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>So now we’ve got a discrete axis for education, a continuous axis for median earnings, and bars whose lengths give the median earnings for each group. We have room for more encodings:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-sex-1-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Something’s wrong,</strong> though: by stacking the bars, we’re saying that there’s some meaning to the combined lengths. That could be the case for some data (e.g. median wage earnings in one group stacked with median income from other sources like pension in another group could, in fact, give a sense of total income from multiple sources). But in this case, the average woman’s earnings plus the average man’s earnings doesn’t mean anything. So the bars should be clustered instead.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-sex-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Now sex is encoded to color. Notice that the y-axis has to go a little higher now to fit values for men with graduate degrees.</p>
-<p>We could also include other percentiles of earnings, not just medians. The <em>type</em> of continuous value on the y-axis will stay the same, but the <em>range</em> of values will change again, because the 20th percentile values will be lower than the medians and the 80th percentile values will be much higher.</p>
-<p>Just income percentiles by education:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-ptile-bar-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>This is okay, but it’s not super interesting. It doesn’t show me anything besides what I would expect—that people with higher educational attainment average higher earnings, which we already knew, and that the 80th percentiles are much higher than the 20th percentiles, which is just true by their definition. What’s more interesting are the <em>gaps</em> between values. Using points instead of bars lets us zoom in a little better on the actual range of values since we don’t have to include 0, and it shifts what our attention is drawn to.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-ptile-1-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Rather than just reading amounts by the ends of bars, this emphasizes the range of values within each group. The range from 20th to 80th percentiles within each group is implied, but we can make it explicit by adding paths behind the points.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-ptile-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>If I want the focus to be on medians, I can add size of points as another encoding, making the medians larger and other percentiles smaller. By default, size would be assumed to be continuous, but you can also make it discrete. (I might do this on the fly in practice, but here I’ll create a separate variable):</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-ptile-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Instead of size, this could have also been something like point shape. This is what Wilke describes as <em>redundant encodings</em>, where the percentile comes from both color and size. I’ve chosen colors that should be colorblind-friendly, and the points in this chart don’t overlap, but in some situations having 2 encodings might help make things easier to read (see his examples with scatterplots with both color and shape).</p>
-<p>In fact, let’s imagine we need a chart that can be printed in black and white. This color palette probably won’t hold up, so we can go ahead and add shape as a backup encoding if color fails.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Call <code>?scale_shape</code> to get a cheat sheet of valid shape labels and codes. I have to do this every time.</p>
-</div></div><div class="cell">
+<p>You can assign a ggplot object to a variable just like any other data type, and then add on to it later</p>
+</div></div><p>On its own, this isn’t particularly interesting, just a big blob of points, with points for Baltimore scattered all over. But notice how different the ranges of data are, which you can see by how different their scales are. We can fix those to be equal.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>cost_scatter <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>    <span class="fu">coord_equal</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-ptile-4-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="07_annotations_files/figure-html/scatter-axes-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>There are more things we could do now, but I’ll leave it here. We still have data by sex, which I’m really interested in, but we’ve maxed out encodings that we’ve used so far. It would be confusing to add another pair of colors or shapes, for example, so one pair can be men and another pair could be women. Instead, I’d likely split the plot into facets to get small multiples—we’ll talk about that later but see if you can imagine what that might look like.</p>
+<p>There still isn’t a clear pattern in the data, but that’s sometimes the interesting thing you’ll help your reader find. If affording housing were equally difficult or easy for renters and owners, we’d see a 1-to-1 relationship. You can annotate the data to highlight the <em>lack</em> of such a relationship:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>cost_scatter <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>    <span class="co"># abline as in y = ax + b</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>    <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="dv">0</span>, <span class="at">slope =</span> <span class="dv">1</span>, <span class="at">color =</span> <span class="st">"gray40"</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>    <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>    <span class="fu">labs</span>(</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>        <span class="at">title =</span> <span class="st">"Severe cost burden rate for owner households vs renter households,</span><span class="sc">\n</span><span class="st">Maryland tracts, 2024"</span>,</span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>        <span class="at">subtitle =</span> <span class="st">"With parity line shown"</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_annotations_files/figure-html/scatter-line-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>(Depending on your audience you probably want better wording than “parity.” “Equal rates…”?)</p>
+<p>What would you highlight instead if you were presenting to a group doing housing cost support for first-time homeowners, or in rural areas, or for renters in places that are mostly homeowners?</p>
+<p>Here’s a similar chart I designed (this was then cleaned up by our graphic designers) where I used annotations to show the pattern we might naively expect, and the pattern we actually see:</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="../assets/educator-diversity.png" class="img-fluid figure-img"></p>
+<figcaption>From <span class="citation" data-cites="abraham2023">Abraham et al. (<a href="#ref-abraham2023" role="doc-biblioref">2023</a>)</span></figcaption>
+<div class="no-row-height column-margin column-container"></div></figure>
+</div>
 </section>
-<section id="bad-examples" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="bad-examples">Bad examples</h2>
-<p>Sometimes bad examples stick with you better than good examples. <span class="citation" data-cites="lan2025">Lan &amp; Liu (<a href="#ref-lan2025" role="doc-biblioref">2025</a>)</span> studied and categorized bad data visualizations and came up with a taxonomy of 76 data viz mistakes. The <a href="https://flawviz.github.io">website</a> that goes alongside it has great &amp; hilarious examples. See if you can identify any of these types of mistakes in any of the lab charts.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-lan2025" class="csl-entry" role="listitem">
-Lan, X., &amp; Liu, Y. (2025). "<span>I Came Across</span> a <span>Junk</span>": <span>Understanding Design Flaws</span> of <span>Data Visualization</span> from the <span>Public</span>’s <span>Perspective</span>. <em>IEEE Transactions on Visualization and Computer Graphics</em>, <em>31</em>(1), 393–403. <a href="https://doi.org/10.1109/TVCG.2024.3456341">https://doi.org/10.1109/TVCG.2024.3456341</a>
-</div></div></section>
-<section id="labs" class="level2">
-<h2 class="anchored" data-anchor-id="labs">Labs</h2>
-<p>For this week’s labs, you’ll practice identifying the encodings in different types of charts, then fix some charts with inappropriate encodings.</p>
+<section id="annotations-to-provide-contextual-information" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="annotations-to-provide-contextual-information">Annotations to provide contextual information</h2>
+<p>If you’re showing data over time, you might want to show a specific historic period, even if it isn’t directly part of your data. FRED (Federal Reserve Bank of St.&nbsp;Louis’s data platform) churns out very boring, very consistent and readable trend plots of economic data. They almost always have the same annotations:</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="../assets/fred-cpi.png" class="img-fluid figure-img"></p>
+<figcaption>From <span class="citation" data-cites="fredcpi2026">FRED, Federal Reserve Bank of St. Louis (<a href="#ref-fredcpi2026" role="doc-biblioref">2026</a>)</span></figcaption>
+<div class="no-row-height column-margin column-container"><div id="ref-fredcpi2026" class="csl-entry" role="listitem">
+FRED, Federal Reserve Bank of St. Louis. (2026). <em>Consumer price index for all urban consumers: All items in <span>U</span>.<span>S</span>. City average</em>. <a href="https://fred.stlouisfed.org/CPIAUCSL">https://fred.stlouisfed.org/CPIAUCSL</a>
+</div></div></figure>
+</div>
+<p>You’ll have access to their recession definitions data (fun!) for the lab.</p>
+<p>You might also want to show how your data compares to some threshold, like an average from before the focus period of your chart, or a national or state average. For example, if you’re looking at a distribution that neatly fits a normal curve, you can ballpark where the mean and/or median are; that’s harder when the data is skewed.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>md_avg <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"state"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a><span class="fu">ggplot</span>(md_tracts, <span class="fu">aes</span>(<span class="at">x =</span> renter_severe_cost_burden)) <span class="sc">+</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>    <span class="co"># different geoms can get their own data---useful for filtering on the fly as well</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.025</span>, <span class="at">fill =</span> <span class="st">"gray60"</span>, <span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>    <span class="co"># vline for vertical line</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a>        <span class="fu">aes</span>(<span class="at">xintercept =</span> renter_severe_cost_burden),</span>
+<span id="cb5-10"><a href="#cb5-10" aria-label="10"></a>        <span class="at">data =</span> md_avg,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-label="11"></a>        <span class="at">linetype =</span> <span class="st">"dashed"</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-label="12"></a>    ) <span class="sc">+</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-label="13"></a>    <span class="fu">labs</span>(</span>
+<span id="cb5-14"><a href="#cb5-14" aria-label="14"></a>        <span class="at">title =</span> <span class="st">"Distribution of renter severe cost burden rate, Maryland tracts, 2024"</span>,</span>
+<span id="cb5-15"><a href="#cb5-15" aria-label="15"></a>        <span class="at">subtitle =</span> <span class="st">"With statewide rate shown as dashed line"</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-label="16"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_annotations_files/figure-html/cost-md-compare-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>(We’ll revisit this one when we work on text next week.)</p>
+<p>In the same book as the scatterplot above, we also ran this chart of eviction rates before, during, and after covid-related policies. It was fine without annotations, but the story became much more clear when we added lines for both the prepandemic average and the end of the federal eviction moratorium.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><img src="../assets/evictions.png" class="img-fluid figure-img"></p>
+<figcaption>From <span class="citation" data-cites="abraham2023">Abraham et al. (<a href="#ref-abraham2023" role="doc-biblioref">2023</a>)</span></figcaption>
+<div class="no-row-height column-margin column-container"><div id="ref-abraham2023" class="csl-entry" role="listitem">
+Abraham, M., Seaberry, C., Davila, K., &amp; Carr, A. (2023). <em>Greater <span>New Haven Community Wellbeing Index</span> 2023</em>. <a href="https://ctdatahaven.org/reports/greater-new-haven-community-wellbeing-index">https://ctdatahaven.org/reports/greater-new-haven-community-wellbeing-index</a>
+</div></div></figure>
+</div>
 
 
 
@@ -1166,14 +1211,11 @@ Lan, X., &amp; Liu, Y. (2025). "<span>I Came Across</span> a <span>Junk</span>":
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../notes/02_good_code.html" class="pagination-link" aria-label="02. Writing good code">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">02. Writing good code</span>
+      <a href="../notes/06_details.html" class="pagination-link" aria-label="06. Details, summarization, specificity, and uncertainty">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">06. Details, summarization, specificity, and uncertainty</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notes/03b_encodings_code.html" class="pagination-link" aria-label="03b. Code for visual encodings notes">
-        <span class="nav-page-text">03b. Code for visual encodings notes</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -1181,4 +1223,4 @@ Lan, X., &amp; Liu, Y. (2025). "<span>I Came Across</span> a <span>Junk</span>":
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/03_encodings.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/03_encodings.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/07_annotations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/07_annotations.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
