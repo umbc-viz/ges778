@@ -119,7 +119,7 @@ md_unemp |>
 
 Even washed out like this, you can see the post-9/11 economy, the Great Recession, and covid, but it's losing important specificity. Unemployment at the start of covid was a jolt; it came on very quickly, but it also subsided quickly. (Unemployment is also a very imperfect measure that, especially during a disaster, will miss lots of unemployed people.) The spike in May 2020 (9.1%) is higher than the peak during the recession (8.4%, January & February 2010). But those high values during the recession lasted a long time, so the entire year of 2010 was very high. Meanwhile other than a couple months, 2020 averages out to a pretty normal year. We end up with a chart that shows a larger peak in 2010 than in 2020, even though 2020's peak itself was higher. This is how you gaslight people with data viz.
 
-A better way to smooth out data like this is rolling averages. I usually use the `tsibble` and `slider` packages for making time series data frames and sliding averages, respectively. (You can do this without a special time series data type but I'm always nervous I'll mess up a time series, so I opt for tools specially designed for it.)
+A better way to smooth out data like this is rolling averages. I usually use the `tsibble` and `slider` packages for making time series data frames and sliding averages, respectively. Rolling averages are especially helpful for something where you expect a fair amount of noise in the data, like from something relatively rare or unpredictable; we use rolling means for showing trends in drug overdose deaths. (You can do this without a special time series data type but I'm always nervous I'll mess up a time series, so I opt for tools specially designed for it.)
 
 ```{r}
 #| label: unemp-roll-3
@@ -190,7 +190,7 @@ For working in ggplot, the [**ggdist** package](https://mjskay.github.io/ggdist/
 
 ### Showing error
 
-To make up for having dropped MOEs earlier, I redid the analysis of homeownership by county with MOEs intact for the estimates of counts and my calculation of the rate. ^[[Code](../misc_scripts/06_details_extras.R)] Some simple ways to show the uncertainty as described by MOE could be error bars or the strategies in `ggdist` to make the estimates visually blurry. The built-in range functions (see `?geom_errorbar` for all of them) take a position along with min & max endpoints.
+To make up for having dropped MOEs earlier, I redid the analysis of homeownership by county with MOEs intact for the estimates of counts and my calculation of the rate. ^[[Code](https://github.com/umbc-viz/ges778/blob/main/misc_scripts/06_details_extras.R)] Some simple ways to show the uncertainty as described by MOE could be error bars or the strategies in `ggdist` to make the estimates visually blurry. The built-in range functions (see `?geom_errorbar` for all of them) take a position along with min & max endpoints.
 
 Revisiting the Cleveland dot plot in @fig-tenure-dots:
 
@@ -221,6 +221,8 @@ Notice a few things:
 * Some counties have wider margins of error. This can come from many places---_actual_ size of each variable for the county, _sample_ size of each variable in the county in the survey data. For these estimates, the relationship between the estimate of a count and the MOE of that same count is roughly but not perfectly linear.
 * The Census Bureau uses **90% confidence levels** for its estimates (at least in their tables of ACS data), whereas **95%** is often standard. I'm sure there's a justification for it. If you do your own analyses from their microdata samples, as I did for the wage gap data, you can set whatever confidence level you want, but for consistency you should probably still do 90%.
 * I took the advice from Wilke and said explicitly up top what the error bars represent, because "error" can mean many different things.
+
+Note also that this type of chart isn't limited to error; you can also use something like to show the spread of different quantiles in a distribution.
 
 ### Quantifying subjective descriptions
 
