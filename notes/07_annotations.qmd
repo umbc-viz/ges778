@@ -166,7 +166,7 @@ justviz::unemployment |>
         data = ppp,
         inherit.aes = FALSE,
         alpha = 0.3,
-        fill = pal[2]
+        fill = qual_pal[2]
     ) +
     geom_line()
 ```
