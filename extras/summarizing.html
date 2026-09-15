@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>03. Visual encodings – GES 778, Fall 2026</title>
+<title>Summarizing data – GES 778, Fall 2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,27 +27,42 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
 }
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -57,8 +72,8 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../notes/03b_encodings_code.html" rel="next">
-<link href="../notes/02_good_code.html" rel="prev">
+<link href="../extras/wrangling.html" rel="next">
+<link href="../extras/ggsave.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -275,7 +290,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/03_encodings.html">03. Visual encodings</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../extras/encodings.html">References &amp; extras</a></li><li class="breadcrumb-item"><a href="../extras/summarizing.html">Summarizing data</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -369,7 +384,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/03_encodings.html" class="sidebar-item-text sidebar-link active">
+  <a href="../notes/03_encodings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">03. Visual encodings</span></a>
   </div>
 </li>
@@ -429,7 +444,7 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../extras/summarizing.html" class="sidebar-item-text sidebar-link">
+  <a href="../extras/summarizing.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Summarizing data</span></a>
   </div>
 </li>
@@ -449,25 +464,16 @@ div.csl-indent {
 </div></div></nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#warm-up" id="toc-warm-up" class="nav-link active" data-scroll-target="#warm-up">Warm-up</a></li>
-  <li><a href="#mapping-data-to-visual-elements" id="toc-mapping-data-to-visual-elements" class="nav-link" data-scroll-target="#mapping-data-to-visual-elements">Mapping data to visual elements</a></li>
-  <li><a href="#bad-examples" id="toc-bad-examples" class="nav-link" data-scroll-target="#bad-examples">Bad examples</a></li>
-  <li><a href="#labs" id="toc-labs" class="nav-link" data-scroll-target="#labs">Labs</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/03_encodings.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/03_encodings.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/03_encodings.html">03. Visual encodings</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../extras/encodings.html">References &amp; extras</a></li><li class="breadcrumb-item"><a href="../extras/summarizing.html">Summarizing data</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">03. Visual encodings</h1>
+<h1 class="title">Summarizing data</h1>
 </div>
 
 
@@ -496,265 +502,282 @@ div.csl-indent {
 </header>
 
 
-<section id="warm-up" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="warm-up">Warm-up</h2>
-<p><span class="citation" data-cites="bbc2010"><em>Hans <span>Rosling</span>’s 200 <span>Countries</span>, 200 <span>Years</span>, 4 <span>Minutes</span></em> (<a href="#ref-bbc2010" role="doc-biblioref">2010</a>)</span>: Hans Rosling gives a master class in storytelling with multidimensional data.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-bbc2010" class="csl-entry" role="listitem">
-<em>Hans <span>Rosling</span>’s 200 <span>Countries</span>, 200 <span>Years</span>, 4 <span>Minutes</span></em>. (2010). BBC Four. <a href="https://www.youtube.com/watch?v=jbkSRLYSojo">https://www.youtube.com/watch?v=jbkSRLYSojo</a>
-</div></div></section>
-<section id="mapping-data-to-visual-elements" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="mapping-data-to-visual-elements">Mapping data to visual elements</h2>
-<p>We’ll work with a subset of the wages data in justviz and follow along some of what’s in <span class="citation" data-cites="wilke2019">Wilke (<a href="#ref-wilke2019" role="doc-biblioref">2019</a>)</span>, ch.&nbsp;2 and 20. In <a href="https://clauswilke.com/dataviz/aesthetic-mapping.html#tab:basic-data-types">Table 2.1</a>, Wilke goes over types of variables that we might find in our data and the scales that fit each.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-wilke2019" class="csl-entry" role="listitem">
-Wilke, C. O. (2019). <em>Fundamentals of <span>Data Visualization</span></em>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
-</div></div><div class="cell">
+<p>Quick notes on summarizing data for your visualizations. This is especially helpful for showing something like the average of a distribution, or a minimum/maximum value. I like <code>dplyr::group_by</code> and <code>dplyr::summarise</code> for this.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>Many years ago there was a <a href="https://en.wikipedia.org/wiki/Name_collision">name collision</a> between the <code>summarize</code> function in <code>dplyr</code> and a <code>summarize</code> function in some other package, don’t remember which. But because many of the tidyverse developers are from New Zealand or Australia, most of their functions have both US and British spellings available. Using <code>summarise</code> instead of <code>summarize</code> avoided the collision (namespacing with <code>dplyr::</code> would have too), and it’s been habit for me ever since.</p>
+</div></div><p>Some summary stats I might want from the ACS data, if I only had tracts:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>pal <span class="ot">&lt;-</span> rcartocolor<span class="sc">::</span><span class="fu">carto_pal</span>(<span class="at">name =</span> <span class="st">"Vivid"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>acs_tracts <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>md_avg <span class="ot">&lt;-</span> acs_tracts <span class="sc">|&gt;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a>        <span class="at">no_vehicle_hh =</span> <span class="fu">mean</span>(no_vehicle_hh, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>        <span class="at">total_cost_burden =</span> <span class="fu">mean</span>(total_cost_burden, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>    )</span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a><span class="fu">ggplot</span>(acs_tracts, <span class="fu">aes</span>(<span class="at">x =</span> total_cost_burden, <span class="at">y =</span> no_vehicle_hh)) <span class="sc">+</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a>    <span class="co"># horizontal line with avg no vehicle</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a>    <span class="fu">geom_hline</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a>        <span class="at">yintercept =</span> md_avg<span class="sc">$</span>no_vehicle_hh,</span>
+<span id="cb1-19"><a href="#cb1-19" aria-label="19"></a>        <span class="at">linetype =</span> <span class="st">"solid"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-label="20"></a>        <span class="at">color =</span> pal[<span class="dv">2</span>],</span>
+<span id="cb1-21"><a href="#cb1-21" aria-label="21"></a>        <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-label="22"></a>    ) <span class="sc">+</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-label="23"></a>    <span class="co"># vertical line with avg cost burden</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-label="24"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb1-25"><a href="#cb1-25" aria-label="25"></a>        <span class="at">xintercept =</span> md_avg<span class="sc">$</span>total_cost_burden,</span>
+<span id="cb1-26"><a href="#cb1-26" aria-label="26"></a>        <span class="at">linetype =</span> <span class="st">"solid"</span>,</span>
+<span id="cb1-27"><a href="#cb1-27" aria-label="27"></a>        <span class="at">color =</span> pal[<span class="dv">2</span>],</span>
+<span id="cb1-28"><a href="#cb1-28" aria-label="28"></a>        <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-label="29"></a>    ) <span class="sc">+</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-label="30"></a>    <span class="fu">labs</span>(</span>
+<span id="cb1-31"><a href="#cb1-31" aria-label="31"></a>        <span class="at">title =</span> <span class="st">"% households without a vehicle vs housing cost burden rate, Maryland tracts, 2024"</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-label="32"></a>        <span class="at">subtitle =</span> <span class="st">"With means shown"</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-label="33"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="summarizing_files/figure-html/acs-avg-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Technically, I should calculate the <em>weighted</em> mean. Luckily tracts are designed to be able 4,000 people, but if I were using geographies with different populations, I would need weighted means. Even with something as similar as tracts, weighted means are the proper move. (That’s actually how I calculated the statewide rates in the CDC data.)</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>In this case, weighted &amp; unweighted means of cost burden are exactly the same; for households without a vehicle, they’re less than 1 percentage point apart.</p>
+</div></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="co"># weight by number of households, since these are both housing-related measures</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a><span class="co"># otherwise would weight by number of people</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>md_wtd_avg <span class="ot">&lt;-</span> acs_tracts <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>        <span class="at">no_vehicle_hh =</span> <span class="fu">weighted.mean</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>            no_vehicle_hh,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>            <span class="at">w =</span> total_hh,</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>            <span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a>        ),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a>        <span class="at">total_cost_burden =</span> <span class="fu">mean</span>(total_cost_burden, <span class="at">w =</span> total_hh, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-label="11"></a>    )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-label="12"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-label="13"></a><span class="fu">ggplot</span>(acs_tracts, <span class="fu">aes</span>(<span class="at">x =</span> total_cost_burden, <span class="at">y =</span> no_vehicle_hh)) <span class="sc">+</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-label="14"></a>    <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-label="15"></a>    <span class="co"># horizontal line with avg no vehicle</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-label="16"></a>    <span class="fu">geom_hline</span>(</span>
+<span id="cb2-17"><a href="#cb2-17" aria-label="17"></a>        <span class="at">yintercept =</span> md_avg<span class="sc">$</span>no_vehicle_hh,</span>
+<span id="cb2-18"><a href="#cb2-18" aria-label="18"></a>        <span class="at">linetype =</span> <span class="st">"solid"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-label="19"></a>        <span class="at">color =</span> pal[<span class="dv">2</span>],</span>
+<span id="cb2-20"><a href="#cb2-20" aria-label="20"></a>        <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-label="21"></a>    ) <span class="sc">+</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-label="22"></a>    <span class="co"># vertical line with avg cost burden</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-label="23"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb2-24"><a href="#cb2-24" aria-label="24"></a>        <span class="at">xintercept =</span> md_avg<span class="sc">$</span>total_cost_burden,</span>
+<span id="cb2-25"><a href="#cb2-25" aria-label="25"></a>        <span class="at">linetype =</span> <span class="st">"solid"</span>,</span>
+<span id="cb2-26"><a href="#cb2-26" aria-label="26"></a>        <span class="at">color =</span> pal[<span class="dv">2</span>],</span>
+<span id="cb2-27"><a href="#cb2-27" aria-label="27"></a>        <span class="at">linewidth =</span> <span class="fl">0.5</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-label="28"></a>    ) <span class="sc">+</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-label="29"></a>    <span class="fu">labs</span>(</span>
+<span id="cb2-30"><a href="#cb2-30" aria-label="30"></a>        <span class="at">title =</span> <span class="st">"% households without a vehicle vs housing cost burden rate, Maryland tracts, 2024"</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-label="31"></a>        <span class="at">subtitle =</span> <span class="st">"With household weighted means shown"</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-label="32"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="summarizing_files/figure-html/acs-wtd-avg-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>If you have more than one or two aggregations to show, you might want to use a second data frame:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="co"># going back to unweighted for this example because</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a><span class="co"># weighted quantiles come from a different package, Hmisc</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>dist_avg <span class="ot">&lt;-</span> acs_tracts <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(no_vehicle_hh)) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a>        <span class="at">no_vehicle_mean =</span> <span class="fu">mean</span>(no_vehicle_hh),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a>        <span class="at">no_vehicle_median =</span> <span class="fu">median</span>(no_vehicle_hh),</span>
+<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a>        <span class="at">no_vehicle_95th_pct =</span> <span class="fu">quantile</span>(no_vehicle_hh, <span class="at">probs =</span> <span class="fl">0.95</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a>    )</span>
+<span id="cb3-10"><a href="#cb3-10" aria-label="10"></a>dist_avg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
-<caption>Wages data by sex &amp; education</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">sex</th>
-<th style="text-align: left;">edu</th>
-<th style="text-align: right;">earn_q20</th>
-<th style="text-align: right;">earn_q50</th>
-<th style="text-align: right;">earn_q80</th>
+<th style="text-align: right;">no_vehicle_mean</th>
+<th style="text-align: right;">no_vehicle_median</th>
+<th style="text-align: right;">no_vehicle_95th_pct</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">total</td>
-<td style="text-align: left;">no_diploma</td>
-<td style="text-align: right;">27868</td>
-<td style="text-align: right;">43234</td>
-<td style="text-align: right;">70000</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">total</td>
-<td style="text-align: left;">high_school_diploma</td>
-<td style="text-align: right;">33227</td>
-<td style="text-align: right;">52520</td>
-<td style="text-align: right;">85018</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">total</td>
-<td style="text-align: left;">some_college</td>
-<td style="text-align: right;">40000</td>
-<td style="text-align: right;">64311</td>
-<td style="text-align: right;">104451</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">total</td>
-<td style="text-align: left;">bachelors</td>
-<td style="text-align: right;">54655</td>
-<td style="text-align: right;">91091</td>
-<td style="text-align: right;">145771</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">total</td>
-<td style="text-align: left;">graduate_degree</td>
-<td style="text-align: right;">72873</td>
-<td style="text-align: right;">116000</td>
-<td style="text-align: right;">181895</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">men</td>
-<td style="text-align: left;">no_diploma</td>
-<td style="text-align: right;">30881</td>
-<td style="text-align: right;">48582</td>
-<td style="text-align: right;">75145</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">men</td>
-<td style="text-align: left;">high_school_diploma</td>
-<td style="text-align: right;">36436</td>
-<td style="text-align: right;">58000</td>
-<td style="text-align: right;">92644</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">men</td>
-<td style="text-align: left;">some_college</td>
-<td style="text-align: right;">42874</td>
-<td style="text-align: right;">72057</td>
-<td style="text-align: right;">115382</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">men</td>
-<td style="text-align: left;">bachelors</td>
-<td style="text-align: right;">60727</td>
-<td style="text-align: right;">102938</td>
-<td style="text-align: right;">162199</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">men</td>
-<td style="text-align: left;">graduate_degree</td>
-<td style="text-align: right;">81100</td>
-<td style="text-align: right;">134000</td>
-<td style="text-align: right;">202749</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">women</td>
-<td style="text-align: left;">no_diploma</td>
-<td style="text-align: right;">21617</td>
-<td style="text-align: right;">35264</td>
-<td style="text-align: right;">57928</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">women</td>
-<td style="text-align: left;">high_school_diploma</td>
-<td style="text-align: right;">30700</td>
-<td style="text-align: right;">46322</td>
-<td style="text-align: right;">72873</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">women</td>
-<td style="text-align: left;">some_college</td>
-<td style="text-align: right;">36436</td>
-<td style="text-align: right;">56616</td>
-<td style="text-align: right;">92685</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">women</td>
-<td style="text-align: left;">bachelors</td>
-<td style="text-align: right;">50000</td>
-<td style="text-align: right;">80160</td>
-<td style="text-align: right;">126000</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">women</td>
-<td style="text-align: left;">graduate_degree</td>
-<td style="text-align: right;">68015</td>
-<td style="text-align: right;">102938</td>
-<td style="text-align: right;">157891</td>
+<td style="text-align: right;">0.0959066</td>
+<td style="text-align: right;">0.05</td>
+<td style="text-align: right;">0.35</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p>In this subset of data, we have 2 qualitative variables (sex and educational attainment) and 3 continuous quantitative ones (20th, 50th, and 80th percentile earnings).</p>
-<p>On the ACS, the Census Bureau only asks gender as male or female, so there are no gradations recorded. Educational attainment starts off quantitative: the way it’s measured is roughly the number of years of school completed (i.e. discrete), but it could also be measured to include fractions of a year (i.e. continuous). For simplicity’s sake, however, I lumped it into broader categories that no longer have specific identifiable numbers associated.</p>
-<p>I also only included people with positive earnings in the past year in my analysis, so earnings are bounded at $1.</p>
-<p>Here’s the foundation for a chart of median earnings by education.</p>
-<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="co"># hardcoding all these geom_vlines sucks and doesn't scale well</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a><span class="fu">ggplot</span>(acs_tracts, <span class="fu">aes</span>(<span class="at">x =</span> no_vehicle_hh)) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.025</span>) <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>        <span class="at">xintercept =</span> dist_avg<span class="sc">$</span>no_vehicle_mean,</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>        <span class="at">color =</span> pal[<span class="dv">2</span>],</span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>        <span class="at">linewidth =</span> <span class="fl">0.7</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a>    ) <span class="sc">+</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb4-10"><a href="#cb4-10" aria-label="10"></a>        <span class="at">xintercept =</span> dist_avg<span class="sc">$</span>no_vehicle_median,</span>
+<span id="cb4-11"><a href="#cb4-11" aria-label="11"></a>        <span class="at">color =</span> pal[<span class="dv">3</span>],</span>
+<span id="cb4-12"><a href="#cb4-12" aria-label="12"></a>        <span class="at">linewidth =</span> <span class="fl">0.7</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-label="13"></a>    ) <span class="sc">+</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-label="14"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb4-15"><a href="#cb4-15" aria-label="15"></a>        <span class="at">xintercept =</span> dist_avg<span class="sc">$</span>no_vehicle_95th_pct,</span>
+<span id="cb4-16"><a href="#cb4-16" aria-label="16"></a>        <span class="at">color =</span> pal[<span class="dv">1</span>],</span>
+<span id="cb4-17"><a href="#cb4-17" aria-label="17"></a>        <span class="at">linewidth =</span> <span class="fl">0.7</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-label="18"></a>    ) <span class="sc">+</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-label="19"></a>    <span class="fu">labs</span>(</span>
+<span id="cb4-20"><a href="#cb4-20" aria-label="20"></a>        <span class="at">title =</span> <span class="st">"Distribution of % of households without a vehicle, Maryland tracts, 2024"</span>,</span>
+<span id="cb4-21"><a href="#cb4-21" aria-label="21"></a>        <span class="at">subtitle =</span> <span class="st">"With mean (blue), median (green), and 95th percentile (orange)"</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-label="22"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-fdn-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="summarizing_files/figure-html/dist-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a><span class="co"># reshaping the average data frame and mapping to aesthetics is cool and Flexible</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a><span class="co"># also that gets us a legend</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>dist_avg_tidy <span class="ot">&lt;-</span> dist_avg <span class="sc">|&gt;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(</span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>        <span class="at">cols =</span> dplyr<span class="sc">::</span><span class="fu">everything</span>(),</span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>        <span class="at">names_to =</span> <span class="st">"variable"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>        <span class="at">values_to =</span> <span class="st">"value"</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a>    <span class="co"># just get the type of summary stat, make a factor to keep in order</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-label="10"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb5-11"><a href="#cb5-11" aria-label="11"></a>        <span class="at">variable =</span> stringr<span class="sc">::</span><span class="fu">str_remove</span>(variable, <span class="st">"no_vehicle_"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-label="12"></a>            forcats<span class="sc">::</span><span class="fu">as_factor</span>()</span>
+<span id="cb5-13"><a href="#cb5-13" aria-label="13"></a>    )</span>
+<span id="cb5-14"><a href="#cb5-14" aria-label="14"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-label="15"></a><span class="co"># vline can take either a hardcoded intercept or an aes call to map from a variable</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-label="16"></a><span class="fu">ggplot</span>(acs_tracts, <span class="fu">aes</span>(<span class="at">x =</span> no_vehicle_hh)) <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-label="17"></a>    <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.025</span>) <span class="sc">+</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-label="18"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb5-19"><a href="#cb5-19" aria-label="19"></a>        <span class="fu">aes</span>(<span class="at">xintercept =</span> value, <span class="at">color =</span> variable),</span>
+<span id="cb5-20"><a href="#cb5-20" aria-label="20"></a>        <span class="at">data =</span> dist_avg_tidy</span>
+<span id="cb5-21"><a href="#cb5-21" aria-label="21"></a>    ) <span class="sc">+</span></span>
+<span id="cb5-22"><a href="#cb5-22" aria-label="22"></a>    <span class="co"># keep same order of colors</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-label="23"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> pal[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>)]) <span class="sc">+</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-label="24"></a>    <span class="fu">labs</span>(</span>
+<span id="cb5-25"><a href="#cb5-25" aria-label="25"></a>        <span class="at">title =</span> <span class="st">"Distribution of % of households without a vehicle, Maryland tracts, 2024"</span>,</span>
+<span id="cb5-26"><a href="#cb5-26" aria-label="26"></a>        <span class="at">subtitle =</span> <span class="st">"With summary statistics shown"</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-label="27"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="summarizing_files/figure-html/dist-2.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>So far we’ve got a discrete x axis for education and a continuous y axis for median earnings. Without setting any geometries (bars, points, etc) the default y range is just based on what’s included in the data, which goes from about 40k to somewhere above 110k (I’ve added extra breaks on the y-axis to see this better).</p>
-<p>If I plot points, this range doesn’t need to change.</p>
+<p>Or summary stats within groups:</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>balt_tracts <span class="ot">&lt;-</span> acs_tracts <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>        county <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Baltimore city"</span>, <span class="st">"Baltimore County"</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>        <span class="sc">!</span><span class="fu">is.na</span>(no_vehicle_hh)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>    )</span>
+<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a>balt_avg <span class="ot">&lt;-</span> balt_tracts <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a>    dplyr<span class="sc">::</span><span class="fu">group_by</span>(county) <span class="sc">|&gt;</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">no_vehicle_mean =</span> <span class="fu">mean</span>(no_vehicle_hh))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-label="9"></a>balt_avg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">county</th>
+<th style="text-align: right;">no_vehicle_mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Baltimore County</td>
+<td style="text-align: right;">0.0740553</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: right;">0.2852020</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="fu">ggplot</span>(balt_tracts, <span class="fu">aes</span>(<span class="at">x =</span> no_vehicle_hh, <span class="at">fill =</span> county)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>    <span class="fu">geom_density</span>(<span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>    <span class="fu">geom_vline</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a>        <span class="fu">aes</span>(<span class="at">xintercept =</span> no_vehicle_mean, <span class="at">color =</span> county),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a>        <span class="at">data =</span> balt_avg,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-label="6"></a>        <span class="at">linewidth =</span> <span class="fl">0.7</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-label="7"></a>    ) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-label="8"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> pal[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]) <span class="sc">+</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-label="9"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values =</span> pal[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]) <span class="sc">+</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-label="10"></a>    <span class="fu">labs</span>(</span>
+<span id="cb7-11"><a href="#cb7-11" aria-label="11"></a>        <span class="at">title =</span> <span class="st">"Distribution of % of households without a vehicle, Baltimore city &amp; Baltimore Co. tracts, 2024"</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-label="12"></a>        <span class="at">subtitle =</span> <span class="st">"With county means shown"</span></span>
+<span id="cb7-13"><a href="#cb7-13" aria-label="13"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-dot-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="summarizing_files/figure-html/dist-balt-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>However, I want to make a bar chart. Points encode values to their <em>positions</em>, whereas bar charts encode their data to the <em>length</em> of the bar. For a value to correspond to the length of a bar, it needs to start at 0. By adding a column geometry, ggplot knows to start the y-axis at 0.</p>
+<p>This is also helpful for places you want to highlight. We could show similar markings over a trendline to show something like min &amp; max values that would be uniform across the whole chart. Or we can use summary stats to pull out points to highlight, retaining other information like where those extreme values occurred.</p>
 <div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>recent_md_unemp <span class="ot">&lt;-</span> justviz<span class="sc">::</span>unemployment <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Maryland"</span>, lubridate<span class="sc">::</span><span class="fu">year</span>(date) <span class="sc">&gt;=</span> <span class="dv">2019</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>unemp_extreme_vals <span class="ot">&lt;-</span> recent_md_unemp <span class="sc">|&gt;</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a>    dplyr<span class="sc">::</span><span class="fu">summarise</span>(</span>
+<span id="cb8-6"><a href="#cb8-6" aria-label="6"></a>        <span class="at">max_rate =</span> <span class="fu">max</span>(rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb8-7"><a href="#cb8-7" aria-label="7"></a>        <span class="at">min_rate =</span> <span class="fu">min</span>(rate, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-8"><a href="#cb8-8" aria-label="8"></a>    )</span>
+<span id="cb8-9"><a href="#cb8-9" aria-label="9"></a><span class="co"># extract observations with these values (there are other ways, this feels most straightforward)</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-label="10"></a>unemp_extreme_obs <span class="ot">&lt;-</span> recent_md_unemp <span class="sc">|&gt;</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-label="11"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb8-12"><a href="#cb8-12" aria-label="12"></a>        rate <span class="sc">%in%</span> <span class="fu">c</span>(unemp_extreme_vals<span class="sc">$</span>max_rate, unemp_extreme_vals<span class="sc">$</span>min_rate)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-label="13"></a>    )</span>
+<span id="cb8-14"><a href="#cb8-14" aria-label="14"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-label="15"></a><span class="fu">ggplot</span>(recent_md_unemp, <span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> rate)) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-label="16"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" aria-label="17"></a>    <span class="fu">geom_point</span>(<span class="at">data =</span> unemp_extreme_obs, <span class="at">color =</span> pal[<span class="dv">1</span>], <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-label="18"></a>    <span class="fu">labs</span>(</span>
+<span id="cb8-19"><a href="#cb8-19" aria-label="19"></a>        <span class="at">title =</span> <span class="st">"Monthly unemployment rate, Maryland, 2019-2025"</span>,</span>
+<span id="cb8-20"><a href="#cb8-20" aria-label="20"></a>        <span class="at">subtitle =</span> <span class="st">"With highest and lowest values shown"</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-label="21"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-bar-1-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="summarizing_files/figure-html/unemp-hilite-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>So now we’ve got a discrete axis for education, a continuous axis for median earnings, and bars whose lengths give the median earnings for each group. We have room for more encodings:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-sex-1-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Something’s wrong,</strong> though: by stacking the bars, we’re saying that there’s some meaning to the combined lengths. That could be the case for some data (e.g. median wage earnings in one group stacked with median income from other sources like pension in another group could, in fact, give a sense of total income from multiple sources). But in this case, the average woman’s earnings plus the average man’s earnings doesn’t mean anything. So the bars should be clustered instead.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-sex-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Now sex is encoded to color. Notice that the y-axis has to go a little higher now to fit values for men with graduate degrees.</p>
-<p>We could also include other percentiles of earnings, not just medians. The <em>type</em> of continuous value on the y-axis will stay the same, but the <em>range</em> of values will change again, because the 20th percentile values will be lower than the medians and the 80th percentile values will be much higher.</p>
-<p>Just income percentiles by education:</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-ptile-bar-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>This is okay, but it’s not super interesting. It doesn’t show me anything besides what I would expect—that people with higher educational attainment average higher earnings, which we already knew, and that the 80th percentiles are much higher than the 20th percentiles, which is just true by their definition. What’s more interesting are the <em>gaps</em> between values. Using points instead of bars lets us zoom in a little better on the actual range of values since we don’t have to include 0, and it shifts what our attention is drawn to.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-ptile-1-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Rather than just reading amounts by the ends of bars, this emphasizes the range of values within each group. The range from 20th to 80th percentiles within each group is implied, but we can make it explicit by adding paths behind the points.</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-ptile-2-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>If I want the focus to be on medians, I can add size of points as another encoding, making the medians larger and other percentiles smaller. By default, size would be assumed to be continuous, but you can also make it discrete. (I might do this on the fly in practice, but here I’ll create a separate variable):</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-ptile-3-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>Instead of size, this could have also been something like point shape. This is what Wilke describes as <em>redundant encodings</em>, where the percentile comes from both color and size. I’ve chosen colors that should be colorblind-friendly, and the points in this chart don’t overlap, but in some situations having 2 encodings might help make things easier to read (see his examples with scatterplots with both color and shape).</p>
-<p>In fact, let’s imagine we need a chart that can be printed in black and white. This color palette probably won’t hold up, so we can go ahead and add shape as a backup encoding if color fails.</p>
+<p>There are many many other ways to use summary stats in your visualizations, especially for building context, but these should be enough examples to get you started.</p>
 
-<div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Call <code>?scale_shape</code> to get a cheat sheet of valid shape labels and codes. I have to do this every time.</p>
-</div></div><div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="03_encodings_files/figure-html/wages-ptile-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>There are more things we could do now, but I’ll leave it here. We still have data by sex, which I’m really interested in, but we’ve maxed out encodings that we’ve used so far. It would be confusing to add another pair of colors or shapes, for example, so one pair can be men and another pair could be women. Instead, I’d likely split the plot into facets to get small multiples—we’ll talk about that later but see if you can imagine what that might look like.</p>
-</section>
-<section id="bad-examples" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="bad-examples">Bad examples</h2>
-<p>Sometimes bad examples stick with you better than good examples. <span class="citation" data-cites="lan2025">Lan &amp; Liu (<a href="#ref-lan2025" role="doc-biblioref">2025</a>)</span> studied and categorized bad data visualizations and came up with a taxonomy of 76 data viz mistakes. The <a href="https://flawviz.github.io">website</a> that goes alongside it has great &amp; hilarious examples. See if you can identify any of these types of mistakes in any of the lab charts.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-lan2025" class="csl-entry" role="listitem">
-Lan, X., &amp; Liu, Y. (2025). "<span>I Came Across</span> a <span>Junk</span>": <span>Understanding Design Flaws</span> of <span>Data Visualization</span> from the <span>Public</span>’s <span>Perspective</span>. <em>IEEE Transactions on Visualization and Computer Graphics</em>, <em>31</em>(1), 393–403. <a href="https://doi.org/10.1109/TVCG.2024.3456341">https://doi.org/10.1109/TVCG.2024.3456341</a>
-</div></div></section>
-<section id="labs" class="level2">
-<h2 class="anchored" data-anchor-id="labs">Labs</h2>
-<p>For this week’s labs, you’ll practice identifying the encodings in different types of charts, then fix some charts with inappropriate encodings.</p>
 
-
-
-</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1172,13 +1195,13 @@ Lan, X., &amp; Liu, Y. (2025). "<span>I Came Across</span> a <span>Junk</span>":
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../notes/02_good_code.html" class="pagination-link" aria-label="02. Writing good code">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">02. Writing good code</span>
+      <a href="../extras/ggsave.html" class="pagination-link" aria-label="Saving plots with ggsave">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Saving plots with ggsave</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notes/03b_encodings_code.html" class="pagination-link" aria-label="03b. Code for visual encodings notes">
-        <span class="nav-page-text">03b. Code for visual encodings notes</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../extras/wrangling.html" class="pagination-link" aria-label="Basic data wrangling">
+        <span class="nav-page-text">Basic data wrangling</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1187,4 +1210,4 @@ Lan, X., &amp; Liu, Y. (2025). "<span>I Came Across</span> a <span>Junk</span>":
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/03_encodings.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/03_encodings.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/extras/summarizing.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/extras/summarizing.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
