@@ -245,7 +245,7 @@ There are lots of strategies for handling missing data, and lots of reasons why 
 * Small sample sizes or other limitations in data collection
 * Changing wording in questionnaires or common parlance (definitions of race and/or ethnicity have [changed many many times](https://www.census.gov/data-tools/demo/race/MREAD_1790_2010.html) over the course of the US decennial census.)
 * Destruction of records (plenty of reasons to purge documents, some good, some bad. One of the datasets I use to teach this course was deleted in the early 2025 purge of federal data but I'd already made a copy)
-* Simplification of categories and other gray areas (binary gender, lumping ethnic groups together)
+* Simplification of categories and other gray areas ([binary gender](https://ctdatahaven.org/report/invisible-data-excluded-research/), lumping ethnic groups together)
 * Weird outside circumstances (covid disrupted a lot of data collection)
 
 
