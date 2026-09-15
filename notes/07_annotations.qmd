@@ -144,3 +144,34 @@ In the same book as the scatterplot above, we also ran this chart of eviction ra
 
 ![From @abraham2023](../assets/evictions.png)
 
+Similar to the FRED charts, you might have an area of the chart you want to fill in to say "hey, something happened here!" For example, there are no measurements in the unemployment trend that explicitly say covid, but we can tell immediately looking at it when lockdown started. Use `geom_rect` to fill in a bounded area. In this case, I'll highlight the period during which PPP loans were issued (April 3, 2020 to May 31, 2021).
+
+Some geoms can take positive or negative infinity as positions; this will be interpreted as the absolute upper or lower bounds of the chart. In this case, regardless of the actual unemployment values, I want the shaded area to go from the very top of the chart to the very bottom, and then I'll set the x limits.
+
+```{r}
+#| label: area-fill
+# make a lil data frame of dates
+ppp <- data.frame(start = as.Date("2020-04-03"), end = as.Date("2021-05-31"))
+
+ppp
+
+# ggplot draws layers in order, so for rect to be in background, draw it first
+justviz::unemployment |>
+    dplyr::filter(name == "Maryland", lubridate::year(date) >= 2019) |>
+    ggplot(aes(x = date, y = rate)) +
+    # note the different args for rect
+    # because this data doesn't have date & rate variables, override the aes with inherit.aes arg
+    geom_rect(
+        aes(xmin = start, xmax = end, ymin = -Inf, ymax = Inf),
+        data = ppp,
+        inherit.aes = FALSE,
+        alpha = 0.3,
+        fill = pal[2]
+    ) +
+    geom_line()
+```
+
+
+## Note: `ggplot2::annotate`
+
+There actually is a function `annotate` in ggplot. It actually doesn't map directly to the data; instead you use it to hardcode locations and other aesthetics. It's kind of weird, and it feels contrary to the general principle of visual encodings / grammar of graphics, so I don't use it very often. But it does exist and is worth knowing about. If you run into an annotation that for some reason you absolutely cannot map to your actual data, you might try it.
