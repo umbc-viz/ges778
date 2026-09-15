@@ -235,7 +235,7 @@ This type of plot is called a ridgeline plot or sometimes a joyplot, named after
 You can use the [**ggridges** package](https://wilkelab.org/ggridges/) to make ridgeline plots. (Getting even more off-topic, Wilke changed the name of the package from ggjoy to ggridges because of the gruesome meaning of the band's name.)
 :::
 
-![From @smith2023](https://ygo-assets-websites-editorial-emea.yougov.net/images/Word20sentiment20US20variant-01.format-webp.webp){width=50%}
+![From @yougov2018](https://ygo-assets-websites-editorial-emea.yougov.net/images/Word20sentiment20US20variant-01.format-webp.webp){width=50%}
 
 
 ### Missing data
