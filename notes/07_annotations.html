@@ -490,6 +490,7 @@ div.csl-indent {
   <ul>
   <li><a href="#annotations-to-direct-attention" id="toc-annotations-to-direct-attention" class="nav-link active" data-scroll-target="#annotations-to-direct-attention">Annotations to direct attention</a></li>
   <li><a href="#annotations-to-provide-contextual-information" id="toc-annotations-to-provide-contextual-information" class="nav-link" data-scroll-target="#annotations-to-provide-contextual-information">Annotations to provide contextual information</a></li>
+  <li><a href="#note-ggplot2annotate" id="toc-note-ggplot2annotate" class="nav-link" data-scroll-target="#note-ggplot2annotate">Note: <code>ggplot2::annotate</code></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/07_annotations.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/07_annotations.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -796,6 +797,57 @@ FRED, Federal Reserve Bank of St. Louis. (2026). <em>Consumer price index for al
 Abraham, M., Seaberry, C., Davila, K., &amp; Carr, A. (2023). <em>Greater <span>New Haven Community Wellbeing Index</span> 2023</em>. <a href="https://ctdatahaven.org/reports/greater-new-haven-community-wellbeing-index">https://ctdatahaven.org/reports/greater-new-haven-community-wellbeing-index</a>
 </div></div></figure>
 </div>
+<p>Similar to the FRED charts, you might have an area of the chart you want to fill in to say “hey, something happened here!” For example, there are no measurements in the unemployment trend that explicitly say covid, but we can tell immediately looking at it when lockdown started. Use <code>geom_rect</code> to fill in a bounded area. In this case, I’ll highlight the period during which PPP loans were issued (April 3, 2020 to May 31, 2021).</p>
+<p>Some geoms can take positive or negative infinity as positions; this will be interpreted as the absolute upper or lower bounds of the chart. In this case, regardless of the actual unemployment values, I want the shaded area to go from the very top of the chart to the very bottom, and then I’ll set the x limits.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a><span class="co"># make a lil data frame of dates</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>ppp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">start =</span> <span class="fu">as.Date</span>(<span class="st">"2020-04-03"</span>), <span class="at">end =</span> <span class="fu">as.Date</span>(<span class="st">"2021-05-31"</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>ppp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">start</th>
+<th style="text-align: left;">end</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">2020-04-03</td>
+<td style="text-align: left;">2021-05-31</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="co"># ggplot draws layers in order, so for rect to be in background, draw it first</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>justviz<span class="sc">::</span>unemployment <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"Maryland"</span>, lubridate<span class="sc">::</span><span class="fu">year</span>(date) <span class="sc">&gt;=</span> <span class="dv">2019</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> date, <span class="at">y =</span> rate)) <span class="sc">+</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a>    <span class="co"># note the different args for rect</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-label="6"></a>    <span class="co"># because this data doesn't have date &amp; rate variables, override the aes with inherit.aes arg</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-label="7"></a>    <span class="fu">geom_rect</span>(</span>
+<span id="cb7-8"><a href="#cb7-8" aria-label="8"></a>        <span class="fu">aes</span>(<span class="at">xmin =</span> start, <span class="at">xmax =</span> end, <span class="at">ymin =</span> <span class="sc">-</span><span class="cn">Inf</span>, <span class="at">ymax =</span> <span class="cn">Inf</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-label="9"></a>        <span class="at">data =</span> ppp,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-label="10"></a>        <span class="at">inherit.aes =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-label="11"></a>        <span class="at">alpha =</span> <span class="fl">0.3</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-label="12"></a>        <span class="at">fill =</span> qual_pal[<span class="dv">2</span>]</span>
+<span id="cb7-13"><a href="#cb7-13" aria-label="13"></a>    ) <span class="sc">+</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-label="14"></a>    <span class="fu">geom_line</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="07_annotations_files/figure-html/area-fill-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="note-ggplot2annotate" class="level2">
+<h2 class="anchored" data-anchor-id="note-ggplot2annotate">Note: <code>ggplot2::annotate</code></h2>
+<p>There actually is a function <code>annotate</code> in ggplot. It actually doesn’t map directly to the data; instead you use it to hardcode locations and other aesthetics. It’s kind of weird, and it feels contrary to the general principle of visual encodings / grammar of graphics, so I don’t use it very often. But it does exist and is worth knowing about. If you run into an annotation that for some reason you absolutely cannot map to your actual data, you might try it.</p>
 
 
 
