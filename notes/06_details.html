@@ -520,7 +520,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 14, 2026</p>
+      <p class="date-modified">September 15, 2026</p>
     </div>
   </div>
     
@@ -664,7 +664,7 @@ Figure&nbsp;1
 </div>
 </div>
 <p>Even washed out like this, you can see the post-9/11 economy, the Great Recession, and covid, but it’s losing important specificity. Unemployment at the start of covid was a jolt; it came on very quickly, but it also subsided quickly. (Unemployment is also a very imperfect measure that, especially during a disaster, will miss lots of unemployed people.) The spike in May 2020 (9.1%) is higher than the peak during the recession (8.4%, January &amp; February 2010). But those high values during the recession lasted a long time, so the entire year of 2010 was very high. Meanwhile other than a couple months, 2020 averages out to a pretty normal year. We end up with a chart that shows a larger peak in 2010 than in 2020, even though 2020’s peak itself was higher. This is how you gaslight people with data viz.</p>
-<p>A better way to smooth out data like this is rolling averages. I usually use the <code>tsibble</code> and <code>slider</code> packages for making time series data frames and sliding averages, respectively. (You can do this without a special time series data type but I’m always nervous I’ll mess up a time series, so I opt for tools specially designed for it.)</p>
+<p>A better way to smooth out data like this is rolling averages. I usually use the <code>tsibble</code> and <code>slider</code> packages for making time series data frames and sliding averages, respectively. Rolling averages are especially helpful for something where you expect a fair amount of noise in the data, like from something relatively rare or unpredictable; we use rolling means for showing trends in drug overdose deaths. (You can do this without a special time series data type but I’m always nervous I’ll mess up a time series, so I opt for tools specially designed for it.)</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>md_unemp_rolling <span class="ot">&lt;-</span> md_unemp <span class="sc">|&gt;</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">date =</span> tsibble<span class="sc">::</span><span class="fu">yearmonth</span>(date)) <span class="sc">|&gt;</span></span>
@@ -740,7 +740,7 @@ Correll, M., &amp; Gleicher, M. (2014). Error <span>Bars Considered Harmful</spa
 <section id="showing-error" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="showing-error">Showing error</h3>
 <p>To make up for having dropped MOEs earlier, I redid the analysis of homeownership by county with MOEs intact for the estimates of counts and my calculation of the rate. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Some simple ways to show the uncertainty as described by MOE could be error bars or the strategies in <code>ggdist</code> to make the estimates visually blurry. The built-in range functions (see <code>?geom_errorbar</code> for all of them) take a position along with min &amp; max endpoints.</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<a href="../misc_scripts/06_details_extras.R">Code</a></p></div></div><p>Revisiting the Cleveland dot plot in <a href="#fig-tenure-dots" class="quarto-xref">Figure&nbsp;1</a>:</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<a href="https://github.com/umbc-viz/ges778/blob/main/misc_scripts/06_details_extras.R">Code</a></p></div></div><p>Revisiting the Cleveland dot plot in <a href="#fig-tenure-dots" class="quarto-xref">Figure&nbsp;1</a>:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>tenure_moe <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"assets/tenure_with_moe.csv"</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
@@ -855,6 +855,7 @@ Correll, M., &amp; Gleicher, M. (2014). Error <span>Bars Considered Harmful</spa
 <li>The Census Bureau uses <strong>90% confidence levels</strong> for its estimates (at least in their tables of ACS data), whereas <strong>95%</strong> is often standard. I’m sure there’s a justification for it. If you do your own analyses from their microdata samples, as I did for the wage gap data, you can set whatever confidence level you want, but for consistency you should probably still do 90%.</li>
 <li>I took the advice from Wilke and said explicitly up top what the error bars represent, because “error” can mean many different things.</li>
 </ul>
+<p>Note also that this type of chart isn’t limited to error; you can also use something like to show the spread of different quantiles in a distribution.</p>
 </section>
 <section id="quantifying-subjective-descriptions" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="quantifying-subjective-descriptions">Quantifying subjective descriptions</h3>
