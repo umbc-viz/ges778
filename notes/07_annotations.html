@@ -92,6 +92,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../notes/08_color.html" rel="next">
 <link href="../notes/06_details.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -437,6 +438,12 @@ div.csl-indent {
  <span class="menu-text">07. Annotations</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/08_color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. Color</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -518,7 +525,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 15, 2026</p>
+      <p class="date-modified">September 22, 2026</p>
     </div>
   </div>
     
@@ -752,13 +759,11 @@ div.csl-indent {
 <section id="annotations-to-provide-contextual-information" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="annotations-to-provide-contextual-information">Annotations to provide contextual information</h2>
 <p>If you’re showing data over time, you might want to show a specific historic period, even if it isn’t directly part of your data. FRED (Federal Reserve Bank of St.&nbsp;Louis’s data platform) churns out very boring, very consistent and readable trend plots of economic data. They almost always have the same annotations:</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><img src="../assets/fred-cpi.png" class="img-fluid figure-img"></p>
-<figcaption>From <span class="citation" data-cites="fredcpi2026">FRED, Federal Reserve Bank of St. Louis (<a href="#ref-fredcpi2026" role="doc-biblioref">2026</a>)</span></figcaption>
-<div class="no-row-height column-margin column-container"><div id="ref-fredcpi2026" class="csl-entry" role="listitem">
-FRED, Federal Reserve Bank of St. Louis. (2026). <em>Consumer price index for all urban consumers: All items in <span>U</span>.<span>S</span>. City average</em>. <a href="https://fred.stlouisfed.org/graph/?g=1YpfG">https://fred.stlouisfed.org/graph/?g=1YpfG</a>
-</div></div></figure>
+<figcaption>From <span class="citation" data-cites="fredcpi2026">(<a href="#ref-fredcpi2026" role="doc-biblioref"><strong>fredcpi2026?</strong></a>)</span></figcaption>
+</figure>
 </div>
 <p>You’ll have access to their recession definitions data (fun!) for the lab.</p>
 <p>You might also want to show how your data compares to some threshold, like an average from before the focus period of your chart, or a national or state average. For example, if you’re looking at a distribution that neatly fits a normal curve, you can ballpark where the mean and/or median are; that’s harder when the data is skewed.</p>
@@ -794,7 +799,7 @@ FRED, Federal Reserve Bank of St. Louis. (2026). <em>Consumer price index for al
 <p><img src="../assets/evictions.png" class="img-fluid figure-img"></p>
 <figcaption>From <span class="citation" data-cites="abraham2023">Abraham et al. (<a href="#ref-abraham2023" role="doc-biblioref">2023</a>)</span></figcaption>
 <div class="no-row-height column-margin column-container"><div id="ref-abraham2023" class="csl-entry" role="listitem">
-Abraham, M., Seaberry, C., Davila, K., &amp; Carr, A. (2023). <em>Greater <span>New Haven Community Wellbeing Index</span> 2023</em>. <a href="https://ctdatahaven.org/reports/greater-new-haven-community-wellbeing-index">https://ctdatahaven.org/reports/greater-new-haven-community-wellbeing-index</a>
+Abraham, M., Seaberry, C., Davila, K., &amp; Carr, A. (2023). <em>Greater <span>New Haven Community Wellbeing Index</span> 2023</em>.
 </div></div></figure>
 </div>
 <p>Similar to the FRED charts, you might have an area of the chart you want to fill in to say “hey, something happened here!” For example, there are no measurements in the unemployment trend that explicitly say covid, but we can tell immediately looking at it when lockdown started. Use <code>geom_rect</code> to fill in a bounded area. In this case, I’ll highlight the period during which PPP loans were issued (April 3, 2020 to May 31, 2021).</p>
@@ -1274,6 +1279,9 @@ Abraham, M., Seaberry, C., Davila, K., &amp; Carr, A. (2023). <em>Greater <span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../notes/08_color.html" class="pagination-link" aria-label="08. Color">
+        <span class="nav-page-text">08. Color</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
