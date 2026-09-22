@@ -325,7 +325,7 @@ dummy |>
     dplyr::filter(y != "c") |>
     ggplot(aes(x = x, y = y)) +
     geom_tile(aes(fill = y), show.legend = FALSE) +
-    geom_line(linewidth = 2, color = "gray70") +
+    geom_line(linewidth = 5, color = "gray70") +
     scale_fill_manual(values = c("gray10", "gray90")) +
     theme_void()
 ```

@@ -3,7 +3,7 @@
   "bioconductor.version": null,
   "external.libraries": [],
   "ignored.packages": [
-    "usethis"
+    "remotes"
   ],
   "lockfile.sanitize": true,
   "package.dependency.fields": [
