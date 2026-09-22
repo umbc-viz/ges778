@@ -11,14 +11,15 @@ library(ggplot2)
 theme_set(theme_minimal())
 ```
 
-We'll walk through @wilke2019 chapters 4 and 19---I don't have a ton to add until we get to mapping.
-
 ## Tools
 
 - [ColorBrewer](https://colorbrewer2.org) (access to these palettes comes with ggplot)
 - [Carto Colors](https://carto.com/carto-colors/) (access comes with the rcartocolor package)
 - [Viz Palette](https://projects.susielu.com/viz-palette) generator & preview (doesn't work quite as well since they had AI rebuild it recently, be careful with the contrast checks for small lines!)
 - [Gregor Aisch's chroma palettes](https://gka.github.io/palettes) generator
+- [I Want Hue](https://medialab.github.io/iwanthue/) palette generator based on cluster analysis
+
+I also like the similarly-named game [I Love Hue](https://i-love-hue.com/), which is a fun way to practice color perception and skills.
 
 ## Types of color palettes
 
