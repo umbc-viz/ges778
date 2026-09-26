@@ -1,0 +1,46 @@
+---
+title: Hacking together a legend
+---
+
+Here's a way to get a legend when your main dataset doesn't necessarily get you one: create a little dummy dataset of your aggregate values or baselines or whatever else, and assign its values to the encodings you want. Here I make a data frame of just the mean and median across all tract observations, then "tidy" it into a long-shaped data frame so I have one column with the measure type and one with the corresponding values.
+
+```{r}
+#| label: setup
+library(ggplot2)
+acs_tract <- justviz::acs |>
+    dplyr::filter(level == "tract", !is.na(homeownership))
+acs_aggs <- acs_tract |>
+    dplyr::summarise(
+        mean_homeownership = mean(homeownership),
+        median_homeownership = median(homeownership)
+    )
+acs_aggs
+```
+
+
+```{r}
+#| label: tidy
+acs_aggs_tidy <- acs_aggs |>
+    tidyr::pivot_longer(
+        cols = dplyr::everything(),
+        names_to = "measure",
+        values_to = "homeownership"
+    )
+acs_aggs_tidy
+```
+
+
+Now assign measure to some aesthetics that will have legends associated with them, such as color and linetype:
+
+```{r}
+#| label: legend
+ggplot(acs_tract, aes(x = homeownership)) +
+    geom_density() +
+    geom_vline(
+        aes(xintercept = homeownership, color = measure, linetype = measure),
+        data = acs_aggs_tidy
+    ) +
+    scale_linetype_manual(values = c("dashed", "solid"))
+```
+
+This can get kind of hacky. In fact, I went looking on Stack Overflow for questions about hacking ggplot legends (there are [7,716 questions](https://stackoverflow.com/search?q=%5Bggplot2%5D+legend+is%3Aquestion) tagged "ggplot2" about legends) and ended up [answering one myself](https://stackoverflow.com/a/80005683/5325862), albeit one based on some bad design choices.
