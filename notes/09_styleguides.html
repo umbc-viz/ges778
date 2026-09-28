@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>02. Writing good code – GES 778, Fall 2026</title>
+<title>09. Styleguides – GES 778, Fall 2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,7 +27,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,8 +92,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../notes/03_encodings.html" rel="next">
-<link href="../notes/01_intro_to_data_viz.html" rel="prev">
+<link href="../notes/10_text_audience.html" rel="next">
+<link href="../notes/08_color.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -84,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -255,7 +310,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/02_good_code.html">02. Writing good code</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/09_styleguides.html">09. Styleguides</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -343,7 +398,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/02_good_code.html" class="sidebar-item-text sidebar-link active">
+  <a href="../notes/02_good_code.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">02. Writing good code</span></a>
   </div>
 </li>
@@ -391,7 +446,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/09_styleguides.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/09_styleguides.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">09. Styleguides</span></a>
   </div>
 </li>
@@ -458,25 +513,18 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#good-coding-practices" id="toc-good-coding-practices" class="nav-link active" data-scroll-target="#good-coding-practices">Good coding practices</a></li>
-  <li><a href="#documenting-code" id="toc-documenting-code" class="nav-link" data-scroll-target="#documenting-code">Documenting code</a></li>
-  <li><a href="#git-commit-messages" id="toc-git-commit-messages" class="nav-link" data-scroll-target="#git-commit-messages">Git commit messages</a></li>
-  <li><a href="#reusable-code" id="toc-reusable-code" class="nav-link" data-scroll-target="#reusable-code">Reusable code</a></li>
-  <li><a href="#organization" id="toc-organization" class="nav-link" data-scroll-target="#organization">Organization</a>
-  <ul class="collapse">
-  <li><a href="#know-where-your-files-are-how-to-get-to-them" id="toc-know-where-your-files-are-how-to-get-to-them" class="nav-link" data-scroll-target="#know-where-your-files-are-how-to-get-to-them">Know where your files are &amp; how to get to them</a></li>
-  </ul></li>
-  <li><a href="#lab" id="toc-lab" class="nav-link" data-scroll-target="#lab">Lab</a></li>
+  <li><a href="#color" id="toc-color" class="nav-link active" data-scroll-target="#color">Color</a></li>
+  <li><a href="#themes" id="toc-themes" class="nav-link" data-scroll-target="#themes">Themes</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/02_good_code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/02_good_code.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/09_styleguides.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/09_styleguides.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/02_good_code.html">02. Writing good code</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/09_styleguides.html">09. Styleguides</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">02. Writing good code</h1>
+<h1 class="title">09. Styleguides</h1>
 </div>
 
 
@@ -505,102 +553,215 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="good-coding-practices" class="level2">
-<h2 class="anchored" data-anchor-id="good-coding-practices">Good coding practices</h2>
-<p>Some basic good habits will get you a long way in programming.</p>
+<p>We won’t spend much time on styleguides, and I don’t have much to say beyond what’s in the readings. There’s more that goes into styling a set of charts, but the 2 things you’ll focus on for this class are <strong>colors</strong> that work across charts, and <strong>theme elements</strong> with a minimal amount of chartjunk.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;This is a Tufte term. See <span class="citation" data-cites="lan2025">Lan &amp; Liu (<a href="#ref-lan2025" role="doc-biblioref">2025</a>)</span> for fun examples</p><div id="ref-lan2025" class="csl-entry" role="listitem">
+Lan, X., &amp; Liu, Y. (2025). "<span>I Came Across</span> a <span>Junk</span>": <span>Understanding Design Flaws</span> of <span>Data Visualization</span> from the <span>Public</span>’s <span>Perspective</span>. <em>IEEE Transactions on Visualization and Computer Graphics</em>, <em>31</em>(1), 393–403. <a href="https://doi.org/10.1109/TVCG.2024.3456341">https://doi.org/10.1109/TVCG.2024.3456341</a>
+</div></div></div><section id="color" class="level2">
+<h2 class="anchored" data-anchor-id="color">Color</h2>
+<p>We already talked about color, but in thinking about how you assemble a collection of charts, just make sure your colors work across multiple charts and chart types. This might mean using darker or more saturated colors because the muted colors that worked well for large bars are hard to see in a scatterplot or line chart.</p>
+<p>Unfortunately I haven’t seen any collections of palettes specifically that work together across types (diverging, sequential, qualitative), so when I need to have coordinated palettes, I usually have to DIY part of it. Most often I’ll start with a premade sequential palette, usually from ColorBrewer, then generate a handful of qualitative colors based on one of the more saturated colors from my sequential palette.</p>
+<p>Most of the qualitative palette generators online are for interface design, not data viz, but two that I use are:</p>
 <ul>
-<li>Document what you’re doing in <a href="https://mopac-ds.github.io/Learning-Resource-Best-Coding-Practices-in-R/commenting-code.html">comments</a></li>
-<li>Document <a href="https://r-pkgs.org/man.html">functions</a></li>
-<li>Keep track of sources of data—I try to have downloading data be something I do programmatically in a script, whether it’s from an API, downloaded from an open data portal, scraped from a website, <code>curl</code> calls, or anything else.</li>
-<li>If you base your code off a Stack Overflow answer, a tutorial, a chatbot, or anything else, leave yourself a comment with a link to the source. It keeps you honest and will point you back to where you got help in the first place.</li>
-<li>Organize your work into <a href="https://r4ds.hadley.nz/workflow-scripts.html">projects</a> with a consistent structure</li>
-<li>Use naming conventions that describe what you’re doing or what something is</li>
-<li>Write informative <a href="https://github.blog/developer-skills/github/write-better-commits-build-better-projects/">git commit messages</a></li>
-<li>If you get into larger projects, manage orchestration with build tools</li>
-<li><em>READ THE DOCUMENTATION</em></li>
+<li><a href="http://vrl.cs.brown.edu/color">Colorgorical</a>, designed specifically for viz</li>
+<li><a href="https://www.palx.design/">Palx</a>, designed for Material Design UI. I <a href="https://github.com/CT-Data-Haven/stylehaven/blob/main/R/palx.R">ported it to R</a> for my job’s styleguide package</li>
 </ul>
-</section>
-<section id="documenting-code" class="level2">
-<h2 class="anchored" data-anchor-id="documenting-code">Documenting code</h2>
-<p>One of the most important things you can do as a programmer is to document your code. This can be hard to do well, but it’s essential to making sure your code is clear and accountable and that your work can be reproduced or repurposed. (If you’ve followed the <a href="https://www.nature.com/articles/533452a">“replicability crisis”</a> in the sciences over the past decade or so, you’ve seen what can go very wrong when your work isn’t documented accurately for yourself and others!)</p>
-<p>A common suggestion is to write your code assuming you’ll come back to it in 6 months and need to be able to pick up where you left off. I usually also assume a coworker or colleague will need to rerun or reuse my code, so even if I’m doing something that I’ll remember 6 months from now, they might not know what things mean. It also gets me out of spending unnecessary amounts of time walking interns through an analysis if I can say, “I tried to document everything really well, so read through it, run all the code, and let me know if you need help after that.” Documenting code also helps ease the transition into package development, which requires <em>a lot</em> of documentation.</p>
-<p>I don’t document <em>everything</em>—plenty of my work is routine and straightforward enough—but some of the things I try to always take note of:</p>
-<ul>
-<li>Any sort of analysis or process that’s <strong>out of the ordinary or complex</strong>. Don’t assume you’ll remember later why you used a new approach.</li>
-<li>Anything I know <strong>someone else will need</strong> to be able to reference. Sometimes I do EDA on something that a coworker will then finish up or need to write about. I need to make sure they can do that accurately.</li>
-<li><strong>Outside sources</strong> that don’t come from that specific project. If your project is contained within a set of folders, and you’ve copied data in from some other project, make a note of where it comes from so if you need to update it you know where to get it from.</li>
-<li><strong>Decision-making</strong> that you might need to keep track of or argue for later. e.g.&nbsp;a comparison of categories between datasets with a note that says “these categories changed significantly since the previous data collection” will be helpful when someone asks why you didn’t include trends in an analysis.</li>
-<li><strong>References</strong>. If I came up with some code based on a Stack Overflow post or a blog post somewhere, or I’m building off of someone else’s methodology, I’ll usually include a link in my comments.</li>
-</ul>
-<p>This also applies to simple things like organizing your projects. If you have a bunch of folders called things like “data analysis 1” and they all contain a jumble of different notebooks and scripts for different purposes, and the scripts are all called “analysis_of_stuff.R”, you’re going to lose things easily and not know how different pieces build on each other. Similarly, don’t spend time doing an analysis only to write your data out to a file called “data.csv” and a plot called “map.png”. This might seem obvious, <em>but I’ve seen people do all of these things</em>.</p>
-</section>
-<section id="git-commit-messages" class="level2">
-<h2 class="anchored" data-anchor-id="git-commit-messages">Git commit messages</h2>
-<p>We’ll use git for version control with our work in this class, as you have in previous classes. If you need a refresher or references, I recommend:</p>
-<ul>
-<li>Chacon, S., &amp; Straub, B. (2014). Pro Git (2nd ed). Apress L. P. https://git-scm.com/book/en/v2 for detailed references,</li>
-<li><a href="https://dangitgit.com">Dang It, Git?!</a> for things that commonly go wrong (more commonly known by its other name, Oh Shit, Git?!, and available as an illustrated zine)</li>
-<li>Bryan, J. (2025). Happy git and GitHub for the useR. https://happygitwithr.com/</li>
-</ul>
-<p>When you finish some portion of a task in writing code or documentation, you’ll want to save, add, and commit your changes to the version history. You’ll either do this in a GUI, like the one included in RStudio, GitHub Desktop, or some similar software, or on the command line. <strong>Either way, your commit message should be fairly specific and informative.</strong></p>
-<p>If you use a time tracker for work, like log how much time you spend on specific projects, think of commit messages as being part of a similar system. When I’m billing a client, I need to report something more specific than “Wrote code,” and something a little less specific than “Wrote the script income_analysis_by_geography.R to conduct the following analyses…” A happy medium would be something like “Income analysis by geography for viz relaunch.” Your commit messages should serve a similar purpose: they give a brief record of what you did in that chunk of work so that you, your colleagues, and any clients who might see your code know what you did and why you changed it.</p>
-<p>Translating that to commit messages:</p>
-<ul>
-<li>“Push to GitHub” is not an informative commit message.</li>
-<li>“Add the utility functions dollar, dollar_thousands, dollar_change, lots_of_dollars, dollars_with_cents to utils/helper_functions.R” is too much detail and repeats info tracked in the commit itself</li>
-<li>“Add functions to format dollar amounts to helpers” is a good middle ground</li>
-</ul>
-</section>
-<section id="reusable-code" class="level2">
-<h2 class="anchored" data-anchor-id="reusable-code">Reusable code</h2>
-<p>One rule of thumb I’ve heard is that it’s fine to repeat your code to do the same thing twice, but if you need to do it a third time, <a href="https://r4ds.hadley.nz/functions">you should write a function</a>. It might mean taking a step back from what you’re working on at the moment, but it’s pretty much always worth the time. Alongside documenting your code in general, it’s important to document your functions—what they do, what the arguments mean, what types of values arguments can take. Try to your functions and their arguments in ways that make it clear what they mean as well.</p>
-</section>
-<section id="organization" class="level2">
-<h2 class="anchored" data-anchor-id="organization">Organization</h2>
-<p>Come up with a structure of directories you like for a project, and stick with it. The starter repo for each project in this class will have a pared down version of what I usually use, but a full version of what I might have, even for a small project, looks like this:</p>
-<pre><code>cool_project          
- ¦--analysis          # EDA, notebooks, and scripts that create output
- |--design            # scripts *only* for creating publishable charts
- ¦--fetch_data        # raw data, often downloaded in a script
- ¦   ¦--permits_xlsx  # folders for each raw data source
- ¦   °--housing_pums       
- ¦--input_data        # cleaned data that is sourced for the project
- ¦--output_data       # data that's a product of analysis in this project
- ¦--plots             # plots that can be distributed or published
- ¦--prep_scripts      # scripts that download, clean, reshape data
- °--utils             # misc scripts &amp; bits of data to use throughout the project</code></pre>
-<section id="know-where-your-files-are-how-to-get-to-them" class="level3">
-<h3 class="anchored" data-anchor-id="know-where-your-files-are-how-to-get-to-them">Know where your files are &amp; how to get to them</h3>
-<p>When you run code in notebook formats like Rmarkdown and quarto, the code is executed relative to that file. When you source a script, code is executed relative to where it’s sourced from, likely the root directory of the project. This can lead to errors when you render a notebook, because your code can no longer find files you’re referring to. The helper function <code>here::here</code> points to the root of the project and builds paths from there.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>An aside: build tools
+<p>What I like about both of these generators is that you can give a starting color and generate the rest of the colors relative to that.</p>
+<p>Here I use a sequential palette for age groups, then pull out a color to use as a base for a qualitative palette. Then I pass that color through Colorgorical and use the resulting palette for locations.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="co"># only 4 age groups, but I'll grab 5 and drop the lightest color</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>seq_pal <span class="ot">&lt;-</span> RColorBrewer<span class="sc">::</span><span class="fu">brewer.pal</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">name =</span> <span class="st">"YlGnBu"</span>)[<span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>]</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>colorspace<span class="sc">::</span><span class="fu">swatchplot</span>(seq_pal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="09_styleguides_files/figure-html/pals-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Build tools are outside the scope of this class, but for larger projects especially or projects that will need to be updated over time, they’ll save you a lot of headaches. I have some projects that I rebuild once a year when new ACS data comes out, and I’ve got things down to where I can make one or two calls on the command line flagging the year as a variable, and all the data wrangling and analyses are ready to go. In fact, this site rebuilds from a frozen list of packages every time I push to GitHub, and if that build is successful, it publishes automatically.</p>
-<p>Some tools I use:</p>
-<ul>
-<li><a href="https://www.gnu.org/software/make/">GNU Make</a>, the OG build tool</li>
-<li><a href="https://snakemake.readthedocs.io/">Snakemake</a>, like GNU Make but written in Python and designed for data analysis</li>
-<li><a href="https://github.com/features/actions">GitHub actions</a>, including ones specifically for <a href="https://github.com/r-lib/actions/">R</a></li>
-<li><a href="https://www.docker.com/">Docker</a>, build a small isolated environment for your projects, some designed for <a href="https://github.com/rocker-org/rocker-versioned2">R</a></li>
-<li>Package &amp; environment managers: <a href="https://mamba.readthedocs.io">mamba</a> or <a href="https://github.com/astral-sh/uv">uv</a> for Python, <a href="https://rstudio.github.io/renv/">renv</a> for R</li>
-</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="co"># I like the 3rd color best</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>base_color <span class="ot">&lt;-</span> seq_pal[<span class="dv">3</span>]</span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>base_color</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "#2C7FB8"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="co"># after messing around with colorgorical...</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a><span class="co"># give the colors names, because I want baltimore to get the blue color that matches seq_pal</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>qual_pal <span class="ot">&lt;-</span> <span class="fu">setNames</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>    <span class="fu">c</span>(<span class="st">"#2d7fb8"</span>, <span class="st">"#99c840"</span>, <span class="st">"#a181d7"</span>),</span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>    <span class="fu">c</span>(<span class="st">"Baltimore city"</span>, <span class="st">"Maryland"</span>, <span class="st">"United States"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>colorspace<span class="sc">::</span><span class="fu">swatchplot</span>(qual_pal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="09_styleguides_files/figure-html/pals-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>percent <span class="ot">&lt;-</span> scales<span class="sc">::</span><span class="fu">label_percent</span>(<span class="at">accuracy =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>pop_by_age <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(name <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"United States"</span>, <span class="st">"Maryland"</span>, <span class="st">"Baltimore city"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(name, ages00_17<span class="sc">:</span>ages65plus) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="sc">-</span>name, <span class="at">names_to =</span> <span class="st">"age"</span>, <span class="at">values_to =</span> <span class="st">"share"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name)) <span class="sc">|&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a>    <span class="co"># I'd actually use regex to do this programmatically</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a>        <span class="at">age =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(age) <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-label="9"></a>            forcats<span class="sc">::</span><span class="fu">fct_recode</span>(</span>
+<span id="cb6-10"><a href="#cb6-10" aria-label="10"></a>                <span class="st">"Under age 18"</span> <span class="ot">=</span> <span class="st">"ages00_17"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-label="11"></a>                <span class="st">"Ages 18-34"</span> <span class="ot">=</span> <span class="st">"ages18_34"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-label="12"></a>                <span class="st">"Ages 35-64"</span> <span class="ot">=</span> <span class="st">"ages35_64"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-label="13"></a>                <span class="st">"Ages 65+"</span> <span class="ot">=</span> <span class="st">"ages65plus"</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-label="14"></a>            )</span>
+<span id="cb6-15"><a href="#cb6-15" aria-label="15"></a>    )</span>
+<span id="cb6-16"><a href="#cb6-16" aria-label="16"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-label="17"></a>young_adults <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-label="18"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(level <span class="sc">!=</span> <span class="st">"tract"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-label="19"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(name, ages18_34) <span class="sc">|&gt;</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-label="20"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb6-21"><a href="#cb6-21" aria-label="21"></a>        <span class="at">level2 =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-label="22"></a>            forcats<span class="sc">::</span><span class="fu">fct_other</span>(</span>
+<span id="cb6-23"><a href="#cb6-23" aria-label="23"></a>                <span class="at">keep =</span> <span class="fu">c</span>(<span class="st">"United States"</span>, <span class="st">"Maryland"</span>, <span class="st">"Baltimore city"</span>),</span>
+<span id="cb6-24"><a href="#cb6-24" aria-label="24"></a>                <span class="at">other_level =</span> <span class="st">"Other MD counties"</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-label="25"></a>            )</span>
+<span id="cb6-26"><a href="#cb6-26" aria-label="26"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-label="27"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb6-28"><a href="#cb6-28" aria-label="28"></a>        <span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span> forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(ages18_34)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-label="29"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>pop_age_chart <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pop_by_age, <span class="fu">aes</span>(<span class="at">x =</span> name, <span class="at">y =</span> share, <span class="at">fill =</span> age)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>    <span class="fu">geom_col</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>        <span class="at">width =</span> <span class="fl">0.8</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-label="4"></a>        <span class="at">position =</span> <span class="fu">position_fill</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-label="5"></a>        <span class="at">alpha =</span> <span class="fl">0.9</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-label="6"></a>    ) <span class="sc">+</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-label="7"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> seq_pal)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-label="8"></a>pop_age_chart</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="09_styleguides_files/figure-html/pop-by-age-1.png" class="img-fluid figure-img" alt="A stacked bar chart of population share by age group for the United States, Maryland, and Baltimore city. This is an example of using coordinated palettes between charts, where this chart uses a green-blue sequential palette." width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>young_adults_chart <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>    young_adults,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>    <span class="fu">aes</span>(<span class="at">x =</span> ages18_34, <span class="at">y =</span> name, <span class="at">fill =</span> level2)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>) <span class="sc">+</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a>    <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-label="6"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(qual_pal, <span class="st">"Other MD counties"</span> <span class="ot">=</span> <span class="st">"gray65"</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-label="7"></a>young_adults_chart</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="09_styleguides_files/figure-html/young-adults-1.png" class="img-fluid figure-img" alt="A horizontal bar chart of the share of population ages 18 to 34 for the United States, Maryland, and all counties in Maryland. The country, state, and Baltimore city are highlighted in a qualitative palette that is designed to be harmonious with the previous chart's sequential palette." width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
-</section>
-<section id="lab" class="level2">
-<h2 class="anchored" data-anchor-id="lab">Lab</h2>
-<p>In the lab for this topic, we’ll get started with developing helper functions that we’ll use and iterate on throughout the course.</p>
+<section id="themes" class="level2">
+<h2 class="anchored" data-anchor-id="themes">Themes</h2>
+<p>ggplot has several base themes (see <code>?ggplot2::theme_gray</code> for the default and to link to any of the others built in). These each take a few basic arguments like font size that serve as starting points for other aspects of the theme to be calculated from. You can edit individual theme elements by adding <code>theme(_arguments_)</code> to your plot.</p>
+<p>However, the theme arguments are very tedious, and there are almost 150 of them, so trying to give a rundown of them would be pointless. Just start with one of the plain built-in themes (<code>theme_gray</code> is the default, I usually use <code>theme_minimal</code>) and then read the docs (<code>?ggplot2::theme</code>) to find the tiny piece of the chart you’re trying to change. Some theme arguments take strings or numbers, but many of them take the functions <code>element_text</code>, <code>element_line</code>, or <code>element_rect</code> (or a few others). In addition to the docs, a lot of the <a href="https://ggplot2.tidyverse.org/articles/">ggplot FAQ pages</a> are related to theming.</p>
+<p>Here’s how I would use the theme settings and some adjustments to the scales to clean up the previous charts. Normally I’d put all the theme arguments into one <code>theme</code> function call with lots of arguments, but by doing separate calls on separate lines, you can more easily comment out each line to see what each argument does.</p>
+<p>When setting theme elements and using preset themes, whatever comes last will override previous settings. So if you call <code>theme</code> with some arguments, then add <code>theme_gray()</code>, the defaults of <code>theme_gray</code> will override any corresponding ones you already set.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>pop_age_chart <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>    <span class="co"># add percentage labels and drop extra space at bottom</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a>    <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-label="4"></a>        <span class="at">labels =</span> percent,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-label="5"></a>        <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.05</span>))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-label="6"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-label="7"></a>    <span class="co"># reverse legend order to match bar stacking</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-label="8"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>)) <span class="sc">+</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-label="9"></a>    <span class="fu">labs</span>(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-label="10"></a>        <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-label="11"></a>        <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-12"><a href="#cb9-12" aria-label="12"></a>        <span class="at">fill =</span> <span class="cn">NULL</span>,</span>
+<span id="cb9-13"><a href="#cb9-13" aria-label="13"></a>        <span class="at">title =</span> <span class="st">"More than a quarter of Baltimore's residents are young adults"</span>,</span>
+<span id="cb9-14"><a href="#cb9-14" aria-label="14"></a>        <span class="at">subtitle =</span> <span class="st">"Share of population by age group, 2024"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-label="15"></a>        <span class="at">caption =</span> <span class="st">"Source: US Census Bureau American Community Survey 2024 5-year estimates"</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-label="16"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-label="17"></a>    <span class="co"># theme_minimal already drops some of the extra elements like axis ticks, border, etc</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-label="18"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-label="19"></a>    <span class="co"># drop vertical grid lines</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-label="20"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-label="21"></a>    <span class="co"># darken horizontal grid lines</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-label="22"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray80"</span>)) <span class="sc">+</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-label="23"></a>    <span class="co"># align titles to plot, not inner panel</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-label="24"></a>    <span class="co"># subtitle inherits from title</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-label="25"></a>    <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>) <span class="sc">+</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-label="26"></a>    <span class="co"># align caption to plot, doesn't inherit from title</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-label="27"></a>    <span class="fu">theme</span>(<span class="at">plot.caption.position =</span> <span class="st">"plot"</span>) <span class="sc">+</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-label="28"></a>    <span class="co"># give caption a bit more space at top</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-label="29"></a>    <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin_part</span>(<span class="at">t =</span> <span class="dv">8</span>))) <span class="sc">+</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-label="30"></a>    <span class="co"># align legend to the right side of the plot and 95% along the height</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-label="31"></a>    <span class="fu">theme</span>(<span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.95</span>)) <span class="sc">+</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-label="32"></a>    <span class="co"># make legend keys wider than they are tall</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-label="33"></a>    <span class="fu">theme</span>(<span class="at">legend.key.width =</span> <span class="fu">unit</span>(<span class="fl">1.5</span>, <span class="st">"lines"</span>)) <span class="sc">+</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-label="34"></a>    <span class="fu">theme</span>(<span class="at">legend.key.height =</span> <span class="fu">unit</span>(<span class="dv">1</span>, <span class="st">"lines"</span>)) <span class="sc">+</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-label="35"></a>    <span class="co"># add spacing between legend keys</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-label="36"></a>    <span class="fu">theme</span>(<span class="at">legend.key.spacing.y =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">"lines"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="09_styleguides_files/figure-html/pop-age-themed-1.png" class="img-fluid figure-img" alt="A stacked bar chart of population share by age group for the United States, Maryland, and Baltimore city. This is an example of using coordinated palettes between charts, where this chart uses a green-blue sequential palette, and a cleaned up theme." width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>young_adults_chart <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>    <span class="co"># add percentage labels and drop extra space at left</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a>    <span class="co"># add a little more space at the right to force including 30%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-label="4"></a>    <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb10-5"><a href="#cb10-5" aria-label="5"></a>        <span class="at">labels =</span> percent,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-label="6"></a>        <span class="at">expand =</span> <span class="fu">expansion</span>(<span class="at">mult =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.1</span>)),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-label="7"></a>        <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="fl">0.5</span>, <span class="at">by =</span> <span class="fl">0.1</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-label="8"></a>    ) <span class="sc">+</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-label="9"></a>    <span class="fu">labs</span>(</span>
+<span id="cb10-10"><a href="#cb10-10" aria-label="10"></a>        <span class="at">x =</span> <span class="cn">NULL</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-label="11"></a>        <span class="at">y =</span> <span class="cn">NULL</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-label="12"></a>        <span class="at">title =</span> <span class="st">"More than a quarter of Baltimore's residents are young adults"</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-label="13"></a>        <span class="at">subtitle =</span> <span class="st">"Share of population ages 18-34, 2024"</span>,</span>
+<span id="cb10-14"><a href="#cb10-14" aria-label="14"></a>        <span class="at">caption =</span> <span class="st">"Source: US Census Bureau American Community Survey 2024 5-year estimates"</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-label="15"></a>    ) <span class="sc">+</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-label="16"></a>    <span class="co"># theme_minimal already drops some of the extra elements like axis ticks, border, etc</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-label="17"></a>    <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">13</span>) <span class="sc">+</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-label="18"></a>    <span class="co"># drop horizontal grid lines</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-label="19"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>()) <span class="sc">+</span></span>
+<span id="cb10-20"><a href="#cb10-20" aria-label="20"></a>    <span class="co"># darken vertical grid lines</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-label="21"></a>    <span class="fu">theme</span>(<span class="at">panel.grid.major.x =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"gray80"</span>)) <span class="sc">+</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-label="22"></a>    <span class="co"># align titles to plot, not inner panel</span></span>
+<span id="cb10-23"><a href="#cb10-23" aria-label="23"></a>    <span class="co"># subtitle inherits from title</span></span>
+<span id="cb10-24"><a href="#cb10-24" aria-label="24"></a>    <span class="fu">theme</span>(<span class="at">plot.title.position =</span> <span class="st">"plot"</span>) <span class="sc">+</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-label="25"></a>    <span class="co"># align caption to plot, doesn't inherit from title</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-label="26"></a>    <span class="fu">theme</span>(<span class="at">plot.caption.position =</span> <span class="st">"plot"</span>) <span class="sc">+</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-label="27"></a>    <span class="co"># give caption a bit more space at top</span></span>
+<span id="cb10-28"><a href="#cb10-28" aria-label="28"></a>    <span class="fu">theme</span>(<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">margin =</span> <span class="fu">margin_part</span>(<span class="at">t =</span> <span class="dv">8</span>))) <span class="sc">+</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-label="29"></a>    <span class="co"># drop legend---self-explanatory</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-label="30"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="09_styleguides_files/figure-html/young-adults-themed-1.png" class="img-fluid figure-img" alt="A horizontal bar chart of the share of population ages 18 to 34 for the United States, Maryland, and all counties in Maryland. The country, state, and Baltimore city are highlighted in a qualitative palette that is designed to be harmonious with the previous chart's sequential palette. In this version of the chart, the theme has been cleaned up." width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>There’s a package <a href="https://cran.r-project.org/web/packages/ggThemeAssist/"><code>ggthemeassist</code></a> that gives you an RStudio add-in to interactively edit a theme. It hasn’t been updated in a long time, so there are probably some arguments missing or that have changed. There’s an <a href="https://github.com/ColinConwell/ggThemeAssist">updated fork</a> on GitHub that I haven’t used and can’t vouch for.</p>
 
 
+
 </section>
+
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1018,13 +1179,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../notes/01_intro_to_data_viz.html" class="pagination-link" aria-label="01. Intro to data viz">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">01. Intro to data viz</span>
+      <a href="../notes/08_color.html" class="pagination-link" aria-label="08. Color">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">08. Color</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notes/03_encodings.html" class="pagination-link" aria-label="03. Visual encodings">
-        <span class="nav-page-text">03. Visual encodings</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../notes/10_text_audience.html" class="pagination-link" aria-label="10. Text, audience, accessibility">
+        <span class="nav-page-text">10. Text, audience, accessibility</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1033,4 +1194,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/02_good_code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/02_good_code.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/09_styleguides.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/09_styleguides.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
