@@ -882,11 +882,11 @@ Wilke, C. O. (2019). <em>Fundamentals of <span>Data Visualization</span></em>. <
 <h2 class="anchored" data-anchor-id="audience">Audience</h2>
 <p>Tailor your work to your audience. That includes understanding:</p>
 <ul>
-<li>who’s reading it</li>
-<li>their background knowledge, experiences, and familiarity with the data</li>
-<li>their purpose in reading it</li>
-<li>the context in which they’re reading it</li>
-<li>what (if anything) you want them to do with the information</li>
+<li><strong>who</strong> is reading it</li>
+<li>their <strong>background</strong> knowledge, experiences, and familiarity with the data</li>
+<li>their <strong>purpose</strong> in reading it</li>
+<li>the <strong>context</strong> in which they’re reading it</li>
+<li>what <strong>actions</strong> you want them to take with the information, if any</li>
 </ul>
 <p>I’m going to make different charts of the same data to present to a local board of education vs the math teachers in that district vs their students. I’m going to use different framing for a visualization that accompanies a technical report vs a political petition.</p>
 <p>One of the first considerations you’ll make is the type of chart. I’ve said it already but I’m very jealous of everyone who can publish a histogram; I’m pretty much always working for an audience that I can’t assume knows how to read a histogram. I have to either pick a different chart type, or couch it in annotations and other helpers to teach my reader how to read it (interactive visualization makes this a little easier).</p>
@@ -913,7 +913,7 @@ Bump, P. (2026). These connecticut towns reveal who backed lamont most. In <em>C
 </section>
 <section id="accessibility" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="accessibility">Accessibility</h2>
-<p>Throughout my time doing data viz, accessibility has been a major oversight of mine, but it’s true, and it’s for no other reason than privilege. On a day-to-day basis I don’t have to think about whether learning or interacting with something will depend on my ability to see well, read complicated text, speak a certain language, navigate stimuli, process information, or access technology and resources. My hope for you all is that you <strong>start out your data viz careers being more mindful than I’ve been.</strong></p>
+<p>Throughout my time doing data viz, accessibility has been a major oversight of mine, and it’s for no other reason than privilege. On a day-to-day basis I don’t have to think about whether learning or interacting with something will depend on my ability to see well, read complicated text, speak a certain language, navigate stimuli, process information, or access technology and resources. My hope for you all is that you <strong>start out your data viz careers being more mindful than I’ve been.</strong></p>
 <p>For the most part when we talk about accessibility, we mean this with respect to disabilities; in static data visualization, this mostly means visual impairments such as blindness, low vision, and colorblindness/color vision deficiency (CVD). If you go on to do interactive or web-based visualization, you’ll also need to think about things like navigation (access for keyboards and assistive devices vs clicking menus only) and animation (can be overstimulating or hard to process).</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
@@ -926,8 +926,10 @@ Webb, E. (2018). <em>Your <span>Interactive Makes Me Sick</span></em>. <a href="
 <p>You should generally assume your work will be read by at least a few readers with CVD and plan your color palettes accordingly. Wilke mentions this as a reason for <a href="https://clauswilke.com/dataviz/redundant-coding.html">redundant coding</a> as well, so you’re not relying on color alone to differentiate values.</p>
 
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
-<p>Something that blew my mind is in Frank Elavsky’s interview on <em>PolicyViz</em>. He acknowledges that awareness of CVD has become the norm in data viz, but that it actually predominantly affects white men, and that it shouldn’t be too surprising that that is often the only accommodation made in a field where white men are overrepresented.</p>
-</div></div><p>The most common form of CVD is what’s called red-green colorblindness. Many common R color palettes are colorblind-friendly, and some tools will help you tell whether a palette is or not, or for which color deficiencies they are legible.</p>
+<p>Something that blew my mind is in Frank Elavsky’s interview on <em>PolicyViz</em>&nbsp;<span class="citation" data-cites="schwabish2021c">(<a href="#ref-schwabish2021c" role="doc-biblioref">Schwabish, 2021</a>)</span>. He acknowledges that awareness of CVD has become the norm in data viz, but that it actually predominantly affects white men, and that it shouldn’t be too surprising that that is often the only accommodation made in a field where white men are overrepresented.</p>
+<div id="ref-schwabish2021c" class="csl-entry" role="listitem">
+Schwabish, J. (2021). <em>Frank <span>Elavsky</span></em> (No. 208). <a href="https://policyviz.com/podcast/episode-208-frank-elavsky/">https://policyviz.com/podcast/episode-208-frank-elavsky/</a>
+</div></div></div><p>The most common form of CVD is what’s called red-green colorblindness. Many common R color palettes are colorblind-friendly, and some tools will help you tell whether a palette is or not, or for which color deficiencies they are legible.</p>
 <p>Some code examples:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a><span class="co"># Not all Color Brewer palettes are CVD-friendly, but you can filter in the R package</span></span>
@@ -1110,7 +1112,7 @@ National Center for Education Statistics. (2020). <em><span>Program for the Inte
 </section>
 <section id="other-very-cool-techniques" class="level3">
 <h3 class="anchored" data-anchor-id="other-very-cool-techniques">Other very cool techniques</h3>
-<p>People have come up with lots of other creative ways to make data visualization more accessible, including by bypassing the visual component. I’ve heard of people doing data sonification, physical data sculptures you can touch, and visualizations that incorporate braille.</p>
+<p>People have come up with lots of other creative ways to make data visualization more accessible, including by bypassing the visual component. I’ve heard of people doing data sonification, physical data sculptures you can touch, and visualizations that incorporate braille. Every episode of <a href="https://creators.spotify.com/pod/profile/ddjpodcast/">The Data Journalism Podcast</a> (definitely recommend it) opens with a data sonification.</p>
 
 
 
