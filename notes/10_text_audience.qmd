@@ -216,11 +216,11 @@ ggplot(unemp_to_lbl, aes(x = date, y = rate, color = name)) +
 
 Tailor your work to your audience. That includes understanding:
 
-* who's reading it
-* their background knowledge, experiences, and familiarity with the data
-* their purpose in reading it
-* the context in which they're reading it
-* what (if anything) you want them to do with the information
+* **who** is reading it
+* their **background** knowledge, experiences, and familiarity with the data
+* their **purpose** in reading it
+* the **context** in which they're reading it
+* what **actions** you want them to take with the information, if any
 
 I'm going to make different charts of the same data to present to a local board of education vs the math teachers in that district vs their students. I'm going to use different framing for a visualization that accompanies a technical report vs a political petition.
 
@@ -239,7 +239,7 @@ That's not to say you can't or shouldn't use more complex charts in all situatio
 ## Accessibility
 
 Throughout my time doing data viz, accessibility has been a major oversight
-of mine, but it's true, and it's for no other reason than privilege. On
+of mine, and it's for no other reason than privilege. On
 a day-to-day basis I don't have to think about whether learning or
 interacting with something will depend on my ability to see well, read
 complicated text, speak a certain language, navigate stimuli, process
@@ -278,7 +278,7 @@ so you're not relying on color alone to differentiate values.
 
 ::: {.aside}
 Something that blew my mind is in Frank Elavsky's interview on
-*PolicyViz*. He acknowledges that awareness of CVD has become the
+*PolicyViz*\ [@schwabish2021c]. He acknowledges that awareness of CVD has become the
 norm in data viz, but that it actually predominantly affects white
 men, and that it shouldn't be too surprising that that is often the
 only accommodation made in a field where white men are
@@ -470,4 +470,4 @@ There are some tools online to estimate reading level algorithmically, though th
 
 ### Other very cool techniques
 
-People have come up with lots of other creative ways to make data visualization more accessible, including by bypassing the visual component. I've heard of people doing data sonification, physical data sculptures you can touch, and visualizations that incorporate braille.
+People have come up with lots of other creative ways to make data visualization more accessible, including by bypassing the visual component. I've heard of people doing data sonification, physical data sculptures you can touch, and visualizations that incorporate braille. Every episode of [The Data Journalism Podcast](https://creators.spotify.com/pod/profile/ddjpodcast/) (definitely recommend it) opens with a data sonification.
