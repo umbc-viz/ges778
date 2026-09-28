@@ -1,0 +1,191 @@
+---
+title: 09. Styleguides
+---
+
+We won't spend much time on styleguides, and I don't have much to say beyond what's in the readings. There's more that goes into styling a set of charts, but the 2 things you'll focus on for this class are **colors** that work across charts, and **theme elements** with a minimal amount of chartjunk.^[This is a Tufte term. See @lan2025 for fun examples]
+
+## Color
+
+We already talked about color, but in thinking about how you assemble a collection of charts, just make sure your colors work across multiple charts and chart types. This might mean using darker or more saturated colors because the muted colors that worked well for large bars are hard to see in a scatterplot or line chart. 
+
+Unfortunately I haven't seen any collections of palettes specifically that work together across types (diverging, sequential, qualitative), so when I need to have coordinated palettes, I usually have to DIY part of it. Most often I'll start with a premade sequential palette, usually from ColorBrewer, then generate a handful of qualitative colors based on one of the more saturated colors from my sequential palette. 
+
+Most of the qualitative palette generators online are for interface design, not data viz, but two that I use are:
+
+* [Colorgorical](http://vrl.cs.brown.edu/color), designed specifically for viz
+* [Palx](https://www.palx.design/), designed for Material Design UI. I [ported it to R](https://github.com/CT-Data-Haven/stylehaven/blob/main/R/palx.R) for my job's styleguide package
+
+What I like about both of these generators is that you can give a starting color and generate the rest of the colors relative to that.
+
+Here I use a sequential palette for age groups, then pull out a color to use as a base for a qualitative palette. Then I pass that color through Colorgorical and use the resulting palette for locations.
+
+```{r}
+#| label: pals
+#| fig-height: 3 
+library(ggplot2)
+# only 4 age groups, but I'll grab 5 and drop the lightest color
+seq_pal <- RColorBrewer::brewer.pal(n = 5, name = "YlGnBu")[2:5]
+colorspace::swatchplot(seq_pal)
+
+# I like the 3rd color best
+base_color <- seq_pal[3]
+base_color
+
+# after messing around with colorgorical...
+# give the colors names, because I want baltimore to get the blue color that matches seq_pal
+qual_pal <- setNames(
+    c("#2d7fb8", "#99c840", "#a181d7"),
+    c("Baltimore city", "Maryland", "United States")
+)
+colorspace::swatchplot(qual_pal)
+
+percent <- scales::label_percent(accuracy = 1)
+```
+
+```{r}
+#| label: data-prep
+pop_by_age <- justviz::acs |>
+    dplyr::filter(name %in% c("United States", "Maryland", "Baltimore city")) |>
+    dplyr::select(name, ages00_17:ages65plus) |>
+    tidyr::pivot_longer(-name, names_to = "age", values_to = "share") |>
+    dplyr::mutate(name = forcats::as_factor(name)) |>
+    # I'd actually use regex to do this programmatically
+    dplyr::mutate(
+        age = forcats::as_factor(age) |>
+            forcats::fct_recode(
+                "Under age 18" = "ages00_17",
+                "Ages 18-34" = "ages18_34",
+                "Ages 35-64" = "ages35_64",
+                "Ages 65+" = "ages65plus"
+            )
+    )
+
+young_adults <- justviz::acs |>
+    dplyr::filter(level != "tract") |>
+    dplyr::select(name, ages18_34) |>
+    dplyr::mutate(
+        level2 = forcats::as_factor(name) |>
+            forcats::fct_other(
+                keep = c("United States", "Maryland", "Baltimore city"),
+                other_level = "Other MD counties"
+            )
+    ) |>
+    dplyr::mutate(
+        name = forcats::as_factor(name) |> forcats::fct_reorder(ages18_34)
+    )
+```
+
+```{r}
+#| label: pop-by-age
+#| fig-alt: "A stacked bar chart of population share by age group for the United States, Maryland, and Baltimore city. This is an example of using coordinated palettes between charts, where this chart uses a green-blue sequential palette."
+pop_age_chart <- ggplot(pop_by_age, aes(x = name, y = share, fill = age)) +
+    geom_col(
+        width = 0.8,
+        position = position_fill(reverse = TRUE),
+        alpha = 0.9
+    ) +
+    scale_fill_manual(values = seq_pal)
+pop_age_chart
+```
+
+```{r}
+#| label: young-adults
+#| fig-height: 6
+#| fig-alt: "A horizontal bar chart of the share of population ages 18 to 34 for the United States, Maryland, and all counties in Maryland. The country, state, and Baltimore city are highlighted in a qualitative palette that is designed to be harmonious with the previous chart's sequential palette."  
+young_adults_chart <- ggplot(
+    young_adults,
+    aes(x = ages18_34, y = name, fill = level2)
+) +
+    geom_col(width = 0.8, alpha = 0.9) +
+    scale_fill_manual(values = c(qual_pal, "Other MD counties" = "gray65"))
+young_adults_chart
+```
+
+## Themes
+
+ggplot has several base themes (see `?ggplot2::theme_gray` for the default and to link to any of the others built in). These each take a few basic arguments like font size that serve as starting points for other aspects of the theme to be calculated from. You can edit individual theme elements by adding `theme(_arguments_)` to your plot. 
+
+However, the theme arguments are very tedious, and there are almost 150 of them, so trying to give a rundown of them would be pointless. Just start with one of the plain built-in themes (`theme_gray` is the default, I usually use `theme_minimal`) and then read the docs (`?ggplot2::theme`) to find the tiny piece of the chart you're trying to change. Some theme arguments take strings or numbers, but many of them take the functions `element_text`, `element_line`, or `element_rect` (or a few others). In addition to the docs, a lot of the [ggplot FAQ pages](https://ggplot2.tidyverse.org/articles/) are related to theming. 
+
+Here's how I would use the theme settings and some adjustments to the scales to clean up the previous charts. Normally I'd put all the theme arguments into one `theme` function call with lots of arguments, but by doing separate calls on separate lines, you can more easily comment out each line to see what each argument does.
+
+When setting theme elements and using preset themes, whatever comes last will override previous settings. So if you call `theme` with some arguments, then add `theme_gray()`, the defaults of `theme_gray` will override any corresponding ones you already set.
+
+```{r}
+#| label: pop-age-themed
+#| fig-alt: "A stacked bar chart of population share by age group for the United States, Maryland, and Baltimore city. This is an example of using coordinated palettes between charts, where this chart uses a green-blue sequential palette, and a cleaned up theme." 
+pop_age_chart +
+    # add percentage labels and drop extra space at bottom
+    scale_y_continuous(
+        labels = percent,
+        expand = expansion(mult = c(0, 0.05))
+    ) +
+    # reverse legend order to match bar stacking
+    guides(fill = guide_legend(reverse = TRUE)) +
+    labs(
+        x = NULL,
+        y = NULL,
+        fill = NULL,
+        title = "More than a quarter of Baltimore's residents are young adults",
+        subtitle = "Share of population by age group, 2024",
+        caption = "Source: US Census Bureau American Community Survey 2024 5-year estimates"
+    ) +
+    # theme_minimal already drops some of the extra elements like axis ticks, border, etc
+    theme_minimal(base_size = 13) +
+    # drop vertical grid lines
+    theme(panel.grid.major.x = element_blank()) +
+    # darken horizontal grid lines
+    theme(panel.grid.major.y = element_line(color = "gray80")) +
+    # align titles to plot, not inner panel
+    # subtitle inherits from title
+    theme(plot.title.position = "plot") +
+    # align caption to plot, doesn't inherit from title
+    theme(plot.caption.position = "plot") +
+    # give caption a bit more space at top
+    theme(plot.caption = element_text(margin = margin_part(t = 8))) +
+    # align legend to the right side of the plot and 95% along the height
+    theme(legend.justification = c(1, 0.95)) +
+    # make legend keys wider than they are tall
+    theme(legend.key.width = unit(1.5, "lines")) +
+    theme(legend.key.height = unit(1, "lines")) +
+    # add spacing between legend keys
+    theme(legend.key.spacing.y = unit(0.1, "lines"))
+```
+
+```{r}
+#| label: young-adults-themed
+#| fig-height: 6
+#| fig-alt: "A horizontal bar chart of the share of population ages 18 to 34 for the United States, Maryland, and all counties in Maryland. The country, state, and Baltimore city are highlighted in a qualitative palette that is designed to be harmonious with the previous chart's sequential palette. In this version of the chart, the theme has been cleaned up."  
+young_adults_chart +
+    # add percentage labels and drop extra space at left
+    # add a little more space at the right to force including 30%
+    scale_x_continuous(
+        labels = percent,
+        expand = expansion(mult = c(0, 0.1)),
+        breaks = seq(0, 0.5, by = 0.1)
+    ) +
+    labs(
+        x = NULL,
+        y = NULL,
+        title = "More than a quarter of Baltimore's residents are young adults",
+        subtitle = "Share of population ages 18-34, 2024",
+        caption = "Source: US Census Bureau American Community Survey 2024 5-year estimates"
+    ) +
+    # theme_minimal already drops some of the extra elements like axis ticks, border, etc
+    theme_minimal(base_size = 13) +
+    # drop horizontal grid lines
+    theme(panel.grid.major.y = element_blank()) +
+    # darken vertical grid lines
+    theme(panel.grid.major.x = element_line(color = "gray80")) +
+    # align titles to plot, not inner panel
+    # subtitle inherits from title
+    theme(plot.title.position = "plot") +
+    # align caption to plot, doesn't inherit from title
+    theme(plot.caption.position = "plot") +
+    # give caption a bit more space at top
+    theme(plot.caption = element_text(margin = margin_part(t = 8))) +
+    # drop legend---self-explanatory
+    theme(legend.position = "none")
+```
+
+There's a package [`ggthemeassist`](https://cran.r-project.org/web/packages/ggThemeAssist/) that gives you an RStudio add-in to interactively edit a theme. It hasn't been updated in a long time, so there are probably some arguments missing or that have changed. There's an [updated fork](https://github.com/ColinConwell/ggThemeAssist) on GitHub that I haven't used and can't vouch for.
