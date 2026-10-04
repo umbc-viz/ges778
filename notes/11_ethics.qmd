@@ -24,7 +24,7 @@ When you're visualizing data for an audience (i.e. not EDA), you're saying that 
 
 But that also might not cut it. You might be out of your depth as far as methodologies or fields of study go. Be willing to read papers and study other projects to understand their methodologies, build connections with people at your organization or other orgs, contact the researchers or publishers of the data you're using, change course or abandon a project altogether when you're wrong or hitting a wall, and generally learn to ask lots of good questions. Then there's all the ways that people skew their data or methods to force something to work, even if it ends up [not reproducible](https://statmodeling.stat.columbia.edu/category/zombies/). 
 
-You can approach your work with curiosity, integrity, and humility, and **you'll still hit limits**: no amount of EDA or asking a friend is going to make me able to visualize data about international monetary policy well, and that's okay.
+You can approach your work with curiosity, integrity, and humility, and **you'll still hit limits**: no amount of EDA or asking a friend is going to make me able to visualize data about international monetary policy well, and that's okay. It's just not something I can or should do.
 
 > Study every day.
 >
@@ -36,7 +36,7 @@ You can approach your work with curiosity, integrity, and humility, and **you'll
 One of the best ways you can build trust with your audience is by **getting to know the communities** where your work is used and forming long-term relationships there. This is also the hardest and slowest way. My organization has that where we're based, but it's been built up over decades, and we wouldn't necessarily have that reputation in a new place. We also do a lot of our projects in partnership with other organizations and agencies that have been around even longer, or are more deeply embedded in their specific communities. 
 
 ::: {.aside}
-When you try to do research about a community that you don't have connections to, you might end up doing things like trying to ask about gender identity but doing it very very badly. Here's how I illustrated the ways poor wording messed up our analysis for a conference presentation (btw this is called a Sankey diagram). Of course the question and any references to gender identity were removed altogether by the current federal administration.
+When you try to do research about a community that you don't have connections to, you might end up doing things like trying to ask about gender identity but doing it very very badly. Here's how I illustrated the ways poor wording messed up our analysis for a conference presentation in 2024 (btw this is called a Sankey diagram). The question and any references to gender identity were removed altogether by the current federal administration.
 
 ![Sankey diagram of gender identity question, Household Pulse Survey](../assets/pulse-gender-sankey.png){fig-alt="A Sankey diagram showing transgender respondents to a pair of survey questions about gender. The first question asks for sex assigned at birth, with the choices of male or female. The second asks for gender identity, with the choices male, female, transgender, or none of these. The majority of respondents answer 'none of these.' The chart's heading reads, 'Only 21% of transgender adults respond with \'transgender\' as a gender identity.'"}
 :::
@@ -47,7 +47,7 @@ Other ways you can build trust are being open and honest about what you can and 
 
 **You're going to make mistakes in your work**. I messed up the calculations of a major indicator we use a lot, and I noticed it the day the report was going to print, when it was too late to fix it. We put an erratum note online, but I felt foolish, and I always triple-check that calculation now or pass it off to someone else entirely. It puts you in a vulnerable position to admit that you made a mistake in a professional or research setting, but I do truly think it builds good will with your peers and shows that you approach your work with integrity.
 
-## Misuse, deliberate or otherwise
+## Mistakes and misuse, deliberate or otherwise
 
 When you create a visualization and plan to release it publicly, think through all the ways it could be misinterpreted or used for bad purposes. Then, if you can, try to protect against that, knowing that it might not be entirely possible. Sometimes this means **leaving things out** of your analysis or visualization. 
 

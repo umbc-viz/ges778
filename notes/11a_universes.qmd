@@ -1,0 +1,30 @@
+---
+title: 11a. Universes & units of measurement
+---
+
+This is a short thing I want to squeeze in that will help you visualize data accurately and responsibly. It's very easy to misunderstand the **"universe"** of a number and its **units of measurement**, and therefore to make false comparisons or inaccurate descriptions. You can think of these as two parts that together create a measurement:
+
+* What is each thing that is being measured? (unit)
+* What are all the things that could be included? (universe)
+
+You want to make sure you're always comparing apples to apples, or making it clear that two things you're presenting have different universes and therefore can't be compared. 
+
+We've been working a lot with ACS data, and luckily the Census Bureau spells out its universes on each data table. Sometimes they're pretty straightforward (*total population, households, housing units*). Sometimes they require a bit more understanding (*population for whom poverty status is determined, population under 18 years in households*), and sometimes they're messy, especially when dealing with family types (*own children under 18 years in families and subfamilies for whom poverty status is determined*). 
+
+Other examples I encounter regularly:
+
+* Birth outcomes: for some measures, unit might be babies; for others, parent giving birth
+* Proxies: when I analyzed data on police stops, I tried to figure out a population to compare to. I didn't have data on how many people in each census tract had a driver's license, decennial data wasn't out yet so I didn't have reliable local counts of population 16 and up by race, so I just used population. It wasn't ideal.
+* Relationships: is a question being asked of parents, or of adults with a child in their household? These aren't necessarily the same.
+* Survey respondents: is a survey given to the population at large, or just adults?
+* Households: is this rate the share of households, or the share of heads of households, or the share of households by some characteristic of the heads of households?
+
+I usually use chart subtitles to summarize what is being measured, of whom, where, and when. Then, if necessary, I'll go into more detail in a figure note or something similar. e.g. a chart with the subtitle 
+
+> "Share of households without vehicle access by number of workers and race/ethnicity of head of household, 2020" 
+
+then had a note spelling out the universe as 
+
+> "Households included here are those with at least one member between ages 25 and 64. When discussing race and ethnicity of households, values are based on the race/ethnicity of the person designated as head of household when filling out the census, which may differ from other members of the household." 
+
+Because that universe is based on _households_, I wouldn't want to directly compare it to another measure based on _population_.
