@@ -36,7 +36,9 @@ You can approach your work with curiosity, integrity, and humility, and **you'll
 One of the best ways you can build trust with your audience is by **getting to know the communities** where your work is used and forming long-term relationships there. This is also the hardest and slowest way. My organization has that where we're based, but it's been built up over decades, and we wouldn't necessarily have that reputation in a new place. We also do a lot of our projects in partnership with other organizations and agencies that have been around even longer, or are more deeply embedded in their specific communities. 
 
 ::: {.aside}
-When you try to do research about a community that you don't have connections to, you might end up doing things like trying to ask about gender identity but doing it very very badly. Here's how I illustrated the ways poor wording messed up our analysis for a conference presentation in 2024 (btw this is called a Sankey diagram). The question and any references to gender identity were removed altogether by the current federal administration.
+When you try to do research about a community that you don't have connections to, you might end up doing things like trying to ask about gender identity but doing it very very badly. Here's how I illustrated the ways poor wording messed up our analysis for a conference presentation in 2024 (btw this is called a Sankey diagram). I noticed it right away because I'd helped rewrite our survey's gender identity question (it used to be bad), and had recently helped a friend who is trans fill out paperwork with a similarly awkward question. 
+
+Later, the question and any references to gender identity were removed altogether by the current federal administration.
 
 ![Sankey diagram of gender identity question, Household Pulse Survey](../assets/pulse-gender-sankey.png){fig-alt="A Sankey diagram showing transgender respondents to a pair of survey questions about gender. The first question asks for sex assigned at birth, with the choices of male or female. The second asks for gender identity, with the choices male, female, transgender, or none of these. The majority of respondents answer 'none of these.' The chart's heading reads, 'Only 21% of transgender adults respond with \'transgender\' as a gender identity.'"}
 :::
@@ -87,7 +89,11 @@ It seems noteworthy that one of the first datasets to disappear and set off alar
 
 ## Where this leaves us
 
-You're getting started in a career in GIS in a time where there is data everywhere, whether we want it to exist or not. Many of our systems of knowledge creation and retrieval, and our understandings of what is and is not true, are in flux. That means you have a big role to play in a weird world. I can't totally prepare you for it, but you're going to get started navigating it right now because, unsurprisingly, the environmental justice dataset I used as an example in setting up this course has since been deleted from the EPA's website and FTP server. Luckily, many people (myself included) made copies of it. We'll work with it in this week's lab. Fun times!
+You're getting started in a career in GIS in a time where there is data everywhere, whether we want it to exist or not. Many of our systems of knowledge creation and retrieval, and our understandings of what is and is not true, are in flux. That means you have a big role to play in a weird world. I can't totally prepare you for it, but you're going to get started navigating it right now because, unsurprisingly, the environmental justice dataset I used as an example in setting up this course has since been deleted from the EPA's website and FTP server. Luckily, many people (myself included) made copies of it. 
+
+However, that also puts us in a tough spot: we're trying to be accurate, have reproducible analyses, and earn the trust of our readers, but now we're citing government data that can no longer be sourced directly from the government. "Batch downloaded with curl and retrieved from my personal Dropbox account" just doesn't cut it in a figure note---why should anyone believe that's legit? If a government agency puts on the top of a website that they've disavowed the data there, why should a reader trust it when that's the source you're pointing them to? And at what point after these programs have been discontinued does the data become too old to be reliable?
+
+Boy, I wish I had answers. We'll work on this in this week's lab. Fun times!
 
 
 
