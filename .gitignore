@@ -15,7 +15,8 @@ notes/rosm.cache
 
 **/*.quarto_ipynb
 .vscode
-weeks
+weeks/
 
 ges778.Rproj
-_weeks
+_weeks/
+inputs/
