@@ -92,6 +92,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../notes/11_ethics.html" rel="next">
 <link href="../notes/09_styleguides.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -458,6 +459,18 @@ div.csl-indent {
  <span class="menu-text">10. Text, audience, accessibility</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/11_ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Ethics, responsibility &amp; trust</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/11a_universes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11a. Universes &amp; units of measurement</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="px-0"><hr class="sidebar-divider hi "></li>
@@ -558,7 +571,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">September 30, 2026</p>
+      <p class="date-modified">October 5, 2026</p>
     </div>
   </div>
     
@@ -581,7 +594,7 @@ div.csl-indent {
 <p>“So there is a tension there. How can you be accurate and get it right without alienating people by putting up too much information? That’s a really, really hard balance.”</p>
 <p>– Mona Chalabi in <span class="citation" data-cites="hahn2023">Hahn (<a href="#ref-hahn2023" role="doc-biblioref">2023</a>)</span></p>
 </blockquote><div class="no-row-height column-margin column-container"><div id="ref-hahn2023" class="csl-entry" role="listitem">
-Hahn, J. (2023). "<span>Data</span> replicates the existing systems of power" says <span class="nocase">Pulitzer Prize-winner Mona Chalabi</span>. <em>Dezeen</em>. <a href="https://www.dezeen.com/2023/11/16/mona-chalabi-pulitzer-prize-winner/">https://www.dezeen.com/2023/11/16/mona-chalabi-pulitzer-prize-winner/</a>
+Hahn, J. (2023). "<span>Data</span> replicates the existing systems of power" says <span>Pulitzer Prize</span>-winner <span>Mona Chalabi</span>. <em>Dezeen</em>. <a href="https://www.dezeen.com/2023/11/16/mona-chalabi-pulitzer-prize-winner/">https://www.dezeen.com/2023/11/16/mona-chalabi-pulitzer-prize-winner/</a>
 </div></div></div>
 <div class="page-columns page-full"><blockquote class="blockquote">
 <p>A data visualization is not a piece of art meant to be looked at only for its aesthetically pleasing features. Instead, its purpose is to convey information and make a point. To reliably achieve this goal when preparing visualizations, we have to place the data into context and provide accompanying titles, captions, and other annotations.</p>
@@ -1054,7 +1067,7 @@ Schwabish, J. (2021). <em>Frank <span>Elavsky</span></em> (No. 208). <a href="ht
 <li>When directly including images in Markdown, use <code>![fig-name](fig_path){fig-alt="Alt text goes here"}</code></li>
 </ul>
 </section>
-<section id="contrast" class="level3 page-columns page-full">
+<section id="contrast" class="level3">
 <h3 class="anchored" data-anchor-id="contrast">Contrast</h3>
 <p>Different pieces of your visualization need to have enough contrast to be legible at different sizes, especially between text and its background. This comes up with labels like titles, but especially with direct labels. Generally your labels will be all white or all black (or slightly darker or lighter, respectively), so if you’re putting direct labels on several bars with different colors, make sure you have enough contrast across all of them.</p>
 <p>For example, this palette starts out very dark and ends very light, so neither white nor black will be legible across all bars. Switching between label colors (light on the dark bars, dark on the light bars) can be distracting or imply something about the data that isn’t there, so it’s better to use a palette where all labels can be the same color.</p>
@@ -1098,7 +1111,7 @@ Schwabish, J. (2021). <em>Frank <span>Elavsky</span></em> (No. 208). <a href="ht
 </div>
 </div>
 </div>
-<section id="updates-to-contrast-algorithms" class="level4 page-columns page-full">
+<section id="updates-to-contrast-algorithms" class="level4">
 <h4 class="anchored" data-anchor-id="updates-to-contrast-algorithms">Updates to contrast algorithms</h4>
 <p>I learned while prepping for this semester that there are new proposed web accessibility standards that haven’t been adopted yet, and probably won’t be for another few years. The <a href="https://apcacontrast.com/">proposed color contrast algorithm</a> is in beta, and it accounts for not just the contrast between two colors, but their markings’ relative sizes and contexts. That’s more directly applicable to us in testing contrasts for data viz, since we know that colors of points in a scatterplot are likely harder to tell apart than large bars in a bar chart. You can try this algorithm with the previous function:</p>
 <div class="cell">
@@ -1117,13 +1130,11 @@ Schwabish, J. (2021). <em>Frank <span>Elavsky</span></em> (No. 208). <a href="ht
 </div>
 </div>
 <p>While this standard hasn’t been officially adopted by the W3C and the authors say it’s not fully ready for production yet, this is a good time to familiarize yourself with it and maybe start using it in your own projects. I’ll be rewriting by job’s contrast checker to use it.</p>
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <p><a href="../assets/apca-chart.png" class="lightbox" data-gallery="quarto-lightbox-gallery-18" title="From @apca"><img src="../assets/apca-chart.png" class="img-fluid figure-img" alt="A list of text written in light gray on a white background. The text begins large and bold, and decreases in size and weight while maintaining color. This illustrates how readability declines as the text becomes smaller and thinner, regardless of the contrast between colors themselves. To the left is a luminance curve showing the luminance level of each line of text, as measured by the APCA standards."></a></p>
-<figcaption>From <span class="citation" data-cites="apca">Myndex Research (<a href="#ref-apca" role="doc-biblioref">2022</a>)</span></figcaption>
-<div class="no-row-height column-margin column-container"><div id="ref-apca" class="csl-entry" role="listitem">
-Myndex Research. (2022). The easy intro to the <span>APCA</span> contrast method. In <em>APCA</em>. <a href="https://git.apcacontrast.com/documentation/APCAeasyIntro.html">https://git.apcacontrast.com/documentation/APCAeasyIntro.html</a>
-</div></div></figure>
+<figcaption>From <span class="citation" data-cites="apca">(<a href="#ref-apca" role="doc-biblioref"><strong>apca?</strong></a>)</span></figcaption>
+</figure>
 </div>
 </section>
 </section>
@@ -1575,6 +1586,9 @@ National Center for Education Statistics. (2020). <em><span>Program for the Inte
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../notes/11_ethics.html" class="pagination-link" aria-label="11. Ethics, responsibility &amp; trust">
+        <span class="nav-page-text">11. Ethics, responsibility &amp; trust</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

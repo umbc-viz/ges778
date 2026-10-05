@@ -8,7 +8,7 @@
 
 <meta name="author" content="Camille Seaberry">
 
-<title>02. Writing good code – GES 778, Fall 2026</title>
+<title>11. Ethics, responsibility &amp; trust – GES 778, Fall 2026</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -27,7 +27,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -37,8 +57,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../notes/03_encodings.html" rel="next">
-<link href="../notes/01_intro_to_data_viz.html" rel="prev">
+<link href="../notes/11a_universes.html" rel="next">
+<link href="../notes/10_text_audience.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -53,6 +73,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-39d9fcd4c1df46547a23c0d6c53b9462.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark-f349642c1e70a888385e97056c287875.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/bootstrap/bootstrap-39d9fcd4c1df46547a23c0d6c53b9462.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -84,7 +107,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -255,7 +278,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/02_good_code.html">02. Writing good code</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/11_ethics.html">11. Ethics, responsibility &amp; trust</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -343,7 +366,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/02_good_code.html" class="sidebar-item-text sidebar-link active">
+  <a href="../notes/02_good_code.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">02. Writing good code</span></a>
   </div>
 </li>
@@ -403,7 +426,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../notes/11_ethics.html" class="sidebar-item-text sidebar-link">
+  <a href="../notes/11_ethics.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">11. Ethics, responsibility &amp; trust</span></a>
   </div>
 </li>
@@ -470,25 +493,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#good-coding-practices" id="toc-good-coding-practices" class="nav-link active" data-scroll-target="#good-coding-practices">Good coding practices</a></li>
-  <li><a href="#documenting-code" id="toc-documenting-code" class="nav-link" data-scroll-target="#documenting-code">Documenting code</a></li>
-  <li><a href="#git-commit-messages" id="toc-git-commit-messages" class="nav-link" data-scroll-target="#git-commit-messages">Git commit messages</a></li>
-  <li><a href="#reusable-code" id="toc-reusable-code" class="nav-link" data-scroll-target="#reusable-code">Reusable code</a></li>
-  <li><a href="#organization" id="toc-organization" class="nav-link" data-scroll-target="#organization">Organization</a>
-  <ul class="collapse">
-  <li><a href="#know-where-your-files-are-how-to-get-to-them" id="toc-know-where-your-files-are-how-to-get-to-them" class="nav-link" data-scroll-target="#know-where-your-files-are-how-to-get-to-them">Know where your files are &amp; how to get to them</a></li>
-  </ul></li>
-  <li><a href="#lab" id="toc-lab" class="nav-link" data-scroll-target="#lab">Lab</a></li>
+  <li><a href="#responsibility" id="toc-responsibility" class="nav-link active" data-scroll-target="#responsibility">Responsibility</a></li>
+  <li><a href="#trust" id="toc-trust" class="nav-link" data-scroll-target="#trust">Trust</a></li>
+  <li><a href="#mistakes-and-misuse-deliberate-or-otherwise" id="toc-mistakes-and-misuse-deliberate-or-otherwise" class="nav-link" data-scroll-target="#mistakes-and-misuse-deliberate-or-otherwise">Mistakes and misuse, deliberate or otherwise</a></li>
+  <li><a href="#saying-no" id="toc-saying-no" class="nav-link" data-scroll-target="#saying-no">Saying no</a></li>
+  <li><a href="#data-in-the-zeitgeist" id="toc-data-in-the-zeitgeist" class="nav-link" data-scroll-target="#data-in-the-zeitgeist">Data in the zeitgeist</a></li>
+  <li><a href="#where-this-leaves-us" id="toc-where-this-leaves-us" class="nav-link" data-scroll-target="#where-this-leaves-us">Where this leaves us</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/02_good_code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/02_good_code.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/11_ethics.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/11_ethics.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/02_good_code.html">02. Writing good code</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/11_ethics.html">11. Ethics, responsibility &amp; trust</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">02. Writing good code</h1>
+<h1 class="title">11. Ethics, responsibility &amp; trust</h1>
 </div>
 
 
@@ -517,99 +537,101 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="good-coding-practices" class="level2">
-<h2 class="anchored" data-anchor-id="good-coding-practices">Good coding practices</h2>
-<p>Some basic good habits will get you a long way in programming.</p>
-<ul>
-<li>Document what you’re doing in <a href="https://mopac-ds.github.io/Learning-Resource-Best-Coding-Practices-in-R/commenting-code.html">comments</a></li>
-<li>Document <a href="https://r-pkgs.org/man.html">functions</a></li>
-<li>Keep track of sources of data—I try to have downloading data be something I do programmatically in a script, whether it’s from an API, downloaded from an open data portal, scraped from a website, <code>curl</code> calls, or anything else.</li>
-<li>If you base your code off a Stack Overflow answer, a tutorial, a chatbot, or anything else, leave yourself a comment with a link to the source. It keeps you honest and will point you back to where you got help in the first place.</li>
-<li>Organize your work into <a href="https://r4ds.hadley.nz/workflow-scripts.html">projects</a> with a consistent structure</li>
-<li>Use naming conventions that describe what you’re doing or what something is</li>
-<li>Write informative <a href="https://github.blog/developer-skills/github/write-better-commits-build-better-projects/">git commit messages</a></li>
-<li>If you get into larger projects, manage orchestration with build tools</li>
-<li><em>READ THE DOCUMENTATION</em></li>
-</ul>
-</section>
-<section id="documenting-code" class="level2">
-<h2 class="anchored" data-anchor-id="documenting-code">Documenting code</h2>
-<p>One of the most important things you can do as a programmer is to document your code. This can be hard to do well, but it’s essential to making sure your code is clear and accountable and that your work can be reproduced or repurposed. (If you’ve followed the <a href="https://www.nature.com/articles/533452a">“replicability crisis”</a> in the sciences over the past decade or so, you’ve seen what can go very wrong when your work isn’t documented accurately for yourself and others!)</p>
-<p>A common suggestion is to write your code assuming you’ll come back to it in 6 months and need to be able to pick up where you left off. I usually also assume a coworker or colleague will need to rerun or reuse my code, so even if I’m doing something that I’ll remember 6 months from now, they might not know what things mean. It also gets me out of spending unnecessary amounts of time walking interns through an analysis if I can say, “I tried to document everything really well, so read through it, run all the code, and let me know if you need help after that.” Documenting code also helps ease the transition into package development, which requires <em>a lot</em> of documentation.</p>
-<p>I don’t document <em>everything</em>—plenty of my work is routine and straightforward enough—but some of the things I try to always take note of:</p>
-<ul>
-<li>Any sort of analysis or process that’s <strong>out of the ordinary or complex</strong>. Don’t assume you’ll remember later why you used a new approach.</li>
-<li>Anything I know <strong>someone else will need</strong> to be able to reference. Sometimes I do EDA on something that a coworker will then finish up or need to write about. I need to make sure they can do that accurately.</li>
-<li><strong>Outside sources</strong> that don’t come from that specific project. If your project is contained within a set of folders, and you’ve copied data in from some other project, make a note of where it comes from so if you need to update it you know where to get it from.</li>
-<li><strong>Decision-making</strong> that you might need to keep track of or argue for later. e.g.&nbsp;a comparison of categories between datasets with a note that says “these categories changed significantly since the previous data collection” will be helpful when someone asks why you didn’t include trends in an analysis.</li>
-<li><strong>References</strong>. If I came up with some code based on a Stack Overflow post or a blog post somewhere, or I’m building off of someone else’s methodology, I’ll usually include a link in my comments.</li>
-</ul>
-<p>This also applies to simple things like organizing your projects. If you have a bunch of folders called things like “data analysis 1” and they all contain a jumble of different notebooks and scripts for different purposes, and the scripts are all called “analysis_of_stuff.R”, you’re going to lose things easily and not know how different pieces build on each other. Similarly, don’t spend time doing an analysis only to write your data out to a file called “data.csv” and a plot called “map.png”. This might seem obvious, <em>but I’ve seen people do all of these things</em>.</p>
-</section>
-<section id="git-commit-messages" class="level2">
-<h2 class="anchored" data-anchor-id="git-commit-messages">Git commit messages</h2>
-<p>We’ll use git for version control with our work in this class, as you have in previous classes. If you need a refresher or references, I recommend:</p>
-<ul>
-<li>Chacon, S., &amp; Straub, B. (2014). Pro Git (2nd ed). Apress L. P. https://git-scm.com/book/en/v2 for detailed references,</li>
-<li><a href="https://dangitgit.com">Dang It, Git?!</a> for things that commonly go wrong (more commonly known by its other name, Oh Shit, Git?!, and available as an illustrated zine)</li>
-<li>Bryan, J. (2025). Happy git and GitHub for the useR. https://happygitwithr.com/</li>
-</ul>
-<p>When you finish some portion of a task in writing code or documentation, you’ll want to save, add, and commit your changes to the version history. You’ll either do this in a GUI, like the one included in RStudio, GitHub Desktop, or some similar software, or on the command line. <strong>Either way, your commit message should be fairly specific and informative.</strong></p>
-<p>If you use a time tracker for work, like log how much time you spend on specific projects, think of commit messages as being part of a similar system. When I’m billing a client, I need to report something more specific than “Wrote code,” and something a little less specific than “Wrote the script income_analysis_by_geography.R to conduct the following analyses…” A happy medium would be something like “Income analysis by geography for viz relaunch.” Your commit messages should serve a similar purpose: they give a brief record of what you did in that chunk of work so that you, your colleagues, and any clients who might see your code know what you did and why you changed it.</p>
-<p>Translating that to commit messages:</p>
-<ul>
-<li>“Push to GitHub” is not an informative commit message.</li>
-<li>“Add the utility functions dollar, dollar_thousands, dollar_change, lots_of_dollars, dollars_with_cents to utils/helper_functions.R” is too much detail and repeats info tracked in the commit itself</li>
-<li>“Add functions to format dollar amounts to helpers” is a good middle ground</li>
-</ul>
-</section>
-<section id="reusable-code" class="level2">
-<h2 class="anchored" data-anchor-id="reusable-code">Reusable code</h2>
-<p>One rule of thumb I’ve heard is that it’s fine to repeat your code to do the same thing twice, but if you need to do it a third time, <a href="https://r4ds.hadley.nz/functions">you should write a function</a>. It might mean taking a step back from what you’re working on at the moment, but it’s pretty much always worth the time. Alongside documenting your code in general, it’s important to document your functions—what they do, what the arguments mean, what types of values arguments can take. Try to your functions and their arguments in ways that make it clear what they mean as well.</p>
-</section>
-<section id="organization" class="level2">
-<h2 class="anchored" data-anchor-id="organization">Organization</h2>
-<p>Come up with a structure of directories you like for a project, and stick with it. The starter repo for each project in this class will have a pared down version of what I usually use, but a full version of what I might have, even for a small project, looks like this:</p>
-<pre><code>cool_project          
- ¦--analysis          # EDA, notebooks, and scripts that create output
- |--design            # scripts *only* for creating publishable charts
- ¦--fetch_data        # raw data, often downloaded in a script
- ¦   ¦--permits_xlsx  # folders for each raw data source
- ¦   °--housing_pums       
- ¦--input_data        # cleaned data that is sourced for the project
- ¦--output_data       # data that's a product of analysis in this project
- ¦--plots             # plots that can be distributed or published
- ¦--prep_scripts      # scripts that download, clean, reshape data
- °--utils             # misc scripts &amp; bits of data to use throughout the project</code></pre>
-<section id="know-where-your-files-are-how-to-get-to-them" class="level3">
-<h3 class="anchored" data-anchor-id="know-where-your-files-are-how-to-get-to-them">Know where your files are &amp; how to get to them</h3>
-<p>When you run code in notebook formats like Rmarkdown and quarto, the code is executed relative to that file. When you source a script, code is executed relative to where it’s sourced from, likely the root directory of the project. This can lead to errors when you render a notebook, because your code can no longer find files you’re referring to. The helper function <code>here::here</code> points to the root of the project and builds paths from there.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>This is where we get to my galaxy-brain takes on collecting and presenting data and the Critical GIS foundations of this program.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/galaxy-brain.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Camille’s brain"><img src="../assets/galaxy-brain.jpg" class="img-fluid figure-img" style="width:80.0%" alt="A 'galaxy brain' meme. Level 1: 'Data gives us fact-based ways to describe the world.' Level 2: 'Data collection and analysis are susceptible to bias, but we can mitigate it.' Level 3: 'Data is a useful tool, but also a liability.' Level 4: 'Abolish data.'"></a></p>
+<figcaption>Camille’s brain</figcaption>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>An aside: build tools
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Build tools are outside the scope of this class, but for larger projects especially or projects that will need to be updated over time, they’ll save you a lot of headaches. I have some projects that I rebuild once a year when new ACS data comes out, and I’ve got things down to where I can make one or two calls on the command line flagging the year as a variable, and all the data wrangling and analyses are ready to go. In fact, this site rebuilds from a frozen list of packages every time I push to GitHub, and if that build is successful, it publishes automatically.</p>
-<p>Some tools I use:</p>
+<p>We’ve already talked about writing good, reproducible code and making good decisions, and how your choices frame the information your reader gets from your work. We’ve even tried our hands at intentionally manipulating data. But your ethical considerations in doing data viz are even bigger, and span the whole continuum from definition to collection to analysis to visualization to dissemination.</p>
+<p>And that’s in a good case: what if your readers don’t trust you, or <em>shouldn’t</em> trust you? What do you do when someone uses your work in harmful ways? Not to mention the infrastructure and materials we use: labor that goes into mining metals, assembly of computers, and labeling training data; impact of data centers; e-waste; reliance on tech giants…it all becomes so much!</p>
+<p>In this class, we’re just focused on a slice of this mess, but because it’s a slice that’s most often concerned with communicating with the public, we do need to bring in a lot of critical thought about our roles. The things I’ve found most helpful to keeping myself out of this spiral (yeah right) are:</p>
 <ul>
-<li><a href="https://www.gnu.org/software/make/">GNU Make</a>, the OG build tool</li>
-<li><a href="https://snakemake.readthedocs.io/">Snakemake</a>, like GNU Make but written in Python and designed for data analysis</li>
-<li><a href="https://github.com/features/actions">GitHub actions</a>, including ones specifically for <a href="https://github.com/r-lib/actions/">R</a></li>
-<li><a href="https://www.docker.com/">Docker</a>, build a small isolated environment for your projects, some designed for <a href="https://github.com/rocker-org/rocker-versioned2">R</a></li>
-<li>Package &amp; environment managers: <a href="https://mamba.readthedocs.io">mamba</a> or <a href="https://github.com/astral-sh/uv">uv</a> for Python, <a href="https://rstudio.github.io/renv/">renv</a> for R</li>
+<li>recognizing my <strong>responsibility</strong> to my reader</li>
+<li><strong>building trust</strong> with my audience</li>
+<li><strong>preempting misuse</strong> of my work</li>
+<li><strong>saying no</strong> when I can’t or won’t do something</li>
 </ul>
-</div>
-</div>
+<section id="responsibility" class="level2">
+<h2 class="anchored" data-anchor-id="responsibility">Responsibility</h2>
+<p>When you’re visualizing data for an audience (i.e.&nbsp;not EDA), you’re saying that you know something about that data that the audience probably doesn’t. Your readers are relying on you to know what you’re talking about. That’s part of why <strong>exploring your data first is so important</strong>.</p>
+<p>But that also might not cut it. You might be out of your depth as far as methodologies or fields of study go. Be willing to read papers and study other projects to understand their methodologies, build connections with people at your organization or other orgs, contact the researchers or publishers of the data you’re using, change course or abandon a project altogether when you’re wrong or hitting a wall, and generally learn to ask lots of good questions. Then there’s all the ways that people skew their data or methods to force something to work, even if it ends up <a href="https://statmodeling.stat.columbia.edu/category/zombies/">not reproducible</a>.</p>
+<p>You can approach your work with curiosity, integrity, and humility, and <strong>you’ll still hit limits</strong>: no amount of EDA or asking a friend is going to make me able to visualize data about international monetary policy well, and that’s okay. It’s just not something I can or should do.</p>
+<blockquote class="blockquote">
+<p>Study every day.</p>
+<p>– My father-in-law whenever he’s asked for life advice</p>
+</blockquote>
 </section>
+<section id="trust" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="trust">Trust</h2>
+<p>One of the best ways you can build trust with your audience is by <strong>getting to know the communities</strong> where your work is used and forming long-term relationships there. This is also the hardest and slowest way. My organization has that where we’re based, but it’s been built up over decades, and we wouldn’t necessarily have that reputation in a new place. We also do a lot of our projects in partnership with other organizations and agencies that have been around even longer, or are more deeply embedded in their specific communities.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>When you try to do research about a community that you don’t have connections to, you might end up doing things like trying to ask about gender identity but doing it very very badly. Here’s how I illustrated the ways poor wording messed up our analysis for a conference presentation in 2024 (btw this is called a Sankey diagram). I noticed it right away because I’d helped rewrite our survey’s gender identity question (it used to be bad), and had recently helped a friend who is trans fill out paperwork with a similarly awkward question.</p>
+<p>Later, the question and any references to gender identity were removed altogether by the current federal administration.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/pulse-gender-sankey.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Sankey diagram of gender identity question, Household Pulse Survey"><img src="../assets/pulse-gender-sankey.png" class="img-fluid figure-img" alt="A Sankey diagram showing transgender respondents to a pair of survey questions about gender. The first question asks for sex assigned at birth, with the choices of male or female. The second asks for gender identity, with the choices male, female, transgender, or none of these. The majority of respondents answer 'none of these.' The chart's heading reads, 'Only 21% of transgender adults respond with 'transgender' as a gender identity.'"></a></p>
+<figcaption>Sankey diagram of gender identity question, Household Pulse Survey</figcaption>
+</figure>
+</div>
+</div></div><p>If there’s a problem you want to tackle with visualization, first <strong>find the people on the ground</strong> addressing it, get to know what they’ve already done or what they need, and <em>from there</em> figure out how you can tap in.</p>
+<p>Other ways you can build trust are being open and honest about what you can and cannot do, what the limitations are in your data, and where the data comes from. Be upfront about the data’s uncertainties and nuances and quirks. Incorporate those things into your visualization when it makes sense, and build context to explain the nuances. Don’t oversell what you don’t know or can’t predict.</p>
+<p><strong>You’re going to make mistakes in your work</strong>. I messed up the calculations of a major indicator we use a lot, and I noticed it the day the report was going to print, when it was too late to fix it. We put an erratum note online, but I felt foolish, and I always triple-check that calculation now or pass it off to someone else entirely. It puts you in a vulnerable position to admit that you made a mistake in a professional or research setting, but I do truly think it builds good will with your peers and shows that you approach your work with integrity.</p>
 </section>
-<section id="lab" class="level2">
-<h2 class="anchored" data-anchor-id="lab">Lab</h2>
-<p>In the lab for this topic, we’ll get started with developing helper functions that we’ll use and iterate on throughout the course.</p>
+<section id="mistakes-and-misuse-deliberate-or-otherwise" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="mistakes-and-misuse-deliberate-or-otherwise">Mistakes and misuse, deliberate or otherwise</h2>
+<p>When you create a visualization and plan to release it publicly, think through all the ways it could be misinterpreted or used for bad purposes. Then, if you can, try to protect against that, knowing that it might not be entirely possible. Sometimes this means <strong>leaving things out</strong> of your analysis or visualization.</p>
+<p>For example, my organization’s survey asked the same questions as KFF about people’s plans for getting vaccinated against covid, but we made different choices about what to publish. One of the answer choices for why people didn’t plan on getting vaccinated was that they might get covid from the vaccine. That’s an understandable concern, but it’s not possible, and it’s rooted in misinformation rather than science. We went back and forth about what to do with that answer, and considered including it with an asterisk noting that this isn’t possible, but ultimately didn’t trust that people would read and interpret that correctly. So instead, when we published results of that question, we left that reason out. KFF published it with no caveats.</p>
+<div class="quarto-figure quarto-figure-center page-columns page-full">
+<figure class="figure page-columns page-full">
+<p><a href="../assets/kff-vaccines.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="From @hamel2021"><img src="../assets/kff-vaccines.png" class="img-fluid figure-img" alt="Bar chart of KFF survey questions on concerns adults have about the COVID-19 vaccines as of January 2021, among adults who say they want to wait and see how the vaccines work before getting them. The data is broken down by race for Black, Hispanic, and white adults, and Black adults are most likely to express concerns. The highest ranked concern is &quot;the long-term effects of the COVID-19 vaccines are unknown.&quot;"></a></p>
+<figcaption>From <span class="citation" data-cites="hamel2021">Hamel et al. (<a href="#ref-hamel2021" role="doc-biblioref">2021</a>)</span></figcaption>
+<div class="no-row-height column-margin column-container"><div id="ref-hamel2021" class="csl-entry" role="listitem">
+Hamel, L., Lopes, L., &amp; Published, M. B. (2021). <span>KFF COVID-19 Vaccine Monitor</span>: <span>What Do We Know About Those Who Want</span> to <span>“<span>Wait</span> and <span>See</span>”</span> <span>Before Getting</span> a <span>COVID-19 Vaccine</span>? In <em>KFF</em>. <a href="https://www.kff.org/coronavirus-covid-19/poll-finding/kff-covid-19-vaccine-monitor-wait-and-see/">https://www.kff.org/coronavirus-covid-19/poll-finding/kff-covid-19-vaccine-monitor-wait-and-see/</a>
+</div></div></figure>
+</div>
+<p>Similarly, we limited how much we put out about differences in vaccine hesitancy by race/ethnicity, because there was no way we could include the amount of context (e.g.&nbsp;<a href="https://web.archive.org/web/20260930185823/https://www.cdc.gov/tuskegee/about/index.html">the Tuskegee Syphilis Study</a>, <a href="https://www.pbs.org/independentlens/blog/unwanted-sterilization-and-eugenics-programs-in-the-united-states/">forced sterilizations</a>) necessary to validate real concerns that especially Black, Latino, and Indigenous people might have during a vaccination campaign or other quick push for medical treatments. It simply wouldn’t fit in a bar chart.</p>
+</section>
+<section id="saying-no" class="level2">
+<h2 class="anchored" data-anchor-id="saying-no">Saying no</h2>
+<p>If you’ve decided that there’s work you shouldn’t do—because you’re not the right one to do it, or you don’t think it should be done—<strong>just say no</strong>. Knowing how to work with data and visualize it well will have you better able to propose alternatives.</p>
+<p>For example, when it was becoming clear that covid was going to be a big deal but unclear what it would look like, my organization got asked a lot of questions that we couldn’t answer. They were big questions (“How bad will this be?”, “How long will schools need to close?”) that needed to go to an epidemiologist, which none of us are, and any epi would have also said they simply didn’t know. So we would answer that we’re not epis but could help figure out some of the context surrounding the problem. We didn’t know when schools would need to close or for how long, but, since schools were going to move online, we could calculate what percentage of kids in each town lived in a house without broadband internet and a computer, or how many households had both kids who would be going back to school and their grandparents who might be at higher risk if the kids brought the virus back home. It felt extremely unsatisfying to not be able to give people answers, but that was the best we could responsibly do.</p>
+<p>You’ll practice this with a much sillier scenario as part of your final project.</p>
+</section>
+<section id="data-in-the-zeitgeist" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="data-in-the-zeitgeist">Data in the zeitgeist</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/coffee-creamer.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Coffee creamer designed with the hopes that you wouldn’t read the fine print"><img src="../assets/coffee-creamer.jpg" class="img-fluid figure-img" style="width:50.0%" alt="A close-up photo of a bottle of coffee creamer. In large text, the bottle says, '2X more creamer,' but in smaller print, adds 'than 32 ounces.'"></a></p>
+<figcaption>Coffee creamer designed with the hopes that you wouldn’t read the fine print</figcaption>
+</figure>
+</div>
+<p>We’re in an environment where data about us is being collected, sold, distributed, and stolen far more than we realize, let alone consent to. Beyond that are many ways that we compromise or hand over our data in exchange for “free” services (e.g.&nbsp;social media), discounts (e.g.&nbsp;grocery store rewards cards), and privileges (e.g.&nbsp;driver’s licenses—mine was recently counterfeited). It’s likely that, at some point, you’ll visualize data that you don’t feel great about, such as by being asked to do something with data that you don’t think is fully just or that loses necessary nuance, or by using data collected through dubious means. In these cases, you might decide that the benefits outweigh the harms associated with the data, or that you can change the project in some way to minimize the problem. Or you might refuse to do something and take a personal and professional risk. I’ve done all of these. Again, <strong>the better you’ve done your research, the better prepared you are to take a stand</strong> that feels right to you.</p>
+<p>There are also many things happening right now to alter or weaponize data for political or ideological means, including by trying to <a href="https://www.kff.org/racial-equity-and-health-policy/disappearing-federal-data-implications-for-addressing-health-disparities/">take away access</a>. There are also many people working to preserve data, and sometimes we manage to stay one step ahead or to <a href="https://www.climate.us/">build alternatives outside of government</a>. <a href="https://flowingdata.com/tag/takedown/">Nathan Yau</a> has done some posts following changes to federal data, particularly data related to climate change. Some other resources I like:</p>
+<ul>
+<li><a href="https://sciop.net/">The SciOp project</a> which collects and distributes torrents of threatened or deleted datasets from a variety of sources</li>
+<li><a href="https://dataindex.us/terminations-tracker">DataIndex’s tracker</a>, how I found out that portions of the literacy survey I referenced last week were canceled</li>
+<li><a href="https://grantwitness.org/">Grant Witness</a>, which tracks canceled and rescinded federal grants. I used this in a project on SAMHSA grants being canceled, and one of their main people running the project is also a major R developer and educator.</li>
+<li><a href="https://apdu.org/apdu-in-action/public-federal-data-preservation-resources/">This roundup</a> of alternative sources and data preservation efforts</li>
+</ul>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>It seems noteworthy that one of the first datasets to disappear and set off alarm bells was the Youth Risk Behavior Survey, used by schools and people who work with teenagers to track trends in things like smoking, drug use, bullying, and suicidality. It also asked about gender identity. After a court order, it was put back online with a banner saying the Trump Administration rejects “gender ideology” and doesn’t stand by the data.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="../assets/yrbs-screenshot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="YRBS screenshot, 10/02/2026"><img src="../assets/yrbs-screenshot.png" class="img-fluid figure-img" alt="A screenshot of a page within the CDC's website. The page is for the Youth Risk Behavior Survey, with a banner at the top reading, 'Per a court order, HHS is required to restore this website to its version as of 12:00 AM on January 29, 2025. Information on this page may be modified and/or removed in the future subject to the terms of the court's order and implemented consistent with applicable law. Any information on this page promoting gender ideology is extremely inaccurate and disconnected from truth. The Trump Administration rejects gender ideology due to the harms and divisiveness it causes. This page does not reflect reality and therefore the Administration and this Department reject it.'"></a></p>
+<figcaption>YRBS screenshot, 10/02/2026</figcaption>
+</figure>
+</div>
+</div></div></section>
+<section id="where-this-leaves-us" class="level2">
+<h2 class="anchored" data-anchor-id="where-this-leaves-us">Where this leaves us</h2>
+<p>You’re getting started in a career in GIS in a time where there is data everywhere, whether we want it to exist or not. Many of our systems of knowledge creation and retrieval, and our understandings of what is and is not true, are in flux. That means you have a big role to play in a weird world. I can’t totally prepare you for it, but you’re going to get started navigating it right now because, unsurprisingly, the environmental justice dataset I used as an example in setting up this course has since been deleted from the EPA’s website and FTP server. Luckily, many people (myself included) made copies of it.</p>
+<p>However, that also puts us in a tough spot: we’re trying to be accurate, have reproducible analyses, and earn the trust of our readers, but now we’re citing government data that can no longer be sourced directly from the government. “Batch downloaded with curl and retrieved from my personal Dropbox account” just doesn’t cut it in a figure note—why should anyone believe that’s legit? If a government agency puts on the top of a website that they’ve disavowed the data there, why should a reader trust it when that’s the source you’re pointing them to? And at what point after these programs have been discontinued does the data become too old to be reliable?</p>
+<p>Boy, I wish I had answers. We’ll work on this in this week’s lab. Fun times!</p>
+
 
 
 </section>
@@ -1030,19 +1052,51 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../notes/01_intro_to_data_viz.html" class="pagination-link" aria-label="01. Intro to data viz">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">01. Intro to data viz</span>
+      <a href="../notes/10_text_audience.html" class="pagination-link" aria-label="10. Text, audience, accessibility">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">10. Text, audience, accessibility</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../notes/03_encodings.html" class="pagination-link" aria-label="03. Visual encodings">
-        <span class="nav-page-text">03. Visual encodings</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../notes/11a_universes.html" class="pagination-link" aria-label="11a. Universes &amp; units of measurement">
+        <span class="nav-page-text">11a. Universes &amp; units of measurement</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/11_ethics.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/11_ethics.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer><script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/02_good_code.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/02_good_code.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+</body></html>
