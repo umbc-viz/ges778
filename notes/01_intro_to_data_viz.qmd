@@ -13,10 +13,15 @@ visualization, but no definition. Two I've found useful:
 
 > The rendering of information in a visual format to help communicate data while
 > also generating new patterns and knowledge through the act of visualization
-> itself [@wilson2018 p. 8]
+> itself 
+>
+> -- @battle-baptiste2018 p. 8[^correction]
+
+[^correction]: I realized I've been mistakenly attributing this quote to @wilson2018, an essay inside the same book by one of the book's editors, but it's actually in the introduction. Quote, page number, and book title are all correct, but the section (and therefore direct authors) was not.
 
 > The representation and presentation of data to facilitate understanding
-> [@kirk2016 p. 19]
+>
+> -- @kirk2016 p. 19
 
 ## What should visualization do?
 
@@ -24,7 +29,9 @@ visualization, but no definition. Two I've found useful:
 > art right without getting the science wrong and vice versa. A data
 > visualization first and foremost has to accurately convey the data. It must
 > not mislead or distort.... At the same time, a data visualization should be
-> aesthetically pleasing [@wilke2019, ch 1]
+> aesthetically pleasing 
+>
+> -- @wilke2019, ch 1
 
 ## Why visualize data?
 
