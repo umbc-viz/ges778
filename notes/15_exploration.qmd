@@ -1,0 +1,161 @@
+---
+title: 15. Helping readers explore
+---
+
+## Sneak peak: small multiples
+
+::: {.callout-warning}
+These notes aren't finished yet; for now we'll just use it to jump ahead and talk about small multiples/facets in preparation for the midterm project.
+:::
+
+Small multiples refer to a technique of breaking data down into subsets, then repeating the same chart type for each subset. In ggplot, these panels are called facets (older libraries and books will refer to trellis plots, which is what I first learned). As always, there's a good, brief Datawrapper post [@muth2024].
+
+Say, for example, I had a scatterplot based on census tracts, but felt it was too crowded; I also want to see if there are differences or similarities in any of the patterns by region of the state. Instead of cramming everything into one scatterplot and dealing with overplotting as we've done, plus trying to use color or some other encoding to show region, I could split it into a grid of scatterplots, one per region.
+
+ggplot uses two facetting functions, `facet_wrap` and `facet_grid`. 
+
+* Wrapped facets are broken up in one direction, usually by just one variable (although you can use multiple variables and nest them). You chop up your chart up into panels, then just wrap them into a grid.
+* Gridded facets can be broken up in two directions (or just one, see later on). They are less flexible in that you'll assign variables to just break up plots by row or by column. They also have more options for changing the scale and size.
+
+::: {.aside}
+I added the dataset `md_regions` to version 0.3.0 of the `justviz` package, so you'll need to upgrade if you don't see it.
+:::
+
+In this example, I'll use small multiples to get different views of the EJSCREEN data without having to squeeze too much into a frame at once. Here's a weird pattern between percentile rankings of concentrations of diesel particulate matter and small inhalable particulate matter (PM 2.5):
+
+```{r}
+#| label: scatter
+library(ggplot2)
+
+ej_wide <- justviz::ej_natl |>
+    tidyr::pivot_wider(
+        id_cols = tract,
+        names_from = indicator,
+        values_from = value_ptile
+    )
+
+head(ej_wide)
+
+ggplot(ej_wide, aes(x = diesel, y = pm25)) +
+    geom_point(size = 0.8, alpha = 0.7)
+```
+
+Small multiples by region will show whether this pattern holds throughout the state. I'll use the ACS data's counties, plus the table of regions, to break this up:
+
+```{r}
+#| label: facet-wrap
+# tract fips & county name from acs
+ej_region <- justviz::acs |>
+    dplyr::select(county, name, ages65plus, median_hh_income) |>
+    # inner join to keep just observations in both data frames
+    # in this case that means tracts
+    dplyr::inner_join(justviz::md_regions, by = "county") |>
+    dplyr::inner_join(ej_wide, by = c("name" = "tract"))
+
+ggplot(ej_region, aes(x = diesel, y = pm25)) +
+    geom_point(size = 0.8, alpha = 0.7) +
+    facet_wrap(vars(region))
+```
+
+Now we can see that pattern is even weirder based on region of the state!
+
+Other things to note: 
+
+* The regions are just in alphabetical order. You'll probably need to figure out a logical or data-based order that serves your purposes best. You can use factor variables and `forcats` functions to do this pretty easily, maybe in order of average rankings.
+* Unless the panels are clearly showing different things, it's generally best to keep the scales the same. `facet_wrap` and `facet_grid` have arguments for this, but by default both use the same scales across all panels.
+
+I could do the same sort of thing with a second variable using `facet_grid`. Let's add in an income component, where we break tracts into whether their median household income is above $100k, and facet by that as well as region:
+
+```{r}
+#| label: facet-grid
+ej_region |>
+    dplyr::mutate(
+        income_brk = ifelse(
+            median_hh_income > 100000,
+            "higher-income",
+            "lower-income"
+        )
+    ) |>
+    dplyr::filter(!is.na(median_hh_income)) |>
+    ggplot(aes(x = diesel, y = pm25)) +
+    geom_point(size = 0.8, alpha = 0.7) +
+    facet_grid(rows = vars(income_brk), cols = vars(region))
+```
+
+I honestly don't know what's going on here!
+
+### Other applications
+
+You can also use similar techniques and functions not for making multiples of the same chart, but just for adding some separation between parts of a chart. I do this most often when I have some set of observations that give an overview (like state & county averages), then my focus areas with demographic or other breakdowns.
+
+Here's an example with county-level shares of adults without a high school diploma, again broken down by region. The facetting just makes it a little easier to read, kind of like adding extra line breaks to a very long paragraph.
+
+First without facets:
+
+```{r}
+#| label: facet-grid-hs
+#| fig-height: 5.5 
+md_counties <- justviz::acs |>
+    dplyr::filter(level == "county") |>
+    dplyr::left_join(justviz::md_regions, by = c("name" = "county")) |>
+    # order counties by value
+    dplyr::mutate(
+        name = forcats::as_factor(name) |>
+            forcats::fct_reorder(less_than_high_school)
+    ) |>
+    # also order regions by max value
+    dplyr::mutate(
+        region = forcats::as_factor(region) |>
+            forcats::fct_reorder(
+                less_than_high_school,
+                .fun = max,
+                .desc = TRUE
+            )
+    )
+
+no_diploma_gg <- ggplot(md_counties, aes(x = less_than_high_school, y = name)) +
+    geom_col()
+
+no_diploma_gg
+```
+
+Then add rows for region:
+
+```{r}
+#| label: facet-grid-no-scale
+#| fig-height: 5.5 
+no_diploma_gg +
+    facet_grid(rows = vars(region))
+```
+
+Ewww. `facet_grid` expects the scales to be the same across panels, and that's often the case. But in this case, each county is only in 1 region, and therefore should only appear in one panel. Set the scales to `"free_y"`, which means the y-axis scale is allowed to change between panels.
+
+```{r}
+#| label: facet-grid-scale
+#| fig-height: 5.5
+no_diploma_gg +
+    facet_grid(rows = vars(region), scales = "free_y")
+```
+
+In this version, each panel gets a fixed amount of space regardless of how many bars they have. Change it again to have free spacing, which lets the size of the panels adjust to fit the number of markings on the axis:
+
+```{r}
+#| label: facet-grid-space
+#| fig-height: 5.5
+no_diploma_gg +
+    facet_grid(rows = vars(region), scales = "free_y", space = "free_y")
+```
+
+Last thing I'd change is the panel labels: the text shouldn't be rotated like this (it's also cut off). That can be changed with a theme setting---facet text elements, for the sake of theming, are called strips FYI.
+
+```{r}
+#| label: facet-grid-theme
+#| fig-height: 5.5
+no_diploma_gg +
+    facet_grid(rows = vars(region), scales = "free_y", space = "free_y") +
+    theme(strip.text.y.right = element_text(angle = 0, vjust = 1, hjust = 0))
+```
+
+Definitely needs more clean-up, but that's the structure to get started.
+
+**Bottom line:** Look through the docs for the facetting functions---there are a lot of arguments, and some of them are confusing and hard to keep track of.
