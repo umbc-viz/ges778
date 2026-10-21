@@ -1,0 +1,188 @@
+---
+title: Project 1 work session
+---
+
+```{r}
+#| label: setup
+library(ggplot2)
+qual_pal <- rcartocolor::carto_pal(name = "Bold")
+seq_pal <- rcartocolor::carto_pal(n = 5, name = "PurpOr")
+```
+
+Here are notes for solving problems as we encounter them in our project 1 work session. Also any other bits of things we haven't covered.
+
+## Small multiples
+
+See draft notes on [./exploration](15_exploration.qmd) in static viz.
+
+## Parts of a whole
+
+So far when we've shown parts of a whole it's just been stacked bar charts. The elephant in the room is the [dreaded pie chart](https://www.storytellingwithdata.com/blog/2011/07/death-to-pie-charts). My general rule is to only use a pie chart for 2 or 3 groups, and only if they're noticeably different sizes. They should only be used to show mutually exclusive groups within some larger whole (e.g. share of population under/over age 65), and where you don't need to compare between multiple situations (e.g. only population in Baltimore city but don't need to compare the city to the county). It's probably been a few years since I published a pie chart because there's usually a better option (I really like waffle charts or stacked bars). 
+
+As far as ggplot is concerned, a pie chart is a stacked bar chart with radial coordinates and no breaks:
+
+```{r}
+#| label: pie
+percent <- scales::label_percent(accuracy = 1)
+edu <- justviz::acs |>
+    dplyr::filter(name == "Maryland") |>
+    dplyr::mutate(
+        no_college_degree = less_than_high_school +
+            high_school_grad +
+            some_college_or_aa
+    ) |>
+    dplyr::select(name, no_college_degree, bachelors, grad_degree) |>
+    tidyr::pivot_longer(
+        -name,
+        names_to = "edu",
+        values_to = "share",
+        names_ptypes = list(edu = factor())
+    )
+
+edu_pie <- ggplot(edu, aes(x = share, y = name, fill = edu, group = name)) +
+    geom_col(position = position_fill(), width = 1) +
+    geom_text(
+        aes(label = percent(share)),
+        position = position_fill(vjust = 0.5),
+        fontface = "bold",
+        size = 5
+    ) +
+    scale_x_continuous(breaks = NULL) +
+    scale_y_discrete(breaks = NULL) +
+    scale_fill_manual(values = seq_pal[c(1, 3, 5)])
+
+edu_pie
+
+edu_pie +
+    coord_radial(expand = FALSE)
+```
+
+## Calculating counts and shares
+
+Here are 2 ways of calculating counts and shares, with dummy data set up to mimic two of your datasets:
+
+The first one has 40 observations, where each has a location A or B and a type 1, 2, or 3. If you want to calculate the count of observations of each location-type pair, first count the rows grouped by both location and type, then calculate the share as small group count divided by large group total.
+
+```{r}
+#| label: shares-1
+# set a seed for the random number generator so samples are the same each time
+set.seed(21)
+dummy1 <- tibble::tibble(
+    location = rep(c("A", "B"), each = 20),
+    type = sample(c("type 1", "type 2", "type 3"), size = 40, replace = TRUE)
+)
+head(dummy1)
+
+# can do group_by |> summarise, or just count but then add groups back in
+# I prefer the first method but both get same result:
+# either this
+dummy1 |>
+    dplyr::group_by(location, type) |>
+    dplyr::summarise(n = dplyr::n())
+# or that
+dummy1 |>
+    dplyr::count(location, type) |>
+    dplyr::group_by(location)
+
+# important part is you need to end up with data grouped by location
+dummy1 |>
+    dplyr::group_by(location, type) |>
+    dplyr::summarise(n = dplyr::n()) |>
+    dplyr::mutate(share = n / sum(n))
+```
+
+It's trickier when you have groups that aren't mutually exclusive, because you can't just sum observations to get the total number of observations. Instead, you'll need some way of getting totals beforehand. I do this often enough that I have a [function](https://ct-data-haven.github.io/cwi/reference/calc_shares.html) in a work package that extracts groups' totals based on a label, then calculates shares with those as the denominators. You're welcome to use that if any of your data is in a format that works for that (it's how I calculated most of the percentages in our acs dataset with the denominators that are still included there).
+
+In this case, you have a set of observations that each may or may not have one of several traits, marked by TRUE/FALSE. Observations might have more than one trait.
+
+
+```{r}
+#| label: shares-2
+set.seed(21)
+dummy2 <- tibble::tibble(
+    location = sample(c("A", "B", "C"), size = 40, replace = TRUE),
+    is_trait_1 = sample(c(TRUE, FALSE), size = 40, replace = TRUE),
+    is_trait_2 = sample(c(TRUE, FALSE), size = 40, replace = TRUE),
+    is_trait_3 = sample(c(TRUE, FALSE), size = 40, replace = TRUE)
+)
+
+head(dummy2)
+```
+
+If you don't need to calculate shares within groups, you can just use the total number of observations as your denominator. Having values as a logical data type means you can just sum them to get the count of TRUEs:
+
+```{r}
+#| label: logical
+true_false <- c(TRUE, TRUE, FALSE)
+sum(true_false)
+
+# convert yes/no characters to logical data type
+yes_no <- c("yes", "yes", "no")
+yes_no == "yes"
+sum(yes_no == "yes")
+```
+
+```{r}
+#| label: share-2-long
+n_obs <- nrow(dummy2)
+
+# reshape to long format so you can sum across each trait
+dummy2_long <- dummy2 |>
+    # make trait a factor to keep order
+    tidyr::pivot_longer(
+        -location,
+        names_to = "trait",
+        names_ptypes = list(trait = factor())
+    )
+
+head(dummy2_long)
+
+dummy2_long |>
+    dplyr::group_by(trait) |>
+    dplyr::summarise(n = sum(value)) |>
+    dplyr::mutate(share = n / n_obs)
+```
+
+Note that there are 40 rows in the data, but the total of the column n is 59, because some observations have more than one trait. Dividing by the original number of observations gives the right percentages.
+
+If you need this by group, make a data frame of totals by group *before reshaping* (I did this wrong the first time around) then join it back to calculate shares:
+
+```{r}
+#| label: share-2-group
+group_totals <- dummy2 |>
+    dplyr::count(location, name = "group_total")
+
+# get counts by both location and trait
+dummy2_long |>
+    dplyr::group_by(location, trait) |>
+    dplyr::summarise(n = sum(value)) |>
+    dplyr::left_join(group_totals, by = "location") |>
+    dplyr::mutate(share = n / group_total)
+```
+
+## Heatmaps
+
+Since people are interested in heatmaps, here's an example:
+
+```{r}
+#| label: heatmap
+set.seed(21)
+dummy3 <- expand.grid(
+    location = c("A", "B", "C"),
+    group = c("group 1", "group 2", "group 3", "group 4", "group 5")
+) |>
+    dplyr::mutate(value = runif(n = 15, min = 0, max = 1)) |>
+    dplyr::mutate(
+        location = forcats::as_factor(location),
+        group = forcats::as_factor(group)
+    )
+
+head(dummy3)
+
+ggplot(dummy3, aes(x = location, y = group, fill = value)) +
+    geom_tile() +
+    rcartocolor::scale_fill_carto_c(palette = "PurpOr")
+```
+
+
+
