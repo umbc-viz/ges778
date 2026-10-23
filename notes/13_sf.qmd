@@ -1,0 +1,153 @@
+---
+title: 13. Spatial data in R
+---
+
+Once again we'll play catch-up by running through some of the [notes](https://bldgspatialdata.github.io/website/) from GES 668, Building Spatial Datasets. Most of our spatial data will be in data types that come from the `sf` package, but we'll also use `terra` for raster data a bit. Other resources:
+
+- The [`sf`](https://r-spatial.github.io/sf/) and [`terra`](https://rspatial.github.io/terra/) package docs (both include cheatsheets)
+- The slides from Building Spatial Datasets, particularly [week 2](https://bldgspatialdata.github.io/website/slides/spatial-data.html#/how-does-r-work-with-spatial-data) (start on section 3)
+- @lovelace2025, especially [chapter 2](https://r.geocompx.org/spatial-class) for an overview of packages and data types
+- Stack Overflow's [r-sf](https://stackoverflow.com/questions/tagged/r-sf) tag
+
+## Types of spatial data
+
+What type of spatial data you have will affect what you can do with it and how you go about mapping it. The main types are:
+
+* **Point data**, where observations are characterized by their location. These points might also have attributes associated with them.
+* **Grid data**, where measurements are taken at locations distributed throughout an area. These don't need to be on a strict square grid; values might be interpolated between measured locations. **Rasters** are a common form of this where observations _are_ more or less taken on a grid, often represented as one pixel per location (either observed or interpolated).
+* **Areal data**, where values are associated with two-dimensional regions. These are often based on man-made boundaries such as countries, towns, etc.
+
+We'll be working with areal data the most. It has some drawbacks that we'll talk about, but it is also flexible. For example, we have easy access to tract boundaries that cover all of Maryland. We have lots of data associated with each of those tracts. We can also join those tract geographies with other spatial data, including points within the tracts or overlaps between tracts and some other area. We can convert from that areal data to other data types, although we'll lose some information (interpolating values associated with census tracts to a square grid, representing tracts as their centroids instead). Or we can aggregate point or grid data to areal boundaries (count of points within each polygon).
+
+## Spatial data in R
+
+
+### The spatial ecosystem
+
+A few packages to install first (cross your fingers):
+
+```{r}
+#| label: spatial-setup
+#| eval: false
+#| include: true
+pkgs <- c(
+    "sf", # sf : spatial data :: dplyr : tabular data
+    "osmdata", # batch download data from OpenStreetMap
+    "terra", # sf-friendly raster tools
+    "tigris", # download shapefiles from the Census Bureau TIGER database
+    "rmapshaper", # command line tool to edit geographies
+    "tidyterra" # ggplot geoms for terra rasters
+)
+
+install.packages(pkgs)
+
+# or pak::pkg_install(pkgs)
+```
+
+
+Much of the R spatial ecosystem has migrated from an older set of packages (`sp`, `rgeos`, `rgdal`) to a newer one (`sf`, plus its friends like `stars` and `terra`) designed to fit into the tidyverse packages. ^[This was actually a major [concerted effort](https://r-spatial.org/r/2022/04/12/evolution.html) over the past few years because the original maintainer of many of those packages was retiring.] `sf` is also nice because many of the functions are based on PostGIS, so if you've worked with spatial databases (or might in the future) it's easy to translate code.
+
+There are a few `sf`-based datasets in the justviz package, and many others are easy to get (`tigris` is very easy to use for Census Bureau data, and we'll use `osmdata` to get OpenStreetMap shapefiles and data).
+
+`sf` objects can be data frames with a geometry column, so you can work with them in many of the same ways as regular data frames; you might also see just plain geometry objects without any data attached. 
+
+
+### Plotting
+
+`sf` objects have a `plot` method, so you can just call `plot(very_cool_sf_data)` and get a basic plot:
+
+```{r}
+#| label: map-base
+#| message: false
+library(sf)
+library(ggplot2)
+
+head(justviz::tracts_sf)
+
+# just showing county column
+plot(justviz::tracts_sf[, "county"])
+```
+
+:::{.aside}
+A note about object-oriented programming (OOP): When you have a function that's a method of some type of object, just as `plot`, you can look at help pages for that function by specifying the object type. So `?plot.sf` will show you the docs for `plot` as it applies specifically to `sf` objects.
+:::
+
+
+ggplot also has geoms for spatial data.
+
+```{r}
+#| label: map-gg
+ggplot(justviz::tracts_sf) +
+    geom_sf(aes(fill = county))
+```
+
+### Projections
+
+Just like in desktop GIS software, in R you can reproject spatial data to different coordinate reference systems (CRS). This is easiest if your data already has a CRS attached to it (all the datasets in `justviz` do, as do any you download from the Census Bureau with the `tigris` package, and many others). In some cases, mostly if you're creating a bit of spatial data manually, you'll need to first assign a CRS explicitly, then transform.
+
+Some CRS codes you'll see often:
+
+- [EPSG:4269](https://spatialreference.org/ref/epsg/4269/), default for data downloaded from the Census Bureau
+- [EPSG:3857](https://spatialreference.org/ref/epsg/3857/), aka Web Mercator
+- [EPSG:4326](https://spatialreference.org/ref/epsg/4326/), used most often in GPS
+- [EPSG:2248](https://spatialreference.org/ref/epsg/2248/), projected for good views of Maryland with units in feet
+
+That last one is useful for us making maps locally because 1) it makes Maryland look pretty, and 2) having units in feet makes it easier to do transformations or calculations based on distances.
+
+Locally, you probably won't see much difference between these CRSes, but you would for a map of the whole country.
+
+```{r}
+#| label: md-crs
+#| echo: false 
+# datasets in base R
+state_info <- data.frame(state = state.abb, region = state.region)
+states_sf <- tigris::states(cb = TRUE, progress_bar = FALSE) |>
+    dplyr::select(state = STUSPS) |>
+    dplyr::inner_join(state_info, by = "state") |>
+    dplyr::filter(region == "South")
+
+transform_map <- function(df, lbl, crs = NULL) {
+    if (!is.null(crs)) {
+        df <- sf::st_transform(df, crs)
+    } else {
+        crs <- sf::st_crs(df)$epsg
+    }
+    ggplot(df) +
+        geom_sf() +
+        labs(title = stringr::str_glue("EPSG:{crs}, {lbl}"))
+}
+
+purrr::walk(
+    list(
+        list(lbl = "Census", crs = NULL),
+        list(lbl = "web mercator", crs = 3857),
+        list(lbl = "revolves around MD, uses feet", crs = 2248),
+        list(lbl = "US equal area", crs = 9311)
+    ),
+    function(map_meta) {
+        p <- transform_map(states_sf, map_meta[["lbl"]], map_meta[["crs"]])
+        print(p)
+    }
+)
+```
+
+## Things to do with spatial data
+
+
+Because `sf` is designed to be compatible with the tidyverse packages, you can do many of the same things to `sf` data frames as you can to regular ones. You can also layer the spatial geoms like you would other geoms.
+
+### Aggregating spatial data
+
+
+
+### Joining spatial & nonspatial data
+
+
+### Transforming spatial data
+
+
+### Spatial predicates and joins
+
+
+
+
