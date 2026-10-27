@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Camille Seaberry">
+
+<title>13. Spatial data in R – GES 778, Fall 2026</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../notes/14_data_to_space.html" rel="next">
+<link href="../notes/12_intro_to_maps.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-09606243866072c1aa00d3ff38fff5fe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-39d9fcd4c1df46547a23c0d6c53b9462.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-f349642c1e70a888385e97056c287875.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-39d9fcd4c1df46547a23c0d6c53b9462.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/13_sf.html">13. Spatial data in R</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">GES 778, Fall 2026</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/umbc-viz/ges778.git" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://github.com/umbc-viz/justviz.git" title="justviz package" class="quarto-navigation-tool px-1" aria-label="justviz package"><i class="bi bi-code-slash"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Overview</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Advanced Visualization and Presentation, Fall 2026</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../readings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reading list</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="../notes/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/00_setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00. Setup</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/01_intro_to_data_viz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01. Intro to data viz</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/02_good_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02. Writing good code</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/03_encodings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03. Visual encodings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/03b_encodings_code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03b. Code for visual encodings notes</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/04_tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04. Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/05_eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05. Exploratory data visualization</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/06_details.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06. Details, summarization, specificity, and uncertainty</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/07_annotations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07. Annotations</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/08_color.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08. Color</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/09_styleguides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09. Styleguides</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/10_text_audience.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10. Text, audience, accessibility</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/11_ethics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11. Ethics, responsibility &amp; trust</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/11a_universes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11a. Universes &amp; units of measurement</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/12_intro_to_maps.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12. Intro to maps</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/13_sf.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">13. Spatial data in R</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/14_data_to_space.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14. Mapping data to space</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/15_exploration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15. Helping readers explore</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../notes/proj1_work_sesh.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Project 1 work session</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">References &amp; extras</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/encodings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Reference - visual encodings</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/ggsave.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Saving plots with ggsave</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/joining_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Merging data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/legend_hacking.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Hacking together a legend</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/summarizing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Summarizing data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Basic data wrangling</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="px-0"><hr class="sidebar-divider hi "></li>
+    </ul>
+    </div>
+<div class="quarto-sidebar-footer"><div class="sidebar-footer-item">
+<p><a href="https://github.com/umbc-viz/ges778.git">Code for this site</a></p>
+</div></div></nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#types-of-spatial-data" id="toc-types-of-spatial-data" class="nav-link active" data-scroll-target="#types-of-spatial-data">Types of spatial data</a></li>
+  <li><a href="#spatial-data-in-r" id="toc-spatial-data-in-r" class="nav-link" data-scroll-target="#spatial-data-in-r">Spatial data in R</a>
+  <ul class="collapse">
+  <li><a href="#the-spatial-ecosystem" id="toc-the-spatial-ecosystem" class="nav-link" data-scroll-target="#the-spatial-ecosystem">The spatial ecosystem</a></li>
+  <li><a href="#plotting" id="toc-plotting" class="nav-link" data-scroll-target="#plotting">Plotting</a></li>
+  <li><a href="#projections" id="toc-projections" class="nav-link" data-scroll-target="#projections">Projections</a></li>
+  </ul></li>
+  <li><a href="#things-to-do-with-spatial-data" id="toc-things-to-do-with-spatial-data" class="nav-link" data-scroll-target="#things-to-do-with-spatial-data">Things to do with spatial data</a>
+  <ul class="collapse">
+  <li><a href="#aggregating-spatial-data" id="toc-aggregating-spatial-data" class="nav-link" data-scroll-target="#aggregating-spatial-data">Aggregating spatial data</a></li>
+  <li><a href="#joining-spatial-nonspatial-data" id="toc-joining-spatial-nonspatial-data" class="nav-link" data-scroll-target="#joining-spatial-nonspatial-data">Joining spatial &amp; nonspatial data</a></li>
+  <li><a href="#transforming-spatial-data" id="toc-transforming-spatial-data" class="nav-link" data-scroll-target="#transforming-spatial-data">Transforming spatial data</a></li>
+  <li><a href="#spatial-predicates-and-joins" id="toc-spatial-predicates-and-joins" class="nav-link" data-scroll-target="#spatial-predicates-and-joins">Spatial predicates and joins</a></li>
+  </ul></li>
+  <li><a href="#getting-spatial-data" id="toc-getting-spatial-data" class="nav-link" data-scroll-target="#getting-spatial-data">Getting spatial data</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/13_sf.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/13_sf.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/13_sf.html">13. Spatial data in R</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">13. Spatial data in R</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Camille Seaberry </p>
+          </div>
+  </div>
+    
+  
+    <div>
+    <div class="quarto-title-meta-heading">Modified</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date-modified">October 27, 2026</p>
+    </div>
+  </div>
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Once again we’ll play catch-up by running through some of the <a href="https://bldgspatialdata.github.io/website/">notes</a> from GES 668, Building Spatial Datasets. Most of our spatial data will be in data types that come from the <code>sf</code> package, but we’ll also use <code>terra</code> for raster data a bit. Other resources:</p>
+<ul>
+<li>The <a href="https://r-spatial.github.io/sf/"><code>sf</code></a> and <a href="https://rspatial.github.io/terra/"><code>terra</code></a> package docs (both include cheatsheets)</li>
+<li>The slides from Building Spatial Datasets, particularly <a href="https://bldgspatialdata.github.io/website/slides/spatial-data.html#/how-does-r-work-with-spatial-data">week 2</a> (start on section 3)</li>
+<li><span class="citation" data-cites="lovelace2025">Lovelace et al. (<a href="#ref-lovelace2025" role="doc-biblioref">2025</a>)</span>, especially <a href="https://r.geocompx.org/spatial-class">chapter 2</a> for an overview of packages and data types</li>
+<li>Stack Overflow’s <a href="https://stackoverflow.com/questions/tagged/r-sf">r-sf</a> tag</li>
+</ul>
+<div class="no-row-height column-margin column-container"></div><section id="types-of-spatial-data" class="level2">
+<h2 class="anchored" data-anchor-id="types-of-spatial-data">Types of spatial data</h2>
+<p>What type of spatial data you have will affect what you can do with it and how you go about mapping it. The main types are:</p>
+<ul>
+<li><strong>Point data</strong>, where observations are characterized by their location. These points might also have attributes associated with them.</li>
+<li><strong>Grid data</strong>, where measurements are taken at locations distributed throughout an area. These don’t need to be on a strict square grid; values might be interpolated between measured locations. <strong>Rasters</strong> are a common form of this where observations <em>are</em> more or less taken on a grid, often represented as one pixel per location (either observed or interpolated).</li>
+<li><strong>Areal data</strong>, where values are associated with two-dimensional regions. These are often based on man-made boundaries such as countries, towns, etc.</li>
+</ul>
+<p>We’ll be working with areal data the most. It has some drawbacks as far as visualizing data that we’ll talk about, but it is also flexible. For example, we have easy access to tract boundaries that cover all of Maryland. We have lots of data associated with each of those tracts. We can also join those tract geographies with other spatial data, including points within the tracts or overlaps between tracts and some other area. We can convert from that areal data to other data types, although we’ll lose some information (interpolating values associated with census tracts to a square grid, representing tracts as their centroids instead). Or we can aggregate point or grid data to areal boundaries (count of points within each polygon, pixels apportioned to polygons).</p>
+</section>
+<section id="spatial-data-in-r" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="spatial-data-in-r">Spatial data in R</h2>
+<section id="the-spatial-ecosystem" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="the-spatial-ecosystem">The spatial ecosystem</h3>
+<p>A few packages to install first (cross your fingers because the dependencies can be tough):</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>pkgs <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>    <span class="st">"sf"</span>, <span class="co"># sf : spatial data :: dplyr : tabular data</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>    <span class="st">"osmdata"</span>, <span class="co"># batch download data from OpenStreetMap</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>    <span class="st">"terra"</span>, <span class="co"># sf-friendly raster tools</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>    <span class="st">"tigris"</span>, <span class="co"># download shapefiles from the Census Bureau TIGER database</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>    <span class="st">"rmapshaper"</span>, <span class="co"># command line tool to edit geographies</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>    <span class="st">"tidyterra"</span> <span class="co"># dplyr functions + ggplot geoms for terra rasters</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a><span class="fu">install.packages</span>(pkgs)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a><span class="co"># or pak::pkg_install(pkgs)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Much of the R spatial ecosystem has migrated from an older set of packages (<code>sp</code>, <code>rgeos</code>, <code>rgdal</code>) to a newer one (<code>sf</code>, plus its friends like <code>stars</code> and <code>terra</code>) designed to fit into the tidyverse packages.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <code>sf</code> is also nice because many of the functions are based on PostGIS, so if you’ve worked with spatial databases (or might in the future) it’s easy to translate code.</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;This was actually a major <a href="https://r-spatial.org/r/2022/04/12/evolution.html">concerted effort</a> over the past few years because the original maintainer of many of those packages was retiring.</p></div></div><p>There are a few <code>sf</code>-based datasets in the justviz package, and many others are easy to get (<code>tigris</code> is very easy to use for Census Bureau data, and we’ll use <code>osmdata</code> to get OpenStreetMap shapefiles and data).</p>
+<p><code>sf</code> objects can be data frames with a geometry column, so you can work with them in many of the same ways as regular data frames; you might also see just plain geometry objects without any data attached.</p>
+</section>
+<section id="plotting" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="plotting">Plotting</h3>
+<section id="vector-geometries-e.g.-points-polygons" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="vector-geometries-e.g.-points-polygons">Vector geometries (e.g.&nbsp;points &amp; polygons)</h4>
+<p><code>sf</code> is the main package we’ll use for handling vector geometries, such as points, lines, polygons, etc.<code>sf</code> objects have a <code>plot</code> method, so you can just call <code>plot(very_cool_sf_data)</code> and get a basic plot:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a><span class="fu">head</span>(justviz<span class="sc">::</span>tracts_sf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">county</th>
+<th style="text-align: left;">geoid</th>
+<th style="text-align: left;">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Howard County</td>
+<td style="text-align: left;">24027605601</td>
+<td style="text-align: left;">POLYGON ((-76.90501 39.2135…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Howard County</td>
+<td style="text-align: left;">24027602305</td>
+<td style="text-align: left;">POLYGON ((-76.85329 39.2790…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510151200</td>
+<td style="text-align: left;">POLYGON ((-76.65636 39.3365…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510270702</td>
+<td style="text-align: left;">POLYGON ((-76.57356 39.3685…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510120201</td>
+<td style="text-align: left;">POLYGON ((-76.60948 39.3309…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510200701</td>
+<td style="text-align: left;">POLYGON ((-76.68942 39.2935…</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="co"># just showing county column</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a><span class="fu">plot</span>(justviz<span class="sc">::</span>tracts_sf[, <span class="st">"county"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_sf_files/figure-html/map-base-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>A note about object-oriented programming (OOP): When you have a function that’s a method of some type of object, just as <code>plot</code>, you can look at help pages for that function by specifying the object type. So <code>?plot.sf</code> will show you the docs for <code>plot</code> as it applies specifically to <code>sf</code> objects.</p>
+</div></div><p>ggplot also has geoms for spatial data. For these notes, we’ll mostly just use <code>sf</code>’s plot method to focus on spatial data types, not mapping.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="fu">ggplot</span>(justviz<span class="sc">::</span>tracts_sf) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>    <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> county))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_sf_files/figure-html/map-gg-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="raster-geometries" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="raster-geometries">Raster geometries</h4>
+<p>Rasters are made up of grids with some set of attributes at each grid square. For example, if you’re studying tree canopy, you might have a grid of the state divided into 30m x 30m cells or pixels. For each cell, you might have a categorical attribute like main land cover type (is this cell mostly covered by grass, trees, water, impervious surfaces, etc). Or you might have just true/false data for whether the cells is mostly tree canopy. Or you might have a continuous numeric measurement, like the percentage of the cell that is covered by trees. The bottom line is you have a set resolution for the data, and you have some attribute(s) for each of those cells. There’s a dataset in <code>justviz</code> of landcover raster data; because of its size, you need a separate function to load it into your session. (I fixed a bug in how the dataset is read, so you need package version <strong>0.3.1</strong>.)</p>
+<p>There are two major packages that handle raster data and are made to be compatible with <code>sf</code>: <code>stars</code>, made by the same developers as <code>sf</code> (the r-spatial crew), and <code>terra</code>, made to more directly carry on older packages from the <code>sp</code> world (the rspatial crew).</p>
+<p>We’re not doing a ton with raster data, and while <code>stars</code> has syntax more similar to <code>sf</code>, it also has bigger aims than we need (storing time series spatial data as cubes). So we’ll use <code>terra</code> with the <code>tidyterra</code> package unless someone has a pressing need to do otherwise.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>land <span class="ot">&lt;-</span> justviz<span class="sc">::</span><span class="fu">load_land_cover</span>()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>land</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>class       : SpatRaster
+size        : 4214, 3273, 1  (nrow, ncol, nlyr)
+resolution  : 30, 30  (x, y)
+extent      : 1587750, 1685940, 1902390, 2028810  (xmin, xmax, ymin, ymax)
+coord. ref. : NAD83 / Conus Albers (EPSG:5070)
+source      : landcover.tif
+color table : 1
+categories  : Class, Color, Description
+name        :                        Class
+min value   :                   Open Water
+max value   : Emergent Herbaceous Wetlands</code></pre>
+</div>
+</div>
+<p>From the object’s printout you can see it’s got a resolution of 30m x 30m with 1 layer. We can plot it with <code>terra</code>’s plot method using a color table that’s stored in the raster data.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>This dataset is cropped to the same extent as the tracts shapefile. If you need to work with the same data for a different area, see the code that preps the data in the <a href="https://github.com/umbc-viz/justviz/blob/main/data-raw/landcover.R"><code>justviz</code> package</a></p>
+</div></div><div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>terra<span class="sc">::</span><span class="fu">plot</span>(land)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_sf_files/figure-html/raster-plot-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Use <code>terra::mask</code> to filter a <code>SpatRaster</code> object. You can also use <code>tidyterra::filter</code> to get <code>dplyr</code>-like syntax, but it seems to drop the landcover color table.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a><span class="fu">library</span>(terra)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>forest <span class="ot">&lt;-</span> terra<span class="sc">::</span><span class="fu">mask</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>  land,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>  land <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Mixed Forest"</span>, <span class="st">"Evergreen Forest"</span>, <span class="st">"Deciduous Forest"</span>),</span>
+<span id="cb8-5"><a href="#cb8-5" aria-label="5"></a>  <span class="at">maskvalues =</span> <span class="cn">FALSE</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-label="6"></a>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-label="7"></a><span class="fu">plot</span>(forest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_sf_files/figure-html/raster-tidy-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="projections" class="level3">
+<h3 class="anchored" data-anchor-id="projections">Projections</h3>
+<p>Just like in desktop GIS software, in R you can reproject spatial data to different coordinate reference systems (CRS). This is easiest if your data already has a CRS attached to it (all the datasets in <code>justviz</code> do, as do any you download from the Census Bureau with the <code>tigris</code> package, and many others). In some cases, mostly if you’re creating a bit of spatial data manually, you’ll need to first assign a CRS explicitly, then transform.</p>
+<p>Some CRS codes you’ll see often:</p>
+<ul>
+<li><a href="https://spatialreference.org/ref/epsg/4269/">EPSG:4269</a>, default for data downloaded from the Census Bureau</li>
+<li><a href="https://spatialreference.org/ref/epsg/3857/">EPSG:3857</a>, aka Web Mercator</li>
+<li><a href="https://spatialreference.org/ref/epsg/4326/">EPSG:4326</a>, used most often in GPS</li>
+<li><a href="https://spatialreference.org/ref/epsg/2248/">EPSG:2248</a>, projected for good views of Maryland with units in feet</li>
+</ul>
+<p>That last one is useful for us making maps locally because 1) it makes Maryland look pretty, and 2) having units in feet makes it easier to do transformations or calculations based on distances.</p>
+<p>Locally, you probably won’t see much difference between these CRSes, but you would for a map of a large portion of the country.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_sf_files/figure-html/md-crs-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_sf_files/figure-html/md-crs-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_sf_files/figure-html/md-crs-3.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_sf_files/figure-html/md-crs-4.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="things-to-do-with-spatial-data" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="things-to-do-with-spatial-data">Things to do with spatial data</h2>
+<p>Because <code>sf</code> is designed to be compatible with the tidyverse packages, you can do many of the same things to <code>sf</code> data frames as you can to regular ones. When you plot <code>sf</code> data frames or other objects with ggplot, you can also layer the spatial geoms like you would other geoms.</p>
+<section id="aggregating-spatial-data" class="level3">
+<h3 class="anchored" data-anchor-id="aggregating-spatial-data">Aggregating spatial data</h3>
+<p>The most basic way to aggregate spatial data is to just take your geometries and squish them all together. You might do this to save space &amp; memory if you have a very large set of points and only need locations, not any individual points’ attributes. You also might do it to make smaller geometries into bigger ones. This is helpful in mapping hierarchical shapes, because sometimes shapes will be slightly different from one object to the next and you end up with tracts that are supposed to fit inside towns but have tiny gaps in some places that make your map look janky and unprofessional. When possible, I prefer starting with my smallest geography and aggregating up to larger ones.</p>
+<p>In order to save space, I put a shapefile in <code>justviz</code> of tracts but not counties, because you can aggregate up to counties. <code>sf</code> lets you do this in the same way as you would with other <code>dplyr</code>-based summarization. You can use a function inside <code>dplyr::summarise</code> like you normally would (e.g.&nbsp;mean, median, etc), or you can leave the summarization empty to just get the combined geometries.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a><span class="co"># grouped by county</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>counties_sf <span class="ot">&lt;-</span> justviz<span class="sc">::</span>tracts_sf <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(county) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-label="4"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>()</span>
+<span id="cb9-5"><a href="#cb9-5" aria-label="5"></a></span>
+<span id="cb9-6"><a href="#cb9-6" aria-label="6"></a><span class="fu">plot</span>(counties_sf[, <span class="st">"county"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_sf_files/figure-html/aggregate-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a><span class="co"># no grouping</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>region_sf <span class="ot">&lt;-</span> justviz<span class="sc">::</span>tracts_sf <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>()</span>
+<span id="cb10-4"><a href="#cb10-4" aria-label="4"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-label="5"></a><span class="fu">plot</span>(region_sf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_sf_files/figure-html/aggregate-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="joining-spatial-nonspatial-data" class="level3">
+<h3 class="anchored" data-anchor-id="joining-spatial-nonspatial-data">Joining spatial &amp; nonspatial data</h3>
+<p>You can join spatial data frames and nonspatial data frames the same way you would <a href="../extras/joining_data.html">join</a> two regular (nonspatial) data frames. I generally keep the spatial data frame on the left for two reasons:</p>
+<ul>
+<li>The data type follows from the table on the left side of the join. That means if you join an sf data frame on the left and a regular one on the right, you’ll get back an <code>sf</code> data frame; if you join a regular data frame on the left and an <code>sf</code> one on the right, you’ll get a regular data frame that happens to have a geometry column.</li>
+<li>If I’m making a map, I most likely want every relevant geometry (e.g.&nbsp;every tract in the city) even if I have some areas that don’t have data. You can ensure that you’ll have all the shapes even if they don’t have data if you put your spatial data on the left side of the join, and use a left join rather than an inner join.</li>
+</ul>
+<p>However, if you do an operation that returns a nonspatial data frame that has a valid geometry column, you can get it back into an <code>sf</code> data type with <code>sf::st_as_sf</code>, which coerces <code>sf</code>-related data types. Here are some examples related to joining tracts in Baltimore city with incomplete tract-level data. Let’s say we’re mapping an analysis related to housing in the city, but we only want to study tracts with at least 1000 households.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a>balt_sf <span class="ot">&lt;-</span> justviz<span class="sc">::</span>tracts_sf <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Baltimore city"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-label="3"></a>balt_housing <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-label="4"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">is_in_housing_study =</span> total_hh <span class="sc">&gt;=</span> <span class="dv">1000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-label="5"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Baltimore city"</span>, is_in_housing_study) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-label="6"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(county, name, total_hh, is_in_housing_study)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-label="7"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-label="8"></a><span class="fu">paste0</span>(<span class="st">"class of balt_sf: "</span>, <span class="fu">toString</span>(<span class="fu">class</span>(balt_sf)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "class of balt_sf: sf, data.frame"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a><span class="fu">paste0</span>(<span class="st">"class of balt_housing: "</span>, <span class="fu">toString</span>(<span class="fu">class</span>(balt_housing)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "class of balt_housing: tbl_df, tbl, data.frame"</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-label="1"></a><span class="co"># if you run this in a console, you'll see information about the geometries</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-label="2"></a>balt_housing_sf <span class="ot">&lt;-</span> balt_sf <span class="sc">|&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(balt_housing, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"county"</span>, <span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"name"</span>))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-label="4"></a><span class="fu">head</span>(balt_housing_sf) <span class="co"># 199 rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 22%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">county</th>
+<th style="text-align: left;">geoid</th>
+<th style="text-align: right;">total_hh</th>
+<th style="text-align: left;">is_in_housing_study</th>
+<th style="text-align: left;">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510151200</td>
+<td style="text-align: right;">1606</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">POLYGON ((-76.65636 39.3365…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510270702</td>
+<td style="text-align: right;">1051</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">POLYGON ((-76.57356 39.3685…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510120201</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POLYGON ((-76.60948 39.3309…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510200701</td>
+<td style="text-align: right;">1931</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">POLYGON ((-76.68942 39.2935…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510090600</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POLYGON ((-76.59515 39.3283…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510160801</td>
+<td style="text-align: right;">1297</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">POLYGON ((-76.68121 39.2938…</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-label="1"></a><span class="co"># if you run this in a console, you *won't* see info about the geometries</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-label="2"></a>balt_housing_df <span class="ot">&lt;-</span> balt_housing <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(balt_sf, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"county"</span>, <span class="st">"name"</span> <span class="ot">=</span> <span class="st">"geoid"</span>))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-label="4"></a><span class="fu">head</span>(balt_housing_df) <span class="co"># 118 rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 13%">
+<col style="width: 10%">
+<col style="width: 22%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">county</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: right;">total_hh</th>
+<th style="text-align: left;">is_in_housing_study</th>
+<th style="text-align: left;">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510010100</td>
+<td style="text-align: right;">1433</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">POLYGON ((-76.57704 39.2832…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510010200</td>
+<td style="text-align: right;">1372</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">POLYGON ((-76.57617 39.2922…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510010400</td>
+<td style="text-align: right;">1535</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">POLYGON ((-76.58706 39.2858…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510020300</td>
+<td style="text-align: right;">2640</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">POLYGON ((-76.59923 39.2853…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510030200</td>
+<td style="text-align: right;">1547</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">POLYGON ((-76.60643 39.2907…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510040100</td>
+<td style="text-align: right;">5034</td>
+<td style="text-align: left;">TRUE</td>
+<td style="text-align: left;">POLYGON ((-76.62264 39.2948…</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-label="1"></a><span class="fu">plot</span>(balt_housing_sf[, <span class="st">"is_in_housing_study"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_sf_files/figure-html/join-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-label="1"></a><span class="co"># get balt_housing_df back to sf data frame to do the same</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-label="2"></a><span class="fu">plot</span>(sf<span class="sc">::</span><span class="fu">st_as_sf</span>(balt_housing_df)[, <span class="st">"is_in_housing_study"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="13_sf_files/figure-html/join-1-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="transforming-spatial-data" class="level3">
+<h3 class="anchored" data-anchor-id="transforming-spatial-data">Transforming spatial data</h3>
+<p>There are lots of ways to transform spatial data, and the <code>sf</code> <a href="https://r-spatial.github.io/sf/articles/sf3.html">docs</a> and <a href="https://r.geocompx.org/geometry-operations#geo-vec">books</a> go into a lot of detail on them. Some that we’ll use for making maps in this class are:</p>
+<ul>
+<li><strong>simplification</strong>, removing vertices from lines or boundaries</li>
+<li><strong>buffers</strong>, expanding or contracting a geometry by a set amount</li>
+<li><strong>centroids</strong>, center of mass of a polygon</li>
+<li><strong>intersections</strong>, geometries created as the combination of shapes in both of a set of geometries</li>
+</ul>
+</section>
+<section id="spatial-predicates-and-joins" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="spatial-predicates-and-joins">Spatial predicates and joins</h3>
+<p>Predicates are functions that return true/false. Think of them as asking, for each pair of geometries, questions like is point A inside polygon B, or is polygon C contained entirely within polygon D, or does shape E intersect with shape F in any way? Because these can be used for <em>spatial joins</em>, there’s a convenient list of them at <code>?sf::st_join</code>. I most often use <code>sf::st_intersects</code>, which is the default for spatial joins and just determines whether 2 shapes of whatever dimensions touch in some way. A point and line can intersect, a line and polygon can intersect, 2 polygons can intersect, etc.</p>
+<p>Once you know <em>how</em> you want to join two sets of geometries, a spatial join will combine them based on your predicate function. These follow some of the same mechanisms as other table joins, such as whether it is a left join or inner join.</p>
+<p>I most commonly use spatial joins to locate points inside polygons, such as assigning each of Baltimore’s public artworks to a census tract:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-label="1"></a><span class="fu">head</span>(justviz<span class="sc">::</span>art_sf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 4%">
+<col style="width: 2%">
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 11%">
+<col style="width: 6%">
+<col style="width: 3%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">county</th>
+<th style="text-align: left;">artist_last_name</th>
+<th style="text-align: left;">artist_first_name</th>
+<th style="text-align: left;">title</th>
+<th style="text-align: left;">date</th>
+<th style="text-align: left;">medium</th>
+<th style="text-align: left;">location</th>
+<th style="text-align: left;">site</th>
+<th style="text-align: left;">visibility</th>
+<th style="text-align: left;">access</th>
+<th style="text-align: left;">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Streett</td>
+<td style="text-align: left;">Tylden</td>
+<td style="text-align: left;">Sails</td>
+<td style="text-align: left;">1978</td>
+<td style="text-align: left;">copper</td>
+<td style="text-align: left;">Patterson HS</td>
+<td style="text-align: left;">Second story window</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POINT (-76.5919 39.28823)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Russum</td>
+<td style="text-align: left;">Olin</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">1969</td>
+<td style="text-align: left;">ceramic tree</td>
+<td style="text-align: left;">Callaway ES</td>
+<td style="text-align: left;">Stairwell</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POINT (-76.68362 39.34557)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Benson</td>
+<td style="text-align: left;">J. Arthur</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">1973</td>
+<td style="text-align: left;">concrete and corten steel</td>
+<td style="text-align: left;">Westport ES</td>
+<td style="text-align: left;">Playground</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POINT (-76.63833 39.26211)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">McCullough</td>
+<td style="text-align: left;">Donna</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1989</td>
+<td style="text-align: left;">mural</td>
+<td style="text-align: left;">141 S. Central Ave.</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POINT (-76.59947 39.28932)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Alexander</td>
+<td style="text-align: left;">Patricia</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">ceramic tiles</td>
+<td style="text-align: left;">Lexington Market Station</td>
+<td style="text-align: left;">Covers ceiling beams</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POINT (-76.62102 39.29191)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Farber</td>
+<td style="text-align: left;">Saul</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">1980</td>
+<td style="text-align: left;">stained glass</td>
+<td style="text-align: left;">Broadway Market</td>
+<td style="text-align: left;">Window</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POINT (-76.5919 39.28823)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-label="1"></a><span class="fu">summary</span>(justviz<span class="sc">::</span>art_sf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       id              county     artist_last_name artist_first_name
+ Min.   :  1.0   Length   :672   Length   :672     Length   :672    
+ 1st Qu.:175.8   N.unique :  3   N.unique :353     N.unique :287    
+ Median :346.5   N.blank  :  0   N.blank  :  0     N.blank  :  0    
+ Mean   :346.8   Min.nchar: 14   Min.nchar:  3     Min.nchar:  1    
+ 3rd Qu.:517.5   Max.nchar: 19   Max.nchar: 50     Max.nchar: 25    
+ Max.   :690.0                   NAs      :  6     NAs      : 55    
+       title            date           medium         location  
+ Length   :672   Length   :672   Length   :672   Length   :672  
+ N.unique :346   N.unique :130   N.unique :159   N.unique :457  
+ N.blank  :  0   N.blank  :  0   N.blank  :  0   N.blank  :  0  
+ Min.nchar:  2   Min.nchar:  4   Min.nchar:  4   Min.nchar:  4  
+ Max.nchar: 50   Max.nchar: 23   Max.nchar: 37   Max.nchar: 75  
+ NAs      :120   NAs      :122   NAs      :115   NAs      :  4  
+        site         visibility        access             geometry  
+ Length   :672   Length   :672   Length   :672   POINT        :672  
+ N.unique :335   N.unique : 38   N.unique :  4   epsg:4269    :  0  
+ N.blank  :  0   N.blank  :  0   N.blank  :  0   +proj=long...:  0  
+ Min.nchar:  4   Min.nchar:  4   Min.nchar:  4                      
+ Max.nchar:162   Max.nchar:101   Max.nchar: 18                      
+ NAs      :148   NAs      :489   NAs      :626                      </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-label="1"></a>justviz<span class="sc">::</span>art_sf <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-label="2"></a>  sf<span class="sc">::</span><span class="fu">st_join</span>(justviz<span class="sc">::</span>tracts_sf) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-label="3"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">county.x</th>
+<th style="text-align: left;">artist_last_name</th>
+<th style="text-align: left;">artist_first_name</th>
+<th style="text-align: left;">title</th>
+<th style="text-align: left;">date</th>
+<th style="text-align: left;">medium</th>
+<th style="text-align: left;">location</th>
+<th style="text-align: left;">site</th>
+<th style="text-align: left;">visibility</th>
+<th style="text-align: left;">access</th>
+<th style="text-align: left;">county.y</th>
+<th style="text-align: left;">geoid</th>
+<th style="text-align: left;">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Streett</td>
+<td style="text-align: left;">Tylden</td>
+<td style="text-align: left;">Sails</td>
+<td style="text-align: left;">1978</td>
+<td style="text-align: left;">copper</td>
+<td style="text-align: left;">Patterson HS</td>
+<td style="text-align: left;">Second story window</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510020200</td>
+<td style="text-align: left;">POINT (-76.5919 39.28823)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Russum</td>
+<td style="text-align: left;">Olin</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">1969</td>
+<td style="text-align: left;">ceramic tree</td>
+<td style="text-align: left;">Callaway ES</td>
+<td style="text-align: left;">Stairwell</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510271801</td>
+<td style="text-align: left;">POINT (-76.68362 39.34557)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Benson</td>
+<td style="text-align: left;">J. Arthur</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">1973</td>
+<td style="text-align: left;">concrete and corten steel</td>
+<td style="text-align: left;">Westport ES</td>
+<td style="text-align: left;">Playground</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510250301</td>
+<td style="text-align: left;">POINT (-76.63833 39.26211)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">McCullough</td>
+<td style="text-align: left;">Donna</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1989</td>
+<td style="text-align: left;">mural</td>
+<td style="text-align: left;">141 S. Central Ave.</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510030100</td>
+<td style="text-align: left;">POINT (-76.59947 39.28932)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Alexander</td>
+<td style="text-align: left;">Patricia</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">ceramic tiles</td>
+<td style="text-align: left;">Lexington Market Station</td>
+<td style="text-align: left;">Covers ceiling beams</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510040100</td>
+<td style="text-align: left;">POINT (-76.62102 39.29191)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Farber</td>
+<td style="text-align: left;">Saul</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">1980</td>
+<td style="text-align: left;">stained glass</td>
+<td style="text-align: left;">Broadway Market</td>
+<td style="text-align: left;">Window</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510020200</td>
+<td style="text-align: left;">POINT (-76.5919 39.28823)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Note that there are 672 points in the art dataset, and now 672 points in the joined dataset. Like with joins between an <code>sf</code> data frame and a regular one, the geometry type follows the data frame on the left<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. I think about it as the left data frame being the one I’m most interested in holding on to, and the right is the one that’s providing additional attributes. In this case, I’m studying artworks and want to add tract to the set of information I have on each.</p>
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;I imagine it’s possible for there to be edge cases where this isn’t true, but AFAIK it’s generally true.</p></div></div><p>If instead I were interested in tracts, and wanted to know what types of artwork or how many pieces were in each tract, I could switch the order around:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-label="1"></a>justviz<span class="sc">::</span>tracts_sf <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-label="2"></a>  sf<span class="sc">::</span><span class="fu">st_join</span>(justviz<span class="sc">::</span>art_sf) <span class="sc">|&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-label="3"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 1%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 10%">
+<col style="width: 17%">
+<col style="width: 10%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">county.x</th>
+<th style="text-align: left;">geoid</th>
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">county.y</th>
+<th style="text-align: left;">artist_last_name</th>
+<th style="text-align: left;">artist_first_name</th>
+<th style="text-align: left;">title</th>
+<th style="text-align: left;">date</th>
+<th style="text-align: left;">medium</th>
+<th style="text-align: left;">location</th>
+<th style="text-align: left;">site</th>
+<th style="text-align: left;">visibility</th>
+<th style="text-align: left;">access</th>
+<th style="text-align: left;">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Howard County</td>
+<td style="text-align: left;">24027605601</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POLYGON ((-76.90501 39.2135…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Howard County</td>
+<td style="text-align: left;">24027602305</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POLYGON ((-76.85329 39.2790…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510151200</td>
+<td style="text-align: right;">577</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Maynard</td>
+<td style="text-align: left;">Valarie</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">1977</td>
+<td style="text-align: left;">quarry tile floor</td>
+<td style="text-align: left;">Lower Park Heights Multi-purpose Center</td>
+<td style="text-align: left;">Interior</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POLYGON ((-76.65636 39.3365…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510270702</td>
+<td style="text-align: right;">410</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Carlberg</td>
+<td style="text-align: left;">Norman</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">1971</td>
+<td style="text-align: left;">polyester resin</td>
+<td style="text-align: left;">Northern Parkway Jr.&nbsp;HS</td>
+<td style="text-align: left;">Entrance plaza, lobby</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POLYGON ((-76.57356 39.3685…</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510120201</td>
+<td style="text-align: right;">503</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Hoffmaster</td>
+<td style="text-align: left;">Thomas</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">1970</td>
+<td style="text-align: left;">welded metal sculpture</td>
+<td style="text-align: left;">Waverly Branch Library</td>
+<td style="text-align: left;">Interior</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POLYGON ((-76.60948 39.3309…</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510200701</td>
+<td style="text-align: right;">401</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Wilson</td>
+<td style="text-align: left;">Glen</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">acrylic paint</td>
+<td style="text-align: left;">Mary Rodman Recreation Center</td>
+<td style="text-align: left;">Walls flanking entrance</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">POLYGON ((-76.68942 39.2935…</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Here’s one use of this: the art dataset comes from Baltimore’s open data portal, but for whatever reason a few points are outside the city. Say we wanted to limit this to just pieces that are strictly inside the city (and pretend the data didn’t have a county column). You can filter tracts for just the city, then do an inner join to attach that to the art locations.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-label="1"></a>justviz<span class="sc">::</span>art_sf <span class="sc">|&gt;</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-label="2"></a>  <span class="co"># left = FALSE turns this from a left join to an inner join</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-label="3"></a>  sf<span class="sc">::</span><span class="fu">st_join</span>(balt_sf, <span class="at">left =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-label="4"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div class="kable-table">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 1%">
+<col style="width: 7%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 3%">
+<col style="width: 2%">
+<col style="width: 12%">
+<col style="width: 11%">
+<col style="width: 10%">
+<col style="width: 5%">
+<col style="width: 3%">
+<col style="width: 7%">
+<col style="width: 5%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: right;">id</th>
+<th style="text-align: left;">county.x</th>
+<th style="text-align: left;">artist_last_name</th>
+<th style="text-align: left;">artist_first_name</th>
+<th style="text-align: left;">title</th>
+<th style="text-align: left;">date</th>
+<th style="text-align: left;">medium</th>
+<th style="text-align: left;">location</th>
+<th style="text-align: left;">site</th>
+<th style="text-align: left;">visibility</th>
+<th style="text-align: left;">access</th>
+<th style="text-align: left;">county.y</th>
+<th style="text-align: left;">geoid</th>
+<th style="text-align: left;">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Streett</td>
+<td style="text-align: left;">Tylden</td>
+<td style="text-align: left;">Sails</td>
+<td style="text-align: left;">1978</td>
+<td style="text-align: left;">copper</td>
+<td style="text-align: left;">Patterson HS</td>
+<td style="text-align: left;">Second story window</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510020200</td>
+<td style="text-align: left;">POINT (-76.5919 39.28823)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Russum</td>
+<td style="text-align: left;">Olin</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">1969</td>
+<td style="text-align: left;">ceramic tree</td>
+<td style="text-align: left;">Callaway ES</td>
+<td style="text-align: left;">Stairwell</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510271801</td>
+<td style="text-align: left;">POINT (-76.68362 39.34557)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Benson</td>
+<td style="text-align: left;">J. Arthur</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">1973</td>
+<td style="text-align: left;">concrete and corten steel</td>
+<td style="text-align: left;">Westport ES</td>
+<td style="text-align: left;">Playground</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510250301</td>
+<td style="text-align: left;">POINT (-76.63833 39.26211)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">5</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">McCullough</td>
+<td style="text-align: left;">Donna</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">1989</td>
+<td style="text-align: left;">mural</td>
+<td style="text-align: left;">141 S. Central Ave.</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510030100</td>
+<td style="text-align: left;">POINT (-76.59947 39.28932)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Alexander</td>
+<td style="text-align: left;">Patricia</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">ceramic tiles</td>
+<td style="text-align: left;">Lexington Market Station</td>
+<td style="text-align: left;">Covers ceiling beams</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510040100</td>
+<td style="text-align: left;">POINT (-76.62102 39.29191)</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">7</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">Farber</td>
+<td style="text-align: left;">Saul</td>
+<td style="text-align: left;">Unknown</td>
+<td style="text-align: left;">1980</td>
+<td style="text-align: left;">stained glass</td>
+<td style="text-align: left;">Broadway Market</td>
+<td style="text-align: left;">Window</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">Baltimore city</td>
+<td style="text-align: left;">24510020200</td>
+<td style="text-align: left;">POINT (-76.5919 39.28823)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now this is cut down from the original 672 points to 661.</p>
+<p>Note also that to do any sort of spatial operation between two objects, they need the same CRS. In this case, I built the datasets to have the same CRS from the start, but you’ll often need to decided on one and reproject the shapes.</p>
+</section>
+</section>
+<section id="getting-spatial-data" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="getting-spatial-data">Getting spatial data</h2>
+<p>One of the tough things about working with spatial data is the system dependencies such as drivers that can be hard to have all in alignment. One of the nicest things about <code>sf</code> is how easily it can read different spatial data types. Some common types are Esri shapefiles (.shp), GeoPackage (.gpkg), and GeoJSON (.json or .geojson)—the last one is especially common with data coming from APIs. Raster data usually comes in pixel-based formats like GeoTIFF (.tif) or netCDF (.cdf). You shouldn’t have any trouble opening valid files in these formats with either <code>sf</code> or <code>terra</code>.</p>
+<p>There are also packages to help read data directly from ArcGIS services into <code>sf</code> data frames, such as <a href="https://github.com/R-ArcGIS/arcgislayers"><code>arcgislayers</code></a>, maintained in part by our friend Eli. This is how I got data from local open data portals into <code>justviz</code>.</p>
+<p>The Census Bureau has downloads of official geographies through the TIGER program, some of which are updated routinely (tracts get redrawn after each decennial census, legislative districts get redrawn and gerrymandered, OMB changes metro area definitions. I’m still fixing definitions of things from when Connecticut abolished counties in 2022). These are online as shapefiles, but the easiest way to access them in R is the <a href="https://github.com/walkerke/tigris"><code>tigris</code></a> package, which lets you pick geography types, subsets, and years to download, optionally stashing them in your computer’s cache, and reads them as <code>sf</code> data frames.</p>
+<p>You might also encounter spatial databases, such as PostGIS, or databases like SQLite or duckdb with spatial extensions. <code>sf</code>’s functions are named to mirror PostGIS, so if and when you need to work with spatial databases, you’ll be fairly familiar with the operations.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;<code>dplyr</code>was also designed to, at least in part, mirror SQL verbs.</p></div><div id="ref-lovelace2025" class="csl-entry" role="listitem">
+Lovelace, R., Nowosad, J., &amp; Muenchow, J. (2025). <em>Geocomputation with <span>R</span></em> (2nd ed.). <a href="https://r.geocompx.org/">https://r.geocompx.org/</a>
+</div></div><p>There’s a lot more detail in <span class="citation" data-cites="lovelace2025">Lovelace et al. (<a href="#ref-lovelace2025" role="doc-biblioref">2025</a>)</span> ch.&nbsp;8 and 10.7.</p>
+
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/umbc-viz\.github\.io\/ges778\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../notes/12_intro_to_maps.html" class="pagination-link" aria-label="12. Intro to maps">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">12. Intro to maps</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../notes/14_data_to_space.html" class="pagination-link" aria-label="14. Mapping data to space">
+        <span class="nav-page-text">14. Mapping data to space</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/13_sf.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/13_sf.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>

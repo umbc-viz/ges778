@@ -2,110 +2,122 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://umbc-viz.github.io/ges778/readings.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
+    <lastmod>2026-10-27T01:04:52.681Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/notes/13_sf.html</loc>
+    <lastmod>2026-10-27T01:04:52.680Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/08_color.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
+    <lastmod>2026-10-27T01:04:52.680Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/05_eda.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
+    <lastmod>2026-10-27T01:04:52.679Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/11_ethics.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
+    <lastmod>2026-10-27T01:04:52.680Z</lastmod>
   </url>
   <url>
-    <loc>https://umbc-viz.github.io/ges778/notes/03_encodings.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/notes/06_details.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/notes/15_exploration.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/notes/index.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/notes/04_tables.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/extras/encodings.html</loc>
-    <lastmod>2026-10-23T14:18:49.074Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/extras/wrangling.html</loc>
-    <lastmod>2026-10-23T14:18:49.074Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/extras/legend_hacking.html</loc>
-    <lastmod>2026-10-23T14:18:49.074Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/LICENSE.html</loc>
-    <lastmod>2026-10-23T14:18:49.064Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/syllabus.html</loc>
-    <lastmod>2026-10-23T14:18:49.078Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/index.html</loc>
-    <lastmod>2026-10-23T14:18:49.074Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/extras/summarizing.html</loc>
-    <lastmod>2026-10-23T14:18:49.074Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/extras/joining_data.html</loc>
-    <lastmod>2026-10-23T14:18:49.074Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/extras/ggsave.html</loc>
-    <lastmod>2026-10-23T14:18:49.074Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/notes/proj1_work_sesh.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/notes/11a_universes.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/notes/01_intro_to_data_viz.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
-  </url>
-  <url>
-    <loc>https://umbc-viz.github.io/ges778/notes/00_setup.html</loc>
-    <lastmod>2026-10-23T14:18:49.074Z</lastmod>
+    <loc>https://umbc-viz.github.io/ges778/notes/12_intro_to_maps.html</loc>
+    <lastmod>2026-10-27T01:04:52.680Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/02_good_code.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
+    <lastmod>2026-10-27T01:04:52.679Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/notes/00_setup.html</loc>
+    <lastmod>2026-10-27T01:04:52.679Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/notes/01_intro_to_data_viz.html</loc>
+    <lastmod>2026-10-27T01:04:52.679Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/notes/11a_universes.html</loc>
+    <lastmod>2026-10-27T01:04:52.680Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/notes/proj1_work_sesh.html</loc>
+    <lastmod>2026-10-27T01:04:52.681Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/extras/ggsave.html</loc>
+    <lastmod>2026-10-27T01:04:52.678Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/extras/joining_data.html</loc>
+    <lastmod>2026-10-27T01:04:52.678Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/extras/summarizing.html</loc>
+    <lastmod>2026-10-27T01:04:52.678Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/index.html</loc>
+    <lastmod>2026-10-27T01:04:52.679Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/syllabus.html</loc>
+    <lastmod>2026-10-27T01:04:52.683Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/LICENSE.html</loc>
+    <lastmod>2026-10-27T01:04:52.667Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/extras/legend_hacking.html</loc>
+    <lastmod>2026-10-27T01:04:52.678Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/extras/wrangling.html</loc>
+    <lastmod>2026-10-27T01:04:52.678Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/extras/encodings.html</loc>
+    <lastmod>2026-10-27T01:04:52.678Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/notes/04_tables.html</loc>
+    <lastmod>2026-10-27T01:04:52.679Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/notes/index.html</loc>
+    <lastmod>2026-10-27T01:04:52.681Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/notes/15_exploration.html</loc>
+    <lastmod>2026-10-27T01:04:52.680Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/notes/06_details.html</loc>
+    <lastmod>2026-10-27T01:04:52.679Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/notes/03_encodings.html</loc>
+    <lastmod>2026-10-27T01:04:52.679Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/10_text_audience.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
+    <lastmod>2026-10-27T01:04:52.680Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/03b_encodings_code.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
+    <lastmod>2026-10-27T01:04:52.679Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/09_styleguides.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
+    <lastmod>2026-10-27T01:04:52.680Z</lastmod>
+  </url>
+  <url>
+    <loc>https://umbc-viz.github.io/ges778/notes/14_data_to_space.html</loc>
+    <lastmod>2026-10-27T01:04:52.680Z</lastmod>
   </url>
   <url>
     <loc>https://umbc-viz.github.io/ges778/notes/07_annotations.html</loc>
-    <lastmod>2026-10-23T14:18:49.075Z</lastmod>
+    <lastmod>2026-10-27T01:04:52.679Z</lastmod>
   </url>
 </urlset>
