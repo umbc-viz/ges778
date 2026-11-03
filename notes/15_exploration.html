@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -96,18 +96,19 @@ div.csl-indent {
 <link href="../notes/14_data_to_space.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-09606243866072c1aa00d3ff38fff5fe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3db608c3aac2db220582703da11e8ac9.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-39d9fcd4c1df46547a23c0d6c53b9462.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-f349642c1e70a888385e97056c287875.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-39d9fcd4c1df46547a23c0d6c53b9462.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-21daf1489fe04bf8d4514e53e35861d0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-03cd5ac297a02828d771b69f9de20af8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-21daf1489fe04bf8d4514e53e35861d0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -139,7 +140,7 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-sidebar docked slimcontent quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked slimcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -162,6 +163,7 @@ div.csl-indent {
       for (let i=0; i < toggles.length; i++) {
         const toggle = toggles[i];
         if (toggle) {
+          toggle.setAttribute("aria-checked", alternate ? "true" : "false");
           if (alternate) {
             toggle.classList.add("alternate");
           } else {
@@ -191,13 +193,19 @@ div.csl-indent {
       manageTransitions('#quarto-margin-sidebar .nav-link', true);
       // Switch the toggles
       setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455).
+    // Not run on load: stylesheets are set before first paint there, and
+    // scrolling would undo the scroll to a URL fragment (#14973).
+    // The one pixel nudge keeps the reader where they were.
+    const refreshSafariScrollbar = () => {
       if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
         manageTransitions("body", false);
-        window.scrollTo(0, 1);
+        const scrollY = window.scrollY;
+        window.scrollTo(0, scrollY > 0 ? scrollY - 1 : 1);
         setTimeout(() => {
-          window.scrollTo(0, 0);
+          window.scrollTo(0, scrollY);
           manageTransitions("body", true);
         }, 40);
       }
@@ -291,6 +299,7 @@ div.csl-indent {
       // Read the current dark / light value
       let toAlternate = !hasAlternateSentinel();
       toggleColorMode(toAlternate);
+      refreshSafariScrollbar();
       setStyleSentinel(toAlternate);
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
@@ -305,13 +314,13 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/15_exploration.html">15. Helping readers explore</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/15_exploration.html">15. Helping readers explore</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -322,14 +331,14 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto" aria-label="Site">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">GES 778, Fall 2026</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/umbc-viz/ges778.git" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
     <a href="https://github.com/umbc-viz/justviz.git" title="justviz package" class="quarto-navigation-tool px-1" aria-label="justviz package"><i class="bi bi-code-slash"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <button type="button" role="switch" aria-checked="false" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode" aria-label="Toggle dark mode"><i class="bi"></i></button>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -347,13 +356,10 @@ div.csl-indent {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Overview</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Overview</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
@@ -378,12 +384,12 @@ div.csl-indent {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../notes/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notes</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Notes</span></a>
+            <button type="button" class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section: Notes">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/00_setup.html" class="sidebar-item-text sidebar-link">
@@ -503,13 +509,10 @@ div.csl-indent {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">References &amp; extras</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">References &amp; extras</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../extras/encodings.html" class="sidebar-item-text sidebar-link">
@@ -557,22 +560,25 @@ div.csl-indent {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sneak-peak-small-multiples" id="toc-sneak-peak-small-multiples" class="nav-link active" data-scroll-target="#sneak-peak-small-multiples">Sneak peak: small multiples</a>
+  <li><a href="#exploration-in-static-visualization" id="toc-exploration-in-static-visualization" class="nav-link active" data-scroll-target="#exploration-in-static-visualization">Exploration in static visualization</a></li>
+  <li><a href="#some-terms" id="toc-some-terms" class="nav-link" data-scroll-target="#some-terms">Some terms</a></li>
+  <li><a href="#small-multiples" id="toc-small-multiples" class="nav-link" data-scroll-target="#small-multiples">Small multiples</a>
   <ul class="collapse">
   <li><a href="#other-applications" id="toc-other-applications" class="nav-link" data-scroll-target="#other-applications">Other applications</a></li>
   </ul></li>
+  <li><a href="#many-views-of-a-dataset" id="toc-many-views-of-a-dataset" class="nav-link" data-scroll-target="#many-views-of-a-dataset">Many views of a dataset</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/15_exploration.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/15_exploration.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content" tabindex="-1">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/15_exploration.html">15. Helping readers explore</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/15_exploration.html">15. Helping readers explore</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">15. Helping readers explore</h1>
 </div>
@@ -592,7 +598,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">October 27, 2026</p>
+      <p class="date-modified">November 3, 2026</p>
     </div>
   </div>
     
@@ -603,21 +609,39 @@ div.csl-indent {
 </header>
 
 
-<section id="sneak-peak-small-multiples" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="sneak-peak-small-multiples">Sneak peak: small multiples</h2>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>qual_pal <span class="ot">&lt;-</span> rcartocolor<span class="sc">::</span><span class="fu">carto_pal</span>(<span class="at">name =</span> <span class="st">'Vivid'</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="co"># written in misc_scripts/tract_planning_areas.R</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>planning_areas <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"assets/tract_planning_area.rds"</span>))</span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>These notes aren’t finished yet; for now we’ll just use it to jump ahead and talk about small multiples/facets in preparation for the midterm project.</p>
-</div>
-</div>
+<section id="exploration-in-static-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="exploration-in-static-visualization">Exploration in static visualization</h2>
+<p>In an interactive visualization or dashboard, users are able to decide, at least to some extent, how to chop up and summarize the data shown. It can be good to give users freedom to look at what they’re interested in, but it can also be overwhelming. Think of how often you, with a fair amount of education and experience in working with data, spin your wheels trying to figure out how to get started with a dataset or what to ask. Instead, many readers will be able to get more out of a visualization if you lead them through a story. That means you also have a good amount of sway over what readers understand—don’t mislead them!</p>
+<p>In an online dashboard, users would probably be clicking through each of these indicators and/or geographic levels. In static viz, you’re essentially doing that for them, mimicking the process of selecting different views and bringing your expertise to the experience. In my experience, doing static visualization is harder than doing interactive visualization for storytelling because of all the constraints you’re working with.</p>
+</section>
+<section id="some-terms" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="some-terms">Some terms</h2>
+<p><span class="citation" data-cites="schwabish2021d">Schwabish (<a href="#ref-schwabish2021d" role="doc-biblioref">2021</a>)</span> has a great overview of static vs interactive visualizations, explanatory vs exploratory visualizations, and the quadrants these two axes create. Think of these as spectra, where your projects might have elements of many types. He describes these axes:</p>
+<div class="no-row-height column-margin column-container"><div id="ref-schwabish2021d" class="csl-entry" role="listitem">
+Schwabish, J. (2021). A schematic of data visualization type and purpose. In <em>PolicyViz</em>. <a href="https://policyviz.com/2021/03/09/a-schematic-of-data-visualization-type-and-purpose/">https://policyviz.com/2021/03/09/a-schematic-of-data-visualization-type-and-purpose/</a>
+</div></div><blockquote class="blockquote">
+<p>The first is a vertical line that defines the general FORM of the visualization. This line runs from static to interactive.</p>
+<ul>
+<li>Static visualizations provide all the information at once and do not move. These are, for example, your basic line, bar, and pie charts.</li>
+<li>Interactive visualizations allow a transfer of information between the user and the interface. The user clicks, swipes, or hovers, and something happens or additional information is made visible.</li>
+</ul>
+<p>On the horizontal spectrum is the FUNCTION of the visualization. Here, visuals run from explanatory to exploratory visualizations.</p>
+<ul>
+<li>Explanatory visualizations bring the results to the forefront; they convey the author’s hypothesis or argument to the reader.</li>
+<li>Exploratory visualizations encourage the user to explore the data or subject matter to uncover findings for themselves.</li>
+</ul>
+</blockquote>
+</section>
+<section id="small-multiples" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="small-multiples">Small multiples</h2>
 <p>Small multiples refer to a technique of breaking data down into subsets, then repeating the same chart type for each subset. In ggplot, these panels are called facets (older libraries and books will refer to trellis plots, which is what I first learned). As always, there’s a good, brief Datawrapper post <span class="citation" data-cites="muth2024">(<a href="#ref-muth2024" role="doc-biblioref">Muth, 2024</a>)</span>.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-muth2024" class="csl-entry" role="listitem">
 Muth, L. C. (2024). What to consider when creating small multiple line charts. In <em>Datawrapper</em>. <a href="https://www.datawrapper.de/blog/what-to-consider-when-creating-small-multiple-line-charts">https://www.datawrapper.de/blog/what-to-consider-when-creating-small-multiple-line-charts</a>
@@ -632,16 +656,16 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
 <p>I added the dataset <code>md_regions</code> to version 0.3.0 of the <code>justviz</code> package, so you’ll need to upgrade if you don’t see it.</p>
 </div></div><p>In this example, I’ll use small multiples to get different views of the EJSCREEN data without having to squeeze too much into a frame at once. Here’s a weird pattern between percentile rankings of concentrations of diesel particulate matter and small inhalable particulate matter (PM 2.5):</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>ej_wide <span class="ot">&lt;-</span> justviz<span class="sc">::</span>ej_natl <span class="sc">|&gt;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>        <span class="at">id_cols =</span> tract,</span>
-<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>        <span class="at">names_from =</span> indicator,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>        <span class="at">values_from =</span> value_ptile</span>
-<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>    )</span>
-<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a><span class="fu">head</span>(ej_wide)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>ej_wide <span class="ot">&lt;-</span> justviz<span class="sc">::</span>ej_natl <span class="sc">|&gt;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>    tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>        <span class="at">id_cols =</span> tract,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>        <span class="at">names_from =</span> indicator,</span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>        <span class="at">values_from =</span> value_ptile</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>    )</span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a><span class="fu">head</span>(ej_wide)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div class="kable-table">
 <table class="caption-top table table-sm table-striped small">
@@ -780,8 +804,8 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
 </table>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="fu">ggplot</span>(ej_wide, <span class="fu">aes</span>(<span class="at">x =</span> diesel, <span class="at">y =</span> pm25)) <span class="sc">+</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="fu">ggplot</span>(ej_wide, <span class="fu">aes</span>(<span class="at">x =</span> diesel, <span class="at">y =</span> pm25)) <span class="sc">+</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -792,17 +816,17 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
 </div>
 <p>Small multiples by region will show whether this pattern holds throughout the state. I’ll use the ACS data’s counties, plus the table of regions, to break this up:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="co"># tract fips &amp; county name from acs</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>ej_region <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(county, name, ages65plus, median_hh_income) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>    <span class="co"># inner join to keep just observations in both data frames</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>    <span class="co"># in this case that means tracts</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a>    dplyr<span class="sc">::</span><span class="fu">inner_join</span>(justviz<span class="sc">::</span>md_regions, <span class="at">by =</span> <span class="st">"county"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a>    dplyr<span class="sc">::</span><span class="fu">inner_join</span>(ej_wide, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name"</span> <span class="ot">=</span> <span class="st">"tract"</span>))</span>
-<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a><span class="fu">ggplot</span>(ej_region, <span class="fu">aes</span>(<span class="at">x =</span> diesel, <span class="at">y =</span> pm25)) <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-label="10"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-label="11"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(region))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a><span class="co"># tract fips &amp; county name from acs</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>ej_region <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>    dplyr<span class="sc">::</span><span class="fu">select</span>(county, name, ages65plus, median_hh_income) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>    <span class="co"># inner join to keep just observations in both data frames</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>    <span class="co"># in this case that means tracts</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>    dplyr<span class="sc">::</span><span class="fu">inner_join</span>(justviz<span class="sc">::</span>md_regions, <span class="at">by =</span> <span class="st">"county"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>    dplyr<span class="sc">::</span><span class="fu">inner_join</span>(ej_wide, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name"</span> <span class="ot">=</span> <span class="st">"tract"</span>))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a><span class="fu">ggplot</span>(ej_region, <span class="fu">aes</span>(<span class="at">x =</span> diesel, <span class="at">y =</span> pm25)) <span class="sc">+</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-label="10"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-label="11"></a>    <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(region))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -819,18 +843,18 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
 </ul>
 <p>I could do the same sort of thing with a second variable using <code>facet_grid</code>. Let’s add in an income component, where we break tracts into whether their median household income is above $100k, and facet by that as well as region:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>ej_region <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>        <span class="at">income_brk =</span> <span class="fu">ifelse</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>            median_hh_income <span class="sc">&gt;</span> <span class="dv">100000</span>,</span>
-<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>            <span class="st">"higher-income"</span>,</span>
-<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>            <span class="st">"lower-income"</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a>        )</span>
-<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(median_hh_income)) <span class="sc">|&gt;</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-label="10"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> diesel, <span class="at">y =</span> pm25)) <span class="sc">+</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-label="11"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-label="12"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(income_brk), <span class="at">cols =</span> <span class="fu">vars</span>(region))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>ej_region <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>        <span class="at">income_brk =</span> <span class="fu">ifelse</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>            median_hh_income <span class="sc">&gt;</span> <span class="dv">100000</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>            <span class="st">"higher-income"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>            <span class="st">"lower-income"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>        )</span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(median_hh_income)) <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-label="10"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> diesel, <span class="at">y =</span> pm25)) <span class="sc">+</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-label="11"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.8</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-label="12"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(income_brk), <span class="at">cols =</span> <span class="fu">vars</span>(region))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -846,28 +870,28 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
 <p>Here’s an example with county-level shares of adults without a high school diploma, again broken down by region. The facetting just makes it a little easier to read, kind of like adding extra line breaks to a very long paragraph.</p>
 <p>First without facets:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>md_counties <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"county"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>    dplyr<span class="sc">::</span><span class="fu">left_join</span>(justviz<span class="sc">::</span>md_regions, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>    <span class="co"># order counties by value</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>        <span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>            forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(less_than_high_school)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a>    ) <span class="sc">|&gt;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a>    <span class="co"># also order regions by max value</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-label="10"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
-<span id="cb5-11"><a href="#cb5-11" aria-label="11"></a>        <span class="at">region =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(region) <span class="sc">|&gt;</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-label="12"></a>            forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(</span>
-<span id="cb5-13"><a href="#cb5-13" aria-label="13"></a>                less_than_high_school,</span>
-<span id="cb5-14"><a href="#cb5-14" aria-label="14"></a>                <span class="at">.fun =</span> max,</span>
-<span id="cb5-15"><a href="#cb5-15" aria-label="15"></a>                <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-label="16"></a>            )</span>
-<span id="cb5-17"><a href="#cb5-17" aria-label="17"></a>    )</span>
-<span id="cb5-18"><a href="#cb5-18" aria-label="18"></a></span>
-<span id="cb5-19"><a href="#cb5-19" aria-label="19"></a>no_diploma_gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(md_counties, <span class="fu">aes</span>(<span class="at">x =</span> less_than_high_school, <span class="at">y =</span> name)) <span class="sc">+</span></span>
-<span id="cb5-20"><a href="#cb5-20" aria-label="20"></a>    <span class="fu">geom_col</span>()</span>
-<span id="cb5-21"><a href="#cb5-21" aria-label="21"></a></span>
-<span id="cb5-22"><a href="#cb5-22" aria-label="22"></a>no_diploma_gg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>md_counties <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"county"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>    dplyr<span class="sc">::</span><span class="fu">left_join</span>(justviz<span class="sc">::</span>md_regions, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"name"</span> <span class="ot">=</span> <span class="st">"county"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>    <span class="co"># order counties by value</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-label="5"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb6-6"><a href="#cb6-6" aria-label="6"></a>        <span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-label="7"></a>            forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(less_than_high_school)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-label="8"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-label="9"></a>    <span class="co"># also order regions by max value</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-label="10"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-label="11"></a>        <span class="at">region =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(region) <span class="sc">|&gt;</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-label="12"></a>            forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(</span>
+<span id="cb6-13"><a href="#cb6-13" aria-label="13"></a>                less_than_high_school,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-label="14"></a>                <span class="at">.fun =</span> max,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-label="15"></a>                <span class="at">.desc =</span> <span class="cn">TRUE</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-label="16"></a>            )</span>
+<span id="cb6-17"><a href="#cb6-17" aria-label="17"></a>    )</span>
+<span id="cb6-18"><a href="#cb6-18" aria-label="18"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-label="19"></a>no_diploma_gg <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(md_counties, <span class="fu">aes</span>(<span class="at">x =</span> less_than_high_school, <span class="at">y =</span> name)) <span class="sc">+</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-label="20"></a>    <span class="fu">geom_col</span>()</span>
+<span id="cb6-21"><a href="#cb6-21" aria-label="21"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-label="22"></a>no_diploma_gg</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -878,8 +902,8 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
 </div>
 <p>Then add rows for region:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>no_diploma_gg <span class="sc">+</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(region))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>no_diploma_gg <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(region))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -890,8 +914,8 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
 </div>
 <p>Ewww. <code>facet_grid</code> expects the scales to be the same across panels, and that’s often the case. But in this case, each county is only in 1 region, and therefore should only appear in one panel. Set the scales to <code>"free_y"</code>, which means the y-axis scale is allowed to change between panels.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a>no_diploma_gg <span class="sc">+</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(region), <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>no_diploma_gg <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(region), <span class="at">scales =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -902,8 +926,8 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
 </div>
 <p>In this version, each panel gets a fixed amount of space regardless of how many bars they have. Change it again to have free spacing, which lets the size of the panels adjust to fit the number of markings on the axis:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>no_diploma_gg <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(region), <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">space =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>no_diploma_gg <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(region), <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">space =</span> <span class="st">"free_y"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -914,9 +938,9 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
 </div>
 <p>Last thing I’d change is the panel labels: the text shouldn’t be rotated like this (it’s also cut off). That can be changed with a theme setting—facet text elements, for the sake of theming, are called strips FYI.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a>no_diploma_gg <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(region), <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">space =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a>    <span class="fu">theme</span>(<span class="at">strip.text.y.right =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>no_diploma_gg <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(region), <span class="at">scales =</span> <span class="st">"free_y"</span>, <span class="at">space =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a>    <span class="fu">theme</span>(<span class="at">strip.text.y.right =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust =</span> <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -927,10 +951,101 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
 </div>
 <p>Definitely needs more clean-up, but that’s the structure to get started.</p>
 <p><strong>Bottom line:</strong> Look through the docs for the facetting functions—there are a lot of arguments, and some of them are confusing and hard to keep track of.</p>
-
-
-
 </section>
+</section>
+<section id="many-views-of-a-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="many-views-of-a-dataset">Many views of a dataset</h2>
+<p>My favorite types of projects are ones where I get to dig deep into one dataset and pull together many different views and perspectives of it. Even better when doing that lets us challenge notions we have in the data.</p>
+<p>One way you can chop up data into different views is to start large (state-level values before zooming into towns, total population values before disaggregating by demographic groups, etc). Then you can use higher-level data to provide context for the group you want to focus on. We can again use facets, but this time use them to visually distinguish between our focus data and its comparison.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a>justviz<span class="sc">::</span>wages <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-label="2"></a>    dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-label="3"></a>        status <span class="sc">==</span> <span class="st">"full_time"</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-label="4"></a>        edu <span class="sc">==</span> <span class="st">"total"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-label="5"></a>        (sex <span class="sc">!=</span> <span class="st">"total"</span> <span class="sc">|</span> race_eth <span class="sc">==</span> <span class="st">"total"</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-label="6"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-label="7"></a>    <span class="co"># dplyr::mutate(</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-label="8"></a>    <span class="co">#     dimension = forcats::fct_collapse(</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-label="9"></a>    <span class="co">#         dimension,</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-label="10"></a>    <span class="co">#         "by_sex" = c("total", "by_sex")</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-label="11"></a>    <span class="co">#     )</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-label="12"></a>    <span class="co"># ) |&gt;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-label="13"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> race_eth, <span class="at">y =</span> earn_q50, <span class="at">fill =</span> sex)) <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-label="14"></a>    <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>, <span class="at">position =</span> <span class="fu">position_dodge2</span>(<span class="at">preserve =</span> <span class="st">"single"</span>)) <span class="sc">+</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-label="15"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> qual_pal[<span class="fu">c</span>(<span class="dv">12</span>, <span class="dv">2</span>, <span class="dv">3</span>)]) <span class="sc">+</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-label="16"></a>    <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(dimension), <span class="at">scales =</span> <span class="st">"free_x"</span>, <span class="at">space =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-label="17"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Median earnings, Maryland adults working full time, 2024"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="15_exploration_files/figure-html/slice-n-dice-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>My real focus in this chart is the interaction between race and sex, but with 2 types of comparisons to frame it. The code I commented out would combine the first two smaller panels (total &amp; by sex) into one; I don’t think either approach is better than the other.</p>
+<p>Here’s a similar approach with hierarchical geographies, as well as showing multiple related values. Say you’re working with the health department or a local hospital to do outreach around preventive care in Central Baltimore. Your focus is on the tracts in that area (this is from the city’s official planning areas), but it’s also helpful to know how they compare to the city and its surroundings, as well as the state and country.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-label="1"></a>central_balt <span class="ot">&lt;-</span> planning_areas <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(area <span class="sc">==</span> <span class="st">"Central"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-label="2"></a>central_balt_cdc <span class="ot">&lt;-</span> justviz<span class="sc">::</span>cdc <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(indicator <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Current asthma"</span>, <span class="st">"Annual checkup"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-label="4"></a>  <span class="co"># get us, state, city, county, central tracts</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-label="5"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(</span>
+<span id="cb12-6"><a href="#cb12-6" aria-label="6"></a>    level <span class="sc">%in%</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-label="7"></a>      <span class="fu">c</span>(<span class="st">"us"</span>, <span class="st">"state"</span>) <span class="sc">|</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-label="8"></a>      location <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Baltimore city"</span>, <span class="st">"Baltimore County"</span>, central_balt<span class="sc">$</span>geoid)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-label="9"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-label="10"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">value =</span> value <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-label="11"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb12-12"><a href="#cb12-12" aria-label="12"></a>    <span class="at">indicator =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(indicator) <span class="sc">|&gt;</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-label="13"></a>      forcats<span class="sc">::</span><span class="fu">fct_relevel</span>(<span class="st">"Annual checkup"</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-label="14"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-label="15"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb12-16"><a href="#cb12-16" aria-label="16"></a>    <span class="at">level2 =</span> forcats<span class="sc">::</span><span class="fu">fct_recode</span>(level, <span class="st">"Central Balt. tracts"</span> <span class="ot">=</span> <span class="st">"tract"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-label="17"></a>      forcats<span class="sc">::</span><span class="fu">fct_other</span>(</span>
+<span id="cb12-18"><a href="#cb12-18" aria-label="18"></a>        <span class="at">keep =</span> <span class="st">"Central Balt. tracts"</span>,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-label="19"></a>        <span class="at">other_level =</span> <span class="st">"Larger geographies"</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-label="20"></a>      ) <span class="sc">|&gt;</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-label="21"></a>      forcats<span class="sc">::</span><span class="fu">fct_relevel</span>(<span class="st">"Larger geographies"</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-label="22"></a>  )</span>
+<span id="cb12-23"><a href="#cb12-23" aria-label="23"></a></span>
+<span id="cb12-24"><a href="#cb12-24" aria-label="24"></a><span class="fu">ggplot</span>(central_balt_cdc, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> location)) <span class="sc">+</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-label="25"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-label="26"></a>  <span class="fu">facet_grid</span>(</span>
+<span id="cb12-27"><a href="#cb12-27" aria-label="27"></a>    <span class="at">rows =</span> <span class="fu">vars</span>(level2),</span>
+<span id="cb12-28"><a href="#cb12-28" aria-label="28"></a>    <span class="at">cols =</span> <span class="fu">vars</span>(indicator),</span>
+<span id="cb12-29"><a href="#cb12-29" aria-label="29"></a>    <span class="at">scales =</span> <span class="st">"free_y"</span>,</span>
+<span id="cb12-30"><a href="#cb12-30" aria-label="30"></a>    <span class="at">space =</span> <span class="st">"free_y"</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-label="31"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="15_exploration_files/figure-html/facet-hier-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>One thing to notice about a chart like this: the horizontal scales are very different, and that’s to be expected. Most adults have a doctor’s checkup each year, but most adults don’t have asthma. If these were two indicators you <em>did</em> expect to have similar ranges of values, using the same scale helps show how they differ. Doing this with annual checkup and annual dental visit, for example, would let you know whether one type of preventive care lags behind the other. Even without knowing a lot about this data, you can do a sanity check and realize that they occur on different scales. In that case, I’ll generally use free scales for the x-axis as well.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-label="1"></a><span class="fu">ggplot</span>(central_balt_cdc, <span class="fu">aes</span>(<span class="at">x =</span> value, <span class="at">y =</span> location)) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-label="2"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-label="3"></a>  <span class="fu">facet_grid</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-label="4"></a>    <span class="at">rows =</span> <span class="fu">vars</span>(level2),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-label="5"></a>    <span class="at">cols =</span> <span class="fu">vars</span>(indicator),</span>
+<span id="cb13-6"><a href="#cb13-6" aria-label="6"></a>    <span class="at">scales =</span> <span class="st">"free"</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-label="7"></a>    <span class="at">space =</span> <span class="st">"free_y"</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-label="8"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="15_exploration_files/figure-html/facet-hier-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
@@ -938,15 +1053,50 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const toggle = window.document.createElement('button');
+      toggle.type = "button";
+      toggle.setAttribute("role", "switch");
+      toggle.setAttribute("aria-checked", "false");
+      toggle.classList.add('top-right');
+      toggle.classList.add('quarto-color-scheme-toggle');
+      toggle.setAttribute("aria-label", "Toggle dark mode");
+      toggle.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
       const i = window.document.createElement("i");
       i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
+      toggle.appendChild(i);
+      // Put the toggle in a landmark of its own, so that landmark navigation
+      // can reach it.
+      //
+      // The container is always a fresh direct child of body, and the toggle is
+      // never moved into page furniture that the theme or the author controls.
+      // The toggle is positioned against the page, so any ancestor that
+      // establishes a containing block captures it: a positioned element or a
+      // grid for position: absolute, and transform, filter, will-change or
+      // contain for position: fixed. A direct child of body has none of these
+      // to inherit, and the shift when one appears is silent and visual.
+      //
+      // ARIA says a document should have at most one banner, and axe reports a
+      // duplicate whether or not the banners carry distinct labels. So use a
+      // header when the page has no banner yet, and a named region otherwise.
+      //
+      // A header is a banner wherever it sits, unless it is inside sectioning
+      // content, so this cannot just look at the children of body: a custom
+      // page layout wraps the title block header in a plain div. An explicit
+      // role="banner" always counts.
+      const sectioning = 'article, aside, main, nav, section, [role="article"], [role="complementary"], [role="main"], [role="navigation"], [role="region"]';
+      const hasBanner = Array.from(
+        window.document.querySelectorAll('header:not([role]), [role="banner"]')
+      ).some(function(el) {
+        return el.hasAttribute("role") || el.closest(sectioning) === null;
+      });
+      const container = window.document.createElement(hasBanner ? "div" : "header");
+      if (hasBanner) {
+        container.setAttribute("role", "region");
+        container.setAttribute("aria-label", "Toggle dark mode");
+      }
+      container.classList.add('quarto-color-scheme-toggle-container');
+      container.appendChild(toggle);
+      window.document.body.appendChild(container);
     }
     setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
@@ -1025,7 +1175,8 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -1034,8 +1185,69 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -1049,6 +1261,7 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -1211,44 +1424,54 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -1347,7 +1570,10 @@ Muth, L. C. (2024). What to consider when creating small multiple line charts. I
     }
   });
   </script>
-<nav class="page-navigation">
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
       <a href="../notes/14_data_to_space.html" class="pagination-link" aria-label="14. Mapping data to space">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">14. Mapping data to space</span>

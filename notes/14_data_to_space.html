@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.11.9">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -27,7 +27,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -41,18 +96,19 @@ ul.task-list li input[type="checkbox"] {
 <link href="../notes/13_sf.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-09606243866072c1aa00d3ff38fff5fe.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e21500bb30e7ce080c64316834ee3be8.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-3db608c3aac2db220582703da11e8ac9.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-39d9fcd4c1df46547a23c0d6c53b9462.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-f349642c1e70a888385e97056c287875.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-39d9fcd4c1df46547a23c0d6c53b9462.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-21daf1489fe04bf8d4514e53e35861d0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-03cd5ac297a02828d771b69f9de20af8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-21daf1489fe04bf8d4514e53e35861d0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -84,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
 
 </head>
 
-<body class="nav-sidebar docked quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+<body class="nav-sidebar docked slimcontent quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -107,6 +163,7 @@ ul.task-list li input[type="checkbox"] {
       for (let i=0; i < toggles.length; i++) {
         const toggle = toggles[i];
         if (toggle) {
+          toggle.setAttribute("aria-checked", alternate ? "true" : "false");
           if (alternate) {
             toggle.classList.add("alternate");
           } else {
@@ -136,13 +193,19 @@ ul.task-list li input[type="checkbox"] {
       manageTransitions('#quarto-margin-sidebar .nav-link', true);
       // Switch the toggles
       setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455).
+    // Not run on load: stylesheets are set before first paint there, and
+    // scrolling would undo the scroll to a URL fragment (#14973).
+    // The one pixel nudge keeps the reader where they were.
+    const refreshSafariScrollbar = () => {
       if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
         manageTransitions("body", false);
-        window.scrollTo(0, 1);
+        const scrollY = window.scrollY;
+        window.scrollTo(0, scrollY > 0 ? scrollY - 1 : 1);
         setTimeout(() => {
-          window.scrollTo(0, 0);
+          window.scrollTo(0, scrollY);
           manageTransitions("body", true);
         }, 40);
       }
@@ -236,6 +299,7 @@ ul.task-list li input[type="checkbox"] {
       // Read the current dark / light value
       let toAlternate = !hasAlternateSentinel();
       toggleColorMode(toAlternate);
+      refreshSafariScrollbar();
       setStyleSentinel(toAlternate);
       toggleGiscusIfUsed(toAlternate, darkModeDefault);
       window.dispatchEvent(new Event('resize'));
@@ -250,13 +314,13 @@ ul.task-list li input[type="checkbox"] {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
     <div class="container-fluid d-flex">
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/14_data_to_space.html">14. Mapping data to space</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/14_data_to_space.html">14. Mapping data to space</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -267,14 +331,14 @@ ul.task-list li input[type="checkbox"] {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto" aria-label="Site">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">GES 778, Fall 2026</a> 
         <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/umbc-viz/ges778.git" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
     <a href="https://github.com/umbc-viz/justviz.git" title="justviz package" class="quarto-navigation-tool px-1" aria-label="justviz package"><i class="bi bi-code-slash"></i></a>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <button type="button" role="switch" aria-checked="false" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode" aria-label="Toggle dark mode"><i class="bi"></i></button>
   <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
   <div class="quarto-reader-toggle-btn">
   <i class="bi"></i>
@@ -292,13 +356,10 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Overview</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Overview</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
@@ -323,12 +384,12 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a href="../notes/index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notes</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Notes</span></a>
+            <button type="button" class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section: Notes">
+              <i class="bi bi-chevron-right ms-2" aria-hidden="true"></i>
+            </button> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../notes/00_setup.html" class="sidebar-item-text sidebar-link">
@@ -448,13 +509,10 @@ ul.task-list li input[type="checkbox"] {
         <li class="px-0"><hr class="sidebar-divider hi "></li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
- <span class="menu-text">References &amp; extras</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">References &amp; extras</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../extras/encodings.html" class="sidebar-item-text sidebar-link">
@@ -501,14 +559,27 @@ ul.task-list li input[type="checkbox"] {
 </div></div></nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#space" id="toc-space" class="nav-link active" data-scroll-target="#space">Space</a></li>
+  <li><a href="#areal-units" id="toc-areal-units" class="nav-link" data-scroll-target="#areal-units">Areal units</a>
+  <ul class="collapse">
+  <li><a href="#maup-and-ecological-fallacy" id="toc-maup-and-ecological-fallacy" class="nav-link" data-scroll-target="#maup-and-ecological-fallacy">MAUP and ecological fallacy</a></li>
+  <li><a href="#choropleths" id="toc-choropleths" class="nav-link" data-scroll-target="#choropleths">Choropleths</a></li>
+  </ul></li>
+  <li><a href="#rasters" id="toc-rasters" class="nav-link" data-scroll-target="#rasters">Rasters</a></li>
+  <li><a href="#points" id="toc-points" class="nav-link" data-scroll-target="#points">Points</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/14_data_to_space.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/14_data_to_space.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content" tabindex="-1">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/14_data_to_space.html">14. Mapping data to space</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../notes/index.html">Notes</a></li><li class="breadcrumb-item"><a href="../notes/14_data_to_space.html">14. Mapping data to space</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">14. Mapping data to space</h1>
 </div>
@@ -528,7 +599,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">October 27, 2026</p>
+      <p class="date-modified">November 3, 2026</p>
     </div>
   </div>
     
@@ -539,23 +610,360 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="space" class="level2">
+<h2 class="anchored" data-anchor-id="space">Space</h2>
+<p>Think back to the first principles we talked about with mapping data onto visual encodings (reading lengths of bar charts, reading darkness of color). With spatial data, we have many of the same principles, but we’re confined by location. We can’t just, say, flip our axes to make them easier to read, or change the aspect ratio to fit in a tight space on a page. We also can’t just arbitrarily change the size of things we’re drawing—for example, in a US state map, we can’t just make Texas less huge.</p>
+<p>That said, there are <em>a lot</em> of decisions we do make about how we encode data to space or manipulate it, and these can change the nature of what we know about our data. That makes it important to think really hard about those decisions, and situate those decisions in the purpose of your visualization, your audience, the scope of your work, domain knowledge, etc etc. Often there are no perfectly right answers.</p>
+<p>When we looked at Hans Rosling’s bubble plots, the size (area) of points showed the population of each country. That makes sense perceptually—your brain is going to see things of different sizes, pick up on that difference, and think it means something. But in spatial data, it might not; different sizes might actually <em>interfere</em> with our ability to understand what the visual is meant to show. That is, the area of a location <em>might</em> have something to do with the data, but oftentimes it doesn’t (sometimes if anything it shows the opposite—some of the largest US states have among the smallest populations, same goes for Maryland counties). Census tracts are designed to have similar populations, but counties are arbitrary political boundaries.</p>
+<p>For example, Baltimore city and Anne Arundel County have similar populations (573k vs 598k), but in the city we’re packed into about 1/5 the area of Anne Arundel County.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a><span class="co"># justviz::tracts_sf is only baltimore &amp; neighboring counties</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>all_tracts_sf <span class="ot">&lt;-</span> tigris<span class="sc">::</span><span class="fu">tracts</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>  <span class="at">state =</span> <span class="st">"24"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>  <span class="at">cb =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>  <span class="at">progress_bar =</span> <span class="cn">FALSE</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a>) <span class="sc">|&gt;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(<span class="at">geoid =</span> GEOID, <span class="at">county =</span> NAMELSADCO)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>counties_sf <span class="ot">&lt;-</span> all_tracts_sf <span class="sc">|&gt;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(county) <span class="sc">|&gt;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a>  dplyr<span class="sc">::</span><span class="fu">summarise</span>()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a>qual_pal <span class="ot">&lt;-</span> rcartocolor<span class="sc">::</span><span class="fu">carto_pal</span>(<span class="at">name =</span> <span class="st">"Vivid"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a></span>
+<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a>justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"county"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> area_sqmi, <span class="at">y =</span> total_pop)) <span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>  ggrepel<span class="sc">::</span><span class="fu">geom_text_repel</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>    <span class="fu">aes</span>(<span class="at">label =</span> name),</span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>    <span class="at">data =</span> <span class="sc">~</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(., dplyr<span class="sc">::</span><span class="fu">between</span>(total_pop, <span class="fl">5e5</span>, <span class="fl">7e5</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a>  <span class="fu">scale_y_continuous</span>(</span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">scale =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">1000</span>, <span class="at">suffix =</span> <span class="st">"k"</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-label="11"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-label="12"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Total population vs area, Maryland counties"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14_data_to_space_files/figure-html/area-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a>justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(level <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"tract"</span>, <span class="st">"county"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> total_pop)) <span class="sc">+</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a>  <span class="fu">scale_x_continuous</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">scale =</span> <span class="dv">1</span> <span class="sc">/</span> <span class="dv">1000</span>, <span class="at">suffix =</span> <span class="st">"k"</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a>  ) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(level), <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Total population, Maryland counties and tracts"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14_data_to_space_files/figure-html/area-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="areal-units" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="areal-units">Areal units</h2>
+<p>One major issue that comes up in mapping is the <strong>modifiable areal unit problem</strong>:</p>
+<div class="page-columns page-full"><blockquote class="blockquote">
+<p>The MAUP occurs when statistical results or visual patterns embedded in maps differ according to changes in the scale or zoning of the partitioning scheme used to aggregate spatial data <span class="citation" data-cites="openshaw1984">(<a href="#ref-openshaw1984" role="doc-biblioref">Openshaw, 1984</a>)</span>. The problem commonly occurs when data on individual objects, such as people, are disseminated in data sets in aggregated form, such that the actual spatial distribution of the original individual objects is unobtainable….</p>
+<p>One consequence of the MAUP is that spatial patterns that may be observed in a map using one partitioning scheme may not be visible using another partitioning scheme where the scale or zoning differs.</p>
+<p>–<span class="citation" data-cites="mennis2019">Mennis (<a href="#ref-mennis2019" role="doc-biblioref">2019</a>)</span></p>
+</blockquote><div class="no-row-height column-margin column-container"><div id="ref-openshaw1984" class="csl-entry" role="listitem">
+Openshaw, S. (1984). <em>The modifiable areal unit problem</em>. GeoBooks. <a href="https://www.uio.no/studier/emner/sv/iss/SGO9010/openshaw1983.pdf">https://www.uio.no/studier/emner/sv/iss/SGO9010/openshaw1983.pdf</a>
+</div><div id="ref-mennis2019" class="csl-entry" role="listitem">
+Mennis, J. (2019). Problems of <span>Scale</span> and <span>Zoning</span>. <em>Geographic Information Science &amp; Technology Body of Knowledge</em>, <em>2019</em>(Q1). <a href="https://doi.org/10.22224/gistbok/2019.1.2">https://doi.org/10.22224/gistbok/2019.1.2</a>
+</div></div></div>
+<p>Sometimes the units you use for analysis are ones you can decide on, but sometimes you don’t have a choice (e.g.&nbsp;data would be most useful at the tract level but is only available by town; in a survey you ask for people’s ZIP code because you know they probably don’t know their tract number).</p>
+<p>Similar to this is the <strong>ecological fallacy</strong>, where you assume that patterns or phenomena that you see in aggregate are true for individuals or individual areas within that population.</p>
+<section id="maup-and-ecological-fallacy" class="level3">
+<h3 class="anchored" data-anchor-id="maup-and-ecological-fallacy">MAUP and ecological fallacy</h3>
+<p>When we break a geography into areas that are too large, we lose the patterns that occur within them. If we break into areas that are too small, we might no longer be able to do the analysis we want, or we might be looking at something so closely that patterns aren’t able to develop. For example, counting trees across an entire city won’t tell you anything about tree density in people’s neighborhoods if most of those trees are within one large park; counting trees per parcel in that same city won’t be that useful if you only expect one or two trees at most in front of any house, and if residents get the same benefits of having a tree in front of their neighbor’s house as they do their own.</p>
+<p>For example, Baltimore city is 26 percent white. That’s the lowest share of all the counties in the state except Prince George’s. But that population is very concentrated within the city.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-label="1"></a>acs_county <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-label="2"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"county"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" aria-label="4"></a>    <span class="at">name =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(name) <span class="sc">|&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-label="5"></a>      forcats<span class="sc">::</span><span class="fu">fct_reorder</span>(white, <span class="at">.desc =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-label="6"></a>  )</span>
+<span id="cb4-7"><a href="#cb4-7" aria-label="7"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-label="8"></a>w1 <span class="ot">&lt;-</span> acs_county <span class="sc">|&gt;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-label="9"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">is_balt =</span> name <span class="sc">==</span> <span class="st">"Baltimore city"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-label="10"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> name, <span class="at">x =</span> white, <span class="at">fill =</span> is_balt)) <span class="sc">+</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-label="11"></a>  <span class="fu">geom_col</span>(<span class="at">width =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-label="12"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>()) <span class="sc">+</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-label="13"></a>  <span class="fu">scale_fill_manual</span>(</span>
+<span id="cb4-14"><a href="#cb4-14" aria-label="14"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> qual_pal[<span class="dv">1</span>], <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"gray40"</span>),</span>
+<span id="cb4-15"><a href="#cb4-15" aria-label="15"></a>    <span class="at">guide =</span> <span class="fu">guide_none</span>()</span>
+<span id="cb4-16"><a href="#cb4-16" aria-label="16"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-label="17"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-label="18"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-label="19"></a>w2 <span class="ot">&lt;-</span> justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-label="20"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(level <span class="sc">==</span> <span class="st">"tract"</span>, total_pop <span class="sc">&gt;=</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-label="21"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb4-22"><a href="#cb4-22" aria-label="22"></a>    <span class="at">county =</span> forcats<span class="sc">::</span><span class="fu">as_factor</span>(county) <span class="sc">|&gt;</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-label="23"></a>      forcats<span class="sc">::</span><span class="fu">fct_relevel</span>(<span class="fu">levels</span>(acs_county<span class="sc">$</span>name))</span>
+<span id="cb4-24"><a href="#cb4-24" aria-label="24"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-label="25"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">is_balt =</span> county <span class="sc">==</span> <span class="st">"Baltimore city"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-label="26"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> county, <span class="at">x =</span> white, <span class="at">color =</span> is_balt)) <span class="sc">+</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-label="27"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-label="28"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>()) <span class="sc">+</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-label="29"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb4-30"><a href="#cb4-30" aria-label="30"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"TRUE"</span> <span class="ot">=</span> qual_pal[<span class="dv">1</span>], <span class="st">"FALSE"</span> <span class="ot">=</span> <span class="st">"gray40"</span>),</span>
+<span id="cb4-31"><a href="#cb4-31" aria-label="31"></a>    <span class="at">guide =</span> <span class="fu">guide_none</span>()</span>
+<span id="cb4-32"><a href="#cb4-32" aria-label="32"></a>  ) <span class="sc">+</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-label="33"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="cn">NULL</span>)</span>
+<span id="cb4-34"><a href="#cb4-34" aria-label="34"></a></span>
+<span id="cb4-35"><a href="#cb4-35" aria-label="35"></a></span>
+<span id="cb4-36"><a href="#cb4-36" aria-label="36"></a>w1 <span class="sc">+</span> w2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14_data_to_space_files/figure-html/white-pop-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Even though a much lower share of Baltimore city <em>overall</em> is white than some of the smaller or less diverse counties like Garrett and Carroll, the city is so segregated that we have neighborhoods that do in fact rival those counties’ averages. We lose that fact when we only look at averages or aggregates, but it’s a major pattern underlying much of how the city and region work (hot take: <a href="https://apps.urban.org/features/baltimore-investment-flows/">that’s by design</a>).</p>
+</section>
+<section id="choropleths" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="choropleths">Choropleths</h3>
+<p>The way I map data is most often a choropleth, where areas are shaded according to a numeric value. There are a lot of considerations, and this is where a lot of those limitations rear their ugly heads, such as having the reader’s understanding of a distribution be distorted by the geographic size of one area. When I weigh the pros &amp; cons of making a choropleth versus a nonspatial chart, I like being able to pair the choropleth with something that gives more exact and specific values, such as a bar chart with city or neighborhood averages.</p>
+<p>With choropleths (as with many chart types), you want to be careful about what type of numbers you’re comparing—it should almost always be something standardized into rates, percentages, or other values you’d describe as “x per y units”. With tracts, since they’re of standardized sizes, using counts wouldn’t be as big a deal as with other geographies, but if we showed populations in this way, we’d just be displaying population density. What you’re reading is a value presumably spread over an area, which is why <span class="citation" data-cites="rankin2025">Rankin (<a href="#ref-rankin2025" role="doc-biblioref">2025</a>)</span> refers to choropleths as maps of values (e.g.&nbsp;homeownership rate) per land area. Some types of values that are appropriate for choropleths:</p>
+<div class="no-row-height column-margin column-container"><div id="ref-rankin2025" class="csl-entry" role="listitem">
+Rankin, W. (2025). <em>Radical cartography: Visual argument in the age of data</em>. Viking.
+</div></div><ul>
+<li>percentage of population ages 65+</li>
+<li>median household income</li>
+<li>percentage of households without a car</li>
+<li>polling places per 1,000 registered voters</li>
+<li>GDP per capita</li>
+</ul>
+<p>In most cases, a choropleth would <em>not</em> be appropriate for <em>count</em> of people ages 65+ or <em>total</em> GDP, etc.</p>
+<p>With ggplot, simply give your <code>geom_sf</code> shapes color based on some numeric attribute, and you’ve got a choropleth. Here’s another view of the bar and box plots of the white population that makes clear that 1) neither the city nor the county is as uniform as an average would make them seem, and 2) there is very much a spatial pattern that makes a map appropriate.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>justviz<span class="sc">::</span>tracts_sf <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-label="2"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(county <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Baltimore city"</span>, <span class="st">"Baltimore County"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">left_join</span>(</span>
+<span id="cb5-4"><a href="#cb5-4" aria-label="4"></a>    justviz<span class="sc">::</span>acs <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(total_pop <span class="sc">&gt;=</span> <span class="dv">100</span>),</span>
+<span id="cb5-5"><a href="#cb5-5" aria-label="5"></a>    <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"geoid"</span> <span class="ot">=</span> <span class="st">"name"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-label="6"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-label="7"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">fill =</span> white)) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-label="8"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">'white'</span>, <span class="at">linewidth =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-label="9"></a>  <span class="fu">scale_fill_distiller</span>(</span>
+<span id="cb5-10"><a href="#cb5-10" aria-label="10"></a>    <span class="at">palette =</span> <span class="st">"YlGnBu"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-label="11"></a>    <span class="at">direction =</span> <span class="dv">1</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-label="12"></a>    <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>()</span>
+<span id="cb5-13"><a href="#cb5-13" aria-label="13"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14_data_to_space_files/figure-html/choropleth-cont-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>People have different takes on this, but I find it easier to read, describe, and refer to values in a choropleth when the values are broken into bins and assigned to discrete colors, rather than left continuous and assigned to a continuous gradient. This requires trading away a good deal of precision. We’ll experiment with this in this week’s lab.</p>
+</section>
+</section>
+<section id="rasters" class="level2">
+<h2 class="anchored" data-anchor-id="rasters">Rasters</h2>
+<p>With raster data, we’re also representing data across an area, but in this case the shapes and their areas are fixed. Even when we work with small grid cells of land or water that become single pixels of data, we’re still abstracting and summarizing what happens in that cell. The pixel where my house is in the city is most likely categorized as developed land because that’s the majority of the area. The ecological fallacy would have you believe that’s the <em>entirety</em> of that cell, and you’d miss the lush gardens my neighbors and I have.</p>
+<p>Rasterizing data, or converting areal data to gridded or celled data is a way to deal with the MAUP, and we’ll practice that as a technique in a few weeks. But it’s also a bit of a technical solution that might not make sense to people when you’re talking about people-based data. We’re much more accustomed to talking about the values of something for our neighborhood or an area with manmade boundaries than for the 30 meter by 30 meter square that we can’t see and that could change from one data collection process to the next. So in general, we’ll stick to using rasters for data about land, water, and other natural phenomena.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-label="1"></a>land <span class="ot">&lt;-</span> justviz<span class="sc">::</span><span class="fu">load_land_cover</span>()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-label="2"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-label="3"></a>  tidyterra<span class="sc">::</span><span class="fu">geom_spatraster</span>(<span class="at">data =</span> land, <span class="at">maxcell =</span> <span class="fl">5e5</span>) <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-label="4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Landcover with ~500,000 cells"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14_data_to_space_files/figure-html/raster-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-label="1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-label="2"></a>  tidyterra<span class="sc">::</span><span class="fu">geom_spatraster</span>(<span class="at">data =</span> land, <span class="at">maxcell =</span> <span class="fl">5e3</span>) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-label="3"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Landcover with ~5,000 cells"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14_data_to_space_files/figure-html/raster-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="points" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="points">Points</h2>
+<p>When we have observations that occur at or around specific locations, points can be an easy way to represent them, and you can tack visual encodings onto the points you draw. Color will often work well for this, with the same caveats as nonspatial charts (use good contrast, limit the number of colors you use, use gray for things that need to sink into the background), and with some restrictions that are specific to spatial data (can’t add much jittering to avoid overplotting).</p>
+<p>Later we’ll get into some techniques for dealing with overplotting in space, where our story becomes less where individual points are and more where many points tend to cluster.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-label="1"></a>justviz<span class="sc">::</span>vacants_sf <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-label="2"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-label="3"></a>  <span class="fu">geom_sf</span>(<span class="at">size =</span> <span class="fl">0.3</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-label="4"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Vacant building notices, Oct 2026"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14_data_to_space_files/figure-html/points-black-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Just from points, knowing a little bit about Baltimore, you can start making out the shapes of neighborhoods from this map of vacancy notices. Using color, you can attach attributes to it.</p>
+
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
+<p>It can be hard to make lots of small points visible with a sequential palette. The viridis palettes are designed to do this well, especially on a dark background. Other sequential palettes are mostly optimized for filling areas like in choropleths.</p>
+</div></div><div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-label="1"></a><span class="co"># I attached the data I downloaded the data as an attribute on the data frame</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-label="2"></a>justviz<span class="sc">::</span>vacants_sf <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb9-4"><a href="#cb9-4" aria-label="4"></a>    <span class="at">days_vacant =</span> (<span class="fu">as.Date</span>(<span class="fu">attr</span>(justviz<span class="sc">::</span>vacants_sf, <span class="st">"last_updated"</span>)) <span class="sc">-</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-label="5"></a>      date_notice) <span class="sc">|&gt;</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-label="6"></a>      <span class="fu">as.numeric</span>()</span>
+<span id="cb9-7"><a href="#cb9-7" aria-label="7"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-label="8"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">yrs_vacant =</span> days_vacant <span class="sc">/</span> <span class="dv">365</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-label="9"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">color =</span> yrs_vacant)) <span class="sc">+</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-label="10"></a>  <span class="fu">geom_sf</span>(<span class="at">size =</span> <span class="fl">0.3</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-label="11"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Vacant building notices, Oct 2026"</span>) <span class="sc">+</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-label="12"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="at">option =</span> <span class="st">"A"</span>) <span class="sc">+</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-label="13"></a>  <span class="fu">coord_sf</span>(<span class="at">ndiscr =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-label="14"></a>  <span class="fu">theme</span>(<span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"gray10"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14_data_to_space_files/figure-html/points-color-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This could also be categorical: here we can use both color and size to highlight murals in the city and let other public artwork sink into the background.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-label="1"></a>justviz<span class="sc">::</span>art_sf <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-label="2"></a>  <span class="co"># logical value: does medium contain word "mural"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-label="3"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-label="4"></a>    <span class="at">is_mural =</span> <span class="fu">ifelse</span>(<span class="fu">grepl</span>(<span class="st">"mural"</span>, medium), <span class="st">"Murals"</span>, <span class="st">"Other artwork"</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-label="5"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-label="6"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-label="7"></a>  <span class="fu">geom_sf</span>(</span>
+<span id="cb10-8"><a href="#cb10-8" aria-label="8"></a>    <span class="at">data =</span> counties_sf <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(county <span class="sc">==</span> <span class="st">"Baltimore city"</span>),</span>
+<span id="cb10-9"><a href="#cb10-9" aria-label="9"></a>    <span class="at">fill =</span> <span class="st">"white"</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-label="10"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-label="11"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">color =</span> is_mural, <span class="at">size =</span> is_mural), <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-label="12"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb10-13"><a href="#cb10-13" aria-label="13"></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Murals"</span> <span class="ot">=</span> qual_pal[<span class="dv">5</span>], <span class="st">"Other artwork"</span> <span class="ot">=</span> <span class="st">"gray50"</span>)</span>
+<span id="cb10-14"><a href="#cb10-14" aria-label="14"></a>  ) <span class="sc">+</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-label="15"></a>  <span class="fu">scale_size_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"Murals"</span> <span class="ot">=</span> <span class="fl">1.8</span>, <span class="st">"Other artwork"</span> <span class="ot">=</span> <span class="fl">0.8</span>)) <span class="sc">+</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-label="16"></a>  <span class="fu">labs</span>(</span>
+<span id="cb10-17"><a href="#cb10-17" aria-label="17"></a>    <span class="at">title =</span> <span class="st">"Public artwork in Baltimore city"</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-label="18"></a>    <span class="at">subtitle =</span> <span class="st">"Plus some randos in the county?"</span></span>
+<span id="cb10-19"><a href="#cb10-19" aria-label="19"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14_data_to_space_files/figure-html/points-categories-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
+
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     // Ensure there is a toggle, if there isn't float one in the top right
     if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const toggle = window.document.createElement('button');
+      toggle.type = "button";
+      toggle.setAttribute("role", "switch");
+      toggle.setAttribute("aria-checked", "false");
+      toggle.classList.add('top-right');
+      toggle.classList.add('quarto-color-scheme-toggle');
+      toggle.setAttribute("aria-label", "Toggle dark mode");
+      toggle.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
       const i = window.document.createElement("i");
       i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
+      toggle.appendChild(i);
+      // Put the toggle in a landmark of its own, so that landmark navigation
+      // can reach it.
+      //
+      // The container is always a fresh direct child of body, and the toggle is
+      // never moved into page furniture that the theme or the author controls.
+      // The toggle is positioned against the page, so any ancestor that
+      // establishes a containing block captures it: a positioned element or a
+      // grid for position: absolute, and transform, filter, will-change or
+      // contain for position: fixed. A direct child of body has none of these
+      // to inherit, and the shift when one appears is silent and visual.
+      //
+      // ARIA says a document should have at most one banner, and axe reports a
+      // duplicate whether or not the banners carry distinct labels. So use a
+      // header when the page has no banner yet, and a named region otherwise.
+      //
+      // A header is a banner wherever it sits, unless it is inside sectioning
+      // content, so this cannot just look at the children of body: a custom
+      // page layout wraps the title block header in a plain div. An explicit
+      // role="banner" always counts.
+      const sectioning = 'article, aside, main, nav, section, [role="article"], [role="complementary"], [role="main"], [role="navigation"], [role="region"]';
+      const hasBanner = Array.from(
+        window.document.querySelectorAll('header:not([role]), [role="banner"]')
+      ).some(function(el) {
+        return el.hasAttribute("role") || el.closest(sectioning) === null;
+      });
+      const container = window.document.createElement(hasBanner ? "div" : "header");
+      if (hasBanner) {
+        container.setAttribute("role", "region");
+        container.setAttribute("aria-label", "Toggle dark mode");
+      }
+      container.classList.add('quarto-color-scheme-toggle-container');
+      container.appendChild(toggle);
+      window.document.body.appendChild(container);
     }
     setColorSchemeToggle(hasAlternateSentinel())
     const icon = "";
@@ -634,7 +1042,8 @@ ul.task-list li input[type="checkbox"] {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
       // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
@@ -643,8 +1052,69 @@ ul.task-list li input[type="checkbox"] {
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+          if (!link.classList.contains('no-external-icon')) {
+          }
         }
       }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
       const config = {
         allowHTML: true,
@@ -658,6 +1128,7 @@ ul.task-list li input[type="checkbox"] {
         interactiveBorder: 10,
         theme: 'quarto',
         placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
       };
       if (contentFn) {
         config.content = contentFn;
@@ -820,44 +1291,54 @@ ul.task-list li input[type="checkbox"] {
           const lineIds = lines.map((line) => {
             return targetCell + "-" + line;
           })
-          let top = null;
-          let height = null;
-          let parent = null;
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
           if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
             }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
             }
+            placeBand(gutterDiv, el, lastEl);
             selectedAnnoteEl = annoteEl;
           }
         };
@@ -956,7 +1437,10 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
-<nav class="page-navigation">
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+<nav class="page-navigation" aria-label="Page">
   <div class="nav-page nav-page-previous">
       <a href="../notes/13_sf.html" class="pagination-link" aria-label="13. Spatial data in R">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">13. Spatial data in R</span>
@@ -973,4 +1457,4 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/14_data_to_space.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/14_data_to_space.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/umbc-viz/ges778.git/edit/main/notes/14_data_to_space.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/umbc-viz/ges778.git/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/umbc-viz/ges778.git/blob/main/notes/14_data_to_space.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer></body></html>
