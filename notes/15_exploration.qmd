@@ -2,11 +2,38 @@
 title: 15. Helping readers explore
 ---
 
-## Sneak peak: small multiples
+```{r}
+#| label: setup
+library(ggplot2)
+qual_pal <- rcartocolor::carto_pal(name = 'Vivid')
+# written in misc_scripts/tract_planning_areas.R
+planning_areas <- readRDS(here::here("assets/tract_planning_area.rds"))
 
-::: {.callout-warning}
-These notes aren't finished yet; for now we'll just use it to jump ahead and talk about small multiples/facets in preparation for the midterm project.
-:::
+theme_set(theme_minimal())
+```
+
+## Exploration in static visualization
+
+In an interactive visualization or dashboard, users are able to decide, at least to some extent, how to chop up and summarize the data shown. It can be good to give users freedom to look at what they're interested in, but it can also be overwhelming. Think of how often you, with a fair amount of education and experience in working with data, spin your wheels trying to figure out how to get started with a dataset or what to ask. Instead, many readers will be able to get more out of a visualization if you lead them through a story. That means you also have a good amount of sway over what readers understand---don't mislead them!
+
+In an online dashboard, users would probably be clicking through each of these indicators and/or geographic levels. In static viz, you're essentially doing that for them, mimicking the process of selecting different views and bringing your expertise to the experience. In my experience, doing static visualization is harder than doing interactive visualization for storytelling because of all the constraints you're working with.
+
+## Some terms
+
+@schwabish2021d has a great overview of static vs interactive visualizations, explanatory vs exploratory visualizations, and the quadrants these two axes create. Think of these as spectra, where your projects might have elements of many types. He describes these axes:
+
+> The first is a vertical line that defines the general FORM of the visualization. This line runs from static to interactive.
+>
+> * Static visualizations provide all the information at once and do not move. These are, for example, your basic line, bar, and pie charts.
+> * Interactive visualizations allow a transfer of information between the user and the interface. The user clicks, swipes, or hovers, and something happens or additional information is made visible.
+>
+> On the horizontal spectrum is the FUNCTION of the visualization. Here, visuals run from explanatory to exploratory visualizations.
+>
+> * Explanatory visualizations bring the results to the forefront; they convey the author's hypothesis or argument to the reader.
+> * Exploratory visualizations encourage the user to explore the data or subject matter to uncover findings for themselves.
+
+
+## Small multiples
 
 Small multiples refer to a technique of breaking data down into subsets, then repeating the same chart type for each subset. In ggplot, these panels are called facets (older libraries and books will refer to trellis plots, which is what I first learned). As always, there's a good, brief Datawrapper post [@muth2024].
 
@@ -159,3 +186,83 @@ no_diploma_gg +
 Definitely needs more clean-up, but that's the structure to get started.
 
 **Bottom line:** Look through the docs for the facetting functions---there are a lot of arguments, and some of them are confusing and hard to keep track of.
+
+## Many views of a dataset
+
+My favorite types of projects are ones where I get to dig deep into one dataset and pull together many different views and perspectives of it. Even better when doing that lets us challenge notions we have in the data. 
+
+One way you can chop up data into different views is to start large (state-level values before zooming into towns, total population values before disaggregating by demographic groups, etc). Then you can use higher-level data to provide context for the group you want to focus on. We can again use facets, but this time use them to visually distinguish between our focus data and its comparison.
+
+```{r}
+#| label: slice-n-dice 
+justviz::wages |>
+    dplyr::filter(
+        status == "full_time",
+        edu == "total",
+        (sex != "total" | race_eth == "total")
+    ) |>
+    # dplyr::mutate(
+    #     dimension = forcats::fct_collapse(
+    #         dimension,
+    #         "by_sex" = c("total", "by_sex")
+    #     )
+    # ) |>
+    ggplot(aes(x = race_eth, y = earn_q50, fill = sex)) +
+    geom_col(width = 0.8, position = position_dodge2(preserve = "single")) +
+    scale_fill_manual(values = qual_pal[c(12, 2, 3)]) +
+    facet_grid(cols = vars(dimension), scales = "free_x", space = "free") +
+    labs(title = "Median earnings, Maryland adults working full time, 2024")
+```
+
+My real focus in this chart is the interaction between race and sex, but with 2 types of comparisons to frame it. The code I commented out would combine the first two smaller panels (total & by sex) into one; I don't think either approach is better than the other.
+
+Here's a similar approach with hierarchical geographies, as well as showing multiple related values. Say you're working with the health department or a local hospital to do outreach around preventive care in Central Baltimore. Your focus is on the tracts in that area (this is from the city's official planning areas), but it's also helpful to know how they compare to the city and its surroundings, as well as the state and country.
+
+```{r}
+#| label: facet-hier-1
+central_balt <- planning_areas |> dplyr::filter(area == "Central")
+central_balt_cdc <- justviz::cdc |>
+  dplyr::filter(indicator %in% c("Current asthma", "Annual checkup")) |>
+  # get us, state, city, county, central tracts
+  dplyr::filter(
+    level %in%
+      c("us", "state") |
+      location %in% c("Baltimore city", "Baltimore County", central_balt$geoid)
+  ) |>
+  dplyr::mutate(value = value / 100) |>
+  dplyr::mutate(
+    indicator = forcats::as_factor(indicator) |>
+      forcats::fct_relevel("Annual checkup")
+  ) |>
+  dplyr::mutate(
+    level2 = forcats::fct_recode(level, "Central Balt. tracts" = "tract") |>
+      forcats::fct_other(
+        keep = "Central Balt. tracts",
+        other_level = "Larger geographies"
+      ) |>
+      forcats::fct_relevel("Larger geographies")
+  )
+
+ggplot(central_balt_cdc, aes(x = value, y = location)) +
+  geom_col(width = 0.8) +
+  facet_grid(
+    rows = vars(level2),
+    cols = vars(indicator),
+    scales = "free_y",
+    space = "free_y"
+  )
+```
+
+One thing to notice about a chart like this: the horizontal scales are very different, and that's to be expected. Most adults have a doctor's checkup each year, but most adults don't have asthma. If these were two indicators you *did* expect to have similar ranges of values, using the same scale helps show how they differ. Doing this with annual checkup and annual dental visit, for example, would let you know whether one type of preventive care lags behind the other. Even without knowing a lot about this data, you can do a sanity check and realize that they occur on different scales. In that case, I'll generally use free scales for the x-axis as well.
+
+```{r}
+#| label: facet-hier-2
+ggplot(central_balt_cdc, aes(x = value, y = location)) +
+  geom_col(width = 0.8) +
+  facet_grid(
+    rows = vars(level2),
+    cols = vars(indicator),
+    scales = "free",
+    space = "free_y"
+  )
+```

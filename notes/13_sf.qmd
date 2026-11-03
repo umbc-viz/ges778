@@ -91,8 +91,9 @@ plain geometry objects without any data attached.
 
 #### Vector geometries (e.g. points & polygons)
 
-`sf` is the main package we'll use for handling vector geometries, such as points, lines, polygons, etc.`sf` objects have a `plot` method, so you can just call
-`plot(very_cool_sf_data)` and get a basic plot:
+`sf` is the main package we'll use for handling vector geometries, such as
+points, lines, polygons, etc.`sf` objects have a `plot` method, so you can just
+call `plot(very_cool_sf_data)` and get a basic plot:
 
 ```{r}
 #| label: map-base
@@ -126,35 +127,61 @@ ggplot(justviz::tracts_sf) +
 
 #### Raster geometries
 
-Rasters are made up of grids with some set of attributes at each grid square. For example, if you're studying tree canopy, you might have a grid of the state divided into 30m x 30m cells or pixels. For each cell, you might have a categorical attribute like main land cover type (is this cell mostly covered by grass, trees, water, impervious surfaces, etc). Or you might have just true/false data for whether the cells is mostly tree canopy. Or you might have a continuous numeric measurement, like the percentage of the cell that is covered by trees. The bottom line is you have a set resolution for the data, and you have some attribute(s) for each of those cells. There's a dataset in `justviz` of landcover raster data; because of its size, you need a separate function to load it into your session. (I fixed a bug in how the dataset is read, so you need package version **0.3.1**.)
+Rasters are made up of grids with some set of attributes at each grid square.
+For example, if you're studying tree canopy, you might have a grid of the state
+divided into 30m x 30m cells or pixels. For each cell, you might have a
+categorical attribute like main land cover type (is this cell mostly covered by
+grass, trees, water, impervious surfaces, etc). Or you might have just
+true/false data for whether the cells is mostly tree canopy. Or you might have a
+continuous numeric measurement, like the percentage of the cell that is covered
+by trees. The bottom line is you have a set resolution for the data, and you
+have some attribute(s) for each of those cells. There's a dataset in `justviz`
+of landcover raster data; because of its size, you need a separate function to
+load it into your session. (I fixed a bug in how the dataset is read, so you
+need package version **0.3.1**.)
 
-There are two major packages that handle raster data and are made to be compatible with `sf`: `stars`, made by the same developers as `sf` (the r-spatial crew), and `terra`, made to more directly carry on older packages from the `sp` world (the rspatial crew).
+There are two major packages that handle raster data and are made to be
+compatible with `sf`: `stars`, made by the same developers as `sf` (the
+r-spatial crew), and `terra`, made to more directly carry on older packages from
+the `sp` world (the rspatial crew).
 
-We're not doing a ton with raster data, and while `stars` has syntax more similar to `sf`, it also has bigger aims than we need (storing time series spatial data as cubes). So we'll use `terra` with the `tidyterra` package unless someone has a pressing need to do otherwise.
-
+We're not doing a ton with raster data, and while `stars` has syntax more
+similar to `sf`, it also has bigger aims than we need (storing time series
+spatial data as cubes). So we'll use `terra` with the `tidyterra` package unless
+someone has a pressing need to do otherwise.
 
 ```{r}
 #| label: raster-1
+
 land <- justviz::load_land_cover()
 
 land
 ```
 
-From the object's printout you can see it's got a resolution of 30m x 30m with 1 layer. We can plot it with `terra`'s plot method using a color table that's stored in the raster data.
+From the object's printout you can see it's got a resolution of 30m x 30m with 1
+layer. We can plot it with `terra`'s plot method using a color table that's
+stored in the raster data.
 
 ::: {.aside}
-This dataset is cropped to the same extent as the tracts shapefile. If you need to work with the same data for a different area, see the code that preps the data in the [`justviz` package](https://github.com/umbc-viz/justviz/blob/main/data-raw/landcover.R)
+This dataset is cropped to the same extent as the tracts shapefile. If you need
+to work with the same data for a different area, see the code that preps the
+data in the [`justviz`
+package](https://github.com/umbc-viz/justviz/blob/main/data-raw/landcover.R)
 :::
 
 ```{r}
 #| label: raster-plot
+
 terra::plot(land)
 ```
 
-Use `terra::mask` to filter a `SpatRaster` object. You can also use `tidyterra::filter` to get `dplyr`-like syntax, but it seems to drop the landcover color table.
+Use `terra::mask` to filter a `SpatRaster` object. You can also use
+`tidyterra::filter` to get `dplyr`-like syntax, but it seems to drop the
+landcover color table.
 
 ```{r}
 #| label: raster-tidy
+
 library(terra)
 forest <- terra::mask(
   land,
@@ -163,7 +190,6 @@ forest <- terra::mask(
 )
 plot(forest)
 ```
-
 
 ### Projections
 
