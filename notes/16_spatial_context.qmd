@@ -1,5 +1,6 @@
 ---
 title: 16. Putting spatial data in context
+lightbox: true
 ---
 
 ::: {.callout-info}
@@ -16,11 +17,15 @@ symbols. For data visualization, simple grayscale or black & white basemaps work
 well, like the map tiles from Stamen (now distributed through Stadia) and Carto.
 These often require an API key.
 
-In the past, I've mostly used the `ggmap` package, which was designed to be very
+In the past, I've mostly used the [`ggmap`](https://github.com/dkahle/ggmap) package, which was designed to be very
 easy to use with ggplot, but it doesn't seem to be kept up to date as much and
-still points to several providers that are defunct. The newer `basemaps` package
-has more updated map providers, so we'll lean towards that. Call
+still points to several providers that are defunct. I've also used [`maptiles`](https://github.com/riatelab/maptiles). The newer [`basemaps`](https://github.com/16eagle/basemaps/) package
+has more updated map providers and a lot of flexibility, so we'll lean towards that. Call
 `basemaps::get_maptypes()` to see them all.
+
+::: {.aside}
+Especially given how quickly these services change, I'd encourage you to get familiar with multiple tile service providers and multiple packages that help access them. Some might also be better for your line of work, such as providers that have satellite imagery.
+:::
 
 Maptiles are generally in web Mercator projection, and to use them with
 `basemaps` and `ggplot` with other layers, you'll need to transform your
@@ -201,6 +206,10 @@ objects. This will contain some combination of points, lines, polygons (and
 multilines and multipolygons). Also take a look at those objects---they contain
 tons of metadata (the highway lines have 239 columns!)
 
+::: {.aside}
+For writing data out that either needs to be tracked for changes over the length of a project, or to be shared with other people, a portable format like csv for tabular data, json for nested data, or geojson or other types for spatial data is usually best. But for intermediate data that you need to keep working with, formats like rds, an R-native binary format, can be great. I can write spatial data to a text-based format like geojson while I work with it, but this will lose attributes that are specific to R, such as factor levels. In this case, writing my data to rds works well to stash it and use later, but I would use a different format to pass off to a client or upload to an online platform like Carto.
+:::
+
 ```{r}
 #| label: osm-data-1
 #| eval: false
@@ -259,7 +268,7 @@ Highlandtown. We could add industrial areas from OSM data to investigate more.
 Maybe you want to put other stuff on your map. If there are specific locations
 that provide important context, you might try adding a few essential ones (don't
 overdo it). Same goes for regional boundaries, major roads, landmarks to help
-your reading orient themself, buffers around a location, etc. A few examples
+your reader orient themself, buffers around a location, etc. A few examples
 I've done:
 
 - Using dashed lines to mark an area used in some analyses as a proxy for the
@@ -268,6 +277,7 @@ I've done:
   incarcerated people come from
 - Adding points for bus stops for a map related to access to childcare by public
   transit
+- Buffering around highways to match the distance the EPA considers a health hazard
 
 ## Putting it all together
 
@@ -279,14 +289,14 @@ you're trying to use 2 different fill mappings. One way around it would be to
 use the `ggnewscale` package to assign multiple things to the fill aesthetic;
 another way is to get the maptiles as a `terra` object, which we've seen for
 mapping raster data and which doesn't need to create a fill scale. I'll use the
-second one here.
+second option here.
 
 Let's make a map that shows the child population in the city, plus public art,
 plus has a basemap to orient people.
 
 ```{r}
 #| label: basemap-choro
-#| fig-height: 6
+#| fig-height: 7
 
 # crop art_sf to just the city boundaries
 balt_art <- justviz::art_sf |>
@@ -344,24 +354,35 @@ ggplot() +
     )
 ```
 
+::: {.aside}
 [Here's a good blog
 post](https://oliverstringham.com/blog/data-visualization/make-maps-with-basemaps-and-insets-ggplot2/)
 going over a similar (more polished) procedure and what I used to troubleshoot
 this section.
+:::
 
 ## Combining spatial & nonspatial visualizations
 
 Sometimes the best context is just another chart that can show what you can't do
-in a map. This might mean pairing a choropleth to show spatial patterns with a
+in a map. This might mean pairing a choropleth to show spatial patterns, alongside a
 bar chart to show regional averages, or a map as a snapshot of where things are
 now with a line chart of how things got there.
 
 For example, a choropleth of mobility disability rates shows the spatial pattern
-locally, with higher rates in East & West Baltimore but closer to the middle of
+locally, with higher rates in East & West Baltimore closer to the middle of
 the city...
 
 ```{r}
 #| label: mobility-choro
+# use ... to pass more arguments to theme
+theme_combo <- function(...) {
+    theme_minimal() +
+        theme(
+            plot.title.position = "plot",
+            plot.title = element_text(size = rel(1.1)),
+            ...
+        )
+}
 
 cdc_wide <- justviz::cdc |>
     # dplyr::filter(indicator %in% c("Current asthma", "Annual checkup")) |>
@@ -386,15 +407,25 @@ mobility_choro <- balt_sf |>
     coord_sf(ndiscr = 0) +
     labs(
         fill = "% adults",
-        title = "Share of adults with a mobility disability, Baltimore city by tract, 2023"
+        title = stringr::str_wrap(
+            "Share of adults with a mobility disability, Baltimore city by tract, 2023",
+            60
+        )
     ) +
-    theme_minimal()
+    theme_combo()
 ```
 
-while a bar chart contextualizes the city's data...
+while a bar chart contextualizes the city's data compared to other places...
 
 ```{r}
 #| label: mobility-bar
+# throwback to the first week of class
+label_nudge <- function(y, ratio = 0.05) {
+    offset <- ratio * max(y)
+
+    return(y - offset)
+}
+percent100 <- scales::label_percent(accuracy = 1)
 
 mobility_bar <- cdc_wide |>
     dplyr::filter(
@@ -412,22 +443,35 @@ mobility_bar <- cdc_wide |>
         location = forcats::as_factor(location) |>
             forcats::fct_reorder(mobility_disability)
     ) |>
+    dplyr::mutate(
+        nudged_val = label_nudge(mobility_disability, ratio = 0.025)
+    ) |>
     ggplot(aes(
         x = mobility_disability,
         y = location,
         fill = location == "Baltimore city"
     )) +
     geom_col(width = 0.8) +
+    geom_text(
+        aes(label = percent100(mobility_disability), x = nudged_val),
+        size = 4,
+        color = "white",
+        fontface = "bold",
+        hjust = 1
+    ) +
     scale_x_continuous(
         expand = expansion(mult = c(0, 0.05)),
-        labels = scales::label_percent()
+        breaks = NULL
     ) +
-    scale_fill_manual(values = c("TRUE" = seq_pal[3], "FALSE" = "gray50")) +
-    theme_minimal() +
-    theme(legend.position = "none", axis.ticks.y = element_blank()) +
+    scale_fill_manual(values = c("TRUE" = seq_pal[4], "FALSE" = "gray50")) +
+    theme_combo(
+        legend.position = "none",
+        axis.ticks.y = element_blank(),
+        panel.grid.major.y = element_blank()
+    ) +
     labs(
         title = "Share of adults with a mobility disability by location, 2023",
-        x = "% adults",
+        x = NULL,
         y = NULL
     )
 ```
@@ -463,23 +507,36 @@ mobility_scatter <- cdc_wide |>
     scale_x_continuous(labels = scales::label_percent()) +
     scale_y_continuous(labels = scales::label_percent()) +
     scale_color_manual(values = c(seq_pal[4], "gray40")) +
-    theme_minimal() +
-    theme(legend.position = "bottom") +
+    theme_combo(legend.position = "top") +
     labs(
         x = "% adults with mobility disability",
         y = "% households w/o vehicle",
         color = NULL,
         title = stringr::str_wrap(
             "Share of households without a vehicle (2024) vs share of adults with a mobility disability (2023), by tract in Baltimore city & surrounding counties",
-            width = 75
+            width = 65
         )
     )
 ```
 
 ```{r}
 #| label: mobility-combo
-
 mobility_choro
 mobility_bar
 mobility_scatter
+```
+
+This is getting outside the scope of what I expect you to do, but it might be helpful to combine your charts into a single grid using a package like `cowplot` or `patchwork`. Both have their strengths, weaknesses, and idiosyncracies.
+
+```{r}
+#| label: mobility-grid
+#| fig-height: 9
+#| fig-width: 10
+# needs more tweaks to actually look good
+cowplot::plot_grid(
+    mobility_bar,
+    cowplot::plot_grid(mobility_choro, mobility_scatter),
+    rel_heights = c(1, 1.5),
+    ncol = 1
+)
 ```
