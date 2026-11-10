@@ -3,44 +3,76 @@ title: 16. Putting spatial data in context
 ---
 
 ::: {.callout-info}
-Maptile services and OpenStreetMap generally will have required attributions you need to give if you publish maps with their tools. Check the details of whichever services you use to see how to comply with this.
+Maptile services and OpenStreetMap generally will have required attributions you
+need to give if you publish maps with their tools. Check the details of
+whichever services you use to see how to comply with this.
 :::
 
 ## Basemaps
 
-Put your map on a map. There are lots of options; Google Maps and OpenStreetMap are both very popular for map tiles, but they contain a lot of colors and symbols. For data visualization, simple grayscale or black & white basemaps work well, like the map tiles from Stamen (now distributed through Stadia) and Carto. These often require an API key. 
+Put your map on a map. There are lots of options; Google Maps and OpenStreetMap
+are both very popular for map tiles, but they contain a lot of colors and
+symbols. For data visualization, simple grayscale or black & white basemaps work
+well, like the map tiles from Stamen (now distributed through Stadia) and Carto.
+These often require an API key.
 
-In the past, I've mostly used the `ggmap` package, which was designed to be very easy to use with ggplot, but it doesn't seem to be kept up to date as much and still points to several providers that are defunct. The newer `basemaps` package has more updated map providers, so we'll lean towards that. Call `basemaps::get_maptypes()` to see them all.
+In the past, I've mostly used the `ggmap` package, which was designed to be very
+easy to use with ggplot, but it doesn't seem to be kept up to date as much and
+still points to several providers that are defunct. The newer `basemaps` package
+has more updated map providers, so we'll lean towards that. Call
+`basemaps::get_maptypes()` to see them all.
 
-Maptiles are generally in web Mercator projection, and to use them with `basemaps` and `ggplot` with other layers, you'll need to transform your additional data to CRS 3857.
-
+Maptiles are generally in web Mercator projection, and to use them with
+`basemaps` and `ggplot` with other layers, you'll need to transform your
+additional data to CRS 3857.
 
 ### Getting and saving API keys
 
-Many services require API keys to use. API keys can be tricky to get and store, and some, like Google Maps, require you having a credit card on file even if you only stay within the free tier. Even for a service that doesn't seem like someone could cause any trouble with it, you want to treat your API keys like passwords---it's a good habit to get into. Many packages that use APIs will have functions to help you save your key, and they'll generally save to a specific [environment variable](https://kinsta.com/knowledgebase/what-is-an-environment-variable/). For example, `tidycensus::census_api_key` will save your key to the environment variable `CENSUS_API_KEY`, and that's where its functions will also look for the key when you make API calls. `ggmap` has a function to do this for you; `basemaps` does not, so we'll have to save keys ourselves. 
+Many services require API keys to use. API keys can be tricky to get and store,
+and some, like Google Maps, require you having a credit card on file even if you
+only stay within the free tier. Even for a service that doesn't seem like
+someone could cause any trouble with it, you want to treat your API keys like
+passwords---it's a good habit to get into. Many packages that use APIs will have
+functions to help you save your key, and they'll generally save to a specific
+[environment
+variable](https://kinsta.com/knowledgebase/what-is-an-environment-variable/).
+For example, `tidycensus::census_api_key` will save your key to the environment
+variable `CENSUS_API_KEY`, and that's where its functions will also look for the
+key when you make API calls. `ggmap` has a function to do this for you;
+`basemaps` does not, so we'll have to save keys ourselves.
 
-Storing a key as an environment variable allows you to use a secret value (the key) without explicitly using it in your code. It's common to store environment variables in a file called `.Renviron`, usually saved to your computer's home directory rather than the project repo, which gets read every time you start an R session on that computer. You can edit it manually, or the function `usethis::edit_r_environ` also helps you find and edit this file. If you do need to store environment variables in a project, make sure that file (".Renviron" is default for R, ".env" is common in other languages and with R as well) is **listed in your .gitignore file** so it stays out of git tracking.
+Storing a key as an environment variable allows you to use a secret value (the
+key) without explicitly using it in your code. It's common to store environment
+variables in a file called `.Renviron`, usually saved to your computer's home
+directory rather than the project repo, which gets read every time you start an
+R session on that computer. You can edit it manually, or the function
+`usethis::edit_r_environ` also helps you find and edit this file. If you do need
+to store environment variables in a project, make sure that file (".Renviron" is
+default for R, ".env" is common in other languages and with R as well) is
+**listed in your .gitignore file** so it stays out of git tracking.
 
-Of the services preset in `basemaps`, you can use these AFAIK without a credit card:
+Of the services preset in `basemaps`, you can use these AFAIK without a credit
+card:
 
 #### Services that require an API key
 
-* Maptiler
-* Stadia (which now provides Stamen maps too)
-* Thunderforest
-* ~~Carto (recently changed to require an API key, crashed a lot of published maps including some of mine)~~ can't get it to accept my API key, maybe you'll have better luck
+- Maptiler
+- Stadia (which now provides Stamen maps too)
+- Thunderforest
+- ~~Carto (recently changed to require an API key, crashed a lot of published maps including some of mine)~~
+  can't get it to accept my API key, maybe you'll have better luck
 
 #### Services that don't require an API key
 
-* OSM
-* ESRI, surprisingly
+- OSM
+- ESRI, surprisingly
 
-Mapbox claims to need a billing address even though I don't have a payment method set up. You can also add new maptile sources but I haven't tried it yet.
-
-
+Mapbox claims to need a billing address even though I don't have a payment
+method set up. You can also add new maptile sources but I haven't tried it yet.
 
 ```{r}
 #| label: setup
+
 library(ggplot2)
 library(sf)
 
@@ -50,6 +82,7 @@ seq_pal <- RColorBrewer::brewer.pal(n = 5, name = "RdPu")
 
 ```{r}
 #| label: basemap-1
+
 # reproject and use a buffer to get some space around the city
 balt_sf <- justviz::tracts_sf |>
     dplyr::filter(county == "Baltimore city") |>
@@ -81,10 +114,12 @@ basemaps::basemap(
 )
 ```
 
-That makes a plot, but doesn't return an object we can work with further. Other functions in the package will return ggplot- and terra-compatible objects.
+That makes a plot, but doesn't return an object we can work with further. Other
+functions in the package will return ggplot- and terra-compatible objects.
 
 ```{r}
 #| label: basemap-gg-1
+
 # basemap_ggplot returns a readymade ggplot object
 toner_bg_plot <- basemaps::basemap_ggplot(
     balt_bbox_merc,
@@ -122,21 +157,54 @@ toner_bg_plot +
 
 ## OpenStreetMap data
 
-OpenStreetMap is an incredible service run by an international nonprofit and many, many volunteers. They run [lots of interesting projects](https://openstreetmap.us/) geared towards all different types of people, not just in GIS. You can [get involved](https://learnosm.org) in curating and editing it; this is especially important in places that might not have as much data documented or as many advocates as better-resourced areas. For example, some friends and I once had a little hackathon to help a local group that was advocating for more play spaces for kids. In a couple hours, we were able to get more parks, playgrounds, and other recreational areas (soccer fields, etc) on the map so people could find them and so the group could better understand access to fun resources for kids. It's so cool!
+OpenStreetMap is an incredible service run by an international nonprofit and
+many, many volunteers. They run [lots of interesting
+projects](https://openstreetmap.us/) geared towards all different types of
+people, not just in GIS. You can [get involved](https://learnosm.org) in
+curating and editing it; this is especially important in places that might not
+have as much data documented or as many advocates as better-resourced areas. For
+example, some friends and I once had a little hackathon to help a local group
+that was advocating for more play spaces for kids. In a couple hours, we were
+able to get more parks, playgrounds, and other recreational areas (soccer
+fields, etc) on the map so people could find them and so the group could better
+understand access to fun resources for kids. It's so cool!
 
 ::: {.aside}
-Keeping servers running on limited infrastructure is hard, so sometimes the OSM servers are down or overloaded. If you get an error that says "HTTP 5xx", where "5xx" is any number starting with 5, that means there's a problem with the server, it's out of your control, and you should try again later. It generally resolves pretty quickly, and has happened a few times while I wrote these notes.
+Keeping servers running on limited infrastructure is hard, so sometimes the OSM
+servers are down or overloaded. If you get an error that says "HTTP 5xx", where
+"5xx" is any number starting with 5, that means there's a problem with the
+server, it's out of your control, and you should try again later. It generally
+resolves pretty quickly, and has happened a few times while I wrote these notes.
 :::
 
-OSM's servers let you bulk download lots of data on hundreds of different things from country borders to highways to individual park benches. When you get data from it, you'll definitely want their list of [keys and location types](https://wiki.openstreetmap.org/wiki/Map_features) open as a reference, and you might need to tweak your requests a bit to figure out things like the different types of highways. Once you know what you want, it's pretty straightforward to get data with the `osmdata` package, which returns all your shapes as `sf` objects. This is how I made the set of local highways at `justviz::highways_sf`.
+OSM's servers let you bulk download lots of data on hundreds of different things
+from country borders to highways to individual park benches. When you get data
+from it, you'll definitely want their list of [keys and location
+types](https://wiki.openstreetmap.org/wiki/Map_features) open as a reference,
+and you might need to tweak your requests a bit to figure out things like the
+different types of highways. Once you know what you want, it's pretty
+straightforward to get data with the `osmdata` package, which returns all your
+shapes as `sf` objects. This is how I made the set of local highways at
+`justviz::highways_sf`.
 
-OSM data is great if you don't want an entire basemap, or you want to customize which locations are shown. (There are paid services that will do this with basemaps, such as Mapbox and Maptiler). Let's say we're making a map of some of the EJSCREEN data related to air pollution, and we want to add highways and major roads but otherwise keep it pretty plain. `justviz::highways_sf` just has roads classified as motorways and trunks, but for looking more locally, including primary roads would also be good.
+OSM data is great if you don't want an entire basemap, or you want to customize
+which locations are shown. (There are paid services that will do this with
+basemaps, such as Mapbox and Maptiler). Let's say we're making a map of some of
+the EJSCREEN data related to air pollution, and we want to add highways and
+major roads but otherwise keep it pretty plain. `justviz::highways_sf` just has
+roads classified as motorways and trunks, but for looking more locally,
+including primary roads would also be good.
 
-To get data for a certain set of location types, I supply a bounding box, then add a set of features to query, and then make the request to return `sf` objects. This will contain some combination of points, lines, polygons (and multilines and multipolygons). Also take a look at those objects---they contain tons of metadata (the highway lines have 239 columns!)
+To get data for a certain set of location types, I supply a bounding box, then
+add a set of features to query, and then make the request to return `sf`
+objects. This will contain some combination of points, lines, polygons (and
+multilines and multipolygons). Also take a look at those objects---they contain
+tons of metadata (the highway lines have 239 columns!)
 
 ```{r}
 #| label: osm-data-1
-#| eval: false 
+#| eval: false
+
 # this is crashing so I'm actually saving it locally
 highways_osm <- osmdata::opq(balt_bbox_latlon) |>
     osmdata::add_osm_feature(
@@ -149,6 +217,7 @@ saveRDS(highways_osm, here::here("assets/highways_osm.rds"))
 
 ```{r}
 #| label: osm-data-2
+
 highways_osm <- readRDS(here::here("assets/highways_osm.rds"))
 
 highway_lines <- highways_osm$osm_lines |>
@@ -176,25 +245,49 @@ ej_wide |>
     scale_linewidth_continuous(range = c(0.1, 1))
 ```
 
-Here we've got tract boundaries from the Census Bureau, exposure to diesel from EJSCREEN, and location of highways from OSM. Combined, this shows us that the central and southeast portions of the city have relatively high potential for diesel exposure, but it doesn't seem like that's entirely due to highways. Knowing the city, I-95 cuts through downtown and across the southeast corner and is a major trucking route, but there's also a lot of industrial activity in southeast Baltimore in close proximity to densely populated neighborhoods like Highlandtown. We could add industrial areas from OSM data to investigate more.
+Here we've got tract boundaries from the Census Bureau, exposure to diesel from
+EJSCREEN, and location of highways from OSM. Combined, this shows us that the
+central and southeast portions of the city have relatively high potential for
+diesel exposure, but it doesn't seem like that's entirely due to highways.
+Knowing the city, I-95 cuts through downtown and across the southeast corner and
+is a major trucking route, but there's also a lot of industrial activity in
+southeast Baltimore in close proximity to densely populated neighborhoods like
+Highlandtown. We could add industrial areas from OSM data to investigate more.
 
 ## Other spatial data
 
-Maybe you want to put other stuff on your map. If there are specific locations that provide important context, you might try adding a few essential ones (don't overdo it). Same goes for regional boundaries, major roads, landmarks to help your reading orient themself, buffers around a location, etc. A few examples I've done:
+Maybe you want to put other stuff on your map. If there are specific locations
+that provide important context, you might try adding a few essential ones (don't
+overdo it). Same goes for regional boundaries, major roads, landmarks to help
+your reading orient themself, buffers around a location, etc. A few examples
+I've done:
 
-* Using dashed lines to mark an area used in some analyses as a proxy for the focus region
-* Using points to mark locations of jails and prisons for a map about tracts incarcerated people come from
-* Adding points for bus stops for a map related to access to childcare by public transit
+- Using dashed lines to mark an area used in some analyses as a proxy for the
+  focus region
+- Using points to mark locations of jails and prisons for a map about tracts
+  incarcerated people come from
+- Adding points for bus stops for a map related to access to childcare by public
+  transit
 
 ## Putting it all together
 
-Here's everything: a basemap, a choropleth, and some additional shapes. We have a wrinkle, though: out of the box, `basemaps::basemap_ggplot` makes a plot that uses the fill aesthetic to draw the maptiles, which are just rasters. That means when you try to make a choropleth on top of it, you'll have problems because you're trying to use 2 different fill mappings. One way around it would be to use the `ggnewscale` package to assign multiple things to the fill aesthetic; another way is to get the maptiles as a `terra` object, which we've seen for mapping raster data and which doesn't need to create a fill scale. I'll use the second one here.
+Here's everything: a basemap, a choropleth, and some additional shapes. We have
+a wrinkle, though: out of the box, `basemaps::basemap_ggplot` makes a plot that
+uses the fill aesthetic to draw the maptiles, which are just rasters. That means
+when you try to make a choropleth on top of it, you'll have problems because
+you're trying to use 2 different fill mappings. One way around it would be to
+use the `ggnewscale` package to assign multiple things to the fill aesthetic;
+another way is to get the maptiles as a `terra` object, which we've seen for
+mapping raster data and which doesn't need to create a fill scale. I'll use the
+second one here.
 
-Let's make a map that shows the child population in the city, plus public art, plus has a basemap to orient people.
+Let's make a map that shows the child population in the city, plus public art,
+plus has a basemap to orient people.
 
 ```{r}
 #| label: basemap-choro
 #| fig-height: 6
+
 # crop art_sf to just the city boundaries
 balt_art <- justviz::art_sf |>
     sf::st_transform(3857) |>
@@ -251,17 +344,25 @@ ggplot() +
     )
 ```
 
-
-[Here's a good blog post](https://oliverstringham.com/blog/data-visualization/make-maps-with-basemaps-and-insets-ggplot2/) going over a similar (more polished) procedure and what I used to troubleshoot this section.
+[Here's a good blog
+post](https://oliverstringham.com/blog/data-visualization/make-maps-with-basemaps-and-insets-ggplot2/)
+going over a similar (more polished) procedure and what I used to troubleshoot
+this section.
 
 ## Combining spatial & nonspatial visualizations
 
-Sometimes the best context is just another chart that can show what you can't do in a map. This might mean pairing a choropleth to show spatial patterns with a bar chart to show regional averages, or a map as a snapshot of where things are now with a line chart of how things got there.
+Sometimes the best context is just another chart that can show what you can't do
+in a map. This might mean pairing a choropleth to show spatial patterns with a
+bar chart to show regional averages, or a map as a snapshot of where things are
+now with a line chart of how things got there.
 
-For example, a choropleth of mobility disability rates shows the spatial pattern locally, with higher rates in East & West Baltimore but closer to the middle of the city...
+For example, a choropleth of mobility disability rates shows the spatial pattern
+locally, with higher rates in East & West Baltimore but closer to the middle of
+the city...
 
 ```{r}
 #| label: mobility-choro
+
 cdc_wide <- justviz::cdc |>
     # dplyr::filter(indicator %in% c("Current asthma", "Annual checkup")) |>
     dplyr::mutate(value = value / 100) |>
@@ -293,7 +394,8 @@ mobility_choro <- balt_sf |>
 while a bar chart contextualizes the city's data...
 
 ```{r}
-#| label: mobility-bar 
+#| label: mobility-bar
+
 mobility_bar <- cdc_wide |>
     dplyr::filter(
         location %in%
@@ -334,6 +436,7 @@ and a scatterplot shows how it relates to other issues.
 
 ```{r}
 #| label: mobility-scatter
+
 mobility_scatter <- cdc_wide |>
     dplyr::inner_join(justviz::acs, by = c("location" = "name", "level")) |>
     dplyr::filter(
@@ -375,8 +478,8 @@ mobility_scatter <- cdc_wide |>
 
 ```{r}
 #| label: mobility-combo
+
 mobility_choro
 mobility_bar
 mobility_scatter
 ```
-
