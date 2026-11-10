@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      STADIA_TOKEN: ${{ secrets.STADIA_TOKEN }}
     steps:
       - name: Check out repository
         uses: actions/checkout@v7
@@ -44,9 +46,11 @@ jobs:
         env:
           GGMAP_GOOGLE_API_KEY: ${{ secrets.GGMAP_GOOGLE_API_KEY }}
           GGMAP_STADIAMAPS_API_KEY: ${{ secrets.GGMAP_STADIAMAPS_API_KEY }}
+          STADIA_TOKEN: ${{ secrets.STADIA_TOKEN }}
         run: |
           echo "GGMAP_GOOGLE_API_KEY=$GGMAP_GOOGLE_API_KEY" >> ~/.Renviron
           echo "GGMAP_STADIAMAPS_API_KEY=$GGMAP_STADIAMAPS_API_KEY" >> ~/.Renviron
+          echo "STADIA_TOKEN=$STADIA_TOKEN" >> ~/.Renviron
 
       - name: Render and Publish
         uses: quarto-dev/quarto-actions/publish@v2
