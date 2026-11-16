@@ -12,7 +12,7 @@ seq_pal <- RColorBrewer::brewer.pal(n = 5, name = "GnBu")
 counties_sf <- tigris::counties(state = "MD", cb = TRUE) |>
     dplyr::select(name = NAMELSAD)
 edu_by_state <- readRDS(here::here("assets/edu_by_state.rds"))
-
+age_dot <- readRDS(here::here("assets/pop_age_dot_density.rds"))
 
 theme_set(theme_minimal())
 ```
@@ -60,23 +60,23 @@ We've talked about how there are lots of problems with choropleths, biggest amon
 grad_cents <- sf::st_centroid(grad_degrees)
 
 ggplot(grad_degrees) +
-  # layer for boundaries
-  geom_sf(color = "gray20", linewidth = 0.2) +
-  # layer for bubbles
-  geom_sf(
-    aes(size = n_grad_degree),
-    data = grad_cents,
-    color = seq_pal[5],
-    alpha = 0.8
-  ) +
-  # make sure to scale by area, not radius
-  scale_size_area(
-    max_size = 10
-  ) +
-  labs(
-    title = "Number of people with graduate degrees,\nMaryland adults ages 25+ by county, 2024"
-  ) +
-  coord_sf(ndiscr = 0)
+    # layer for boundaries
+    geom_sf(color = "gray20", linewidth = 0.2) +
+    # layer for bubbles
+    geom_sf(
+        aes(size = n_grad_degree),
+        data = grad_cents,
+        color = seq_pal[5],
+        alpha = 0.8
+    ) +
+    # make sure to scale by area, not radius
+    scale_size_area(
+        max_size = 10
+    ) +
+    labs(
+        title = "Number of people with graduate degrees,\nMaryland adults ages 25+ by county, 2024"
+    ) +
+    coord_sf(ndiscr = 0)
 ```
 
 Sometimes I see these where the bubbles are colored according to something like the share, while the size gives the count. That's going to be hard to pull off without it looking to cluttered.
@@ -127,16 +127,16 @@ A cartogram is like a choropleth, but the shapes have been distorted to account 
 # returns an sf object, requires input be projected
 # could instead scale by pop 25+
 grad_degrees |>
-  sf::st_transform(3857) |>
-  cartogram::cartogram_cont(weight = "total_pop") |>
-  ggplot() +
-  geom_sf(aes(fill = grad_degree)) +
-  scale_fill_fermenter(palette = "GnBu", direction = 1) +
-  labs(
-    title = "Share of adults with graduate degrees,\nMaryland adults ages 25+ by county, 2024",
-    subtitle = "Shapes sized by total population"
-  ) +
-  coord_sf(ndiscr = 0)
+    sf::st_transform(3857) |>
+    cartogram::cartogram_cont(weight = "total_pop") |>
+    ggplot() +
+    geom_sf(aes(fill = grad_degree)) +
+    scale_fill_fermenter(palette = "GnBu", direction = 1) +
+    labs(
+        title = "Share of adults with graduate degrees,\nMaryland adults ages 25+ by county, 2024",
+        subtitle = "Shapes sized by total population"
+    ) +
+    coord_sf(ndiscr = 0)
 ```
 
 Not a lot of people are going to know Maryland counties well enough to know what's going on here.
@@ -146,15 +146,15 @@ An alternative is a Dorling cartogram, which replaces the polygon oozing effect 
 ```{r}
 #| label: dorling-md
 grad_degrees |>
-  sf::st_transform(3857) |>
-  cartogram::cartogram_dorling(weight = "total_pop") |>
-  ggplot() +
-  geom_sf(aes(fill = grad_degree)) +
-  scale_fill_fermenter(palette = "GnBu", direction = 1) +
-  labs(
-    title = "Share of adults with graduate degrees,\nMaryland adults ages 25+ by county, 2024",
-    subtitle = "Shapes sized by total population"
-  )
+    sf::st_transform(3857) |>
+    cartogram::cartogram_dorling(weight = "total_pop") |>
+    ggplot() +
+    geom_sf(aes(fill = grad_degree)) +
+    scale_fill_fermenter(palette = "GnBu", direction = 1) +
+    labs(
+        title = "Share of adults with graduate degrees,\nMaryland adults ages 25+ by county, 2024",
+        subtitle = "Shapes sized by total population"
+    )
 ```
 
 Again, not great for counties, but works okay for something like states across the country.
@@ -388,3 +388,26 @@ To be more accurate, I usually like to do these with block-level data, which you
 Generating the points for a dot density map is usually a pretty compute-intensive process: I used the `dots` package (the script is at `misc_scripts/dot_density.R`) and even with 48GB of RAM, only 3 variables, only Baltimore city, _and_ scaling the counts by a factor of 5, it still took about 5 or 6 minutes to calculate. That package doesn't have an option for parallel processing, so for anything bigger than this I'd modify the package's code or write the algorithm from scratch to work in parallel.
 :::
 
+
+```{r}
+#| label: dot-density
+set.seed(1)
+age_dot |>
+    sf::st_transform(sf::st_crs(balt_to_grid)) |>
+    dplyr::rename(age = dots_type) |>
+    dplyr::mutate(age = forcats::as_factor(age)) |>
+    # shuffle rows to make sure neither group blocks the other
+    dplyr::sample_frac(size = 1) |>
+    ggplot() +
+    geom_sf(data = balt_to_grid, fill = NA) +
+    geom_sf(aes(color = age), size = 0.25, alpha = 0.3) +
+    scale_color_manual(
+        values = qual_pal[c(1, 2)],
+        guide = guide_legend(override.aes = list(size = 1, alpha = 1))
+    ) +
+    coord_sf(ndiscr = 0) +
+    labs(
+        title = "Population by age, Baltimore, 2020",
+        subtitle = "Dot density estimated at block level"
+    )
+```
