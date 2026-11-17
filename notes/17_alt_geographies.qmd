@@ -1,13 +1,14 @@
 ---
 title: 17. Alternative geographies & manipulation
 code-fold: true
+lightbox: true
 ---
 
 ```{r}
 #| label: setup
 library(ggplot2)
 qual_pal <- rcartocolor::carto_pal(name = "Vivid")
-seq_pal <- RColorBrewer::brewer.pal(n = 5, name = "GnBu")
+seq_pal <- RColorBrewer::brewer.pal(n = 5, name = "RdPu")
 
 counties_sf <- tigris::counties(state = "MD", cb = TRUE) |>
     dplyr::select(name = NAMELSAD)
@@ -27,7 +28,7 @@ At some point, you'll probably run into a situation where the definition of the 
 
 All that is to say that we can and should critique the boundaries of what we're mapping, and think about whether they serve our purposes well. In my experience, a lot of the time they don't, but they're the best and most commonly-understood we've got.
 
-## Keeping geographies
+## Using standard geographies
 
 To get started, here's our normal choropleth of percentage of adults 25+ with a graduate degree by county.
 
@@ -40,7 +41,7 @@ grad_degrees <- counties_sf |>
 
 ggplot(grad_degrees) +
     geom_sf(aes(fill = grad_degree), color = "gray20", linewidth = 0.2) +
-    scale_fill_fermenter(palette = "GnBu", direction = 1) +
+    scale_fill_fermenter(palette = "RdPu", direction = 1) +
     labs(
         title = "Share of adults with graduate degrees,\nMaryland adults 25+ by county, 2024"
     ) +
@@ -79,7 +80,34 @@ ggplot(grad_degrees) +
     coord_sf(ndiscr = 0)
 ```
 
-Sometimes I see these where the bubbles are colored according to something like the share, while the size gives the count. That's going to be hard to pull off without it looking to cluttered.
+You could also do a hybrid, where the bubbles' sizes are scaled to counts and the colors are scaled to rates, but it's hard to make that not look cluttered.
+
+```{r}
+#| label: bubble-choro
+ggplot(grad_degrees) +
+    # layer for boundaries
+    geom_sf(color = "gray20", fill = "gray95", linewidth = 0.2) +
+    # layer for bubbles
+    geom_sf(
+        aes(size = n_grad_degree, fill = grad_degree),
+        data = grad_cents,
+        # color = seq_pal[5],
+        alpha = 0.8,
+        linewidth = 0.05,
+        shape = 21
+    ) +
+    # make sure to scale by area, not radius
+    scale_size_area(
+        max_size = 10
+    ) +
+    scale_fill_fermenter(palette = "RdPu", direction = 1) +
+    labs(
+        title = "Number & share of people with graduate degrees,\nMaryland adults ages 25+ by county, 2024"
+    ) +
+    coord_sf(ndiscr = 0)
+```
+
+I'm sure someone likes this, but it's not me. Note how to do with very light bubbles I've had to add an outer stroke to the bubbles (switched the shape to 21, which is a filled circle), but for counties with very small counts and rates, the outline starts to obscure the data. I also had to adjust the fill of the polygons to improve the contrast.
 
 ### Adjusting choropleths
 
@@ -99,7 +127,7 @@ ggplot(grad_degrees) +
         color = "gray20",
         linewidth = 0.2
     ) +
-    scale_fill_fermenter(palette = "GnBu", direction = 1) +
+    scale_fill_fermenter(palette = "RdPu", direction = 1) +
     scale_alpha_continuous(
         range = c(0.3, 1),
         guide = guide_legend(
@@ -131,7 +159,7 @@ grad_degrees |>
     cartogram::cartogram_cont(weight = "total_pop") |>
     ggplot() +
     geom_sf(aes(fill = grad_degree)) +
-    scale_fill_fermenter(palette = "GnBu", direction = 1) +
+    scale_fill_fermenter(palette = "RdPu", direction = 1) +
     labs(
         title = "Share of adults with graduate degrees,\nMaryland adults ages 25+ by county, 2024",
         subtitle = "Shapes sized by total population"
@@ -150,7 +178,7 @@ grad_degrees |>
     cartogram::cartogram_dorling(weight = "total_pop") |>
     ggplot() +
     geom_sf(aes(fill = grad_degree)) +
-    scale_fill_fermenter(palette = "GnBu", direction = 1) +
+    scale_fill_fermenter(palette = "RdPu", direction = 1) +
     labs(
         title = "Share of adults with graduate degrees,\nMaryland adults ages 25+ by county, 2024",
         subtitle = "Shapes sized by total population"
@@ -219,7 +247,7 @@ courthouse <- sf::st_point(c(-76.6138131, 39.2907991)) |>
 
 court_iso <- osrm::osrmIsochrone(
     courthouse,
-    breaks = c(5, 10),
+    breaks = c(5, 7, 10),
     osrm.profile = "foot"
 )
 
@@ -249,7 +277,7 @@ ggplot() +
         data = court_iso,
         alpha = 0.8
     ) +
-    scale_fill_manual(values = seq_pal[c(3, 5)]) +
+    scale_fill_manual(values = seq_pal) +
     coord_sf(ndiscr = 0) +
     labs(
         fill = "Walking time (mins)",
@@ -299,7 +327,7 @@ balt_grid_20x20 |>
     ggplot() +
     geom_sf(aes(fill = n_vacants), color = "gray20", linewidth = 0.1) +
     geom_sf(data = balt_to_grid, fill = NA, color = "black") +
-    scale_fill_fermenter(palette = "GnBu", direction = 1) +
+    scale_fill_fermenter(palette = "RdPu", direction = 1) +
     coord_sf(ndiscr = 0) +
     labs(
         title = "Count of vacants, aggregated to 400-cell grid, Baltimore city"
@@ -312,7 +340,7 @@ balt_grid_05_mi |>
     ggplot() +
     geom_sf(aes(fill = n_vacants), color = "gray20", linewidth = 0.1) +
     geom_sf(data = balt_to_grid, fill = NA, color = "black") +
-    scale_fill_fermenter(palette = "GnBu", direction = 1) +
+    scale_fill_fermenter(palette = "RdPu", direction = 1) +
     coord_sf(ndiscr = 0) +
     labs(
         title = "Count of vacants, aggregated to half-mile cells, Baltimore city"
@@ -342,7 +370,7 @@ vacants_xy <- justviz::vacants_sf |>
 ggplot(vacants_xy) +
     geom_density_2d_filled(aes(x = x, y = y)) +
     geom_sf(data = balt_to_grid, fill = NA, color = "black") +
-    scale_fill_brewer(palette = "GnBu", direction = 1) +
+    scale_fill_brewer(palette = "RdPu", direction = 1) +
     coord_sf(ndiscr = 0) +
     labs(title = "Density of vacants")
 ```
@@ -368,7 +396,7 @@ ggplot() +
     tidyterra::geom_spatraster(data = vacants_rast) +
     geom_sf(data = balt_to_grid, fill = NA, color = "black") +
     scale_fill_distiller(
-        palette = 'GnBu',
+        palette = 'RdPu',
         direction = 1,
         na.value = "transparent"
     ) +
@@ -385,12 +413,13 @@ Last alternative we'll try is the dot density map. A dot density map is a type o
 To be more accurate, I usually like to do these with block-level data, which you only get from the decennial census (every 10 years). A few packages create randomized dots for you, or you can calculate manually. 
 
 ::: {.aside} 
-Generating the points for a dot density map is usually a pretty compute-intensive process: I used the `dots` package (the script is at `misc_scripts/dot_density.R`) and even with 48GB of RAM, only 3 variables, only Baltimore city, _and_ scaling the counts by a factor of 5, it still took about 5 or 6 minutes to calculate. That package doesn't have an option for parallel processing, so for anything bigger than this I'd modify the package's code or write the algorithm from scratch to work in parallel.
+Generating the points for a dot density map is usually a pretty compute-intensive process: I used the `dots` package (the script is at `misc_scripts/dot_density.R`), switched to my heavy-duty laptop, and even with 48GB of RAM, only 2 variables, only Baltimore city, _and_ scaling the counts by a factor of 5, it still took several minutes to calculate. That package doesn't have an option for parallel processing, so for anything bigger than this I'd modify the package's code or write the algorithm from scratch to work in parallel.
 :::
 
 
 ```{r}
 #| label: dot-density
+#| fig-height: 8 
 set.seed(1)
 age_dot |>
     sf::st_transform(sf::st_crs(balt_to_grid)) |>
