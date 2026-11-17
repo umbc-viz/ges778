@@ -117,7 +117,7 @@ Dasymetric mapping is a technique where you adjust a choropleth so the shaded ar
 
 #### Incorporating population
 
-Is this the broke geographer's dasymetric map? An easier alternative is to make a choropleth like normal, but scale the opacity of regions based on population (or households). I noticed during the midterm elections that some newsrooms were doing this instead of the usual bright red vs bright blue maps of how land supposedly voted.
+An easier alternative is to make a choropleth like normal, but scale the opacity of regions based on population (or households). I noticed during the midterm elections that some newsrooms were doing this instead of the usual bright red vs bright blue maps of how land supposedly voted.
 
 ```{r}
 #| label: alpha-map 
@@ -142,6 +142,8 @@ ggplot(grad_degrees) +
 ```
 
 Now we can see that even though both Howard & PG Counties fall into that highest bracket of *shares*, the *number* of people with graduate degrees will be different because PG County has about 3 times the population of Howard. You could (should?)  scale opacity by population 25+ rather than total population like I did here.
+
+I tried to build a broke geographer's dasymetric map by cutting out blocks with no population. It's...not worth the compute effort.
 
 ## Changing shapes
 
