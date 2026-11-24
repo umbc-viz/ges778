@@ -106,9 +106,9 @@ div.csl-indent {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b1528b1cba7e9f63f59baa7408a6f56.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-424f1e2c5201483db21c52a0750fa1e5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-582225f1f8c23439be372214bfe8a6be.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-424f1e2c5201483db21c52a0750fa1e5.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-fb2ca5538137ef9ffa601c88d4a419ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-46d3ae26de4c209e14d43194f3ca7f31.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-fb2ca5538137ef9ffa601c88d4a419ed.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -515,6 +515,12 @@ div.csl-indent {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../notes/18_maps_for_action.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">18. Maps for community action</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../notes/proj1_work_sesh.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Project 1 work session</span></a>
   </div>
@@ -538,6 +544,12 @@ div.csl-indent {
   <div class="sidebar-item-container"> 
   <a href="../extras/ggsave.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Saving plots with ggsave</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../extras/historic_shapefiles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Working with historic shapefiles</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -622,7 +634,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Modified</div>
     <div class="quarto-title-meta-contents">
-      <p class="date-modified">November 18, 2026</p>
+      <p class="date-modified">November 24, 2026</p>
     </div>
   </div>
     
@@ -645,7 +657,7 @@ div.csl-indent {
 <p>“So there is a tension there. How can you be accurate and get it right without alienating people by putting up too much information? That’s a really, really hard balance.”</p>
 <p>– Mona Chalabi in <span class="citation" data-cites="hahn2023">Hahn (<a href="#ref-hahn2023" role="doc-biblioref">2023</a>)</span></p>
 </blockquote><div class="no-row-height column-margin column-container"><div id="ref-hahn2023" class="csl-entry" role="listitem">
-Hahn, J. (2023). "<span>Data</span> replicates the existing systems of power" says <span>Pulitzer Prize</span>-winner <span>Mona Chalabi</span>. <em>Dezeen</em>. <a href="https://www.dezeen.com/2023/11/16/mona-chalabi-pulitzer-prize-winner/">https://www.dezeen.com/2023/11/16/mona-chalabi-pulitzer-prize-winner/</a>
+Hahn, J. (2023). "<span>Data</span> replicates the existing systems of power" says <span>Pulitzer Prize</span>-winner <span>Mona Chalabi</span>. <em>Dezeen</em>.
 </div></div></div>
 <div class="page-columns page-full"><blockquote class="blockquote">
 <p>A data visualization is not a piece of art meant to be looked at only for its aesthetically pleasing features. Instead, its purpose is to convey information and make a point. To reliably achieve this goal when preparing visualizations, we have to place the data into context and provide accompanying titles, captions, and other annotations.</p>
@@ -846,7 +858,7 @@ Hahn, J. (2023). "<span>Data</span> replicates the existing systems of power" sa
 <h3 class="anchored" data-anchor-id="direct-labeling">Direct labeling</h3>
 <p>Direct labeling is a use of text that is more about your specific data than the messaging, but it’s again a technique that helps your reader make sense of the data. This is where you place labels at specific points, such as labeling the value at the end of every bar in a bar chart, or labeling the endpoints of each line in a line chart. This can also let you eliminate some annotations, such as axis labels or legends, leaving your reader with fewer separate elements to read and fewer dots to connect as they move back and forth (some explanations of this in <span class="citation" data-cites="wilke2019">Wilke (<a href="#ref-wilke2019" role="doc-biblioref">2019</a>)</span> section 20.2).</p>
 <div class="no-row-height column-margin column-container"><div id="ref-wilke2019" class="csl-entry" role="listitem">
-Wilke, C. O. (2019). <em>Fundamentals of <span>Data Visualization</span></em>. <a href="https://clauswilke.com/dataviz/">https://clauswilke.com/dataviz/</a>
+Wilke, C. O. (2019). <em>Fundamentals of <span>Data Visualization</span></em>.
 </div></div><p>With ggplot, you’ll do this with <code>geom_text</code> or <code>geom_label</code> (or similar functions from packages like <a href="https://github.com/slowkow/ggrepel"><code>ggrepel</code></a> or <a href="https://github.com/wilkelab/ggtext"><code>ggtext</code></a>).</p>
 <p>Labeling observations lets you drop the axis and gridlines, and gives your reader exact values instead of having to estimate them by position within the grid. Which of these is easier to read precisely?</p>
 <div class="cell">
@@ -974,7 +986,7 @@ Wilke, C. O. (2019). <em>Fundamentals of <span>Data Visualization</span></em>. <
 <p><a href="../assets/naep.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="From @thomas2020a"><img src="../assets/naep.png" class="img-fluid figure-img" alt="A screenshot of a dot plot of the gap in math standardized testing scores between students who qualify for free or reduced lunch and those who do not. The chart has several dropdown menus available for readers to choose the subject, grade, and comparison groups to show, and is incorporated into a longer article."></a></p>
 <figcaption>From <span class="citation" data-cites="thomas2020a">Thomas (<a href="#ref-thomas2020a" role="doc-biblioref">2020</a>)</span></figcaption>
 <div id="ref-thomas2020a" class="csl-entry" role="listitem">
-Thomas, J. R. (2020). Two districts, two very different plans for students while school is out indefinitely. <em>CT Mirror</em>. <a href="https://ctmirror.org/2020/03/19/two-districts-two-very-different-plans-for-students-while-school-is-out-indefinitely/">https://ctmirror.org/2020/03/19/two-districts-two-very-different-plans-for-students-while-school-is-out-indefinitely/</a>
+Thomas, J. R. (2020). Two districts, two very different plans for students while school is out indefinitely. <em>CT Mirror</em>.
 </div></figure>
 </div>
 </div></div><p>That’s not to say you can’t or shouldn’t use more complex charts in all situations; you might just need to use text and annotations, and maybe break the chart down into several parts, in order to guide your audience. Here’s an example of one of several charts that accompany a newspaper article; check out how much care was put into making a relatively complex chart legible.</p>
@@ -983,7 +995,7 @@ Thomas, J. R. (2020). Two districts, two very different plans for students while
 <p><a href="../assets/bump-scatterplot.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="From @bump2026"><img src="../assets/bump-scatterplot.png" class="img-fluid figure-img" alt="A screenshot of a scatterplot from the online newspaper CT Insider. The headline of the chart reads 'Lamont's margin was smaller in less-educated towns,' and shows one dot per town. The percentage of each town with a high school degree or less is on the x-axis, and Lamont's win margin is on the y-axis. The dots show a negative correlation."></a></p>
 <figcaption>From <span class="citation" data-cites="bump2026">Bump (<a href="#ref-bump2026" role="doc-biblioref">2026</a>)</span></figcaption>
 <div class="no-row-height column-margin column-container"><div id="ref-bump2026" class="csl-entry" role="listitem">
-Bump, P. (2026). These connecticut towns reveal who backed lamont most. In <em>CT Insider</em>. <a href="https://www.ctinsider.com/politics/article/who-backed-lamont-connecticut-primary-2026-22384761.php">https://www.ctinsider.com/politics/article/who-backed-lamont-connecticut-primary-2026-22384761.php</a>
+Bump, P. (2026). These connecticut towns reveal who backed lamont most. In <em>CT Insider</em>. https://www.ctinsider.com/politics/article/who-backed-lamont-connecticut-primary-2026-22384761.php.
 </div></div></figure>
 </div>
 </section>
@@ -995,7 +1007,7 @@ Bump, P. (2026). These connecticut towns reveal who backed lamont most. In <em>C
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Circa 2017, scrollytelling was very cool and people were <em>very intense</em> with it. I’ve noticed in recent years people have eased up. It can be disorienting for some readers. <span class="citation" data-cites="webb2018">Webb (<a href="#ref-webb2018" role="doc-biblioref">2018</a>)</span> convinced me to scrap my scrollytelling plans for some projects during that era. I tried something similar once, and it made my partner with ADHD very agitated.</p>
 <div id="ref-webb2018" class="csl-entry" role="listitem">
-Webb, E. (2018). <em>Your <span>Interactive Makes Me Sick</span></em>. <a href="https://source.opennews.org/articles/motion-sick/">https://source.opennews.org/articles/motion-sick/</a>
+Webb, E. (2018). <em>Your <span>Interactive Makes Me Sick</span></em>. https://source.opennews.org/articles/motion-sick/.
 </div></div></div><p>Some of the simplest tasks we can do for static data visualization are using <strong>colorblind-friendly palettes</strong>, writing <strong>alt-text descriptions</strong>, and maintaining high <strong>contrast ratios</strong> between backgrounds and text.</p>
 <section id="colorblindness-color-vision-deficiency" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="colorblindness-color-vision-deficiency">Colorblindness / color vision deficiency</h3>
@@ -1004,7 +1016,7 @@ Webb, E. (2018). <em>Your <span>Interactive Makes Me Sick</span></em>. <a href="
 <div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Something that blew my mind is in Frank Elavsky’s interview on <em>PolicyViz</em>&nbsp;<span class="citation" data-cites="schwabish2021c">(<a href="#ref-schwabish2021c" role="doc-biblioref">Schwabish, 2021</a>)</span>. He acknowledges that awareness of CVD has become the norm in data viz, but that it actually predominantly affects white men, and that it shouldn’t be too surprising that that is often the only accommodation made in a field where white men are overrepresented.</p>
 <div id="ref-schwabish2021c" class="csl-entry" role="listitem">
-Schwabish, J. (2021). <em>Frank <span>Elavsky</span></em> (No. 208). <a href="https://policyviz.com/podcast/episode-208-frank-elavsky/">https://policyviz.com/podcast/episode-208-frank-elavsky/</a>
+Schwabish, J. (2021). <em>Frank <span>Elavsky</span></em> (No. 208).
 </div></div></div><p>The most common form of CVD is what’s called red-green colorblindness. Many common R color palettes are colorblind-friendly, and some tools will help you tell whether a palette is or not, or for which color deficiencies they are legible.</p>
 <p>Some code examples:</p>
 <div class="cell">
@@ -1193,7 +1205,7 @@ Schwabish, J. (2021). <em>Frank <span>Elavsky</span></em> (No. 208). <a href="ht
 <h3 class="anchored" data-anchor-id="literacy">Literacy</h3>
 <p>We may easily take for granted the ability to read English fluently, but it’s important to remember that, depending on our audience, many of our readers may not be able to. Twenty-two percent of US adults ages 16 to 74 are rated as having low literacy; in Maryland, this is 20% <span class="citation" data-cites="piaac2020">(<a href="#ref-piaac2020" role="doc-biblioref">National Center for Education Statistics, 2020</a>)</span>. <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> So if you’re creating a visualization that needs to work for a general audience, you’ll want to keep your sentences short, language simple, and chart types pretty standard.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-piaac2020" class="csl-entry" role="listitem">
-National Center for Education Statistics. (2020). <em><span>Program for the International Assessment of Adult Competencies (PIAAC)</span></em>. National Center for Education Statistics. <a href="https://nces.ed.gov/surveys/piaac/state-county-estimates.asp">https://nces.ed.gov/surveys/piaac/state-county-estimates.asp</a>
+National Center for Education Statistics. (2020). <em><span>Program for the International Assessment of Adult Competencies (PIAAC)</span></em>. https://nces.ed.gov/surveys/piaac/state-county-estimates.asp; National Center for Education Statistics.
 </div><div id="fn1"><p><sup>1</sup>&nbsp;This program outlines definitions of “low literacy,” but in news stories and Wikipedia it’s being referred to as corresponding to a sixth grade reading level. I haven’t found anything directly connected to the program that corroborates that.</p></div></div><p>There are some tools online to estimate reading level algorithmically, though this can be problematic. One I’ve used is the <a href="https://www.wordcalc.com/readability/">Flesch-Kincaid grade level test</a>.</p>
 </section>
 <section id="modes-of-access" class="level3">
