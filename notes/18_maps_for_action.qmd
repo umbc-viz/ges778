@@ -1,0 +1,160 @@
+---
+title: 18. Maps for community action
+code-fold: true
+lightbox: true
+---
+
+## Sad maps
+
+Any chance I get, I tell other data viz people about "sad maps". This is a term I learned at a conference on the launch of the 500 Cities Project, the predecessor to the project whose data is in `justviz::cdc`. I don't remember which one of the panelists said it, and I have no idea where my notes are from the conference, but it's stuck with me. The panelist defined "sad maps" as maps, often choropleths, that just show hotspots of the same depressing patterns across neighborhoods over and over without supplying any sense of neighborhoods' assets or source of strength.
+
+At that point, I'd been making maps for a year or two, and I've been making maps for probably seven years since, and I'm still guilty of making *many* sad maps. It's unavoidable, especially when it's your job to make maps about public health and inequality. That's why your task isn't to *never* make a sad map, but to try to find other ways of doing things. Maybe that means showing distributions instead of neighborhood vs neighborhood or town vs town comparisons, or contextualizing the sad data with community strengths and history, or using a visualization that's not a map, or not visualizing it at all, or having different people at the table making decisions on how to tell the story. It might also mean using the names and boundaries of places that residents use, which aren't always the same as what the government or researchers use. ^[The Anti-Eviction Mapping Project, one of the projects for the second case study, describes the challenge of balancing research on hardship with empowering stories, and give a lot of credit to the fact that their work is community-led.]
+
+This was one of the major reasons I had for pushing my organization away from choropleths---I got tired of making the same sad map. It was doubly frustrating because I lived in one of those "sad" hotspots in New Haven, and I didn't like thinking I might be reinforcing my neighbors' or my own disenfranchisement.
+
+Here's an example with Baltimore:
+
+```{r}
+#| label: setup
+#| echo: false
+library(ggplot2)
+library(sf)
+
+theme_set(theme_minimal())
+```
+
+
+```{r}
+#| label: maps1
+#| echo: false
+#| fig-height: 8 
+small_tracts <- justviz::acs |>
+  dplyr::filter(level == "tract",
+         total_hh < 50 | total_pop < 100)
+
+black_butterfly <- justviz::acs |>
+  dplyr::filter(level == "tract",
+         county == "Baltimore city",
+         black > 0.5) |>
+  dplyr::inner_join(justviz::tracts_sf, by = c("name" = "geoid")) |>
+  st_as_sf() |>
+  dplyr::group_by(area = "Black butterfly") |>
+  dplyr::summarise()
+
+sad_data <- list(
+  cdc = justviz::cdc |>
+    dplyr::filter(indicator %in% c("Frequent mental distress", "Diabetes")) |>
+    dplyr::mutate(value = value / 100) |>
+    dplyr::select(location, indicator, value),
+  ej = justviz::ej_natl |>
+    dplyr::filter(indicator %in% c("lead_paint_exposure")) |>
+    dplyr::select(location = tract, indicator, value = value_ptile),
+  acs = justviz::acs |>
+    dplyr::select(location = name, poverty, cost_burden_rate = total_cost_burden) |>
+    tidyr::pivot_longer(-location, names_to = "indicator"),
+    # join vacants with acs to get rate per 1000 units
+  vacant = justviz::vacants_by_tract |>
+    dplyr::inner_join(justviz::acs |> dplyr::select(name, total_housing_units), by = c("geoid" = "name")) |>
+    dplyr::mutate(vacants_per_1k_units = (n_vacants / total_housing_units) * 1000) |>
+    dplyr::select(location = geoid, vacants_per_1k_units) |>
+    tidyr::pivot_longer(-location, names_to = "indicator")
+) |>
+  dplyr::bind_rows(.id = "dataset") |>
+  dplyr::mutate(indicator = forcats::as_factor(indicator) |>
+           forcats::fct_relabel(snakecase::to_sentence_case)) |>
+  dplyr::anti_join(small_tracts, by = c("location" = "name"))
+
+sad_maps <- sad_data |>
+  split(~indicator) |>
+  purrr::imap(function(df, id) {
+    justviz::tracts_sf |>
+      dplyr::filter(county == "Baltimore city") |>
+      dplyr::left_join(df, by = c("geoid" = "location")) |>
+      dplyr::mutate(brk = suppressWarnings(classInt::classify_intervals(value, n = 5, style = "quantile"))) |>
+      ggplot() +
+      geom_sf(aes(fill = brk), color = "white", linewidth = 0) +
+      scale_fill_brewer(palette = "YlGnBu", direction = 1, na.value = "gray80") +
+      coord_sf(ndiscr = 0) +
+      labs(title = id, fill = NULL) 
+  })
+
+patchwork::wrap_plots(sad_maps, ncol = 2)
+```
+
+Those are different variables, and while the two from the CDC Places data (poor mental health and diabetes rate) are in part modeled using data from the ACS, our naive hypothesis would be that the maps should look different. But they look pretty similar---not exactly the same of course, but with similar patterns. I'd consider these sad maps, and I wouldn't want to present them all together like this without additional historical context of how we got here.
+
+::: {.aside}
+I included lead paint exposure on a hunch that it might follow the same pattern as many others, and it didn't really; then I kept it in so I wouldn't be cherry-picking to make a point.
+:::
+
+However, in Baltimore we have an example of the sad map being reclaimed in a way: Dr. Lawrence Brown coined the "Black Butterfly" (@brown2021) to describe the pattern of majority-Black neighborhoods fanning out in East and West Baltimore, with the "White L" cutting through them. He's then studied how these sad indicators play out across the Black Butterfly, but uses this data in a way that aims to be empowering. It's become the sort of image you can't unsee once you see it, and it invites others to describe their research and surroundings in that same framework (here's one example, @urbaninstitute2019).
+
+Here are those same maps with majority-Black tracts outlined (just a quick proxy for Dr. Brown's categorization):
+
+```{r}
+#| label: butterfly
+#| echo: false
+#| warning: false
+#| fig-height: 8
+
+sad_maps |>
+  purrr::map(function(p) {
+    p +
+      geom_sf(data = black_butterfly, color = "black", linewidth = 0.6, fill = NA) +
+      coord_sf(ndiscr = 0)
+  }) |>
+  patchwork::wrap_plots(ncol = 2)
+```
+
+Again, it's not exactly the same every time, but one of the purposes of data visualization is understanding and contextualizing patterns, and one of the purposes of this sort of branding is bringing that idea to life and into the local lexicon. After all, when was the last time you saw an [economic development initiative](https://www.blkbtrfly.network/), an [urban farming program](https://farmalliancebaltimore.org/theacademy/), or a [performing arts series](https://www.centerstage.org/events/baltimore-butterfly-sessions-the-black-butterfly/) named after a data visualization??
+
+## Visualizing history
+
+I've worked a fair amount with the [digitized redlining maps](https://dsl.richmond.edu/panorama/redlining/data/MD-Baltimore) used by the federal government via the Home Owners' Loan Corporation. In a nutshell, these maps were developed to categorize the "safety" of issuing mortgages in different neighborhoods, which then led to the government and banks investing in some neighborhoods and denying support for investment in others. Surveyers for HOLC collected data on cards for each neighborhood (many of these are digitized as well) with estimates of demographics, including whether Black people lived there and what groups had "infiltrated" the area (generally meant immigrants and/or Jewish people). They're a classic example of how data and mapping can be used to actively harm entire communities, and how that harm can have ripple effects for generations.
+
+Now that we have these maps digitized and available as shapefiles for many cities around the country (including Baltimore), it's tempting to use them to contextualize lots of modern data. And sometimes that's appropriate; we've already looked at my [two-part project](https://ctdatahaven.org/reports/ct-data-story-housing-segregation-greater-new-haven) joining those maps with current demographics and homeownership data. But there are two major pitfalls I've seen with this:
+
+* Using a lens frozen in history doesn't account for ways that neighborhoods change. Good examples of this are in Southeast Baltimore, where neighborhoods like Fell's Point were marked as "hazardous" in the 1930s for being predominantly Black and where much of the housing stock is former slave quarters. Now those houses are considered quaint and cozy.
+* At some point it feels deterministic. It's hard to contextualize our current data in local history without it coming across as being stuck there.
+
+It's still very useful to know how to do this, and you can see some examples of doing it in [these notes](../extras/historic_shapefiles.qmd). Just, as always, know your data, know the community you're mapping, and think critically when you make your decisions.
+
+## Asset mapping
+
+Asset mapping is a technique where you map an area focusing on its strengths and resources rather than its deficits. It's often done best *about* a specific community *by* that community, because some of the most important assets in a neighborhood won't show up on paper or in common data.
+
+When we talked about using [OSM data](./16_spatial_context.qmd) I mentioned a hackathon where we added or edited playspaces in Baltimore on OSM to help a group advocating for more access to parks & similar facilities. We used satellite imagery to do this, in addition to whatever local knowledge we might have. But just because a park exists, that doesn't mean it's accessible to everyone who might use it: it could present mobility issues, it might not be in good or safe condition, or there might be people selling drugs or other activities that make it unsafe or unwelcoming for younger kids. That's where local knowledge becomes crucial---kids, parents and caregivers, and the grandmas that fuss at people from their porches will know what green spaces are actually assets to their communities and in what ways better than I will just from looking at a satellite image.
+
+::: {.aside}
+A tip I learned in that session was to use satellite imagery taken during the winter after trees have lost their leaves; that way you have a much better view of the ground, and grassy areas stand out better.
+:::
+
+This [neighborhood profile](https://ctdatahaven.org/wp-content/uploads/2025/12/Newhallville_Dixwell_Neighborhood_Index_web.pdf) project my organization did with a few local community groups is a good example of balancing the hard stuff with the history and assets. No one needs to pretend there isn't a lot of economic hardship in the area or that people aren't dealing with more violence than they should have to (I knew 2 people who were shot and killed there). But those numbers can be situated in the history of the neighborhoods and the lives that people are trying to build moving forward. The photovoice section at the end provides qualitative research done by local teenagers to move forward from the quantitative sections us nerds put together.
+
+## Empathy
+
+One of the benefits of a map is that people know how to find themselves on one. On a day to day basis, we mostly use maps for travel---figuring out where we are and where we want to go---so as far as data visualizations go, this can be an accessible one (keeping in mind all the other caveats of mapping we've talked about). When I showed you Bill Rankin's dot density map of Chicago by race & ethnicity, I was able to identify where I grew up and roughly which dots my family and I were included in. Even without zooming in enough to see street names, I knew the shape of our corner of the city and I knew the stark bands of segregation that signaled where my mom worried about me wandering. I wouldn't have felt such nostalgia from a bar chart. The New York Times put out a version for the whole country (seems to be offline now but there's a recreation & update [here](https://www.censusdots.com))
+
+## Mapping what a community already knows
+
+Sometimes your role as a researcher / analyst / GIS person is to just collect or present data that supports a point that everyone already knows to be true. You spend weeks doing research that culminates in just a single chart or paragraph and are met with "Great, tell me something I don't know." And that's fine, and just how it goes. There are plenty of widely acknowledged problems that go unfixed until someone can put together a clear measurement of how big the problem it is, or pinpoint where exactly the problem is most severe, and in the meantime the people dealing with the problem get ignored. Data and mapping can be one tool in the toolbox to make changes, even if all you're doing is quantifying what people on the ground have been saying all along. 
+
+Here's a good local example (that won a Pulitzer): Data journalists at _The Baltimore Banner_ studied the public transit routes kids take across the city to get to school. They acknowledge in the opening of this piece (this is more the methodology article; there's another for the feature) that this was a problem that was already widely known, but there was no data to back up what parents and kids had been saying for years:
+
+> For years, Baltimore students and parents have complained that trips to school on public transit are long and unpredictable. They describe long waits on dark street corners and full buses driving past them. Every day, they say, is a stressful and frustrating odyssey.
+>
+> The Banner set out to quantify how bad the problem really is. 
+> -- @bowie2025
+
+I imagine some of the parents had impolite responses---it's really frustrating when some nerd just repeats what you've been saying all along, but now people take it seriously because there are some numbers attached to it. Or people will say that your numbers are wrong and the problem is actually worse or different. And that's where building trusting relationships, being able to explain methodology, and adapting your methods to fit other people's needs all come in, which are bigger than data visualization but things you will likely struggle with at some point in your career.
+
+Both of the case study maps are great examples of working through this tension and building a base of knowledge that treats community members as experts even when we don't have all the "objective" facts available on paper: in the case of [Native Land](https://native-land.ca/), we're relying in part on ancestral knowledge, oral history, and community research that might not meet the requirements of court or academia, to talk about boundaries that never existed or were imposed or in flux. With [the Anti-Eviction Mapping Project](https://antievictionmap.com/narratives), we're choosing to take people at their word and put ourselves in the shoes of people who are up against powerful entities like landlords and court systems.
+
+## More cool mapping projects!
+
+- Working Class History is a UK-based group of researchers with a podcast and book. They also have a [map](https://map.workingclasshistory.com/) of events in history around the world, focusing on labor history, civil rights, and struggles for independence.
+- [Deflock](https://deflock.org/), a crowdsourced effort to map Flock and similar ALPR systems around the US, now being used in campaigns to prevent or remove cameras through legal means or otherwise
+- [Atlas of Surveillance](https://www.atlasofsurveillance.org/atlas) is a tool from the Electronic Frontier Foundation to help identify surveillance technology around the country
+    - Shamelessly adding my [MPS capstone](https://github.com/DATA-606-2023-FALL-MONDAY/seaberry_camille) on training neural networks to identify surveillance cameras in street view imagery in the hopes that someday I'll update it and build it into the mapping project I envisioned (or that someone will fork it and do something with it)
+- [Ghost Rivers](https://ghostrivers.com/), a map/installation painted on streets & sidewalks around Remington in Baltimore showing the rivers that the city was built on top of
+- Many projects by my friends at other [National Neighborhood Indicators Partnership](https://neighborhoodindicators.org/) orgs. 
